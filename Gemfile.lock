@@ -1,3 +1,11 @@
+PATH
+  remote: /home/jonathan/apps/odk_aggregate
+  specs:
+    odk_aggregate (0.0.1)
+      faraday_middleware (~> 0.9)
+      multi_xml
+      rash (~> 0.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -36,6 +44,11 @@ GEM
     coffee-script-source (1.7.0)
     erubis (2.7.0)
     execjs (2.0.2)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.9.1)
+      faraday (>= 0.7.4, < 0.10)
+    hashie (2.0.5)
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (1.5.3)
@@ -51,6 +64,8 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.9.3)
+    multi_xml (0.5.5)
+    multipart-post (2.0.0)
     polyglot (0.3.4)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -69,6 +84,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.3.1)
+    rash (0.4.0)
+      hashie (~> 2.0.0)
     rdoc (4.1.1)
       json (~> 1.4)
     sass (3.2.19)
@@ -110,6 +127,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails
+  odk_aggregate!
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)
   sdoc

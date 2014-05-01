@@ -32,6 +32,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# => Funci Gem to interact with ODK aggregate
+gem 'odk_aggregate', :path => '/home/jonathan/apps/odk_aggregate'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
