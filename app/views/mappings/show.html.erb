@@ -1,0 +1,23 @@
+<% content_for :sidebar do %>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <%= link_to "New Mapping", [:new, :mapping] %>
+    </li>
+  </ul>
+<% end %>
+
+<ol class="breadcrumb">
+  <li><%= link_to "Mappings", :mappings %></li>
+  <li><%= @mapping.name %></li>
+</ol>
+
+<div class='row'>
+  <div class='col-md-5'>
+    <h2><%= @mapping.odk_formid %></h2>
+  </div>
+  <div class='col-md-5 col-md-offset-2'>
+    <h2><%= @mapping.salesforce_object_name %></h2>
+  </div>
+</div>
+
+<%= render @mapping.mapping_fields %>

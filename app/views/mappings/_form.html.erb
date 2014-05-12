@@ -1,0 +1,39 @@
+<div class="form-group">
+  <label for="mapping_name">Name</label>
+  <%= form.text_field :name, class: 'form-control', placeholder: 'Enter mapping name' %>
+</div>
+
+<div class='row'>
+  <div class='col-md-5'>
+    <div class="form-group">
+      <label for="mapping_odk_formid">Open Data Kit Form</label>
+      <%= form.select :odk_formid, options_for_select(@odk_forms, @mapping.odk_formid), {include_blank: true}, class: 'form-control' %>
+    </div>
+  </div>
+  <div class='col-md-5 col-md-offset-2'>
+    <div class="form-group">
+      <label for="mapping_odk_formid">SalesForce Object</label>
+      <%= form.select :salesforce_object_name, options_for_select(@sf_forms, @mapping.salesforce_object_name), {include_blank: true}, class: 'form-control' %>
+    </div>
+  </div>
+</div>
+
+<%= form.fields_for :mapping_fields do |mapping_field| %>
+  <div class='row'>
+    <div class='col-md-5'>
+      <div class="panel panel-default">
+        <div class="panel-heading"><%= mapping_field.object.odk_field_name %></div>
+        <div class="panel-body">
+          <%= mapping_field.object.odk_field_type %>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-md-5 col-md-offset-2'>
+      <%= mapping_field.select :salesforce_object_field_name, options_for_select(@sf_form_fields), {include_blank: true}, class: 'form-control' unless @sf_form_fields.blank? %>
+    </div>
+
+    <%= mapping_field.hidden_field :odk_field_name %>
+    <%= mapping_field.hidden_field :odk_field_type %>
+  </div>
+<% end %>

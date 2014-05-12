@@ -1,9 +1,23 @@
-<% @forms.first(5).each do |form| %>
-  <h2><%= form.form_id %></h2>
-  <% form.fields.each do |field| %>
-    <p>
-      Name: <%= field["nodeset"] %> <br/>
-      Type: <%= field["type"] %>
-    </p>
-  <% end %>
+<% content_for :sidebar do %>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <%= link_to "New Mapping", [:new, :mapping] %>
+    </li>
+  </ul>
 <% end %>
+
+<ol class="breadcrumb">
+  <li>Mappings</li>
+</ol>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% render @mappings %>
+  </tbody>
+</table>
