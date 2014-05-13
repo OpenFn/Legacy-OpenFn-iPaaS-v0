@@ -46,6 +46,9 @@ gem 'figaro'
 # => Pagination
 gem 'kaminari'
 
+# => Using jquery UI for draggable
+gem 'jquery-ui-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

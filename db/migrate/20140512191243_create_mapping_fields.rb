@@ -1,9 +1,8 @@
 class CreateMappingFields < ActiveRecord::Migration
   def change
-    create_table :mapping_fields do |t|
-      t.string :odk_field_name
-      t.string :odk_field_type
-      t.string :salesforce_object_field_name
+    create_table :odk_mapping_fields do |t|
+      t.string :field_name
+      t.string :field_type
       t.references :mapping
 
       t.timestamps

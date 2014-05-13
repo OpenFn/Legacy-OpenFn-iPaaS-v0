@@ -1,0 +1,9 @@
+$('.salesforce-fields').html('');
+
+<% @sf_fields.each do |sf_field| %>
+  <%
+    sf_field_id = "#{@object_name}:#{sf_field}"
+  %>
+
+  $('.salesforce-fields').append('<li id="<%= sf_field_id %>"><span class="label label-default salesforce-autocomplete-field"><%= sf_field_id %></span></li>');
+<% end %>

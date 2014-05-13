@@ -1,3 +1,21 @@
 // Place all the styles related to the mapping_fields controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.salesforce-fields, .saleforce-mapping-field {
+  min-height: 400px;
+  padding-top: 10px;
+
+  .salesforce-autocomplete-field {
+    font-size: 20px;
+  }
+}
+
+.saleforce-mapping-field {
+  min-height: 50px;
+}
+
+.odk-field {
+  //border: 1px solid black;
+}

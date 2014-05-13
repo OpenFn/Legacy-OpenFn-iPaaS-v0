@@ -10,14 +10,18 @@
   <li><%= link_to "Mappings", :mappings %></li>
   <li><%= @mapping.name %></li>
 </ol>
-
-<div class='row'>
-  <div class='col-md-5'>
-    <h2><%= @mapping.odk_formid %></h2>
+<% @mapping.odk_mapping_fields.each do |odk_mapping_field| %>
+  <div class='odk-field'>
+    <div class="panel panel-default">
+      <div class="panel-heading"><%= odk_mapping_field.field_name  %> - <%= odk_mapping_field.field_type %></div>
+      <div class="panel-body">
+        <h4>Mapped Salesforce Fields</h4>
+        <ul class='saleforce-mapping-field list-inline'>
+          <% odk_mapping_field.salesforce_mapping_fields.each do |sf_field| %>
+            <li><span class="label label-default salesforce-autocomplete-field"><%= sf_field.object_name %>:<%= sf_field.field_name %></span></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class='col-md-5 col-md-offset-2'>
-    <h2><%= @mapping.salesforce_object_name %></h2>
-  </div>
-</div>
-
-<%= render @mapping.mapping_fields %>
+<% end %>

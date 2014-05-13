@@ -11,21 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140512191243) do
+ActiveRecord::Schema.define(version: 20140513150825) do
 
-  create_table "mapping_fields", force: true do |t|
-    t.string   "odk_field_name"
-    t.string   "odk_field_type"
-    t.string   "salesforce_object_field_name"
+  create_table "mappings", force: true do |t|
+    t.string   "name"
+    t.string   "odk_formid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "odk_mapping_fields", force: true do |t|
+    t.string   "field_name"
+    t.string   "field_type"
     t.integer  "mapping_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "mappings", force: true do |t|
-    t.string   "name"
-    t.string   "odk_formid"
-    t.string   "salesforce_object_name"
+  create_table "salesforce_mapping_fields", force: true do |t|
+    t.integer  "odk_mapping_field_id"
+    t.string   "object_name"
+    t.string   "field_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

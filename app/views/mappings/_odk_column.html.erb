@@ -1,0 +1,23 @@
+<div class="form-group">
+  <label for="mapping_odk_formid">Open Data Kit Form</label>
+  <%= form.select :odk_formid, options_for_select(@odk_forms, @mapping.odk_formid), {include_blank: true}, class: 'form-control' %>
+</div>
+<%= form.fields_for :odk_mapping_fields do |odk_mapping_field| %>
+  <div class='odk-field'>
+    <div class="panel panel-default">
+      <div class="panel-heading"><%= odk_mapping_field.object.field_name  %> - <%= odk_mapping_field.object.field_type %></div>
+      <div class="panel-body">
+        <ul class='saleforce-mapping-field connected-sortable list-inline'>
+          <% odk_mapping_field.object.salesforce_mapping_fields.each do |sf_field| %>
+            <% sf_field_id = "#{sf_field.object_name}:#{sf_field.field_name}" %>
+            <li id="<%= sf_field_id %>"><span class="label label-default salesforce-autocomplete-field"><%= sf_field_id %></span></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <%= odk_mapping_field.hidden_field :field_name %>
+    <%= odk_mapping_field.hidden_field :field_type %>
+    <%= odk_mapping_field.hidden_field :salesforce_mappings, class: 'sf-mapping' %>
+  </div>
+<% end %>
