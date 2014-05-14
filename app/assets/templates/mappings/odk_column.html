@@ -1,0 +1,10 @@
+<div class="form-group">
+  <label for="mapping_odk_formid">Open Data Kit Form</label>
+  <select ng-model="mapping.odk_formid" ng-options="o as o for o in odkForms" class='form-control'></select>
+</div>
+
+<ul class='list-group connected-sortable sortable-location' ui-sortable="sortableOptions" ng-model="odkFormFields">
+  <li class='list-group-item' ng-repeat="odkFormField in odkFormFields">
+    {{odkFormField.nodeset}}: {{odkFormField.type}}
+  </li>
+</ul>

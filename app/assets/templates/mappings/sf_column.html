@@ -1,0 +1,16 @@
+<div class="form-group">
+  <label for="salesforce_object_name">SalesForce Object</label>
+  <select ng-model="mapping.saleforce_object_name" ng-options="o as o for o in salesForceObjects" class='form-control' />
+</div>
+
+<div class="panel panel-default" ng-repeat="salesforceObjectField in salesforceObjectFields">
+  <div class="panel-heading">{{salesforceObjectField.name}}</div>
+  <div class="panel-body">
+    <ul class="list-group sortable-location connected-sortable" ui-sortable="sortableOptions" ng-model="salesforceObjectField.odk_fields">
+      <li class='list-group-item' ng-repeat="odkField in salesforceObjectField.odk_fields">
+        {{odkField.nodeset}}: {{odkField.type}}
+      </li>
+    </ul>
+  </div>
+</div>
+

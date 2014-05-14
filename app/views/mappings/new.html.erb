@@ -5,8 +5,6 @@
 
 <h3>Create a new mapping</h3>
 
-<%= form_for @mapping, role: 'form' do |form| %>
-  <%= render "shared/error_messages", :target => @mapping %>
-  <%= render form %>
-  <%= form.submit "Create", class: 'btn' %>
-<% end %>
+<div ng-app="mapping">
+  <div ng-controller="NewMappingCtrl" ng-include="'/assets/mappings/new.html'"></div>
+</div>
