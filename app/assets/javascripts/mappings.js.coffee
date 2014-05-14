@@ -20,10 +20,16 @@ $ ->
         if $parent.length > 0
           $parent.find('.sf-mapping').val(ui.item.parent().sortable('toArray'))
         else
-          console.log ui.sender.sortable('toArray')
-          ui.sender.closest('.odk-field').find('.sf-mapping').val(ui.sender.sortable('toArray'))
+          arr = ui.sender.sortable('toArray')
+          console.log arr
+          if arr.length is 0
+            # If there aren't anymore fields then set the delete on this
+            ui.sender.closest('.odk-field').find('.sf-delete').val(true)
+          else
+            ui.sender.closest('.odk-field').find('.sf-delete').val(false)
+            ui.sender.closest('.odk-field').find('.sf-mapping').val(arr)
 
-  $('.saleforce-mapping-field').each((index, ele) ->
+  $('#new_mapping, .edit_mapping').find('.saleforce-mapping-field').each((index, ele) ->
     $(ele).closest('.odk-field').find('.sf-mapping').val($(ele).sortable('toArray'))
   )
 
