@@ -20,16 +20,16 @@ ActiveRecord::Schema.define(version: 20140513150825) do
     t.datetime "updated_at"
   end
 
-  create_table "odk_mapping_fields", force: true do |t|
+  create_table "odk_fields", force: true do |t|
     t.string   "field_name"
     t.string   "field_type"
-    t.integer  "mapping_id"
+    t.integer  "salesforce_field_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "salesforce_mapping_fields", force: true do |t|
-    t.integer  "odk_mapping_field_id"
+  create_table "salesforce_fields", force: true do |t|
+    t.integer  "mapping_id"
     t.string   "object_name"
     t.string   "field_name"
     t.datetime "created_at"

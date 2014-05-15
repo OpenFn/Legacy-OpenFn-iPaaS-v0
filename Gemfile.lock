@@ -87,6 +87,7 @@ GEM
     multi_json (1.10.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    ng-rails-csrf (0.1.0)
     polyglot (0.3.4)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -151,6 +152,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   kaminari
+  ng-rails-csrf
   odk_aggregate!
   rails (= 4.0.0)
   restforce!

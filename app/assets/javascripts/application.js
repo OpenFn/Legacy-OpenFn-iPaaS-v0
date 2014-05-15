@@ -23,3 +23,4 @@
 //= require angular-resource
 //= require_tree ./mapping_ng
 //= require_tree ./support
+//= require ng-rails-csrf

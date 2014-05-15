@@ -8,7 +8,8 @@
   'mapping.filters',
   'mapping.config',
   'ngResource',
-  'ui.sortable'
+  'ui.sortable',
+  'ng-rails-csrf'
 ]
 
 @controllerModule = angular.module 'mapping.controllers', []
