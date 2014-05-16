@@ -12,7 +12,12 @@
     <div class='container'>
       <%= render "shared/sidebar" %>
 
-      <div class='col-md-10'>
+        <% if content_for?(:sidebar) %>
+          <div class='col-md-10'>
+        <% else %>
+          <div class='col-md-12'>
+        <% end %>
+
         <%= yield %>
       </div>
     </div>

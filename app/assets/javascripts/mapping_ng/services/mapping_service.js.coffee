@@ -1,44 +1,34 @@
 @serviceModule.factory 'MappingService', ['Mapping'
   (Mapping) ->
-    mapping = {}
 
-    updateMapping: (salesforceObjectName, salesforceObjectFields) ->
-      mapping[salesforceObjectName] = salesforceObjectFields
-
-    getMappingForSalesForce: (salesforceObjectName) ->
-      mapping[salesforceObjectName]
-
-    mappingParams: (mappingName, odkFormId) ->
+    mappingParams: (mapping) ->
       # Add the basic elements to the mapping hash
       hash =
         mapping:
-          name: mappingName
-          odk_formid: odkFormId
+          name: mapping.name
+          odk_formid: mapping.odk_formid
 
       # Create the empty nested attributes for salesforce fields
       hash.mapping.salesforce_fields_attributes = []
 
       # Loop through our mapping hash
-      for sfObject, sfFields of mapping
-
-        # Loop through the fields for the SF Object
-        for sfField in sfFields
+      for sfField in mapping.salesforce_fields
 
           # Set the SF Field information
-          sfFieldAttribute = {object_name: sfObject, field_name: sfField.name}
+          sfFieldAttribute = angular.copy(sfField)
 
           # Create the empty nested attributes for the odk fields
           sfFieldAttribute.odk_fields_attributes = []
 
           # Set the odk field information for each field
-          sfFieldAttribute.odk_fields_attributes.push {field_name: odkField.nodeset, field_type: odkField.type} for odkField in sfField.odk_fields
+          sfFieldAttribute.odk_fields_attributes.push angular.copy(odkField) for odkField in sfField.odk_fields
 
           # Add the sf fields to the main hash
           hash.mapping.salesforce_fields_attributes.push sfFieldAttribute
 
       hash
 
-    saveMapping: (mappingName, odkFormId) ->
+    saveMapping: (mapping) ->
       # Create a mapping using the custom params for nested objects
-      Mapping.save({}, @mappingParams(mappingName, odkFormId))
+      Mapping.save {}, @mappingParams(mapping)
 ]

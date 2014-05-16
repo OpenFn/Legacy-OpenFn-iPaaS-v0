@@ -3,8 +3,8 @@
   <select ng-model="mapping.odk_formid" ng-options="o as o for o in odkForms" class='form-control'></select>
 </div>
 
-<ul class='list-group connected-sortable sortable-location' ui-sortable="sortableOptions" ng-model="odkFormFields">
+<ul class='list-group odk-connected-sortable sortable-location' ui-sortable="odkSortableOptions" ng-model="odkFormFields">
   <li class='list-group-item' ng-repeat="odkFormField in odkFormFields">
-    {{odkFormField.nodeset}}: {{odkFormField.type}}
+    {{odkFormField.field_name}}: {{odkFormField.field_type}}
   </li>
 </ul>

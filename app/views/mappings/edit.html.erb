@@ -4,10 +4,7 @@
   <li>Edit</li>
 </ol>
 
-<h3>Edit an existing mapping</h3>
-
-<%= form_for @mapping, role: 'form' do |form| %>
-  <%= render "shared/error_messages", :target => @mapping %>
-  <%= render form %>
-  <%= form.submit "Update", class: 'btn' %>
-<% end %>
+<h3>Edit the mapping</h3>
+<div ng-app="mapping">
+  <div ng-controller="MappingCtrl" ng-include="'/assets/mappings/edit.html'" ng-init="init(<%= @mapping.id %>)"></div>
+</div>

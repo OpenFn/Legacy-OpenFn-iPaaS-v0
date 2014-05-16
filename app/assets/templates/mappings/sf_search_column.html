@@ -1,0 +1,10 @@
+<div class="form-group">
+  <label for="salesforce_object_name">SalesForce Object</label>
+  <select ng-model="mapping.saleforce_object_name" ng-options="o as o for o in salesForceObjects" class='form-control' />
+</div>
+
+<ul class='list-group sf-connected-sortable sortable-location' ui-sortable="sfSortableOptions" ng-model="salesforceObjectFields">
+  <li class='list-group-item' ng-repeat="salesforceObjectField in salesforceObjectFields">
+    {{salesforceObjectField.fieldName}}
+  </li>
+</ul>

@@ -8,6 +8,7 @@
   'mapping.filters',
   'mapping.config',
   'ngResource',
+  'ngRoute',
   'ui.sortable',
   'ng-rails-csrf'
 ]
@@ -18,3 +19,13 @@
 @serviceModule    = angular.module 'mapping.services', []
 @filterModule     = angular.module 'mapping.filters', []
 @configModule     = angular.module 'mapping.config', []
+
+@mapping.config ($compileProvider, $routeProvider, $locationProvider) ->
+  $routeProvider
+    .when '/mappings/:id/edit',
+      controller: 'MappingCtrl'
+
+    .when '/mappings/new',
+      controller: 'MappingCtrl'
+
+  $locationProvider.html5Mode true

@@ -7,7 +7,12 @@ class MappingsController < ApplicationController
   end
 
   def show
-
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: @mapping
+      }
+    end
   end
 
   def new
