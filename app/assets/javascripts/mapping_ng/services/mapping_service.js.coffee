@@ -29,6 +29,10 @@
       hash
 
     saveMapping: (mapping) ->
-      # Create a mapping using the custom params for nested objects
-      Mapping.save {}, @mappingParams(mapping)
+      if mapping.id
+        Mapping.update {id: mapping.id}, @mappingParams(mapping)
+      else
+        # Create a mapping using the custom params for nested objects
+        Mapping.save {}, @mappingParams(mapping)
+
 ]

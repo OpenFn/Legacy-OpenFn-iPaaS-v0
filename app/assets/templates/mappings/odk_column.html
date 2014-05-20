@@ -1,6 +1,8 @@
+<h4>1. Select an ODK Field</h4>
+
 <div class="form-group">
   <label for="mapping_odk_formid">Open Data Kit Form</label>
-  <select ng-model="mapping.odk_formid" ng-options="o as o for o in odkForms" class='form-control'></select>
+  <select ng-disabled="editMode" ng-model="mapping.odk_formid" ng-options="o as o for o in odkForms" class='form-control'></select>
 </div>
 
 <ul class='list-group odk-connected-sortable sortable-location' ui-sortable="odkSortableOptions" ng-model="odkFormFields">

@@ -30,9 +30,9 @@ class MappingsController < ApplicationController
 
   def update
     if @mapping.update mapping_params
-      redirect_to @mapping
+      render json: @mapping
     else
-      render :edit
+      render json: {errors: @mapping.errors.full_messages}, status: 422
     end
   end
 

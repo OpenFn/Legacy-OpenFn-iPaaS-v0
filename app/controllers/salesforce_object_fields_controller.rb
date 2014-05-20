@@ -7,7 +7,7 @@ class SalesforceObjectFieldsController < ApplicationController
       select{|f| f["updateable"]}.
       collect{|f| {object_name: params[:salesforce_object_id], field_name: f["name"], odk_fields: []}}
 
-    render json: sf_fields
+    render json: sf_fields, root: false
   end
 
 end

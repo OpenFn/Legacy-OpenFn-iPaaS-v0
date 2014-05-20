@@ -1,21 +1,17 @@
-<div class='row'>
-  <div class='col-md-10'>
-    <div id="errorExplanation" class='text-danger' ng-show="errors">
-      <ul>
-        <li ng-repeat="error in errors">{{error}}</li>
-      </ul>
-    </div>
-
-    <div class="form-group">
-      <label for="mapping_name">Name</label>
-      <input type="text" ng-model="mapping.name" class='form-control' />
-    </div>
-
-    <div class='row'>
-      <div class='col-md-6' ng-include="'/assets/mappings/odk_column.html'"></div>
-      <div class='col-md-6' ng-include="'/assets/mappings/sf_column.html'"></div>
-    </div>
-    <a href='#' ng-click="saveMapping()" class='btn btn-success'>Create Mapping</a>
-  </div>
-  <div class='col-md-2' ng-include="'/assets/mappings/sf_search_column.html'"></div>
+<div id="errorExplanation" class='text-danger' ng-show="errors">
+  <ul>
+    <li ng-repeat="error in errors">{{error}}</li>
+  </ul>
 </div>
+
+<div class="form-group">
+  <label for="mapping_name">Name</label>
+  <input type="text" ng-model="mapping.name" class='form-control' />
+</div>
+
+<div class='row'>
+  <div class='col-md-4' ng-include="'/assets/mappings/odk_column.html'"></div>
+  <div class='col-md-4' ng-include="'/assets/mappings/sf_search_column.html'"></div>
+  <div class='col-md-4' ng-include="'/assets/mappings/sf_column.html'"></div>
+</div>
+<a href='#' ng-click="saveMapping()" class='btn btn-success'>Create Mapping</a>

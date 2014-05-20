@@ -7,7 +7,9 @@
       salesforce_fields: []
     }
 
+    # This is called on the edit view
     $scope.init = (mappingId) ->
+      $scope.editMode = true
       Mapping.get(id: mappingId).$promise.then((response) ->
         $scope.mapping = response.mapping
       )
@@ -22,16 +24,16 @@
         connectWith: '.sf-connected-sortable'
 
       OdkForm.query.then (response) ->
-        $scope.odkForms = response.data
+        $scope.odkForms = response.data.odk_forms
 
       SalesforceObject.query.then (response) ->
-        $scope.salesForceObjects = response.data
+        $scope.salesForceObjects = response.data.salesforce_objects
 
     $scope.saveMapping = ->
       MappingService.saveMapping($scope.mapping).$promise.
         then(
-          (mapping) ->
-            window.location = "/mappings/#{mapping.id}"
+          (response) ->
+            window.location = "/mappings/#{response.mapping.id}"
           (error_response) ->
             $scope.errors = error_response.data.errors
         )
@@ -42,17 +44,13 @@
     $scope.$watch "mapping.odk_formid", (formId) ->
       if formId isnt undefined
         OdkFormField.query(odk_form_id: formId).$promise.then (response) ->
-          console.log response
-          #$scope.odkFormFields = response
-          #$scope.originalOdkFormFields = angular.copy($scope.odkFormFields)
+          $scope.odkFormFields = response
+          $scope.originalOdkFormFields = angular.copy($scope.odkFormFields)
 
     $scope.$watch "mapping.saleforce_object_name", (salesForceObjectId) ->
       if salesForceObjectId isnt undefined
         $scope.salesforceObjectFields = []
 
-        # if salesforceObjectFields = MappingService.getMappingForSalesForce(salesForceObjectId)
-        #   $scope.salesforceObjectFields = salesforceObjectFields
-        # else
         SalesforceObjectField.query(salesforce_object_id: salesForceObjectId).$promise.then (response) ->
           $scope.salesforceObjectFields = response
 
