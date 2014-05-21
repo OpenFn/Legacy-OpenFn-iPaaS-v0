@@ -13,7 +13,8 @@
         <div class="panel-body">
           <ul class="list-group sortable-location odk-connected-sortable" ui-sortable="odkSortableOptions" ng-model="sfField.odk_fields">
             <li class='list-group-item' ng-repeat="odkField in sfField.odk_fields">
-              {{odkField.field_name}}: {{odkField.field_type}}
+              <input type="checkbox" ng-model="odkField._destroy">
+              {{odkField.field_name}}: {{odkField.field_type}} and {{ odkField._destroy}}
             </li>
           </ul>
         </div>
