@@ -37,7 +37,7 @@ group :doc do
 end
 
 # => Funci Gem to interact with ODK aggregate
-gem 'odk_aggregate', :path => '/home/jonathan/apps/odk_aggregate'
+gem 'odk_aggregate', :git => 'https://github.com/func-i/odk_aggregate.git'
 
 # => Gem for SalesForce
 gem 'restforce', git: 'https://github.com/icambron/restforce.git'

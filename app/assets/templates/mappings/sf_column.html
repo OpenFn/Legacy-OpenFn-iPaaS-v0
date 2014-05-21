@@ -7,14 +7,21 @@
     <div class='sortable-location sf-connected-sortable' ui-sortable="sfSortableOptions" ng-model="mapping.salesforce_fields">
       <div class="panel panel-default" ng-repeat="sfField in mapping.salesforce_fields">
         <div class="panel-heading">
+          <span ng-show="mapping.id">
+            <input id="destroy-{{$index}}" type="checkbox" class="destroy-field" ng-model="sfField._destroy">
+            <label for="destroy-{{$index}}">&times;</label>
+          </span>
           <b>Salesforce Field</b>: {{sfField.object_name}} - {{sfField.field_name}}
           <p class="text-danger">Drag ODK Fields into me</p>
         </div>
         <div class="panel-body">
           <ul class="list-group sortable-location odk-connected-sortable" ui-sortable="odkSortableOptions" ng-model="sfField.odk_fields">
             <li class='list-group-item' ng-repeat="odkField in sfField.odk_fields">
-              <input type="checkbox" ng-model="odkField._destroy">
-              {{odkField.field_name}}: {{odkField.field_type}} and {{ odkField._destroy}}
+              <span ng-show="mapping.id">
+                <input id="destroy-{{$parent.$index}}-{{$index}}" type="checkbox" class="destroy-field" ng-model="odkField._destroy">
+                <label for="destroy-{{$parent.$index}}-{{$index}}">&times;</label>
+              </span>
+              {{odkField.field_name}}: {{odkField.field_type}}
             </li>
           </ul>
         </div>
