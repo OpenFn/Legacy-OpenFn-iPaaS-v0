@@ -37,7 +37,7 @@ group :doc do
 end
 
 # => Funci Gem to interact with ODK aggregate
-gem 'odk_aggregate', :git => 'https://github.com/func-i/odk_aggregate.git'
+gem 'odk_aggregate', :git => 'https://github.com/func-i/odk_aggregate.git', branch: 'master'
 
 # => Gem for SalesForce
 gem 'restforce', git: 'https://github.com/icambron/restforce.git'
@@ -52,6 +52,7 @@ gem 'kaminari'
 gem 'jquery-ui-rails'
 
 gem 'angularjs-rails'
+gem 'angular-ui-bootstrap-rails'
 gem 'ng-rails-csrf'
 
 # Use ActiveModel has_secure_password

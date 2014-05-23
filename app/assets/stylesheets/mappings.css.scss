@@ -33,6 +33,10 @@ input.destroy-field {
     font-size: 20px;
     font-weight: bold;
     color: black;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &:checked + label {
