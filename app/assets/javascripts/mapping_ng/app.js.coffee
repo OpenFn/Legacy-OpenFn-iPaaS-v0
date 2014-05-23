@@ -10,6 +10,7 @@
   'ngResource',
   'ngRoute',
   'ui.sortable',
+  'ui.bootstrap',
   'ng-rails-csrf'
 ]
 

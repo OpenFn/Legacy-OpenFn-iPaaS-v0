@@ -25,3 +25,21 @@
   margin-top: 5px;
   font-size: 25px;
 }
+
+input.destroy-field {
+  display: none;
+
+  & + label {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &:checked + label {
+    color: red;
+  }
+}
