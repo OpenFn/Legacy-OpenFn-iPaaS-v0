@@ -5,8 +5,12 @@
   <select ng-model="mapping.saleforce_object_name" ng-options="o as o for o in salesForceObjects" class='form-control' />
 </div>
 
+<div class="form-group">
+  <input ng-model="sfFilter.field_name" type='text' placeholder="Filter SF fields" class='form-control' />
+</div>
+
 <ul class='list-group sf-connected-sortable sortable-location' ui-sortable="sfSortableOptions" ng-model="salesforceObjectFields">
-  <li class='list-group-item' ng-repeat="salesforceObjectField in salesforceObjectFields">
+  <li class='list-group-item' ng-repeat="salesforceObjectField in salesforceObjectFields | filter: sfFilter">
     {{salesforceObjectField.field_name}}
   </li>
 </ul>

@@ -10,8 +10,15 @@
 </div>
 
 <div class='row'>
-  <div class='col-md-4' ng-include="'/assets/mappings/odk_column.html'"></div>
-  <div class='col-md-4' ng-include="'/assets/mappings/sf_search_column.html'"></div>
+  <div class='col-md-8'>
+    <div class='row'>
+      <div class='col-md-6' ng-include="'/assets/mappings/odk_column.html'"></div>
+      <div class='col-md-6' ng-include="'/assets/mappings/sf_search_column.html'"></div>
+    </div>
+    <br />
+    <a href='#' ng-click="saveMapping()" class='btn btn-success btn-block'>Create Mapping</a>
+  </div>
   <div class='col-md-4' ng-include="'/assets/mappings/sf_column.html'"></div>
 </div>
-<a href='#' ng-click="saveMapping()" class='btn btn-success'>Create Mapping</a>
+<br />
+
