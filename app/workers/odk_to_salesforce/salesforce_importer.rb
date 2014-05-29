@@ -5,14 +5,6 @@ module OdkToSalesforce
       runner.run
     end
 
-    def self.whatevs
-      odk = OdkToSalesforce::Odk.new "SRI_Baseline_Final" 
-      odk_data = odk.fetch_submission odk.submissions.first
-
-      converter = OdkToSalesforce::Converter.new Mapping.first
-
-      converter.convert odk_data
-    end
 
     def initialize
       @client = Restforce.new

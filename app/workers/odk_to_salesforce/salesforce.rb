@@ -17,7 +17,7 @@ module OdkToSalesforce
 
     ##
     # Get relationships hash 
-    def get
+    def relationships
       @relationships_hash
     end
 
@@ -25,6 +25,16 @@ module OdkToSalesforce
     # Get the raw JSON description that was returned by the API
     def get_raw
       @salesforce_objects
+    end
+
+    def leaf_nodes
+      leafs = {} 
+      @relationships_hash.each do |k, v|
+        if v[:children].empty?
+          leafs[k] = v
+        end
+      end
+      leafs
     end
 
     private

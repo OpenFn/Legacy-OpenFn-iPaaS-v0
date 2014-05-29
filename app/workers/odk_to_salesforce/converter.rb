@@ -1,6 +1,8 @@
 module OdkToSalesforce
   ##
   # Convert an ODK data hash into a sailiasforce hash from a mapping
+  #
+  # odk_form -> { sf_object: { sf_field: "value" } }
   class Converter
 
     def initialize mapping
@@ -10,7 +12,7 @@ module OdkToSalesforce
     def convert odk_data
       data = {}
 
-      @mapping.salesforce_fields.each do |sf_field| 
+      @mapping.salesforce_fields.each do |sf_field|
         sf_object = sf_field.object_name.to_sym
         sf_key = sf_field.field_name.to_sym
         data[sf_object] = {} unless data.has_key? sf_object
@@ -26,15 +28,15 @@ module OdkToSalesforce
     def get_field_content odk_field, odk_data
       # given "/first_level/second_level"
       # -> [ "first_level", "second_level", etc. ]
-      field_nesting = odk_field.field_name.split("/").reject { |f| f.empty? } 
+      field_nesting = odk_field.field_name.split("/").reject { |f| f.empty? }
 
       # iterate until data["first_level"]["second_level"] is reached
       value = odk_data
       field_nesting.each do |key|
-        value = value[key]   
+        value = value[key]
       end
       value
     end
-    
+
   end
 end
