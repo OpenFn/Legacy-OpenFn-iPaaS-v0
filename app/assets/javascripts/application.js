@@ -14,6 +14,11 @@
 //= require jquery_ujs
 //= require bootstrap
 
+//= require jquery.ui.core
+//= require jquery.ui.widget
+//= require jquery.ui.mouse
+//= require jquery.ui.sortable
+
 //= require angular
 //= require angular-resource
 //= require angular-route
