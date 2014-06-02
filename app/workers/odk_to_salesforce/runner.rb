@@ -71,7 +71,7 @@ module OdkToSalesforce
     def create item
       if @imported.includes?[item[:name].to_sym]
         return true
-      if @rf.create item[:name], @data
+      elsif @rf.create item[:name], @data
         @imported << item
         return true
       else

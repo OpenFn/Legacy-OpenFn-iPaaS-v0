@@ -1,7 +1,7 @@
 module OdkToSalesforce
   class Dispatcher
     def self.go(mapping)
-      odk = OdkToSalesforce::Odk.new(mapping.odk_formid) 
+      odk = OdkToSalesforce::Odk.new(mapping.odk_formid)
       converter = OdkToSalesforce::Converter.new(mapping)
       salesforce = OdkToSalesforce::Salesforce.new
       #runner = OdkToSalesforce::Runner.new(salesforce.relationships)
@@ -15,7 +15,7 @@ module OdkToSalesforce
           puts "Starting runner at Salesforce object #{ salesforce.relationships[k][:name]}"
           puts "With data: "
           puts sf_data
-          #runner.run(salesforce.relationships[k], sf_data) 
+          #runner.run(salesforce.relationships[k], sf_data)
         end
       end
     end
