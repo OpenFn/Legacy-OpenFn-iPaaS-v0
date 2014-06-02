@@ -6,7 +6,7 @@ module OdkToSalesforce
       salesforce = OdkToSalesforce::Salesforce.new
       #runner = OdkToSalesforce::Runner.new(salesforce.relationships)
 
-      odk.submissions.each do |submission|
+      odk.submissions[0..2].each do |submission|
         odk_data = odk.fetch_submission(submission)  
         sf_data = converter.convert(odk_data) 
 
@@ -20,12 +20,18 @@ module OdkToSalesforce
       end
     end
 
-    def self.tryme
+    # Demo methods
+
+    def self.convert_submission n
+      converter = OdkToSalesforce::Converter.new(Mapping.first)
       odk = OdkToSalesforce::Odk.new "SRI_Baseline_Final" 
-      odk_data = odk.fetch_submission odk.submissions.first
-
-
+      odk_data = odk.fetch_submission odk.submissions[n]
       converter.convert odk_data
+    end
+
+    def self.get_submission n
+      odk = OdkToSalesforce::Odk.new "SRI_Baseline_Final" 
+      odk_data = odk.fetch_submission odk.submissions[n]
     end
   end
 end
