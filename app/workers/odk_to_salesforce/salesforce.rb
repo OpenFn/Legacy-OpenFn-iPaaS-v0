@@ -27,11 +27,12 @@ module OdkToSalesforce
       @salesforce_objects
     end
 
+    # Get child objects
     def leaf_nodes
-      leafs = {} 
+      leafs = [] 
       @relationships_hash.each do |k, v|
         if v[:children].empty?
-          leafs[k] = v
+          leafs << k
         end
       end
       leafs
@@ -44,6 +45,7 @@ module OdkToSalesforce
       get_names
       get_children
       get_parents
+      get_unique_identfier_fields
     end
 
     def get_salesforce_objects
@@ -62,13 +64,26 @@ module OdkToSalesforce
       end
     end
 
+    def get_unique_identfier_fields
+      puts "-> getting unique identifier fields..."
+      @relationships_hash.each_key do |k|
+        sf_object = @rf.describe k
+        @relationships_hash[k][:uniques] = []
+        sf_object["fields"].each do |f|
+          @relationships_hash[k][:uniques] << f["name"] if f["unique"]
+        end
+      end
+    end
+
     def get_children
       puts "-> getting children..."
       @relationships_hash.each_key do |relationship_key|
         sf_object = @rf.describe relationship_key
         sf_object["childRelationships"].each do |child_relationship|
           child_relationship = child_relationship["childSObject"]
-          if @relationships_hash.has_key? child_relationship.to_sym
+          # NOTE: self-reference makes your software loopy...
+          if @relationships_hash.has_key?(child_relationship.to_sym) &&
+               child_relationship.to_sym != relationship_key
             @relationships_hash[relationship_key][:children] << child_relationship
           end
         end

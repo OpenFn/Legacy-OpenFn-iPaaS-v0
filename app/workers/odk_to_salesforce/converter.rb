@@ -13,7 +13,7 @@ module OdkToSalesforce
       data = {}
 
       @mapping.salesforce_fields.each do |sf_field|
-        sf_object = sf_field.object_name.to_sym
+        sf_object = "#{sf_field.object_name.gsub(" ", "_")}__c".to_sym
         sf_key = sf_field.field_name.to_sym
         data[sf_object] = {} unless data.has_key? sf_object
         data[sf_object][sf_key] = get_field_content(sf_field.odk_fields.first,
@@ -33,7 +33,15 @@ module OdkToSalesforce
       # iterate until data["first_level"]["second_level"] is reached
       value = odk_data
       field_nesting.each do |key|
-        value = value[key]
+        if value.kind_of?(Array)
+          oldvalue = value
+          value = []
+          oldvalue.each do |val|
+            value << get_field_content(odk_field, val)
+          end
+        elsif value.has_key?(key)
+          value = value[key]
+        end
       end
       value
     end
