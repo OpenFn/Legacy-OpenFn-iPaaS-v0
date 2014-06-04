@@ -7,6 +7,7 @@ gem 'rails', '4.0.0'
 
 gem 'pry'
 gem 'pry-rails'
+gem 'colored'
 
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
