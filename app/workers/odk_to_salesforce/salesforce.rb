@@ -58,8 +58,8 @@ module OdkToSalesforce
       puts "-> getting names..."
       @salesforce_objects.each do |object|
         name = object["name"].to_sym
-        @relationships_hash[name] = { name: "", children: [],
-                                      parents: [], required_fields: [] }
+        @relationships_hash[name] = { name: "", children: {},
+                                      parents: {}, required_fields: [] }
         @relationships_hash[name][:name] = object["name"]
       end
     end
@@ -80,11 +80,11 @@ module OdkToSalesforce
       @relationships_hash.each_key do |relationship_key|
         sf_object = @rf.describe relationship_key
         sf_object["childRelationships"].each do |child_relationship|
-          child_relationship = child_relationship["childSObject"]
+          child_relationship_name = child_relationship["childSObject"]
           # NOTE: self-reference makes your software loopy...
-          if @relationships_hash.has_key?(child_relationship.to_sym) &&
-               child_relationship.to_sym != relationship_key
-            @relationships_hash[relationship_key][:children] << child_relationship
+          if @relationships_hash.has_key?(child_relationship_name.to_sym) &&
+               child_relationship_name.to_sym != relationship_key
+            @relationships_hash[relationship_key][:children][child_relationship_name.to_sym] = child_relationship["field"]
           end
         end
       end
@@ -95,9 +95,9 @@ module OdkToSalesforce
       @relationships_hash.each do |current_key, current_value|
         @relationships_hash.each do |k, v|
           # if a sf object has the current object as one of its children...
-          if v[:children].include? current_value[:name]
+          if v[:children].has_key? current_key
             # ... then it is a parent of the current object
-            current_value[:parents] << v[:name]
+            current_value[:parents][k] = v[:children][current_key]
           end
         end
       end

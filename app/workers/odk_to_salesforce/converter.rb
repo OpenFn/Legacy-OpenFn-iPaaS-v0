@@ -20,10 +20,22 @@ module OdkToSalesforce
                                                     odk_data)
       end
 
+      # NOTE: temporarty hackity hack hack
+      data = append_staff_member_type_id(data)
+
       data
     end
 
     private
+
+    # temporaryly hardcode all staff members as HQ Staff while issue is
+    # being sorted out.
+    def append_staff_member_type_id(data)
+      if data.has_key?(:staff_member__c)
+        data[:staff_member__c][:RecordTypeId] = "01290000000hbFGAAY" 
+      end
+      data
+    end
 
     def get_field_content odk_field, odk_data
       # given "/first_level/second_level"

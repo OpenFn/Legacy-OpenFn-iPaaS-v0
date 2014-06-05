@@ -24,9 +24,9 @@ module OdkToSalesforce
 
       if create_parents_first?(node, data)
         puts "-> find or create parents for #{node[:name]}"
-        node[:parents].each do |parent_node|
-          if data.has_key?(parent_node.to_sym)
-            parent_objects << run(parent_node, data)
+        node[:parents].each do |parent_node, value|
+          if data.has_key?(parent_node)
+            parent_objects << run(parent_node.to_s, data)
           end
         end
       else
@@ -39,9 +39,9 @@ module OdkToSalesforce
         return false
       else
         parent_objects.each do |parent_object|
-          parent_attributes = parent_object["attributes"]
-          constraints[parent_attributes["type"].to_sym] = parent_object["Id"]
-
+          parent_type = parent_object["attributes"]["type"]
+          parent_type_field = node[:parents][parent_type.to_sym]
+          constraints[parent_type_field.to_sym] = parent_object["Id"]
         end
         return find_or_create_one_or_many(node[:name], constraints)
       end
@@ -88,8 +88,8 @@ module OdkToSalesforce
       mapping_includes_parents = false
       has_parents = !node[:parents].empty? 
       if has_parents
-        node[:parents].each do |parent|
-          if data.has_key?(parent.to_sym) 
+        node[:parents].each do |parent, value|
+          if data.has_key?(parent) 
             mapping_includes_parents = true 
           end
         end
@@ -179,7 +179,7 @@ module OdkToSalesforce
       if !response
         puts "-> Failed to create #{object_name}, on #{constraints}".red if !response
       else
-        puts "-> created new #{object_name}, #{response["Id"]}".green.bold
+        puts "-> created new #{object_name}, #{response}".green.bold
       end
       response
     end

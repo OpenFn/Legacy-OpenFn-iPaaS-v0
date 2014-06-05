@@ -34,5 +34,10 @@ module OdkToSalesforce
       odk = OdkToSalesforce::Odk.new "SRI_Baseline_Final"
       odk_data = odk.fetch_submission odk.submissions[n]
     end
+
+    def self.get_relationships
+      salesforce = OdkToSalesforce::Salesforce.new
+      salesforce.relationships
+    end
   end
 end
