@@ -2,6 +2,7 @@ SalesForce::Application.routes.draw do
 
   root to: 'mappings#index'
   resources :mappings do
+    post :dispatch_surveys, on: :member
     collection do
       get :get_odk_forms
       get :get_salesforce_fields

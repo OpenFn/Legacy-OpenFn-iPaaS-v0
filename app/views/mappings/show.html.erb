@@ -41,4 +41,11 @@
       </tr>
     <% end %>
   </tbody>
+
+  <%= form_tag(dispatch_surveys_mapping_path(@mapping)) do %>
+    <%= label_tag(:only, "How many surveys to dispatch? ") %>
+    <%= text_field_tag(:only) %>
+    <%= submit_tag("Go!") %>
+  <% end %>
+
 </table>

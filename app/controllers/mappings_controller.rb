@@ -1,6 +1,6 @@
 class MappingsController < ApplicationController
 
-  before_action :load_mapping, only: [:show, :edit, :update, :destroy]
+  before_action :load_mapping, only: [:show, :edit, :update, :destroy, :dispatch_surveys]
 
   def index
     @mappings = Mapping.page params[:page]
@@ -34,6 +34,14 @@ class MappingsController < ApplicationController
     else
       render json: {errors: @mapping.errors.full_messages}, status: 422
     end
+  end
+
+  def dispatch_surveys
+    only = params[:only].to_i 
+    only = 1 if params[:only].blank?
+    puts "DISPATCHING #{only}, for #{@mapping}".yellow.bold
+    redirect_to @mapping
+    OdkToSalesforce::Dispatcher.go(@mapping, only: only)
   end
 
   protected
