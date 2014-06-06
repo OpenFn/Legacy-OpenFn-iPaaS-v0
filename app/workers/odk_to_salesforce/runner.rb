@@ -20,7 +20,7 @@ module OdkToSalesforce
     def run(sf_object, data)
       node = @relationships[sf_object.to_sym]
       parent_objects = []
-      constraints = data[node[:name].to_sym]
+      constraints = transform_contraints(data[node[:name].to_sym])
 
       if create_parents_first?(node, data)
         puts "-> find or create parents for #{node[:name]}"
@@ -38,7 +38,8 @@ module OdkToSalesforce
       if parent_objects.include?(false)
         return false
       else
-        parent_objects.each do |parent_object|
+        #puts parent_objects.inspect
+        parent_objects.flatten.each do |parent_object|
           parent_type = parent_object["attributes"]["type"]
           parent_type_field = node[:parents][parent_type.to_sym]
           constraints[parent_type_field.to_sym] = parent_object["Id"]
@@ -49,23 +50,47 @@ module OdkToSalesforce
 
     private
 
+    # => hack by jon
+    def transform_contraints(constraints)
+      if constraints.has_key?(:Use_Mid_Land_for_SRI__c)
+        constraints[:Use_Mid_Land_for_SRI__c] = constraints[:Use_Mid_Land_for_SRI__c].eql?('Yes')
+      end
+
+      [:Use_Low_Land_for_SRI__c, :Use_Up_Land_for_SRI__c, :Use_Mid_Land_for_SRI__c, :Use_Waste_Land_for_SRI__c, :Repayment_Problem__c].each do |bool_key|
+        if constraints.has_key?(bool_key)
+          constraints[bool_key] = !!constraints[bool_key]
+        end
+      end
+
+      # constraints.each_pair do |k,v|
+      #   if constraints[k] == "Yes"
+      #     constraints[k] = true
+      #   end
+      # end
+
+      if constraints.has_key?(:Up_Land_Rice_Yield_Submission__c) && constraints[:Up_Land_Rice_Yield_Submission__c] == 'Decimal'
+        constraints[:Up_Land_Rice_Yield_Submission__c] = '0.0'
+      end
+      constraints
+    end
+
     ##
-    # If any of the fields is an array 
+    # If any of the fields is an array
     #
     #  { field: [value1, value2] }
     #
-    # then we must assume they all are. In this case, 
-    # we iterate over the first array and create a flat hash of 
+    # then we must assume they all are. In this case,
+    # we iterate over the first array and create a flat hash of
     # constraints which we then pass to find_or_create on eachiterations.
     def find_or_create_one_or_many(object_name, constraints)
       if constraints.flatten.any? { |e| e.kind_of?(Array) }
-        success_array = []     
+        success_array = []
         constraints.flatten.select { |e| e.kind_of?(Array)}[0].each_with_index do |c, i|
           flat_constraints = {}
           constraints.each do |k,v|
             # only iterate on arrays, otherwise make value the same for all
             if v.kind_of?(Array)
-              flat_constraints[k] = v[i] 
+              flat_constraints[k] = v[i]
             else
               flat_constraints[k] = v
             end
@@ -86,11 +111,11 @@ module OdkToSalesforce
     # true. It is up to the user to not screw stuff up.
     def create_parents_first?(node, data)
       mapping_includes_parents = false
-      has_parents = !node[:parents].empty? 
+      has_parents = !node[:parents].empty?
       if has_parents
         node[:parents].each do |parent, value|
-          if data.has_key?(parent) 
-            mapping_includes_parents = true 
+          if data.has_key?(parent)
+            mapping_includes_parents = true
           end
         end
       end
@@ -104,13 +129,13 @@ module OdkToSalesforce
 
       if sf_object.nil?
         puts "-> no #{object_name} fitting constraints"
-        begin
+        # begin
           sf_id = create(object_name, constraints)
           sf_object = find(object_name, { Id: sf_id })
           sf_object = false if sf_object.nil?
-        rescue 
-          sf_object = false
-        end
+        # rescue
+        #   sf_object = false
+        # end
       end
 
       sf_object
@@ -131,29 +156,41 @@ module OdkToSalesforce
       begin
         query_string = "SELECT Id FROM #{object_name} WHERE "
         constraints.each do |k, v|
-          quote = "'" 
-          if v.kind_of?(String)
+          quote = "'"
+          # => Hack to make mobile not a number
+          if v.kind_of?(String) && ![:ID_Number__c, :Mobile_Number__c, :Loan_Tenure__c].include?(k)
             quote = "" if hey_is_this_string_a_number?(v)
           end
-          query_string += "#{k} = #{quote}#{v}#{quote} #{and_or_or} " if not v.nil?
+
+          if v.is_a?(TrueClass) || v.is_a?(FalseClass)
+            quote = ""
+          end
+
+          if valid_for_query?(k)
+            query_string += "#{k} = #{quote}#{v}#{quote} #{and_or_or} " if not v.nil?
+          end
         end
         # remove trailing space and AND
         query_string = query_string[0..-6] if and_or_or == "AND"
         query_string = query_string[0..-5] if and_or_or == "OR"
 
         @rf.query(query_string)["records"].first
-      rescue Exception => e  
+      rescue Exception => e
         puts "-> something wrong in Salesforce query:".red
-        puts e.message  
+        puts e.message
         return nil
       end
+    end
+
+    def valid_for_query?(key)
+      ![:Repayment_Problem_Explanation__c].include?(key)
     end
 
     ##
     # If any of the field given are unique identifiers, return a hash of only
     # those fields.
     def only_unique_fields_if_any(object_name, constraints)
-      uniques = {}       
+      uniques = {}
       has_uniques = false
       constraints.each do |k, v|
         if @relationships[object_name.to_sym][:uniques].include?(k.to_s)
@@ -175,7 +212,8 @@ module OdkToSalesforce
     end
 
     def create(object_name, constraints)
-      response = @rf.create(object_name, constraints)
+      puts constraints.inspect
+      response = @rf.create!(object_name, constraints)
       if !response
         puts "-> Failed to create #{object_name}, on #{constraints}".red if !response
       else
