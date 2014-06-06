@@ -8,6 +8,7 @@
     }
 
     $scope.sfFilter = {}
+    $scope.odkFilter = {}
 
     # This is called on the edit view
     $scope.init = (mappingId) ->
@@ -20,7 +21,7 @@
       $scope.odkSortableOptions =
         connectWith: '.odk-connected-sortable'
         stop: (event, ui) ->
-          $scope.odkFormFields = angular.copy($scope.originalOdkFormFields)
+          $scope.getOdkFields($scope.odkFilter.field_name)
 
       $scope.sfSortableOptions =
         connectWith: '.sf-connected-sortable'
@@ -39,6 +40,12 @@
           (error_response) ->
             $scope.errors = error_response.data.errors
         )
+
+    $scope.getOdkFields = (fieldName) ->
+      if fieldName is ''
+        $scope.odkFormFields = angular.copy($scope.originalOdkFormFields)
+      else
+        $scope.odkFormFields = $filter('filter')($scope.originalOdkFormFields, $scope.odkFilter)
 
     ######## Watches
 
@@ -63,10 +70,7 @@
         $scope.salesforceObjectFields = $filter('filter')($scope.originalSalesforceObjectFields, $scope.sfFilter)
 
     $scope.$watch "odkFilter.field_name", (fieldName) ->
-      if fieldName is ''
-        $scope.odkFormFields = angular.copy($scope.originalOdkFormFields)
-      else
-        $scope.odkFormFields = $filter('filter')($scope.originalOdkFormFields, $scope.odkFilter)
+      $scope.getOdkFields(fieldName)
 
     ######## Default behaviour
 

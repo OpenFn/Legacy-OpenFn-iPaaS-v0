@@ -37,7 +37,7 @@ class MappingsController < ApplicationController
   end
 
   def dispatch_surveys
-    only = params[:only].to_i 
+    only = params[:only].to_i
     only = 1 if params[:only].blank?
     puts "DISPATCHING #{only}, for #{@mapping}".yellow.bold
     redirect_to @mapping
@@ -52,7 +52,7 @@ class MappingsController < ApplicationController
 
   def mapping_params
     params.require(:mapping).permit(:name, :odk_formid,
-      salesforce_fields_attributes: [:id, :object_name, :field_name, :_destroy,
+      salesforce_fields_attributes: [:id, :object_name, :field_name, :data_type, :_destroy,
         odk_fields_attributes: [:id, :field_name, :field_type, :_destroy]
       ]
     )

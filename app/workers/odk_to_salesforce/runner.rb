@@ -20,7 +20,7 @@ module OdkToSalesforce
     def run(sf_object, data)
       node = @relationships[sf_object.to_sym]
       parent_objects = []
-      constraints = transform_contraints(data[node[:name].to_sym])
+      constraints = data[node[:name].to_sym]
 
       if create_parents_first?(node, data)
         puts "-> find or create parents for #{node[:name]}"
@@ -149,15 +149,15 @@ module OdkToSalesforce
       begin
         query_string = "SELECT Id FROM #{object_name} WHERE "
         constraints.each do |k, v|
-          quote = "'"
-          # => Hack to make mobile not a number
-          if v.kind_of?(String) && ![:ID_Number__c, :Mobile_Number__c, :Loan_Tenure__c].include?(k)
-            quote = "" if hey_is_this_string_a_number?(v)
+          quote = ""
+
+          if v.kind_of?(String) #&& ![:ID_Number__c, :Mobile_Number__c, :Loan_Tenure__c].include?(k)
+            quote = "'" #if hey_is_this_string_a_number?(v)
           end
 
-          if v.is_a?(TrueClass) || v.is_a?(FalseClass)
-            quote = ""
-          end
+          # if v.is_a?(TrueClass) || v.is_a?(FalseClass)
+          #   quote = ""
+          # end
 
           if valid_for_query?(k)
             query_string += "#{k} = #{quote}#{v}#{quote} #{and_or_or} " if not v.nil?
