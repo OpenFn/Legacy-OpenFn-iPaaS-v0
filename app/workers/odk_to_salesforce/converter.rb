@@ -46,7 +46,8 @@ module OdkToSalesforce
       value = odk_data
       field_nesting.each do |key|
         if value.nil?
-          # do nothing
+          # => only import populated values
+          next
         elsif value.kind_of?(Array)
           oldvalue = value
           value = []
