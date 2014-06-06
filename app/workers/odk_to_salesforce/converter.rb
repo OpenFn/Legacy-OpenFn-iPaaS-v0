@@ -32,12 +32,14 @@ module OdkToSalesforce
     # being sorted out.
     def append_staff_member_type_id(data)
       if data.has_key?(:staff_member__c)
-        data[:staff_member__c][:RecordTypeId] = "01290000000hbFGAAY" 
+        data[:staff_member__c][:RecordTypeId] = "01290000000hbFGAAY"
       end
       data
     end
 
     def get_field_content odk_field, odk_data
+      puts "            getting field content for #{odk_field}, #{odk_data}"
+
       # given "/first_level/second_level"
       # -> [ "first_level", "second_level", etc. ]
       field_nesting = odk_field.field_name.split("/").reject { |f| f.empty? }
