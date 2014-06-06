@@ -38,6 +38,8 @@ module OdkToSalesforce
     end
 
     def get_field_content odk_field, odk_data
+      return if odk_field.nil?
+
       # given "/first_level/second_level"
       # -> [ "first_level", "second_level", etc. ]
       field_nesting = odk_field.field_name.split("/").reject { |f| f.empty? }
