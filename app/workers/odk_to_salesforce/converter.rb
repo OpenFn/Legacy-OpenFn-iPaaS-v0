@@ -38,8 +38,6 @@ module OdkToSalesforce
     end
 
     def get_field_content odk_field, odk_data
-      puts "            getting field content for #{odk_field}, #{odk_data}"
-
       # given "/first_level/second_level"
       # -> [ "first_level", "second_level", etc. ]
       field_nesting = odk_field.field_name.split("/").reject { |f| f.empty? }
@@ -47,7 +45,9 @@ module OdkToSalesforce
       # iterate until data["first_level"]["second_level"] is reached
       value = odk_data
       field_nesting.each do |key|
-        if value.kind_of?(Array)
+        if value.nil?
+          # do nothing
+        elsif value.kind_of?(Array)
           oldvalue = value
           value = []
           oldvalue.each do |val|
