@@ -49,24 +49,6 @@ module OdkToSalesforce
 
     private
 
-    # => hack by jon
-    def transform_contraints(constraints)
-      if constraints.has_key?(:Use_Mid_Land_for_SRI__c)
-        constraints[:Use_Mid_Land_for_SRI__c] = constraints[:Use_Mid_Land_for_SRI__c].eql?('Yes')
-      end
-
-      [:Use_Low_Land_for_SRI__c, :Use_Up_Land_for_SRI__c, :Use_Mid_Land_for_SRI__c, :Use_Waste_Land_for_SRI__c, :Repayment_Problem__c].each do |bool_key|
-        if constraints.has_key?(bool_key)
-          constraints[bool_key] = !!constraints[bool_key]
-        end
-      end
-
-      if constraints.has_key?(:Up_Land_Rice_Yield_Submission__c) && constraints[:Up_Land_Rice_Yield_Submission__c] == 'Decimal'
-        constraints[:Up_Land_Rice_Yield_Submission__c] = '0.0'
-      end
-      constraints
-    end
-
     ##
     # If any of the fields is an array
     #
