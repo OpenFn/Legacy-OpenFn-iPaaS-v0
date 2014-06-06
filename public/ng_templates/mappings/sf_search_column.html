@@ -11,7 +11,7 @@
 
 <div class='external-field-holder'>
   <ul class='list-group sf-connected-sortable sortable-location' ui-sortable="sfSortableOptions" ng-model="salesforceObjectFields">
-    <li class='list-group-item' ng-repeat="salesforceObjectField in salesforceObjectFields | filter: sfFilter">
+    <li class='list-group-item' ng-repeat="salesforceObjectField in salesforceObjectFields">
       {{salesforceObjectField.field_name}}
     </li>
   </ul>

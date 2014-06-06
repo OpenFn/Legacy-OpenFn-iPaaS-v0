@@ -1,11 +1,13 @@
 'use strict'
 
-@controllerModule.controller 'MappingCtrl', ['$scope', 'Mapping', 'OdkForm', 'OdkFormField', 'SalesforceObject', 'SalesforceObjectField', 'MappingService'
-  ($scope, Mapping, OdkForm, OdkFormField, SalesforceObject, SalesforceObjectField, MappingService) ->
+@controllerModule.controller 'MappingCtrl', ['$scope', '$filter', 'Mapping', 'OdkForm', 'OdkFormField', 'SalesforceObject', 'SalesforceObjectField', 'MappingService'
+  ($scope, $filter, Mapping, OdkForm, OdkFormField, SalesforceObject, SalesforceObjectField, MappingService) ->
 
     $scope.mapping = {
       salesforce_fields: []
     }
+
+    $scope.sfFilter = {}
 
     # This is called on the edit view
     $scope.init = (mappingId) ->
@@ -38,21 +40,33 @@
             $scope.errors = error_response.data.errors
         )
 
-
     ######## Watches
 
     $scope.$watch "mapping.odk_formid", (formId) ->
       if formId isnt undefined
         OdkFormField.query(odk_form_id: formId).$promise.then (response) ->
-          $scope.odkFormFields = response
-          $scope.originalOdkFormFields = angular.copy($scope.odkFormFields)
+          $scope.originalOdkFormFields = response
+          $scope.odkFormFields = angular.copy($scope.originalOdkFormFields)
 
     $scope.$watch "mapping.saleforce_object_name", (salesForceObjectId) ->
       if salesForceObjectId isnt undefined
         $scope.salesforceObjectFields = []
 
         SalesforceObjectField.query(salesforce_object_id: salesForceObjectId).$promise.then (response) ->
-          $scope.salesforceObjectFields = response
+          $scope.originalSalesforceObjectFields = response
+          $scope.salesforceObjectFields = angular.copy($scope.originalSalesforceObjectFields)
+
+    $scope.$watch "sfFilter.field_name", (fieldName) ->
+      if fieldName is ''
+        $scope.salesforceObjectFields = angular.copy($scope.originalSalesforceObjectFields)
+      else
+        $scope.salesforceObjectFields = $filter('filter')($scope.originalSalesforceObjectFields, $scope.sfFilter)
+
+    $scope.$watch "odkFilter.field_name", (fieldName) ->
+      if fieldName is ''
+        $scope.odkFormFields = angular.copy($scope.originalOdkFormFields)
+      else
+        $scope.odkFormFields = $filter('filter')($scope.originalOdkFormFields, $scope.odkFilter)
 
     ######## Default behaviour
 

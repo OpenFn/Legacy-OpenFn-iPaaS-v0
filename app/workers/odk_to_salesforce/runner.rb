@@ -1,6 +1,6 @@
 module OdkToSalesforce
   ##
-  # The runner sets in motion the omport process. It is fed a hash of child
+  # The runner sets in motion the import process. It is fed a hash of child
   # items (leafs on the dependency hash) and recursively imports up the
   # dependencies tree.
   #
@@ -38,7 +38,6 @@ module OdkToSalesforce
       if parent_objects.include?(false)
         return false
       else
-        #puts parent_objects.inspect
         parent_objects.flatten.each do |parent_object|
           parent_type = parent_object["attributes"]["type"]
           parent_type_field = node[:parents][parent_type.to_sym]
@@ -61,12 +60,6 @@ module OdkToSalesforce
           constraints[bool_key] = !!constraints[bool_key]
         end
       end
-
-      # constraints.each_pair do |k,v|
-      #   if constraints[k] == "Yes"
-      #     constraints[k] = true
-      #   end
-      # end
 
       if constraints.has_key?(:Up_Land_Rice_Yield_Submission__c) && constraints[:Up_Land_Rice_Yield_Submission__c] == 'Decimal'
         constraints[:Up_Land_Rice_Yield_Submission__c] = '0.0'

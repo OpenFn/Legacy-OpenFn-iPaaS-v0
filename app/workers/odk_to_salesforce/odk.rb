@@ -16,10 +16,11 @@ module OdkToSalesforce
 
     def fetch_submission id
       submission = OdkAggregate::Submission.where(
-                     formId: @form[:id],
-                     key: id,
-                     topElement: @form[:topElement]
-                   )
+         formId: @form[:id],
+         key: id,
+         topElement: @form[:topElement]
+       )
+
       submission = submission["submission"]["data"]
       key = submission.keys.select { |k| k.include? @form[:id] }[0]
       submission[key]
@@ -28,10 +29,10 @@ module OdkToSalesforce
     private
 
     def fetch_form form_id
-      form = { 
-        id: form_id, 
+      form = {
+        id: form_id,
         topElement: OdkAggregate::Form.find(form_id).get_top_element
-      } 
+      }
     end
 
     def fetch_submissions

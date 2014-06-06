@@ -5,7 +5,7 @@ class SalesforceObjectFieldsController < ApplicationController
     sf_fields = sf_client.
       describe("#{params[:salesforce_object_id].gsub(" ", "_")}__c")["fields"].
       select{|f| f["updateable"]}.
-      collect{|f| {object_name: params[:salesforce_object_id], field_name: f["name"], odk_fields: []}}
+      collect{|f| {object_name: params[:salesforce_object_id], field_name: f["name"], data_type: f["type"], odk_fields: []}}
 
     render json: sf_fields, root: false
   end

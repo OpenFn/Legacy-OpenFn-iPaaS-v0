@@ -11,7 +11,7 @@
 
 <div class='external-field-holder'>
   <ul class='list-group odk-connected-sortable sortable-location' ui-sortable="odkSortableOptions" ng-model="odkFormFields">
-    <li class='list-group-item' ng-repeat="odkFormField in odkFormFields | filter: odkFilter">
+    <li class='list-group-item' ng-repeat="odkFormField in odkFormFields">
       {{odkFormField.field_name}}
     </li>
   </ul>
