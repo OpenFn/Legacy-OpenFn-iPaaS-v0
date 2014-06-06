@@ -52,6 +52,7 @@ module OdkToSalesforce
           oldvalue = value
           value = []
           oldvalue.each do |val|
+            next if val.nil?
             value << get_field_content(odk_field, val)
           end
         elsif value.has_key?(key)
