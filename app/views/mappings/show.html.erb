@@ -14,6 +14,13 @@
   <li><%= @mapping.name %></li>
 </ol>
 
+<%= form_tag dispatch_surveys_mapping_path(@mapping), class: 'form-inline', role: 'form' do %>
+  <div class="form-group">
+    <%= text_field_tag :only, params[:only], class: 'form-control', placeholder: 'Number of surveys to import' %>
+  </div>
+  <%= submit_tag "Import", class: 'btn btn-success' %>
+<% end %>
+
 <table class='table'>
   <thead>
     <tr>
@@ -41,12 +48,4 @@
       </tr>
     <% end %>
   </tbody>
-
-  <%= form_tag dispatch_surveys_mapping_path(@mapping), class: 'form-inline', role: 'form' do %>
-    <div class="form-group">
-      <%= text_field_tag :only, params[:only], class: 'form-control', placeholder: 'Number of surveys to import' %>
-    </div>
-    <%= submit_tag "Import", class: 'btn btn-success' %>
-  <% end %>
-
 </table>
