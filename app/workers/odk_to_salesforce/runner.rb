@@ -57,6 +57,8 @@ module OdkToSalesforce
     # then we must assume they all are. In this case,
     # we iterate over the first array and create a flat hash of
     # constraints which we then pass to find_or_create on eachiterations.
+
+    # => TODO: When a repeated_field is pointing to the object
     def find_or_create_one_or_many(object_name, constraints)
       if constraints.flatten.any? { |e| e.kind_of?(Array) }
         success_array = []
@@ -142,12 +144,15 @@ module OdkToSalesforce
           # end
 
           if valid_for_query?(k)
-            query_string += "#{k} = #{quote}#{v}#{quote} #{and_or_or} " if not v.nil?
+            # => Set the lookup value so empty strings can be compared too
+            lookup = "#{quote}#{v}#{quote}"
+            query_string += "#{k} = #{lookup} #{and_or_or} " unless lookup.blank?
           end
         end
         # remove trailing space and AND
         query_string = query_string[0..-6] if and_or_or == "AND"
         query_string = query_string[0..-5] if and_or_or == "OR"
+        puts query_string.inspect
 
         @rf.query(query_string)["records"].first
       rescue Exception => e
@@ -187,7 +192,6 @@ module OdkToSalesforce
     end
 
     def create(object_name, constraints)
-      puts constraints.inspect
       response = @rf.create!(object_name, constraints)
       if !response
         puts "-> Failed to create #{object_name}, on #{constraints}".red if !response

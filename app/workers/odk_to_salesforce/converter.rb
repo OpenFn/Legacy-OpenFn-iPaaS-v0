@@ -48,37 +48,39 @@ module OdkToSalesforce
       # iterate until data["first_level"]["second_level"] is reached
       value = odk_data
       field_nesting.each do |key|
-        if value.nil?
-          # => only import populated values
-          next
-        elsif value.kind_of?(Array)
+        if value.kind_of?(Array)
           oldvalue = value
           value = []
           oldvalue.each do |val|
-            next if val.nil?
-            value << get_field_content(odk_field, val, data_type)
+            # => Skip this record if all it's values are empty
+            # => There is no need to import a completely empty record
+            # => TODO: Investigate why empty records are being pulled in
+            unless val.values.compact.empty?
+              value << get_field_content(odk_field, val, data_type)
+            end
           end
         elsif value.has_key?(key)
           value = value[key]
         end
       end
+      value = transform_value(value, data_type) unless value.is_a?(Array)
+      value
+    end
 
-      unless value.is_a?(Array)
-        # => Transform value from ODK to data_type SF expects
-        case data_type
-        when "checkbox", "boolean"
-          if value.nil? || value.empty? || value.eql?("No")
-            value = false
-          else
-            value = true
-          end
-        when "double"
-          value = value.to_f
-        when "phone"
-          value = value.to_s
+    def transform_value(value, data_type)
+      # => Transform value from ODK to data_type SF expects
+      case data_type
+      when "checkbox", "boolean"
+        if value.nil? || value.empty? || value.eql?("No")
+          value = false
+        else
+          value = true
         end
+      when "double"
+        value = value.to_f unless value.nil?
+      when "phone"
+        value = value.to_s
       end
-
       value
     end
 
