@@ -6,6 +6,7 @@
       hash =
         mapping:
           name: mapping.name
+          active: mapping.active
           odk_formid: mapping.odk_formid
 
       # Create the empty nested attributes for salesforce fields

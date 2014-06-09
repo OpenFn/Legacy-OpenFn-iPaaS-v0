@@ -1,5 +1,5 @@
 class MappingSerializer < ActiveModel::Serializer
-  attributes :id, :name, :odk_formid
+  attributes :id, :name, :active, :odk_formid
 
   has_many :salesforce_fields
 end

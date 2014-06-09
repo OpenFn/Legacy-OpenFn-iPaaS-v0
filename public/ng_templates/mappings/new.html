@@ -9,16 +9,16 @@
   <input type="text" ng-model="mapping.name" class='form-control' />
 </div>
 
+<div class="checkbox">
+  <label>
+    <input type="checkbox" ng-model='mapping.active' ng-checked='mapping.active'> Active
+  </label>
+</div>
+
 <div class='row'>
-  <div class='col-md-8'>
-    <div class='row'>
-      <div class='col-md-6' ng-include="'/ng_templates/mappings/odk_column.html'"></div>
-      <div class='col-md-6' ng-include="'/ng_templates/mappings/sf_search_column.html'"></div>
-    </div>
-    <br />
-    <a href='#' ng-click="saveMapping()" class='btn btn-success btn-block'>Create Mapping</a>
-  </div>
+  <div class='col-md-4' ng-include="'/ng_templates/mappings/odk_column.html'"></div>
+  <div class='col-md-4' ng-include="'/ng_templates/mappings/sf_search_column.html'"></div>
   <div class='col-md-4' ng-include="'/ng_templates/mappings/sf_column.html'"></div>
 </div>
-<br />
+<a href='#' ng-click="saveMapping()" class='btn btn-success btn-block'>Create Mapping</a>
 

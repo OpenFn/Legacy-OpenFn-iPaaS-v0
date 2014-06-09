@@ -51,7 +51,7 @@ class MappingsController < ApplicationController
   end
 
   def mapping_params
-    params.require(:mapping).permit(:name, :odk_formid,
+    params.require(:mapping).permit(:name, :odk_formid, :active,
       salesforce_fields_attributes: [:id, :object_name, :field_name, :data_type, :_destroy,
         odk_fields_attributes: [:id, :field_name, :field_type, :_destroy]
       ]

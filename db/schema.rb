@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140606170029) do
+ActiveRecord::Schema.define(version: 20140609175753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140606170029) do
     t.string   "odk_formid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",     default: false
   end
 
   create_table "odk_fields", force: true do |t|

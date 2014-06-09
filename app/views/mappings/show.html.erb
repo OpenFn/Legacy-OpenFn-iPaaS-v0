@@ -11,7 +11,7 @@
 
 <ol class="breadcrumb">
   <li><%= link_to "Mappings", :mappings %></li>
-  <li><%= @mapping.name %></li>
+  <li><%= @mapping.name %> (<%= @mapping.active? ? "Active" : "Inactive" %>)</li>
 </ol>
 
 <%= form_tag dispatch_surveys_mapping_path(@mapping), class: 'form-inline', role: 'form' do %>
