@@ -31,7 +31,6 @@
 
       SalesforceObject.query.then (response) ->
         $scope.salesForceObjects = response.data.salesforce_objects
-        console.log $scope.salesForceObjects
 
     $scope.saveMapping = ->
       MappingService.saveMapping($scope.mapping).$promise.

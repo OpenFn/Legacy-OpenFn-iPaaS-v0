@@ -135,13 +135,9 @@ module OdkToSalesforce
         constraints.each do |k, v|
           quote = ""
 
-          if v.kind_of?(String) #&& ![:ID_Number__c, :Mobile_Number__c, :Loan_Tenure__c].include?(k)
-            quote = "'" #if hey_is_this_string_a_number?(v)
+          if v.kind_of?(String)
+            quote = "'"
           end
-
-          # if v.is_a?(TrueClass) || v.is_a?(FalseClass)
-          #   quote = ""
-          # end
 
           if valid_for_query?(k)
             # => Set the lookup value so empty strings can be compared too
@@ -152,7 +148,6 @@ module OdkToSalesforce
         # remove trailing space and AND
         query_string = query_string[0..-6] if and_or_or == "AND"
         query_string = query_string[0..-5] if and_or_or == "OR"
-        puts query_string.inspect
 
         @rf.query(query_string)["records"].first
       rescue Exception => e
@@ -181,14 +176,6 @@ module OdkToSalesforce
 
       uniques = constraints if uniques.empty?
       return [has_uniques, uniques]
-    end
-
-    def hey_is_this_string_a_number?(string)
-      if ((string =~ /^\d+(.\d+)?$/) or (string =~ /^\d+$/))
-        return true
-      else
-        return false
-      end
     end
 
     def create(object_name, constraints)

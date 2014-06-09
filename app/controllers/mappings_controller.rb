@@ -40,8 +40,8 @@ class MappingsController < ApplicationController
     only = params[:only].to_i
     only = 1 if params[:only].blank?
     puts "DISPATCHING #{only}, for #{@mapping}".yellow.bold
+    Resque.enqueue OdkToSalesforce::Dispatcher, @mapping.id, only
     redirect_to @mapping
-    OdkToSalesforce::Dispatcher.go(@mapping, only: only)
   end
 
   protected
