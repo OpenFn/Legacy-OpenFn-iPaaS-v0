@@ -30,7 +30,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @mapping.salesforce_fields.each do |sf_field| %>
+    <% @mapping.salesforce_fields.joins(:odk_fields).order("odk_fields.field_name").each do |sf_field| %>
       <tr>
         <td>
           <% sf_field.odk_fields.each do |odk_field| %>

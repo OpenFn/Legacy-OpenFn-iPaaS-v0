@@ -2,7 +2,7 @@
 
 <div class="form-group">
   <label for="salesforce_object_name">SalesForce Object</label>
-  <select ng-model="mapping.saleforce_object_name" ng-options="o as o for o in salesForceObjects" class='form-control' />
+  <select ng-model="mapping.saleforce_object_name" ng-options="sfObj.name as sfObj.label for sfObj in salesForceObjects" class='form-control' />
 </div>
 
 <div class="form-group">
