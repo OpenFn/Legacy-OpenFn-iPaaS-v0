@@ -19,6 +19,7 @@ module OdkToSalesforce
 
         # => include the value and the data_type from SF
         data[sf_object][sf_key] = get_field_content(sf_field.odk_fields.first, odk_data, sf_field.data_type)
+        data[sf_object][:perform_lookup] = sf_field.perform_lookups
       end
 
       # NOTE: temporarty hackity hack hack

@@ -14,7 +14,6 @@
         hash
       , {}
 
-
       for hsh, value of m
         hsh = JSON.parse(hsh)
         hsh.fields = value
@@ -45,10 +44,12 @@
 
           # Set the SF Field information
           sfFieldAttribute = {
+            id: sfField.id
             object_name: sfObject.name
             label_name: sfObject.label
             data_type: sfField.data_type
             field_name: sfField.field_name
+            perform_lookups: sfObject.perform_lookups
           }
 
           # Create the empty nested attributes for the odk fields
@@ -59,7 +60,6 @@
 
           # Add the sf fields to the main hash
           hash.mapping.salesforce_fields_attributes.push sfFieldAttribute
-
       hash
 
     saveMapping: (mapping) ->

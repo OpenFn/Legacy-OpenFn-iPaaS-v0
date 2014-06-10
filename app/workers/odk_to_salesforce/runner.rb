@@ -24,18 +24,32 @@ module OdkToSalesforce
 
       if create_parents_first?(node, data)
         puts "-> find or create parents for #{node[:name]}"
+
+        # => Loop through each parent to see if it needs to be created
         node[:parents].each do |parent_node, value|
+
+          # => Does the mapping have a the parent in it?
           if data.has_key?(parent_node)
+
+            # => Run this again for the parent all the way up the top object
             parent_objects << run(parent_node.to_s, data)
+
+            # => TODO: change this.  YOU ARE HERE
           end
         end
       else
+        # => Now we're at the top object!
+        # => Find or create it
         puts "-> find or create #{node[:name]}"
-        thing = find_or_create_one_or_many(node[:name], constraints)
-        return thing
+        #thing = find_or_create_one_or_many(node[:name], constraints)
+        #return thing
+
+        return SalesforceObjects::SalesforceObject.new(@rf, obj_name: node[:name], attributes: constraints)
       end
 
+      # => One of the parents didn't create properly!
       if parent_objects.include?(false)
+        # => Return false back up the chain
         return false
       else
         parent_objects.flatten.each do |parent_object|
@@ -56,13 +70,14 @@ module OdkToSalesforce
     #
     # then we must assume they all are. In this case,
     # we iterate over the first array and create a flat hash of
-    # constraints which we then pass to find_or_create on eachiterations.
+    # constraints which we then pass to find_or_create on each iterations.
 
     # => TODO: When a repeated_field is pointing to the object
     def find_or_create_one_or_many(object_name, constraints)
       if constraints.flatten.any? { |e| e.kind_of?(Array) }
         success_array = []
         constraints.flatten.select { |e| e.kind_of?(Array)}[0].each_with_index do |c, i|
+          raise c.inspect
           flat_constraints = {}
           constraints.each do |k,v|
             # only iterate on arrays, otherwise make value the same for all
@@ -101,8 +116,10 @@ module OdkToSalesforce
     end
 
     def find_or_create(object_name, constraints)
-      sf_object = find(object_name, constraints)
-      puts "-> found #{object_name}, #{sf_object["Id"]}".magenta if !sf_object.nil?
+      #raise constraints.inspect
+      sf_object = nil
+      #sf_object = find(object_name, constraints)
+      #puts "-> found #{object_name}, #{sf_object["Id"]}".magenta if !sf_object.nil?
 
       if sf_object.nil?
         puts "-> no #{object_name} fitting constraints"

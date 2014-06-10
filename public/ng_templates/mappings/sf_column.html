@@ -8,13 +8,11 @@
   <li ng-repeat="sfObject in mapping.mappingSalesforceObjects"><a href="#{{sfObject.name}}" data-toggle="tab">{{sfObject.label}}</a></li>
 </ul>
 
-{{mapping.mappingSalesforceObjects}}
-
 <div class="tab-content">
   <div ng-repeat="sfObject in mapping.mappingSalesforceObjects" class="tab-pane" id="{{sfObject.name}}">
     <div class="checkbox">
       <label>
-        <input type="checkbox" ng-model='sfObject.lookup'> Perform Lookups
+        <input type="checkbox" ng-model='sfObject.perform_lookups'> Perform Lookups
       </label>
     </div>
 

@@ -8,5 +8,5 @@ mapping.salesforce_fields.each do |sf_field|
   rf_field = rf_object["fields"].
     select{|f| f["name"].eql?(sf_field.field_name)}.first
 
-  sf_field.update(data_type: rf_field["type"], object_name: object_name)
+  sf_field.update(data_type: rf_field["type"], object_name: object_name, label_name: rf_object["label"])
 end

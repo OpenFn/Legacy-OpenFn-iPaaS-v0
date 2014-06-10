@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140610171812) do
+ActiveRecord::Schema.define(version: 20140610175520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140610171812) do
     t.datetime "updated_at"
     t.string   "data_type"
     t.string   "label_name"
+    t.boolean  "perform_lookups", default: false
   end
 
 end
