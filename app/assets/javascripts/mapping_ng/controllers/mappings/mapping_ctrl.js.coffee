@@ -4,7 +4,7 @@
   ($scope, $filter, Mapping, OdkForm, OdkFormField, SalesforceObject, SalesforceObjectField, MappingService) ->
 
     $scope.mapping = {
-      salesforce_fields: []
+      mappingSalesforceObjects: []
     }
 
     $scope.sfFilter = {}
@@ -14,7 +14,8 @@
     $scope.init = (mappingId) ->
       $scope.editMode = true
       Mapping.get(id: mappingId).$promise.then((response) ->
-        $scope.mapping = response.mapping
+        $scope.mapping = MappingService.reverseMapping(response.mapping)
+        console.log $scope.mapping
       )
 
     $scope.prepare = ->
@@ -30,7 +31,7 @@
         $scope.odkForms = response.data.odk_forms
 
       SalesforceObject.query.then (response) ->
-        $scope.salesForceObjects = response.data.salesforce_objects
+        $scope.salesforceObjects = response.data.salesforce_objects
 
     $scope.saveMapping = ->
       MappingService.saveMapping($scope.mapping).$promise.
@@ -55,19 +56,16 @@
           $scope.originalOdkFormFields = response
           $scope.odkFormFields = angular.copy($scope.originalOdkFormFields)
 
-    $scope.$watch "mapping.saleforce_object_name", (salesForceObjectId) ->
-      if salesForceObjectId isnt undefined
-        $scope.salesforceObjectFields = []
+    $scope.$watch "mapping.salesforceObjectName", (salesforceObjectId) ->
+      if salesforceObjectId isnt undefined
 
-        SalesforceObjectField.query(salesforce_object_id: salesForceObjectId).$promise.then (response) ->
-          $scope.originalSalesforceObjectFields = response
-          $scope.salesforceObjectFields = angular.copy($scope.originalSalesforceObjectFields)
+        sfObject = (i for i in $scope.salesforceObjects when i.name is salesforceObjectId)[0]
+        index = $scope.salesforceObjects.indexOf(sfObject)
+        $scope.salesforceObjects.splice(index, 1)
 
-    $scope.$watch "sfFilter.field_name", (fieldName) ->
-      if fieldName is ''
-        $scope.salesforceObjectFields = angular.copy($scope.originalSalesforceObjectFields)
-      else
-        $scope.salesforceObjectFields = $filter('filter')($scope.originalSalesforceObjectFields, $scope.sfFilter)
+        SalesforceObjectField.query(salesforce_object_id: salesforceObjectId).$promise.then (response) ->
+          sfObject.fields = response
+          $scope.mapping.mappingSalesforceObjects.push sfObject
 
     $scope.$watch "odkFilter.field_name", (fieldName) ->
       $scope.getOdkFields(fieldName)

@@ -1,8 +1,33 @@
 @serviceModule.factory 'MappingService', ['Mapping'
   (Mapping) ->
 
+    reverseMapping: (mapping) ->
+      mapping.mappingSalesforceObjects = []
+
+      m = mapping.salesforce_fields.reduce (hash, obj) ->
+        h = {
+          name: obj.object_name
+          label: obj.label_name
+        }
+        hash[JSON.stringify(h)] ||= []
+        hash[JSON.stringify(h)].push obj
+        hash
+      , {}
+
+
+      for hsh, value of m
+        hsh = JSON.parse(hsh)
+        hsh.fields = value
+        mapping.mappingSalesforceObjects.push hsh
+
+      mapping
+
     mappingParams: (mapping) ->
       # Add the basic elements to the mapping hash
+
+      sfObjects = mapping.mappingSalesforceObjects
+      delete mapping.mappingSalesforceObjects
+
       hash =
         mapping:
           name: mapping.name
@@ -12,11 +37,19 @@
       # Create the empty nested attributes for salesforce fields
       hash.mapping.salesforce_fields_attributes = []
 
-      # Loop through our mapping hash
-      for sfField in mapping.salesforce_fields
+      # Loop through all the objects in the mapping
+      for sfObject in sfObjects
+
+        # Loop through all the fields in these objects
+        for sfField in sfObject.fields
 
           # Set the SF Field information
-          sfFieldAttribute = angular.copy(sfField)
+          sfFieldAttribute = {
+            object_name: sfObject.name
+            label_name: sfObject.label
+            data_type: sfField.data_type
+            field_name: sfField.field_name
+          }
 
           # Create the empty nested attributes for the odk fields
           sfFieldAttribute.odk_fields_attributes = []

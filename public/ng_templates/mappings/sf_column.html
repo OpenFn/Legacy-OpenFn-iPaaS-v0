@@ -1,32 +1,46 @@
-<h4>3. Combine the SF and ODK fields to create a mapping</h4>
+<h4>SF Fields</h4>
+<label for="salesforce_object_name">SalesForce Object</label>
+<select ng-model="mapping.salesforceObjectName" ng-options="sfObj.name as sfObj.label for sfObj in salesforceObjects" class='form-control'>
+  <option value=""></option>
+</select>
 
-<div class='panel panel-warning'>
-  <div class='panel-heading'>Drag Salesforce Fields into me</div>
-  <div class='panel-body'>
+<ul class="nav nav-tabs">
+  <li ng-repeat="sfObject in mapping.mappingSalesforceObjects"><a href="#{{sfObject.name}}" data-toggle="tab">{{sfObject.label}}</a></li>
+</ul>
 
-    <div class='sortable-location sf-connected-sortable' ui-sortable="sfSortableOptions" ng-model="mapping.salesforce_fields">
-      <div class="panel panel-default" ng-repeat="sfField in mapping.salesforce_fields">
-        <div class="panel-heading">
-          <div ng-show="mapping.id" class='pull-right'>
-            <input id="destroy-{{$index}}" type="checkbox" class="destroy-field" ng-model="sfField._destroy">
-            <label for="destroy-{{$index}}">&times;</label>
-          </div>
-          <b>Salesforce Field</b>: {{sfField.object_name}} - {{sfField.field_name}}
-          <p class="text-danger">Drag ODK Fields into me</p>
-        </div>
-        <div class="panel-body">
-          <ul class="list-group sortable-location odk-connected-sortable" ui-sortable="odkSortableOptions" ng-model="sfField.odk_fields">
-            <li class='list-group-item' ng-repeat="odkField in sfField.odk_fields">
-              <div ng-show="mapping.id" class='pull-right'>
-                <input id="destroy-{{$parent.$index}}-{{$index}}" type="checkbox" class="destroy-field" ng-model="odkField._destroy">
-                <label for="destroy-{{$parent.$index}}-{{$index}}">&times;</label>
-              </div>
-              {{odkField.field_name}}: {{odkField.field_type}}
-            </li>
-          </ul>
-        </div>
-      </div>
+{{mapping.mappingSalesforceObjects}}
+
+<div class="tab-content">
+  <div ng-repeat="sfObject in mapping.mappingSalesforceObjects" class="tab-pane" id="{{sfObject.name}}">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" ng-model='sfObject.lookup'> Perform Lookups
+      </label>
     </div>
 
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Field Name</th>
+          <th>ODK Fields</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="sfField in sfObject.fields">
+          <td>{{sfField.field_name}}</td>
+          <td>
+            <ul class="list-group sortable-location odk-connected-sortable" ui-sortable="odkSortableOptions" ng-model="sfField.odk_fields">
+              <li class='list-group-item' ng-repeat="odkField in sfField.odk_fields">
+                <div ng-show="mapping.id" class='pull-right'>
+                  <input id="destroy-{{$parent.$index}}-{{$index}}" type="checkbox" class="destroy-field" ng-model="odkField._destroy">
+                  <label for="destroy-{{$parent.$index}}-{{$index}}">&times;</label>
+                </div>
+                {{odkField.field_name}}: {{odkField.field_type}}
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

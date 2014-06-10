@@ -10,6 +10,13 @@
 
 }
 
+.odk-row {
+  .odk-fields {
+    max-height: 400px;
+    overflow: auto;
+  }
+}
+
 .odk-list-item {
   width: 165px;
 }
