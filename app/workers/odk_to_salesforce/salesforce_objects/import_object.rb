@@ -2,13 +2,17 @@ module OdkToSalesforce
   module SalesforceObjects
     class ImportObject
 
-      attr_accessor :id, :object_name, :attributes, :parent, :children
+      include QueryMethods
 
-      def initialize(rf, obj_name: nil, attributes: {})
+      attr_accessor :node, :id, :object_name, :attributes,:parent, :children
+
+      def initialize(rf, node: nil, attributes: {})
         @rf = rf
-        @object_name = obj_name
+        @node = node
+        @object_name = node[:name]
         @children = []
         @attributes = attributes
+        @fields = []
       end
 
       def save!
@@ -36,14 +40,6 @@ module OdkToSalesforce
         end
       end
 
-      def find(id)
-        # => TODO find SF object by ID
-      end
-
-      def query(attrs = {})
-        # => TODO find SF object by attributes
-      end
-
       def add_child(child)
         child.parent = self
         @children << child
@@ -60,13 +56,18 @@ module OdkToSalesforce
       protected
 
       def save_to_salesforce(attributes)
-        puts "creating #{@object_name}"
-        attrs = attributes.reject{|k, v| k.eql?(:perform_lookup)}
-        if @parent
-          attrs[@parent.object_name.to_sym] = @parent.id
+        perform_lookup = attributes.delete :perform_lookup
+        if perform_lookup
+          puts "finding #{@object_name} "
+          @id = query(attributes)["Id"]
+        else
+          puts "creating #{@object_name}"
+          if @parent
+            attributes[@parent.object_name.to_sym] = @parent.id
+          end
+          raise attributes.inspect
+          @id = @rf.create!(@object_name, attributes)
         end
-        response = @rf.create!(@object_name, attrs)
-        @id = response
       end
 
     end

@@ -23,7 +23,7 @@ module OdkToSalesforce
       constraints = data[node[:name].to_sym]
 
       # => Set the target object of this run
-      current_object = SalesforceObjects::ImportObject.new(@rf, obj_name: node[:name], attributes: constraints)
+      current_object = SalesforceObjects::ImportObject.new(@rf, node: node, attributes: constraints)
 
       if create_parents_first?(node, data)
         puts "-> find or create parents for #{node[:name]}"
