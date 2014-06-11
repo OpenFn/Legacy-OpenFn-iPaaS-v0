@@ -22,6 +22,9 @@ module OdkToSalesforce
       parent_objects = []
       constraints = data[node[:name].to_sym]
 
+      # => Set the target object of this run
+      current_object = SalesforceObjects::ImportObject.new(@rf, obj_name: node[:name], attributes: constraints)
+
       if create_parents_first?(node, data)
         puts "-> find or create parents for #{node[:name]}"
 
@@ -32,9 +35,13 @@ module OdkToSalesforce
           if data.has_key?(parent_node)
 
             # => Run this again for the parent all the way up the top object
-            parent_objects << run(parent_node.to_s, data)
+            # => This will return a single parent object
+            parent_object = run(parent_node.to_s, data)
 
-            # => TODO: change this.  YOU ARE HERE
+            # => Add the current object as a child of the parent
+            parent_object.add_child(current_object)
+
+            return current_object
           end
         end
       else
@@ -44,21 +51,26 @@ module OdkToSalesforce
         #thing = find_or_create_one_or_many(node[:name], constraints)
         #return thing
 
-        return SalesforceObjects::SalesforceObject.new(@rf, obj_name: node[:name], attributes: constraints)
+        # => Return the target object
+        return current_object
       end
 
       # => One of the parents didn't create properly!
-      if parent_objects.include?(false)
-        # => Return false back up the chain
-        return false
-      else
-        parent_objects.flatten.each do |parent_object|
-          parent_type = parent_object["attributes"]["type"]
-          parent_type_field = node[:parents][parent_type.to_sym]
-          constraints[parent_type_field.to_sym] = parent_object["Id"]
-        end
-        return find_or_create_one_or_many(node[:name], constraints)
-      end
+      # if parent_objects.include?(false)
+      #   # => Return false back up the chain
+      #   return false
+      # else
+      #   parent_objects.flatten.each do |parent_object|
+      #     # => Load settings from the parent object that was just created
+      #     parent_type = parent_object["attributes"]["type"]
+      #     parent_type_field = node[:parents][parent_type.to_sym]
+
+      #     # => Set the child's parent object with the found or created parent object id
+      #     constraints[parent_type_field.to_sym] = parent_object["Id"]
+      #   end
+      #   # => Now create this object and pass it along
+      #   return find_or_create_one_or_many(node[:name], constraints)
+      # end
     end
 
     private
@@ -77,7 +89,6 @@ module OdkToSalesforce
       if constraints.flatten.any? { |e| e.kind_of?(Array) }
         success_array = []
         constraints.flatten.select { |e| e.kind_of?(Array)}[0].each_with_index do |c, i|
-          raise c.inspect
           flat_constraints = {}
           constraints.each do |k,v|
             # only iterate on arrays, otherwise make value the same for all

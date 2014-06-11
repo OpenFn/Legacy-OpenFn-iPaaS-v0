@@ -12,7 +12,7 @@ module OdkToSalesforce
     def convert odk_data
       data = {}
 
-      @mapping.salesforce_fields.each do |sf_field|
+      @mapping.salesforce_fields.includes(:odk_fields).each do |sf_field|
         sf_object = sf_field.object_name.to_sym
         sf_key = sf_field.field_name.to_sym
         data[sf_object] = {} unless data.has_key? sf_object
