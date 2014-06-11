@@ -65,7 +65,6 @@ module OdkToSalesforce
           if @parent
             attributes[@parent.object_name.to_sym] = @parent.id
           end
-          raise attributes.inspect
           @id = @rf.create!(@object_name, attributes)
         end
       end
