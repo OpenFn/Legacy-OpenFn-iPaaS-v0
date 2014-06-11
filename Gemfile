@@ -59,6 +59,9 @@ gem 'figaro'
 # => Pagination
 gem 'kaminari'
 
+# => Clone AR objects
+gem 'deep_cloneable', '~> 1.6.1'
+
 # => Using jquery UI for draggable
 gem 'jquery-ui-rails'
 

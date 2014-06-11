@@ -1,6 +1,6 @@
 class MappingsController < ApplicationController
 
-  before_action :load_mapping, only: [:show, :edit, :update, :destroy, :dispatch_surveys]
+  before_action :load_mapping, only: [:show, :edit, :update, :destroy, :dispatch_surveys, :clone]
 
   def index
     @mappings = Mapping.page params[:page]
@@ -42,6 +42,17 @@ class MappingsController < ApplicationController
     puts "DISPATCHING #{only}, for #{@mapping}".yellow.bold
     Resque.enqueue OdkToSalesforce::Dispatcher, @mapping.id, only
     redirect_to @mapping
+  end
+
+  def clone
+    new_mapping = @mapping.dup :include => {salesforce_fields: :odk_fields}
+    new_mapping.name = new_mapping.name + "_copy"
+    if new_mapping.save
+      redirect_to new_mapping
+    else
+      render :show
+    end
+
   end
 
   protected
