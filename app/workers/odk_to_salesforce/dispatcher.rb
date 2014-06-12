@@ -20,7 +20,6 @@ module OdkToSalesforce
       submissions.each_with_index do |submission, i|
         odk_data = odk.fetch_submission(submission)
         sf_data = converter.convert(odk_data)
-
         bottom_objects = []
 
         salesforce.leaf_nodes.each_with_index do |k, ii|

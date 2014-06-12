@@ -48,6 +48,7 @@ module OdkToSalesforce
 
       # iterate until data["first_level"]["second_level"] is reached
       value = odk_data
+      raise odk_field.inspect if value.nil?
       field_nesting.each do |key|
         if value.kind_of?(Array)
           oldvalue = value

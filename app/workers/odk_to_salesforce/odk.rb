@@ -22,8 +22,16 @@ module OdkToSalesforce
        )
 
       submission = submission["submission"]["data"]
-      key = submission.keys.select { |k| k.include? @form[:id] }[0]
-      submission[key]
+
+      #key = submission.keys.select { |k| k.include? @form[:id] }[0]
+
+
+      # submission[@form[:id]]
+
+      # raise submission[key].inspect
+      # submission[key]
+
+      submission.values.first
     end
 
     private
