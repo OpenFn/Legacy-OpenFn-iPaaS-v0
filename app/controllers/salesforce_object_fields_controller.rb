@@ -9,5 +9,4 @@ class SalesforceObjectFieldsController < ApplicationController
 
     render json: sf_fields, root: false
   end
-
 end
