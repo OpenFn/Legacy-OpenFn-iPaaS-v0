@@ -1,5 +1,7 @@
 'use strict'
 
+Array::filter = (func) -> x for x in @ when func(x)
+
 @mapping = angular.module 'mapping', [
   'mapping.controllers',
   'mapping.directives',

@@ -17,6 +17,18 @@
     $scope.toggleDeleteSfObject = (sfObject) ->
       sfObject._destroy = !sfObject._destroy
 
+    $scope.updateObject = (sfObject) ->
+      SalesforceObjectField.query(salesforce_object_id: sfObject.name).$promise.then (sfFields) ->
+
+        for field in sfFields
+          # Check if the sfObject has this field
+          objs = sfObject.fields.filter (sfField) -> sfField.field_name is field.field_name
+          if objs.length is 0
+
+            # If it doesn't, add it to the array
+            sfObject.fields.push field
+
+
     ########## WATCHES
 
     $scope.$watch "mapping.salesforceObjectName", (salesforceObjectId) ->

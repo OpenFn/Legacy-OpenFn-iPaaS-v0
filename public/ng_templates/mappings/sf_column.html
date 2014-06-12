@@ -17,19 +17,33 @@
   <div class="tab-content">
     <div ng-repeat="sfObject in mapping.mappingSalesforceObjects" class="tab-pane" id="{{sfObject.name}}">
       <br />
-      <div class="checkbox pull-left">
-        <label>
-          <input type="checkbox" ng-model='sfObject.perform_lookups'> Perform Lookups
-        </label>
+      <div class="form-group">
+        <input ng-model="sfFilter.field_name" type='text' placeholder="Filter SF fields" class='form-control' />
       </div>
 
-      <a href='#' ng-hide="sfObject._destroy" ng-click="toggleDeleteSfObject(sfObject)" class='btn btn-warning pull-right'>
-        Remove
-      </a>
+      <div class='row'>
+        <div class='col-md-5'>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model='sfObject.perform_lookups'> Perform Lookups
+            </label>
+          </div>
+        </div>
+        <div class='col-md-4'>
+          <a href="#" ng-click="updateObject(sfObject)" class='btn btn-success'>
+            Refresh SF Fields
+          </a>
+        </div>
+        <div class='col-md-3'>
+          <a href='#' ng-hide="sfObject._destroy" ng-click="toggleDeleteSfObject(sfObject)" class='btn btn-warning'>
+            Remove
+          </a>
 
-      <a href='#' ng-show="sfObject._destroy" ng-click="toggleDeleteSfObject(sfObject)" class='btn btn-danger pull-right'>
-        Undo Remove
-      </a>
+          <a href='#' ng-show="sfObject._destroy" ng-click="toggleDeleteSfObject(sfObject)" class='btn btn-danger'>
+            Undo Remove
+          </a>
+        </div>
+      </div>
 
       <table class='table'>
         <thead>
@@ -39,7 +53,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="sfField in sfObject.fields">
+          <tr ng-repeat="sfField in sfObject.fields | filter:sfFilter">
             <td>{{sfField.field_name}}</td>
             <td>
               <ul class="list-group sortable-location odk-connected-sortable" ui-sortable="odkSortableOptions" ng-model="sfField.odk_fields">
