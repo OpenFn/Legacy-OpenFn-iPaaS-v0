@@ -12,7 +12,7 @@ module OdkToSalesforce
     def convert odk_data
       data = {}
 
-      @mapping.salesforce_fields.includes(:odk_fields).each do |sf_field|
+      @mapping.salesforce_fields.joins(:odk_fields).each do |sf_field|
         sf_object = sf_field.object_name.to_sym
         sf_key = sf_field.field_name.to_sym
         data[sf_object] = {} unless data.has_key? sf_object
@@ -40,7 +40,6 @@ module OdkToSalesforce
     end
 
     def get_field_content odk_field, odk_data, data_type
-      return if odk_field.nil?
 
       # given "/first_level/second_level"
       # -> [ "first_level", "second_level", etc. ]
@@ -48,7 +47,6 @@ module OdkToSalesforce
 
       # iterate until data["first_level"]["second_level"] is reached
       value = odk_data
-      raise odk_field.inspect if value.nil?
       field_nesting.each do |key|
         if value.kind_of?(Array)
           oldvalue = value

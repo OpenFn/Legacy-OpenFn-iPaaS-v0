@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  odk_form_id: MyString
+  last_uuid: MyString
+
+two:
+  odk_form_id: MyString
+  last_uuid: MyString

@@ -5,9 +5,12 @@ module OdkToSalesforce
   class Odk
     attr_reader :submissions
 
-    def initialize form_id
+    def initialize form_id, import
+
       # { id: "form_id", topElement: "form_top_element"}
       @form = fetch_form form_id
+
+      @import = import
 
       # Array:
       # [ id, id, id ... ]
@@ -22,15 +25,6 @@ module OdkToSalesforce
        )
 
       submission = submission["submission"]["data"]
-
-      #key = submission.keys.select { |k| k.include? @form[:id] }[0]
-
-
-      # submission[@form[:id]]
-
-      # raise submission[key].inspect
-      # submission[key]
-
       submission.values.first
     end
 
@@ -44,8 +38,20 @@ module OdkToSalesforce
     end
 
     def fetch_submissions
-      puts @form
-      OdkAggregate::Submission.where(formId: @form[:id]).submissions
+      params = {formId: @form[:id]}
+      params.merge!(cursor: transform_cursor(@import.cursor)) if @import.cursor && @import.last_uuid
+      OdkAggregate::Submission.where(params).submissions
+    end
+
+    def transform_cursor(cursor)
+      # => Reset the day to some time far in the past
+      # => This allows the UUID lookup to have a lot more weight
+      cursor.match(/<attributeValue>(\S+)<\/attributeValue>/) do
+        cursor.gsub!($1, "2000-01-01")
+      end
+      cursor.match(/<uriLastReturnedValue>(\S+)<\/uriLastReturnedValue>/) do
+        cursor.gsub!($1, @import.last_uuid)
+      end
     end
   end
 end
