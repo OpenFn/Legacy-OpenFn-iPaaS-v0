@@ -59,8 +59,8 @@
               <ul class="list-group sortable-location odk-connected-sortable" ui-sortable="odkSortableOptions" ng-model="sfField.odk_fields">
                 <li class='list-group-item' ng-repeat="odkField in sfField.odk_fields">
                   <div ng-show="mapping.id" class='pull-right'>
-                    <input id="destroy-{{$parent.$index}}-{{$index}}" type="checkbox" class="destroy-field" ng-model="odkField._destroy">
-                    <label for="destroy-{{$parent.$index}}-{{$index}}">&times;</label>
+                    <input id="destroy-{{sfObject.name}}-{{$parent.$index}}-{{$index}}" type="checkbox" class="destroy-field" ng-model="odkField._destroy">
+                    <label for="destroy-{{sfObject.name}}-{{$parent.$index}}-{{$index}}">&times;</label>
                   </div>
                   {{odkField.field_name}}: {{odkField.field_type}}
                 </li>
