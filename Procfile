@@ -1,1 +1,1 @@
-resque: env TERM_CHILD=1 RESQUE_TERM_TIMEOUT=7 bundle exec QUEUE='*' rake resque:work
+worker: env QUEUE=* bundle exec rake resque:work
