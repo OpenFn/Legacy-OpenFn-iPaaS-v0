@@ -3,22 +3,23 @@ module OdkToSalesforce
 
     @queue = :importer
 
-    def self.perform(mapping_id, only = nil)
+    def self.perform(mapping_id, limit = 500)
       mapping = Mapping.find mapping_id
-      new.perform(mapping, only)
+      new.perform(mapping, limit)
     end
 
-    def perform(mapping, only)
+    def perform(mapping, limit)
       # Load the log of the import for this ODK form
       import = Import.find_or_create_by(odk_formid: mapping.odk_formid)
 
       # => Load the ODK information
-      odk = OdkToSalesforce::Odk.new(mapping.odk_formid, import)
+      odk = OdkToSalesforce::Odk.new(mapping.odk_formid, import, limit)
 
       # => Get the submissions from the ODK object
       # => The submissions only come back as IDs
-      only = odk.submissions.length if only.nil?
-      submissions = odk.submissions[0...only]
+      #only = odk.submissions.length if only.nil?
+      #submissions = odk.submissions[0...only]
+      submissions = odk.submissions
 
       # => If there are submissions to process
       if submissions.size > 0
@@ -56,7 +57,7 @@ module OdkToSalesforce
           # => Process all the ImportObjects
           process_bottom_objects(bottom_objects)
 
-          import.update(last_uuid: submission)
+          import.update(last_uuid: submission, num_imported: import.num_imported + 1)
         end
       end
     end
