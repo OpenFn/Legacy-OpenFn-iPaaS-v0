@@ -37,10 +37,11 @@ class MappingsController < ApplicationController
   end
 
   def dispatch_surveys
-    only = params[:only].to_i
-    only = 1 if params[:only].blank?
-    puts "DISPATCHING #{only}, for #{@mapping}".yellow.bold
-    Resque.enqueue OdkToSalesforce::Dispatcher, @mapping.id, only
+    unless params[:only].blank?
+      only = params[:only].to_i
+      puts "DISPATCHING #{only}, for #{@mapping}".yellow.bold
+      Resque.enqueue OdkToSalesforce::Dispatcher, @mapping.id, only if only > 0
+    end
     redirect_to @mapping
   end
 
