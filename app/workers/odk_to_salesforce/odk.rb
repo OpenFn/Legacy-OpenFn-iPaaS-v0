@@ -43,7 +43,7 @@ module OdkToSalesforce
       params = {formId: @form[:id], numEntries: @import.num_imported? ? @limit + @import.num_imported : @limit}
       params.merge!(cursor: transform_cursor(@import.cursor)) if @import.cursor && @import.last_uuid
       @request = OdkAggregate::Submission.where(params)
-      @request.submissions
+      raise @request.submissions.count.inspect
     end
 
     def transform_cursor(cursor)
