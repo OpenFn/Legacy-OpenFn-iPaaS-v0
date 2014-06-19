@@ -65,7 +65,23 @@ module OdkToSalesforce
           if @parent
             attributes[@parent.object_name.to_sym] = @parent.id
           end
-          @id = @rf.create!(@object_name, attributes)
+
+          # => Rescue certain errors
+          begin
+            @id = @rf.create!(@object_name, attributes)
+          rescue Exception => e
+            arr = e.message.split(":")
+
+            # => If we are creating this and it's a duplicate,
+            # => then parse the error message for the ID
+            # => A cheap way to not create duplicates without using the
+            # => lookup functionality
+            if arr[0].eql?("DUPLICATE_VALUE")
+              @id = arr[3].strip
+            else
+              raise e.message.inspect
+            end
+          end
         end
       end
 
