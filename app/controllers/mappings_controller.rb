@@ -3,7 +3,7 @@ class MappingsController < ApplicationController
   before_action :load_mapping, only: [:show, :edit, :update, :destroy, :dispatch_surveys, :clone]
 
   def index
-    @mappings = Mapping.page params[:page]
+    @mappings = current_user.mappings.page params[:page]
   end
 
   def show
