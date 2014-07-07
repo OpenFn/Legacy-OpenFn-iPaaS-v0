@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :password,
                                          :password_confirmation,
-                                         :odk_username, :odk_password,
+                                         :odk_url, :sf_security_token,
                                          :sf_username, :sf_password)
   end
 end

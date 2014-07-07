@@ -3,17 +3,17 @@ module OdkToSalesforce
 
     @queue = :importer
 
-    def self.perform(mapping_id, limit = 500)
+    def self.perform(mapping_id, limit = 500, user)
       mapping = Mapping.find mapping_id
-      new.perform(mapping, limit)
+      new.perform(mapping, limit, user)
     end
 
-    def perform(mapping, limit)
+    def perform(mapping, limit, user)
       # Load the log of the import for this ODK form
       import = Import.find_or_create_by(odk_formid: mapping.odk_formid)
 
       # => Load the ODK information
-      odk = OdkToSalesforce::Odk.new(mapping.odk_formid, import, limit)
+      odk = OdkToSalesforce::Odk.new(mapping.odk_formid, import, limit, user["odk_url"])
 
       # => Get the submissions from the ODK object
       # => The submissions only come back as IDs
@@ -28,7 +28,7 @@ module OdkToSalesforce
         converter = OdkToSalesforce::Converter.new(mapping)
 
         # => Load the Salesforce information
-        salesforce = OdkToSalesforce::Salesforce.new
+        salesforce = OdkToSalesforce::Salesforce.new(user)
 
         # => Create a runner object that will do the processing
         runner = OdkToSalesforce::Runner.new(salesforce.relationships)
