@@ -11,16 +11,29 @@
       <a class="navbar-brand" href="#">ODK-SF</a>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active">
-          <%= link_to "Mappings", :mappings %>
-        </li>
-        <li>
-          <%= link_to "Settings" %>
-        </li>
-      </ul>
+      <% if current_user %>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+            <li>
+              <%= link_to "Mappings", :mappings %>
+            </li>
+            <li>
+              <%= link_to "Settings" %>
+            </li>
+            <li>
+              <%= link_to "Logout", :logout, method: :post %>
+            </li>
+          </ul>
+      <% else %>
+            <li>
+              <%= link_to "Signup", :signup %>
+            </li>
+            <li>
+              <%= link_to "Login", :login %>
+            </li>
+          </ul>
+      <% end %>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

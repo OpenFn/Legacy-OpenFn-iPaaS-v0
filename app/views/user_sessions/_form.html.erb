@@ -1,0 +1,14 @@
+<%= form_for @user, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+
+  <div class="form-group">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+
+  <%= f.submit "Sign Up!" %>
+<% end %>
