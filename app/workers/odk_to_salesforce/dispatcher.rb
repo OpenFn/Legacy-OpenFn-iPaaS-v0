@@ -31,7 +31,7 @@ module OdkToSalesforce
         salesforce = OdkToSalesforce::Salesforce.new(user)
 
         # => Create a runner object that will do the processing
-        runner = OdkToSalesforce::Runner.new(salesforce.relationships)
+        runner = OdkToSalesforce::Runner.new(salesforce.relationships, user)
 
         # => Go through each submission to be processed
         submissions.each_with_index do |submission, i|
