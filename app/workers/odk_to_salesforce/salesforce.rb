@@ -9,14 +9,16 @@ module OdkToSalesforce
   #   children: [ array of child objects ]}
   # }
   class Salesforce
-    def initialize
-      @rf = Restforce.new
+    def initialize(user)
+      @rf = Restforce.new(username: user["sf_username"],
+                          password: user["sf_password"],
+                          security_token: user["sf_security_token"])
       @relationships_hash = {}
       build
     end
 
     ##
-    # Get relationships hash 
+    # Get relationships hash
     def relationships
       @relationships_hash
     end
@@ -29,7 +31,7 @@ module OdkToSalesforce
 
     # Get child objects
     def leaf_nodes
-      leafs = [] 
+      leafs = []
       @relationships_hash.each do |k, v|
         if v[:children].empty?
           leafs << k

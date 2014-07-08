@@ -39,7 +39,10 @@ class MappingsController < ApplicationController
   def dispatch_surveys
     unless params[:only].blank?
       only = params[:only].to_i
-      Resque.enqueue OdkToSalesforce::Dispatcher, @mapping.id, only if only > 0
+
+      if only > 0
+        Resque.enqueue(OdkToSalesforce::Dispatcher, @mapping.id, only, current_user)
+      end
     end
     redirect_to @mapping
   end

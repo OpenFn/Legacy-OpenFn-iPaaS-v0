@@ -5,7 +5,9 @@ module OdkToSalesforce
   class Odk
     attr_reader :submissions
 
-    def initialize form_id, import, limit
+    def initialize form_id, import, limit, url
+
+      @odk = OdkAggregate::Connection.new(url)
 
       # { id: "form_id", topElement: "form_top_element"}
       @form = fetch_form form_id
@@ -20,7 +22,7 @@ module OdkToSalesforce
     end
 
     def fetch_submission id
-      submission = OdkAggregate::Submission.where(
+      submission = @odk.submissions_where(
          formId: @form[:id],
          key: id,
          topElement: @form[:topElement]
@@ -35,14 +37,14 @@ module OdkToSalesforce
     def fetch_form form_id
       form = {
         id: form_id,
-        topElement: OdkAggregate::Form.find(form_id).get_top_element
+        topElement: @odk.find_form(form_id).get_top_element
       }
     end
 
     def fetch_submissions
       params = {formId: @form[:id], numEntries: @import.num_imported? ? @limit + @import.num_imported : @limit}
       params.merge!(cursor: transform_cursor(@import.cursor)) if @import.cursor && @import.last_uuid
-      @request = OdkAggregate::Submission.where(params)
+      @request = @odk.submissions_where(params)
       @request.submissions
     end
 
