@@ -18,12 +18,21 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = current_user
+
+    if @user.update_attributes(user_params)
+      redirect_to(:root, notice: "Settings updated.")
+    else
+      flash.now[:alert] = "Settings could not be updated successfully."
+      render(:edit)
+    end
   end
 
   def destroy
   end
 
-  def show
+  def edit
+    @user = current_user
   end
 
   def index
@@ -33,6 +42,9 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password,
+                                         :password_confirmation,
+                                         :odk_username, :odk_password,
+                                         :sf_username, :sf_password)
   end
 end

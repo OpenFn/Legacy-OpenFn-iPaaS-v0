@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140704161711) do
+ActiveRecord::Schema.define(version: 20140704211041) do
 
   create_table "imports", force: true do |t|
     t.string   "odk_formid"
@@ -28,7 +28,10 @@ ActiveRecord::Schema.define(version: 20140704161711) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "active",     default: false
+    t.integer  "user_id"
   end
+
+  add_index "mappings", ["user_id"], name: "index_mappings_on_user_id", using: :btree
 
   create_table "odk_fields", force: true do |t|
     t.string   "field_name"
@@ -55,6 +58,10 @@ ActiveRecord::Schema.define(version: 20140704161711) do
     t.string   "salt",             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "odk_username"
+    t.string   "odk_password"
+    t.string   "sf_username"
+    t.string   "sf_password"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

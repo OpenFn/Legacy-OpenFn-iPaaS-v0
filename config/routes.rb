@@ -17,8 +17,7 @@ SalesForce::Application.routes.draw do
     end
   end
 
-  resources :users, only: [:new, :create] do
-  end
+  resources :users
 
   resources :odk_forms, only: [:index] do
     resources :odk_form_fields, only: [:index]

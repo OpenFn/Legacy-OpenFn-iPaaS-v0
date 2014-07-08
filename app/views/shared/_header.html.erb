@@ -19,7 +19,7 @@
               <%= link_to "Mappings", :mappings %>
             </li>
             <li>
-              <%= link_to "Settings" %>
+              <%= link_to "Settings", edit_user_path(current_user) %>
             </li>
             <li>
               <%= link_to "Logout", :logout, method: :post %>

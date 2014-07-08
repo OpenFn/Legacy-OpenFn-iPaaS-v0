@@ -3,7 +3,7 @@ class MappingsController < ApplicationController
   before_action :load_mapping, only: [:show, :edit, :update, :destroy, :dispatch_surveys, :clone]
 
   def index
-    @mappings = Mapping.page params[:page]
+    @mappings = current_user.mappings.page params[:page]
   end
 
   def show
@@ -20,7 +20,7 @@ class MappingsController < ApplicationController
   end
 
   def create
-    @mapping = Mapping.new mapping_params
+    @mapping = current_user.mappings.new mapping_params
     if @mapping.save
       render json: @mapping
     else
@@ -58,7 +58,7 @@ class MappingsController < ApplicationController
   protected
 
   def load_mapping
-    @mapping = Mapping.find params[:id]
+    @mapping = current_user.mappings.find params[:id]
   end
 
   def mapping_params
