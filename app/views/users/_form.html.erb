@@ -1,39 +1,28 @@
-<%= form_for @user, html: {class: "nifty_form"} do |f| %>
-
+<%= form_for @user, role: 'form' do |f| %>
   <div class="form-group">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
+    <%= f.label :odk_url %>
+    <%= f.text_field :odk_url, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
+    <%= f.label :salesforce_username %>
+    <%= f.text_field :sf_username, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :odk_url %><br>
-    <%= f.text_field :odk_url %>
+    <%= f.label :salesforce_password %>
+    <%= f.text_field :sf_password, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :salesforce_username %><br>
-    <%= f.text_field :sf_username %>
+    <%= f.label :salesforce_security_token %>
+    <%= f.text_field :sf_security_token, class: 'form-control' %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :salesforce_password %><br>
-    <%= f.text_field :sf_password %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :salesforce_security_token %><br>
-    <%= f.text_field :sf_security_token %>
-  </div>
-
-  <%= f.submit "Submit" %>
+  <%= f.submit "Submit", class: 'btn btn-primary' %>
 <% end %>
