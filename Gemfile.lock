@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/func-i/odk_aggregate.git
-  revision: 2e302c707194214a683604e09eec59d2957a1994
+  revision: 03b42268b13cc099838fdac36f26a10cac2c7d5e
   branch: master
   specs:
-    odk_aggregate (0.0.1)
+    odk_aggregate (0.0.2)
       faraday_middleware (~> 0.9)
       multi_xml
       rash (~> 0.4)
