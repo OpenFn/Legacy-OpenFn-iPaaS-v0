@@ -5,6 +5,16 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :odk_url %>
     <%= f.text_field :odk_url, class: 'form-control' %>
   </div>

@@ -2,6 +2,7 @@
     <div class="col-xs-12 col-lg-11">
         <h2>Sign Up</h2>
 
+        <%= render "shared/error_messages", target: @user %>
         <%= render 'form', user: @user %>
     </div>
 </div>

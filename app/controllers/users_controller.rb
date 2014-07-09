@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       redirect_to(:root, notice: "Welcome!")
     else
       flash.now[:alert] = "Signup failed..."
-      render(:new)
+      render :new
     end
   end
 
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       redirect_to(:root, notice: "Settings updated.")
     else
       flash.now[:alert] = "Settings could not be updated successfully."
-      render(:edit)
+      render :edit
     end
   end
 

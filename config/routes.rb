@@ -28,7 +28,7 @@ SalesForce::Application.routes.draw do
     resources :salesforce_object_fields, only: [:index]
   end
 
-  #get  "signup", to: "users#new",        as: :signup
+  get  "signup", to: "users#new",        as: :signup
   get  "login",  to: "user_sessions#new",     as: :login
   post "login",  to: "user_sessions#create",  as: :create_session
   post  "logout", to: "user_sessions#destroy", as: :logout
