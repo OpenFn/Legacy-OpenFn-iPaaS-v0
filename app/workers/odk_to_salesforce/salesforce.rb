@@ -10,9 +10,9 @@ module OdkToSalesforce
   # }
   class Salesforce
     def initialize(user)
-      @rf = Restforce.new(username: user.sf_username,
-                          password: user.sf_password,
-                          security_token: user.sf_security_token)
+      @rf = Restforce.new(username: user["sf_username"],
+                          password: user["sf_password"],
+                          security_token: user["sf_security_token"])
       @relationships_hash = {}
       build
     end

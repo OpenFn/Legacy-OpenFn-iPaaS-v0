@@ -13,7 +13,7 @@ module OdkToSalesforce
       import = Import.find_or_create_by(odk_formid: mapping.odk_formid)
 
       # => Load the ODK information
-      odk = OdkToSalesforce::Odk.new(mapping.odk_formid, import, limit, user.odk_url)
+      odk = OdkToSalesforce::Odk.new(mapping.odk_formid, import, limit, user["odk_url"])
 
       # => Get the submissions from the ODK object
       # => The submissions only come back as IDs
