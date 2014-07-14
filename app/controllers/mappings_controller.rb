@@ -1,9 +1,14 @@
 class MappingsController < ApplicationController
 
   before_action :load_mapping, only: [:show, :edit, :update, :destroy, :dispatch_surveys, :clone]
+  before_action :ensure_valid_credentials, only: [:new, :show, :edit]
 
   def index
     @mappings = current_user.mappings.page params[:page]
+    unless current_user.valid_credentials
+      flash[:danger] = "Please add valid Salesforce and ODK 
+                         credentials in your settings."
+    end
   end
 
   def show
@@ -70,5 +75,10 @@ class MappingsController < ApplicationController
         odk_fields_attributes: [:id, :field_name, :field_type, :_destroy]
       ]
     )
+  end
+
+
+  def ensure_valid_credentials
+    redirect_to(:mappings) unless current_user.valid_credentials
   end
 end
