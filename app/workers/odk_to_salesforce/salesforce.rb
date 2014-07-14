@@ -12,7 +12,9 @@ module OdkToSalesforce
     def initialize(user)
       @rf = Restforce.new(username: user["sf_username"],
                           password: user["sf_password"],
-                          security_token: user["sf_security_token"])
+                          security_token: user["sf_security_token"],
+                          client_id: user["sf_app_key"],
+                          client_secret: user["sf_app_secret"])
       @relationships_hash = {}
       build
     end

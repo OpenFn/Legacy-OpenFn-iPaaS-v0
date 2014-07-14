@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140709172353) do
+ActiveRecord::Schema.define(version: 20140714185651) do
 
   create_table "imports", force: true do |t|
     t.string   "odk_formid"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 20140709172353) do
     t.string   "odk_url"
     t.string   "sf_security_token"
     t.boolean  "valid_credentials", default: false
+    t.string   "sf_app_secret"
+    t.string   "sf_app_key"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

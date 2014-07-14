@@ -13,7 +13,9 @@ module OdkToSalesforce
       @relationships = relationships
       @rf = Restforce.new(username: user["sf_username"],
                           password: user["sf_password"],
-                          security_token: user["sf_security_token"])
+                          security_token: user["sf_security_token"],
+                          client_id: user["sf_app_key"],
+                          client_secret: user["sf_app_secret"])
     end
 
     # - data: hash of salesforce data to be imported in the form:
