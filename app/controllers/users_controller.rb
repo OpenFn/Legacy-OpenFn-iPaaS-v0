@@ -49,7 +49,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :password,
                                          :password_confirmation,
                                          :odk_url, :sf_security_token,
-                                         :sf_username, :sf_password)
+                                         :sf_username, :sf_password,
+                                         :sf_app_key, :sf_app_secret)
   end
 
   def set_user_credentials_and_flash
@@ -84,7 +85,9 @@ class UsersController < ApplicationController
     begin
       rf = Restforce.new(username: @user.sf_username,
                           password: @user.sf_password,
-                          security_token: @user.sf_security_token)
+                          security_token: @user.sf_security_token,
+                          client_id: @user.sf_app_key,
+                          client_secret: @user.sf_app_secret)
       rf.describe
       return true
     rescue

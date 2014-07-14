@@ -34,5 +34,15 @@
     <%= f.text_field :sf_security_token, class: 'form-control' %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :salesforce_client_key %>
+    <%= f.text_field :sf_app_key, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :salesforce_client_secret %>
+    <%= f.text_field :sf_app_secret, class: 'form-control' %>
+  </div>
+
   <%= f.submit "Submit", class: 'btn btn-primary' %>
 <% end %>
