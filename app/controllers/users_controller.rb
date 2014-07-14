@@ -35,6 +35,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    set_user_credentials_and_flash
   end
 
   def index
