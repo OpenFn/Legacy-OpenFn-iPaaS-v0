@@ -23,6 +23,7 @@ class UsersController < ApplicationController
 
     if @user.update_attributes(user_params)
       set_user_credentials_and_flash
+      flash[:success] = "Settings updated." unless flash[:danger]
       redirect_to(:edit_user)
     else
       flash.now[:danger] = "Settings could not be updated successfully."
@@ -57,7 +58,6 @@ class UsersController < ApplicationController
 
     if odk && sf
       @user.update_attributes({valid_credentials: true}) unless @user.valid_credentials
-      flash[:success] = "Settings updated."
     elsif sf
       @user.update_attributes({valid_credentials: false}) if @user.valid_credentials
       flash[:danger] = "Your ODK URL is not valid."
