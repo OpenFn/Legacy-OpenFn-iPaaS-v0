@@ -43,13 +43,15 @@ gem "active_model_serializers"
 
 gem 'rails_12factor', group: :production
 
+gem 'faraday', '~> 0.8.6'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
 
 # => Funci Gem to interact with ODK aggregate
-gem 'odk_aggregate', :git => 'https://github.com/func-i/odk_aggregate.git', branch: 'master'
+gem 'odk_aggregate', :git => 'https://github.com/func-i/odk_aggregate.git', branch: 'feature/35-auth'
 
 # => Gem for SalesForce
 gem 'restforce', git: 'https://github.com/icambron/restforce.git'

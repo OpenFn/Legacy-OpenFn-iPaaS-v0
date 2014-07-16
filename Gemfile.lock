@@ -1,9 +1,10 @@
 GIT
   remote: https://github.com/func-i/odk_aggregate.git
-  revision: 03b42268b13cc099838fdac36f26a10cac2c7d5e
-  branch: master
+  revision: d2acf5756f416140bf7726a3c6f24122439512be
+  branch: feature/35-auth
   specs:
-    odk_aggregate (0.0.2)
+    odk_aggregate (0.0.3)
+      faraday-digestauth
       faraday_middleware (~> 0.9)
       multi_xml
       rash (~> 0.4)
@@ -67,8 +68,11 @@ GEM
       activerecord (>= 3.1.0)
     erubis (2.7.0)
     execjs (2.0.2)
-    faraday (0.9.0)
-      multipart-post (>= 1.2, < 3)
+    faraday (0.8.9)
+      multipart-post (~> 1.2.0)
+    faraday-digestauth (0.0.2)
+      faraday
+      net-http-digest_auth
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
     figaro (0.7.0)
@@ -99,7 +103,8 @@ GEM
     mono_logger (1.1.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
-    multipart-post (2.0.0)
+    multipart-post (1.2.0)
+    net-http-digest_auth (1.4)
     ng-rails-csrf (0.1.0)
     oauth (0.4.7)
     oauth2 (0.9.4)
@@ -215,6 +220,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   colored
   deep_cloneable (~> 1.6.1)
+  faraday (~> 0.8.6)
   figaro
   jbuilder (~> 1.2)
   jquery-rails
