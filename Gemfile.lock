@@ -1,12 +1,12 @@
 GIT
   remote: https://github.com/func-i/odk_aggregate.git
-  revision: d2acf5756f416140bf7726a3c6f24122439512be
+  revision: 7f7f1d6e77e8c0bb7884c4c441e347b3885292fb
   branch: feature/35-auth
   specs:
     odk_aggregate (0.0.3)
-      faraday-digestauth
-      faraday_middleware (~> 0.9)
+      faraday_middleware
       multi_xml
+      net-http-digest_auth (~> 1.4)
       rash (~> 0.4)
 
 GIT
@@ -70,9 +70,6 @@ GEM
     execjs (2.0.2)
     faraday (0.8.9)
       multipart-post (~> 1.2.0)
-    faraday-digestauth (0.0.2)
-      faraday
-      net-http-digest_auth
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
     figaro (0.7.0)
