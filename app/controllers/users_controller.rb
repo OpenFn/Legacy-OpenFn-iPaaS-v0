@@ -50,7 +50,8 @@ class UsersController < ApplicationController
                                          :password_confirmation,
                                          :odk_url, :sf_security_token,
                                          :sf_username, :sf_password,
-                                         :sf_app_key, :sf_app_secret)
+                                         :sf_app_key, :sf_app_secret,
+                                         :odk_username, :odk_password)
   end
 
   def set_user_credentials_and_flash
