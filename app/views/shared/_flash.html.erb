@@ -1,0 +1,7 @@
+<% if flash %>
+    <% flash.each do |name, msg| %>
+      <div class="flash col-md-12 bg-<%= name %>">
+        <%= msg %>
+      </div>
+    <% end %>
+<% end %>
