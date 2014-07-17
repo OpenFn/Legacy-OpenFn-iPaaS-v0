@@ -5,9 +5,9 @@ module OdkToSalesforce
   class Odk
     attr_reader :submissions
 
-    def initialize form_id, import, limit, url
+    def initialize form_id, import, limit, user
 
-      @odk = OdkAggregate::Connection.new(url)
+      @odk = OdkAggregate::Connection.new(user["odk_url"], user["odk_username"], user["odk_password"])
 
       # { id: "form_id", topElement: "form_top_element"}
       @form = fetch_form form_id

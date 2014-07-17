@@ -74,7 +74,7 @@ class UsersController < ApplicationController
 
   def check_odk_credentials
     begin
-      odk = OdkAggregate::Connection.new(@user.odk_url)
+      odk = OdkAggregate::Connection.new(@user.odk_url, @user.odk_username, @user.odk_password)
       odk.all_forms 
       return true
     rescue

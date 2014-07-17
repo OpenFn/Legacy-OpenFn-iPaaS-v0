@@ -1,7 +1,8 @@
 class OdkFormFieldsController < ApplicationController
   def index
-    odk = OdkAggregate::Connection.new(current_user.odk_url)
-
+    odk = OdkAggregate::Connection.new(current_user.odk_url,
+                                       current_user.odk_username,
+                                       current_user.odk_password)
     odk_form_fields = odk.find_form(params[:odk_form_id]).fields.
       collect do |f|
         index = f["nodeset"].index("/", 1)
