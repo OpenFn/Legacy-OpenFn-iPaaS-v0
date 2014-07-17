@@ -1,4 +1,15 @@
 GIT
+  remote: https://github.com/func-i/odk_aggregate.git
+  revision: cefda11799d3dd17564da68c573362125f84c118
+  branch: master
+  specs:
+    odk_aggregate (0.0.4)
+      faraday_middleware
+      multi_xml
+      net-http-digest_auth (~> 1.4)
+      rash (~> 0.4)
+
+GIT
   remote: https://github.com/icambron/restforce.git
   revision: 45aecd80e62734dbcd94f9b6314cb456559b7fad
   specs:
@@ -7,15 +18,6 @@ GIT
       faraday_middleware
       hashie (>= 1.2.0, < 2.1)
       json (>= 1.7.5, < 1.9.0)
-
-PATH
-  remote: ~/Documents/funci/odk_aggregate
-  specs:
-    odk_aggregate (0.0.3)
-      faraday_middleware
-      multi_xml
-      net-http-digest_auth (~> 1.4)
-      rash (~> 0.4)
 
 GEM
   remote: https://rubygems.org/
