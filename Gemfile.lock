@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/func-i/odk_aggregate.git
-  revision: cefda11799d3dd17564da68c573362125f84c118
+  revision: c9b1fbc9806a82ecfa3bfb3cde3546795f976449
   branch: master
   specs:
-    odk_aggregate (0.0.4)
+    odk_aggregate (0.0.5)
       faraday_middleware
       multi_xml
       net-http-digest_auth (~> 1.4)
