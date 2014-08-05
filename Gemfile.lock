@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/func-i/odk_aggregate.git
-  revision: c9b1fbc9806a82ecfa3bfb3cde3546795f976449
+  revision: ab99285f89d7e978642cdf94c2f603d019bed852
   branch: master
   specs:
     odk_aggregate (0.0.5)
