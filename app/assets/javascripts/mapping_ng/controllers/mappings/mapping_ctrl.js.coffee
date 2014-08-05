@@ -1,7 +1,16 @@
 'use strict'
 
-@controllerModule.controller 'MappingCtrl', ['$scope', '$filter', 'Mapping', 'OdkForm', 'OdkFormField', 'SalesforceObject', 'SalesforceObjectField', 'MappingService'
-  ($scope, $filter, Mapping, OdkForm, OdkFormField, SalesforceObject, SalesforceObjectField, MappingService) ->
+@controllerModule.controller 'MappingCtrl', ['$scope','$rootScope', '$filter',
+  'Mapping', 'OdkForm', 'OdkFormField', 'SalesforceObject', 'SalesforceObjectField', 'MappingService'
+  ($scope, $rootScope, $filter, Mapping, OdkForm, OdkFormField, SalesforceObject, SalesforceObjectField, MappingService) ->
+    
+    $rootScope.loading = true
+    $rootScope.itemsLoaded = { odkForms: false, sfForms: false }
+
+    $rootScope.checkIfLoaded = () ->
+      if $scope.itemsLoaded.odkForms && $scope.itemsLoaded.sfForms
+        $rootScope.loading = false
+
 
     ########## VARIABLE ASSIGNMENT
 
