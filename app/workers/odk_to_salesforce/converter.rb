@@ -18,7 +18,15 @@ module OdkToSalesforce
         data[sf_object] = {} unless data.has_key? sf_object
 
         # => include the value and the data_type from SF
-        data[sf_object][sf_key] = get_field_content(sf_field.odk_fields.first, odk_data, sf_field.data_type)
+        if sf_field.odk_fields.size == 1
+          data[sf_object][sf_key] = get_field_content(sf_field.odk_fields.first, odk_data, sf_field.data_type)
+        else
+          odk_fields = [] <<
+          sf_fields.odk_fields.each do |field|
+            odk_fields << get_field_content(field, odk_data, sf_field.data_type) 
+          end
+          data[sf_object][sf_key] = odk_fields
+        end
         data[sf_object][:perform_lookup] = sf_field.perform_lookups
       end
 
