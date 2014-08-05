@@ -21,8 +21,8 @@ module OdkToSalesforce
         if sf_field.odk_fields.size == 1
           data[sf_object][sf_key] = get_field_content(sf_field.odk_fields.first, odk_data, sf_field.data_type)
         else
-          odk_fields = [] <<
-          sf_fields.odk_fields.each do |field|
+          odk_fields = []
+          sf_field.odk_fields.each do |field|
             odk_fields << get_field_content(field, odk_data, sf_field.data_type) 
           end
           data[sf_object][sf_key] = odk_fields
