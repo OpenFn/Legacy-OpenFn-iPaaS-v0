@@ -41,6 +41,14 @@ class MappingsController < ApplicationController
     end
   end
 
+  def destroy
+    if @mapping.destroy
+      redirect_to(mappings_url)
+    else 
+      render(:show, notice: "Mapping could not be destoyed.")
+    end
+  end
+
   def dispatch_surveys
     unless params[:only].blank?
       only = params[:only].to_i
