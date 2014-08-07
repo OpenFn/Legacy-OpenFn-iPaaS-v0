@@ -16,28 +16,31 @@ module OdkToSalesforce
       end
 
       def save!
-        find_lookup_fields
-        if @attributes.flatten.any? { |e| e.kind_of?(Array) }
-          success_array = []
-          @attributes.flatten.select { |e| e.kind_of?(Array)}[0].each_with_index do |c, i|
-            flat_attributes = {}
-            @attributes.each do |k,v|
-              # only iterate on arrays, otherwise make value the same for all
-              if v.kind_of?(Array)
-                flat_attributes[k] = v[i]
-              else
-                flat_attributes[k] = v
-              end
-            end
-            save_to_salesforce(flat_attributes)
-          end
-        else
-          save_to_salesforce(@attributes)
-        end
+        lookup_successful = find_lookup_fields
 
-        @children.each do |child|
-          child.parent = self
-          child.save!
+        if lookup_successful
+          if @attributes.flatten.any? { |e| e.kind_of?(Array) }
+            success_array = []
+            @attributes.flatten.select { |e| e.kind_of?(Array)}[0].each_with_index do |c, i|
+              flat_attributes = {}
+              @attributes.each do |k,v|
+                # only iterate on arrays, otherwise make value the same for all
+                if v.kind_of?(Array)
+                  flat_attributes[k] = v[i]
+                else
+                  flat_attributes[k] = v
+                end
+              end
+              save_to_salesforce(flat_attributes)
+            end
+          else
+            save_to_salesforce(@attributes)
+          end
+
+          @children.each do |child|
+            child.parent = self
+            child.save!
+          end
         end
       end
 
@@ -60,14 +63,25 @@ module OdkToSalesforce
       # then perform a lookup on that value.
       def find_lookup_fields
         puts "-> Looking up parents"
-        @node[:parents].each   do |key, value|
+
+        @node[:parents].each   do |key, values|
           # value, not key, because value is the name of the field in
           # the child object.
-          if @attributes.has_key?(value.to_sym)
-            field_value = @attributes[value.to_sym]
-            @attributes[value.to_sym] = @rf.query("SELECT Id FROM #{key} WHERE Name = '#{field_value}'").first.Id
+          values.each do |value|
+            if @attributes.has_key?(value.to_sym)
+              field_value = @attributes[value.to_sym]
+              begin
+                @attributes[value.to_sym] = @rf.query("SELECT Id FROM #{key} WHERE Name = '#{field_value}'").first.Id
+              rescue
+                # TODO: log failed lookups
+                puts "#{key} #{field_value} not found".red
+                return false
+              end
+            end
           end
         end
+
+        return true
       end
 
       def save_to_salesforce(attributes)
