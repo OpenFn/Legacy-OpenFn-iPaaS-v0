@@ -5,8 +5,8 @@ module OdkToSalesforce
   # useful information, of the form:
   #
   # { object_name: { name: "object_name",
-  #   parents: [ array of parent objects],
-  #   children: [ array of child objects ]}
+  #   parents: [ array of parent objects { object: "field_name" }],
+  #   children: [ array of child objects { object: "field_name" }]}
   # }
   class Salesforce
     def initialize(user)
