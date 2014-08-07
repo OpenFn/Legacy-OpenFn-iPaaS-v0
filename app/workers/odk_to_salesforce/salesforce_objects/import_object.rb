@@ -16,6 +16,7 @@ module OdkToSalesforce
       end
 
       def save!
+        find_lookup_fields
         if @attributes.flatten.any? { |e| e.kind_of?(Array) }
           success_array = []
           @attributes.flatten.select { |e| e.kind_of?(Array)}[0].each_with_index do |c, i|
@@ -54,6 +55,20 @@ module OdkToSalesforce
       end
 
       protected
+
+      # If a field that is also a parent has a value,
+      # then perform a lookup on that value.
+      def find_lookup_fields
+        puts "-> Looking up parents"
+        @node[:parents].each   do |key, value|
+          # value, not key, because value is the name of the field in
+          # the child object.
+          if @attributes.has_key?(value.to_sym)
+            field_value = @attributes[value.to_sym]
+            @attributes[value.to_sym] = @rf.query("SELECT Id FROM #{key} WHERE Name = '#{field_value}'").first.Id
+          end
+        end
+      end
 
       def save_to_salesforce(attributes)
         perform_lookup = attributes.delete :perform_lookup
