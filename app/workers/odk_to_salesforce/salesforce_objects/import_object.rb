@@ -64,7 +64,7 @@ module OdkToSalesforce
       def find_lookup_fields
         puts "-> Looking up parents"
 
-        @node[:parents].each   do |key, values|
+        @node[:parents].each do |key, values|
           # value, not key, because value is the name of the field in
           # the child object.
           values.each do |value|
