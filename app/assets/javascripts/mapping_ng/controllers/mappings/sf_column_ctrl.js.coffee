@@ -13,6 +13,8 @@
 
       SalesforceObject.query.then (response) ->
         $scope.salesforceObjects = response.data.salesforce_objects
+        $scope.itemsLoaded.sfForms = true
+        $scope.checkIfLoaded()
 
     $scope.toggleDeleteSfObject = (sfObject) ->
       sfObject._destroy = !sfObject._destroy

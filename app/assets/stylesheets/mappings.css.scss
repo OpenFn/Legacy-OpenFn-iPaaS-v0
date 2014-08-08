@@ -2,6 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#loading  {
+  width: 100%;
+
+  img {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+}
+#loading-gif {
+  width: 50%;
+}
+
 #new_mapping {
 
   .sf-autocomplete {
@@ -31,6 +45,11 @@
   display: inline-block;
   margin-top: 5px;
   font-size: 25px;
+}
+
+.pull-right .button_to {
+  float: right;
+  margin-left: 5px;
 }
 
 input.destroy-field {

@@ -23,6 +23,8 @@
 
       OdkForm.query.then (response) ->
         $scope.odkForms = response.data.odk_forms
+        $scope.itemsLoaded.odkForms = true
+        $scope.checkIfLoaded()
 
     ########## WATCHES
 

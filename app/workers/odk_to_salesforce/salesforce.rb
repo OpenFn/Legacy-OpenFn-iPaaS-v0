@@ -5,8 +5,8 @@ module OdkToSalesforce
   # useful information, of the form:
   #
   # { object_name: { name: "object_name",
-  #   parents: [ array of parent objects],
-  #   children: [ array of child objects ]}
+  #   parents: [ array of parent objects { object: "field_name" }],
+  #   children: [ array of child objects { object: "field_name" }]}
   # }
   class Salesforce
     def initialize(user)
@@ -88,7 +88,10 @@ module OdkToSalesforce
           # NOTE: self-reference makes your software loopy...
           if @relationships_hash.has_key?(child_relationship_name.to_sym) &&
                child_relationship_name.to_sym != relationship_key
-            @relationships_hash[relationship_key][:children][child_relationship_name.to_sym] = child_relationship["field"]
+            unless @relationships_hash[relationship_key][:children][child_relationship_name.to_sym].class == Array
+              @relationships_hash[relationship_key][:children][child_relationship_name.to_sym] = []
+            end
+            @relationships_hash[relationship_key][:children][child_relationship_name.to_sym] << child_relationship["field"]
           end
         end
       end

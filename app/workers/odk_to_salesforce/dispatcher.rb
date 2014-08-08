@@ -82,14 +82,16 @@ module OdkToSalesforce
       # => This will give you a bottom object that has a parent
       # => This parent can have a parent
       # => It will have children
-      obj = other_bottom_objects.reduce(:+)
+      unless other_bottom_objects.empty?
+        obj = other_bottom_objects.reduce(:+)
 
-      while obj.parent
-        obj = obj.parent
+        while obj.parent
+          obj = obj.parent
+        end
+
+        # => Save the top most object
+        obj.save!
       end
-
-      # => Save the top most object
-      obj.save!
     end
   end
 end

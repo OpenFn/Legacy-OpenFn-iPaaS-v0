@@ -25,6 +25,7 @@
 
 <div class='pull-right'>
   <%= button_to "Clone", [:clone, @mapping], class: 'btn', confirm: 'Are you sure?' %>
+  <%= button_to "Destroy", @mapping, method: :delete, class: 'btn', confirm: 'Are you sure?' %>
 </div>
 
 <table class='table'>

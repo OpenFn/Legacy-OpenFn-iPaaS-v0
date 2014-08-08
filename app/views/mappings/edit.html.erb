@@ -5,6 +5,9 @@
 </ol>
 
 <h3>Edit the mapping</h3>
+
+
 <div ng-app="mapping">
-  <div ng-controller="MappingCtrl" ng-include="'/ng_templates/mappings/edit.html'" ng-init="init(<%= @mapping.id %>)"></div>
+  <%= render 'loading' %>
+  <div ng-controller="MappingCtrl" ng-hide="loading" ng-include="'/ng_templates/mappings/edit.html'" ng-init="init(<%= @mapping.id %>)"></div>
 </div>
