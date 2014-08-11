@@ -27,3 +27,10 @@
 .external-field-holder {
   overflow: auto;
 }
+
+.list-group {
+  .list-group-item {
+    display: inline-block;
+    margin: 0 5px 0 5px;
+  }
+}

@@ -14,8 +14,24 @@
 
     ########## VARIABLE ASSIGNMENT
 
+    # mappedObjects = an array of sf objects as read by the mapping service
+    #   [
+    #     {
+    #       name:
+    #       label:
+    #       ...
+    #       // sf fields:
+    #       fields: [
+    #         {
+    #           ...
+    #           odk_fields: [ {} ]
+    #         }
+    #       ]
+    #     }
+    #   ] 
     $scope.mapping = {
-      mappingSalesforceObjects: []
+      mappingSalesforceObjects: [],
+      mappedObjects: []
     }
 
     ########## FUNCTIONS

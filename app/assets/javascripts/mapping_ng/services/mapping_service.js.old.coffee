@@ -1,4 +1,4 @@
-@serviceModule.factory 'MappingService', ['Mapping'
+@serviceModule.factory 'MappingServiceOld', ['Mapping'
   (Mapping) ->
 
     reverseMapping: (mapping) ->
@@ -35,15 +35,14 @@
 
         # push that into the mapping SF object
         mapping.mappingSalesforceObjects.push hsh
-        mapping.mappedObjects = angular.copy(mapping.mappingSalesforceObjects)
 
       mapping
 
     mappingParams: (mapping) ->
       # Add the basic elements to the mapping hash
 
-      sfObjects = mapping.mappedObjects
-      delete mapping.mappedObjects
+      sfObjects = mapping.mappingSalesforceObjects
+      delete mapping.mappingSalesforceObjects
 
       hash =
         mapping:

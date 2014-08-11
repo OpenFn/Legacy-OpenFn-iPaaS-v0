@@ -45,14 +45,30 @@
         </div>
       </div>
 
-      <div class='external-field-holder'>
-        <ul class='list-group sf-connected-sortable sortable-location' 
-            ui-sortable="sfSortableOptions" ng-model="sfObject.fields">
-          <li class='list-group-item' ng-repeat="sfField in sfObject.fields | filter:sfFilter">
-            {{sfField.field_name}}
-          </li>
-        </ul>
-      </div>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Field Name</th>
+            <th>ODK Fields</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="sfField in sfObject.fields | filter:sfFilter">
+            <td>{{sfField.field_name}}</td>
+            <td>
+              <ul class="list-group sortable-location odk-connected-sortable" ui-sortable="odkSortableOptions" ng-model="sfField.odk_fields">
+                <li class='list-group-item' ng-repeat="odkField in sfField.odk_fields">
+                  <div ng-show="mapping.id" class='pull-right'>
+                    <input id="destroy-{{sfObject.name}}-{{$parent.$index}}-{{$index}}" type="checkbox" class="destroy-field" ng-model="odkField._destroy">
+                    <label for="destroy-{{sfObject.name}}-{{$parent.$index}}-{{$index}}">&times;</label>
+                  </div>
+                  {{odkField.field_name}}: {{odkField.field_type}}
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

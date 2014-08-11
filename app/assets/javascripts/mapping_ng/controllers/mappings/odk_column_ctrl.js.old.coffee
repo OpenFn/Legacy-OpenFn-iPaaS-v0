@@ -1,8 +1,7 @@
 'use strict'
 
-@controllerModule.controller 'OdkColumnCtrl', ['$scope', '$rootScope',
-  '$filter', 'OdkForm', 'OdkFormField',
-  ($scope, $rootScope, $filter, OdkForm, OdkFormField) ->
+@controllerModule.controller 'OdkColumnCtrlOld', ['$scope', '$filter', 'OdkForm', 'OdkFormField',
+  ($scope, $filter, OdkForm, OdkFormField) ->
 
     ########## VARIABLE ASSIGNMENT
 

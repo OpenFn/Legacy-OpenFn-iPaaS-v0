@@ -10,11 +10,26 @@
     <input ng-model="odkFilter.field_name" type='text' placeholder="Filter ODK fields" class='form-control' />
   </div>
 
-  <div class='external-field-holder'>
-    <ul class='list-group odk-connected-sortable sortable-location' ui-sortable="odkSortableOptions" ng-model="odkFormFields">
-      <li class='list-group-item' ng-repeat="odkFormField in odkFormFields">
-        {{odkFormField.field_name}}
-      </li>
-    </ul>
-  </div>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>ODK Field Name</th>
+        <th>Salesforce Field</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="odkFormField in odkFormFields" ng-controller="OdkFormFieldCtrl">
+        <td>{{odkFormField.field_name}}: {{odkFormField.field_type}}</td>
+        <td>
+          <ul class="list-group sortable-location sf-connected-sortable" 
+              ui-sortable="sfSortableOptions" ng-model="odkFormField.sf_fields">
+            <li class="list-group-item" ng-repeat="sfField in odkFormField.sf_fields">
+              {{sfField.field_name}}
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
 </div>
