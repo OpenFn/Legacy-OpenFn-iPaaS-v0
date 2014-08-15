@@ -39,13 +39,24 @@
 
     $scope.$watch "mapping.salesforceObjectName", (salesforceObjectId) ->
       if salesforceObjectId isnt undefined
- 
+
         sfObject = (i for i in $scope.salesforceObjects when i.name is salesforceObjectId)[0]
+
+        # Set a random colour for this object
+        sfObject.color = $scope.randomHexColor()
+
         index = $scope.salesforceObjects.indexOf(sfObject)
         $scope.salesforceObjects.splice(index, 1)
- 
+
+        sfObject.fields = []
+
         SalesforceObjectField.query(salesforce_object_id: salesforceObjectId).$promise.then (response) ->
-          sfObject.fields = response
+          for field in response
+            field.color = sfObject.color
+            sfObject.fields.push field
+
+
+
           $scope.mapping.mappingSalesforceObjects.push sfObject
           unless (objectAlreadyPushed(sfObject))
             $scope.mapping.mappedObjects.push(angular.copy(sfObject))

@@ -3,7 +3,7 @@
 @controllerModule.controller 'MappingCtrl', ['$scope','$rootScope', '$filter',
   'Mapping', 'OdkForm', 'OdkFormField', 'SalesforceObject', 'SalesforceObjectField', 'MappingService'
   ($scope, $rootScope, $filter, Mapping, OdkForm, OdkFormField, SalesforceObject, SalesforceObjectField, MappingService) ->
-    
+
     $rootScope.loading = true
     $rootScope.itemsLoaded = { odkForms: false, sfForms: false }
 
@@ -28,7 +28,7 @@
     #         }
     #       ]
     #     }
-    #   ] 
+    #   ]
     $scope.mapping = {
       mappingSalesforceObjects: [],
       mappedObjects: []
@@ -56,6 +56,13 @@
           (error_response) ->
             $scope.errors = error_response.data.errors
         )
+
+    $scope.randomHexColor = (len=3)->
+      pattern = '0123456789ABCDEF'.split ''
+      str     = '#'
+      for i in [1..len]
+        str += pattern[Math.round(Math.random() * pattern.length)]
+      str
 
     ########## WATCHES
 
