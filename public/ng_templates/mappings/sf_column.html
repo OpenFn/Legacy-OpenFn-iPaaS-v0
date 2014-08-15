@@ -27,13 +27,6 @@
     <div class="tab-content">
       <div ng-repeat="sfObject in mapping.mappingSalesforceObjects" class="tab-pane" id="{{sfObject.name}}">
         <div class='row'>
-          <div class='col-md-5'>
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" ng-model='sfObject.perform_lookups'> Perform Lookups
-              </label>
-            </div>
-          </div>
           <div class='col-md-4'>
             <a href="#" ng-click="updateObject(sfObject)" class='btn btn-success'>
               Refresh SF Fields
