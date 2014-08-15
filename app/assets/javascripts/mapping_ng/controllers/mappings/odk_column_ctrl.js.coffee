@@ -27,6 +27,7 @@
         $scope.itemsLoaded.odkForms = true
         $scope.checkIfLoaded()
 
+
     ########## WATCHES
 
     $scope.$watch "mapping.odk_formid", (formId) ->

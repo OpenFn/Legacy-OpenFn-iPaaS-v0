@@ -16,9 +16,11 @@
         $scope.itemsLoaded.sfForms = true
         $scope.checkIfLoaded()
 
-    $scope.toggleDeleteSfObject = (sfObject) ->
-      sfObject._destroy = !sfObject._destroy
+    objectAlreadyPushed = (object) ->
+      for obj in $scope.mapping.mappedObjects
+        return true if obj.name == object.name
 
+      
     $scope.updateObject = (sfObject) ->
       SalesforceObjectField.query(salesforce_object_id: sfObject.name).$promise.then (sfFields) ->
 
@@ -29,11 +31,6 @@
 
             # If it doesn't, add it to the array
             sfObject.fields.push field
-
-    objectAlreadyPushed = (object) ->
-      for obj in $scope.mapping.mappedObjects
-        return true if obj.name == object.name
-
 
     ########## WATCHES
 
@@ -55,11 +52,10 @@
             field.color = sfObject.color
             sfObject.fields.push field
 
-
-
           $scope.mapping.mappingSalesforceObjects.push sfObject
           unless (objectAlreadyPushed(sfObject))
             $scope.mapping.mappedObjects.push(angular.copy(sfObject))
+
 
 
     ########## BEFORE FILTERS

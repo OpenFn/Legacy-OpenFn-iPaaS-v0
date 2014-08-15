@@ -33,6 +33,15 @@
             </li>
           </ul>
         </td>
+        <td>
+          <a href='#' ng-hide="_destroy" ng-click="toggleDeleteSfObject()" class='btn btn-warning'>
+            Remove
+          </a>
+
+          <a href='#' ng-show="_destroy" ng-click="toggleDeleteSfObject()" class='btn btn-danger'>
+            Undo Remove
+          </a>
+        </td>
       </tr>
     </tbody>
   </table>

@@ -49,7 +49,7 @@
       )
 
     $scope.saveMapping = ->
-      MappingService.saveMapping($scope.mapping).$promise.
+      MappingService.saveMapping(angular.copy($scope.mapping)).$promise.
         then(
           (response) ->
             window.location = "/mappings/#{response.mapping.id}"

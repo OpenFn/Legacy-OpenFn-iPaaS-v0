@@ -68,7 +68,7 @@
             data_type: sfField.data_type
             field_name: sfField.field_name
             perform_lookups: sfObject.perform_lookups
-            _destroy: sfObject._destroy
+            _destroy: sfField._destroy
           }
 
           # Create the empty nested attributes for the odk fields
