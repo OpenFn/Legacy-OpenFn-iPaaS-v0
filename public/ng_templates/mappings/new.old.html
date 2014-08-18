@@ -1,7 +1,3 @@
-{{mapping.mappedObjects}}
-<hr>
-<hr>
-{{mapping.mappingSalesforceObjects}}
 <div id="errorExplanation" class='text-danger' ng-show="errors">
   <ul>
     <li ng-repeat="error in errors">{{error}}</li>
@@ -19,12 +15,8 @@
   </label>
 </div>
 
-<div class="row">
-  <div class='col-md-12' ng-include="'/ng_templates/mappings/sf_column.html'"></div>
-</div>
-
 <div class='row'>
-  <div class='col-md-12' ng-include="'/ng_templates/mappings/odk_column.html'"></div>
+  <div class='col-md-6' ng-include="'/ng_templates/mappings/odk_column.html'"></div>
+  <div class='col-md-6' ng-include="'/ng_templates/mappings/sf_column.html'"></div>
 </div>
-
 <a href='#' ng-click="saveMapping()" class='btn btn-success btn-block'>Create Mapping</a>

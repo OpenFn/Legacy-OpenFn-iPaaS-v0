@@ -21,3 +21,4 @@
 *.swp
 .rvmrc
 *.ruby-version
+*.directory

@@ -17,7 +17,7 @@
 }
 
 .sortable-location {
-  min-height: 150px;
+  min-height: 50px;
 }
 
 .odk-field {
@@ -26,4 +26,11 @@
 
 .external-field-holder {
   overflow: auto;
+}
+
+.list-group {
+  .list-group-item {
+    display: inline-block;
+    margin: 0 5px 0 5px;
+  }
 }

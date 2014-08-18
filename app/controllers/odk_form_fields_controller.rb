@@ -6,7 +6,7 @@ class OdkFormFieldsController < ApplicationController
     odk_form_fields = odk.find_form(params[:odk_form_id]).fields.
       collect do |f|
         index = f["nodeset"].index("/", 1)
-        {field_name: f["nodeset"][index..-1], field_type: f["type"]}
+        {field_name: f["nodeset"][index..-1], field_type: f["type"], sf_fields: []}
       end
 
     render json: odk_form_fields, root: false
