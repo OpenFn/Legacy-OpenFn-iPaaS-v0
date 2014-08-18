@@ -50,11 +50,14 @@
     , true)
 
     $scope.toggleDeleteSfObject = () ->
+      first_run = true
       for sf_field in $scope.odkFormField.sf_fields
         for sfObject in $scope.mapping.mappedObjects
           if (sfObject.name == sf_field.object_name)
             for mapping_sf_field in sfObject.fields
               if mapping_sf_field.field_name == sf_field.field_name
                 mapping_sf_field._destroy = !mapping_sf_field._destroy
-                $scope._destroy = !$scope._destroy
+                $scope._destroy = !$scope._destroy if first_run == true
+                # if even number of sf_fields, prevent untoggling
+                first_run = false
 ]
