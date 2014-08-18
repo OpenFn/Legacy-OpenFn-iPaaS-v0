@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140815194414) do
+ActiveRecord::Schema.define(version: 20140819151316) do
 
   create_table "imports", force: true do |t|
     t.string   "odk_formid"
@@ -49,8 +49,10 @@ ActiveRecord::Schema.define(version: 20140815194414) do
     t.datetime "updated_at"
     t.string   "data_type"
     t.string   "label_name"
-    t.boolean  "perform_lookups", default: false
     t.string   "color"
+    t.boolean  "is_lookup",     default: false
+    t.string   "lookup_object"
+    t.string   "lookup_field"
   end
 
   create_table "users", force: true do |t|

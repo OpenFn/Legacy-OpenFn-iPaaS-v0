@@ -28,7 +28,7 @@ module OdkToSalesforce
         converter = OdkToSalesforce::Converter.new(mapping)
 
         # => Load the Salesforce information
-        salesforce = OdkToSalesforce::Salesforce.new(user)
+        salesforce = OdkToSalesforce::Salesforce.new(user, mapping)
 
         # => Create a runner object that will do the processing
         runner = OdkToSalesforce::Runner.new(salesforce.relationships, user)

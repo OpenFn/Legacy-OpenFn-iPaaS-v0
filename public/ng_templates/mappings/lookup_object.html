@@ -1,0 +1,9 @@
+<select ng-model="sfField.lookup_object" ng-options="sfObj.name as sfObj.name for sfObj in salesforceObjects" class='form-control'>
+  <option value="">-- select lookup object --</option>
+</select>
+
+<div ng-show="currentObject.fields">
+  <select ng-model="sfField.lookup_field" ng-options="sfFd.field_name as sfFd.field_name for sfFd in currentObject.fields" class='form-control'>
+    <option value="">-- select lookup field --</option>
+  </select>
+</div>

@@ -36,6 +36,15 @@
       delete odkField.sf_fields
 
       for sfField in $scope.odkFormField.sf_fields
+        # set the lookup property on the sf_field as needed
+        for mapping_sf_object in $scope.mapping.mappedObjects
+          for mapping_sf_field in mapping_sf_object.fields
+            if (mapping_sf_field.field_name == sfField.field_name)
+              mapping_sf_field.is_lookup = sfField.is_lookup
+              mapping_sf_field.lookup_object = sfField.lookup_object
+              mapping_sf_field.lookup_field = sfField.lookup_field
+
+        # set odk_fields on respective sf_field
         unless sfMappingAlreadyHasOdkField(sfField)
           for sfObject in $scope.mapping.mappedObjects
             if (sfObject.name == sfField.object_name)
