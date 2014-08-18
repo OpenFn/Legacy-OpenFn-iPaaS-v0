@@ -14,12 +14,14 @@
     prepare()
 
     # currently only checks for one odk field
-    odkFieldAlreadyExists = (sfField) ->
+    sfMappingAlreadyHasOdkField = (sfField) ->
       for obj in $scope.mapping.mappedObjects
         if (sfField.object_name == obj.name)
           for field in obj.fields
             if (field.field_name == sfField.field_name)
-              return true if field.odk_fields.length != 0
+              return false if field.odk_fields.length == 0
+              for odk_field in field.odk_fields
+                return true if (odk_field.field_name == $scope.odkFormField.field_name)
 
     sfFieldAlreadyPushed = (object, field) ->
       for obj in $scope.mapping.mappedObjects
@@ -33,29 +35,18 @@
       odkField = angular.copy($scope.odkFormField)
       delete odkField.sf_fields
 
-      sfField = $scope.odkFormField.sf_fields[0]
-      unless sfField != undefined && odkFieldAlreadyExists(sfField)
-        # add sf object first if not there
-         
-
-        # push field into its sf object
-        for sf_field in $scope.odkFormField.sf_fields
-
-
-          odk_fields = [odkField]
-
+      for sfField in $scope.odkFormField.sf_fields
+        unless sfMappingAlreadyHasOdkField(sfField)
           for sfObject in $scope.mapping.mappedObjects
-            if (sfObject.name == sf_field.object_name)
+            if (sfObject.name == sfField.object_name)
 
               # of sf field is not already in mapped objects, add it
-              unless (sfFieldAlreadyPushed(sfObject, sf_field))
-                console.log("true")
+              unless (sfFieldAlreadyPushed(sfObject, sfField))
                 for obj in $scope.mapping.mappedObjects
-                  obj.fields.push(sf_field) if obj.name == sfObject.name
+                  obj.fields.push(sfField) if obj.name == sfObject.name
 
               for sf_field in sfObject.fields
-                for odk_field in odk_fields
-                  sf_field.odk_fields.push(odk_field) if sf_field.field_name == sfField.field_name
+                sf_field.odk_fields.push(odkField) if sf_field.field_name == sfField.field_name
     , true)
 
     $scope.toggleDeleteSfObject = () ->
