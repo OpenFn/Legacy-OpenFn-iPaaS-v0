@@ -8,9 +8,11 @@
       # a combined object so that all the fields are
       # under their proper tab
       m = mapping.salesforce_fields.reduce (hash, obj) ->
+
         h = {
           name: obj.object_name
           label: obj.label_name
+          color: obj.color
         }
 
         # Use the object and name as the key
@@ -27,8 +29,17 @@
         # The object fields are the hash key
         hsh = JSON.parse(hsh)
 
+        #if no colors, colorize
+        unless hsh.color
+          hsh.color = mapping.colors.pop()
+
         # the ODK fields are the value which is an array
-        hsh.fields = value
+        fields = []
+        for field in value
+          field.color = hsh.color unless field.color
+          fields.push field
+
+        hsh.fields = fields
 
         # Set the perform lookups based on the first object
         hsh.perform_lookups = hsh.fields[0] && hsh.fields[0].perform_lookups
@@ -68,6 +79,7 @@
             data_type: sfField.data_type
             field_name: sfField.field_name
             perform_lookups: sfObject.perform_lookups
+            color: sfField.color
             _destroy: sfField._destroy
           }
 

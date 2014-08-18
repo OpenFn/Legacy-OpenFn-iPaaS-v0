@@ -32,6 +32,14 @@
             # If it doesn't, add it to the array
             sfObject.fields.push field
 
+    colorize = (sfObject) ->
+      if (objectAlreadyPushed(sfObject))
+        for obj in $scope.mapping.mappedObjects
+          if obj.name == sfObject.name
+            sfObject.color = obj.fields[0].color
+      else
+        sfObject.color = $scope.colors.pop()
+
     ########## WATCHES
 
     $scope.$watch "mapping.salesforceObjectName", (salesforceObjectId) ->
@@ -39,8 +47,7 @@
 
         sfObject = (i for i in $scope.salesforceObjects when i.name is salesforceObjectId)[0]
 
-        # Set a random colour for this object
-        sfObject.color = $scope.randomHexColor()
+        colorize(sfObject)
 
         index = $scope.salesforceObjects.indexOf(sfObject)
         $scope.salesforceObjects.splice(index, 1)
