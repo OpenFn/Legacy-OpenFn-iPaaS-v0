@@ -68,10 +68,10 @@ module OdkToSalesforce
           # value, not key, because value is the name of the field in
           # the child object.
           values.each do |value|
-            if @attributes.has_key?(value.to_sym)
-              field_value = @attributes[value.to_sym]
+            if @attributes.has_key?(value[:name].to_sym)
+              field_value = @attributes[value[:name].to_sym]
               begin
-                @attributes[value.to_sym] = @rf.query("SELECT Id FROM #{key} WHERE Name = '#{field_value}'").first.Id
+                @attributes[value[:name].to_sym] = @rf.query("SELECT Id FROM #{key} WHERE #{value[:lookup_field]} = '#{field_value}'").first.Id
               rescue
                 # TODO: log failed lookups
                 puts "#{key} #{field_value} not found".red

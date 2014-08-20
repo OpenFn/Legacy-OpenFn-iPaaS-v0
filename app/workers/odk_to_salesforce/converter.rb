@@ -27,7 +27,6 @@ module OdkToSalesforce
           end
           data[sf_object][sf_key] = odk_fields
         end
-        data[sf_object][:perform_lookup] = sf_field.perform_lookups
       end
 
       # NOTE: temporarty hackity hack hack

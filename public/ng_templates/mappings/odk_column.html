@@ -29,7 +29,13 @@
           <ul class="list-group sortable-location sf-connected-sortable"
               ui-sortable="sfSortableOptions" ng-model="odkFormField.sf_fields">
             <li class="list-group-item" ng-repeat="sfField in odkFormField.sf_fields" ng-style="{'background-color': sfField.color}">
+              <input type="checkbox" ng-model="sfField.is_lookup"></input>
               {{sfField.field_name}}
+              <div ng-show="sfField.is_lookup">
+                <div ng-controller="LookupObjectCtrl">
+                  <div ng-include="'/ng_templates/mappings/lookup_object.html'"></div>
+                </div>
+              </div>
             </li>
           </ul>
         </td>

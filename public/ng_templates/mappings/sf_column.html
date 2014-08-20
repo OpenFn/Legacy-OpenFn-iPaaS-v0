@@ -17,20 +17,20 @@
 
     <ul class="nav nav-tabs">
       <li ng-repeat="sfObject in mapping.mappingSalesforceObjects" ng-style="{'background-color': sfObject.color}">
-        <a href="#{{sfObject.name}}" data-toggle="tab">
-          <span ng-hide="sfObject._destroy">{{sfObject.label}}</span>
-          <del ng-show="sfObject._destroy">{{sfObject.label}}</del>
-        </a>
+        <a href="#{{sfObject.name}}" data-toggle="tab">{{sfObject.name}}</a>
       </li>
     </ul>
 
     <div class="tab-content">
       <div ng-repeat="sfObject in mapping.mappingSalesforceObjects" class="tab-pane" id="{{sfObject.name}}">
         <div class='row'>
-          <div class='col-md-4'>
+          <div class='col-md-6'>
             <a href="#" ng-click="updateObject(sfObject)" class='btn btn-success'>
               Refresh SF Fields
             </a>
+          </div>
+          <div class='col-md-6'>
+            Check if lookup field is not <code>Name</code> (only one).
           </div>
         </div>
 
@@ -38,7 +38,13 @@
           <ul class='list-group sf-connected-sortable sortable-location'
               ui-sortable="sfSortableOptions" ng-model="sfObject.fields">
             <li class='list-group-item' ng-repeat="sfField in sfObject.fields | filter:sfFilter" ng-style="{'background-color': sfField.color}">
+              <input type="checkbox" ng-model="sfField.is_lookup"></input>
               {{sfField.field_name}}
+              <div ng-show="sfField.is_lookup">
+                <div ng-controller="LookupObjectCtrl">
+                  <div ng-include="'/ng_templates/mappings/lookup_object.html'"></div>
+                </div>
+              </div>
             </li>
           </ul>
         </div>

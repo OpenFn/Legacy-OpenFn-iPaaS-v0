@@ -9,12 +9,13 @@ module OdkToSalesforce
   #   children: [ array of child objects { object: "field_name" }]}
   # }
   class Salesforce
-    def initialize(user)
+    def initialize(user, mapping)
       @rf = Restforce.new(username: user["sf_username"],
                           password: user["sf_password"],
                           security_token: user["sf_security_token"],
                           client_id: user["sf_app_key"],
                           client_secret: user["sf_app_secret"])
+      @mapping = mapping
       @relationships_hash = {}
       build
     end
@@ -104,7 +105,19 @@ module OdkToSalesforce
           # if a sf object has the current object as one of its children...
           if v[:children].has_key? current_key
             # ... then it is a parent of the current object
-            current_value[:parents][k] = v[:children][current_key]
+            parent_fields = v[:children][current_key]
+            parents_array = []
+            parent_fields.each  do |field|
+              sf_field = @mapping.salesforce_fields.select do |f| f.object_name == current_key.to_s && f.field_name == field; end
+              if !sf_field.empty? && sf_field[0].is_lookup?
+                lookup_field = sf_field[0].lookup_field 
+              else
+                lookup_field = "Name"
+              end
+
+              parents_array << { name: field, lookup_field: lookup_field }
+            end
+            current_value[:parents][k] = parents_array
           end
         end
       end

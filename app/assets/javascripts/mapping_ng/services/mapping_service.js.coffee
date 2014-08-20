@@ -41,9 +41,6 @@
 
         hsh.fields = fields
 
-        # Set the perform lookups based on the first object
-        hsh.perform_lookups = hsh.fields[0] && hsh.fields[0].perform_lookups
-
         # push that into the mapping SF object
         mapping.mappingSalesforceObjects.push hsh
         mapping.mappedObjects = angular.copy(mapping.mappingSalesforceObjects)
@@ -78,7 +75,9 @@
             label_name: sfObject.label
             data_type: sfField.data_type
             field_name: sfField.field_name
-            perform_lookups: sfObject.perform_lookups
+            is_lookup: sfField.is_lookup
+            lookup_object: sfField.lookup_object
+            lookup_field: sfField.lookup_field
             color: sfField.color
             _destroy: sfField._destroy
           }

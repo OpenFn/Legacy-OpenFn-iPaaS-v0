@@ -34,6 +34,7 @@
       <th><b>ODK Fields</b></th>
       <th></th>
       <th><b>Salesforce Fields</b></th>
+      <th><b>Custom Lookup Object / Field</b></th>
     </tr>
   </thead>
   <tbody>
@@ -49,8 +50,15 @@
         <td>=></td>
         <td>
           <span class='label label-primary sf-label'>
-            <%= sf_field.label_name %>: <%= sf_field.field_name %>: <%= sf_field.perform_lookups? ? "Lookup" : "Create" %>
+            <%= sf_field.label_name %>: <%= sf_field.field_name %>: <%= sf_field.is_lookup? ? "Lookup" : "Create" %>
           </span>
+        </td>
+        <td>
+          <%# if sf_field.is_lookup? %>
+            <span class='label label-secondary sf-lookup-label'>
+              <%= sf_field.lookup_object %>: <%= sf_field.lookup_field %>
+            </span>
+          <%# end %>
         </td>
       </tr>
     <% end %>
