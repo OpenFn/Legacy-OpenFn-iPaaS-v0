@@ -32,4 +32,3 @@
 #   $('#new_mapping, .edit_mapping').find('.saleforce-mapping-field').each((index, ele) ->
 #     $(ele).closest('.odk-field').find('.sf-mapping').val($(ele).sortable('toArray'))
 #   )
-

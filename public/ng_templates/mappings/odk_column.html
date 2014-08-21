@@ -26,7 +26,7 @@
       <tr ng-repeat="odkFormField in odkFormFields" ng-controller="OdkFormFieldCtrl">
         <td>{{odkFormField.field_name}}: {{odkFormField.field_type}}</td>
         <td style='width: 50%'>
-          <ul class="list-group sortable-location sf-connected-sortable"
+          <ul class="list-group sortable-location sf-connected-sortable sf-target"
               ui-sortable="sfSortableOptions" ng-model="odkFormField.sf_fields">
             <li class="list-group-item" ng-repeat="sfField in odkFormField.sf_fields" ng-style="{'background-color': sfField.color}">
               <input type="checkbox" ng-model="sfField.is_lookup"></input>
