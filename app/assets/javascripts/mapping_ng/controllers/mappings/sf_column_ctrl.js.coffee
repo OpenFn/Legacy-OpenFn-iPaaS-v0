@@ -70,9 +70,9 @@
         for sfObject in $scope.mapping.mappingSalesforceObjects
           if fieldName == ''
             console.log("...")
-            sfObject.fields = angular.copy($scope.originalFields)
+            sfObject.fields = angular.copy(sfObject.originalFields)
           else
-            sfObject.fields = $filter('filter')(sfObject.fields, $scope.sfFilter)
+            sfObject.fields = $filter('filter')(sfObject.originalFields, $scope.sfFilter)
             console.log(sfObject.fields)
 
       $scope.$watch("sfFilter.field_name", (fieldName) ->
