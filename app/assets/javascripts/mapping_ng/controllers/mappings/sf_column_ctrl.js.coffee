@@ -1,7 +1,8 @@
 'use strict'
 
-@controllerModule.controller 'SfColumnCtrl', ['$scope', 'SalesforceObject', 'SalesforceObjectField',
-  ($scope, SalesforceObject, SalesforceObjectField) ->
+@controllerModule.controller 'SfColumnCtrl', ['$scope', '$filter', 'SalesforceObject',
+  'SalesforceObjectField',
+  ($scope, $filter, SalesforceObject, SalesforceObjectField) ->
 
     ########## VARIABLE ASSIGNMENT
 
@@ -53,15 +54,30 @@
         $scope.salesforceObjects.splice(index, 1)
 
         sfObject.fields = []
+        sfObject.originalFields = []
 
         SalesforceObjectField.query(salesforce_object_id: salesforceObjectId).$promise.then (response) ->
           for field in response
             field.color = sfObject.color
+            sfObject.originalFields.push field
             sfObject.fields.push field
 
           $scope.mapping.mappingSalesforceObjects.push sfObject
           unless (objectAlreadyPushed(sfObject))
             $scope.mapping.mappedObjects.push(angular.copy(sfObject))
+
+      filterSfFields = (fieldName) ->
+        for sfObject in $scope.mapping.mappingSalesforceObjects
+          if fieldName == ''
+            console.log("...")
+            sfObject.fields = angular.copy($scope.originalFields)
+          else
+            sfObject.fields = $filter('filter')(sfObject.fields, $scope.sfFilter)
+            console.log(sfObject.fields)
+
+      $scope.$watch("sfFilter.field_name", (fieldName) ->
+        filterSfFields(fieldName) if $scope.mapping.mappingSalesforceObjects
+      )
 
 
 
