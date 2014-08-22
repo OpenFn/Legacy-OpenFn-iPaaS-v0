@@ -8,9 +8,25 @@
 
     ########## FUNCTIONS
 
+    filterSfFields = () ->
+      if $scope.sfFilter
+        fieldName == $scope.sfFilter.field_name
+      else
+        fieldName = ''
+
+      for sfObject in $scope.mapping.mappingSalesforceObjects
+        if fieldName == ''
+          sfObject.fields = angular.copy(sfObject.originalFields)
+        else
+          sfObject.fields = $filter('filter')(sfObject.originalFields, $scope.sfFilter)
+
     $scope.prepare = ->
       $scope.sfSortableOptions =
         connectWith: '.sf-connected-sortable'
+        revert: true
+        opacity: 0.8
+        scroll: true
+        stop: filterSfFields
 
       SalesforceObject.query.then (response) ->
         $scope.salesforceObjects = response.data.salesforce_objects
@@ -66,17 +82,9 @@
           unless (objectAlreadyPushed(sfObject))
             $scope.mapping.mappedObjects.push(angular.copy(sfObject))
 
-      filterSfFields = (fieldName) ->
-        for sfObject in $scope.mapping.mappingSalesforceObjects
-          if fieldName == ''
-            console.log("...")
-            sfObject.fields = angular.copy(sfObject.originalFields)
-          else
-            sfObject.fields = $filter('filter')(sfObject.originalFields, $scope.sfFilter)
-            console.log(sfObject.fields)
 
-      $scope.$watch("sfFilter.field_name", (fieldName) ->
-        filterSfFields(fieldName) if $scope.mapping.mappingSalesforceObjects
+      $scope.$watch("sfFilter.field_name", () ->
+        filterSfFields() if $scope.mapping.mappingSalesforceObjects
       )
 
 
