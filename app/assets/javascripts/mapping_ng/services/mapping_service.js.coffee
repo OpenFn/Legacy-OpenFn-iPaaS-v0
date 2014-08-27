@@ -21,13 +21,13 @@
         # Loop through all the fields in these objects
         for sfField in odkField.sf_fields
 
-          sfObject = mapping.mappedSfObjects.filter (sfObj) -> sfObj.object_name is sfField.object_name
+          sfObject = mapping.mappedSfObjects.filter((sfObj) -> sfObj.name is sfField.object_name)[0]
 
           # Set the SF Field information
           sfFieldAttribute = {
             id: sfField.id
-            object_name: sfField.object_name
-            label_name: sfField.label_name
+            object_name: sfObject.name
+            label_name: sfObject.label
             data_type: sfField.data_type
             field_name: sfField.field_name
             is_lookup: sfField.is_lookup
@@ -50,6 +50,7 @@
 
           # Add the sf fields to the main hash
           hash.mapping.salesforce_fields_attributes.push sfFieldAttribute
+      debugger
       hash
 
     saveMapping: (mapping) ->

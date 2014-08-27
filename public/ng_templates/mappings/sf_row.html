@@ -17,7 +17,7 @@
 
     <ul class="nav nav-tabs">
       <li ng-repeat="sfObject in mapping.mappedSfObjects" ng-style="{'background-color': sfObject.color}" ng-click="updateObject(sfObject)">
-        <a href="#{{sfObject.name}}" data-toggle="tab">{{sfObject.name}}</a>
+        <a href="#{{sfObject.name}}" data-toggle="tab">{{sfObject.label}}</a>
       </li>
     </ul>
 
