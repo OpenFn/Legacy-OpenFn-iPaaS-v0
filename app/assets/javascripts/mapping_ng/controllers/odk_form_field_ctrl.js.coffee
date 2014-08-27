@@ -31,32 +31,32 @@
 
     ########## WATCHES
 
-    $scope.$watch("odkFormField", () ->
-      odkField = angular.copy($scope.odkFormField)
-      delete odkField.sf_fields
+    # $scope.$watch("odkFormField", () ->
+    #   odkField = angular.copy($scope.odkFormField)
+    #   delete odkField.sf_fields
 
-      for sfField in $scope.odkFormField.sf_fields
-        # set the lookup property on the sf_field as needed
-        for mapping_sf_object in $scope.mapping.mappedObjects
-          for mapping_sf_field in mapping_sf_object.fields
-            if (mapping_sf_field.field_name == sfField.field_name)
-              mapping_sf_field.is_lookup = sfField.is_lookup
-              mapping_sf_field.lookup_object = sfField.lookup_object
-              mapping_sf_field.lookup_field = sfField.lookup_field
+    #   for sfField in $scope.odkFormField.sf_fields
+    #     # set the lookup property on the sf_field as needed
+    #     for mapping_sf_object in $scope.mapping.mappedObjects
+    #       for mapping_sf_field in mapping_sf_object.fields
+    #         if (mapping_sf_field.field_name == sfField.field_name)
+    #           mapping_sf_field.is_lookup = sfField.is_lookup
+    #           mapping_sf_field.lookup_object = sfField.lookup_object
+    #           mapping_sf_field.lookup_field = sfField.lookup_field
 
-        # set odk_fields on respective sf_field
-        unless sfMappingAlreadyHasOdkField(sfField)
-          for sfObject in $scope.mapping.mappedObjects
-            if (sfObject.name == sfField.object_name)
+    #     # set odk_fields on respective sf_field
+    #     unless sfMappingAlreadyHasOdkField(sfField)
+    #       for sfObject in $scope.mapping.mappedObjects
+    #         if (sfObject.name == sfField.object_name)
 
-              # of sf field is not already in mapped objects, add it
-              unless (sfFieldAlreadyPushed(sfObject, sfField))
-                for obj in $scope.mapping.mappedObjects
-                  obj.fields.push(sfField) if obj.name == sfObject.name
+    #           # of sf field is not already in mapped objects, add it
+    #           unless (sfFieldAlreadyPushed(sfObject, sfField))
+    #             for obj in $scope.mapping.mappedObjects
+    #               obj.fields.push(sfField) if obj.name == sfObject.name
 
-              for sf_field in sfObject.fields
-                sf_field.odk_fields.push(odkField) if sf_field.field_name == sfField.field_name
-    , true)
+    #           for sf_field in sfObject.fields
+    #             sf_field.odk_fields.push(odkField) if sf_field.field_name == sfField.field_name
+    # , true)
 
     $scope.toggleDeleteSfObject = () ->
       first_run = true

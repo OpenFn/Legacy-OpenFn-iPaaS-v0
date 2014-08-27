@@ -26,7 +26,7 @@
         revert: true
         opacity: 0.8
         scroll: true
-        stop: filterSfFields
+        #stop: filterSfFields
 
       SalesforceObject.query.then (response) ->
         $scope.salesforceObjects = response.data.salesforce_objects
@@ -34,20 +34,12 @@
         $scope.checkIfLoaded()
 
     objectAlreadyPushed = (object) ->
-      for obj in $scope.mapping.mappedObjects
+      for obj in $scope.mapping.mappedSfObjects
         return true if obj.name == object.name
 
-      
     $scope.updateObject = (sfObject) ->
       SalesforceObjectField.query(salesforce_object_id: sfObject.name).$promise.then (sfFields) ->
-
-        for field in sfFields
-          # Check if the sfObject has this field
-          objs = sfObject.fields.filter (sfField) -> sfField.field_name is field.field_name
-          if objs.length is 0
-
-            # If it doesn't, add it to the array
-            sfObject.fields.push field
+        sfObject.fields = sfFields
 
     colorize = (sfObject) ->
       if (objectAlreadyPushed(sfObject))
@@ -62,9 +54,10 @@
     $scope.$watch "mapping.salesforceObjectName", (salesforceObjectId) ->
       if salesforceObjectId isnt undefined
 
-        sfObject = (i for i in $scope.salesforceObjects when i.name is salesforceObjectId)[0]
+        #sfObject = (i for i in $scope.salesforceObjects when i.name is salesforceObjectId)[0]
+        sfObject = $scope.salesforceObjects.filter((sfObj) -> sfObj.name is salesforceObjectId)[0]
 
-        colorize(sfObject)
+        #colorize(sfObject)
 
         index = $scope.salesforceObjects.indexOf(sfObject)
         $scope.salesforceObjects.splice(index, 1)
@@ -75,17 +68,16 @@
         SalesforceObjectField.query(salesforce_object_id: salesforceObjectId).$promise.then (response) ->
           for field in response
             field.color = sfObject.color
+            field.object_name = sfObject.name
+            field.label_name = sfObject.label
             sfObject.originalFields.push field
             sfObject.fields.push field
 
-          $scope.mapping.mappingSalesforceObjects.push sfObject
-          unless (objectAlreadyPushed(sfObject))
-            $scope.mapping.mappedObjects.push(angular.copy(sfObject))
+          $scope.mapping.mappedSfObjects.push sfObject unless objectAlreadyPushed(sfObject)
 
-
-      $scope.$watch("sfFilter.field_name", () ->
-        filterSfFields() if $scope.mapping.mappingSalesforceObjects
-      )
+      # $scope.$watch("sfFilter.field_name", () ->
+      #   filterSfFields() if $scope.mapping.mappingSalesforceObjects
+      # )
 
 
 

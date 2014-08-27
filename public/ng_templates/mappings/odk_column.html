@@ -23,7 +23,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="odkFormField in odkFormFields" ng-controller="OdkFormFieldCtrl">
+      <tr ng-repeat="odkFormField in mapping.odkFormFields | filter:odkFilter">
         <td>{{odkFormField.field_name}}: {{odkFormField.field_type}}</td>
         <td style='width: 50%'>
           <ul class="list-group sortable-location sf-connected-sortable sf-target"

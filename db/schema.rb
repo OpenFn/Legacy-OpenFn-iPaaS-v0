@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140819151316) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "imports", force: true do |t|
     t.string   "odk_formid"
     t.string   "last_uuid"

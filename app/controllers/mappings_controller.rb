@@ -6,7 +6,7 @@ class MappingsController < ApplicationController
   def index
     @mappings = current_user.mappings.page params[:page]
     unless current_user.valid_credentials
-      flash[:danger] = "Please add valid Salesforce and ODK 
+      flash[:danger] = "Please add valid Salesforce and ODK
                          credentials in your settings."
     end
   end
@@ -44,7 +44,7 @@ class MappingsController < ApplicationController
   def destroy
     if @mapping.destroy
       redirect_to(mappings_url)
-    else 
+    else
       render(:show, notice: "Mapping could not be destoyed.")
     end
   end
@@ -80,8 +80,7 @@ class MappingsController < ApplicationController
   def mapping_params
     params.require(:mapping).permit(:name, :odk_formid, :active,
       salesforce_fields_attributes: [:id, :object_name, :label_name, :field_name,
-      :data_type, :is_lookup, :_destroy, :color,
-      :lookup_object, :lookup_field,
+      :data_type, :is_lookup, :_destroy, :color, :lookup_object, :lookup_field,
         odk_fields_attributes: [:id, :field_name, :field_type, :_destroy]
       ]
     )

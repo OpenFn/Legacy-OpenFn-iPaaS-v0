@@ -14,26 +14,11 @@
 
     ########## VARIABLE ASSIGNMENT
 
-    # mappedObjects = an array of sf objects as read by the mapping service
-    #   [
-    #     {
-    #       name:
-    #       label:
-    #       ...
-    #       // sf fields:
-    #       fields: [
-    #         {
-    #           ...
-    #           odk_fields: [ {} ]
-    #         }
-    #       ]
-    #     }
-    #   ]
     $scope.mapping = {
-      mappingSalesforceObjects: [],
-      mappedObjects: []
+      odkFormFields: [],
+      mappedSfObjects: []
     }
-    
+
     $scope.colors = ["#F7977A", "#F9AD81", "#FDC68A", "#FFF79A",
                      "#8493CA", "#8882BE", "#A187BE",
                      "#BC8DBF", "#F49AC2", "#F6989D",
@@ -48,16 +33,17 @@
 
       # Load the mapping
       Mapping.get(id: mappingId).$promise.then((response) ->
-        response.mapping.colors = $scope.colors
+        #response.mapping.colors = $scope.colors
 
         # Reverse the mapping into the format needed to display in the view
-        $scope.mapping = MappingService.reverseMapping(response.mapping)
+        $scope.mapping = response.mapping
+        #$scope.mapping = MappingService.reverseMapping(response.mapping)
 
         # remove colors already used
-        for sfObject in $scope.mapping.mappedObjects
-          for field in sfObject.fields
-            index = $scope.colors.indexOf(field.color)
-            $scope.colors.splice(index, 1) if index != -1
+        # for sfObject in $scope.mapping.mappedObjects
+        #   for field in sfObject.fields
+        #     index = $scope.colors.indexOf(field.color)
+        #     $scope.colors.splice(index, 1) if index != -1
       )
 
 
