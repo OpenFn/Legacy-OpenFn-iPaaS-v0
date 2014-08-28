@@ -19,18 +19,21 @@
     <thead>
       <tr>
         <th>ODK Field Name</th>
+        <th>ODK Field Type</th>
         <th>Salesforce Field</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="odkFormField in mapping.odkFormFields | filter:odkFilter">
-        <td>{{odkFormField.field_name}}: {{odkFormField.field_type}}</td>
-        <td style='width: 50%'>
+      <tr ng-repeat="odkFormField in mapping.odkFormFields | filter:odkFilter | orderBy:'field_name'">
+        <td style="width: 50%" ng-style="odkFormField.displayStyle">{{odkFormField.displayName}}</td>
+        <td style="width: 20%">{{odkFormField.field_type}}</td>
+        <td style='width: 30%'>
           <ul class="list-group sortable-location sf-connected-sortable sf-target"
               ui-sortable="sfSortableOptions" ng-model="odkFormField.sf_fields">
-            <li class="list-group-item" ng-repeat="sfField in odkFormField.sf_fields" ng-style="{'background-color': sfField.color}">
-              <input type="checkbox" ng-model="sfField.is_lookup"></input>
+            <li class="list-group-item" ng-repeat="sfField in odkFormField.sf_fields" ng-style="{'background-color': sfField.color}" ng-hide="sfField._destroy">
               {{sfField.field_name}}
+              <a href="#" class='glyphicon glyphicon-remove white' ng-click="sfField._destroy = true"></a>
+              <input type="checkbox" ng-model="sfField.is_lookup"></input>
               <div ng-show="sfField.is_lookup">
                 <div ng-controller="LookupObjectCtrl">
                   <div ng-include="'/ng_templates/mappings/lookup_object.html'"></div>
@@ -38,15 +41,6 @@
               </div>
             </li>
           </ul>
-        </td>
-        <td>
-          <a href='#' ng-hide="_destroy" ng-click="toggleDeleteSfObject()" class='btn btn-warning'>
-            Remove
-          </a>
-
-          <a href='#' ng-show="_destroy" ng-click="toggleDeleteSfObject()" class='btn btn-danger'>
-            Undo Remove
-          </a>
         </td>
       </tr>
     </tbody>

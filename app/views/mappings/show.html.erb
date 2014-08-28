@@ -54,11 +54,11 @@
           </span>
         </td>
         <td>
-          <%# if sf_field.is_lookup? %>
+          <% if sf_field.lookup_object %>
             <span class='label label-secondary sf-lookup-label'>
               <%= sf_field.lookup_object %>: <%= sf_field.lookup_field %>
             </span>
-          <%# end %>
+          <% end %>
         </td>
       </tr>
     <% end %>

@@ -40,10 +40,9 @@
         #$scope.mapping = MappingService.reverseMapping(response.mapping)
 
         # remove colors already used
-        # for sfObject in $scope.mapping.mappedObjects
-        #   for field in sfObject.fields
-        #     index = $scope.colors.indexOf(field.color)
-        #     $scope.colors.splice(index, 1) if index != -1
+        for sfObject in $scope.mapping.mappedSfObjects
+          index = $scope.colors.indexOf(sfObject.color)
+          $scope.colors.splice(index, 1) if index != -1
       )
 
 

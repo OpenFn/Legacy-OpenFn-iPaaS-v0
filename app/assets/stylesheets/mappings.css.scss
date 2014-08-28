@@ -38,20 +38,20 @@
 .odk-label {
   line-height: 2;
   margin-right: 5px;
-  font-size: 20px;
+  font-size: 12px;
 }
 
 .sf-label {
   display: inline-block;
   margin-top: 5px;
-  font-size: 25px;
+  font-size: 12px;
 }
 
 .sf-lookup-label {
   display: inline-block;
   background-color: #990;
   margin-top: 5px;
-  font-size: 25px;
+  font-size: 12px;
 }
 
 .pull-right .button_to {
@@ -75,4 +75,8 @@ input.destroy-field {
   &:checked + label {
     color: red;
   }
+}
+
+.white {
+  color: white;
 }

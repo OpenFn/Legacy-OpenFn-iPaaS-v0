@@ -35,29 +35,32 @@
 
     objectAlreadyPushed = (object) ->
       for obj in $scope.mapping.mappedSfObjects
-        return true if obj.name == object.name
+        return true if obj.name is object.name
 
     $scope.updateObject = (sfObject) ->
-      SalesforceObjectField.query(salesforce_object_id: sfObject.name).$promise.then (sfFields) ->
-        sfObject.fields = sfFields
+      unless sfObject.fields
+        sfObject.fields = []
+        SalesforceObjectField.query(salesforce_object_id: sfObject.name).$promise.then (sfFields) ->
+          for f in sfFields
+            f.color = sfObject.color
+            sfObject.fields.push f
+
 
     colorize = (sfObject) ->
-      if (objectAlreadyPushed(sfObject))
-        for obj in $scope.mapping.mappedObjects
-          if obj.name == sfObject.name
-            sfObject.color = obj.fields[0].color
-      else
-        sfObject.color = $scope.colors.pop()
+      # if (objectAlreadyPushed(sfObject))
+      #   for obj in $scope.mapping.mappedObjects
+      #     if obj.name is sfObject.name
+      #       sfObject.color = obj.fields[0].color
+      # else
+      sfObject.color = $scope.colors.pop()
 
     ########## WATCHES
 
     $scope.$watch "mapping.salesforceObjectName", (salesforceObjectId) ->
       if salesforceObjectId isnt undefined
-
-        #sfObject = (i for i in $scope.salesforceObjects when i.name is salesforceObjectId)[0]
         sfObject = $scope.salesforceObjects.filter((sfObj) -> sfObj.name is salesforceObjectId)[0]
 
-        #colorize(sfObject)
+        colorize(sfObject)
 
         index = $scope.salesforceObjects.indexOf(sfObject)
         $scope.salesforceObjects.splice(index, 1)
