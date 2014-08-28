@@ -13,7 +13,8 @@ Array::filter = (func) -> x for x in @ when func(x)
   'ngRoute',
   'ui.sortable',
   'ui.bootstrap',
-  'ng-rails-csrf'
+  'ng-rails-csrf',
+  'mgcrea.bootstrap.affix'
 ]
 
 @controllerModule = angular.module 'mapping.controllers', []

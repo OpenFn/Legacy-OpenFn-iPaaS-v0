@@ -24,6 +24,6 @@
 //= require angular-route
 //= require angular-ui-bootstrap-tpls
 //= require ng-rails-csrf
+//= require_tree ./support
 
 //= require_tree ./mapping_ng
-//= require_tree ./support
