@@ -19,10 +19,10 @@
       mappedSfObjects: []
     }
 
-    $scope.colors = ["#F7977A", "#F9AD81", "#FDC68A", "#FFF79A",
-                     "#8493CA", "#8882BE", "#A187BE",
-                     "#BC8DBF", "#F49AC2", "#F6989D",
-                     "#C4DF9B", "#A2D39C", "#82CA9D", "#7BCDC8", "#6ECFF6", "#7EA7D8"]
+    $scope.colors = [
+      "#F7977A", "#F9AD81", "#FDC68A", "#FFF79A", "#8493CA", "#8882BE", "#A187BE", "#BC8DBF",
+      "#F49AC2", "#F6989D", "#C4DF9B", "#A2D39C", "#82CA9D", "#7BCDC8", "#6ECFF6", "#7EA7D8"
+    ]
 
     ########## FUNCTIONS
 
@@ -33,11 +33,9 @@
 
       # Load the mapping
       Mapping.get(id: mappingId).$promise.then((response) ->
-        #response.mapping.colors = $scope.colors
 
         # Reverse the mapping into the format needed to display in the view
         $scope.mapping = response.mapping
-        #$scope.mapping = MappingService.reverseMapping(response.mapping)
 
         # remove colors already used
         for sfObject in $scope.mapping.mappedSfObjects

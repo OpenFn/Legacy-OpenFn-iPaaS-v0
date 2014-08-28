@@ -35,8 +35,7 @@
         </div>
 
         <div class='external-field-holder'>
-          <ul class='list-group sf-connected-sortable sortable-location'
-              ui-sortable="sfSortableOptions" ng-model="sfObject.fields">
+          <ul class='list-group sf-connected-sortable sortable-location' ui-sortable="sfSortableOptions" ng-model="sfObject.fields">
             <li class='list-group-item' ng-repeat="sfField in sfObject.fields | filter:sfFilter" ng-style="{'background-color': sfField.color}">
               {{sfField.field_name}}
             </li>

@@ -8,17 +8,14 @@
 
     ########## FUNCTIONS
 
-    filterSfFields = () ->
-      if $scope.sfFilter
-        fieldName == $scope.sfFilter.field_name
-      else
-        fieldName = ''
+    $scope.filterSfFields = (event, ui) ->
 
-      for sfObject in $scope.mapping.mappingSalesforceObjects
-        if fieldName == ''
-          sfObject.fields = angular.copy(sfObject.originalFields)
-        else
-          sfObject.fields = $filter('filter')(sfObject.originalFields, $scope.sfFilter)
+      sfObject = $scope.mapping.mappedSfObjects.filter((sfObj) -> sfObj.name is ui.item.sortable.moved.object_name)[0]
+
+      if $scope.sfFilter
+        sfObject.fields = $filter('filter')(sfObject.originalFields, $scope.sfFilter)
+      else
+        sfObject.fields = angular.copy(sfObject.originalFields)
 
     $scope.prepare = ->
       $scope.sfSortableOptions =
@@ -26,7 +23,8 @@
         revert: true
         opacity: 0.8
         scroll: true
-        #stop: filterSfFields
+        stop: (event, ui) ->
+          $scope.filterSfFields(event, ui)
 
       SalesforceObject.query.then (response) ->
         $scope.salesforceObjects = response.data.salesforce_objects
@@ -40,10 +38,12 @@
     $scope.updateObject = (sfObject) ->
       unless sfObject.fields
         sfObject.fields = []
+        sfObject.originalFields = []
         SalesforceObjectField.query(salesforce_object_id: sfObject.name).$promise.then (sfFields) ->
           for f in sfFields
             f.color = sfObject.color
             sfObject.fields.push f
+            sfObject.originalFields.push f
 
 
     colorize = (sfObject) ->
@@ -79,7 +79,7 @@
           $scope.mapping.mappedSfObjects.push sfObject unless objectAlreadyPushed(sfObject)
 
       # $scope.$watch("sfFilter.field_name", () ->
-      #   filterSfFields() if $scope.mapping.mappingSalesforceObjects
+      #   filterSfFields() if $scope.mapping.mappedSfObjects.length > 0
       # )
 
 
