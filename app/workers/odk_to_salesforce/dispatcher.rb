@@ -42,6 +42,8 @@ module OdkToSalesforce
           # => Use the converter to take the mapping and ODK data and create a SF Import Data object
           sf_data = converter.convert(odk_data)
 
+          puts sf_data.inspect
+
           # => Create a list of ImportObjects
           bottom_objects = []
 
