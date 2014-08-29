@@ -85,32 +85,26 @@ module OdkToSalesforce
       end
 
       def save_to_salesforce(attributes)
-        perform_lookup = attributes.delete :perform_lookup
-        if perform_lookup
-          puts "finding #{@object_name} "
-          @id = query(attributes)["Id"]
-        else
-          puts "creating #{@object_name}"
-          if @parent
-            attributes[@parent.object_name.to_sym] = @parent.id
-          end
+        puts "creating #{@object_name}"
+        if @parent
+          attributes[@parent.object_name.to_sym] = @parent.id
+        end
 
-          # => Rescue certain errors
-          begin
-            @id = @rf.create!(@object_name, attributes)
-          rescue Exception => e
-            arr = e.message.split(":")
+        # => Rescue certain errors
+        begin
+          @id = @rf.create!(@object_name, attributes)
+        rescue Exception => e
+          arr = e.message.split(":")
 
-            # => If we are creating this and it's a duplicate,
-            # => then parse the error message for the ID
-            # => A cheap way to not create duplicates without using the
-            # => lookup functionality
-            if arr[0].eql?("DUPLICATE_VALUE")
-              puts "duplicate value, populating id"
-              @id = arr[3].strip
-            else
-              raise e.message.inspect
-            end
+          # => If we are creating this and it's a duplicate,
+          # => then parse the error message for the ID
+          # => A cheap way to not create duplicates without using the
+          # => lookup functionality
+          if arr[0].eql?("DUPLICATE_VALUE")
+            puts "duplicate value, populating id"
+            @id = arr[3].strip
+          else
+            raise e.message.inspect
           end
         end
       end

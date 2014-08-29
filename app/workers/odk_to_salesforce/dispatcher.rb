@@ -53,7 +53,14 @@ module OdkToSalesforce
 
             # => We have the bottom object with all it's parent relationships
             # => Add it to the array of bottom objects
-            bottom_objects << runner.run(k.to_sym, sf_data) if sf_data.has_key?(k.to_sym)
+
+            # => Remove if statement and run it on all leaf nodes
+            # => This allows mappings that don't have a bottom object in it, to still traverse the
+            # => bottom object to try and create any parents it might have.
+
+            # => We always start at the bottom of a tree and try to create upwards.  If there
+            # => are no bottom objects, parents won't be attempted.
+            bottom_objects << runner.run(k.to_sym, sf_data) # if sf_data.has_key?(k.to_sym)
           end
 
           # => Process all the ImportObjects

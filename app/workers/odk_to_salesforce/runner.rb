@@ -43,12 +43,12 @@ module OdkToSalesforce
             parent_object = run(parent_node.to_s, data)
 
             # => Add the current object as a child of the parent
-            parent_object.add_child(current_object)
+            parent_object.add_child(current_object) if current_object.attributes
 
             return current_object
           end
         end
-      else
+      elsif current_object.attributes
         # => Now we're at the top object!
         # => Find or create it
         puts "-> find or create #{node[:name]}"

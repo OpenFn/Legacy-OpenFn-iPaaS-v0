@@ -35,7 +35,6 @@ module OdkToSalesforce
     # Get child objects
     def leaf_nodes
       leafs = []
-      puts @relationships_hash.inspect
       @relationships_hash.each do |k, v|
         if v[:children].empty?
           leafs << k
