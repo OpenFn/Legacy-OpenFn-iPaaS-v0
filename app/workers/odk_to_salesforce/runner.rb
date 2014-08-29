@@ -43,7 +43,7 @@ module OdkToSalesforce
             parent_object = run(parent_node.to_s, data)
 
             # => Add the current object as a child of the parent
-            parent_object.add_child(current_object) if current_object.attributes
+            parent_object.add_child(current_object)
 
             return current_object
           end
