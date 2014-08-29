@@ -16,6 +16,7 @@ module OdkToSalesforce
       end
 
       def save!
+        return unless attributes
         lookup_successful = find_lookup_fields
 
         if lookup_successful
