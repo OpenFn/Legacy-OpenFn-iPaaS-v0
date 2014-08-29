@@ -106,6 +106,7 @@ module OdkToSalesforce
             # => A cheap way to not create duplicates without using the
             # => lookup functionality
             if arr[0].eql?("DUPLICATE_VALUE")
+              puts "duplicate value, populating id"
               @id = arr[3].strip
             else
               raise e.message.inspect
