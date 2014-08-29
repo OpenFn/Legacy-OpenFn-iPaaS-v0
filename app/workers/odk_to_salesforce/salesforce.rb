@@ -35,6 +35,7 @@ module OdkToSalesforce
     # Get child objects
     def leaf_nodes
       leafs = []
+      puts @relationships_hash.inspect
       @relationships_hash.each do |k, v|
         if v[:children].empty?
           leafs << k
@@ -110,7 +111,7 @@ module OdkToSalesforce
             parent_fields.each  do |field|
               sf_field = @mapping.salesforce_fields.select do |f| f.object_name == current_key.to_s && f.field_name == field; end
               if !sf_field.empty? && sf_field[0].is_lookup?
-                lookup_field = sf_field[0].lookup_field 
+                lookup_field = sf_field[0].lookup_field
               else
                 lookup_field = "Name"
               end
