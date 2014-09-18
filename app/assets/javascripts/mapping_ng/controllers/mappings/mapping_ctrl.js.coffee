@@ -13,7 +13,9 @@
 
     ########## VARIABLE ASSIGNMENT
 
-    $scope.mapping = {}
+    $scope.mapping = {
+      salesforceObjects: []
+    }
 
     $scope.colors = [
       "#F7977A", "#F9AD81", "#FDC68A", "#FFF79A", "#8493CA", "#8882BE", "#A187BE", "#BC8DBF",

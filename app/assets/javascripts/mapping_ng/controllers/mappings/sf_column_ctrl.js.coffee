@@ -1,8 +1,7 @@
 'use strict'
 
-@controllerModule.controller 'SfColumnCtrl', ['$scope', '$filter', 'SalesforceObject',
-  'SalesforceObjectField',
-  ($scope, $filter, SalesforceObject, SalesforceObjectField) ->
+@controllerModule.controller 'SfColumnCtrl', ['$scope', '$filter', 'SalesforceObject', 'SalesforceObjectField', 'SalesforceService',
+  ($scope, $filter, SalesforceObject, SalesforceObjectField, SalesforceService) ->
 
     ########## VARIABLE ASSIGNMENT
 
@@ -26,8 +25,8 @@
         stop: (event, ui) ->
           $scope.filterSfFields(event, ui)
 
-      SalesforceObject.query.then (response) ->
-        $scope.salesforceObjects = response.data.salesforce_objects
+      SalesforceService.loadObjects (objects) ->
+        $scope.salesforceObjects = objects
         $scope.itemsLoaded.sfForms = true
         $scope.checkIfLoaded()
 
@@ -36,14 +35,14 @@
         return true if obj.name is object.name
 
     $scope.updateObject = (sfObject) ->
-      unless sfObject.fields
-        sfObject.fields = []
-        sfObject.originalFields = []
-        SalesforceObjectField.query(salesforce_object_id: sfObject.name).$promise.then (sfFields) ->
-          for f in sfFields
-            f.color = sfObject.color
-            sfObject.fields.push f
-            sfObject.originalFields.push f
+      # unless sfObject.fields
+      #   sfObject.fields = []
+      #   sfObject.originalFields = []
+      #   SalesforceObjectField.query(salesforce_object_id: sfObject.name).$promise.then (sfFields) ->
+      #     for f in sfFields
+      #       f.color = sfObject.color
+      #       sfObject.fields.push f
+      #       sfObject.originalFields.push f
 
 
     colorize = (sfObject) ->
@@ -58,27 +57,28 @@
 
     $scope.$watch "mapping.salesforceObjectName", (salesforceObjectId) ->
       if salesforceObjectId isnt undefined && salesforceObjectId isnt ''
-        sfObject = angular.copy($scope.salesforceObjects.filter((sfObj) -> sfObj.name is salesforceObjectId)[0])
 
+        # Create a new copy of this object
+        sfObject = angular.copy($scope.salesforceObjects.filter((sfObj) -> sfObj.name is salesforceObjectId)[0])
+        sfObject.salesforceFields = []
+
+        # Colorize it
         colorize(sfObject)
 
-        mapping.salesforceObjectName = ''
-
-        #index = $scope.salesforceObjects.indexOf(sfObject)
-        #$scope.salesforceObjects.splice(index, 1)
-
-        sfObject.fields = []
-        sfObject.originalFields = []
-
-        SalesforceObjectField.query(salesforce_object_id: salesforceObjectId).$promise.then (response) ->
-          for field in response
+        # Load the fields for this object
+        SalesforceService.loadFields salesforceObjectId, (fields) ->
+          for field in fields
             field.color = sfObject.color
             field.object_name = sfObject.name
             field.label_name = sfObject.label
-            sfObject.originalFields.push field
-            sfObject.fields.push field
+            sfObject.salesforceFields.push field
 
-          $scope.mapping.mappedSfObjects.push sfObject #unless objectAlreadyPushed(sfObject)
+          # Add this new object to the mapping
+          $scope.mapping.salesforceObjects.push sfObject
+
+          # Reset the chosen object name
+          $scope.mapping.salesforceObjectName = ''
+
 
       # $scope.$watch("sfFilter.field_name", () ->
       #   filterSfFields() if $scope.mapping.mappedSfObjects.length > 0

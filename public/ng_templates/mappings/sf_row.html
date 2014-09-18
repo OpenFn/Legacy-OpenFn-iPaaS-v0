@@ -1,4 +1,4 @@
-<div ng-controller="SfColumnCtrl" class='panel panel-default sf-row' bs-affix data-offset-top="320">
+<div ng-controller="SfColumnCtrl" class='panel panel-default'>
   <div class='panel-body'>
     <h4>Salesforce Objects <small>Choose objects by order of insertion.  Mark lookup fields to pre-existing records and specify matching field</small></h4>
     <div class='row'>
@@ -16,13 +16,13 @@
     </div>
 
     <ul class="nav nav-tabs">
-      <li ng-repeat="sfObject in mapping.mappedSfObjects" ng-style="{'background-color': sfObject.color}" ng-click="updateObject(sfObject)">
-        <a href="#{{sfObject.name}}" data-toggle="tab">{{sfObject.name}}</a>
+      <li ng-repeat="sfObject in mapping.salesforceObjects" ng-style="{'background-color': sfObject.color}" ng-click="updateObject(sfObject)">
+        <a href="#{{sfObject.name}}_{{$index}}" data-toggle="tab">{{sfObject.name}}</a>
       </li>
     </ul>
 
     <div class="tab-content">
-      <div ng-repeat="sfObject in mapping.mappedSfObjects" class="tab-pane" id="{{sfObject.name}}">
+      <div ng-repeat="sfObject in mapping.salesforceObjects" class="tab-pane" id="{{sfObject.name}}_{{$index}}">
         <div class='row'>
           <div class='col-md-12'>
             <!-- <a href="#" ng-click="updateObject(sfObject)" class='btn btn-success'>
@@ -32,8 +32,8 @@
         </div>
 
         <div class='external-field-holder'>
-          <ul class='list-group sf-connected-sortable sortable-location' ui-sortable="sfSortableOptions" ng-model="sfObject.fields">
-            <li class='list-group-item' ng-repeat="sfField in sfObject.fields | filter:sfFilter" ng-style="{'background-color': sfField.color}">
+          <ul class='list-group sf-connected-sortable sortable-location' ui-sortable="sfSortableOptions" ng-model="sfObject.salesforceFields">
+            <li class='list-group-item' ng-repeat="sfField in sfObject.salesforceFields | filter:sfFilter" ng-style="{'background-color': sfField.color}">
               {{sfField.field_name}}
             </li>
           </ul>
