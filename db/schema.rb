@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819151316) do
+ActiveRecord::Schema.define(version: 20140918145737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,13 +36,35 @@ ActiveRecord::Schema.define(version: 20140819151316) do
 
   add_index "mappings", ["user_id"], name: "index_mappings_on_user_id", using: :btree
 
+  create_table "odk_field_salesforce_fields", force: true do |t|
+    t.integer  "odk_field_id"
+    t.integer  "salesforce_field_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "odk_field_salesforce_fields", ["odk_field_id"], name: "index_odk_field_salesforce_fields_on_odk_field_id", using: :btree
+  add_index "odk_field_salesforce_fields", ["salesforce_field_id"], name: "index_odk_field_salesforce_fields_on_salesforce_field_id", using: :btree
+
   create_table "odk_fields", force: true do |t|
     t.string   "field_name"
     t.string   "field_type"
     t.integer  "salesforce_field_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "odk_form_id"
   end
+
+  add_index "odk_fields", ["odk_form_id"], name: "index_odk_fields_on_odk_form_id", using: :btree
+
+  create_table "odk_forms", force: true do |t|
+    t.string   "name"
+    t.integer  "mapping_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "odk_forms", ["mapping_id"], name: "index_odk_forms_on_mapping_id", using: :btree
 
   create_table "salesforce_fields", force: true do |t|
     t.integer  "mapping_id"
@@ -53,10 +75,25 @@ ActiveRecord::Schema.define(version: 20140819151316) do
     t.string   "data_type"
     t.string   "label_name"
     t.string   "color"
-    t.boolean  "is_lookup",     default: false
+    t.boolean  "is_lookup",            default: false
     t.string   "lookup_object"
     t.string   "lookup_field"
+    t.integer  "salesforce_object_id"
   end
+
+  add_index "salesforce_fields", ["salesforce_object_id"], name: "index_salesforce_fields_on_salesforce_object_id", using: :btree
+
+  create_table "salesforce_objects", force: true do |t|
+    t.string   "name"
+    t.string   "data_type"
+    t.string   "label"
+    t.string   "color"
+    t.integer  "mapping_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "salesforce_objects", ["mapping_id"], name: "index_salesforce_objects_on_mapping_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                             null: false

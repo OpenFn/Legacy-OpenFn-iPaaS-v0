@@ -4,6 +4,8 @@
   </ul>
 </div>
 
+<h4>Fill out your mapping details</h4>
+
 <div class="form-group">
   <label for="mapping_name">Name</label>
   <input type="text" ng-model="mapping.name" class='form-control' />
@@ -15,9 +17,21 @@
   </label>
 </div>
 
-<div class="row">
-  <div class='col-md-12' ng-include="'/ng_templates/mappings/sf_row.html'"></div>
+<h4>Step 1: Choose your ODK Form</h4>
+
+<div class='row' ng-controller="OdkColumnCtrl">
+  <div class='col-md-4'>
+    <div class="form-group">
+      <!-- <label for="mapping_odk_formid">Open Data Kit Form</label> -->
+      <select ng-model="mapping.odk_formid" ng-options="o as o for o in odkForms" class='form-control'></select>
+    </div>
+  </div>
 </div>
+
+<h4>Step 2: Load your Salesforce Objects by order of insertion</h4>
+<!-- <div class="row well">
+  <div class='col-md-12' ng-include="'/ng_templates/mappings/sf_row.html'"></div>
+</div> -->
 
 <div class='row'>
   <div class='col-md-12' ng-include="'/ng_templates/mappings/odk_column.html'"></div>

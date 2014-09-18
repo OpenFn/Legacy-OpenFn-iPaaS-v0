@@ -2,12 +2,6 @@
   <h4>ODK Form Object</h4>
 
   <div class='row'>
-    <div class='col-md-4'>
-      <div class="form-group">
-        <!-- <label for="mapping_odk_formid">Open Data Kit Form</label> -->
-        <select ng-model="mapping.odk_formid" ng-options="o as o for o in odkForms" class='form-control'></select>
-      </div>
-    </div>
     <div class='col-md-8'>
       <div class="form-group">
         <input ng-model="odkFilter.field_name" type='text' placeholder="Filter ODK fields" class='form-control' />
@@ -24,11 +18,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="odkFormField in mapping.odkFormFields | filter:odkFilter | orderBy:'field_name'">
+      <tr ng-repeat="odkFormField in mapping.odkForm.odkFields | filter:odkFilter">
         <td style="width: 50%" ng-style="odkFormField.displayStyle">{{odkFormField.displayName}}</td>
         <td style="width: 20%">{{odkFormField.field_type}}</td>
         <td style='width: 30%'>
-          <ul class="list-group sortable-location sf-connected-sortable sf-target"
+          <!-- <ul class="list-group sortable-location sf-connected-sortable sf-target"
               ui-sortable="sfSortableOptions" ng-model="odkFormField.sf_fields">
             <li class="list-group-item" ng-repeat="sfField in odkFormField.sf_fields" ng-style="{'background-color': sfField.color}" ng-hide="sfField._destroy">
               {{sfField.field_name}}
@@ -40,7 +34,7 @@
                 </div>
               </div>
             </li>
-          </ul>
+          </ul> -->
         </td>
       </tr>
     </tbody>

@@ -1,6 +1,6 @@
 <div ng-controller="SfColumnCtrl" class='panel panel-default sf-row' bs-affix data-offset-top="320">
   <div class='panel-body'>
-    <h4>SF Fields</h4>
+    <h4>Salesforce Objects <small>Choose objects by order of insertion.  Mark lookup fields to pre-existing records and specify matching field</small></h4>
     <div class='row'>
       <div class='col-md-4'>
         <!-- <label for="salesforce_object_name">SalesForce Object</label> -->
@@ -16,7 +16,7 @@
     </div>
 
     <ul class="nav nav-tabs">
-      <li ng-repeat="sfObject in mapping.mappedSfObjects | orderBy:'name'" ng-style="{'background-color': sfObject.color}" ng-click="updateObject(sfObject)">
+      <li ng-repeat="sfObject in mapping.mappedSfObjects" ng-style="{'background-color': sfObject.color}" ng-click="updateObject(sfObject)">
         <a href="#{{sfObject.name}}" data-toggle="tab">{{sfObject.name}}</a>
       </li>
     </ul>

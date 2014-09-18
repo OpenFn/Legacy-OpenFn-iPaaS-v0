@@ -57,13 +57,15 @@
     ########## WATCHES
 
     $scope.$watch "mapping.salesforceObjectName", (salesforceObjectId) ->
-      if salesforceObjectId isnt undefined
-        sfObject = $scope.salesforceObjects.filter((sfObj) -> sfObj.name is salesforceObjectId)[0]
+      if salesforceObjectId isnt undefined && salesforceObjectId isnt ''
+        sfObject = angular.copy($scope.salesforceObjects.filter((sfObj) -> sfObj.name is salesforceObjectId)[0])
 
         colorize(sfObject)
 
-        index = $scope.salesforceObjects.indexOf(sfObject)
-        $scope.salesforceObjects.splice(index, 1)
+        mapping.salesforceObjectName = ''
+
+        #index = $scope.salesforceObjects.indexOf(sfObject)
+        #$scope.salesforceObjects.splice(index, 1)
 
         sfObject.fields = []
         sfObject.originalFields = []
@@ -76,7 +78,7 @@
             sfObject.originalFields.push field
             sfObject.fields.push field
 
-          $scope.mapping.mappedSfObjects.push sfObject unless objectAlreadyPushed(sfObject)
+          $scope.mapping.mappedSfObjects.push sfObject #unless objectAlreadyPushed(sfObject)
 
       # $scope.$watch("sfFilter.field_name", () ->
       #   filterSfFields() if $scope.mapping.mappedSfObjects.length > 0

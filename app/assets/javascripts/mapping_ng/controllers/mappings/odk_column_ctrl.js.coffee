@@ -1,8 +1,7 @@
 'use strict'
 
-@controllerModule.controller 'OdkColumnCtrl', ['$scope', '$rootScope',
-  '$filter', 'OdkForm', 'OdkFormField',
-  ($scope, $rootScope, $filter, OdkForm, OdkFormField) ->
+@controllerModule.controller 'OdkColumnCtrl', ['$scope', '$rootScope', '$filter', 'OdkService'
+  ($scope, $rootScope, $filter, OdkService) ->
 
     ########## VARIABLE ASSIGNMENT
 
@@ -23,34 +22,22 @@
           debugger
           #$scope.getOdkFields($scope.odkFilter.field_name)
 
-      OdkForm.query.then (response) ->
-        $scope.odkForms = response.data.odk_forms
+      OdkService.loadForms (forms) ->
+        $scope.odkForms = forms
         $scope.itemsLoaded.odkForms = true
         $scope.checkIfLoaded()
-
-    $scope.setFieldDisplayOptions = (odkFormField) ->
-      arr = odkFormField.field_name.split("/")
-      odkFormField.displayName = arr[arr.length - 1]
-
-      if arr.length > 2
-        odkFormField.displayStyle = {paddingLeft: "#{(arr.length - 1) * 2}0px"}
-
-      odkFormField
 
     ########## WATCHES
 
     $scope.$watch "mapping.odk_formid", (formId) ->
       if formId isnt undefined
-        OdkFormField.query(odk_form_id: formId).$promise.then (response) ->
-          for odkField in response
-            existingField = $scope.mapping.odkFormFields.filter((mOdkField) -> mOdkField.field_name is odkField.field_name)[0]
-            if existingField
-              $scope.setFieldDisplayOptions(existingField)
-            else
-              $scope.mapping.odkFormFields.push $scope.setFieldDisplayOptions(odkField)
+        $scope.mapping.odkForm = {
+          name: formId,
+          odkFields: []
+        }
 
-    # $scope.$watch "odkFilter.field_name", (fieldName) ->
-    #   $scope.getOdkFields(fieldName)
+        OdkService.loadFields formId, (fields) ->
+          $scope.mapping.odkForm.odkFields = fields
 
     ########## BEFORE FILTERS
     $scope.prepare()
