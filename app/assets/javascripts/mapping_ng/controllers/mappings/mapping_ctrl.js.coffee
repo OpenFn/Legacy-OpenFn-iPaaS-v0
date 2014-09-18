@@ -8,12 +8,13 @@
     $rootScope.itemsLoaded = { odkForms: false, sfForms: false }
 
     $rootScope.checkIfLoaded = () ->
-      if $scope.itemsLoaded.odkForms# && $scope.itemsLoaded.sfForms
+      if $scope.itemsLoaded.odkForms && $scope.itemsLoaded.sfForms
         $rootScope.loading = false
 
     ########## VARIABLE ASSIGNMENT
 
     $scope.mapping = {
+      odkForm: {}
       salesforceObjects: []
     }
 

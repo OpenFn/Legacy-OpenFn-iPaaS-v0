@@ -23,7 +23,7 @@
         opacity: 0.8
         scroll: true
         stop: (event, ui) ->
-          $scope.filterSfFields(event, ui)
+          #$scope.filterSfFields(event, ui)
 
       SalesforceService.loadObjects (objects) ->
         $scope.salesforceObjects = objects

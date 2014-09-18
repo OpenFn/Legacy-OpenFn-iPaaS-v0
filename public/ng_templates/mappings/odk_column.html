@@ -22,9 +22,8 @@
         <td style="width: 50%" ng-style="odkFormField.displayStyle">{{odkFormField.displayName}}</td>
         <td style="width: 20%">{{odkFormField.field_type}}</td>
         <td style='width: 30%'>
-          <!-- <ul class="list-group sortable-location sf-connected-sortable sf-target"
-              ui-sortable="sfSortableOptions" ng-model="odkFormField.sf_fields">
-            <li class="list-group-item" ng-repeat="sfField in odkFormField.sf_fields" ng-style="{'background-color': sfField.color}" ng-hide="sfField._destroy">
+          <ul class="list-group sortable-location sf-connected-sortable sf-target" ui-sortable="sfSortableOptions" ng-model="odkFormField.salesforceFields">
+            <li class="list-group-item" ng-repeat="sfField in odkFormField.salesforceFields" ng-style="{'background-color': sfField.color}" ng-hide="sfField._destroy">
               {{sfField.field_name}}
               <a href="#" class='glyphicon glyphicon-remove white' ng-click="sfField._destroy = true"></a>
               <input type="checkbox" ng-model="sfField.is_lookup"></input>
@@ -34,7 +33,7 @@
                 </div>
               </div>
             </li>
-          </ul> -->
+          </ul>
         </td>
       </tr>
     </tbody>

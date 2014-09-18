@@ -19,7 +19,6 @@
       $scope.odkSortableOptions =
         connectWith: '.odk-connected-sortable'
         stop: (event, ui) ->
-          debugger
           #$scope.getOdkFields($scope.odkFilter.field_name)
 
       OdkService.loadForms (forms) ->
@@ -29,7 +28,7 @@
 
     ########## WATCHES
 
-    $scope.$watch "mapping.odk_formid", (formId) ->
+    $scope.$watch "mapping.odkForm.name", (formId) ->
       if formId isnt undefined
         $scope.mapping.odkForm = {
           name: formId,
