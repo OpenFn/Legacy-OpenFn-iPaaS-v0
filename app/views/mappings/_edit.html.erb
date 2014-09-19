@@ -1,0 +1,4 @@
+<div ng-app="mapping">
+  <%= render 'loading' %>
+  <div ng-controller="EditMappingCtrl" ng-hide="loading" ng-include="'/ng_templates/mappings/edit.html'" ng-init="init(<%= @mapping.id %>)"></div>
+</div>

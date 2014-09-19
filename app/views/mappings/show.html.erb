@@ -14,13 +14,15 @@
   <li><%= @mapping.name %> (<%= @mapping.active? ? "Active" : "Inactive" %>)</li>
 </ol>
 
-<div class='pull-left'>
-  <%= form_tag dispatch_surveys_mapping_path(@mapping), class: 'form-inline', role: 'form' do %>
-    <div class="form-group">
-      <%= text_field_tag :only, params[:only], class: 'form-control', placeholder: 'Number of surveys to import' %>
-    </div>
-    <%= submit_tag "Import", class: 'btn btn-success' %>
-  <% end %>
+<div class='clearfix'>
+  <div class='pull-left'>
+    <%= form_tag dispatch_surveys_mapping_path(@mapping), class: 'form-inline', role: 'form' do %>
+      <div class="form-group">
+        <%= text_field_tag :only, params[:only], class: 'form-control', placeholder: 'Number of surveys to import' %>
+      </div>
+      <%= submit_tag "Import", class: 'btn btn-success' %>
+    <% end %>
+  </div>
 </div>
 
 <div class='pull-right'>
@@ -28,39 +30,4 @@
   <%= button_to "Destroy", @mapping, method: :delete, class: 'btn', confirm: 'Are you sure?' %>
 </div>
 
-<table class='table'>
-  <thead>
-    <tr>
-      <th><b>ODK Fields</b></th>
-      <th></th>
-      <th><b>Salesforce Fields</b></th>
-      <th><b>Custom Lookup Object / Field</b></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @mapping.salesforce_fields.joins(:odk_fields).order("odk_fields.field_name").each do |sf_field| %>
-      <tr>
-        <td>
-          <% sf_field.odk_fields.each do |odk_field| %>
-            <span class='label label-default odk-label'>
-              <%= odk_field.field_name %>: <%= odk_field.field_type %>
-            </span>
-          <% end %>
-        </td>
-        <td>=></td>
-        <td>
-          <span class='label label-primary sf-label'>
-            <%= sf_field.label_name %>: <%= sf_field.field_name %>: <%= sf_field.is_lookup? ? "Lookup" : "Create" %>
-          </span>
-        </td>
-        <td>
-          <% if sf_field.lookup_object %>
-            <span class='label label-secondary sf-lookup-label'>
-              <%= sf_field.lookup_object %>: <%= sf_field.lookup_field %>
-            </span>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render "edit", mapping: @mapping %>

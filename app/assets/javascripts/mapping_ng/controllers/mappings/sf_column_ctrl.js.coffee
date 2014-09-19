@@ -71,6 +71,7 @@
             field.color = sfObject.color
             field.object_name = sfObject.name
             field.label_name = sfObject.label
+            field.objectOrder = $scope.mapping.salesforceObjects.length + 1
             sfObject.salesforceFields.push field
 
           # Add this new object to the mapping

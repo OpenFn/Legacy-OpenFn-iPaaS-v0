@@ -1,5 +1,6 @@
 class MappingSerializer < ActiveModel::Serializer
-  attributes :id, :name, :active, :odk_formid, :mappedSfObjects, :odkFormFields
+  attributes :id, :name, :active#, :odk_formid, :mappedSfObjects, :odkFormFields
+  has_one :odk_form
 
   def mappedSfObjects
     object.salesforce_fields.collect{|sf|
