@@ -1,5 +1,5 @@
 class OdkFormSerializer < ActiveModel::Serializer
-  attributes :name
+  attributes :id, :name
 
   has_many :odk_fields
 end

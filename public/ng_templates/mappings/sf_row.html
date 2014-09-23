@@ -1,4 +1,4 @@
-<div ng-controller="SfColumnCtrl" class='panel panel-default'>
+<div ng-controller="SalesforceCtrl" class='panel panel-default'>
   <div class='panel-body'>
     <h4>Salesforce Objects <small>Choose objects by order of insertion.  Mark lookup fields to pre-existing records and specify matching field</small></h4>
     <div class='row'>
@@ -16,8 +16,8 @@
     </div>
 
     <ul class="nav nav-tabs">
-      <li ng-repeat="sfObject in mapping.salesforceObjects | orderBy:'order'" ng-style="{'background-color': sfObject.color}" ng-click="updateObject(sfObject)">
-        <a href="#{{sfObject.name}}_{{sfObject.order}}" data-toggle="tab">{{sfObject.name}} <sup>{{sfObject.order}}</sup></a>
+      <li ng-repeat="sfObject in mapping.salesforceObjects | orderBy:'order'" ng-style="{'background-color': sfObject.color}">
+        <a href="#{{sfObject.name}}_{{sfObject.order}}" data-toggle="tab">{{sfObject.name}} <sup>{{sfObject.order}} <span ng-show="sfObject.is_repeat">r</span></sup></a>
       </li>
     </ul>
 
@@ -25,9 +25,7 @@
       <div ng-repeat="sfObject in mapping.salesforceObjects" class="tab-pane" id="{{sfObject.name}}_{{sfObject.order}}">
         <div class='row'>
           <div class='col-md-12'>
-            <!-- <a href="#" ng-click="updateObject(sfObject)" class='btn btn-success'>
-              Refresh SF Fields
-            </a> -->
+            <input type="checkbox" ng-click="toggleRepeat(sfObject)" /> Repeat Field <br />
           </div>
         </div>
 

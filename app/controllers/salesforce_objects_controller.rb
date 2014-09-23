@@ -1,6 +1,7 @@
 class SalesforceObjectsController < ApplicationController
 
   before_action :load_mapping
+  before_action :load_salesforce_object, only: [:update]
 
   def create
     salesforce_object = @mapping.salesforce_objects.new(salesforce_object_params)
@@ -12,7 +13,11 @@ class SalesforceObjectsController < ApplicationController
   end
 
   def update
-    binding.pry
+    if @salesforce_object.update(salesforce_object_params)
+      render json: @salesforce_object
+    else
+      render json: {errors: @salesforce_object.errors.full_messages}, status: 422
+    end
   end
 
   protected
@@ -21,8 +26,13 @@ class SalesforceObjectsController < ApplicationController
     @mapping = current_user.mappings.find params[:mapping_id]
   end
 
+  def load_salesforce_object
+    @salesforce_object = @mapping.salesforce_objects.find params[:id]
+  end
+
+
   def salesforce_object_params
-    params.require(:salesforce_object).permit(:name, :label, :order)
+    params.require(:salesforce_object).permit(:name, :label, :order, :is_repeat)
   end
 
 end

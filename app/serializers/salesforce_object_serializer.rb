@@ -1,5 +1,5 @@
 class SalesforceObjectSerializer < ActiveModel::Serializer
-  attributes :name, :label, :color, :order
+  attributes :id, :name, :label, :color, :order, :is_repeat
 
   has_many :salesforce_fields, key: "salesforceFields"
 end
