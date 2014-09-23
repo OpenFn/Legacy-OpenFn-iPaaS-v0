@@ -25,7 +25,7 @@
       <div ng-repeat="sfObject in mapping.salesforceObjects" class="tab-pane" id="{{sfObject.name}}_{{sfObject.order}}">
         <div class='row'>
           <div class='col-md-12'>
-            <input type="checkbox" ng-click="toggleRepeat(sfObject)" /> Repeat Field <br />
+            <input type="checkbox" ng-click="toggleRepeat(sfObject)" ng-checked="sfObject.is_repeat" /> Repeat Field <br />
           </div>
         </div>
 
