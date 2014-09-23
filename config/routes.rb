@@ -12,6 +12,8 @@ SalesForce::Application.routes.draw do
       post :clone
     end
 
+    resources :salesforce_objects
+
     collection do
       get :get_odk_forms
       get :get_salesforce_fields

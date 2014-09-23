@@ -1,12 +1,24 @@
 class SalesforceObjectsController < ApplicationController
 
-  def index
-    sf_client = Restforce.new(username: current_user.sf_username,
-                              password: current_user.sf_password,
-                              security_token: current_user.sf_security_token,
-                              client_id: current_user.sf_app_key,
-                              client_secret: current_user.sf_app_secret)
-    render json: sf_client.describe.select{|d| d["custom"]}.collect{|d| {label: d["label"], name: d["name"]}}
+  before_action :load_mapping
+
+  def create
+    salesforce_object = @mapping.salesforce_objects.new(salesforce_object_params)
+    if salesforce_object.save
+      render json: salesforce_object
+    else
+      render json: {errors: salesforce_object.errors.full_messages}, status: 422
+    end
+  end
+
+  protected
+
+  def load_mapping
+    @mapping = current_user.mappings.find params[:mapping_id]
+  end
+
+  def salesforce_object_params
+    params.require(:salesforce_object).permit(:name, :label)
   end
 
 end

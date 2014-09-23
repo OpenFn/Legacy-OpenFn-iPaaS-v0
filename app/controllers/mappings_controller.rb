@@ -12,10 +12,15 @@ class MappingsController < ApplicationController
   end
 
   def show
+    load_salesforce_objects
+
     respond_to do |format|
       format.html
       format.json {
-        render json: @mapping
+        render json: {
+          mapping: MappingSerializer.new(@mapping).as_json,
+          salesforceObjects: @salesforce_objects
+        }
       }
     end
   end
@@ -86,6 +91,16 @@ class MappingsController < ApplicationController
     )
   end
 
+  def load_salesforce_objects
+    sf_client = Restforce.new(
+      username: current_user.sf_username,
+      password: current_user.sf_password,
+      security_token: current_user.sf_security_token,
+      client_id: current_user.sf_app_key,
+      client_secret: current_user.sf_app_secret
+    )
+    @salesforce_objects = sf_client.describe.select{|d| d["custom"]}.collect{|d| {label: d["label"], name: d["name"]}}
+  end
 
   def ensure_valid_credentials
     redirect_to(:mappings) unless current_user.valid_credentials

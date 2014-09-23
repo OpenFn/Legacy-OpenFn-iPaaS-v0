@@ -32,14 +32,11 @@
 
       # Load the mapping
       Mapping.get(id: mappingId).$promise.then((response) ->
+        console.log response
 
         # Reverse the mapping into the format needed to display in the view
         $scope.mapping = response.mapping
-
-        # remove colors already used
-        for sfObject in $scope.mapping.mappedSfObjects
-          index = $scope.colors.indexOf(sfObject.color)
-          $scope.colors.splice(index, 1) if index != -1
+        $scope.salesforceObjects = response.salesforceObjects
       )
 
 

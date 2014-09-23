@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918145737) do
+ActiveRecord::Schema.define(version: 20140923160301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20140918145737) do
     t.integer  "mapping_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order"
   end
 
   add_index "salesforce_objects", ["mapping_id"], name: "index_salesforce_objects_on_mapping_id", using: :btree

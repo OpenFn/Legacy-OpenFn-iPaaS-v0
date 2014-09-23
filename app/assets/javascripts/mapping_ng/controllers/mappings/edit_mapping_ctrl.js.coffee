@@ -17,6 +17,7 @@
 
         # Reverse the mapping into the format needed to display in the view
         $scope.mapping = response.mapping
+        $scope.salesforceObjects = response.salesforceObjects
       )
 
     ########## WATCHES

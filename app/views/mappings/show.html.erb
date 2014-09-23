@@ -1,14 +1,3 @@
-<% content_for :sidebar do %>
-  <ul class="list-group">
-    <li class="list-group-item">
-      <%= link_to "New Mapping", [:new, :mapping] %>
-    </li>
-    <li class='list-group-item'>
-      <%= link_to "Edit Mapping", [:edit, @mapping] %>
-    </li>
-  </ul>
-<% end %>
-
 <ol class="breadcrumb">
   <li><%= link_to "Mappings", :mappings %></li>
   <li><%= @mapping.name %> (<%= @mapping.active? ? "Active" : "Inactive" %>)</li>

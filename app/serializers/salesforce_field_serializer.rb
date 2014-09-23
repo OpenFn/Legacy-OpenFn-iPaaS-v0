@@ -8,4 +8,9 @@ class SalesforceFieldSerializer < ActiveModel::Serializer
     :color,
     :lookup_object,
     :lookup_field
+
+
+  def color
+    object.salesforce_object.color
+  end
 end

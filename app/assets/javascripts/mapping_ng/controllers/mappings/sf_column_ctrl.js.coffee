@@ -25,66 +25,19 @@
         stop: (event, ui) ->
           #$scope.filterSfFields(event, ui)
 
-      SalesforceService.loadObjects (objects) ->
-        $scope.salesforceObjects = objects
-        $scope.itemsLoaded.sfForms = true
-        $scope.checkIfLoaded()
-
-    objectAlreadyPushed = (object) ->
-      for obj in $scope.mapping.mappedSfObjects
-        return true if obj.name is object.name
-
-    $scope.updateObject = (sfObject) ->
-      # unless sfObject.fields
-      #   sfObject.fields = []
-      #   sfObject.originalFields = []
-      #   SalesforceObjectField.query(salesforce_object_id: sfObject.name).$promise.then (sfFields) ->
-      #     for f in sfFields
-      #       f.color = sfObject.color
-      #       sfObject.fields.push f
-      #       sfObject.originalFields.push f
-
-
-    colorize = (sfObject) ->
-      # if (objectAlreadyPushed(sfObject))
-      #   for obj in $scope.mapping.mappedObjects
-      #     if obj.name is sfObject.name
-      #       sfObject.color = obj.fields[0].color
-      # else
-      sfObject.color = $scope.colors.pop()
-
     ########## WATCHES
 
     $scope.$watch "mapping.salesforceObjectName", (salesforceObjectId) ->
       if salesforceObjectId isnt undefined && salesforceObjectId isnt ''
-
-        # Create a new copy of this object
-        sfObject = angular.copy($scope.salesforceObjects.filter((sfObj) -> sfObj.name is salesforceObjectId)[0])
-        sfObject.salesforceFields = []
-
-        # Colorize it
-        colorize(sfObject)
-
-        # Load the fields for this object
-        SalesforceService.loadFields salesforceObjectId, (fields) ->
-          for field in fields
-            field.color = sfObject.color
-            field.object_name = sfObject.name
-            field.label_name = sfObject.label
-            field.objectOrder = $scope.mapping.salesforceObjects.length + 1
-            sfObject.salesforceFields.push field
-
-          # Add this new object to the mapping
-          $scope.mapping.salesforceObjects.push sfObject
+        SalesforceObject.save(
+          mapping_id: $scope.mapping.id
+          salesforce_object:
+            name: salesforceObjectId,
+        ).$promise.then (response) ->
+          $scope.mapping.salesforceObjects.push(response.salesforce_object)
 
           # Reset the chosen object name
           $scope.mapping.salesforceObjectName = ''
-
-
-      # $scope.$watch("sfFilter.field_name", () ->
-      #   filterSfFields() if $scope.mapping.mappedSfObjects.length > 0
-      # )
-
 
 
     ########## BEFORE FILTERS
