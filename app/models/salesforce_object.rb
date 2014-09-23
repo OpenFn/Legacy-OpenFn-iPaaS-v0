@@ -29,8 +29,7 @@ class SalesforceObject < ActiveRecord::Base
     )
 
     sf_fields = sf_client.
-      describe(self.name)["fields"].
-      select{|f| f["updateable"]}
+      describe(self.name)["fields"]
 
     sf_fields.each do |sf_field|
       self.salesforce_fields.create!(

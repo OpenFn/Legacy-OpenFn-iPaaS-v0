@@ -11,6 +11,10 @@ class SalesforceObjectsController < ApplicationController
     end
   end
 
+  def update
+    binding.pry
+  end
+
   protected
 
   def load_mapping
@@ -18,7 +22,7 @@ class SalesforceObjectsController < ApplicationController
   end
 
   def salesforce_object_params
-    params.require(:salesforce_object).permit(:name, :label)
+    params.require(:salesforce_object).permit(:name, :label, :order)
   end
 
 end

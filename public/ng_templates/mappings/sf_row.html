@@ -16,13 +16,13 @@
     </div>
 
     <ul class="nav nav-tabs">
-      <li ng-repeat="sfObject in mapping.salesforceObjects" ng-style="{'background-color': sfObject.color}" ng-click="updateObject(sfObject)">
-        <a href="#{{sfObject.name}}_{{$index}}" data-toggle="tab">{{sfObject.name}}</a>
+      <li ng-repeat="sfObject in mapping.salesforceObjects | orderBy:'order'" ng-style="{'background-color': sfObject.color}" ng-click="updateObject(sfObject)">
+        <a href="#{{sfObject.name}}_{{sfObject.order}}" data-toggle="tab">{{sfObject.name}} <sup>{{sfObject.order}}</sup></a>
       </li>
     </ul>
 
     <div class="tab-content">
-      <div ng-repeat="sfObject in mapping.salesforceObjects" class="tab-pane" id="{{sfObject.name}}_{{$index}}">
+      <div ng-repeat="sfObject in mapping.salesforceObjects" class="tab-pane" id="{{sfObject.name}}_{{sfObject.order}}">
         <div class='row'>
           <div class='col-md-12'>
             <!-- <a href="#" ng-click="updateObject(sfObject)" class='btn btn-success'>

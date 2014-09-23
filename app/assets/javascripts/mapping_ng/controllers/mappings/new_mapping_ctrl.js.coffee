@@ -16,7 +16,7 @@
     $scope.createMapping = ->
       MappingService.saveMapping($scope.mapping).$promise.then(
         (response) ->
-          window.location = "/mappings/#{response.mapping.id}"
+          window.location = "/mappings/#{response.id}"
         (error_response) ->
           $scope.errors = error_response.data.errors
       )

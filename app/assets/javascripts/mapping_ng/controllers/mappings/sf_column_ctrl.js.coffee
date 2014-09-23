@@ -23,7 +23,6 @@
         opacity: 0.8
         scroll: true
         stop: (event, ui) ->
-          #$scope.filterSfFields(event, ui)
 
     ########## WATCHES
 
@@ -33,6 +32,7 @@
           mapping_id: $scope.mapping.id
           salesforce_object:
             name: salesforceObjectId,
+            order: $scope.mapping.salesforceObjects.length + 1
         ).$promise.then (response) ->
           $scope.mapping.salesforceObjects.push(response.salesforce_object)
 

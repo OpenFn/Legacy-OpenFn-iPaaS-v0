@@ -13,6 +13,10 @@ SalesForce::Application.routes.draw do
     end
 
     resources :salesforce_objects
+    resource :odk_form
+    resources :odk_fields do
+      resources :odk_field_salesforce_fields
+    end
 
     collection do
       get :get_odk_forms
