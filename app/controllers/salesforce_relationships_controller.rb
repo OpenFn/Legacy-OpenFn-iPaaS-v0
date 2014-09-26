@@ -12,6 +12,15 @@ class SalesforceRelationshipsController < ApplicationController
     end
   end
 
+  def destroy
+    @salesforce_relationship = @salesforce_object.salesforce_relationships.find_by(salesforce_field_id: params[:id])
+    if @salesforce_relationship.destroy
+      render json: true
+    else
+      render json: {errors: @salesforce_relationship.errors.full_messages}, status: 422
+    end
+  end
+
   protected
 
   def load_mapping

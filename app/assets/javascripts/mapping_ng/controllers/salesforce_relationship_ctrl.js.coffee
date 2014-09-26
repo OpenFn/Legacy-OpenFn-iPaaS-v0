@@ -7,9 +7,9 @@
 
     ########## FUNCTIONS
 
-    $scope.deleteField = (sfField) ->
-      i = $scope.odkFormField.salesforceFields.indexOf(sfField)
-      $scope.odkFormField.salesforceFields.splice(i, 1)
+    $scope.deleteRelationship = (relationshipField) ->
+      i = $scope.salesforceObject.relationshipFields.indexOf(relationshipField)
+      $scope.salesforceObject.relationshipFields.splice(i, 1)
 
     ########## WATCHES
 
@@ -31,7 +31,7 @@
         deletedField = oldValue.diff(newValue)[0]
         SalesforceRelationship.delete(
           mapping_id: $scope.mapping.id
-          salesforce_field_id: $scope.salesforceObject.id
+          salesforce_object_id: $scope.salesforceObject.id
           id: deletedField.id
         )
 
