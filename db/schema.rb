@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140923202917) do
+ActiveRecord::Schema.define(version: 20140925191856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,16 @@ ActiveRecord::Schema.define(version: 20140923202917) do
   end
 
   add_index "salesforce_objects", ["mapping_id"], name: "index_salesforce_objects_on_mapping_id", using: :btree
+
+  create_table "salesforce_relationships", force: true do |t|
+    t.integer  "salesforce_object_id"
+    t.integer  "salesforce_field_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "salesforce_relationships", ["salesforce_field_id"], name: "index_salesforce_relationships_on_salesforce_field_id", using: :btree
+  add_index "salesforce_relationships", ["salesforce_object_id"], name: "index_salesforce_relationships_on_salesforce_object_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                             null: false

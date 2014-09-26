@@ -1,36 +1,30 @@
-<div>
-  <h4>ODK Form Object</h4>
+<table class='table'>
+  <tbody>
+    <tr ng-repeat="salesforceObject in mapping.salesforceObjects" ng-style="{'background-color': salesforceObject.color}" ng-controller="SalesforceRelationshipCtrl">
+      <td>
+        {{salesforceObject.name}}
+      </td>
+      <td>
+        <ul class="list-group sortable-location sf-connected-sortable sf-target" ui-sortable="sfSortableOptions" ng-model="salesforceObject.relationshipFields">
+          <li class="list-group-item sf-field" ng-repeat="relationshipField in salesforceObject.relationshipFields" ng-style="{'background-color': relationshipField.color}">
+            {{relationshipField.field_name}}
+            <!-- <a href="#" class='glyphicon glyphicon-remove white' ng-click="deleteField(sfField)"></a> -->
+          </li>
+        </ul>
+      </td>
+    </tr>
 
-<!--   <div class='row'>
-    <div class='col-md-8'>
-      <div class="form-group">
-        <input ng-model="odkFilter.field_name" type='text' placeholder="Filter ODK fields" class='form-control' />
-      </div>
-    </div>
-  </div> -->
-
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>ODK Field Name</th>
-        <th>ODK Field Type</th>
-        <th>Salesforce Field</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="odkFormField in mapping.odk_form.odk_fields | filter:odkFilter" ng-controller="OdkFieldCtrl">
-        <td style="width: 50%" ng-style="odkFormField.displayStyle">{{odkFormField.field_name}}</td>
-        <td style="width: 20%">{{odkFormField.field_type}}</td>
-        <td style='width: 30%'>
-          <ul class="list-group sortable-location sf-connected-sortable sf-target" ui-sortable="sfSortableOptions" ng-model="odkFormField.salesforceFields">
-            <li class="list-group-item" ng-repeat="sfField in odkFormField.salesforceFields" ng-style="{'background-color': sfField.color}">
-              {{sfField.field_name}}
-              <a href="#" class='glyphicon glyphicon-remove white' ng-click="deleteField(sfField)"></a>
-            </li>
-          </ul>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-</div>
+    <tr ng-repeat="odkFormField in mapping.odk_form.odk_fields | filter:odkFilter" ng-controller="OdkFieldCtrl">
+      <td style="width: 50%" ng-style="odkFormField.displayStyle">{{odkFormField.field_name}}</td>
+      <td style="width: 20%">{{odkFormField.field_type}}</td>
+      <td style='width: 30%'>
+        <ul class="list-group sortable-location sf-connected-sortable sf-target" ui-sortable="sfSortableOptions" ng-model="odkFormField.salesforceFields">
+          <li class="list-group-item sf-field" ng-repeat="sfField in odkFormField.salesforceFields" ng-style="{'background-color': sfField.color}">
+            {{sfField.field_name}}
+            <a href="#" class='glyphicon glyphicon-remove white' ng-click="deleteField(sfField)"></a>
+          </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>

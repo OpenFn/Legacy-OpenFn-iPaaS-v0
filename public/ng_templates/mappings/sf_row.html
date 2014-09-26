@@ -8,15 +8,16 @@
           <option value=""></option>
         </select>
       </div>
-      <div class='col-md-8'>
+      <!-- <div class='col-md-8'>
         <div class="form-group">
           <input ng-model="sfFilter.field_name" type='text' placeholder="Filter SF fields" class='form-control' />
         </div>
-      </div>
+      </div> -->
     </div>
+    <br />
 
     <ul class="nav nav-tabs">
-      <li ng-repeat="sfObject in mapping.salesforceObjects | orderBy:'order'" ng-style="{'background-color': sfObject.color}">
+      <li ng-repeat="sfObject in mapping.salesforceObjects | orderBy:'order'" ng-style="{'background-color': sfObject.color}" class='sf-field'>
         <a href="#{{sfObject.name}}_{{sfObject.order}}" data-toggle="tab">{{sfObject.name}} <sup>{{sfObject.order}} <span ng-show="sfObject.is_repeat">r</span></sup></a>
       </li>
     </ul>
@@ -31,7 +32,7 @@
 
         <div class='external-field-holder'>
           <ul class='list-group sf-connected-sortable sortable-location' ui-sortable="sfSortableOptions" ng-model="sfObject.salesforceFields">
-            <li class='list-group-item' ng-repeat="sfField in sfObject.salesforceFields | filter:sfFilter" ng-style="{'background-color': sfField.color}">
+            <li class='list-group-item sf-field' ng-repeat="sfField in sfObject.salesforceFields | filter:sfFilter" ng-style="{'background-color': sfField.color}">
               {{sfField.field_name}}
             </li>
           </ul>
@@ -40,3 +41,21 @@
     </div>
   </div>
 </div>
+
+<div class='row odk-filter-row'>
+  <div class='col-md-8'>
+    <div class="form-group">
+      <input ng-model="odkFilter.field_name" type='text' placeholder="Filter ODK fields" class='form-control' />
+    </div>
+  </div>
+</div>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th width="60%">ODK Field Name</th>
+      <th width="20%">ODK Field Type</th>
+      <th width="20%">Salesforce Field</th>
+    </tr>
+  </thead>
+</table>

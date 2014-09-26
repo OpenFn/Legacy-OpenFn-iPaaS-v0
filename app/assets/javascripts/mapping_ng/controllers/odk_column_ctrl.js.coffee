@@ -5,8 +5,6 @@
 
     ########## VARIABLE ASSIGNMENT
 
-    $scope.odkFilter = {}
-
     ########## FUNCTIONS
 
     # $scope.getOdkFields = (fieldName) ->

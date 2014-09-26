@@ -12,7 +12,9 @@ SalesForce::Application.routes.draw do
       post :clone
     end
 
-    resources :salesforce_objects
+    resources :salesforce_objects, only: [:create, :destroy] do
+      resources :salesforce_relationships, only: [:create, :destroy]
+    end
     resource :odk_form
     resources :odk_fields do
       resources :odk_field_salesforce_fields
@@ -25,14 +27,6 @@ SalesForce::Application.routes.draw do
   end
 
   resources :users
-
-  resources :odk_forms, only: [:index] do
-    resources :odk_form_fields, only: [:index]
-  end
-
-  resources :salesforce_objects, only: [:index] do
-    resources :salesforce_object_fields, only: [:index]
-  end
 
   get  "signup", to: "users#new",        as: :signup
   get  "login",  to: "user_sessions#new",     as: :login

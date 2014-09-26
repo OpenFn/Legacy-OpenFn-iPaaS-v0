@@ -6,6 +6,7 @@
     ########## VARIABLE ASSIGNMENT
 
     $scope.mapping = {}
+    $scope.odkFilter = {}
 
     ########## FUNCTIONS
 

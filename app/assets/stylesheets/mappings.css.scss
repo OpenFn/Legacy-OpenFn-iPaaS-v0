@@ -87,3 +87,17 @@ input.destroy-field {
   width: 80%;
   z-index: 1000;
 }
+
+.sf-field {
+  color: white !important;
+  font-weight: bolder;
+  text-shadow: -1px 0 #333333, 0 1px #333333, 1px 0 #333333, 0 -1px #333333;
+
+  a {
+    color: white !important;
+    font-weight: bolder;
+    text-shadow: -1px 0 #333333, 0 1px #333333, 1px 0 #333333, 0 -1px #333333;
+  }
+}
+
+
