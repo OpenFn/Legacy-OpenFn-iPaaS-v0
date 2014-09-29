@@ -1,7 +1,7 @@
 class SalesforceObjectsController < ApplicationController
 
   before_action :load_mapping
-  before_action :load_salesforce_object, only: [:update]
+  before_action :load_salesforce_object, only: [:update, :destroy]
 
   def create
     salesforce_object = @mapping.salesforce_objects.new(salesforce_object_params)
@@ -15,6 +15,14 @@ class SalesforceObjectsController < ApplicationController
   def update
     if @salesforce_object.update(salesforce_object_params)
       render json: @salesforce_object
+    else
+      render json: {errors: @salesforce_object.errors.full_messages}, status: 422
+    end
+  end
+
+  def destroy
+    if @salesforce_object.destroy
+      render json: true
     else
       render json: {errors: @salesforce_object.errors.full_messages}, status: 422
     end
