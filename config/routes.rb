@@ -12,7 +12,7 @@ SalesForce::Application.routes.draw do
       post :clone
     end
 
-    resources :salesforce_objects, only: [:create, :destroy] do
+    resources :salesforce_objects, only: [:create, :destroy, :update] do
       resources :salesforce_relationships, only: [:create, :destroy]
     end
     resource :odk_form

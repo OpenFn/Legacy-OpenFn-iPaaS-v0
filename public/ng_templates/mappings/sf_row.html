@@ -15,9 +15,8 @@
       </div>
     </div>
     <br />
-
-    <ul class="nav nav-tabs">
-      <li ng-repeat="sfObject in mapping.salesforceObjects | orderBy:'order'" ng-style="{'background-color': sfObject.color}" class='sf-field'>
+    <ul class="nav nav-tabs" ui-sortable="sfObjectSortableOptions" ng-model="mapping.salesforceObjects">
+      <li ng-repeat="sfObject in mapping.salesforceObjects" ng-style="{'background-color': sfObject.color}" class='sf-field'>
         <a href="#{{sfObject.name}}_{{sfObject.order}}" data-toggle="tab" ng-click="setViewingSfObject(sfObject)">
           {{sfObject.name}}
           <sup>{{sfObject.order}}

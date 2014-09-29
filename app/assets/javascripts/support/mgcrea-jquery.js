@@ -24,10 +24,12 @@ angular.module('mgcrea.jquery', [])
       var el = this instanceof HTMLElement ? this : this[0];
       var computedStyle = window.getComputedStyle(el);
       var value = el.offsetHeight;
-      if(outer) {
-        value += parseFloat(computedStyle.marginTop) + parseFloat(computedStyle.marginBottom);
-      } else {
-        value -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom) + parseFloat(computedStyle.borderTopWidth) + parseFloat(computedStyle.borderBottomWidth);
+      if(computedStyle) {
+        if(outer) {
+          value += parseFloat(computedStyle.marginTop) + parseFloat(computedStyle.marginBottom);
+        } else {
+          value -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom) + parseFloat(computedStyle.borderTopWidth) + parseFloat(computedStyle.borderBottomWidth);
+        }
       }
       return value;
     };
@@ -36,10 +38,12 @@ angular.module('mgcrea.jquery', [])
       var el = this instanceof HTMLElement ? this : this[0];
       var computedStyle = window.getComputedStyle(el);
       var value = el.offsetWidth;
-      if(outer) {
-        value += parseFloat(computedStyle.marginLeft) + parseFloat(computedStyle.marginRight);
-      } else {
-        value -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight) + parseFloat(computedStyle.borderLeftWidth) + parseFloat(computedStyle.borderRightWidth);
+      if(computedStyle) {
+        if(outer) {
+          value += parseFloat(computedStyle.marginLeft) + parseFloat(computedStyle.marginRight);
+        } else {
+          value -= parseFloat(computedStyle.paddingLeft) + parseFloat(computedStyle.paddingRight) + parseFloat(computedStyle.borderLeftWidth) + parseFloat(computedStyle.borderRightWidth);
+        }
       }
       return value;
     };

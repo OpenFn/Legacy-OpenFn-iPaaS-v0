@@ -19,6 +19,18 @@
       else
        sfObject.salesforceFields = angular.copy(sfObject.originalFields)
 
+    $scope.updateSalesforceObjectOrder = ->
+      for sfObject, index in $scope.mapping.salesforceObjects
+        SalesforceObject.update(
+          mapping_id: $scope.mapping.id,
+          id: sfObject.id
+          salesforce_object:
+            order: index + 1
+        )
+
+        sfObject.order = index + 1
+
+
     $scope.prepare = ->
       $scope.sfSortableOptions =
         connectWith: '.sf-connected-sortable'
@@ -27,6 +39,10 @@
         scroll: true
         stop: (event, ui) ->
           $scope.filterSfFields(event, ui)
+
+      $scope.sfObjectSortableOptions =
+        stop: (event, ui) ->
+          $scope.updateSalesforceObjectOrder()
 
       for sfObject in $scope.mapping.salesforceObjects
         sfObject.originalFields = angular.copy(sfObject.salesforceFields)
