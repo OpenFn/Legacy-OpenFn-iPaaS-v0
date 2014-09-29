@@ -1,14 +1,13 @@
 <tr class="<% if mapping.active? %> success <% end %>">
   <td><%= mapping.name %></td>
   <td>
-    <%= link_to "View", mapping, class: 'btn btn-success' %>
-    <%= link_to "Edit", [:edit, mapping], class: 'btn btn-success' %>
-  </td>
-  <td>
     <% if mapping.active? %>
       active
     <% else %>
       inactive
     <% end %>
+  </td>
+  <td>
+    <%= link_to "View", mapping, class: 'btn btn-success' %>
   </td>
 </tr>

@@ -21,6 +21,12 @@
         $scope.salesforceObjects = response.salesforceObjects
       )
 
+    $scope.onAffix = ->
+      angular.element('.odk-row').css('marginTop', angular.element('.sf-row').outerHeight() + 115 + 'px')
+
+    $scope.onUnaffix = ->
+      angular.element('.odk-row').css('marginTop', '0px')
+
     ########## WATCHES
 
     ########## BEFORE FILTERS
