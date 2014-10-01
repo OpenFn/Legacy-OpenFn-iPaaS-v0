@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140925191856) do
+ActiveRecord::Schema.define(version: 20140929194239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20140925191856) do
     t.integer  "salesforce_field_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "lookup_field_name"
   end
 
   add_index "odk_field_salesforce_fields", ["odk_field_id"], name: "index_odk_field_salesforce_fields_on_odk_field_id", using: :btree

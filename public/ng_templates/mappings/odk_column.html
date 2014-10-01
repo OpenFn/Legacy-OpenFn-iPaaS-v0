@@ -22,6 +22,10 @@
           <li class="list-group-item sf-field" ng-repeat="sfField in odkFormField.salesforceFields" ng-style="{'background-color': sfField.color}">
             {{sfField.field_name}}
             <a href="#" class='glyphicon glyphicon-remove white' ng-click="deleteField(sfField)"></a>
+
+            <select ng-change="updateLookupField(odkFormField, sfField)" ng-model="sfField.lookupFieldName" ng-options="field.name as field.name for field in sfField.lookupFields" class='form-control' ng-show="sfField.data_type == 'reference'">
+              <option value=""></option>
+            </select>
           </li>
         </ul>
       </td>

@@ -25,7 +25,7 @@
             salesforce_field_id: newField.id
         )
 
-      else if newValue < oldValue
+      else if newValue.length < oldValue.length
         # Deleting an existing field
 
         deletedField = oldValue.diff(newValue)[0]

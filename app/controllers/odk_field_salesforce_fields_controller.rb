@@ -21,6 +21,15 @@ class OdkFieldSalesforceFieldsController < ApplicationController
     end
   end
 
+  def update
+    @odk_field_salesforce_field = @odk_field.odk_field_salesforce_fields.find_by(salesforce_field_id: params[:id])
+    if @odk_field_salesforce_field.update(salesforce_field_params)
+      render json: true
+    else
+      render json: {errors: @odk_field_salesforce_field.errors.full_messages}, status: 422
+    end
+  end
+
   protected
 
   def load_mapping
@@ -32,7 +41,7 @@ class OdkFieldSalesforceFieldsController < ApplicationController
   end
 
   def salesforce_field_params
-    params.require(:odk_field_salesforce_field).permit(:salesforce_field_id)
+    params.require(:odk_field_salesforce_field).permit(:salesforce_field_id, :lookup_field_name)
   end
 
 end

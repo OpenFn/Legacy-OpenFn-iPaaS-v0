@@ -29,8 +29,7 @@ class SalesforceObject < ActiveRecord::Base
       client_secret: self.mapping.user.sf_app_secret
     )
 
-    sf_fields = sf_client.
-      describe(self.name)["fields"]
+    sf_fields = sf_client.describe(self.name)["fields"]
 
     sf_fields.each do |sf_field|
       self.salesforce_fields.create!(

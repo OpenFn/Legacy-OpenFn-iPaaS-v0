@@ -13,6 +13,7 @@ SalesForce::Application.routes.draw do
     end
 
     resources :salesforce_objects, only: [:create, :destroy, :update] do
+      resources :salesforce_object_fields, only: [:index]
       resources :salesforce_relationships, only: [:create, :destroy]
     end
     resource :odk_form
