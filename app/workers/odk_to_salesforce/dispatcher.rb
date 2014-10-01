@@ -3,17 +3,19 @@ module OdkToSalesforce
 
     @queue = :importer
 
-    def self.perform(mapping_id, limit = 500, user)
+    def self.perform(mapping_id, limit = 500)
       mapping = Mapping.find mapping_id
-      new.perform(mapping, limit, user)
+      new.perform(mapping, limit)
     end
 
-    def perform(mapping, limit, user)
+    def perform(mapping, limit)
       # Load the log of the import for this ODK form
-      import = Import.find_or_create_by(odk_formid: mapping.odk_formid)
+      import = Import.find_or_create_by(odk_formid: mapping.odk_form.name)
 
       # => Load the ODK information
-      odk = OdkToSalesforce::Odk.new(mapping.odk_formid, import, limit, user)
+      odk = OdkToSalesforce::Odk.new(mapping.odk_form.name, import, limit, mapping.user)
+
+      restforce_connection = RestforceService.new(mapping.user).connection
 
       # => Get the submissions from the ODK object
       # => The submissions only come back as IDs
@@ -25,13 +27,13 @@ module OdkToSalesforce
       if submissions.size > 0
 
         # => Create a converter object from our mapping
-        converter = OdkToSalesforce::Converter.new(mapping)
+        #converter = OdkToSalesforce::Converter.new(mapping)
 
         # => Load the Salesforce information
-        salesforce = OdkToSalesforce::Salesforce.new(user, mapping)
+        #salesforce = OdkToSalesforce::Salesforce.new(user, mapping)
 
         # => Create a runner object that will do the processing
-        runner = OdkToSalesforce::Runner.new(salesforce.relationships, user)
+        #runner = OdkToSalesforce::Runner.new(salesforce.relationships, user)
 
         # => Go through each submission to be processed
         submissions.each_with_index do |submission, i|
@@ -39,34 +41,43 @@ module OdkToSalesforce
           # => Get the ODK Data for this submission from the ID
           odk_data = odk.fetch_submission(submission)
 
-          # => Use the converter to take the mapping and ODK data and create a SF Import Data object
-          sf_data = converter.convert(odk_data)
+          #SalesforceObjects::ImportObject.new(@rf, node: node, attributes: constraints)
 
-          puts sf_data.inspect
-
-          # => Create a list of ImportObjects
-          bottom_objects = []
-
-          # => Go through each branch of the SF object tree
-          salesforce.leaf_nodes.each_with_index do |k, ii|
-            puts "\n\n-> dispatching submission #{i + 1} of #{submissions.length} on leaf node #{ii + 1} of #{salesforce.leaf_nodes.size} (#{k})".yellow
-
-            # => We have the bottom object with all it's parent relationships
-            # => Add it to the array of bottom objects
-
-            # => Remove if statement and run it on all leaf nodes
-            # => This allows mappings that don't have a bottom object in it, to still traverse the
-            # => bottom object to try and create any parents it might have.
-
-            # => We always start at the bottom of a tree and try to create upwards.  If there
-            # => are no bottom objects, parents won't be attempted.
-            bottom_objects << runner.run(k.to_sym, sf_data) # if sf_data.has_key?(k.to_sym)
+          mapping.salesforce_objects.order(:order).each do |salesforce_object|
+            salesforce_object.salesforce_fields.joins(:odk_fields).each do |salesforce_field|
+              salesforce_field.set_field_content_from_odk_data(odk_data)
+              binding.pry
+            end
           end
 
-          # => Process all the ImportObjects
-          process_bottom_objects(bottom_objects)
+          # => Use the converter to take the mapping and ODK data and create a SF Import Data object
+          #sf_data = converter.convert(odk_data)
 
-          import.update(last_uuid: submission, num_imported: import.num_imported + 1)
+          #puts sf_data.inspect
+
+          # => Create a list of ImportObjects
+          #bottom_objects = []
+
+          # => Go through each branch of the SF object tree
+          # salesforce.leaf_nodes.each_with_index do |k, ii|
+          #   puts "\n\n-> dispatching submission #{i + 1} of #{submissions.length} on leaf node #{ii + 1} of #{salesforce.leaf_nodes.size} (#{k})".yellow
+
+          #   # => We have the bottom object with all it's parent relationships
+          #   # => Add it to the array of bottom objects
+
+          #   # => Remove if statement and run it on all leaf nodes
+          #   # => This allows mappings that don't have a bottom object in it, to still traverse the
+          #   # => bottom object to try and create any parents it might have.
+
+          #   # => We always start at the bottom of a tree and try to create upwards.  If there
+          #   # => are no bottom objects, parents won't be attempted.
+          #   bottom_objects << runner.run(k.to_sym, sf_data) # if sf_data.has_key?(k.to_sym)
+          # end
+
+          # # => Process all the ImportObjects
+          # process_bottom_objects(bottom_objects)
+
+          # import.update(last_uuid: submission, num_imported: import.num_imported + 1)
         end
       end
     end

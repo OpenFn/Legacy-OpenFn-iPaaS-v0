@@ -92,13 +92,7 @@ class MappingsController < ApplicationController
   end
 
   def load_salesforce_objects
-    sf_client = Restforce.new(
-      username: current_user.sf_username,
-      password: current_user.sf_password,
-      security_token: current_user.sf_security_token,
-      client_id: current_user.sf_app_key,
-      client_secret: current_user.sf_app_secret
-    )
+    sf_client = RestforceService.new(current_user).connection
     @salesforce_objects = sf_client.describe.select{|d| d["custom"]}.collect{|d| {label: d["label"], name: d["name"]}}
   end
 

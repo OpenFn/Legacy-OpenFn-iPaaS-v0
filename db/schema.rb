@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140929194239) do
+ActiveRecord::Schema.define(version: 20141001193054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,7 @@ ActiveRecord::Schema.define(version: 20140929194239) do
     t.string   "sf_app_key"
     t.string   "odk_username"
     t.string   "odk_password"
+    t.string   "sf_host"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

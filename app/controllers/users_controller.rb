@@ -46,12 +46,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password,
-                                         :password_confirmation,
-                                         :odk_url, :sf_security_token,
-                                         :sf_username, :sf_password,
-                                         :sf_app_key, :sf_app_secret,
-                                         :odk_username, :odk_password)
+    params.require(:user).permit(
+      :email, :password, :password_confirmation,
+      :odk_url, :odk_username, :odk_password,
+      :sf_security_token, :sf_username, :sf_password, :sf_app_key, :sf_app_secret, :sf_host
+    )
   end
 
   def set_user_credentials_and_flash
@@ -75,20 +74,16 @@ class UsersController < ApplicationController
   def check_odk_credentials
     begin
       odk = OdkAggregate::Connection.new(@user.odk_url, @user.odk_username, @user.odk_password)
-      odk.all_forms 
+      odk.all_forms
       return true
     rescue
-      return false 
+      return false
     end
   end
 
   def check_sf_credentials
     begin
-      rf = Restforce.new(username: @user.sf_username,
-                          password: @user.sf_password,
-                          security_token: @user.sf_security_token,
-                          client_id: @user.sf_app_key,
-                          client_secret: @user.sf_app_secret)
+      rf = RestforceService.new(@user).connection
       rf.describe
       return true
     rescue
