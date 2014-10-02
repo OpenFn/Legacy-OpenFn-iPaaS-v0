@@ -5,35 +5,77 @@ module OdkToSalesforce
   # odk_form -> { sf_object: { sf_field: "value" } }
   class Converter
 
-    def initialize mapping
-      @mapping = mapping
-    end
+    def get_repeat_field_root(odk_field, odk_data)
+      field_nesting = odk_field.field_name.split("/").reject { |f| f.empty? }
 
-    def convert odk_data
-      data = {}
+      arr = []
 
-      @mapping.salesforce_fields.joins(:odk_fields).each do |sf_field|
-        sf_object = sf_field.object_name.to_sym
-        sf_key = sf_field.field_name.to_sym
-        data[sf_object] = {} unless data.has_key? sf_object
-
-        # => include the value and the data_type from SF
-        if sf_field.odk_fields.size == 1
-          data[sf_object][sf_key] = get_field_content(sf_field.odk_fields.first, odk_data, sf_field.data_type)
-        else
-          odk_fields = []
-          sf_field.odk_fields.each do |field|
-            odk_fields << get_field_content(field, odk_data, sf_field.data_type) 
+      field_nesting.each do |node|
+        if odk_data.is_a?(Array)
+          odk_data.each do |data|
+            arr << field_nesting[0...-1].reverse.inject(data){|sum, ele| {ele => sum}}
           end
-          data[sf_object][sf_key] = odk_fields
+        elsif odk_data.has_key?(node)
+          odk_data = odk_data[node]
         end
       end
 
-      # NOTE: temporarty hackity hack hack
-      data = append_staff_member_type_id(data)
-
-      data
+      arr
     end
+
+    def get_field_content(odk_field, odk_data)
+
+      # given "/first_level/second_level"
+      # -> [ "first_level", "second_level", etc. ]
+      field_nesting = odk_field.field_name.split("/").reject { |f| f.empty? }
+
+      # iterate until data["first_level"]["second_level"] is reached
+      value = odk_data
+      field_nesting.each do |key|
+        if value.kind_of?(Array)
+          # oldvalue = value
+          # value = []
+          # oldvalue.each do |val|
+          #   # => Skip this record if all it's values are empty
+          #   # => There is no need to import a completely empty record
+          #   # => TODO: Investigate why empty records are being pulled in
+          #   unless val.values.compact.empty?
+          #     value << get_field_content(odk_field, val, data_type)
+          #   end
+          # end
+        elsif value.has_key?(key)
+          value = value[key]
+        end
+      end
+      value = transform_value(value, odk_field.field_type) unless value.is_a?(Array)
+      value
+    end
+
+    # def convert odk_data
+    #   data = {}
+
+    #   @mapping.salesforce_fields.joins(:odk_fields).each do |sf_field|
+    #     sf_object = sf_field.object_name.to_sym
+    #     sf_key = sf_field.field_name.to_sym
+    #     data[sf_object] = {} unless data.has_key? sf_object
+
+    #     # => include the value and the data_type from SF
+    #     if sf_field.odk_fields.size == 1
+    #       data[sf_object][sf_key] = get_field_content(sf_field.odk_fields.first, odk_data, sf_field.data_type)
+    #     else
+    #       odk_fields = []
+    #       sf_field.odk_fields.each do |field|
+    #         odk_fields << get_field_content(field, odk_data, sf_field.data_type)
+    #       end
+    #       data[sf_object][sf_key] = odk_fields
+    #     end
+    #   end
+
+    #   # NOTE: temporarty hackity hack hack
+    #   data = append_staff_member_type_id(data)
+
+    #   data
+    # end
 
     private
 
@@ -44,34 +86,6 @@ module OdkToSalesforce
         data[:staff_member__c][:RecordTypeId] = "01290000000hbFGAAY"
       end
       data
-    end
-
-    def get_field_content odk_field, odk_data, data_type
-
-      # given "/first_level/second_level"
-      # -> [ "first_level", "second_level", etc. ]
-      field_nesting = odk_field.field_name.split("/").reject { |f| f.empty? }
-
-      # iterate until data["first_level"]["second_level"] is reached
-      value = odk_data
-      field_nesting.each do |key|
-        if value.kind_of?(Array)
-          oldvalue = value
-          value = []
-          oldvalue.each do |val|
-            # => Skip this record if all it's values are empty
-            # => There is no need to import a completely empty record
-            # => TODO: Investigate why empty records are being pulled in
-            unless val.values.compact.empty?
-              value << get_field_content(odk_field, val, data_type)
-            end
-          end
-        elsif value.has_key?(key)
-          value = value[key]
-        end
-      end
-      value = transform_value(value, data_type) unless value.is_a?(Array)
-      value
     end
 
     def transform_value(value, data_type)

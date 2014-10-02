@@ -5,6 +5,8 @@ class SalesforceObject < ActiveRecord::Base
     "#F49AC2", "#F6989D", "#C4DF9B", "#A2D39C", "#82CA9D", "#7BCDC8", "#6ECFF6", "#7EA7D8"
   ]
 
+  attr_accessor :salesforce_id, :salesforce_attributes
+
   belongs_to :mapping
   has_many :salesforce_fields, dependent: :destroy
   has_many :salesforce_relationships, dependent: :destroy
@@ -21,13 +23,7 @@ class SalesforceObject < ActiveRecord::Base
   end
 
   def create_fields
-    sf_client = Restforce.new(
-      username: self.mapping.user.sf_username,
-      password: self.mapping.user.sf_password,
-      security_token: self.mapping.user.sf_security_token,
-      client_id: self.mapping.user.sf_app_key,
-      client_secret: self.mapping.user.sf_app_secret
-    )
+    sf_client = RestforceService.new(self.mapping.user).connection
 
     sf_fields = sf_client.describe(self.name)["fields"]
 
