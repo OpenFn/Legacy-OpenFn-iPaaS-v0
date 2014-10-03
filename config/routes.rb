@@ -28,6 +28,7 @@ SalesForce::Application.routes.draw do
   end
 
   resources :users
+  resources :odk_forms, only: [:index]
 
   get  "signup", to: "users#new",        as: :signup
   get  "login",  to: "user_sessions#new",     as: :login
