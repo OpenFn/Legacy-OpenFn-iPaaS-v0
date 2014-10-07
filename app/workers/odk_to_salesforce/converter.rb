@@ -51,32 +51,6 @@ module OdkToSalesforce
       value
     end
 
-    # def convert odk_data
-    #   data = {}
-
-    #   @mapping.salesforce_fields.joins(:odk_fields).each do |sf_field|
-    #     sf_object = sf_field.object_name.to_sym
-    #     sf_key = sf_field.field_name.to_sym
-    #     data[sf_object] = {} unless data.has_key? sf_object
-
-    #     # => include the value and the data_type from SF
-    #     if sf_field.odk_fields.size == 1
-    #       data[sf_object][sf_key] = get_field_content(sf_field.odk_fields.first, odk_data, sf_field.data_type)
-    #     else
-    #       odk_fields = []
-    #       sf_field.odk_fields.each do |field|
-    #         odk_fields << get_field_content(field, odk_data, sf_field.data_type)
-    #       end
-    #       data[sf_object][sf_key] = odk_fields
-    #     end
-    #   end
-
-    #   # NOTE: temporarty hackity hack hack
-    #   data = append_staff_member_type_id(data)
-
-    #   data
-    # end
-
     private
 
     # temporaryly hardcode all staff members as HQ Staff while issue is

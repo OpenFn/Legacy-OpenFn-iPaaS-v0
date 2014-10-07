@@ -10,5 +10,4 @@ class Mapping < ActiveRecord::Base
 
   validates :name, presence: true
   validates :odk_form, presence: true
-
 end

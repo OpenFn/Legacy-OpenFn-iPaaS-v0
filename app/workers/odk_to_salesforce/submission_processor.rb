@@ -13,7 +13,7 @@ module OdkToSalesforce
     end
 
     def perform(submission_data)
-      salesforce_objects = @mapping.salesforce_objects.order(:order)
+      salesforce_objects = @mapping.salesforce_objects
 
       # => Loop through each SalesforceObject in the mapping
       salesforce_objects.each do |salesforce_object|

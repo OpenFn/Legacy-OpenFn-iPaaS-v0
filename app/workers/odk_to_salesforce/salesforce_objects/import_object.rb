@@ -51,34 +51,6 @@ module OdkToSalesforce
           end
         end
       end
-
-      protected
-
-      # If a field that is also a parent has a value,
-      # then perform a lookup on that value.
-      def find_lookup_fields
-        puts "-> Looking up parents"
-
-        @node[:parents].each do |key, values|
-          # value, not key, because value is the name of the field in
-          # the child object.
-          values.each do |value|
-            if @attributes.has_key?(value[:name].to_sym)
-              field_value = @attributes[value[:name].to_sym]
-              begin
-                @attributes[value[:name].to_sym] = @rf.query("SELECT Id FROM #{key} WHERE #{value[:lookup_field]} = '#{field_value}'").first.Id
-              rescue
-                # TODO: log failed lookups
-                puts "#{key} #{field_value} not found".red
-                return false
-              end
-            end
-          end
-        end
-
-        return true
-      end
-
     end
   end
 end

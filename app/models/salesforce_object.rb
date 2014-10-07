@@ -15,6 +15,8 @@ class SalesforceObject < ActiveRecord::Base
   after_create :set_color
   after_create :create_fields
 
+  default_scope { order("salesforce_objects.order ASC") }
+
   protected
 
   def set_color

@@ -42,6 +42,9 @@
           $scope.filterSfFields(event, ui)
 
       $scope.sfObjectSortableOptions =
+        revert: true
+        opacity: 0.8
+        scroll: true
         stop: (event, ui) ->
           $scope.updateSalesforceObjectOrder()
 
