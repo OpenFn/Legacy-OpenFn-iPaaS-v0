@@ -23,7 +23,8 @@
           salesforce_object_id: $scope.salesforceObject.id
           salesforce_relationship:
             salesforce_field_id: newField.id
-        )
+        ).$promise.then () ->
+          $scope.$emit "mapping:saved"
 
       else if newValue.length < oldValue.length
         # Deleting an existing field
@@ -33,7 +34,8 @@
           mapping_id: $scope.mapping.id
           salesforce_object_id: $scope.salesforceObject.id
           id: deletedField.id
-        )
+        ).$promise.then () ->
+          $scope.$emit "mapping:saved"
 
     ########## BEFORE FILTERS
 

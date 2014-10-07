@@ -1,25 +1,16 @@
 'use strict'
 
-@controllerModule.controller 'EditMappingCtrl', ['$scope', 'Mapping',
-  ($scope, Mapping) ->
+@controllerModule.controller 'EditMappingCtrl', ['$scope', '$timeout', 'mappingResponse', 'Mapping',
+  ($scope, $timeout, mappingResponse, Mapping) ->
 
     ########## VARIABLE ASSIGNMENT
 
-    $scope.mapping = {}
+    # Reverse the mapping into the format needed to display in the view
+    $scope.mapping = mappingResponse.mapping
+    $scope.salesforceObjects = mappingResponse.salesforceObjects
     $scope.odkFilter = {}
 
     ########## FUNCTIONS
-
-    # This is called on the edit view
-    $scope.init = (mappingId) ->
-
-      # Load the mapping
-      Mapping.get(id: mappingId).$promise.then((response) ->
-
-        # Reverse the mapping into the format needed to display in the view
-        $scope.mapping = response.mapping
-        $scope.salesforceObjects = response.salesforceObjects
-      )
 
     $scope.onAffix = ->
       angular.element('.odk-row').css('marginTop', angular.element('.sf-row').outerHeight() + 115 + 'px')
@@ -27,7 +18,26 @@
     $scope.onUnaffix = ->
       angular.element('.odk-row').css('marginTop', '0px')
 
+    $scope.saveMapping = ->
+      if $scope.saveFunc
+        $timeout.cancel $scope.saveFunc
+
+      $scope.saveFunc = $timeout () ->
+        Mapping.update(
+          id: $scope.mapping.id
+          name: $scope.mapping.name
+          active: $scope.mapping.active
+        ).$promise.then ->
+          $scope.$broadcast "mapping:saved"
+      , 1000
+
     ########## WATCHES
+
+    $scope.$on "mapping:saved", ->
+      $scope.saved = true
+      $timeout () ->
+        $scope.saved = false
+      , 2000
 
     ########## BEFORE FILTERS
 

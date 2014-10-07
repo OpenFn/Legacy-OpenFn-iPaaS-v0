@@ -26,7 +26,8 @@
           id: sfObject.id
           salesforce_object:
             order: index + 1
-        )
+        ).$promise.then () ->
+          $scope.$emit "mapping:saved"
 
         sfObject.order = index + 1
 
@@ -54,7 +55,8 @@
         id: salesforceObject.id
         salesforce_object:
           is_repeat: salesforceObject.is_repeat
-      )
+      ).$promise.then () ->
+        $scope.$emit "mapping:saved"
 
     $scope.deleteSfObject = (sfObject) ->
       if confirm("Are you sure you want to remove this object?")
@@ -64,6 +66,7 @@
         ).$promise.then (response) ->
           i = $scope.mapping.salesforceObjects.indexOf(sfObject)
           $scope.mapping.salesforceObjects.splice(i, 1)
+          $scope.$emit "mapping:saved"
 
     $scope.setViewingSfObject = (sfObject) ->
       $scope.viewingSfObject = sfObject
@@ -79,6 +82,7 @@
             order: $scope.mapping.salesforceObjects.length + 1
         ).$promise.then (response) ->
           $scope.mapping.salesforceObjects.push(response.salesforce_object)
+          $scope.$emit "mapping:saved"
 
           # Reset the chosen object name
           $scope.mapping.salesforceObjectName = ''

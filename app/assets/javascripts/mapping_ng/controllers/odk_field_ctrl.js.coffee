@@ -18,7 +18,8 @@
         id: sfField.id
         odk_field_salesforce_field:
           lookup_field_name: sfField.lookupFieldName
-      )
+      ).$promise.then () ->
+        $scope.$emit "mapping:saved"
 
     ########## WATCHES
 
@@ -32,7 +33,8 @@
           odk_field_id: $scope.odkFormField.id
           odk_field_salesforce_field:
             salesforce_field_id: newField.id
-        )
+        ).$promise.then () ->
+          $scope.$emit "mapping:saved"
 
       else if newValue.length < oldValue.length
         # Deleting an existing field
@@ -42,7 +44,8 @@
           mapping_id: $scope.mapping.id
           odk_field_id: $scope.odkFormField.id
           id: deletedField.id
-        )
+        ).$promise.then () ->
+          $scope.$emit "mapping:saved"
       else if newValue.length = oldValue.length
         # Initial Load
         newField = newValue[0]
@@ -53,6 +56,7 @@
             salesforce_object_id: newField.field_name
           ).$promise.then (response) ->
             newField.lookupFields = response
+            $scope.$emit "mapping:saved"
 
 
     ########## BEFORE FILTERS

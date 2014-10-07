@@ -11,6 +11,7 @@ Array::filter = (func) -> x for x in @ when func(x)
   'mapping.config',
   'ngResource',
   'ngRoute',
+  'ngAnimate',
   'ui.sortable',
   'ui.bootstrap',
   'ng-rails-csrf',
@@ -24,12 +25,19 @@ Array::filter = (func) -> x for x in @ when func(x)
 @filterModule     = angular.module 'mapping.filters', []
 @configModule     = angular.module 'mapping.config', []
 
-@mapping.config ($compileProvider, $routeProvider, $locationProvider) ->
-  $routeProvider
-    .when '/mappings/:id/edit',
-      controller: 'MappingCtrl'
-
-    .when '/mappings/new',
-      controller: 'MappingCtrl'
-
+@mapping.config ($routeProvider, $locationProvider) ->
   $locationProvider.html5Mode true
+  $routeProvider
+    .when '/mappings/:id',
+      controller: 'EditMappingCtrl'
+      templateUrl: '/ng_templates/mappings/edit.html'
+      resolve:
+        mappingResponse: ($q, $route, Mapping) ->
+          defer = $q.defer()
+
+          # Load the mapping
+          Mapping.get(id: $route.current.params.id).$promise.then((response) ->
+            defer.resolve response
+          )
+
+          defer.promise
