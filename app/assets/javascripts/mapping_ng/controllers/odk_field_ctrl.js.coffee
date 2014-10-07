@@ -21,6 +21,15 @@
       ).$promise.then () ->
         $scope.$emit "mapping:saved"
 
+    $scope.checkLookupFields = (field) ->
+      if field.data_type is 'reference'
+        SalesforceObjectField.query(
+          mapping_id: $scope.mapping.id
+          salesforce_object_id: field.field_name
+        ).$promise.then (response) ->
+          field.lookupFields = response
+          $scope.$emit "mapping:saved"
+
     ########## WATCHES
 
     $scope.$watchCollection "odkFormField.salesforceFields", (newValue, oldValue) ->
@@ -35,6 +44,7 @@
             salesforce_field_id: newField.id
         ).$promise.then () ->
           $scope.$emit "mapping:saved"
+          $scope.checkLookupFields(newField)
 
       else if newValue.length < oldValue.length
         # Deleting an existing field
@@ -49,15 +59,7 @@
       else if newValue.length = oldValue.length
         # Initial Load
         newField = newValue[0]
-
-        if newField.data_type is 'reference'
-          SalesforceObjectField.query(
-            mapping_id: $scope.mapping.id
-            salesforce_object_id: newField.field_name
-          ).$promise.then (response) ->
-            newField.lookupFields = response
-            $scope.$emit "mapping:saved"
-
+        $scope.checkLookupFields(newField)
 
     ########## BEFORE FILTERS
 
