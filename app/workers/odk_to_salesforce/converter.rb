@@ -36,16 +36,8 @@ module OdkToSalesforce
       value = odk_data
       field_nesting.each do |key|
         if value.kind_of?(Array)
-          # oldvalue = value
-          # value = []
-          # oldvalue.each do |val|
-          #   # => Skip this record if all it's values are empty
-          #   # => There is no need to import a completely empty record
-          #   # => TODO: Investigate why empty records are being pulled in
-          #   unless val.values.compact.empty?
-          #     value << get_field_content(odk_field, val, data_type)
-          #   end
-          # end
+          # => This shouldn't happen, the field should have been marked as a repeat
+          raise "Repeat Block not flagged for #{odk_field.field_name}"
         elsif value.has_key?(key)
           value = value[key]
         end
