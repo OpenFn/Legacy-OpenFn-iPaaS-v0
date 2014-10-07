@@ -6,21 +6,24 @@ module OdkToSalesforce
   class Converter
 
     def get_repeat_field_root(odk_field, odk_data)
-      field_nesting = odk_field.field_name.split("/").reject { |f| f.empty? }
-
       arr = []
+      hsh = {}
 
-      field_nesting.each do |node|
-        if odk_data.is_a?(Array)
-          odk_data.each do |data|
-            arr << field_nesting[0...-1].reverse.inject(data){|sum, ele| {ele => sum}}
+      odk_data.each_pair do |key, value|
+        if value.is_a?(Array)
+          value.each do |repeat_data|
+            arr << repeat_data
           end
-        elsif odk_data.has_key?(node)
-          odk_data = odk_data[node]
+        else
+          hsh[key] = value
         end
       end
 
-      arr
+      if arr.empty?
+        [hsh]
+      else
+        arr.collect{|r_hash| r_hash.merge!(hsh)}
+      end
     end
 
     def get_field_content(odk_field, odk_data)
