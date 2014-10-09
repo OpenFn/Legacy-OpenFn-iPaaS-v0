@@ -14,19 +14,15 @@
         </div>
       </div>
     </div>
-    <ul class="nav nav-tabs" ui-sortable="sfObjectSortableOptions" ng-model="mapping.salesforceObjects">
-      <li ng-repeat="sfObject in mapping.salesforceObjects" ng-style="{'background-color': sfObject.color}" class='sf-field'>
-        <a href="#{{sfObject.name}}_{{sfObject.order}}" data-toggle="tab" ng-click="setViewingSfObject(sfObject)">
+
+    <tabset>
+      <tab ng-repeat="sfObject in mapping.salesforceObjects" ng-style="{'background-color': sfObject.color}" class='sf-field'>
+        <tab-heading>
           {{sfObject.name}}
           <sup>{{sfObject.order}}
             <span ng-show="sfObject.is_repeat">r</span>
           </sup>
-        </a>
-      </li>
-    </ul>
-
-    <div class="tab-content">
-      <div ng-repeat="sfObject in mapping.salesforceObjects" class="tab-pane" id="{{sfObject.name}}_{{sfObject.order}}">
+        </tab-heading>
         <div class='row'>
           <div class='col-md-12'>
             <input type="checkbox" ng-click="toggleRepeat(sfObject)" ng-checked="sfObject.is_repeat" /> Repeat Field
@@ -37,7 +33,6 @@
           </div>
         </div>
         <hr />
-
         <div class='external-field-holder'>
           <ul class='list-group sf-connected-sortable sortable-location' ui-sortable="sfSortableOptions" ng-model="sfObject.salesforceFields">
             <li class='list-group-item sf-field' ng-repeat="sfField in sfObject.salesforceFields" ng-style="{'background-color': sfField.color}">
@@ -45,8 +40,8 @@
             </li>
           </ul>
         </div>
-      </div>
-    </div>
+      </tab>
+    </tabset>
   </div>
 </div>
 
