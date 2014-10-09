@@ -15,8 +15,9 @@
 </div>
 
 <div class='pull-right'>
+  <%= button_to "Destroy", @mapping, method: :delete, class: 'btn btn-danger', confirm: 'Are you sure?' %>
+  <%= button_to "Clear Cursor", [:clear_cursor, @mapping], class: 'btn btn-warning', confirm: "Are you sure?" %>
   <%= button_to "Clone", [:clone, @mapping], class: 'btn', confirm: 'Are you sure?' %>
-  <%= button_to "Destroy", @mapping, method: :delete, class: 'btn', confirm: 'Are you sure?' %>
 </div>
 
 <%= render "edit", mapping: @mapping %>

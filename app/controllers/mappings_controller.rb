@@ -1,6 +1,6 @@
 class MappingsController < ApplicationController
 
-  before_action :load_mapping, only: [:show, :edit, :update, :destroy, :dispatch_surveys, :clone]
+  before_action :load_mapping, only: [:show, :edit, :update, :destroy, :dispatch_surveys, :clone, :clear_cursor]
   before_action :ensure_valid_credentials, only: [:new, :show, :edit]
 
   def index
@@ -73,7 +73,15 @@ class MappingsController < ApplicationController
     else
       render :show
     end
+  end
 
+  def clear_cursor
+    import = Import.where(odk_formid: @mapping.odk_form.name).first
+    if import
+      import.destroy
+    end
+
+    redirect_to @mapping
   end
 
   protected

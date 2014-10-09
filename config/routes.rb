@@ -10,6 +10,7 @@ SalesForce::Application.routes.draw do
     member do
       post :dispatch_surveys
       post :clone
+      post :clear_cursor
     end
 
     resources :salesforce_objects, only: [:create, :destroy, :update] do
