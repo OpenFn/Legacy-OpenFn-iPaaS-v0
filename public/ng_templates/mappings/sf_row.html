@@ -16,7 +16,7 @@
     </div>
 
     <tabset>
-      <tab ng-repeat="sfObject in mapping.salesforceObjects" ng-style="{'background-color': sfObject.color}" class='sf-field'>
+      <tab ng-repeat="sfObject in mapping.salesforceObjects" ng-click="setViewingSfObject(sfObject)" ng-style="{'background-color': sfObject.color}" class='sf-field'>
         <tab-heading>
           {{sfObject.name}}
           <sup>{{sfObject.order}}

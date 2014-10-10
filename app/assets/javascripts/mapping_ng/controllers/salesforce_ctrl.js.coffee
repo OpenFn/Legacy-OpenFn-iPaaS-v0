@@ -51,6 +51,8 @@
       for sfObject in $scope.mapping.salesforceObjects
         sfObject.originalFields = angular.copy(sfObject.salesforceFields)
 
+      $scope.setViewingSfObject($scope.mapping.salesforceObjects[0])
+
     $scope.toggleRepeat = (salesforceObject) ->
       salesforceObject.is_repeat = !salesforceObject.is_repeat
       SalesforceObject.update(
