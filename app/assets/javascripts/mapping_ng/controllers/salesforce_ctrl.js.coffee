@@ -39,7 +39,8 @@
         opacity: 0.8
         scroll: true
         stop: (event, ui) ->
-          $scope.filterSfFields(event, ui)
+          if ui.item.sortable.received
+            $scope.filterSfFields(event, ui)
 
       $scope.sfObjectSortableOptions =
         revert: true
@@ -86,11 +87,15 @@
             name: salesforceObjectId,
             order: $scope.mapping.salesforceObjects.length + 1
         ).$promise.then (response) ->
+          response.salesforce_object.originalFields = angular.copy(response.salesforce_object.salesforceFields)
           $scope.mapping.salesforceObjects.push(response.salesforce_object)
           $scope.$emit "mapping:saved"
 
           # Reset the chosen object name
           $scope.mapping.salesforceObjectName = ''
+
+          unless $scope.viewingSfObject
+            $scope.setViewingSfObject(response.salesforce_object)
 
     $scope.$watch "sfFilter.field_name", (fieldName) ->
       if $scope.viewingSfObject
