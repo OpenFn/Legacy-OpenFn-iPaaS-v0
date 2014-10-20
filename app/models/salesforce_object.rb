@@ -20,7 +20,7 @@ class SalesforceObject < ActiveRecord::Base
   protected
 
   def set_color
-    self.color = (SalesforceObject::COLORS - self.mapping.salesforce_objects.collect(&:color)).shuffle.first
+    self.color = (SalesforceObject::COLORS - self.mapping.salesforce_objects.collect(&:color)).first
     self.save
   end
 
