@@ -93,6 +93,7 @@ class MappingsController < ApplicationController
   def mapping_params
     params.require(:mapping).permit(
       :name,
+      :active,
       odk_form_attributes: [
         :name
       ]
