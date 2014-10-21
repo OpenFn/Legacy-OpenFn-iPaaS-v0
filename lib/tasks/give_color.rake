@@ -6,8 +6,9 @@ namespace :give_color do
     Mapping.all.each do |mapping|
 
       colors = [
-        "#F7977A", "#F9AD81", "#FDC68A", "#FFF79A", "#8493CA", "#8882BE", "#A187BE", "#BC8DBF",
-        "#F49AC2", "#F6989D", "#C4DF9B", "#A2D39C", "#82CA9D", "#7BCDC8", "#6ECFF6", "#7EA7D8"
+        "#8989E5", "#5B5B99", "#89E5E5", "#5B9999", "#5B9999", "#E5E5E5", "#999999", "#E589C6", 
+        "#995B84", "#C589E5", "#835B99", "#E58989", "#995B5B", "#E5C589", "#99835B", "#C6E589", 
+
       ]
       colors = colors - mapping.salesforce_fields.collect(&:color).compact
 
