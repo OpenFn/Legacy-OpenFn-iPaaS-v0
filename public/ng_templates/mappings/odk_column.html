@@ -1,8 +1,8 @@
 <table class='table'>
   <tbody>
-    <tr ng-repeat="salesforceObject in mapping.salesforceObjects | filter: {is_repeat: false}" ng-style="{'background-color': salesforceObject.color}" ng-controller="SalesforceRelationshipCtrl">
+    <tr ng-repeat="salesforceObject in mapping.salesforceObjects | filter: {is_repeat: false}"  ng-controller="SalesforceRelationshipCtrl">
       <td>
-        New {{salesforceObject.name}}_{{salesforceObject.order}}.ID
+        <em>NEW</em> {{salesforceObject.name}}_{{salesforceObject.order}}.ID
       </td>
       <td>
         <ul class="list-group sortable-location sf-connected-sortable sf-target" ui-sortable="sfSortableOptions" ng-model="salesforceObject.relationshipFields">
