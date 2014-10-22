@@ -1,8 +1,8 @@
 class SalesforceObject < ActiveRecord::Base
 
   COLORS = [
-    "#8989E5", "#5B5B99", "#89E5E5", "#5B9999", "#5B9999", "#E5E5E5", "#999999", "#E589C6", 
-    "#995B84", "#C589E5", "#835B99", "#E58989", "#995B5B", "#E5C589", "#99835B", "#C6E589", 
+    "#7F8C8D", "#BDC3C7", "#16A085", "#2C3E50", "#2980B9", "#8E44AD", "#C0392B", "#D35400", "#F39C12", "#27AE60",
+                          "#1ABC9C", "#34495E", "#3498DB", "#9B59B6", "#E74C3C", "#E67E22", "#F1C40F", "#2ECC71", 
   ]
 
   attr_accessor :salesforce_id, :salesforce_attributes
