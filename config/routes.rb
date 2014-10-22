@@ -28,6 +28,10 @@ SalesForce::Application.routes.draw do
     end
   end
 
+  namespace :metrics do
+    get "organisation_integration_mappings", to: "organisation_integration_mappings#index", as: :organisation_integration_mappings
+  end
+
   resources :users
   resources :odk_forms, only: [:index]
 
@@ -35,4 +39,6 @@ SalesForce::Application.routes.draw do
   get  "login",  to: "user_sessions#new",     as: :login
   post "login",  to: "user_sessions#create",  as: :create_session
   post  "logout", to: "user_sessions#destroy", as: :logout
+
+  get "metrics", to: "metrics#index", as: :metrics
 end

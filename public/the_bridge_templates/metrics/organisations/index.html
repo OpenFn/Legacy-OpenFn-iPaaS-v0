@@ -1,0 +1,27 @@
+<h4>Integration Mappings per Organisation</h4>
+
+<div ui-tree data-drag-enabled="false" class="angular-ui-tree" id="organisation-integration-mappings">
+  <ol ui-tree-nodes="" ng-model="organisationIntegrationMappings">
+    <li ng-repeat="organisation in organisationIntegrationMappings" ui-tree-node class="node-group">
+      <div ui-tree-handle>
+        <a class="btn btn-success btn-xs" data-nodrag ng-click="toggle(this)"><span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span></a>
+        {{organisation["organisation_name"]}} ({{organisation['integration_mappings'].length}})
+      </div>
+      <ol ui-tree-nodes="" ng-model="organisation['integration_mappings']" ng-if="!collapsed">
+        <li ng-repeat="integration in organisation['integration_mappings']" ui-tree-node>
+          <div ui-tree-handle>
+            <a class="btn btn-success btn-xs" data-nodrag ng-click="toggle(this)"><span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span></a>
+            {{integration["integration_name"]}} ({{integration['mappings'].length}})
+          </div>
+          <ol ui-tree-nodes="" ng-model="integration['mappings']" ng-if="!collapsed">
+            <li ng-repeat="mapping in integration['mappings']" ui-tree-node>
+              <div ui-tree-handle>
+                {{mapping}}s
+              </div>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>

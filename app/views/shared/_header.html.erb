@@ -18,6 +18,11 @@
           <li>
             <%= link_to "Mappings", :mappings %>
           </li>
+          <% if current_user.admin? %>
+            <li>
+              <%= link_to "Metrics", :metrics %>
+            </li>
+          <% end %>
           <li>
             <%= link_to "Settings", edit_user_path(current_user) %>
           </li>
