@@ -2,7 +2,7 @@
   <tbody>
     <tr ng-repeat="salesforceObject in mapping.salesforceObjects | filter: {is_repeat: false}"  ng-controller="SalesforceRelationshipCtrl">
       <td>
-        <em>NEW</em> {{salesforceObject.name}}_{{salesforceObject.order}}.ID
+        <em>new </em> {{salesforceObject.name}}_{{salesforceObject.order}}.ID
       </td>
       <td>
         <ul class="list-group sortable-location sf-connected-sortable sf-target" ui-sortable="sfSortableOptions" ng-model="salesforceObject.relationshipFields">
