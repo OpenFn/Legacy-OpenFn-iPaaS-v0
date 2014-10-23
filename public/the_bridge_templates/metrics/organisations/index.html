@@ -16,7 +16,7 @@
           <ol ui-tree-nodes="" ng-model="integration['mappings']" ng-if="!collapsed">
             <li ng-repeat="mapping in integration['mappings']" ui-tree-node>
               <div ui-tree-handle>
-                {{mapping}}
+                {{mapping["name"]}}
               </div>
             </li>
           </ol>
