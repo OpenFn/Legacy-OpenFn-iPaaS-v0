@@ -1,10 +1,12 @@
-# register the app
+# Currently two angular instances exist, 'the_bridge' and 'mappings'. 
+# 'mappings' will need to move into 'the_bridge' so that we don't do full page
+# loads for every menu item.
+# 'the_bridge' does not use the rails layout, and is loaded directly from metrics#index.
+# We want to move towards a full Angular implementation, and reduce Rails to only a json api.
+# We're trying to break our dependence on Rails view rendering, and make 'the_bridge'
+# the canonical in-browser app, which will eventually include mappings and the hub.
 @the_bridge = angular.module('the_bridge', ['ngRoute', 'ngResource', 'ui.tree'])
 
-# This routing directive tells Angular about the default
-# route for our application. The term "otherwise" here
-# might seem somewhat awkward, but it will make more
-# sense as we add more routes to our application.
 @the_bridge.config(['$routeProvider', ($routeProvider) ->
   $routeProvider.
     when('/metrics/organisation', {

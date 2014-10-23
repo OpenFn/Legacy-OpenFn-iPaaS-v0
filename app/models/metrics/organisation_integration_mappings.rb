@@ -1,9 +1,9 @@
 # Simple Data Transfer object to represent the OrganisationIntegrationMapping 
 # structure for metrics. Explicit properties and simple #to_json methods create
 # a json resource structure not yet backed by the data schema, and seperates the
-# business domain from the database implementation.
+# intended business domain from the database implementation.
 
-# This is very simple and explicit right now because there is as yet no 
+# This is very simple and explicit right now. There is as yet no 
 # underlying structure to back it up.
 class Metrics::OrganisationIntegrationMappings
   attr_reader :organisation_name, :integration_mappings
