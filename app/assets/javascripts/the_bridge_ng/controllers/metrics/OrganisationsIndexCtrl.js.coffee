@@ -3,7 +3,5 @@
   $http.get('./metrics/organisation_integration_mappings.json').success((data) ->
     $scope.organisationIntegrationMappings = data
   )
-
-  $scope.toggle = (scope) ->
-    scope.toggle()
+    
 ]
