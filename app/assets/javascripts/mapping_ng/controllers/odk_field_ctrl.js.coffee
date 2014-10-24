@@ -1,7 +1,7 @@
 'use strict'
 
-@controllerModule.controller 'OdkFieldCtrl', ['$scope', '$rootScope', 'OdkFieldSalesforceField', 'SalesforceObjectField',
-  ($scope, $rootScope, OdkFieldSalesforceField, SalesforceObjectField) ->
+@controllerModule.controller 'OdkFieldCtrl', ['$scope', '$rootScope', 'OdkFormField', 'OdkFieldSalesforceField', 'SalesforceObjectField',
+  ($scope, $rootScope, OdkFormField, OdkFieldSalesforceField, SalesforceObjectField) ->
 
     ########## VARIABLE ASSIGNMENT
 
@@ -29,6 +29,19 @@
         ).$promise.then (response) ->
           field.lookupFields = response
           $scope.$emit "mapping:saved"
+
+    $scope.toggleUuid = ->
+      for field in $scope.mapping.odk_form.odk_fields
+        unless field is $scope.odkFormField
+          field.is_uuid = false
+
+      OdkFormField.update(
+        mapping_id: $scope.mapping.id,
+        id: $scope.odkFormField.id,
+        odk_field:
+          is_uuid: $scope.odkFormField.is_uuid
+      )
+
 
     ########## WATCHES
 

@@ -1,7 +1,5 @@
 class OdkFieldSerializer < ActiveModel::Serializer
-  attributes :id, :field_name, :field_type, :salesforceFields
-
-  #has_many :salesforce_fields, key: "salesforceFields"
+  attributes :id, :field_name, :field_type, :uuidable, :is_uuid, :salesforceFields
 
   def salesforceFields
     arr = []

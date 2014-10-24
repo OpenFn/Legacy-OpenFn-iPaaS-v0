@@ -28,8 +28,8 @@ module OdkToSalesforce
           # => Load the node in the odk_data that contains all these repeat fields
           repeat_odk_data = @converter.get_repeat_field_root(salesforce_fields.first.odk_fields.first, submission_data)
 
-          repeat_odk_data.each do |rod|
-            create_in_salesforce(salesforce_object, salesforce_fields, rod)
+          repeat_odk_data.each_with_index do |rod, i|
+            create_in_salesforce(salesforce_object, salesforce_fields, rod, i)
           end
         else
           create_in_salesforce(salesforce_object, salesforce_fields, submission_data)
@@ -39,7 +39,7 @@ module OdkToSalesforce
 
     protected
 
-    def create_in_salesforce(salesforce_object, salesforce_fields, submission_data)
+    def create_in_salesforce(salesforce_object, salesforce_fields, submission_data, index = 1)
       # => Create multiple of these objects
 
       import_object = OdkToSalesforce::SalesforceObjects::ImportObject.new(@restforce_connection, salesforce_object)
@@ -50,6 +50,7 @@ module OdkToSalesforce
         odk_field = salesforce_field.odk_fields.first
 
         odk_field_value = @converter.get_field_content(odk_field, submission_data)
+        odk_field_value = transform_uuid_value(odk_field_value, salesforce_object, index) if odk_field.is_uuid
 
         if salesforce_field.data_type == "reference"
           # => This is a lookup field
@@ -67,5 +68,12 @@ module OdkToSalesforce
       end
     end
 
+    def transform_uuid_value(uuid, salesforce_object, index)
+      if salesforce_object.is_repeat
+        return "#{uuid}/#{salesforce_object.order}r/#{index + 1}"
+      else
+        return "#{uuid}/#{salesforce_object.order}"
+      end
+    end
   end
 end

@@ -102,7 +102,7 @@ class MappingsController < ApplicationController
 
   def load_salesforce_objects
     sf_client = RestforceService.new(current_user).connection
-    @salesforce_objects = sf_client.describe.select{|d| d["custom"]}.collect{|d| {label: d["label"], name: d["name"]}}
+    @salesforce_objects = sf_client.describe.collect{|d| {label: d["label"], name: d["name"]}}.sort_by{|h| h[:label]}
   end
 
   def ensure_valid_credentials

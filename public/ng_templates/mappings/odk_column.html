@@ -1,6 +1,7 @@
 <table class='table'>
   <tbody>
     <tr ng-repeat="salesforceObject in mapping.salesforceObjects | filter: {is_repeat: false}"  ng-controller="SalesforceRelationshipCtrl">
+      <td></td>
       <td>
         <em>New [ {{salesforceObject.name}}_{{salesforceObject.order}}.ID ]</em>
       </td>
@@ -15,9 +16,12 @@
     </tr>
 
     <tr ng-repeat="odkFormField in mapping.odk_form.odk_fields | filter:odkFilter" ng-controller="OdkFieldCtrl">
+      <td style="width: 5%">
+        <input type="checkbox" ng-model="odkFormField.is_uuid" ng-change="toggleUuid()" ng-if="odkFormField.uuidable" />
+      </td>
       <td style="width: 50%" ng-style="odkFormField.displayStyle">{{odkFormField.field_name}}</td>
       <td style="width: 20%">{{odkFormField.field_type}}</td>
-      <td style='width: 30%'>
+      <td style='width: 25%'>
         <ul class="list-group sortable-location sf-connected-sortable sf-target" ui-sortable="sfSortableOptions" ng-model="odkFormField.salesforceFields">
           <li class="list-group-item sf-field" ng-repeat="sfField in odkFormField.salesforceFields" ng-style="{'background-color': sfField.color}">
             {{sfField.field_name}}

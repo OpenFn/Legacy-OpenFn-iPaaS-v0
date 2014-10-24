@@ -1,4 +1,4 @@
-class OdkFormFieldsController < ApplicationController
+class OdkFieldsController < ApplicationController
   def index
     odk = OdkAggregate::Connection.new(current_user.odk_url,
                                        current_user.odk_username,
@@ -10,5 +10,21 @@ class OdkFormFieldsController < ApplicationController
       end
 
     render json: odk_form_fields, root: false
+  end
+
+  def update
+    @mapping = current_user.mappings.find(params[:mapping_id])
+    @odk_field = @mapping.odk_form.odk_fields.find(params[:id])
+    if @odk_field.update(odk_field_params)
+      render json: @salesforce_object
+    else
+      render json: {errors: @salesforce_object.errors.full_messages}, status: 422
+    end
+  end
+
+  protected
+
+  def odk_field_params
+    params.require(:odk_field).permit(:is_uuid)
   end
 end
