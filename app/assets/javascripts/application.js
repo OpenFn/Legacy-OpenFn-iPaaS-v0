@@ -30,6 +30,8 @@
 
 //= require_tree ./mapping_ng
 
+//= require_tree ./flat-ui
+
 Array.prototype.diff = function(a) {
   return this.filter(function(i) {return a.indexOf(i) < 0;});
 };
