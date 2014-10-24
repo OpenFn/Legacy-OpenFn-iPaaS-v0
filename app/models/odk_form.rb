@@ -20,7 +20,8 @@ class OdkForm < ActiveRecord::Base
     odk_form_fields.each do |odk_form_field|
       self.odk_fields.build({
         field_name: odk_form_field[:field_name],
-        field_type: odk_form_field[:field_type]
+        field_type: odk_form_field[:field_type],
+        uuidable: odk_form_field[:field_name] == "/meta/instanceID"
       })
     end
   end
