@@ -40,7 +40,8 @@
         id: $scope.odkFormField.id,
         odk_field:
           is_uuid: $scope.odkFormField.is_uuid
-      )
+      ).$promise.then (response) ->
+        $scope.$emit "mapping:saved"
 
 
     ########## WATCHES
