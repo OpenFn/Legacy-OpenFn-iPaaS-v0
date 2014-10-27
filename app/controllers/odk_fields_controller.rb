@@ -16,9 +16,9 @@ class OdkFieldsController < ApplicationController
     @mapping = current_user.mappings.find(params[:mapping_id])
     @odk_field = @mapping.odk_form.odk_fields.find(params[:id])
     if @odk_field.update(odk_field_params)
-      render json: @salesforce_object
+      render json: @odk_field
     else
-      render json: {errors: @salesforce_object.errors.full_messages}, status: 422
+      render json: {errors: @odk_field.errors.full_messages}, status: 422
     end
   end
 
