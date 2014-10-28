@@ -1,3 +1,47 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.products {
+  text-align: center;
+
+  ul {
+    list-style: none;
+  }
+
+  li {
+    padding: 20px;
+
+    img{
+      padding: 5px;
+    }
+  }
+
+  #sources {
+    display: inline-block;
+    @media (min-width: 710px) {
+      padding-right: 80px;
+    }
+    // float: left;
+  }
+
+  #destinations {
+    display: inline-block;
+    @media (min-width: 710px) {
+      padding-left: 80px;
+    }
+    // float: right;
+  }
+
+  .active:hover {
+    cursor: pointer;
+  }
+
+  .selected {
+    img {
+      border-radius: 4px;
+      background-color: #1abc9c;
+    }
+  }
+
+}
