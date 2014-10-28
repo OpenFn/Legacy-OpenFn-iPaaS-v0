@@ -5,7 +5,7 @@ class OdkField < ActiveRecord::Base
 
   accepts_nested_attributes_for :salesforce_fields
 
-  validates :is_uuid, uniqueness: true, if: :is_uuid
+  validates :is_uuid, uniqueness: {scope: :odk_form_id}, if: :is_uuid
 
   default_scope -> { order("id ASC") }
 end

@@ -15,14 +15,18 @@
 
 <%= link_to "Reprocess", [:reprocess, @mapping, @submission], class: 'btn btn-danger pull-right', method: 'post', confirm: 'Are you sure?' if @submission.error? %>
 
-<dl>
-  <dt>State</dt>
-  <dd><%= @submission.state %></dd>
+<h3>
+  <dl>
+    <dt>State</dt>
+    <dd><%= @submission.state %></dd>
+  </dl>
+</h3>
 
-  <dt>Message</dt>
-  <dd><%= @submission.message || "No message" %></dd>
-
-  <dt>Trace</dt>
-  <dd><%= @submission.backtrace.try(:html_safe) || "No trace" %></dd>
-
-</dl>
+<% if @submission.message %>
+  <div class="panel panel-default">
+    <div class="panel-heading"><%= @submission.message %></div>
+    <div class="panel-body">
+      <%= @submission.backtrace.try(:html_safe) %>
+    </div>
+  </div>
+<% end %>
