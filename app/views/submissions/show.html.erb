@@ -1,0 +1,28 @@
+<% content_for :sidebar do %>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <%= link_to "New Mapping", [:new, :mapping] %>
+    </li>
+  </ul>
+<% end %>
+
+<ol class="breadcrumb">
+  <li><%= link_to "Mappings", :mappings %></li>
+  <li><%= link_to @mapping.name, @mapping %></li>
+  <li><%= link_to "Submissions", [@mapping, :submissions] %></li>
+  <li>Submission for: <%= @submission.uuid %></li>
+</ol>
+
+<%= link_to "Reprocess", [:reprocess, @mapping, @submission], class: 'btn btn-danger pull-right', method: 'post', confirm: 'Are you sure?' if @submission.error? %>
+
+<dl>
+  <dt>State</dt>
+  <dd><%= @submission.state %></dd>
+
+  <dt>Message</dt>
+  <dd><%= @submission.message || "No message" %></dd>
+
+  <dt>Trace</dt>
+  <dd><%= @submission.backtrace.try(:html_safe) || "No trace" %></dd>
+
+</dl>

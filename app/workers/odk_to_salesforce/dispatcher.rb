@@ -1,7 +1,7 @@
 module OdkToSalesforce
   class Dispatcher
 
-    @queue = :importer
+    @queue = :dispatcher
 
     def self.perform(mapping_id, limit = 500)
       mapping = Mapping.find mapping_id
@@ -10,7 +10,9 @@ module OdkToSalesforce
 
     def perform(mapping, limit)
       # Load the log of the import for this ODK form
-      import = Import.find_or_create_by(odk_formid: mapping.odk_form.name)
+
+      import = mapping.import
+      import = mapping.create_import(odk_formid: mapping.odk_form.name) if mapping.import.nil?
 
       # => Load the ODK information
       odk = OdkToSalesforce::Odk.new(mapping.odk_form.name, import, limit, mapping.user)
@@ -19,19 +21,18 @@ module OdkToSalesforce
       # => The submissions only come back as IDs
       #only = odk.submissions.length if only.nil?
       #submissions = odk.submissions[0...only]
-      submissions = odk.submissions
+      submission_ids = odk.submissions
 
       # => If there are submissions to process
-      if submissions.size > 0
+      if submission_ids.size > 0
 
         # => Go through each submission to be processed
-        submissions.each_with_index do |submission, i|
+        submission_ids.each_with_index do |submission_id, i|
 
-          # => Get the ODK Data for this submission from the ID
-          submission_data = odk.fetch_submission(submission)
-          OdkToSalesforce::SubmissionProcessor.perform(submission_data, mapping)
-
-          # import.update(last_uuid: submission, num_imported: import.num_imported + 1)
+          # => Get the ODK Data for this submission_id from the ID
+          submission_data = odk.fetch_submission(submission_id)
+          submission = import.submissions.create(uuid: submission_id, data: submission_data)
+          Resque.enqueue(OdkToSalesforce::SubmissionProcessor, mapping.id, submission.id)
         end
       end
     end

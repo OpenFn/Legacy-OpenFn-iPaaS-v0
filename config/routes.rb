@@ -1,5 +1,6 @@
 SalesForce::Application.routes.draw do
 
+  get "submissions_controller/index"
   ResqueWeb::Engine.eager_load!
   mount ResqueWeb::Engine => "/resque_web"
 
@@ -25,6 +26,12 @@ SalesForce::Application.routes.draw do
     collection do
       get :get_odk_forms
       get :get_salesforce_fields
+    end
+
+    resources :submissions do
+      member do
+        post :reprocess
+      end
     end
   end
 

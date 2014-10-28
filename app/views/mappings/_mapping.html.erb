@@ -9,5 +9,6 @@
   </td>
   <td>
     <%= link_to "View", mapping, class: 'btn btn-success' %>
+    <%= link_to "Process Log", [mapping, :submissions], class: 'btn btn-warning' if mapping.import %>
   </td>
 </tr>

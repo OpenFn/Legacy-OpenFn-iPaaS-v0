@@ -5,7 +5,7 @@ module OdkToSalesforce
       include QueryMethods
 
       attr_accessor :id, :object_name, :attributes
-      attr_reader :salesforce_object
+      attr_reader :salesforce_object, :new_record
 
       def initialize(rf, salesforce_object, attributes: {})
         @rf = rf
@@ -36,6 +36,7 @@ module OdkToSalesforce
         # => Rescue certain errors
         begin
           @id = @rf.create!(@object_name, @attributes)
+          @new_record = true
         rescue Exception => e
           arr = e.message.split(":")
 
@@ -50,6 +51,10 @@ module OdkToSalesforce
             raise e.message.inspect
           end
         end
+      end
+
+      def destroy
+        @rf.destroy!(@object_name, @id) if @id
       end
     end
   end

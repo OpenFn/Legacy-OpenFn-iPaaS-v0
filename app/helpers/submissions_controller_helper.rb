@@ -1,0 +1,2 @@
+module SubmissionsControllerHelper
+end

@@ -1,0 +1,37 @@
+<% content_for :sidebar do %>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <%= link_to "New Mapping", [:new, :mapping] %>
+    </li>
+  </ul>
+<% end %>
+
+<ol class="breadcrumb">
+  <li><%= link_to "Mappings", :mappings %></li>
+  <li><%= link_to @mapping.name, @mapping %></li>
+  <li>Submissions</li>
+</ol>
+
+<%= form_tag [@mapping, :submissions], method: 'get', role: 'form', class: 'form-inline' do %>
+  <div class="form-group">
+    <%= label_tag :state %>
+    <%= select_tag :state, options_for_select([[''], ["Successful", :success], ["Error", :error]], params[:state]), class: 'form-control' %>
+  </div>
+
+   <%= submit_tag "Search", class: 'btn btn-primary' %>
+<% end %>
+
+<hr />
+
+<table class='table table-striped'>
+  <thead>
+    <tr>
+      <th>UUID</th>
+      <th>State</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @submissions %>
+  </tbody>
+</table>

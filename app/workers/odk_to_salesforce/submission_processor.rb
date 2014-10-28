@@ -1,18 +1,48 @@
 module OdkToSalesforce
   class SubmissionProcessor
 
-    def self.perform(submission_data, mapping)
-      new(mapping).perform(submission_data)
+    @queue = :submission_processor
+
+    def self.perform(mapping_id, submission_id)
+      new(mapping_id, submission_id).perform
     end
 
-    def initialize(mapping)
-      @mapping = mapping
+    def initialize(mapping_id, submission_id)
+      @mapping = Mapping.find(mapping_id)
+      @submission = @mapping.import.submissions.find(submission_id)
       @converter = OdkToSalesforce::Converter.new
       @restforce_connection = RestforceService.new(@mapping.user).connection
       @all_import_objects = []
     end
 
-    def perform(submission_data)
+    def perform
+
+      begin
+        process_submission
+        @submission.message = nil
+        @submission.backtrace = nil
+        @submission.successful
+      rescue Exception => e
+        puts "An error occurred"
+
+        # => Destroy all objects that were created before this error
+        # => If the record already existed before this import, leave it!
+        @all_import_objects.each do |io|
+          puts "Deleting #{io.object_name}: #{io.id}"
+          io.destroy if io.new_record
+        end
+
+        @submission.message = e.message
+        @submission.backtrace = e.backtrace.first(15).join('<br />')
+        @submission.failed
+      end
+    end
+
+    protected
+
+    def process_submission
+      # => Mark this submission as being processed, for the first time or
+      @submission.process
 
       salesforce_objects = @mapping.salesforce_objects
 
@@ -26,18 +56,16 @@ module OdkToSalesforce
         if salesforce_object.is_repeat
 
           # => Load the node in the odk_data that contains all these repeat fields
-          repeat_odk_data = @converter.get_repeat_field_root(salesforce_fields.first.odk_fields.first, submission_data)
+          repeat_odk_data = @converter.get_repeat_field_root(salesforce_fields.first.odk_fields.first, @submission.data)
 
           repeat_odk_data.each_with_index do |rod, i|
             create_in_salesforce(salesforce_object, salesforce_fields, rod, i)
           end
         else
-          create_in_salesforce(salesforce_object, salesforce_fields, submission_data)
+          create_in_salesforce(salesforce_object, salesforce_fields, @submission.data)
         end
       end
     end
-
-    protected
 
     def create_in_salesforce(salesforce_object, salesforce_fields, submission_data, index = 1)
       # => Create multiple of these objects

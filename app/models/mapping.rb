@@ -4,6 +4,7 @@ class Mapping < ActiveRecord::Base
   has_many :salesforce_objects, dependent: :destroy
 
   has_one :odk_form
+  has_one :import
   has_many :odk_fields, through: :odk_form
 
   accepts_nested_attributes_for :odk_form
