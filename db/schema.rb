@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141021130033) do
+ActiveRecord::Schema.define(version: 20141028141228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,14 @@ ActiveRecord::Schema.define(version: 20141021130033) do
   end
 
   add_index "odk_forms", ["mapping_id"], name: "index_odk_forms_on_mapping_id", using: :btree
+
+  create_table "products", force: true do |t|
+    t.string  "name"
+    t.string  "logo_path"
+    t.string  "inactive_logo_path"
+    t.boolean "active_source"
+    t.boolean "active_destination"
+  end
 
   create_table "salesforce_fields", force: true do |t|
     t.integer  "mapping_id"

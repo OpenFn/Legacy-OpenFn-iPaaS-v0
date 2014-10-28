@@ -3,7 +3,9 @@ SalesForce::Application.routes.draw do
   ResqueWeb::Engine.eager_load!
   mount ResqueWeb::Engine => "/resque_web"
 
-  root to: 'mappings#index'
+  root to: 'home#index'
+
+  resources :products, only: [:index]
 
   resources :mappings do
 

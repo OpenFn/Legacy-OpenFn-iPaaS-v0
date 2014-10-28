@@ -14,7 +14,7 @@
       controller: 'OrganisationsIndexCtrl'
     }).
     otherwise({
-      templateUrl: '../the_bridge_templates/metrics/organisations/index.html',
-      controller: 'OrganisationsIndexCtrl'
+      templateUrl: '../the_bridge_templates/home/index.html',
+      controller: 'HomeController'
     }) 
 ])
