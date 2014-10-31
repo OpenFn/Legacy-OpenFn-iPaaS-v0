@@ -71,6 +71,7 @@ gem 'jquery-ui-rails'
 
 gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'
+gem 'angular_ui_tree_rails'
 gem 'ng-rails-csrf'
 
 gem 'sorcery'
