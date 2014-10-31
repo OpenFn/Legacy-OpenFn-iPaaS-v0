@@ -103,6 +103,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (1.2.0)
     net-http-digest_auth (1.4)
+    newrelic_rpm (3.9.6.257)
     ng-rails-csrf (0.1.0)
     oauth (0.4.7)
     oauth2 (0.9.4)
@@ -225,6 +226,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   kaminari
+  newrelic_rpm
   ng-rails-csrf
   odk_aggregate!
   pg

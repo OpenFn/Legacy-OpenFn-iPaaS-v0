@@ -27,6 +27,8 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem "resque", '~> 1.25'
 gem 'resque-web', require: 'resque_web'
 
+gem "newrelic_rpm"
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
