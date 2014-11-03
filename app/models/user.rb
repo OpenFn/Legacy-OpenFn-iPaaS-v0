@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true, presence: true
   validates :role, inclusion: { in: %w(client admin), message: "%{value} is not a valid role" }
 
-  before_create :set_default_role
+  before_validation :set_default_role, on: :create
 
   def admin?
     self.role == 'admin'
