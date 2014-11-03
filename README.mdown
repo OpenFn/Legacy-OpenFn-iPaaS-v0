@@ -17,7 +17,14 @@ The bare minimum to run the Rails server currently is:
 Running Tests
 -------------
 
-    rspec spec
+This appication has spring and guard installed. So running tests should be
+super easy and fast.
+
+    # Running via rspec
+    $ spring rspec
+
+    # Running guard
+    $ guard
 
 REST API
 --------
