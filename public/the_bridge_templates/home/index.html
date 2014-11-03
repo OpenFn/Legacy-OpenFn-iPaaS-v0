@@ -4,7 +4,7 @@
     <h4>Source</h4>
     <li ng-repeat="product in products">
       <div ng-click="product.active_source && $parent.setSource(product)" ng-class="{ selected:isSource(product), active:product.active_source }">
-        <img ng-if="product.active_source" ng-src="images/{{product.logo_path}}" ng-click="alert('selected source')"/>
+        <img ng-if="product.active_source" ng-src="images/{{product.logo_path}}"/>
         <img ng-if="!product.active_source" ng-src="images/{{product.inactive_logo_path}}"/>
        </div>
     </li>

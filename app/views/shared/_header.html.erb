@@ -16,6 +16,9 @@
       <% if current_user %>
         <ul class="nav navbar-nav">
           <li>
+            <%= link_to "Integrations", "/#/integrations/new" %>
+          </li>
+          <li>
             <%= link_to "Mappings", :mappings %>
           </li>
           <% if current_user.admin? %>
