@@ -33,6 +33,12 @@ SalesForce::Application.routes.draw do
   namespace :metrics do
     get "organisation_integration_mappings", to: "organisation_integration_mappings#index", as: :organisation_integration_mappings
   end
+  
+  namespace :api do
+    resources :integration, param: :api_key do
+      resource :message, only: [:create]
+    end
+  end
 
   resources :users
   resources :odk_forms, only: [:index]
