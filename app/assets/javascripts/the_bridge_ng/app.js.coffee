@@ -5,7 +5,7 @@
 # We want to move towards a full Angular implementation, and reduce Rails to only a json api.
 # We're trying to break our dependence on Rails view rendering, and make 'the_bridge'
 # the canonical in-browser app, which will eventually include mappings and the hub.
-@the_bridge = angular.module('the_bridge', ['ngRoute', 'ngResource', 'ui.tree'])
+@the_bridge = angular.module('the_bridge', ['ngRoute', 'ngResource', 'ui.tree', 'ngAnimate'])
 
 @the_bridge.config(['$routeProvider', ($routeProvider) ->
   $routeProvider.
@@ -13,8 +13,16 @@
       templateUrl: '../the_bridge_templates/metrics/organisations/index.html',
       controller: 'OrganisationsIndexCtrl'
     }).
-    otherwise({
+    when('/integrations/new', {
       templateUrl: '../the_bridge_templates/home/index.html',
       controller: 'HomeController'
+    }).
+    when('/products', {
+      templateUrl: '../the_bridge_templates/product_search/index.html',
+      controller: 'ProductSearchController'
+    }).
+    otherwise({
+      templateUrl: '../the_bridge_templates/product_search/index.html',
+      controller: 'ProductSearchController'
     }) 
 ])
