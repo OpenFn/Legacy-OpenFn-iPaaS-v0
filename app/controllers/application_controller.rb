@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
   private
 
   def not_authenticated
-    redirect_to login_path, alert: "Please login first"
+    respond_to do |format|
+      format.html { redirect_to login_path, alert: "Please login first" }
+      format.json { head :unauthorized }
+    end
+    
   end
 end

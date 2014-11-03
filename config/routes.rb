@@ -7,6 +7,8 @@ SalesForce::Application.routes.draw do
 
   resources :products, only: [:index]
 
+  resources :credentials
+
   resources :mappings do
 
     member do

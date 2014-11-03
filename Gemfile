@@ -95,7 +95,7 @@ gem 'sorcery'
 #
 group :development, :test do
   gem 'rspec-rails'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', require: false
   gem 'spring-commands-rspec'
   gem 'guard-rspec'
   gem 'rb-fsevent' if `uname` =~ /Darwin/
