@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '~> 4.1.0'
 
 gem 'pry'
 gem 'pry-rails'
@@ -65,6 +65,9 @@ gem 'figaro'
 # => Pagination
 gem 'kaminari'
 
+# Fast Rails loading
+gem 'spring'
+
 # => Clone AR objects
 gem 'deep_cloneable', '~> 1.6.1'
 
@@ -89,3 +92,11 @@ gem 'sorcery'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+#
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'shoulda-matchers', require: false
+  gem 'spring-commands-rspec'
+  gem 'guard-rspec'
+  gem 'rb-fsevent' if `uname` =~ /Darwin/
+end
