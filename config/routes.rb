@@ -3,8 +3,6 @@ SalesForce::Application.routes.draw do
   ResqueWeb::Engine.eager_load!
   mount ResqueWeb::Engine => "/resque_web"
 
-  root to: 'home#index'
-
   resources :products, only: [:index]
 
   resources :credentials
@@ -51,4 +49,8 @@ SalesForce::Application.routes.draw do
   post  "logout", to: "user_sessions#destroy", as: :logout
 
   get "metrics", to: "metrics#index", as: :metrics
+
+  match "/*path" => redirect("/?goto=%{path}"), via: [:get, :post]
+
+  root to: 'home#index'
 end

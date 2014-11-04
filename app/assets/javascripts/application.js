@@ -29,9 +29,7 @@
 //= require ng-rails-csrf
 //= require_tree ./support
 
-//= require_tree ./mapping_ng
 //= require_tree ./the_bridge_ng
-
 //= require_tree ./flat-ui
 
 Array.prototype.diff = function(a) {

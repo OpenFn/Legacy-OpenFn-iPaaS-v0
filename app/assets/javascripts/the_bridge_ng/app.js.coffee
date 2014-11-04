@@ -1,28 +1,65 @@
-# Currently two angular instances exist, 'the_bridge' and 'mappings'. 
-# 'mappings' will need to move into 'the_bridge' so that we don't do full page
-# loads for every menu item.
-# 'the_bridge' does not use the rails layout, and is loaded directly from metrics#index.
-# We want to move towards a full Angular implementation, and reduce Rails to only a json api.
-# We're trying to break our dependence on Rails view rendering, and make 'the_bridge'
-# the canonical in-browser app, which will eventually include mappings and the hub.
-@the_bridge = angular.module('the_bridge', ['ngRoute', 'ngResource', 'ui.tree', 'ngAnimate'])
+'use strict'
 
-@the_bridge.config(['$routeProvider', ($routeProvider) ->
-  $routeProvider.
-    when('/metrics/organisation', {
+Array::filter = (func) -> x for x in @ when func(x)
+
+@the_bridge = angular.module('the_bridge', [
+  'ngRoute',
+  'ngResource',
+  'ui.tree',
+  'ngAnimate',
+  'the_bridge.controllers',
+  'the_bridge.directives',
+  'the_bridge.resources',
+  'the_bridge.services',
+  'the_bridge.filters',
+  'the_bridge.config',
+  'ui.sortable',
+  'ui.bootstrap',
+  'ng-rails-csrf',
+  'mgcrea.bootstrap.affix'
+ ])
+
+@controllerModule = angular.module 'the_bridge.controllers', []
+@directiveModule  = angular.module 'the_bridge.directives', []
+@resourceModule   = angular.module 'the_bridge.resources', []
+@serviceModule    = angular.module 'the_bridge.services', []
+@filterModule     = angular.module 'the_bridge.filters', []
+@configModule     = angular.module 'the_bridge.config', []
+
+@the_bridge.config ($routeProvider, $locationProvider) ->
+  $locationProvider.html5Mode true
+  $routeProvider
+    .when '/mappings/:id',
+      controller: 'EditMappingCtrl'
+      templateUrl: '../the_bridge_templates/mappings/edit.html'
+      resolve:
+        mappingResponse: ($q, $route, Mapping) ->
+          defer = $q.defer()
+
+          # Load the mapping
+          Mapping.get(id: $route.current.params.id).$promise.then((response) ->
+            defer.resolve response
+          )
+
+          defer.promise
+    .when('/metrics/organisation', {
       templateUrl: '../the_bridge_templates/metrics/organisations/index.html',
       controller: 'OrganisationsIndexCtrl'
-    }).
-    when('/integrations/new', {
+    })
+    .when('/integrations', {
       templateUrl: '../the_bridge_templates/home/index.html',
       controller: 'HomeController'
-    }).
-    when('/products', {
+    })
+    .when('/products-search', {
       templateUrl: '../the_bridge_templates/product_search/index.html',
       controller: 'ProductSearchController'
-    }).
-    otherwise({
+    })
+    .when('/', {
       templateUrl: '../the_bridge_templates/product_search/index.html',
       controller: 'ProductSearchController'
-    }) 
-])
+      redirectTo: (current, path, search) ->
+        if(search.goto)
+          return "/" + search.goto
+        else
+          return "/" })
+    .otherwise({redirectTo:"/"})
