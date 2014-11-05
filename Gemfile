@@ -100,5 +100,5 @@ group :development, :test do
   gem 'shoulda-matchers', require: false
   gem 'spring-commands-rspec'
   gem 'guard-rspec'
-  gem 'rb-fsevent' if `uname` =~ /Darwin/
+  # gem 'rb-fsevent' if `uname` =~ /Darwin/
 end
