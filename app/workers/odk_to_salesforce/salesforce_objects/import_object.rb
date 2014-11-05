@@ -31,7 +31,8 @@ module OdkToSalesforce
       end
 
       def save
-        puts "creating #{@object_name} with attributes #{@attributes}"
+        puts "     creating #{@object_name} with attributes:"
+        puts "              #{@attributes}"
 
         # => Rescue certain errors
         begin
