@@ -13,9 +13,21 @@ class SalesforceObject < ActiveRecord::Base
   accepts_nested_attributes_for :salesforce_fields, allow_destroy: true
 
   after_create :set_color
-  after_create :create_fields
+  after_create :create_fields_from_salesforce
 
   default_scope { order("salesforce_objects.order ASC") }
+
+  def create_fields_from_salesforce
+    sf_client = RestforceService.new(self.mapping.user).connection
+    sf_fields = sf_client.describe(self.name)["fields"]
+
+    sf_fields.each do |sf_field|
+      self.salesforce_fields.find_or_create_by!(
+        field_name: sf_field["name"],
+        data_type: sf_field["type"]
+      )
+    end
+  end
 
   protected
 
@@ -23,18 +35,4 @@ class SalesforceObject < ActiveRecord::Base
     self.color = (SalesforceObject::COLORS - self.mapping.salesforce_objects.collect(&:color)).first
     self.save
   end
-
-  def create_fields
-    sf_client = RestforceService.new(self.mapping.user).connection
-
-    sf_fields = sf_client.describe(self.name)["fields"]
-
-    sf_fields.each do |sf_field|
-      self.salesforce_fields.create!(
-        field_name: sf_field["name"],
-        data_type: sf_field["type"]
-      )
-    end
-  end
-
 end
