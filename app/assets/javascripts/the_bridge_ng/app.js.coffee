@@ -55,21 +55,8 @@ Array::filter = (func) -> x for x in @ when func(x)
       controller: 'ProductSearchController'
     })
     .when('/', {
-      controller: 'EditMappingCtrl'
-      templateUrl: '../the_bridge_templates/mappings/edit.html'
-      resolve:
-        mappingResponse: ($q, $route, Mapping) ->
-          defer = $q.defer()
-
-          # Load the mapping
-          Mapping.get(id: $route.current.params.id).$promise.then((response) ->
-            defer.resolve response
-          )
-
-          defer.promise
-    # .when('/', {
-    #   templateUrl: '../the_bridge_templates/product_search/index.html',
-    #   controller: 'ProductSearchController'
+      templateUrl: '../the_bridge_templates/product_search/index.html',
+      controller: 'ProductSearchController'
       redirectTo: (current, path, search) ->
         if(search.goto)
           return "/" + search.goto
