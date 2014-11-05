@@ -285,7 +285,6 @@ DEPENDENCIES
   pry-rails
   rails (~> 4.1.0)
   rails_12factor
-  rb-fsevent
   resque (~> 1.25)
   resque-web
   restforce!
