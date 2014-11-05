@@ -3,7 +3,7 @@
   $scope.source = {}
   $scope.destination = {}
 
-  $http.get('./products.json').success((data) ->
+  $http.get('/products.json').success((data) ->
     $scope.products = data.products
   )
   

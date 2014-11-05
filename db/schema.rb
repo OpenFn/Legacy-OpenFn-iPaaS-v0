@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141103114851) do
+ActiveRecord::Schema.define(version: 20141103130314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20141103114851) do
     t.string  "inactive_logo_path"
     t.boolean "active_source"
     t.boolean "active_destination"
+    t.text    "description"
   end
 
   create_table "salesforce_fields", force: true do |t|
