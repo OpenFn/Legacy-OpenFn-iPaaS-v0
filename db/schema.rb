@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028142941) do
+ActiveRecord::Schema.define(version: 20141103130314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "credentials", force: true do |t|
+    t.string   "api_key"
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "imports", force: true do |t|
     t.string   "odk_formid"
@@ -71,6 +79,15 @@ ActiveRecord::Schema.define(version: 20141028142941) do
   end
 
   add_index "odk_forms", ["mapping_id"], name: "index_odk_forms_on_mapping_id", using: :btree
+
+  create_table "products", force: true do |t|
+    t.string  "name"
+    t.string  "logo_path"
+    t.string  "inactive_logo_path"
+    t.boolean "active_source"
+    t.boolean "active_destination"
+    t.text    "description"
+  end
 
   create_table "salesforce_fields", force: true do |t|
     t.integer  "mapping_id"
@@ -140,6 +157,7 @@ ActiveRecord::Schema.define(version: 20141028142941) do
     t.string   "odk_username"
     t.string   "odk_password"
     t.string   "sf_host"
+    t.string   "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

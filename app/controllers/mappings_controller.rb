@@ -1,5 +1,4 @@
 class MappingsController < ApplicationController
-
   before_action :load_mapping, only: [:show, :edit, :update, :destroy, :dispatch_surveys, :clone, :clear_cursor]
   before_action :ensure_valid_credentials, only: [:new, :show, :edit]
 

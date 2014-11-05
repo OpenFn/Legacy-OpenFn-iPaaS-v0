@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.0.0'
+ruby '2.1.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '~> 4.1.0'
 
 gem 'pry'
 gem 'pry-rails'
@@ -26,6 +26,8 @@ gem 'bootstrap-sass', '~> 3.1.1'
 
 gem "resque", '~> 1.25'
 gem 'resque-web', require: 'resque_web'
+
+gem "newrelic_rpm"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -65,6 +67,9 @@ gem 'figaro'
 # => Pagination
 gem 'kaminari'
 
+# Fast Rails loading
+gem 'spring'
+
 # => Clone AR objects
 gem 'deep_cloneable', '~> 1.6.1'
 
@@ -73,6 +78,7 @@ gem 'jquery-ui-rails'
 
 gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'
+gem 'angular_ui_tree_rails'
 gem 'ng-rails-csrf'
 
 gem 'sorcery'
@@ -88,3 +94,11 @@ gem 'sorcery'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+#
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'shoulda-matchers', require: false
+  gem 'spring-commands-rspec'
+  gem 'guard-rspec'
+  gem 'rb-fsevent' if `uname` =~ /Darwin/
+end

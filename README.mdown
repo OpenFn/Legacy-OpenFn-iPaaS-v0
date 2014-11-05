@@ -1,0 +1,36 @@
+OpenFN Bridge
+=============
+
+Configuration
+-------------
+
+The application uses [figaro](https://github.com/laserlemon/figaro) to manage
+configuration.
+
+Using the 12-factor application pattern, anything in the `config/application.yml`
+will be seeded to the environment as Rails initializes.
+
+The bare minimum to run the Rails server currently is:
+
+    REDISCLOUD_URL: 'localhost:6379/0'
+
+Running Tests
+-------------
+
+This appication has spring and guard installed. So running tests should be
+super easy and fast.
+
+    # Running via rspec
+    $ spring rspec
+
+    # Running guard
+    $ guard
+
+REST API
+--------
+    
+GET /api/integrations
+
+    POST /api/integrations/:integration_api_key/message
+
+

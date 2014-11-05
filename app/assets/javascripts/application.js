@@ -25,10 +25,12 @@
 //= require angular-route
 //= require angular-ui-bootstrap-tpls
 //= require angular-animate
+//= require angular-ui-tree
 //= require ng-rails-csrf
 //= require_tree ./support
 
-//= require_tree ./mapping_ng
+//= require_tree ./the_bridge_ng
+//= require_tree ./flat-ui
 
 Array.prototype.diff = function(a) {
   return this.filter(function(i) {return a.indexOf(i) < 0;});

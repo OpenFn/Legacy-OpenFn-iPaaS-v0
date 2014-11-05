@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="the_bridge">
+<head>
+  <title>TheBridge</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+  <body>
+    <%= render "shared/header" %>
+    
+    <div class='container'>
+      <div class='col-md-12'>
+    </div>
+    
+    <div ng-view>
+      <!--  Angular views get rendered here  -->
+    </div>
+  </body>
+</html>
