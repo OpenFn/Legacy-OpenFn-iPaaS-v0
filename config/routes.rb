@@ -59,5 +59,6 @@ SalesForce::Application.routes.draw do
 
   match "/*path" => redirect("/?goto=%{path}"), via: [:get, :post]
 
-  root to: 'home#index'
+  # root to: 'home#index'
+  root to: 'mappings#index'
 end
