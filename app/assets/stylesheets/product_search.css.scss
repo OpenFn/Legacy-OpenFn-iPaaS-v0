@@ -5,7 +5,7 @@
 .product-list {
   .product {
     margin: 10px;
-    padding: 15px;
+    padding: 1em;
     border-color: #1ABC9C;
     border-radius: 4px;
     border-width: 2px;
@@ -14,14 +14,33 @@
     width: 12em;
 
     .logo {
-      width: 100%;
-      text-align: center;
-      padding-bottom: 1em;
+      // width: 10em;
+      // text-align: center;
+      position: absolute;
     }
 
     $line-height: 1.4;
-    $lines-to-show: 6;
-    $font-size: 14px;
+    $lines-to-show: 8;
+    $font-size: 13px;
+
+    .info {
+      height: 100%;
+      padding: 0;
+      margin: 0;
+
+      .actions {
+        left: 0;
+        bottom: -1em;
+        left: -1em;
+        right: -1em;
+        padding-bottom: 0.5em;
+        padding-left: 1em;
+        padding-right: 2em;
+        padding-top: 0.5em;
+        position: absolute;
+        background-color: #1ABC9C;
+      }
+    }
 
     .description {
       text-align: justify;
@@ -35,30 +54,55 @@
       -webkit-box-orient: vertical-text;
       overflow: hidden;
       text-overflow: ellipsis;
+      position: absolute;
+      top: -0.2em;
     }
   }
 
-    .product.ng-enter,
-    .product.ng-leave
-    {
-      -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-      -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-      -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-      -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-      transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-      position: relative;
-      display: block;
-    }
-     
-    .product.ng-enter.ng-enter-active,
-    .product.ng-leave {
-      opacity: 1;
-      top: 0;
-    }
-     
-    .product.ng-leave.ng-leave-active,
-    .product.ng-enter {
-      opacity: 0;
-      top: -50px;
-    }
+  .product .logo,
+  .product .info
+  {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transition: opacity 400ms;
+    -moz-transition: opacity 400ms;
+    -ms-transition: opacity 400ms;
+    -o-transition: opacity 400ms;
+    transition: opacity 400ms;
+  }
+
+  .product .info,
+  .product:hover .logo
+  {
+    opacity: 0;
+  }  
+
+  .product .logo,
+  .product:hover .info {
+    opacity: 1;
+  }
+
+  .product.ng-enter,
+  .product.ng-leave
+  {
+    -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    position: relative;
+    display: block;
+  }
+   
+  .product.ng-enter.ng-enter-active,
+  .product.ng-leave {
+    opacity: 1;
+    top: 0;
+  }
+   
+  .product.ng-leave.ng-leave-active,
+  .product.ng-enter {
+    opacity: 0;
+    top: -50px;
+  }
 }
