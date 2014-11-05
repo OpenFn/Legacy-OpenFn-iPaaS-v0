@@ -76,7 +76,7 @@ gem 'deep_cloneable', '~> 1.6.1'
 # => Using jquery UI for draggable
 gem 'jquery-ui-rails'
 
-gem 'angularjs-rails'
+gem 'angularjs-rails', '1.2'
 gem 'angular-ui-bootstrap-rails'
 gem 'angular_ui_tree_rails'
 gem 'ng-rails-csrf'
