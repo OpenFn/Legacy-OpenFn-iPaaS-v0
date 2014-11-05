@@ -20,7 +20,7 @@ module OdkToSalesforce
       end
 
       if arr.empty?
-        [hsh]
+        []
       else
         arr.collect{|r_hash| r_hash.merge!(hsh)}
       end
@@ -33,13 +33,16 @@ module OdkToSalesforce
       field_nesting = odk_field.field_name.split("/").reject { |f| f.empty? }
 
       # iterate until data["first_level"]["second_level"] is reached
-      value = odk_data
+      value = odk_data.dup
       field_nesting.each do |key|
         if value.kind_of?(Array)
           # => This shouldn't happen, the field should have been marked as a repeat
           raise "Repeat Block not flagged for #{odk_field.field_name}"
         elsif value.has_key?(key)
           value = value[key]
+        else
+          value = nil
+          break
         end
       end
       value = transform_value(value, odk_field.field_type) unless value.is_a?(Array)

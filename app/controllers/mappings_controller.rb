@@ -75,9 +75,9 @@ class MappingsController < ApplicationController
   end
 
   def clear_cursor
-    import = Import.where(odk_formid: @mapping.odk_form.name).first
-    if import
-      import.update(cursor: nil, last_uuid: nil)
+
+    if @mapping.import
+      @mapping.import.update(cursor: nil, last_uuid: nil)
     end
 
     redirect_to @mapping
