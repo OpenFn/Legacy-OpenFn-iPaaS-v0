@@ -21,6 +21,11 @@ module OdkToSalesforce
         @attributes[salesforce_field.field_name] = sf_obj.Id if sf_obj
       end
 
+      def populate_record_type_field(salesforce_field, odk_field_value)
+        sf_obj = @rf.query("SELECT Id, Name FROM RecordType WHERE sObjectType = '#{salesforce_field.salesforce_object.name}' AND Name = '#{odk_field_value}'").first
+        @attributes[salesforce_field.field_name] = sf_obj.Id if sf_obj
+      end
+
       def populate_relationships(import_objects)
         @salesforce_object.salesforce_fields.joins(:salesforce_relationship).each do |salesforce_relationship_field|
           obj = import_objects.select{|io| io.salesforce_object.id == salesforce_relationship_field.salesforce_relationship.salesforce_object.id}.first

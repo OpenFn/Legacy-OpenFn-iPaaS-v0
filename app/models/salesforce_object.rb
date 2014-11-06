@@ -22,10 +22,10 @@ class SalesforceObject < ActiveRecord::Base
     sf_fields = sf_client.describe(self.name)["fields"]
 
     sf_fields.each do |sf_field|
-      self.salesforce_fields.find_or_create_by!(
+      self.salesforce_fields.find_or_create_by!({
         field_name: sf_field["name"],
-        data_type: sf_field["type"]
-      )
+        data_type: (sf_field["name"].eql?("RecordTypeId") ? "record_type_id" : sf_field["type"])
+      })
     end
   end
 
@@ -35,4 +35,5 @@ class SalesforceObject < ActiveRecord::Base
     self.color = (SalesforceObject::COLORS - self.mapping.salesforce_objects.collect(&:color)).first
     self.save
   end
+
 end
