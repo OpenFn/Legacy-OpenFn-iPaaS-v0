@@ -13,7 +13,7 @@
 
     ########## WATCHES
 
-    $scope.$watchCollection "salesforceObject.relationshipFields", (newValue, oldValue) ->
+    $scope.$watch("salesforceObject.relationshipFields", (newValue, oldValue) ->
       if newValue.length > oldValue.length
         # Adding a new field
         newField = newValue.diff(oldValue)[0]
@@ -36,6 +36,7 @@
           id: deletedField.id
         ).$promise.then () ->
           $scope.$emit "mapping:saved"
+    , true)
 
     ########## BEFORE FILTERS
 

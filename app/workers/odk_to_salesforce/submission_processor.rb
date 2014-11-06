@@ -89,9 +89,12 @@ module OdkToSalesforce
         odk_field_value = @converter.get_field_content(odk_field, submission_data)
         odk_field_value = transform_uuid_value(odk_field_value, salesforce_object, index) if odk_field.is_uuid
 
-        if salesforce_field.data_type == "reference"
+        case salesforce_field.data_type
+        when"reference"
           # => This is a lookup field
           import_object.populate_lookup_field(salesforce_field, odk_field_value)
+        when "record_type_id"
+          import_object.populate_record_type_field(salesforce_field, odk_field_value)
         else
           # => Process the regular field
           import_object.attributes[salesforce_field.field_name] = odk_field_value
