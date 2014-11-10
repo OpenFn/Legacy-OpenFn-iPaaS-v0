@@ -77,6 +77,9 @@
     $scope.setViewingSfObject = (sfObject) ->
       $scope.viewingSfObject = sfObject
 
+    $scope.tabMoved = () ->
+      $scope.updateSalesforceObjectOrder()
+
     ########## WATCHES
 
     $scope.$watch "mapping.salesforceObjectName", (salesforceObjectId) ->
@@ -103,6 +106,7 @@
           $scope.viewingSfObject.salesforceFields = angular.copy($scope.viewingSfObject.originalFields)
         else
           $scope.viewingSfObject.salesforceFields = $filter('filter')($scope.viewingSfObject.originalFields, $scope.sfFilter)
+
 
     ########## BEFORE FILTERS
 
