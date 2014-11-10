@@ -1,7 +1,7 @@
 class SalesforceObjectSerializer < ActiveModel::Serializer
   attributes :id, :name, :label, :color, :order, :is_repeat, :relationshipFields
 
-  has_many :salesforce_fields, key: "salesforceFields"
+  has_many :salesforce_fields, root: "salesforceFields"
 
   def relationshipFields
     arr = []

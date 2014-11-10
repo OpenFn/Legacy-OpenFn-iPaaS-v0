@@ -41,6 +41,13 @@ module OdkToSalesforce
     protected
 
     def process_submission
+
+      puts ""
+      puts ""
+      puts "Processing new submission"
+      puts "-" * 30
+      puts ""
+
       # => Mark this submission as being processed, for the first time or
       @submission.process
 
@@ -54,6 +61,7 @@ module OdkToSalesforce
 
         # => If the object is a repeat, then create multiples of them
         if salesforce_object.is_repeat
+          puts "Processing REPEAT object: #{salesforce_object.name}"
 
           # => Load the node in the odk_data that contains all these repeat fields
           repeat_odk_data = @converter.get_repeat_field_root(salesforce_fields.first.odk_fields.first, @submission.data)
@@ -62,6 +70,7 @@ module OdkToSalesforce
             create_in_salesforce(salesforce_object, salesforce_fields, rod, i)
           end
         else
+          puts "Processing object: #{salesforce_object.name}"
           create_in_salesforce(salesforce_object, salesforce_fields, @submission.data)
         end
       end
@@ -80,9 +89,12 @@ module OdkToSalesforce
         odk_field_value = @converter.get_field_content(odk_field, submission_data)
         odk_field_value = transform_uuid_value(odk_field_value, salesforce_object, index) if odk_field.is_uuid
 
-        if salesforce_field.data_type == "reference"
+        case salesforce_field.data_type
+        when"reference"
           # => This is a lookup field
           import_object.populate_lookup_field(salesforce_field, odk_field_value)
+        when "record_type_id"
+          import_object.populate_record_type_field(salesforce_field, odk_field_value)
         else
           # => Process the regular field
           import_object.attributes[salesforce_field.field_name] = odk_field_value
