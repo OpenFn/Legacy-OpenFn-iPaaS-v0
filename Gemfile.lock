@@ -52,7 +52,7 @@ GEM
       tzinfo (~> 1.1)
     angular-ui-bootstrap-rails (0.11.2)
     angular_ui_tree_rails (0.1.5)
-    angularjs-rails (1.2.0)
+    angularjs-rails (1.2.16)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.9)
     bootstrap-sass (3.1.1.1)
@@ -265,7 +265,7 @@ DEPENDENCIES
   active_model_serializers
   angular-ui-bootstrap-rails
   angular_ui_tree_rails
-  angularjs-rails (= 1.2)
+  angularjs-rails (= 1.2.16)
   bootstrap-sass (~> 3.1.1)
   coffee-rails (~> 4.0.0)
   colored
