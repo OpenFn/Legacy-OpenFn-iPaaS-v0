@@ -46,7 +46,7 @@
 
     ########## WATCHES
 
-    $scope.$watch("odkFormField.salesforceFields", (newValue, oldValue) ->
+    $scope.$watchCollection("odkFormField.salesforceFields", (newValue, oldValue) ->
       if newValue.length > oldValue.length
         # Adding a new field
         newField = newValue.diff(oldValue)[0]
@@ -74,7 +74,7 @@
         # Initial Load
         newField = newValue[0]
         $scope.checkLookupFields(newField)
-    , true)
+    )
 
     ########## BEFORE FILTERS
 

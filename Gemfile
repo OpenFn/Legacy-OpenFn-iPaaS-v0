@@ -55,7 +55,7 @@ group :doc do
 end
 
 # => Funci Gem to interact with ODK aggregate
-gem 'odk_aggregate', :git => 'https://github.com/func-i/odk_aggregate.git', branch: 'master'
+gem 'odk_aggregate', :git => 'https://github.com/func-i/odk_aggregate.git', branch: 'feature/9-repeat-block-form-fields'
 #gem 'odk_aggregate', path: "~/Documents/funci/odk_aggregate"
 
 # => Gem for SalesForce
