@@ -73,7 +73,7 @@ gem 'kaminari'
 gem 'spring'
 
 # => Clone AR objects
-gem 'deep_cloneable', '~> 1.6.1'
+gem 'deep_cloneable', '~> 2.0.0'
 
 # => Using jquery UI for draggable
 gem 'jquery-ui-rails'

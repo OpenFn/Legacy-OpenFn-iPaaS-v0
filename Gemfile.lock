@@ -69,8 +69,8 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     colored (1.2)
-    deep_cloneable (1.6.1)
-      activerecord (>= 3.1.0)
+    deep_cloneable (2.0.0)
+      activerecord (>= 3.1.0, < 5.0.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.2)
@@ -117,7 +117,7 @@ GEM
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
     mime-types (2.4.3)
-    minitest (5.4.2)
+    minitest (5.4.3)
     mono_logger (1.1.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
@@ -269,7 +269,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.1.1)
   coffee-rails (~> 4.0.0)
   colored
-  deep_cloneable (~> 1.6.1)
+  deep_cloneable (~> 2.0.0)
   faraday (~> 0.8.6)
   figaro
   guard-rspec

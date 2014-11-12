@@ -1,7 +1,7 @@
 class OdkForm < ActiveRecord::Base
   belongs_to :mapping
 
-  has_many :odk_fields
+  has_many :odk_fields, dependent: :destroy
 
   accepts_nested_attributes_for :odk_fields
 
@@ -15,7 +15,7 @@ class OdkForm < ActiveRecord::Base
     odk_form_fields = odk.find_form(self.name).fields.collect do |f|
       index = f["nodeset"].index("/", 1)
       {
-        field_name: f["nodeset"][index..-1], 
+        field_name: f["nodeset"][index..-1],
         field_type: f["type"],
         group: f["group"]
       }
@@ -27,7 +27,7 @@ class OdkForm < ActiveRecord::Base
         field_type: odk_form_field[:field_type],
         repeat_field: odk_form_field[:group],
         uuidable: odk_form_field[:field_name] == "/meta/instanceID"
-      })
+      }) unless self.odk_fields.detect{|field| field.field_name.eql?(odk_form_field[:field_name])}
     end
   end
 end
