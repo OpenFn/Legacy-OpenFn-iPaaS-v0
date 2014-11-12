@@ -14,7 +14,7 @@ module OdkToSalesforce
       non_repeat_odk_fields = salesforce_fields.collect(&:odk_fields).flatten.select{|odk_field| !odk_field.repeat_field}.uniq
 
       # => Convert the object to an open struct for easier access
-      struct = OpenStruct.new(odk_data)
+      struct = Hashie::Mash.new(odk_data)
 
       # => Check if the salesforce object is a repeat
       if salesforce_object.is_repeat
@@ -26,7 +26,7 @@ module OdkToSalesforce
         field_nesting = odk_field.field_name.split("/").reject { |f| f.empty? }
 
         # => Load the repeat object
-        repeat = struct.send(field_nesting[0...-1].join("."))
+        repeat = struct.instance_eval(field_nesting[0...-1].join("."))
 
         repeat = [repeat] unless repeat.is_a?(Array)
         repeat.each do |repeat_hash|
@@ -60,13 +60,13 @@ module OdkToSalesforce
       # given "/first_level/second_level"
       # -> [ "first_level", "second_level", etc. ]
 
-      struct = OpenStruct.new(odk_data)
+      struct = Hashie::Mash.new(odk_data)
       key_arr = odk_field.field_name.split("/").reject { |f| f.empty? }
 
       if odk_field.repeat_field
         value = struct.send(key_arr.last)
       else
-        value = struct.send(key_arr.join("."))
+        value = struct.instance_eval(key_arr.join("."))
       end
 
       value = transform_value(value, odk_field.field_type) unless value.is_a?(Array)

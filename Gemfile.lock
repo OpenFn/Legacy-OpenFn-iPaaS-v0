@@ -273,6 +273,7 @@ DEPENDENCIES
   faraday (~> 0.8.6)
   figaro
   guard-rspec
+  hashie
   jbuilder (~> 1.2)
   jquery-rails
   jquery-ui-rails

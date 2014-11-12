@@ -49,6 +49,8 @@ gem 'faraday', '~> 0.8.6'
 
 gem 'state_machine'
 
+gem 'hashie'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

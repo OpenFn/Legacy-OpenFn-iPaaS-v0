@@ -57,27 +57,9 @@ module OdkToSalesforce
       salesforce_objects.each do |salesforce_object|
 
         # => Load the fields for the salesforce_object
-
         @converter.odk_data(salesforce_object, @submission.data).each_with_index do |odk_data, i|
           create_in_salesforce(salesforce_object, odk_data, i)
         end
-
-
-        # => If the object is a repeat, then create multiples of them
-        # if salesforce_object.is_repeat
-        #   puts "Processing REPEAT object: #{salesforce_object.name}"
-
-        #   # => Load the node in the odk_data that contains all these repeat fields
-        #   repeat_odk_data = @converter.get_repeat_field_root(salesforce_fields, @submission.data)
-        #   binding.pry
-
-        #   repeat_odk_data.each_with_index do |rod, i|
-        #     create_in_salesforce(salesforce_object, salesforce_fields, rod, i)
-        #   end
-        # else
-        #   puts "Processing object: #{salesforce_object.name}"
-        #   create_in_salesforce(salesforce_object, salesforce_fields, @submission.data)
-        # end
       end
     end
 
