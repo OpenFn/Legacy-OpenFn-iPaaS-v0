@@ -13,7 +13,7 @@
     ########## FUNCTIONS
 
     $scope.onAffix = ->
-      angular.element('.odk-row').css('marginTop', '325px')
+      angular.element('.odk-row').css('marginTop', '350px')
 
     $scope.onUnaffix = ->
       angular.element('.odk-row').css('marginTop', '0px')
