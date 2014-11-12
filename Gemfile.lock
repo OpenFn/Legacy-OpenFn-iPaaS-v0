@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/func-i/odk_aggregate.git
-  revision: edb1e3eb7568f6d156a98c7dd1188c1b3ae64aa1
-  branch: master
+  revision: 6fc824ceaf46e8b2e007d9b2fd0004f904883b35
+  branch: feature/9-repeat-block-form-fields
   specs:
-    odk_aggregate (0.0.5)
+    odk_aggregate (0.0.6)
       faraday_middleware
       multi_xml
       net-http-digest_auth (~> 1.4)
@@ -273,6 +273,7 @@ DEPENDENCIES
   faraday (~> 0.8.6)
   figaro
   guard-rspec
+  hashie
   jbuilder (~> 1.2)
   jquery-rails
   jquery-ui-rails
