@@ -22,11 +22,6 @@
           <li>
             <%= link_to "Integrations - maps", mappings_path, 'ng-click' => "$event.stopPropagation()" %>
           </li>
-          <% if current_user.admin? %>
-            <li>
-              <%= link_to "Metrics", "/#/metrics/organisation" %>
-            </li>
-          <% end %>
           <li>
             <%= link_to "Settings", edit_user_path(current_user), 'ng-click' => "$event.stopPropagation()" %>
           </li>
