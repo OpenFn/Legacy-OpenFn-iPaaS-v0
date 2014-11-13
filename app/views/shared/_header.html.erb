@@ -28,6 +28,9 @@
             </li>
           <% end %>
           <li>
+            <%= link_to "Release Notes", "/#/release-notes" %>
+          </li>
+          <li>
             <%= link_to "Settings", edit_user_path(current_user), 'ng-click' => "$event.stopPropagation()" %>
           </li>
           <li>
