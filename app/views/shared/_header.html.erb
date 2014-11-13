@@ -17,10 +17,10 @@
       <% if current_user %>
         <ul class="nav navbar-nav">
           <li>
-            <%= link_to "Integrations", "/#/integrations" %>
+            <%= link_to "Marketplace", "/#/product-search" %>
           </li>
           <li>
-            <%= link_to "Mappings", mappings_path, 'ng-click' => "$event.stopPropagation()" %>
+            <%= link_to "Integrations - maps", mappings_path, 'ng-click' => "$event.stopPropagation()" %>
           </li>
           <% if current_user.admin? %>
             <li>
