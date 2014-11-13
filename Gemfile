@@ -49,13 +49,15 @@ gem 'faraday', '~> 0.8.6'
 
 gem 'state_machine'
 
+gem 'hashie'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
 
 # => Funci Gem to interact with ODK aggregate
-gem 'odk_aggregate', :git => 'https://github.com/func-i/odk_aggregate.git', branch: 'master'
+gem 'odk_aggregate', :git => 'https://github.com/func-i/odk_aggregate.git', branch: 'feature/9-repeat-block-form-fields'
 #gem 'odk_aggregate', path: "~/Documents/funci/odk_aggregate"
 
 # => Gem for SalesForce
@@ -71,7 +73,7 @@ gem 'kaminari'
 gem 'spring'
 
 # => Clone AR objects
-gem 'deep_cloneable', '~> 1.6.1'
+gem 'deep_cloneable', '~> 2.0.0'
 
 # => Using jquery UI for draggable
 gem 'jquery-ui-rails'

@@ -65,8 +65,7 @@ class MappingsController < ApplicationController
   end
 
   def clone
-    new_mapping = @mapping.dup :include => {salesforce_fields: :odk_fields}
-    new_mapping.name = new_mapping.name + "_copy"
+    new_mapping = @mapping.duplicate
     if new_mapping.save
       redirect_to new_mapping
     else
