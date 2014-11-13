@@ -2,6 +2,8 @@ class ProductsController < ApplicationController
   respond_to :json
   layout false
 
+  skip_before_filter :verify_authenticity_token
+
   def index
     render json: Product.order('name').as_json
   end
