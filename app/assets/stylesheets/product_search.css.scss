@@ -29,7 +29,12 @@
 }
 
 .product-list {
+  margin: 0;
   $product-padding: 1em;
+
+  .product:hover {
+    background-color: #D4EBF6;
+  }
 
   .product {
     padding: $product-padding;
