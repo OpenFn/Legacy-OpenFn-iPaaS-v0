@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    raise params.inspect
+    raise request.body.inspect
 
     respond_to do |format|
       format.xml  { render xml: "" }
