@@ -5,6 +5,9 @@ SalesForce::Application.routes.draw do
   mount ResqueWeb::Engine => "/resque_web"
 
   resources :products, only: [:index]
+  get "update_products", to: "products#update"
+  put "update_products", to: "products#update"
+  post "update_products", to: "products#update"
 
   resources :credentials
 
