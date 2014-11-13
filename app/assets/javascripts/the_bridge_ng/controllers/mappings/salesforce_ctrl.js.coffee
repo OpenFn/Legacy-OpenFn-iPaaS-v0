@@ -74,8 +74,20 @@
           $scope.mapping.salesforceObjects.splice(i, 1)
           $scope.$emit "mapping:saved"
 
+    $scope.refreshSfFields = (sfObject) ->
+      SalesforceObject.refreshFields(
+        mapping_id: $scope.mapping.id,
+        id: sfObject.id
+      ).$promise.then (response) ->
+        i = $scope.mapping.salesforceObjects.indexOf(sfObject)
+        $scope.mapping.salesforceObjects[i].salesforceFields = response.salesforce_object.salesforceFields
+        $scope.$emit "mapping:saved"
+
     $scope.setViewingSfObject = (sfObject) ->
       $scope.viewingSfObject = sfObject
+
+    $scope.tabMoved = () ->
+      $scope.updateSalesforceObjectOrder()
 
     ########## WATCHES
 
@@ -103,6 +115,7 @@
           $scope.viewingSfObject.salesforceFields = angular.copy($scope.viewingSfObject.originalFields)
         else
           $scope.viewingSfObject.salesforceFields = $filter('filter')($scope.viewingSfObject.originalFields, $scope.sfFilter)
+
 
     ########## BEFORE FILTERS
 

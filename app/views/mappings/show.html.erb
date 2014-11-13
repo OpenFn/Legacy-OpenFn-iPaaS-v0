@@ -16,8 +16,10 @@
 
 <div class='pull-right'>
   <%= button_to "Destroy", @mapping, method: :delete, class: 'btn btn-danger', confirm: 'Are you sure?' %>
+  <%= link_to "View Cursor", '#', class: 'btn btn-primary', data: {toggle: 'modal', target: '#cursor_modal'} if @mapping.import && @mapping.import.cursor %>
   <%= button_to "Clear Cursor", [:clear_cursor, @mapping], class: 'btn btn-warning', confirm: "Are you sure?" %>
   <%= button_to "Clone", [:clone, @mapping], class: 'btn', confirm: 'Are you sure?' %>
 </div>
 
+<%= render "cursor_modal", mapping: @mapping if @mapping.import && @mapping.import.cursor %>
 <%= render "edit", mapping: @mapping %>

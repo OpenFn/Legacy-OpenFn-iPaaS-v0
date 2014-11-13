@@ -14,31 +14,19 @@
 }
 
 body {
-  font-family : 'Open Sans',Verdana,Helvetica,Arial,serif !important; 
-  line-height: 1 !important;
+  font-family : 'Open Sans',Verdana,Helvetica,Arial,serif; 
+  line-height: 1;
 }
 
 .nav-tabs>li>a {
-  line-height: 1 !important;
+  line-height: 1;
 }
 
 .table>thead>tr>th, .table>thead>tr>td, .table>tbody>tr>th, .table>tbody>tr>td, .table>tfoot>tr>th, .table>tfoot>tr>td {
-  vertical-align: middle !important;
-  padding-left: 8px !important;
-  padding-bottom: 4px !important;
-  padding-right: 8px !important;
-  padding-top: 4px !important;
-  line-height: 1 !important;
-}
-
-h4 {
-  font-size: 18px !important;
-}
-
-h2 {
-  font-size: 30px !important;
-}
-
-h3 {
-  font-size: 24px !important; 
+  vertical-align: middle;
+  padding-left: 8px;
+  padding-bottom: 4px;
+  padding-right: 8px;
+  padding-top: 4px;
+  line-height: 1;
 }
