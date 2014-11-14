@@ -4,10 +4,10 @@ class Salesforce::Listing::Product
   def initialize(notification)
     raise ArgumentError, "Invalid notification: #{notification.class}" unless notification.is_a?(Salesforce::Notification)
 
-    @id = notification.at_css('Listing_Number__c').content
-    @description = notification.at_css('Description__c').content
-    @name = notification.at_css('Name').content
-    @tags = notification.at_css('Tags__c').content.split(";")
-    @website = notification.at_css('Website__c').content
+    @id = notification.at_css('Listing_Number__c').try(:content)
+    @description = notification.at_css('Description__c').try(:content)
+    @name = notification.at_css('Name').try(:content)
+    @tags = notification.at_css('Tags__c').try(:content).try(:split, ";")
+    @website = notification.at_css('Website__c').try(:content)
   end
 end
