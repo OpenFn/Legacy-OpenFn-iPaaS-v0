@@ -9,10 +9,19 @@ class ProductsController < ApplicationController
   end
 
   def update
-    xml_string = request.body.read
+    notification = Salesforce::Notification.new(request.body.read)
+    salesforce_product = Salesforce::Listing::Product.new(notification)
 
-    respond_to do |format|
-      format.xml  { render xml: "" }
+    product = Product.from_salesforce(salesforce_product)
+
+    if product.save
+      respond_to do |format|
+        format.xml  { render xml: "" }
+      end
+    else
+      respond_to do |format|
+        format.xml  { render xml: "" }
+      end
     end
   end
 end
