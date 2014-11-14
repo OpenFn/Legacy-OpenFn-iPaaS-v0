@@ -27,11 +27,15 @@
           </li>
           <% if current_user.admin? %>
             <li>
-              <%= link_to <span class="glyphicon glyphicon-stats">, "/#/metrics/organisation" %>
+              <%= link_to "/#/metrics/organisation" do %>
+                <span class="glyphicon glyphicon-stats">
+                <% end %>
             </li>
           <% end %>
           <li>
-            <%= link_to <span class="glyphicon glyphicon-cog">, edit_user_path(current_user), 'ng-click' => "$event.stopPropagation()" %>
+            <%= link_to edit_user_path(current_user), 'ng-click' => "$event.stopPropagation()" do %>
+              <span class="glyphicon glyphicon-cog">
+              <% end %>
           </li>
           <li>
             <%= link_to "Logout", :logout, method: :post %>
