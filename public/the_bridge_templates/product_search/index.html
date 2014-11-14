@@ -18,22 +18,24 @@
     </div>
 
     <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
-      <div ng-repeat="product in products | filter:filterProducts" class="product col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <h3 class="name">
-          {{product.name}}
-        </h3>
-        <div class='description'>
-          {{product.description}}
+      <div ng-repeat="product in products | filter:filterProducts" class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="product">
+          <h3 class="name">
+            {{product.name}}
+          </h3>
+          <div class='description'>
+            {{product.description}}
+          </div>
+          <div class='rating'>
+            <i class="glyphicon glyphicon-star"></i>
+            <i class="glyphicon glyphicon-star"></i>
+            <i class="glyphicon glyphicon-star"></i>
+            (7)
+          </div>
+          <a ng-href="#/products/{{product.id}}" class="details-link">
+            View Details
+          </a>
         </div>
-        <div class='rating'>
-          <i class="glyphicon glyphicon-star"></i>
-          <i class="glyphicon glyphicon-star"></i>
-          <i class="glyphicon glyphicon-star"></i>
-          (7)
-        </div>
-        <a ng-href="#/products/{{product.id}}" class="details-link">
-          View Details
-        </a>
       </div>
     </div>
   </div>
