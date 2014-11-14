@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114135705) do
+ActiveRecord::Schema.define(version: 20141114150757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20141114135705) do
     t.text    "description"
     t.string  "salesforce_id"
     t.string  "website"
+    t.boolean "enabled"
   end
 
   create_table "salesforce_fields", force: true do |t|
