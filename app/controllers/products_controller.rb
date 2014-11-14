@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    raise request.body.read
+    xml_string = request.body.read
 
     respond_to do |format|
       format.xml  { render xml: "" }
