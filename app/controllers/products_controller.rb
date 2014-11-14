@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
-  respond_to :json
+  respond_to :json, :xml
   layout false
 
-  skip_before_filter :verify_authenticity_token, :require_login
+  skip_before_filter :verify_authenticity_token, :require_login, only: [:update]
 
   def index
     render json: Product.order('name').as_json
@@ -16,11 +16,11 @@ class ProductsController < ApplicationController
 
     if product.save
       respond_to do |format|
-        format.xml  { render xml: "" }
+        format.xml  { render 'success', layout: false }
       end
     else
       respond_to do |format|
-        format.xml  { render xml: "" }
+        format.xml  { render xml: "", status: 422 }
       end
     end
   end

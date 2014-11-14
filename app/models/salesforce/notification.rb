@@ -1,5 +1,9 @@
 class Salesforce::Notification
   attr_reader :notification
+  attr_reader :xml
+
+
+  delegate :at_css, to: :xml
 
   def initialize(xml)
     raise ArgumentError, "Invalid message type: #{xml.class}" unless xml.is_a?(String) || xml.is_a?(Nokogiri::XML::Document)

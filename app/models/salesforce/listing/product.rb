@@ -12,7 +12,7 @@ class Salesforce::Listing::Product
   end
 
   def attributes
-    @attributes || = {
+    @attributes ||= {
       id: id,
       description: description,
       name: name,
