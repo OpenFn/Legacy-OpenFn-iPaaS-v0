@@ -17,6 +17,11 @@ SalesForce::Application.routes.draw do
     end
 
     resources :salesforce_objects, only: [:create, :destroy, :update] do
+
+      member do
+        get :refresh_fields
+      end
+
       resources :salesforce_object_fields, only: [:index]
       resources :salesforce_relationships, only: [:create, :destroy]
     end
@@ -40,7 +45,7 @@ SalesForce::Application.routes.draw do
   namespace :metrics do
     get "organisation_integration_mappings", to: "organisation_integration_mappings#index", as: :organisation_integration_mappings
   end
-  
+
   namespace :api do
     resources :integration, param: :api_key do
       resource :message, only: [:create]

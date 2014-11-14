@@ -65,8 +65,7 @@ class MappingsController < ApplicationController
   end
 
   def clone
-    new_mapping = @mapping.dup :include => {salesforce_fields: :odk_fields}
-    new_mapping.name = new_mapping.name + "_copy"
+    new_mapping = @mapping.duplicate
     if new_mapping.save
       redirect_to new_mapping
     else
@@ -75,9 +74,9 @@ class MappingsController < ApplicationController
   end
 
   def clear_cursor
-    import = Import.where(odk_formid: @mapping.odk_form.name).first
-    if import
-      import.update(cursor: nil, last_uuid: nil)
+
+    if @mapping.import
+      @mapping.import.update(cursor: nil, last_uuid: nil)
     end
 
     redirect_to @mapping

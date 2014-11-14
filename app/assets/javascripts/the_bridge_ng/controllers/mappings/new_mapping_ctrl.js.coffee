@@ -5,7 +5,9 @@
 
     ########## VARIABLE ASSIGNMENT
 
-    $scope.mapping = {}
+    $scope.mapping = {
+      odkForm: {}
+    }
 
     ########## FUNCTIONS
 

@@ -29,6 +29,10 @@ Array::filter = (func) -> x for x in @ when func(x)
 @the_bridge.config ($routeProvider, $locationProvider) ->
   $locationProvider.html5Mode true
   $routeProvider
+    .when '/mappings/new',
+      controller: 'NewMappingCtrl'
+      templateUrl: '../the_bridge_templates/mappings/new.html'
+
     .when '/mappings/:id',
       controller: 'EditMappingCtrl'
       templateUrl: '../the_bridge_templates/mappings/edit.html'
@@ -53,6 +57,9 @@ Array::filter = (func) -> x for x in @ when func(x)
     .when('/products-search', {
       templateUrl: '../the_bridge_templates/product_search/index.html',
       controller: 'ProductSearchController'
+    })
+    .when('/release-notes', {
+      templateUrl: '../the_bridge_templates/static/release-notes.html'
     })
     .when('/', {
       templateUrl: '../the_bridge_templates/product_search/index.html',

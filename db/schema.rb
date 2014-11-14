@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141103130314) do
+ActiveRecord::Schema.define(version: 20141113153101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20141103130314) do
     t.integer  "odk_form_id"
     t.boolean  "is_uuid",             default: false
     t.boolean  "uuidable",            default: false
+    t.boolean  "repeat_field",        default: false
   end
 
   add_index "odk_fields", ["odk_form_id"], name: "index_odk_fields_on_odk_form_id", using: :btree
@@ -137,7 +138,7 @@ ActiveRecord::Schema.define(version: 20141103130314) do
     t.integer  "import_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "message"
+    t.text     "message"
     t.text     "backtrace"
   end
 
