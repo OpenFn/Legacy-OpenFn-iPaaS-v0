@@ -9,6 +9,8 @@ class ProductsController < ApplicationController
   end
 
   def update
+    raise request.body.read.inspect
+
     notification = Salesforce::Notification.new(request.body.read)
     salesforce_product = Salesforce::Listing::Product.new(notification)
 

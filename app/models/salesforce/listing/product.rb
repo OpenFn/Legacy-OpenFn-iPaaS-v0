@@ -10,14 +10,4 @@ class Salesforce::Listing::Product
     @tags = notification.at_css('Tags__c').content.split(";")
     @website = notification.at_css('Website__c').content
   end
-
-  def attributes
-    @attributes ||= {
-      id: id,
-      description: description,
-      name: name,
-      tags: tags,
-      website: website
-    }
-  end
 end
