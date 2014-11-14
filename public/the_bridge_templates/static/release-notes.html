@@ -45,11 +45,11 @@
 
 <h2>October 29th, 2014: Version 0.3, Unique IDs for each destination record</h2>
 
-<p>Hey family,</br>
+<p>Hey family,</br></br>
 
-ODK Aggregate generates a single unique string for each submission. We'd been using this "metainstanceID" to map to "ODK Key" fields in Salesforce so you have a string that matches in both databases for data validation. An important security blanket, if you will! </br>
+ODK Aggregate generates a single unique string for each submission. We'd been using this "metainstanceID" to map to "ODK Key" fields in Salesforce so you have a string that matches in both databases for data validation. An important security blanket, if you will! </br></br>
 
-The problem is that "ODK Key" in Salesforce it cannot be set to unique (which would 100% guarantee the blocking of duplicate records) for objects that receive multiple records per submission. </br>
+The problem is that "ODK Key" in Salesforce it cannot be set to unique (which would 100% guarantee the blocking of duplicate records) for objects that receive multiple records per submission. </br></br>
 
 For example, a new beneficiary linked to an existing clinic with a new visit and two new test results would look like this: </br>
 <ol>
@@ -66,18 +66,17 @@ For example, a new beneficiary linked to an existing clinic with a new visit and
 		New Test Result 2, ODK Key = uuid:c35c2cb3-3d05-4660-bc22-5de0d4999fd9
 	</li>
 </ol>
-You could make Beneficiary__c.ODK_Key__c and Visit__c.ODK_Key__c unique in Salesforce, butnot Test_Result__c.ODK_Key__c. </br>
+You could make Beneficiary__c.ODK_Key__c and Visit__c.ODK_Key__c unique in Salesforce, butnot Test_Result__c.ODK_Key__c. </br></br>
 
-Much in the same way that ODK Briefcase generates unique keys by appending the "metainstanceID" for each submission with a string, we now give bridge users the option (through a checkbox next to metainstanceID) to use this modified metainstanceID and have a unique "ODK Key" field on every destination object. I know I shouldn't always show how the sausage is made, but this is very straightforward and you might be curious. </br>
+Much in the same way that ODK Briefcase generates unique keys by appending the "metainstanceID" for each submission with a string, we now give bridge users the option (through a checkbox next to metainstanceID) to use this modified metainstanceID and have a unique "ODK Key" field on every destination object. I know I shouldn't always show how the sausage is made, but this is very straightforward and you might be curious. </br></br>
 
-IF UUID = true, convert meta/instanceID to:</br>
+IF UUID = true, convert meta/instanceID to:</br></br>
 
-IF (repeat = FALSE,</br>
-	meta/instanceID + &quot;/&quot; + designator,</br>
-	meta/instanceID + &quot;/&quot; designator + &quot;.&quot; + array_position )</br>
+&nbsp;&nbsp;&nbsp;&nbsp;IF (repeat = FALSE,</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;meta/instanceID + &quot;/&quot; + designator,</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;meta/instanceID + &quot;/&quot; designator + &quot;.&quot; + array_position )</br></br>
 
-You'll see this now and a new error handling UI in the next couple of days. You're also always welcome to check out our staging server if you're bored and curious about what's next in the pipeline: the-staging-bridge.herokuapp.com</br>
-</br>
+You'll see this now and a new error handling UI in the next couple of days. You're also always welcome to check out our staging server if you're bored and curious about what's next in the pipeline: the-staging-bridge.herokuapp.com</br></br>
 
 TD</p>
 
