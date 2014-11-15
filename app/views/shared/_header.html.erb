@@ -20,21 +20,27 @@
             <%= link_to "Marketplace", "/#/product-search" %>
           </li>
           <li>
-            <%= link_to "Integrations - maps", mappings_path, 'ng-click' => "$event.stopPropagation()" %>
+            <%= link_to "Integrations", mappings_path, 'ng-click' => "$event.stopPropagation()" %>
+          </li>
+          <li>
+            <%= link_to "Ideas", "/#/release-notes" %>
           </li>
           <% if current_user.admin? %>
             <li>
-              <%= link_to "Metrics", "/#/metrics/organisation" %>
+              <%= link_to "/#/metrics/organisation" do %>
+                <span class="glyphicon glyphicon-stats">
+                <% end %>
             </li>
           <% end %>
           <li>
-            <%= link_to "Release Notes", "/#/release-notes" %>
+            <%= link_to edit_user_path(current_user), 'ng-click' => "$event.stopPropagation()" do %>
+              <span class="glyphicon glyphicon-cog">
+              <% end %>
           </li>
           <li>
-            <%= link_to "Settings", edit_user_path(current_user), 'ng-click' => "$event.stopPropagation()" %>
-          </li>
-          <li>
-            <%= link_to "Logout", :logout, method: :post %>
+            <%= link_to "Logout", :logout, method: :post do %>
+              <span class="glyphicon glyphicon-log-out">
+              <% end %>
           </li>
         </ul>
       <% end %>
