@@ -54,7 +54,7 @@ Array::filter = (func) -> x for x in @ when func(x)
       templateUrl: '../the_bridge_templates/home/index.html',
       controller: 'HomeController'
     })
-    .when('/products-search', {
+    .when('/product-search', {
       templateUrl: '../the_bridge_templates/product_search/index.html',
       controller: 'ProductSearchController'
     })
@@ -62,11 +62,10 @@ Array::filter = (func) -> x for x in @ when func(x)
       templateUrl: '../the_bridge_templates/static/release-notes.html'
     })
     .when('/welcome', {
-      templateUrl: ‘/the_bridge_templates/static/welcome.html'
+      templateUrl: '../the_bridge_templates/static/welcome.html'
     })
     .when('/', {
       templateUrl: '../the_bridge_templates/static/welcome.html',
-      controller: 'ProductSearchController'
       redirectTo: (current, path, search) ->
         if(search.goto)
           return "/" + search.goto
