@@ -1,6 +1,7 @@
 @the_bridge.controller 'ProductSearchController', ['$scope', '$location', '$http', ($scope, $location, $http) ->
   $scope.products = []
   $scope.searchText = ""
+  $scope.searchFilters = {}
   
   $http.get('./products.json').success((data) ->
     $scope.products = data.products
@@ -11,7 +12,8 @@
     if (angular.lowercase(product.name).indexOf(lowercaseSearchText)!= -1 || 
       (angular.lowercase(product.description) || "").indexOf(lowercaseSearchText)!= -1 || 
       (angular.lowercase(product.website) || "").indexOf(lowercaseSearchText)!= -1 || 
-      tagMatches(product.tag_list, lowercaseSearchText))
+      tagMatches(product.tag_list, lowercaseSearchText)) &&
+      filtersMatch(product, $scope.searchFilters)
         return true
     return false
 
@@ -21,4 +23,10 @@
         tag.indexOf(text) != -1
     else
       false
+
+  filtersMatch = (product, filters) ->
+    if filters.integrated
+      return product.integrated
+    else
+      return true
 ]

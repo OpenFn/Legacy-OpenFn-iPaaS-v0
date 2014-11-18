@@ -50,11 +50,7 @@ Array::filter = (func) -> x for x in @ when func(x)
       templateUrl: '../the_bridge_templates/metrics/organisations/index.html',
       controller: 'OrganisationsIndexCtrl'
     })
-    .when('/integrations', {
-      templateUrl: '../the_bridge_templates/home/index.html',
-      controller: 'HomeController'
-    })
-    .when('/products-search', {
+    .when('/product-search', {
       templateUrl: '../the_bridge_templates/product_search/index.html',
       controller: 'ProductSearchController'
     })
