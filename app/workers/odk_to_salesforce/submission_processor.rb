@@ -12,6 +12,10 @@ module OdkToSalesforce
       @submission = @mapping.import.submissions.find(submission_id)
       @converter = OdkToSalesforce::Converter.new
       @restforce_connection = RestforceService.new(@mapping.user).connection
+
+      @logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT)) 
+      @logger.push_tags("SubmissionProcessor", "Submission##{@submission.id}", "Mapping##{@mapping.id}")
+
       @all_import_objects = []
     end
 
@@ -23,7 +27,9 @@ module OdkToSalesforce
         @submission.backtrace = nil
         @submission.successful
       rescue Exception => e
-        puts "An error occurred"
+        @logger.error "An error occurred"
+        @logger.error e.message
+        NewRelic::Agent.notice_error(e)
 
         # => Destroy all objects that were created before this error
         # => If the record already existed before this import, leave it!
@@ -42,12 +48,7 @@ module OdkToSalesforce
 
     def process_submission
 
-      puts ""
-      puts ""
-      puts "Processing new submission"
-      puts "-" * 30
-      puts ""
-
+      @logger.info "Starting"
       # => Mark this submission as being processed, for the first time or
       @submission.process
 
