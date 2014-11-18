@@ -8,7 +8,7 @@ class Salesforce::Listing::Product
     @enabled = notification.at_css('Enabled__c').try(:content)
     @description = notification.at_css('Description__c').try(:content)
     @name = notification.at_css('Name').try(:content)
-    @tags = notification.at_css('Tags__c').try(:content).try(:split, ";")
+    @tags = notification.at_css('Tags__c').try(:content)
     @website = notification.at_css('Website__c').try(:content)
   end
 end

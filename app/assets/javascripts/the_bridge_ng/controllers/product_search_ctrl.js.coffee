@@ -7,7 +7,18 @@
   )
 
   $scope.filterProducts = (product) ->
-    if (angular.lowercase(product.name).indexOf(angular.lowercase($scope.searchText))!=-1 || (angular.lowercase(product.description) || "").indexOf(angular.lowercase($scope.searchText))!=-1)
-      return true
+    lowercaseSearchText = angular.lowercase($scope.searchText)
+    if (angular.lowercase(product.name).indexOf(lowercaseSearchText)!= -1 || 
+      (angular.lowercase(product.description) || "").indexOf(lowercaseSearchText)!= -1 || 
+      (angular.lowercase(product.website) || "").indexOf(lowercaseSearchText)!= -1 || 
+      tagMatches(product.tag_list, lowercaseSearchText))
+        return true
     return false
+
+  tagMatches = (tag_list, text) ->
+    if tag_list
+      return tag_list.some (tag) ->
+        tag.indexOf(text) != -1
+    else
+      false
 ]

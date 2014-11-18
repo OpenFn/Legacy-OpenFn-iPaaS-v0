@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :require_login, only: [:update]
 
   def index
-    render json: Product.enabled.order('name').as_json
+    render json: Product.enabled.order('name').as_json(methods: :tag_list)
   end
 
   def update
