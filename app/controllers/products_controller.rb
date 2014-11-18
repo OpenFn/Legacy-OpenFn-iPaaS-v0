@@ -8,6 +8,11 @@ class ProductsController < ApplicationController
     render json: Product.enabled.order('name').as_json
   end
 
+  def show
+    product = Product.find(params[:id])
+    render json: product.as_json(methods: :tag_list)
+  end
+
   def update
     notification = Salesforce::Notification.new(request.body.read)
     salesforce_product = Salesforce::Listing::Product.new(notification)

@@ -1,0 +1,15 @@
+<div ng-controller="ProductController as productCtrl" class="show-product">
+  <h2 class="name">
+    {{product.name}}
+  </h2>
+
+  <ul class="tag-list">
+    <li ng-repeat="tag in product.tag_list">{{tag}}</li>
+  </ul>
+
+  <a ngHref="{{prduct.website}}" class="website">{{product.website}}</a>
+
+  <p class="description">
+    {{product.description}}
+  </p>
+</div>
