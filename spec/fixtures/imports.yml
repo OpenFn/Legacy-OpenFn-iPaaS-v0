@@ -1,0 +1,154 @@
+---
+imports_001:
+  id: '29'
+  odk_formid: geo_tagger_v2
+  last_uuid: 
+  cursor: <cursor xmlns="http://www.opendatakit.org/cursor"><attributeName>_LAST_UPDATE_DATE</attributeName><attributeValue>2014-10-22T08:47:58.684+0000</attributeValue><uriLastReturnedValue>uuid:f9ed5054-96a7-48d3-adb5-2dd85f6b82a2</uriLastReturnedValue><isForwardCursor>true</isForwardCursor></cursor>
+  created_at: '2014-10-22 10:51:07.985642'
+  updated_at: '2014-10-22 10:51:09.781619'
+  num_imported: '0'
+  mapping_id: 
+imports_002:
+  id: '22'
+  odk_formid: SRI_Baseline_Final_NewUnits_Vera_Testing_Only
+  last_uuid: 
+  cursor: <cursor xmlns="http://www.opendatakit.org/cursor"><attributeName>_LAST_UPDATE_DATE</attributeName><attributeValue>2014-10-15T11:31:32.000+0000</attributeValue><uriLastReturnedValue>uuid:c72dbea5-1940-4463-ac71-e3fdd802b909</uriLastReturnedValue><isForwardCursor>true</isForwardCursor></cursor>
+  created_at: '2014-10-15 11:38:10.023022'
+  updated_at: '2014-10-15 11:38:13.970141'
+  num_imported: '0'
+  mapping_id: 
+imports_003:
+  id: '30'
+  odk_formid: Survey_10-22
+  last_uuid: 
+  cursor: <cursor xmlns="http://www.opendatakit.org/cursor"><attributeName>_LAST_UPDATE_DATE</attributeName><attributeValue>2014-08-08T05:21:51.698+0000</attributeValue><uriLastReturnedValue>uuid:b5cd5b57-6f9d-46a8-b0a2-19b9f3da0d9a</uriLastReturnedValue><isForwardCursor>true</isForwardCursor></cursor>
+  created_at: '2014-10-23 08:19:26.226862'
+  updated_at: '2014-10-23 08:34:00.46536'
+  num_imported: '0'
+  mapping_id: 
+imports_004:
+  id: '26'
+  odk_formid: STiR_Attendance_Testing
+  last_uuid: 
+  cursor: 
+  created_at: '2014-10-21 14:13:08.035038'
+  updated_at: '2014-10-23 09:18:20.509276'
+  num_imported: '0'
+  mapping_id: 
+imports_005:
+  id: '21'
+  odk_formid: SRI_Baseline_Final_NewUnits
+  last_uuid: 
+  cursor: <cursor xmlns="http://www.opendatakit.org/cursor"><attributeName>_LAST_UPDATE_DATE</attributeName><attributeValue>2014-10-08T18:01:22.000+0000</attributeValue><uriLastReturnedValue>uuid:efba3672-13b1-4f0f-a8da-73fd5d828dc6</uriLastReturnedValue><isForwardCursor>true</isForwardCursor></cursor>
+  created_at: '2014-10-15 06:10:13.665426'
+  updated_at: '2014-10-20 11:02:32.184693'
+  num_imported: '0'
+  mapping_id: 
+imports_006:
+  id: '31'
+  odk_formid: SRI_Baseline_Final_NewUnits_Vera_Testing_Only
+  last_uuid: 
+  cursor: 
+  created_at: '2014-11-07 14:28:53.916799'
+  updated_at: '2014-11-07 14:28:53.916799'
+  num_imported: '0'
+  mapping_id: '42'
+imports_007:
+  id: '38'
+  odk_formid: db_test
+  last_uuid: 
+  cursor: <cursor xmlns="http://www.opendatakit.org/cursor"><attributeName>_LAST_UPDATE_DATE</attributeName><attributeValue>2014-11-10T09:33:09.036+0000</attributeValue><uriLastReturnedValue>uuid:bc90c147-8a00-405e-a7ed-04a950fb7f49</uriLastReturnedValue><isForwardCursor>true</isForwardCursor></cursor>
+  created_at: '2014-11-11 07:52:37.335003'
+  updated_at: '2014-11-11 07:52:38.884864'
+  num_imported: '0'
+  mapping_id: '47'
+imports_008:
+  id: '39'
+  odk_formid: Events_Boats_Cars
+  last_uuid: 
+  cursor: <cursor xmlns="http://www.opendatakit.org/cursor"><attributeName>_LAST_UPDATE_DATE</attributeName><attributeValue>2014-11-11T08:04:40.196+0000</attributeValue><uriLastReturnedValue>uuid:76e2641d-6d6b-4f15-9758-91ec246ff084</uriLastReturnedValue><isForwardCursor>true</isForwardCursor></cursor>
+  created_at: '2014-11-11 08:06:22.160455'
+  updated_at: '2014-11-13 08:28:37.472216'
+  num_imported: '0'
+  mapping_id: '50'
+imports_009:
+  id: '32'
+  odk_formid: db_test
+  last_uuid: 
+  cursor: <cursor xmlns="http://www.opendatakit.org/cursor"><attributeName>_LAST_UPDATE_DATE</attributeName><attributeValue>2014-11-10T09:01:38.339+0000</attributeValue><uriLastReturnedValue>uuid:88da7be2-20dc-44f9-bf59-8313f91df09c</uriLastReturnedValue><isForwardCursor>true</isForwardCursor></cursor>
+  created_at: '2014-11-10 08:53:09.166068'
+  updated_at: '2014-11-10 09:06:21.238769'
+  num_imported: '0'
+  mapping_id: '43'
+imports_010:
+  id: '40'
+  odk_formid: Student_Assignment
+  last_uuid: 
+  cursor: <cursor xmlns="http://www.opendatakit.org/cursor"><attributeName>_LAST_UPDATE_DATE</attributeName><attributeValue>2014-11-12T09:32:56.839+0000</attributeValue><uriLastReturnedValue>uuid:59546fcf-19b5-4389-88c9-761cc605c951</uriLastReturnedValue><isForwardCursor>true</isForwardCursor></cursor>
+  created_at: '2014-11-12 10:01:21.215587'
+  updated_at: '2014-11-12 10:01:23.736642'
+  num_imported: '0'
+  mapping_id: '51'
+imports_011:
+  id: '33'
+  odk_formid: Survey_10-22
+  last_uuid: 
+  cursor: 
+  created_at: '2014-11-10 09:16:32.368013'
+  updated_at: '2014-11-10 10:16:11.885957'
+  num_imported: '0'
+  mapping_id: '44'
+imports_012:
+  id: '41'
+  odk_formid: Events_Boats_Cars
+  last_uuid: 
+  cursor: <cursor xmlns="http://www.opendatakit.org/cursor"><attributeName>_LAST_UPDATE_DATE</attributeName><attributeValue>2014-11-11T19:55:45.484+0000</attributeValue><uriLastReturnedValue>uuid:b85cb063-ce6e-489b-ad4e-553bb1fe2f45</uriLastReturnedValue><isForwardCursor>true</isForwardCursor></cursor>
+  created_at: '2014-11-13 09:35:15.372427'
+  updated_at: '2014-11-13 09:44:16.310988'
+  num_imported: '0'
+  mapping_id: '53'
+imports_013:
+  id: '34'
+  odk_formid: db_test
+  last_uuid: 
+  cursor: <cursor xmlns="http://www.opendatakit.org/cursor"><attributeName>_LAST_UPDATE_DATE</attributeName><attributeValue>2014-11-10T09:33:09.036+0000</attributeValue><uriLastReturnedValue>uuid:bc90c147-8a00-405e-a7ed-04a950fb7f49</uriLastReturnedValue><isForwardCursor>true</isForwardCursor></cursor>
+  created_at: '2014-11-10 09:22:12.257804'
+  updated_at: '2014-11-10 10:31:38.500769'
+  num_imported: '0'
+  mapping_id: '45'
+imports_014:
+  id: '42'
+  odk_formid: INT_text_text
+  last_uuid: 
+  cursor: <cursor xmlns="http://www.opendatakit.org/cursor"><attributeName>_LAST_UPDATE_DATE</attributeName><attributeValue>2014-11-13T13:21:31.167+0000</attributeValue><uriLastReturnedValue>uuid:f55ea6d1-7cf0-4584-85fa-55fd2fbaf78f</uriLastReturnedValue><isForwardCursor>true</isForwardCursor></cursor>
+  created_at: '2014-11-13 13:23:25.410494'
+  updated_at: '2014-11-13 13:23:27.222614'
+  num_imported: '0'
+  mapping_id: '56'
+imports_015:
+  id: '35'
+  odk_formid: input_Testing
+  last_uuid: 
+  cursor: <cursor xmlns="http://www.opendatakit.org/cursor"><attributeName>_LAST_UPDATE_DATE</attributeName><attributeValue>2014-11-10T10:57:07.146+0000</attributeValue><uriLastReturnedValue>uuid:0aa9256b-bbec-491f-a57b-50a22856eabe</uriLastReturnedValue><isForwardCursor>true</isForwardCursor></cursor>
+  created_at: '2014-11-10 10:53:49.396412'
+  updated_at: '2014-11-10 10:59:04.363297'
+  num_imported: '0'
+  mapping_id: '46'
+imports_016:
+  id: '36'
+  odk_formid: input_Testing
+  last_uuid: 
+  cursor: <cursor xmlns="http://www.opendatakit.org/cursor"><attributeName>_LAST_UPDATE_DATE</attributeName><attributeValue>2014-11-11T07:27:22.910+0000</attributeValue><uriLastReturnedValue>uuid:1769b4cd-978d-4843-b9cf-93991e9792b8</uriLastReturnedValue><isForwardCursor>true</isForwardCursor></cursor>
+  created_at: '2014-11-11 07:29:28.480085'
+  updated_at: '2014-11-11 07:29:31.517501'
+  num_imported: '0'
+  mapping_id: '48'
+imports_017:
+  id: '37'
+  odk_formid: select_number
+  last_uuid: 
+  cursor: <cursor xmlns="http://www.opendatakit.org/cursor"><attributeName>_LAST_UPDATE_DATE</attributeName><attributeValue>2014-11-11T07:36:50.462+0000</attributeValue><uriLastReturnedValue>uuid:e2d20549-5674-4449-91a7-4a0ed5f4283e</uriLastReturnedValue><isForwardCursor>true</isForwardCursor></cursor>
+  created_at: '2014-11-11 07:38:49.885248'
+  updated_at: '2014-11-11 07:38:51.378192'
+  num_imported: '0'
+  mapping_id: '49'
