@@ -52,6 +52,7 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (3.4.2)
       activerecord (>= 3.2, < 5)
+    addressable (2.3.6)
     angular-ui-bootstrap-rails (0.11.2)
     angular_ui_tree_rails (0.1.5)
     angularjs-rails (1.2.16)
@@ -60,6 +61,10 @@ GEM
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
     builder (3.2.2)
+    byebug (3.5.1)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
+      slop (~> 3.6)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     coderay (1.1.0)
@@ -71,6 +76,10 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     colored (1.2)
+    columnize (0.8.9)
+    crack (0.4.2)
+      safe_yaml (~> 1.0.0)
+    debugger-linecache (1.2.0)
     deep_cloneable (2.0.0)
       activerecord (>= 3.1.0, < 5.0.0)
     diff-lcs (1.2.5)
@@ -212,6 +221,7 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
+    safe_yaml (1.0.4)
     sass (3.2.19)
     sass-rails (4.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -260,8 +270,12 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    vcr (2.9.3)
     vegas (0.1.11)
       rack (>= 1.0.0)
+    webmock (1.20.4)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
 
 PLATFORMS
   ruby
@@ -273,6 +287,7 @@ DEPENDENCIES
   angular_ui_tree_rails
   angularjs-rails (= 1.2.16)
   bootstrap-sass (~> 3.1.1)
+  byebug
   coffee-rails (~> 4.0.0)
   colored
   deep_cloneable (~> 2.0.0)
@@ -305,3 +320,5 @@ DEPENDENCIES
   spring-commands-rspec
   state_machine
   uglifier (>= 1.3.0)
+  vcr
+  webmock

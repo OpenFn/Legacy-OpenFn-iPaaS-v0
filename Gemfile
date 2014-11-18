@@ -104,9 +104,16 @@ gem 'acts-as-taggable-on', '~> 3.4'
 # gem 'debugger', group: [:development, :test]
 #
 group :development, :test do
+  gem 'byebug'
   gem 'rspec-rails'
   gem 'shoulda-matchers', require: false
   gem 'spring-commands-rspec'
   gem 'guard-rspec'
   # gem 'rb-fsevent' if `uname` =~ /Darwin/
 end
+
+group :test do
+  gem 'vcr'
+  gem 'webmock'
+end
+
