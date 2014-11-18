@@ -9,7 +9,7 @@ module OdkToSalesforce
 
     def initialize(mapping_id, submission_id)
       @mapping = Mapping.find(mapping_id)
-      @submission = @mapping.import.submissions.find(submission_id)
+      @submission = Submission.find(submission_id)
       @converter = OdkToSalesforce::Converter.new
       @restforce_connection = RestforceService.new(@mapping.user).connection
 
@@ -22,11 +22,9 @@ module OdkToSalesforce
     def perform
 
       begin
-        process_submission
-        @submission.message = nil
-        @submission.backtrace = nil
-        @submission.successful
+        process_submission(@submission)
       rescue Exception => e
+
         @logger.error "An error occurred"
         @logger.error e.message
         NewRelic::Agent.notice_error(e)
@@ -46,11 +44,12 @@ module OdkToSalesforce
 
     protected
 
-    def process_submission
+    def process_submission(submission)
 
       @logger.info "Starting"
+
       # => Mark this submission as being processed, for the first time or
-      @submission.process
+      submission.process
 
       salesforce_objects = @mapping.salesforce_objects
 
@@ -58,10 +57,12 @@ module OdkToSalesforce
       salesforce_objects.each do |salesforce_object|
 
         # => Load the fields for the salesforce_object
-        @converter.odk_data(salesforce_object, @submission.data).each_with_index do |odk_data, i|
+        @converter.odk_data(salesforce_object, submission.data).each_with_index do |odk_data, i|
           create_in_salesforce(salesforce_object, odk_data, i)
         end
       end
+
+      submission.successful
     end
 
     def create_in_salesforce(salesforce_object, submission_data, index)
@@ -77,8 +78,9 @@ module OdkToSalesforce
         odk_field_value = @converter.get_field_content(odk_field, submission_data)
         odk_field_value = transform_uuid_value(odk_field_value, salesforce_object, index) if odk_field.is_uuid
 
+        puts salesforce_field.inspect
         case salesforce_field.data_type
-        when"reference"
+        when "reference"
           # => This is a lookup field
           import_object.populate_lookup_field(salesforce_field, odk_field_value)
         when "record_type_id"

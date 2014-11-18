@@ -13,9 +13,6 @@ module OdkToSalesforce
       repeat_odk_fields = salesforce_fields.collect(&:odk_fields).flatten.select{|odk_field| odk_field.repeat_field}.uniq
       non_repeat_odk_fields = salesforce_fields.collect(&:odk_fields).flatten.select{|odk_field| !odk_field.repeat_field}.uniq
 
-      # => Convert the object to an open struct for easier access
-      struct = Hashie::Mash.new(odk_data)
-
       # => Check if the salesforce object is a repeat
       if salesforce_object.is_repeat
 
@@ -23,10 +20,10 @@ module OdkToSalesforce
         odk_field = repeat_odk_fields.first
 
         # => Extract the key.  ["repeat_block", "repeat_field"]
-        field_nesting = odk_field.field_name.split("/").reject { |f| f.empty? }
+        field_nesting = odk_field.field_name.split("/").reject!(&:empty?)
 
         # => Load the repeat object
-        repeat = struct.instance_eval(field_nesting[0...-1].join("."))
+        repeat = field_nesting[0...-1].reduce(odk_data) { |memo,key| memo[key] }
 
         repeat = [repeat] unless repeat.is_a?(Array)
         repeat.each do |repeat_hash|
@@ -34,7 +31,7 @@ module OdkToSalesforce
             # => Merge the other field values
 
             key = non_r_field.field_name.split("/").reject { |f| f.empty? }.first
-            repeat_hash.merge!(key => struct.send(key))
+            repeat_hash.merge!(key => odk_data[key])
           end
 
           arr << repeat_hash
@@ -45,8 +42,8 @@ module OdkToSalesforce
         hsh = {}
         non_repeat_odk_fields.each do |non_r_field|
           # => Merge the other field values
-          key = non_r_field.field_name.split("/").reject { |f| f.empty? }.first
-          hsh.merge!(key => struct.send(key))
+          key = non_r_field.field_name.split("/").reject!(&:empty?).first
+          hsh.merge!(key => odk_data[key])
         end
 
         arr << hsh
