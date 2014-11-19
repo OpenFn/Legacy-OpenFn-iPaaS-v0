@@ -61,12 +61,13 @@ module OdkToSalesforce
       # -> [ "first_level", "second_level", etc. ]
 
       struct = Hashie::Mash.new(odk_data)
-      key_arr = odk_field.field_name.split("/").reject { |f| f.empty? }
+      path = odk_field.field_name.split("/").reject!(&:blank?)
 
       if odk_field.repeat_field
-        value = struct.send(key_arr.last)
+        value = struct[path.last]
       else
-        value = struct.instance_eval(key_arr.join("."))
+        # Find the value of the field using the path
+        value = path.reduce(struct) { |memo,key| memo[key] }
       end
 
       value = transform_value(value, odk_field.field_type) unless value.is_a?(Array)
