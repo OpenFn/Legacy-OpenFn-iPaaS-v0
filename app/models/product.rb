@@ -13,7 +13,7 @@ class Product < ActiveRecord::Base
     product.website = salesforce_product.website
     product.enabled = salesforce_product.enabled
     product.integrated = salesforce_product.integrated
-    product.tags = salesforce_product.tags
+    product.tag_list = salesforce_product.tags
 
     return product
   end
