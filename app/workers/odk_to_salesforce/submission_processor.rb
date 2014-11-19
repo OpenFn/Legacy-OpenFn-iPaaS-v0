@@ -83,6 +83,8 @@ module OdkToSalesforce
           import_object.populate_lookup_field(salesforce_field, odk_field_value)
         when "record_type_id"
           import_object.populate_record_type_field(salesforce_field, odk_field_value)
+        when "boolean"
+          import_object.attributes[salesforce_field.field_name] = odk_field_value.to_bool
         else
           # => Process the regular field
           import_object.attributes[salesforce_field.field_name] = odk_field_value
