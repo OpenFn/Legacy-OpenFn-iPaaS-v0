@@ -20,7 +20,7 @@
   tagMatches = (tag_list, text) ->
     if tag_list
       return tag_list.some (tag) ->
-        tag.indexOf(text) != -1
+        angular.lowercase(tag).indexOf(text) != -1
     else
       false
 
