@@ -127,6 +127,12 @@
   .nav-tabs {
     margin-bottom: 0;
     border-bottom: 0;
+
+    li {
+      cursor: pointer;
+
+      .active { cursor: default; }
+    }
   }
 
   .tab-pane {
