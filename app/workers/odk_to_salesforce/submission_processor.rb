@@ -27,7 +27,7 @@ module OdkToSalesforce
 
         @logger.error "An error occurred"
         @logger.error e.message
-        NewRelic::Agent.notice_error(e)
+        NewRelic::Agent.notice_error(e, mapping_id: @mapping.id, submission_id: @submission.id)
 
         # => Destroy all objects that were created before this error
         # => If the record already existed before this import, leave it!
