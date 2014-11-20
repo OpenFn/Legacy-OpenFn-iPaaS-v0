@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
   respond_to :json, :xml
   layout false
 
-  skip_before_filter :verify_authenticity_token, :require_login, only: [:update]
+  skip_before_filter :verify_authenticity_token, only: [:update]
+  skip_before_filter :require_login
 
   def index
     render json: Product.enabled.order('name').as_json(methods: :tag_list)
