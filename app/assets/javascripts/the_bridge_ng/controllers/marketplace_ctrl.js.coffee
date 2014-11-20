@@ -1,11 +1,12 @@
-@the_bridge.controller 'ProductSearchController', ['$scope', '$location', '$http', ($scope, $location, $http) ->
+@controllerModule.controller 'MarketplaceController', ['$scope', '$location', '$http', '$routeParams', ($scope, $location, $http, $routeParams) ->
   $scope.products = []
   $scope.searchText = ""
   $scope.searchFilters = {}
   
-  $http.get('./products.json').success((data) ->
+  $http.get('/products.json').success((data) ->
     $scope.products = data.products
-  )
+    if $routeParams.search
+      $scope.searchText = $routeParams.search
 
   $scope.filterProducts = (product) ->
     lowercaseSearchText = angular.lowercase($scope.searchText)
@@ -29,4 +30,5 @@
       return product.integrated
     else
       return true
+  )
 ]
