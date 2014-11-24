@@ -4,7 +4,7 @@ SalesForce::Application.routes.draw do
   ResqueWeb::Engine.eager_load!
   mount ResqueWeb::Engine => "/resque_web"
 
-  resources :products, only: [:index]
+  resources :products, only: [:index, :show]
 
   # slightly weird, but we're getting this from Salesforce in xml, and they always post.
   post "update_products", to: "products#update", defaults: { format: 'xml' }
