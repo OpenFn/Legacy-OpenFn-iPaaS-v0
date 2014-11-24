@@ -25,6 +25,7 @@
 //= require angular-route
 //= require angular-ui-bootstrap-tpls
 //= require angular-animate
+//= require angular-sanitize
 //= require angular-ui-tree
 //= require ng-rails-csrf
 //= require_tree ./support

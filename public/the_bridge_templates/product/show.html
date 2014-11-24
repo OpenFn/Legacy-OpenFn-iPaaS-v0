@@ -32,31 +32,31 @@
 
       <tabset>
         <tab heading="Description" class="description">
-          <div class="tab-content-text">{{product.detailed_description}}</div>
+          <div class="tab-content-text" ng-bind-html="product.detailed_description"></div>
           <div class="tag-list">
-            <span ng-repeat="tag in product.tag_list" class="tag label label-info">{{tag}}</span>
+            <span ng-repeat="tag in product.tag_list" class="tag label label-info" >{{tag}}</span>
           </div>
         </tab>
         <tab heading="Costs">
-          <div class="tab-content-text">{{product.costs}}</div>
+          <div class="tab-content-text" ng-bind-html="product.costs"></div>
           <div class="tag-list">
             <span ng-repeat="tag in product.tag_list" class="tag label label-info">{{tag}}</span>
           </div>
         </tab>
         <tab heading="Reviews">
-          <div class="tab-content-text">{{product.reviews}}</div>
+          <div class="tab-content-text" ng-bind-html="product.reviews"></div>
           <div class="tag-list">
             <span ng-repeat="tag in product.tag_list" class="tag label label-info">{{tag}}</span>
           </div>
         </tab>
         <tab heading="Resources">
-          <div class="tab-content-text">{{product.resources}}</div>
+          <div class="tab-content-text" ng-bind-html="product.resources"></div>
           <div class="tag-list">
             <span ng-repeat="tag in product.tag_list" class="tag label label-info">{{tag}}</span>
           </div>
         </tab>
         <tab heading="Provider">
-          <div class="tab-content-text">{{product.provider}}</div>
+          <div class="tab-content-text" ng-bind-html="product.provider"></div>
           <div class="tag-list">
             <span ng-repeat="tag in product.tag_list" class="tag label label-info">{{tag}}</span>
           </div>
