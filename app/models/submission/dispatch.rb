@@ -1,3 +1,5 @@
+#designsketch
+
 class Submission::Dispatch
   
   def initialize(submission)

@@ -1,3 +1,5 @@
+#designsketch
+
 class Submission::Translation
   
   def initialize(submission)
