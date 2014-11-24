@@ -18,6 +18,7 @@ class Product < ActiveRecord::Base
     product.reviews = salesforce_product.reviews
     product.resources = salesforce_product.resources
     product.provider = salesforce_product.provider
+    product.detailed_description = salesforce_product.detailed_description
 
     return product
   end

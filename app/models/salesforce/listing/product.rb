@@ -1,5 +1,6 @@
 class Salesforce::Listing::Product
-  attr_reader :id, :description, :name, :tags, :website, :enabled, :integrated, :costs, :reviews, :resources, :provider
+  attr_reader :id, :description, :name, :tags, :website, :enabled, 
+              :integrated, :costs, :reviews, :resources, :provider, :detailed_description
 
   def initialize(notification)
     raise ArgumentError, "Invalid notification: #{notification.class}" unless notification.is_a?(Salesforce::Notification)
@@ -15,5 +16,6 @@ class Salesforce::Listing::Product
     @reviews = notification.at_css('Reviews__c').try(:content)
     @resources = notification.at_css('Resources__c').try(:content)
     @provider = notification.at_css('Provider__c').try(:content)
+    @detailed_description = notification.at_css('Detailed_Description__c').try(:content)
   end
 end
