@@ -1,0 +1,3 @@
+class Submission::Dispatch
+  
+end
