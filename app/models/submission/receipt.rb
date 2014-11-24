@@ -1,5 +1,3 @@
-#designsketch
-
 class Submission::Receipt
   
   def initialize(raw_source_message, integration)
