@@ -50,8 +50,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    acts-as-taggable-on (3.4.2)
-      activerecord (>= 3.2, < 5)
     addressable (2.3.6)
     angular-ui-bootstrap-rails (0.11.2)
     angular_ui_tree_rails (0.1.5)
@@ -151,6 +149,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (2.0.0)
+      byebug (~> 3.4)
+      pry (~> 0.10)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
     rack (1.5.2)
@@ -305,6 +306,7 @@ DEPENDENCIES
   odk_aggregate!
   pg
   pry
+  pry-byebug
   pry-rails
   rails (~> 4.1.0)
   rails_12factor
