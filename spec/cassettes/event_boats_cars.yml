@@ -1,0 +1,252 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://login.salesforce.com/services/oauth2/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=password&client_id=3MVG9QDx8IX8nP5Qy8wN2NJIM_l7G0bhjf6US16ioh4W.OffFYGVqZUzwDO3ZULTmdZRHnptq6U5jWDjq4n4C&client_secret=117412098672293366&username=td%40vera.dev&password=Chapin86%21cOARfUN4a9EfdbHmSjuZVe7Sq
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 18 Nov 2014 08:21:34 GMT
+      Set-Cookie:
+      - BrowserId=PLT_kRTnSvW55XUJvHik8g;Path=/;Domain=.salesforce.com;Expires=Sat,
+        17-Jan-2015 08:21:34 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":"https://login.salesforce.com/id/00DU0000000KrrwMAC/005U0000000a3wnIAA","issued_at":"1416298894317","token_type":"Bearer","instance_url":"https://na12.salesforce.com","signature":"UJZX05lOvRaYpScmHclTrVE5McLb2w3+gYEUi3ZZQs8=","access_token":"00DU0000000Krrw!AQgAQABwtnOxH0Wicl64dRSmW_Zloa8_fGmtrjbp_02WP9KakhzNeqdLobwqBKw_WWhiM0_BFAF7T4BpW1cf19lTsqaHn7Hg"}'
+    http_version: 
+  recorded_at: Tue, 18 Nov 2014 08:21:33 GMT
+- request:
+    method: post
+    uri: https://na12.salesforce.com/services/data/v26.0/sobjects/vera__Test_Event__c
+    body:
+      encoding: UTF-8
+      string: '{"vera__ODK_Key__c":"uuid:76e2641d-6d6b-4f15-9758-91ec246ff084","vera__Start_Date__c":"2014-11-11","vera__Test_Event_Name_Unique__c":"Catalina
+        wine mixer"}'
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth 00DU0000000Krrw!AQgAQABwtnOxH0Wicl64dRSmW_Zloa8_fGmtrjbp_02WP9KakhzNeqdLobwqBKw_WWhiM0_BFAF7T4BpW1cf19lTsqaHn7Hg
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Tue, 18 Nov 2014 08:21:36 GMT
+      Set-Cookie:
+      - BrowserId=ocs5lwE8SSqdlftergjdRw;Path=/;Domain=.salesforce.com;Expires=Sat,
+        17-Jan-2015 08:21:36 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=113/15000
+      Location:
+      - "/services/data/v26.0/sobjects/vera__Test_Event__c/a0qU0000002YpNAIA0"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":"a0qU0000002YpNAIA0","success":true,"errors":[]}'
+    http_version: 
+  recorded_at: Tue, 18 Nov 2014 08:21:35 GMT
+- request:
+    method: post
+    uri: https://na12.salesforce.com/services/data/v26.0/sobjects/vera__Boat__c
+    body:
+      encoding: UTF-8
+      string: '{"Name":"Big boat","vera__Boat_Maker__c":"Big boat","vera__odk_key__c":"uuid:76e2641d-6d6b-4f15-9758-91ec246ff084","vera__Test_Event__c":"a0qU0000002YpNAIA0"}'
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth 00DU0000000Krrw!AQgAQABwtnOxH0Wicl64dRSmW_Zloa8_fGmtrjbp_02WP9KakhzNeqdLobwqBKw_WWhiM0_BFAF7T4BpW1cf19lTsqaHn7Hg
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Tue, 18 Nov 2014 08:21:37 GMT
+      Set-Cookie:
+      - BrowserId=qPk94XxGT5yjclVz2l1uJw;Path=/;Domain=.salesforce.com;Expires=Sat,
+        17-Jan-2015 08:21:37 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=113/15000
+      Location:
+      - "/services/data/v26.0/sobjects/vera__Boat__c/a0sU0000008Mj2sIAC"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":"a0sU0000008Mj2sIAC","success":true,"errors":[]}'
+    http_version: 
+  recorded_at: Tue, 18 Nov 2014 08:21:37 GMT
+- request:
+    method: post
+    uri: https://na12.salesforce.com/services/data/v26.0/sobjects/vera__Boat__c
+    body:
+      encoding: UTF-8
+      string: '{"Name":"Catamaran","vera__Boat_Maker__c":"Catamaran","vera__odk_key__c":"uuid:76e2641d-6d6b-4f15-9758-91ec246ff084","vera__Test_Event__c":"a0qU0000002YpNAIA0"}'
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth 00DU0000000Krrw!AQgAQABwtnOxH0Wicl64dRSmW_Zloa8_fGmtrjbp_02WP9KakhzNeqdLobwqBKw_WWhiM0_BFAF7T4BpW1cf19lTsqaHn7Hg
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Tue, 18 Nov 2014 08:21:39 GMT
+      Set-Cookie:
+      - BrowserId=1flHsjOjT8K5n_9dm2iMeg;Path=/;Domain=.salesforce.com;Expires=Sat,
+        17-Jan-2015 08:21:39 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=113/15000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '[{"message":"duplicate value found: vera__odk_key__c duplicates value
+        on record with id: a0sU0000008Mj2s","errorCode":"DUPLICATE_VALUE","fields":[]}]'
+    http_version: 
+  recorded_at: Tue, 18 Nov 2014 08:21:39 GMT
+- request:
+    method: post
+    uri: https://na12.salesforce.com/services/data/v26.0/sobjects/vera__Boat__c
+    body:
+      encoding: UTF-8
+      string: '{"Name":"Catatafish","vera__Boat_Maker__c":"Catatafish","vera__odk_key__c":"uuid:76e2641d-6d6b-4f15-9758-91ec246ff084","vera__Test_Event__c":"a0qU0000002YpNAIA0"}'
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth 00DU0000000Krrw!AQgAQABwtnOxH0Wicl64dRSmW_Zloa8_fGmtrjbp_02WP9KakhzNeqdLobwqBKw_WWhiM0_BFAF7T4BpW1cf19lTsqaHn7Hg
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Tue, 18 Nov 2014 08:21:41 GMT
+      Set-Cookie:
+      - BrowserId=y07TSLIKScOs1j-dgTXF1g;Path=/;Domain=.salesforce.com;Expires=Sat,
+        17-Jan-2015 08:21:41 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=113/15000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '[{"message":"duplicate value found: vera__odk_key__c duplicates value
+        on record with id: a0sU0000008Mj2s","errorCode":"DUPLICATE_VALUE","fields":[]}]'
+    http_version: 
+  recorded_at: Tue, 18 Nov 2014 08:21:40 GMT
+- request:
+    method: post
+    uri: https://na12.salesforce.com/services/data/v26.0/sobjects/vera__Car__c
+    body:
+      encoding: UTF-8
+      string: '{"Name":"Peugeot","vera__odk_key__c":"uuid:76e2641d-6d6b-4f15-9758-91ec246ff084","vera__Test_Event__c":"a0qU0000002YpNAIA0"}'
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth 00DU0000000Krrw!AQgAQABwtnOxH0Wicl64dRSmW_Zloa8_fGmtrjbp_02WP9KakhzNeqdLobwqBKw_WWhiM0_BFAF7T4BpW1cf19lTsqaHn7Hg
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Tue, 18 Nov 2014 08:21:42 GMT
+      Set-Cookie:
+      - BrowserId=jXxr3bDMQt2DSH_nk76bqw;Path=/;Domain=.salesforce.com;Expires=Sat,
+        17-Jan-2015 08:21:42 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=113/15000
+      Location:
+      - "/services/data/v26.0/sobjects/vera__Car__c/a0tU0000009cg3aIAA"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":"a0tU0000009cg3aIAA","success":true,"errors":[]}'
+    http_version: 
+  recorded_at: Tue, 18 Nov 2014 08:21:42 GMT
+recorded_with: VCR 2.9.3

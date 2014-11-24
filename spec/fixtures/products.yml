@@ -1,0 +1,62 @@
+---
+products_001:
+  id: '5'
+  name: Salesforce
+  logo_path: logos/medic_mobile_logo.png
+  inactive_logo_path: logos/medic_mobile_logo-inactive.png
+  active_source: f
+  active_destination: f
+  description: Mobile and web tools that help health workers reach everyone. Health
+    workers use Medic Mobile to register every pregnancy, track disease outbreaks
+    faster, keep stock of essential medicines and communicate about emergencies. Our
+    platform is built for the last mile of healthcare. We are committed to free, open-source
+    platforms that can be adapted for specific uses backed by evidence.
+products_002:
+  id: '2'
+  name: OpenDataKit
+  logo_path: logos/odk-logo-square.png
+  inactive_logo_path: logos/odk-logo-inactive.png
+  active_source: t
+  active_destination: f
+  description: Well, the way they make shows is, they make one show. That show's called
+    a pilot. Then they show that show to the people who make shows, and on the strength
+    of that one show they decide if they're going to make more shows. Some pilots
+    get picked and become television programs. Some don't, become nothing. She starred
+    in one of the ones that became nothing.
+products_003:
+  id: '4'
+  name: KopoKopo
+  logo_path: logos/kopokopo-logo-square.png
+  inactive_logo_path: logos/kopokopo-logo-inactive.png
+  active_source: f
+  active_destination: f
+  description: Do you see any Teletubbies in here? Do you see a slender plastic tag
+    clipped to my shirt with my name printed on it? Do you see a little Asian child
+    with a blank expression on his face sitting outside on a mechanical helicopter
+    that shakes when you put quarters in it? No? Well, that's what you see at a toy
+    store. And you must think you're in a toy store, because you're here shopping
+    for an infant named Jeb.
+products_004:
+  id: '1'
+  name: Salesforce
+  logo_path: logos/salesforce-logo-square.png
+  inactive_logo_path: logos/salesforce-logo-inactive.png
+  active_source: f
+  active_destination: t
+  description: You see? It's curious. Ted did figure it out - time travel. And when
+    we get back, we gonna tell everyone. How it's possible, how it's done, what the
+    dangers are. But then why fifty years in the future when the spacecraft encounters
+    a black hole does the computer call it an 'unknown entry event'? Why don't they
+    know? If they don't know, that means we never told anyone. And if we never told
+    anyone it means we never made it back. Hence we die down here. Just as a matter
+    of deductive logic.
+products_005:
+  id: '3'
+  name: Telerivet
+  logo_path: logos/telerivet-logo-square.png
+  inactive_logo_path: logos/telerivet-logo-inactive.png
+  active_source: f
+  active_destination: f
+  description: Collaboratively administrate empowered markets via plug-and-play networks.
+    Dynamically procrastinate B2C users after installed base benefits. Dramatically
+    visualize customer directed convergence without revolutionary ROI.

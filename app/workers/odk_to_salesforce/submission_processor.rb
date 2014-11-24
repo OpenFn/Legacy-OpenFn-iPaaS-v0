@@ -9,21 +9,25 @@ module OdkToSalesforce
 
     def initialize(mapping_id, submission_id)
       @mapping = Mapping.find(mapping_id)
-      @submission = @mapping.import.submissions.find(submission_id)
+      @submission = Submission.find(submission_id)
       @converter = OdkToSalesforce::Converter.new
       @restforce_connection = RestforceService.new(@mapping.user).connection
+
+      @logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT)) 
+      @logger.push_tags("SubmissionProcessor", "Submission##{@submission.id}", "Mapping##{@mapping.id}")
+
       @all_import_objects = []
     end
 
     def perform
 
       begin
-        process_submission
-        @submission.message = nil
-        @submission.backtrace = nil
-        @submission.successful
+        process_submission(@submission)
       rescue Exception => e
-        puts "An error occurred"
+
+        @logger.error "An error occurred"
+        @logger.error e.message
+        NewRelic::Agent.notice_error(e, mapping_id: @mapping.id, submission_id: @submission.id)
 
         # => Destroy all objects that were created before this error
         # => If the record already existed before this import, leave it!
@@ -40,16 +44,12 @@ module OdkToSalesforce
 
     protected
 
-    def process_submission
+    def process_submission(submission)
 
-      puts ""
-      puts ""
-      puts "Processing new submission"
-      puts "-" * 30
-      puts ""
+      @logger.info "Starting"
 
       # => Mark this submission as being processed, for the first time or
-      @submission.process
+      submission.process
 
       salesforce_objects = @mapping.salesforce_objects
 
@@ -57,10 +57,20 @@ module OdkToSalesforce
       salesforce_objects.each do |salesforce_object|
 
         # => Load the fields for the salesforce_object
-        @converter.odk_data(salesforce_object, @submission.data).each_with_index do |odk_data, i|
+        @converter.odk_data(salesforce_object, submission.data).each_with_index do |odk_data, i|
+          # Skip any potential nil records, even if they have an instanceID
+          # We work this out on the basis that all the values are nil
+          # and the only other value is a hash (meta: {instanceID: '123'})
+          if odk_data.except("meta").values.all?(&:nil?)
+            @logger.info "Skipping #{salesforce_object.name} creation, all values are `nil`."
+            next
+          end
+
           create_in_salesforce(salesforce_object, odk_data, i)
         end
       end
+
+      submission.successful
     end
 
     def create_in_salesforce(salesforce_object, submission_data, index)
@@ -77,11 +87,13 @@ module OdkToSalesforce
         odk_field_value = transform_uuid_value(odk_field_value, salesforce_object, index) if odk_field.is_uuid
 
         case salesforce_field.data_type
-        when"reference"
+        when "reference"
           # => This is a lookup field
           import_object.populate_lookup_field(salesforce_field, odk_field_value)
         when "record_type_id"
           import_object.populate_record_type_field(salesforce_field, odk_field_value)
+        when "boolean"
+          import_object.attributes[salesforce_field.field_name] = odk_field_value.to_bool
         else
           # => Process the regular field
           import_object.attributes[salesforce_field.field_name] = odk_field_value
