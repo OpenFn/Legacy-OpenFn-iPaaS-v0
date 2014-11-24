@@ -20,5 +20,11 @@ class Submission < ActiveRecord::Base
       transition :processing => :error
     end
 
+    before_transition any => :processing do |submission, transition|
+      submission.backtrace = nil
+      submission.message = nil
+    end
+
   end
+
 end
