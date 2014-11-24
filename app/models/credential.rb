@@ -1,8 +1,11 @@
+#designsketch
+
+# This will NOT be ApiKeys...
+# it will store the credentials used to connect to a 3rd party product API
+
 class Credential < ActiveRecord::Base
-
   belongs_to :user
-  belongs_to :product
+  validates_presence_of :details, :user_id
 
-  validates_presence_of :api_key
-
+  # credential details are stored in an hstore hash called details.
 end

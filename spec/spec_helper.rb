@@ -52,3 +52,23 @@ RSpec.configure do |config|
 
 
 end
+
+
+module Integration
+  class TestProduct
+    # each product must encode raw source payload into a json hash
+    def self.encode(raw_source_payload)
+      {}
+    end
+
+    # each product must decode a json hash into a raw destination payload
+    def self.decode(encoded_destination_payload)
+      {}
+    end
+
+    # each product must be able to submit a payload, and must return the raw message body
+    def self.submit!(destination_payload, destination_credentials)
+      "<raw><destination>payload</destination></raw>"
+    end
+  end
+end
