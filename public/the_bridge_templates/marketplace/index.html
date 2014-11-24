@@ -1,4 +1,4 @@
-<div ng-controller="ProductSearchController as productSearch" class="row">
+<div ng-controller="MarketplaceController as marketplace" class="row">
   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
   <!-- Filters -->
   </div>
@@ -12,7 +12,7 @@
         </div>
         <div class="btn-group search-type">
           <label class="btn btn-default">Open Source?</label>
-          <label class="btn btn-default">Integrated?</label>
+          <label class="btn btn-default" ng-model="searchFilters.integrated" btn-checkbox>Integrated?</label>
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
             <i class="glyphicon glyphicon-star"></i>
             (7)
           </div>
-          <a ng-href="#/products/{{product.id}}" class="details-link">
+          <a ng-href="/#/product/{{product.id}}" class="details-link">
             View Details
           </a>
         </div>

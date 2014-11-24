@@ -88,6 +88,9 @@ gem 'sorcery'
 # XML
 gem 'nokogiri'
 
+# Tagging
+gem 'acts-as-taggable-on', '~> 3.4'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

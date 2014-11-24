@@ -282,6 +282,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  acts-as-taggable-on (~> 3.4)
   angular-ui-bootstrap-rails
   angular_ui_tree_rails
   angularjs-rails (= 1.2.16)

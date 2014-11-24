@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141114150757) do
+ActiveRecord::Schema.define(version: 20141124090743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,12 +83,16 @@ ActiveRecord::Schema.define(version: 20141114150757) do
 
   create_table "products", force: true do |t|
     t.string  "name"
-    t.boolean "active_source"
-    t.boolean "active_destination"
     t.text    "description"
     t.string  "salesforce_id"
     t.string  "website"
     t.boolean "enabled"
+    t.boolean "integrated",           default: false
+    t.text    "costs"
+    t.text    "reviews"
+    t.text    "resources"
+    t.text    "provider"
+    t.text    "detailed_description"
   end
 
   create_table "salesforce_fields", force: true do |t|
@@ -142,6 +146,26 @@ ActiveRecord::Schema.define(version: 20141114150757) do
     t.text     "message"
     t.text     "backtrace"
   end
+
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
+
+  create_table "tags", force: true do |t|
+    t.string  "name"
+    t.integer "taggings_count", default: 0
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                             null: false
