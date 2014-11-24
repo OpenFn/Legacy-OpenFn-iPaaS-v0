@@ -8,7 +8,9 @@
         <h3>open<strong>Marketplace</strong></h3>
         <h4 class="sub-heading"><strong>Find the technology you need to grow your impact.</strong></h4>
         <div class="search-field no-padding col-lg-8 col-md-8 col-sm-6 col-xs-12">
-          <input type:"text" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+          <form ng-submit="searchAgain()">
+            <input type:"text" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+          </form>
         </div>
         <div class="btn-group search-type">
           <label class="btn btn-default search-button" ng-click="searchAgain()">Search</label>
