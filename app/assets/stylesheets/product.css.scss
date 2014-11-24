@@ -81,6 +81,12 @@
         cursor: pointer;
       }
 
+      .website-link {
+        position: absolute;
+        bottom: $product-padding + 0.5em;
+        right: $product-padding + 7.5em;
+      }
+
       .details-link:hover {
         text-decoration: none;
       }
@@ -111,7 +117,7 @@
 }
 
 .show-product {
-  .rating, .name {
+  .actions, .rating, .name {
     display: inline-block;
   }
 
@@ -119,9 +125,16 @@
     margin-right: 0.8em;
   }
 
-  .rating {
+  .actions, .rating {
     // padding-left: 10px;
     vertical-align: text-top;
+  }
+
+  .actions {
+    padding-top: 0.05em;
+    a {
+      padding-left: 0.5em;
+    }
   }
 
   .nav-tabs {
@@ -158,4 +171,8 @@
       margin-right: 0.5em;
     }
   }
+}
+
+.new-product-link {
+  padding: 1em;
 }
