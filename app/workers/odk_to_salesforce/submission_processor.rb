@@ -61,7 +61,11 @@ module OdkToSalesforce
           # Skip any potential nil records, even if they have an instanceID
           # We work this out on the basis that all the values are nil
           # and the only other value is a hash (meta: {instanceID: '123'})
-          next unless odk_data.values.any? { |n| !(n.nil? || n.is_a?(Hash)) }
+          if odk_data.except("meta").values.all?(&:nil?)
+            @logger.info "Skipping #{salesforce_object.name} creation, all values are `nil`."
+            next
+          end
+
           create_in_salesforce(salesforce_object, odk_data, i)
         end
       end
