@@ -5,7 +5,7 @@ class Submission::Receipt
   end
 
   def work
-    submission = Submission.create!(source_payload: @source_payload, integration: @integration)
+    submission = Submission::Record.create!(source_payload: @source_payload, integration: @integration)
     
     Resque.enqueue Submission::Translation.new(submission)
   end
