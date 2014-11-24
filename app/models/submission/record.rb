@@ -1,9 +1,13 @@
+#designsketch
+
 class Submission::Record < ActiveRecord::Base
   # schema:
   # create_table :submission_records do |t|
   #   t.integer :integration_id
+  #   t.text :raw_source_payload
   #   t.text :source_payload # json-serialised, possibly hstore
   #   t.text :destination_payload # json-serialised, possibly hstore
+  #   t.text :raw_destination_payload
   #   t.string :state
   # end
 

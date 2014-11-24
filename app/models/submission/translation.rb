@@ -1,13 +1,15 @@
+#designsketch
+
 class Submission::Translation
   def initialize(submission)
     @submission = submission
   end
 
   def work
-    translation = Mapping::Translation.for(submission.source_payload, submission.integration.mappings)
+    translation = Mapping::Translation.new(submission.source_payload, submission.integration.mappings)
     submission.destination_payload = translation.result
     submission.save!
     
-    Resque.enqueue Submission::Dispatch.new(submission)
+    Resque.enqueue Submission::PayloadDecoding.new(submission)
   end
 end

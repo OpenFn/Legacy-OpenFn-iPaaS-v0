@@ -1,3 +1,5 @@
+#designsketch
+
 class Submission::Dispatch
   
   def initialize(submission)
@@ -5,7 +7,7 @@ class Submission::Dispatch
   end
 
   def work
-    Integration::__ProductModule__.dispatch(
+    Integration::__ProductModule__.submit(
       submission.destination_payload,
       submission.integration.destination_credential
     )

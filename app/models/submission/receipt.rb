@@ -1,12 +1,14 @@
+#designsketch
+
 class Submission::Receipt
-  def initialize(source_payload, integration)
-    @source_payload = source_payload
+  def initialize(raw_source_message, integration)
+    @raw_source_message = raw_source_message
     @integration = integration
   end
 
   def work
-    submission = Submission::Record.create!(source_payload: @source_payload, integration: @integration)
+    submission = Submission::Record.create!(raw_source_message: @raw_source_message, integration: @integration)
     
-    Resque.enqueue Submission::Translation.new(submission)
+    Resque.enqueue Submission::PayloadEncoding.new(submission)
   end
 end
