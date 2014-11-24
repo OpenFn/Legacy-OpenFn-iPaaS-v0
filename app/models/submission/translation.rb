@@ -1,11 +1,13 @@
 class Submission::Translation
-  attr_reader :payload, :mappings
-
-  def initialize(payload, mappings=[])
-
+  def initialize(submission)
+    @submission = submission
   end
 
   def work
-    # Place a new payload to be sent onto a new queue
+    translation = Mapping::Translation.for(submission.source_payload, submission.integration.mappings)
+    submission.destination_payload = translation.result
+    submission.save!
+    
+    Resque.enqueue Submission::Dispatch.new(submission)
   end
 end

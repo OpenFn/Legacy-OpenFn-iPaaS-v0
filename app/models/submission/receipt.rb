@@ -1,11 +1,12 @@
 class Submission::Receipt
-  attr_reader :payload, :integration
-
-  def initialize(payload, integration)
-    
+  def initialize(source_payload, integration)
+    @source_payload = source_payload
+    @integration = integration
   end
 
   def work
-    # Place the right thing on the Translation queue
+    submission = Submission.create!(source_payload: @source_payload, integration: @integration)
+    
+    Resque.enqueue Submission::Translation.new(submission)
   end
 end
