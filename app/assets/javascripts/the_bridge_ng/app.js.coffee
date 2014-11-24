@@ -7,6 +7,7 @@ Array::filter = (func) -> x for x in @ when func(x)
   'ngResource',
   'ui.tree',
   'ngAnimate',
+  'ngSanitize',
   'the_bridge.controllers',
   'the_bridge.directives',
   'the_bridge.resources',
