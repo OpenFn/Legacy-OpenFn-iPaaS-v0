@@ -58,6 +58,14 @@ module OdkToSalesforce
 
         # => Load the fields for the salesforce_object
         @converter.odk_data(salesforce_object, submission.data).each_with_index do |odk_data, i|
+          # Skip any potential nil records, even if they have an instanceID
+          # We work this out on the basis that all the values are nil
+          # and the only other value is a hash (meta: {instanceID: '123'})
+          if odk_data.except("meta").values.all?(&:nil?)
+            @logger.info "Skipping #{salesforce_object.name} creation, all values are `nil`."
+            next
+          end
+
           create_in_salesforce(salesforce_object, odk_data, i)
         end
       end
@@ -78,7 +86,6 @@ module OdkToSalesforce
         odk_field_value = @converter.get_field_content(odk_field, submission_data)
         odk_field_value = transform_uuid_value(odk_field_value, salesforce_object, index) if odk_field.is_uuid
 
-        puts salesforce_field.inspect
         case salesforce_field.data_type
         when "reference"
           # => This is a lookup field

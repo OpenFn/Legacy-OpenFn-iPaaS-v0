@@ -78,6 +78,13 @@
         border-style: solid;
         border-color: #CCC;
         background-color: #FFF;
+        cursor: pointer;
+      }
+
+      .website-link {
+        position: absolute;
+        bottom: $product-padding + 0.5em;
+        right: $product-padding + 7.5em;
       }
 
       .details-link:hover {
@@ -107,4 +114,65 @@
   .product-container.ng-enter {
     opacity: 0;
   }
+}
+
+.show-product {
+  .actions, .rating, .name {
+    display: inline-block;
+  }
+
+  .name {
+    margin-right: 0.8em;
+  }
+
+  .actions, .rating {
+    // padding-left: 10px;
+    vertical-align: text-top;
+  }
+
+  .actions {
+    padding-top: 0.05em;
+    a {
+      padding-left: 0.5em;
+    }
+  }
+
+  .nav-tabs {
+    margin-bottom: 0;
+    border-bottom: 0;
+
+    li {
+      cursor: pointer;
+
+      .active { cursor: default; }
+    }
+  }
+
+  .tab-pane {
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #dddddd;
+  }
+
+  .tab-pane:nth-child(1) {
+    border-radius: 0px 4px 4px 4px;
+  }
+
+
+  .tab-content-text {
+    padding-top: 0.8em;
+    margin: 0 0.8em 0.8em 0.8em;
+  }
+
+  .tag-list {
+    margin: 0.8em;
+    .tag {
+      margin-right: 0.5em;
+    }
+  }
+}
+
+.new-product-link {
+  padding: 1em;
 }

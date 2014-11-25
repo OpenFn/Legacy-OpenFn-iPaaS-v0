@@ -14,6 +14,12 @@ class Product < ActiveRecord::Base
     product.enabled = salesforce_product.enabled
     product.integrated = salesforce_product.integrated
     product.tag_list = salesforce_product.tags
+    product.costs = salesforce_product.costs
+    product.reviews = salesforce_product.reviews
+    product.resources = salesforce_product.resources
+    product.provider = salesforce_product.provider
+    product.detailed_description = salesforce_product.detailed_description
+    product.update_link = salesforce_product.update_link
 
     return product
   end
