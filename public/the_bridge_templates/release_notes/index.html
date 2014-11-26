@@ -1,0 +1,12 @@
+<h1>
+	open<strong>Ideas</strong>
+</h1>
+</br>
+</br>
+<h2>Release Notes</h2>
+
+<div ng-controller="ReleaseNotesController as releaseNotes">
+	<div ng-repeat="post in release_notes">
+		<div ng-bind-html="post.content"></div>
+	</div>
+</div>

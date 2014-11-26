@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141124152226) do
+ActiveRecord::Schema.define(version: 20141126103346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "api_keys", force: true do |t|
+    t.string "role"
+    t.string "access_token"
+  end
+
+  create_table "blog_posts", force: true do |t|
+    t.string   "salesforce_name"
+    t.text     "content"
+    t.boolean  "published"
+    t.datetime "publication_date"
+  end
 
   create_table "credentials", force: true do |t|
     t.string   "api_key"
