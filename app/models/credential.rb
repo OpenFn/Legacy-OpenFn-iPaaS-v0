@@ -9,8 +9,11 @@
 
 class Credential < ActiveRecord::Base
 
-  belongs_to :user
-  belongs_to :product
+  belongs_to :integration
+  belongs_to :user, through: :integration
+  
+  has_one :source_credential
+  has_one :destination_credential
 
   validates_presence_of :api_key
 
