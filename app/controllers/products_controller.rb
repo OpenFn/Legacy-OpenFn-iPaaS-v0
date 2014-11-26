@@ -3,6 +3,8 @@ class ProductsController < ApplicationController
   layout false
 
   skip_before_filter :verify_authenticity_token, only: [:update]
+  before_filter :validate_api_admin, only: [:update]
+
   skip_before_filter :require_login
 
   def index
@@ -22,7 +24,7 @@ class ProductsController < ApplicationController
 
     if product.save
       respond_to do |format|
-        format.xml  { render 'success', layout: false }
+        format.xml  { render 'salesforce/success', layout: false }
       end
     else
       respond_to do |format|

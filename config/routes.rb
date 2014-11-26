@@ -7,7 +7,8 @@ SalesForce::Application.routes.draw do
   resources :products, only: [:index, :show]
 
   # slightly weird, but we're getting this from Salesforce in xml, and they always post.
-  post "update_products", to: "products#update", defaults: { format: 'xml' }
+  post "/api/v1/:token/update_products", to: "products#update", defaults: { format: 'xml' }
+  post "/api/v1/:token/update_blog_posts", to: "blog_posts#update", defaults: { format: 'xml' }
 
   resources :credentials
 
