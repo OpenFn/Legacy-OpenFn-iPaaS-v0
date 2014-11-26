@@ -1,5 +1,15 @@
-class BlogPostsController < ApiController
-  respond_to :xml
+class BlogPostsController < ApplicationController
+  respond_to :json, :xml
+  layout false
+
+  skip_before_filter :verify_authenticity_token, only: [:update]
+  before_filter :validate_api_admin, only: [:update]
+
+  skip_before_filter :require_login
+
+  def index
+    render json: BlogPost.published.order('publication_date DESC').as_json
+  end
 
   def update
     notification = Salesforce::Notification.new(request.body.read)

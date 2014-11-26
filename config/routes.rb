@@ -5,6 +5,7 @@ SalesForce::Application.routes.draw do
   mount ResqueWeb::Engine => "/resque_web"
 
   resources :products, only: [:index, :show]
+  resources :blog_posts, only: [:index]
 
   # slightly weird, but we're getting this from Salesforce in xml, and they always post.
   post "/api/v1/:token/update_products", to: "products#update", defaults: { format: 'xml' }
