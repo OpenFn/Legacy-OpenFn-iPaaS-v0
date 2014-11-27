@@ -1,26 +1,15 @@
 #designsketch
 
 class Submission::Record < ActiveRecord::Base
+  belongs_to :integration
+
   # schema:
   # create_table :submission_records do |t|
-  #   t.integer :integration_id
-  #   t.text :raw_source_payload
-  #   t.text :source_payload # json-serialised, possibly hstore
-  #   t.text :destination_payload # json-serialised, possibly hstore
-  #   t.text :raw_destination_payload
-  #   t.string :state
-  # end
-
-  # Could be useful for tracking submission progress through the pipeline
-  # Could also be dangerous, since who's responsibility it is to perform
-  # the transition events is unclear.
-  # state_machine :state, :initial => :received do
-  #   event :translated do
-  #     transition [:received] => :translated
-  #   end
-
-  #   event :sent do
-  #     transition [:translated] => :sent
-  #   end
+      # t.integer :integration_id
+      # t.text :raw_source_payload
+      # t.hstore :source_payload
+      # t.hstore :destination_payload
+      # t.text :raw_destination_payload
+      # t.datetime :processed_at
   # end
 end
