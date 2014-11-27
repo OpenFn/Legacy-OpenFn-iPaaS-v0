@@ -3,6 +3,7 @@ class ApiKey < ActiveRecord::Base
 
   has_one :integration_source
   has_one :integration_destination
+  validates :role, inclusion: { in: %w(admin integration) }
 
   def admin?
     self.role == 'admin'
