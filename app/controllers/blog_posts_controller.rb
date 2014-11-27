@@ -1,4 +1,4 @@
-class ProductsController < ApplicationController
+class BlogPostsController < ApplicationController
   respond_to :json, :xml
   layout false
 
@@ -8,21 +8,16 @@ class ProductsController < ApplicationController
   skip_before_filter :require_login
 
   def index
-    render json: Product.enabled.order('name').as_json(methods: :tag_list)
-  end
-
-  def show
-    product = Product.find(params[:id])
-    render json: product.as_json(methods: :tag_list)
+    render json: BlogPost.published.order('publication_date DESC').as_json
   end
 
   def update
     notification = Salesforce::Notification.new(request.body.read)
-    salesforce_product = Salesforce::Listing::Product.new(notification)
+    salesforce_blog_post = Salesforce::Listing::BlogPost.new(notification)
 
-    product = Product.from_salesforce(salesforce_product)
+    blog_post = BlogPost.from_salesforce(salesforce_blog_post)
 
-    if product.save
+    if blog_post.save
       respond_to do |format|
         format.xml  { render 'salesforce/success', layout: false }
       end
