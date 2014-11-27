@@ -18,11 +18,10 @@
         <li>
           <%= link_to "Marketplace", "/#/marketplace" %>
         </li>
-        <% if current_user %>
-          <li>
-            <%= link_to "Integrations", mappings_path, 'ng-click' => "$event.stopPropagation()" %>
-          </li>
-        <% end %>
+        
+        <li>
+          <%= link_to "Integrations", mappings_path, 'ng-click' => "$event.stopPropagation()" %>
+        </li>
         <li>
           <%= link_to "Ideas", "/#/release-notes" %>
         </li>
