@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127073932) do
+ActiveRecord::Schema.define(version: 20141127102157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,24 @@ ActiveRecord::Schema.define(version: 20141127073932) do
   end
 
   add_index "imports", ["mapping_id"], name: "index_imports_on_mapping_id", using: :btree
+
+  create_table "integration_destinations", force: true do |t|
+    t.integer "product_id"
+    t.integer "credential_id"
+  end
+
+  create_table "integration_sources", force: true do |t|
+    t.integer "product_id"
+    t.integer "credential_id"
+    t.integer "api_key_id"
+  end
+
+  create_table "integrations", force: true do |t|
+    t.integer "user_id"
+    t.string  "name"
+    t.integer "source_id"
+    t.integer "destination_id"
+  end
 
   create_table "mappings", force: true do |t|
     t.string   "name"

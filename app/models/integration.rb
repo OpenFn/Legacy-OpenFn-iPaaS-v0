@@ -3,12 +3,11 @@
 class Integration < ActiveRecord::Base
   belongs_to :user
 
-  has_one :source_credential # polymorphism! Could be our generated api key or a 3rd party credential
-  has_one :destination_credential # polymorphism! Could be our generated api key or a 3rd party credential
+  belongs_to :source, class_name: "Integration::Source"
+  belongs_to :destination, class_name: "Integration::Destination"
 
-  #schema:
-  # create_table :integrations do |t|
-  #   t.integer :user_id
-  #   t.string :name
-  # end
+  validates :user_id, presence: true
+  validates :name, presence: true
+  validates :source_id, presence: true
+  validates :destination_id, presence: true
 end
