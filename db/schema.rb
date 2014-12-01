@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127125823) do
+ActiveRecord::Schema.define(version: 20141201132717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,11 +31,10 @@ ActiveRecord::Schema.define(version: 20141127125823) do
   end
 
   create_table "credentials", force: true do |t|
-    t.string   "api_key"
-    t.integer  "product_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.hstore   "details"
   end
 
   create_table "imports", force: true do |t|
@@ -126,6 +125,7 @@ ActiveRecord::Schema.define(version: 20141127125823) do
     t.text    "provider"
     t.text    "detailed_description"
     t.string  "update_link"
+    t.string  "integration_type"
   end
 
   create_table "salesforce_fields", force: true do |t|

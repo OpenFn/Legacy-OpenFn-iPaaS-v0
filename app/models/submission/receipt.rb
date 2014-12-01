@@ -1,9 +1,14 @@
 #designsketch
 
 class Submission::Receipt
+  
   def initialize(raw_source_message, integration)
     @raw_source_message = raw_source_message
     @integration = integration
+  end
+
+  def queue
+    :pipeline_receipt
   end
 
   def work

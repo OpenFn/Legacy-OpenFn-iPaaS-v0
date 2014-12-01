@@ -3,6 +3,11 @@
 class Submission::Record < ActiveRecord::Base
   belongs_to :integration
 
+  def submitted!
+    self.processed_at = Time.now
+    self.save!
+  end
+
   # schema:
   # create_table :submission_records do |t|
       # t.integer :integration_id

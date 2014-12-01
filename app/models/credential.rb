@@ -4,5 +4,8 @@
 # it will store the credentials used to connect to a 3rd party product API
 
 class Credential < ActiveRecord::Base
-  validates_presence_of :api_key
+  belongs_to :user
+  validates_presence_of :details, :user_id
+
+  # credential details are stored in an hstore hash called details.
 end
