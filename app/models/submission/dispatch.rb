@@ -1,5 +1,7 @@
 #designsketch
 
+# only for PUSH destination integrations. Pulls can be handled by storing destination payloads for collection.
+
 class Submission::Dispatch
   
   def initialize(submission)
