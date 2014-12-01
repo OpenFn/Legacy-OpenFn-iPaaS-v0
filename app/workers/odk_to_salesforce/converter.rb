@@ -1,17 +1,16 @@
 module OdkToSalesforce
   ##
-  # Convert an ODK data hash into a sailiasforce hash from a mapping
+  # Convert an ODK data hash into a salesforce hash from a mapping
   #
   # odk_form -> { sf_object: { sf_field: "value" } }
   class Converter
 
     def odk_data(salesforce_object, odk_data)
       arr = []
-      salesforce_fields = salesforce_object.salesforce_fields.joins(:odk_fields)
 
       # => Load all the fields that are a repeat
-      repeat_odk_fields = salesforce_fields.collect(&:odk_fields).flatten.select{|odk_field| odk_field.repeat_field}.uniq
-      non_repeat_odk_fields = salesforce_fields.collect(&:odk_fields).flatten.select{|odk_field| !odk_field.repeat_field}.uniq
+      repeat_odk_fields = repeat_odk_fields_for(salesforce_object)   
+      non_repeat_odk_fields = non_repeat_odk_fields_for(salesforce_object)
 
       # => Check if the salesforce object is a repeat
       if salesforce_object.is_repeat
@@ -25,8 +24,7 @@ module OdkToSalesforce
         # => Load the repeat object
         repeat = field_nesting[0...-1].reduce(odk_data) { |memo,key| memo[key] }
 
-        repeat = [repeat] unless repeat.is_a?(Array)
-        repeat.each do |repeat_hash|
+        [repeat].reject(&:nil?).flatten.each do |repeat_hash|
           non_repeat_odk_fields.each do |non_r_field|
             # => Merge the other field values
 
@@ -51,6 +49,20 @@ module OdkToSalesforce
 
       arr
     end
+    
+    # Wedge between #odk_data and the odk fields, allows for stubbing during
+    # tests.
+    def repeat_odk_fields_for(salesforce_object)
+      salesforce_object.salesforce_fields.joins(:odk_fields).
+        merge(OdkField.repeat_fields).collect(&:odk_fields).flatten.uniq
+    end
+
+    def non_repeat_odk_fields_for(salesforce_object)
+      salesforce_object.salesforce_fields.joins(:odk_fields).
+        merge(OdkField.non_repeat_fields).collect(&:odk_fields).flatten.uniq
+    end
+
+    # ===================
 
     def get_field_content(odk_field, odk_data)
 
