@@ -10,5 +10,5 @@ class OdkField < ActiveRecord::Base
 
   validates :is_uuid, uniqueness: {scope: :odk_form_id}, if: :is_uuid
 
-  default_scope -> { order("id ASC") }
+  default_scope -> { order(:id) }
 end

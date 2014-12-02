@@ -8,7 +8,7 @@ class SalesforceObject < ActiveRecord::Base
   attr_accessor :salesforce_id, :salesforce_attributes
 
   belongs_to :mapping
-  has_many :salesforce_fields, -> { order("field_name ASC") }, dependent: :destroy
+  has_many :salesforce_fields, -> { order(:field_name) }, dependent: :destroy
   has_many :salesforce_relationships, dependent: :destroy
   accepts_nested_attributes_for :salesforce_fields, allow_destroy: true
 

@@ -54,12 +54,12 @@ module OdkToSalesforce
     # tests.
     def repeat_odk_fields_for(salesforce_object)
       salesforce_object.salesforce_fields.joins(:odk_fields).
-        merge(OdkField.repeat_fields).collect(&:odk_fields).flatten.uniq
+        merge(OdkField.repeat_fields).includes(:odk_fields).collect(&:odk_fields).flatten.uniq
     end
 
     def non_repeat_odk_fields_for(salesforce_object)
       salesforce_object.salesforce_fields.joins(:odk_fields).
-        merge(OdkField.non_repeat_fields).collect(&:odk_fields).flatten.uniq
+        merge(OdkField.non_repeat_fields).includes(:odk_fields).collect(&:odk_fields).flatten.uniq
     end
 
     # ===================
