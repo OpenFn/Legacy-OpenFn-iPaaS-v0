@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127073932) do
+ActiveRecord::Schema.define(version: 20141203143306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "api_keys", force: true do |t|
     t.string "role"
@@ -30,11 +31,10 @@ ActiveRecord::Schema.define(version: 20141127073932) do
   end
 
   create_table "credentials", force: true do |t|
-    t.string   "api_key"
-    t.integer  "product_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.hstore   "details"
   end
 
   create_table "imports", force: true do |t|
@@ -48,6 +48,24 @@ ActiveRecord::Schema.define(version: 20141127073932) do
   end
 
   add_index "imports", ["mapping_id"], name: "index_imports_on_mapping_id", using: :btree
+
+  create_table "integration_destinations", force: true do |t|
+    t.integer "product_id"
+    t.integer "credential_id"
+  end
+
+  create_table "integration_sources", force: true do |t|
+    t.integer "product_id"
+    t.integer "credential_id"
+    t.integer "api_key_id"
+  end
+
+  create_table "integrations", force: true do |t|
+    t.integer "user_id"
+    t.string  "name"
+    t.integer "source_id"
+    t.integer "destination_id"
+  end
 
   create_table "mappings", force: true do |t|
     t.string   "name"
@@ -107,6 +125,7 @@ ActiveRecord::Schema.define(version: 20141127073932) do
     t.text    "provider"
     t.text    "detailed_description"
     t.string  "update_link"
+    t.string  "integration_type"
   end
 
   create_table "salesforce_fields", force: true do |t|
@@ -149,6 +168,15 @@ ActiveRecord::Schema.define(version: 20141127073932) do
 
   add_index "salesforce_relationships", ["salesforce_field_id"], name: "index_salesforce_relationships_on_salesforce_field_id", using: :btree
   add_index "salesforce_relationships", ["salesforce_object_id"], name: "index_salesforce_relationships_on_salesforce_object_id", using: :btree
+
+  create_table "submission_records", force: true do |t|
+    t.integer  "integration_id"
+    t.text     "raw_source_payload"
+    t.hstore   "source_payload"
+    t.hstore   "destination_payload"
+    t.text     "raw_destination_payload"
+    t.datetime "processed_at"
+  end
 
   create_table "submissions", force: true do |t|
     t.string   "uuid"
@@ -198,6 +226,10 @@ ActiveRecord::Schema.define(version: 20141127073932) do
     t.string   "odk_password"
     t.string   "sf_host"
     t.string   "role"
+    t.integer  "credits"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "organisation"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

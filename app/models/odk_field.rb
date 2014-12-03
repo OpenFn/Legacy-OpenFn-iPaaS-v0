@@ -5,7 +5,10 @@ class OdkField < ActiveRecord::Base
 
   accepts_nested_attributes_for :salesforce_fields
 
+  scope :repeat_fields, -> { where(repeat_field: true) }
+  scope :non_repeat_fields, -> { where(repeat_field: [false,nil]) }
+
   validates :is_uuid, uniqueness: {scope: :odk_form_id}, if: :is_uuid
 
-  default_scope -> { order("id ASC") }
+  default_scope -> { order(:id) }
 end

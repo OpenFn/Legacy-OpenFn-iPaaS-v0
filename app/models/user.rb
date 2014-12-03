@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
+  attr_accessor :synced
+
   has_many :mappings, dependent: :destroy
 
   validates :password, length: { minimum: 3 }, on: :create

@@ -91,6 +91,9 @@ gem 'nokogiri'
 # Tagging
 gem 'acts-as-taggable-on', '~> 3.4'
 
+# Observers
+gem 'rails-observers', '~> 0.1.2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

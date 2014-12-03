@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
-  skip_before_filter :require_login, only: [:new, :create]
+  respond_to :html, :json, :xml
+  skip_before_filter :require_login, only: [:new, :create, :sync]
+
+  skip_before_filter :verify_authenticity_token, only: [:sync]
+  before_filter :validate_api_admin, only: [:sync]
 
   def new
     @user = User.new
@@ -28,6 +32,25 @@ class UsersController < ApplicationController
     else
       flash.now[:danger] = "Settings could not be updated successfully."
       render :edit
+    end
+  end
+
+  # From SalesForce
+  def sync
+    notification = Salesforce::Notification.new(request.body.read)
+    salesforce_user = Salesforce::Listing::UserListing.new(notification)
+
+    user = User.find(salesforce_user.id)
+    user.synced = true
+
+    if user.update_attributes(salesforce_user.attributes)
+      respond_to do |format|
+        format.xml  { render 'salesforce/success', layout: false }
+      end
+    else
+      respond_to do |format|
+        format.xml  { render xml: "", status: 422 }
+      end
     end
   end
 
