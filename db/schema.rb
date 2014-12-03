@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127073932) do
+ActiveRecord::Schema.define(version: 20141203121049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -159,6 +159,7 @@ ActiveRecord::Schema.define(version: 20141127073932) do
     t.datetime "updated_at"
     t.text     "message"
     t.text     "backtrace"
+    t.json     "media_data"
   end
 
   create_table "taggings", force: true do |t|

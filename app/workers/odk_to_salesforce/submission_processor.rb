@@ -66,14 +66,14 @@ module OdkToSalesforce
             next
           end
 
-          create_in_salesforce(salesforce_object, odk_data, i)
+          create_in_salesforce(salesforce_object, odk_data, submission.media_data, i)
         end
       end
 
       submission.successful
     end
 
-    def create_in_salesforce(salesforce_object, submission_data, index)
+    def create_in_salesforce(salesforce_object, submission_data, submission_media_data, index)
       salesforce_fields = salesforce_object.salesforce_fields.joins(:odk_fields)
 
       import_object = OdkToSalesforce::SalesforceObjects::ImportObject.new(@restforce_connection, salesforce_object)
@@ -96,7 +96,11 @@ module OdkToSalesforce
           import_object.attributes[salesforce_field.field_name] = odk_field_value.to_bool
         else
           # => Process the regular field
-          import_object.attributes[salesforce_field.field_name] = odk_field_value
+          if odk_field.field_type == "binary"
+            import_object.attributes[salesforce_field.field_name] = find_full_url_for(submission_media_data, odk_field_value)
+          else
+            import_object.attributes[salesforce_field.field_name] = odk_field_value
+          end
         end
       end
 
@@ -113,6 +117,11 @@ module OdkToSalesforce
       else
         return "#{uuid}/#{salesforce_object.order}"
       end
+    end
+
+    def find_full_url_for(media_data, filename)
+      data = media_data.select { |hsh| hsh["filename"] == filename }.first
+      data["downloadUrl"]
     end
   end
 end
