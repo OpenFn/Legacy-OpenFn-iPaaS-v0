@@ -30,13 +30,13 @@ module OdkToSalesforce
     end
 
     def fetch_submission(id)
-      @connection.submissions_where(
+      submission = @connection.submissions_where(
          formId: @form[:id],
          key: id,
          topElement: @form[:topElement]
        )
 
-      submission = submission["submission"]["data"]
+      submission = submission["submission"]
       # submission = submission["submission"]["data"]
       # submission.values.first
     end
