@@ -22,8 +22,10 @@ module OdkToSalesforce
       odk.submissions.each do |uuid|
 
         # => Get the ODK Data for this submission_id from the ID
-        submission_data = odk.fetch_submission(uuid)
-        submission = import.submissions.create(uuid: uuid, data: submission_data)
+        # submission_data = odk.fetch_submission(uuid)
+        # submission = import.submissions.create(uuid: uuid, data: submission_data)
+        submission = odk.fetch_submission(uuid)
+        submission = import.submissions.create(uuid: uuid, data: submission["data"].values.first, media_data: submission["mediaFile"].values.first)
         Resque.enqueue(OdkToSalesforce::SubmissionProcessor, mapping.id, submission.id)
 
       end
