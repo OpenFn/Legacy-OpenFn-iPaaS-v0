@@ -28,14 +28,14 @@ class Salesforce::Listing::UserListing
     'Account_Number__c'
   end
 
-  def openfn_attrinbutes
+  def attributes
     {
       'id' => id,
       'credits' => credits,
       'email' => email,
       'first_name' => first_name,
       'last_name' => last_name,
-      'organization' => organisation
+      'organisation' => organisation
     }
   end
 

@@ -10,6 +10,7 @@ SalesForce::Application.routes.draw do
   # slightly weird, but we're getting this from Salesforce in xml, and they always post.
   post "/api/v1/:token/update_products", to: "products#update", defaults: { format: 'xml' }
   post "/api/v1/:token/update_blog_posts", to: "blog_posts#update", defaults: { format: 'xml' }
+  post "/api/v1/:token/update_users", to: "users#sync", defaults: { format: 'xml' }
 
   resources :credentials
 

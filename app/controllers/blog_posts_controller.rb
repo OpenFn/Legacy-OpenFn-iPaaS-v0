@@ -27,4 +27,8 @@ class BlogPostsController < ApplicationController
       end
     end
   end
+
+  def sync
+
+  end
 end
