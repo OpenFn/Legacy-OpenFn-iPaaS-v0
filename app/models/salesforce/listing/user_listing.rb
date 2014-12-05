@@ -42,7 +42,7 @@ class Salesforce::Listing::UserListing
   private
     def initialize_from_user(user)
       @id = user.id
-      @credits = user.credits
+      @credits = user.credits || 0
       @email = user.email
       @first_name = user.first_name
       @last_name = user.last_name
