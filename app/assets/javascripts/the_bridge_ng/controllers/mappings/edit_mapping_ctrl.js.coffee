@@ -30,6 +30,10 @@
           enabled: $scope.mapping.enabled
         ).$promise.then ->
           $scope.$broadcast "mapping:saved"
+          
+          # sorry
+          $('.import-button').removeClass('disabled') if $scope.mapping.enabled
+          $('.import-button').addClass('disabled') if !$scope.mapping.enabled
       , 1000
 
     ########## WATCHES
