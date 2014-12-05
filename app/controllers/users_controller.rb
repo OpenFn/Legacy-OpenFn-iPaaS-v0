@@ -44,6 +44,9 @@ class UsersController < ApplicationController
     user.synced = true
 
     if user.update_attributes(salesforce_user.attributes)
+      limiter = MappingLimiter.new(user)
+      limiter.limit!
+      
       respond_to do |format|
         format.xml  { render 'salesforce/success', layout: false }
       end

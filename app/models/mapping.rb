@@ -12,6 +12,18 @@ class Mapping < ActiveRecord::Base
   validates :name, presence: true
   validates :odk_form, presence: true
 
+  validate do |mapping|
+    if mapping.enabled_changed?(from: false, to: true)
+      mapping.errors[:enabled] << "not enough credits to enable this mapping" unless MappingLimiter.new(mapping.user).credits_available?
+    end
+  end
+
+  scope :enabled, -> { where(enabled: true) }
+
+  def can_be_enabled
+    enabled || MappingLimiter.new(user).credits_available?
+  end
+
   # overwrite the default object dup
   def duplicate
 

@@ -27,6 +27,7 @@
           id: $scope.mapping.id
           name: $scope.mapping.name
           active: $scope.mapping.active
+          enabled: $scope.mapping.enabled
         ).$promise.then ->
           $scope.$broadcast "mapping:saved"
       , 1000

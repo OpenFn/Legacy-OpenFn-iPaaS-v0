@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     self.role == 'admin'
   end
 
+  def has_available_mapping_credits?
+    MappingLimiter.new(self).credits_available?
+  end
+
   private
   def set_default_role
     self.role ||= 'client'

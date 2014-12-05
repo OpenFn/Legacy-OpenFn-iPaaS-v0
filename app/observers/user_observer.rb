@@ -6,6 +6,6 @@ class UserObserver < ActiveRecord::Observer
     return if user.synced
 
     listing = Salesforce::Listing::UserListing.new(user)
-    Salesforce::Listing.sync!(listing)
+    Salesforce::Listing.sync!(listing) if Rails.env.production? 
   end
 end

@@ -54,14 +54,18 @@ class MappingsController < ApplicationController
   end
 
   def dispatch_surveys
-    unless params[:only].blank?
-      only = params[:only].to_i
+    if @mapping.enabled?
+      unless params[:only].blank?
+        only = params[:only].to_i
 
-      if only > 0
-        Resque.enqueue(OdkToSalesforce::Dispatcher, @mapping.id, only)
+        if only > 0
+          Resque.enqueue(OdkToSalesforce::Dispatcher, @mapping.id, only)
+        end
       end
+      redirect_to @mapping
+    else
+      redirect_to @mapping, notice: "Mapping must be enabled in order to import."
     end
-    redirect_to @mapping
   end
 
   def clone
@@ -92,6 +96,7 @@ class MappingsController < ApplicationController
     params.require(:mapping).permit(
       :name,
       :active,
+      :enabled,
       odk_form_attributes: [
         :name
       ]

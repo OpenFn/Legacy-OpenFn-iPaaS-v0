@@ -6,7 +6,9 @@
         mapping: {
           name: mapping.name
           active: mapping.active
+          enabled: mapping.enabled
           odk_form_attributes: mapping.odkForm
+          can_be_enabled: mapping.can_be_enabled
         }
       }
 
