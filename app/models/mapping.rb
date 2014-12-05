@@ -13,8 +13,8 @@ class Mapping < ActiveRecord::Base
   validates :odk_form, presence: true
 
   validate do |mapping|
-    if mapping.enabled_changed?(from: false, to: true)
-      mapping.errors[:enabled] << "not enough credits to enable this mapping" unless MappingLimiter.new(mapping.user).credits_available?
+    if mapping.enabled_changed?(to: true)
+      mapping.errors[:base] << "You need more credits to enable this mapping. Contact the administrator or disable any currently-enabled mappings to get more." unless MappingLimiter.new(mapping.user).credits_available?
     end
   end
 
