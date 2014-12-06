@@ -25,3 +25,6 @@
 *.ruby-version
 *.directory
 desktop.ini
+
+# Ignore application configuration
+/config/application.yml
