@@ -12,6 +12,7 @@ RSpec.describe OdkToSalesforce::SubmissionProcessor, type: :model do
 
 
   fixtures :mappings
+  fixtures :submissions
   fixtures :users
   fixtures :salesforce_objects
   fixtures :salesforce_fields
@@ -21,12 +22,35 @@ RSpec.describe OdkToSalesforce::SubmissionProcessor, type: :model do
 
   let(:submission_processor) { OdkToSalesforce::SubmissionProcessor.new(60, 49) }
 
-  subject { submission_processor.perform }
+  # subject { submission_processor.perform }
 
   it "should do some shit" do
+    pending "This spec will soon be the home of...."
     VCR.use_cassette :event_boats_cars do
       subject
     end
   end
 
+  describe "processing a submission" do
+    let(:restforce_connection) { double.as_null_object }
+    before(:each) do
+      allow(RestforceService).to receive(:new).and_return(restforce_connection)
+    end
+    subject {}
+    it "replaces filenames with a downloadURI for binary ODK fields" do
+      processor = OdkToSalesforce::SubmissionProcessor.new(61, 53)
+
+      processor.perform
+
+      processor.all_import_objects.last.attributes["Photo"].should eql "https://fake.url.for.image"
+    end
+
+    it "leaves the filename in a binary ODK field in place if it can't be mapped to media data" do
+      processor = OdkToSalesforce::SubmissionProcessor.new(61, 54)
+
+      processor.perform
+
+      processor.all_import_objects.last.attributes["Photo"].should eql "blah.jpg"
+    end
+  end
 end
