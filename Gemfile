@@ -46,6 +46,8 @@ gem "active_model_serializers"
 gem 'rails_12factor', group: :production
 
 gem 'faraday', '~> 0.8.6'
+gem 'curb'
+gem 'ox'
 
 gem 'state_machine'
 
