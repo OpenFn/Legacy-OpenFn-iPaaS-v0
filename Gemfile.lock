@@ -1,12 +1,13 @@
 GIT
-  remote: https://github.com/func-i/odk_aggregate.git
-  revision: 6fc824ceaf46e8b2e007d9b2fd0004f904883b35
-  branch: feature/9-repeat-block-form-fields
+  remote: git://github.com/openfn/odk_aggregate.git
+  revision: 6d28198bc91087ef73b933f48e717a34f5ce3593
+  branch: master
   specs:
     odk_aggregate (0.0.5)
       faraday_middleware
       multi_xml
       net-http-digest_auth (~> 1.4)
+      ox
       rash (~> 0.4)
 
 GIT
