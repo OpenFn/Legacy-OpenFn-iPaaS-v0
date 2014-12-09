@@ -40,7 +40,7 @@ class OdkClient
     @form = StringIO.new
 
     @logger.push_tags("FormID##{name}")
-    @client.url = @instance_url + "formXml?formId=#{name}"
+    @client.url = @instance_url + "/formXml?formId=#{name}"
     @logger.info "Fetching form from #{@client.url}"
 
     @client.on_success do |response|
