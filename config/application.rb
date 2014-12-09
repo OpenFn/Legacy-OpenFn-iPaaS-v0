@@ -6,6 +6,10 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
+# Avoids Ox as the default parser for the OdkAggregate gem.
+# See issue [#62](https://github.com/OpenFn/OpenFn-Site/issues/62)
+MultiXml.parser = :rexml
+
 module SalesForce
   class Application < Rails::Application
 
