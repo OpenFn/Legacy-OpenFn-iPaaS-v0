@@ -59,7 +59,8 @@ group :doc do
 end
 
 # => Funci Gem to interact with ODK aggregate
-gem 'odk_aggregate', github: 'openfn/odk_aggregate', branch: 'master'
+gem 'odk_aggregate', :git => 'https://github.com/func-i/odk_aggregate.git', branch: 'feature/9-repeat-block-form-fields'
+#gem 'odk_aggregate', path: "~/Documents/funci/odk_aggregate"
 
 # => Gem for SalesForce
 gem 'restforce', git: 'https://github.com/icambron/restforce.git'
