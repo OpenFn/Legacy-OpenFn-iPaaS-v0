@@ -11,6 +11,7 @@ class OdkClient
 
     @client = Curl::Easy.new
     @client.headers["X-OpenRosa-Version"] = "1.0"
+    @client.ssl_verify_peer = false
 
     if credentials
       @client.http_auth_types = :digest
@@ -28,10 +29,6 @@ class OdkClient
       else
         StandardError.new("Got #{resp.response_code} from server.")
       end
-    end
-
-    @client.on_failure do |resp|
-      @error = StandardError.new("Got #{resp.response_code} from server.")
     end
 
   end
