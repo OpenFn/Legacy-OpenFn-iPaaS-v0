@@ -12,6 +12,7 @@ class OdkClient
     @client = Curl::Easy.new
     @client.headers["X-OpenRosa-Version"] = "1.0"
     @client.ssl_verify_peer = false
+    @client.ssl_verify_host = false
 
     if credentials
       @client.http_auth_types = :digest
