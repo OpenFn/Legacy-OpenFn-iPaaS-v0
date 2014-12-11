@@ -52,5 +52,13 @@ RSpec.describe OdkToSalesforce::SubmissionProcessor, type: :model do
 
       processor.all_import_objects.last.attributes["Photo"].should eql "blah.jpg"
     end
+
+    it "leaves the filename in a binary ODK field in place if the submission has no media data at all" do
+      processor = OdkToSalesforce::SubmissionProcessor.new(61, 55)
+
+      processor.perform
+
+      processor.all_import_objects.last.attributes["Photo"].should eql "blah.jpg"
+    end
   end
 end
