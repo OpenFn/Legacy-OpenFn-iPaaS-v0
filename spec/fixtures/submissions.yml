@@ -737,3 +737,13 @@ submissions_053:
   updated_at: '2014-11-13 09:35:22.41222'
   message: 
   backtrace: 
+submissions_054:
+  id: '55'
+  uuid: uuid:76e2641d-6d6b-4f15-9758-91ec246ff085
+  state: new
+  data: '{"id":"Events","instanceID":"uuid:76e2641d-6d6b-4f15-9758-91ec246ff085","submissionDate":"2014-11-11T08:04:40.178Z","isComplete":"true","markedAsCompleteDate":"2014-11-11T08:04:40.178Z","event_name":"Catalina wine mixer","event_photo":"blah.jpg", "start_date":"2014-11-11","meta":{"instanceID":"uuid:76e2641d-6d6b-4f15-9758-91ec246ff085"}}'
+  import_id: '41'
+  created_at: '2014-11-13 09:35:18.510032'
+  updated_at: '2014-11-13 09:35:22.41222'
+  message: 
+  backtrace: 
