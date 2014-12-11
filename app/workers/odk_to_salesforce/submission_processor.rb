@@ -115,8 +115,12 @@ module OdkToSalesforce
     end
 
     def find_full_url_for(media_data, filename)
-      data = media_data.select { |hsh| hsh["filename"] == filename }
-      data.any? ? data.first["downloadUrl"] : filename
+      if media_data
+        data = media_data.select { |hsh| hsh["filename"] == filename }
+        data.any? ? data.first["downloadUrl"] : filename
+      else
+        filename
+      end
     end
   end
 end

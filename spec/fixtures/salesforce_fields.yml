@@ -1,8 +1,6 @@
 ---
 salesforce_fields_001:
   id: '7699'
-  mapping_id: 
-  object_name: 
   field_name: Id
   created_at: '2014-11-18 07:40:02.569268'
   updated_at: '2014-11-18 07:40:02.569268'
@@ -10,13 +8,9 @@ salesforce_fields_001:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '241'
 salesforce_fields_002:
   id: '7700'
-  mapping_id: 
-  object_name: 
   field_name: OwnerId
   created_at: '2014-11-18 07:40:02.576432'
   updated_at: '2014-11-18 07:40:02.576432'
@@ -24,13 +18,9 @@ salesforce_fields_002:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '241'
 salesforce_fields_003:
   id: '7701'
-  mapping_id: 
-  object_name: 
   field_name: IsDeleted
   created_at: '2014-11-18 07:40:02.580451'
   updated_at: '2014-11-18 07:40:02.580451'
@@ -38,13 +28,9 @@ salesforce_fields_003:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '241'
 salesforce_fields_004:
   id: '7702'
-  mapping_id: 
-  object_name: 
   field_name: Name
   created_at: '2014-11-18 07:40:02.58421'
   updated_at: '2014-11-18 07:40:02.58421'
@@ -52,13 +38,9 @@ salesforce_fields_004:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '241'
 salesforce_fields_005:
   id: '7703'
-  mapping_id: 
-  object_name: 
   field_name: CreatedDate
   created_at: '2014-11-18 07:40:02.587937'
   updated_at: '2014-11-18 07:40:02.587937'
@@ -66,13 +48,9 @@ salesforce_fields_005:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '241'
 salesforce_fields_006:
   id: '7704'
-  mapping_id: 
-  object_name: 
   field_name: CreatedById
   created_at: '2014-11-18 07:40:02.591757'
   updated_at: '2014-11-18 07:40:02.591757'
@@ -80,13 +58,9 @@ salesforce_fields_006:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '241'
 salesforce_fields_007:
   id: '7705'
-  mapping_id: 
-  object_name: 
   field_name: LastModifiedDate
   created_at: '2014-11-18 07:40:02.595787'
   updated_at: '2014-11-18 07:40:02.595787'
@@ -94,13 +68,9 @@ salesforce_fields_007:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '241'
 salesforce_fields_008:
   id: '7706'
-  mapping_id: 
-  object_name: 
   field_name: LastModifiedById
   created_at: '2014-11-18 07:40:02.599696'
   updated_at: '2014-11-18 07:40:02.599696'
@@ -108,13 +78,9 @@ salesforce_fields_008:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '241'
 salesforce_fields_009:
   id: '7707'
-  mapping_id: 
-  object_name: 
   field_name: SystemModstamp
   created_at: '2014-11-18 07:40:02.605821'
   updated_at: '2014-11-18 07:40:02.605821'
@@ -122,13 +88,9 @@ salesforce_fields_009:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '241'
 salesforce_fields_010:
   id: '7708'
-  mapping_id: 
-  object_name: 
   field_name: ConnectionReceivedId
   created_at: '2014-11-18 07:40:02.609612'
   updated_at: '2014-11-18 07:40:02.609612'
@@ -136,13 +98,9 @@ salesforce_fields_010:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '241'
 salesforce_fields_011:
   id: '7709'
-  mapping_id: 
-  object_name: 
   field_name: ConnectionSentId
   created_at: '2014-11-18 07:40:02.613287'
   updated_at: '2014-11-18 07:40:02.613287'
@@ -150,13 +108,9 @@ salesforce_fields_011:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '241'
 salesforce_fields_012:
   id: '7710'
-  mapping_id: 
-  object_name: 
   field_name: vera__Test_Event_Name_Unique__c
   created_at: '2014-11-18 07:40:02.617016'
   updated_at: '2014-11-18 07:40:02.617016'
@@ -164,13 +118,9 @@ salesforce_fields_012:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '241'
 salesforce_fields_013:
   id: '7711'
-  mapping_id: 
-  object_name: 
   field_name: vera__Start_Date__c
   created_at: '2014-11-18 07:40:02.620678'
   updated_at: '2014-11-18 07:40:02.620678'
@@ -178,13 +128,9 @@ salesforce_fields_013:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '241'
 salesforce_fields_014:
   id: '7712'
-  mapping_id: 
-  object_name: 
   field_name: vera__End_Date__c
   created_at: '2014-11-18 07:40:02.624494'
   updated_at: '2014-11-18 07:40:02.624494'
@@ -192,13 +138,9 @@ salesforce_fields_014:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '241'
 salesforce_fields_015:
   id: '7713'
-  mapping_id: 
-  object_name: 
   field_name: vera__ODK_Key__c
   created_at: '2014-11-18 07:40:02.628238'
   updated_at: '2014-11-18 07:40:02.628238'
@@ -206,13 +148,9 @@ salesforce_fields_015:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '241'
 salesforce_fields_016:
   id: '7714'
-  mapping_id: 
-  object_name: 
   field_name: Id
   created_at: '2014-11-18 07:40:33.330682'
   updated_at: '2014-11-18 07:40:33.330682'
@@ -220,13 +158,9 @@ salesforce_fields_016:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '242'
 salesforce_fields_017:
   id: '7715'
-  mapping_id: 
-  object_name: 
   field_name: IsDeleted
   created_at: '2014-11-18 07:40:33.334094'
   updated_at: '2014-11-18 07:40:33.334094'
@@ -234,13 +168,9 @@ salesforce_fields_017:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '242'
 salesforce_fields_018:
   id: '7716'
-  mapping_id: 
-  object_name: 
   field_name: Name
   created_at: '2014-11-18 07:40:33.337271'
   updated_at: '2014-11-18 07:40:33.337271'
@@ -248,13 +178,9 @@ salesforce_fields_018:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '242'
 salesforce_fields_019:
   id: '7717'
-  mapping_id: 
-  object_name: 
   field_name: CreatedDate
   created_at: '2014-11-18 07:40:33.341145'
   updated_at: '2014-11-18 07:40:33.341145'
@@ -262,13 +188,9 @@ salesforce_fields_019:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '242'
 salesforce_fields_020:
   id: '7718'
-  mapping_id: 
-  object_name: 
   field_name: CreatedById
   created_at: '2014-11-18 07:40:33.344754'
   updated_at: '2014-11-18 07:40:33.344754'
@@ -276,13 +198,9 @@ salesforce_fields_020:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '242'
 salesforce_fields_021:
   id: '7719'
-  mapping_id: 
-  object_name: 
   field_name: LastModifiedDate
   created_at: '2014-11-18 07:40:33.347981'
   updated_at: '2014-11-18 07:40:33.347981'
@@ -290,13 +208,9 @@ salesforce_fields_021:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '242'
 salesforce_fields_022:
   id: '7720'
-  mapping_id: 
-  object_name: 
   field_name: LastModifiedById
   created_at: '2014-11-18 07:40:33.434433'
   updated_at: '2014-11-18 07:40:33.434433'
@@ -304,13 +218,9 @@ salesforce_fields_022:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '242'
 salesforce_fields_023:
   id: '7721'
-  mapping_id: 
-  object_name: 
   field_name: SystemModstamp
   created_at: '2014-11-18 07:40:33.437866'
   updated_at: '2014-11-18 07:40:33.437866'
@@ -318,13 +228,9 @@ salesforce_fields_023:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '242'
 salesforce_fields_024:
   id: '7722'
-  mapping_id: 
-  object_name: 
   field_name: ConnectionReceivedId
   created_at: '2014-11-18 07:40:33.44113'
   updated_at: '2014-11-18 07:40:33.44113'
@@ -332,13 +238,9 @@ salesforce_fields_024:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '242'
 salesforce_fields_025:
   id: '7723'
-  mapping_id: 
-  object_name: 
   field_name: ConnectionSentId
   created_at: '2014-11-18 07:40:33.444411'
   updated_at: '2014-11-18 07:40:33.444411'
@@ -346,13 +248,9 @@ salesforce_fields_025:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '242'
 salesforce_fields_026:
   id: '7724'
-  mapping_id: 
-  object_name: 
   field_name: vera__Test_Event__c
   created_at: '2014-11-18 07:40:33.447858'
   updated_at: '2014-11-18 07:40:33.447858'
@@ -360,13 +258,9 @@ salesforce_fields_026:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '242'
 salesforce_fields_027:
   id: '7725'
-  mapping_id: 
-  object_name: 
   field_name: vera__odk_key__c
   created_at: '2014-11-18 07:40:33.451232'
   updated_at: '2014-11-18 07:40:33.451232'
@@ -374,13 +268,9 @@ salesforce_fields_027:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '242'
 salesforce_fields_028:
   id: '7726'
-  mapping_id: 
-  object_name: 
   field_name: vera__Boat_Maker__c
   created_at: '2014-11-18 07:40:33.45479'
   updated_at: '2014-11-18 07:40:33.45479'
@@ -388,13 +278,9 @@ salesforce_fields_028:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '242'
 salesforce_fields_029:
   id: '7727'
-  mapping_id: 
-  object_name: 
   field_name: Id
   created_at: '2014-11-18 07:41:31.416847'
   updated_at: '2014-11-18 07:41:31.416847'
@@ -402,13 +288,9 @@ salesforce_fields_029:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '243'
 salesforce_fields_030:
   id: '7728'
-  mapping_id: 
-  object_name: 
   field_name: IsDeleted
   created_at: '2014-11-18 07:41:31.420412'
   updated_at: '2014-11-18 07:41:31.420412'
@@ -416,13 +298,9 @@ salesforce_fields_030:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '243'
 salesforce_fields_031:
   id: '7729'
-  mapping_id: 
-  object_name: 
   field_name: Name
   created_at: '2014-11-18 07:41:31.42396'
   updated_at: '2014-11-18 07:41:31.42396'
@@ -430,13 +308,9 @@ salesforce_fields_031:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '243'
 salesforce_fields_032:
   id: '7730'
-  mapping_id: 
-  object_name: 
   field_name: CreatedDate
   created_at: '2014-11-18 07:41:31.427539'
   updated_at: '2014-11-18 07:41:31.427539'
@@ -444,13 +318,9 @@ salesforce_fields_032:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '243'
 salesforce_fields_033:
   id: '7731'
-  mapping_id: 
-  object_name: 
   field_name: CreatedById
   created_at: '2014-11-18 07:41:31.431325'
   updated_at: '2014-11-18 07:41:31.431325'
@@ -458,13 +328,9 @@ salesforce_fields_033:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '243'
 salesforce_fields_034:
   id: '7732'
-  mapping_id: 
-  object_name: 
   field_name: LastModifiedDate
   created_at: '2014-11-18 07:41:31.434554'
   updated_at: '2014-11-18 07:41:31.434554'
@@ -472,13 +338,9 @@ salesforce_fields_034:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '243'
 salesforce_fields_035:
   id: '7733'
-  mapping_id: 
-  object_name: 
   field_name: LastModifiedById
   created_at: '2014-11-18 07:41:31.437637'
   updated_at: '2014-11-18 07:41:31.437637'
@@ -486,13 +348,9 @@ salesforce_fields_035:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '243'
 salesforce_fields_036:
   id: '7734'
-  mapping_id: 
-  object_name: 
   field_name: SystemModstamp
   created_at: '2014-11-18 07:41:31.44067'
   updated_at: '2014-11-18 07:41:31.44067'
@@ -500,13 +358,9 @@ salesforce_fields_036:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '243'
 salesforce_fields_037:
   id: '7735'
-  mapping_id: 
-  object_name: 
   field_name: ConnectionReceivedId
   created_at: '2014-11-18 07:41:31.443933'
   updated_at: '2014-11-18 07:41:31.443933'
@@ -514,13 +368,9 @@ salesforce_fields_037:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '243'
 salesforce_fields_038:
   id: '7736'
-  mapping_id: 
-  object_name: 
   field_name: ConnectionSentId
   created_at: '2014-11-18 07:41:31.448042'
   updated_at: '2014-11-18 07:41:31.448042'
@@ -528,13 +378,9 @@ salesforce_fields_038:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '243'
 salesforce_fields_039:
   id: '7737'
-  mapping_id: 
-  object_name: 
   field_name: vera__Test_Event__c
   created_at: '2014-11-18 07:41:31.451341'
   updated_at: '2014-11-18 07:41:31.451341'
@@ -542,13 +388,9 @@ salesforce_fields_039:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '243'
 salesforce_fields_040:
   id: '7738'
-  mapping_id: 
-  object_name: 
   field_name: vera__odk_key__c
   created_at: '2014-11-18 07:41:31.454601'
   updated_at: '2014-11-18 07:41:31.454601'
@@ -556,13 +398,9 @@ salesforce_fields_040:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '243'
 salesforce_fields_041:
   id: '7739'
-  mapping_id: 
-  object_name: 
   field_name: Photo
   created_at: '2014-11-18 07:40:02.58421'
   updated_at: '2014-11-18 07:40:02.58421'
@@ -570,6 +408,4 @@ salesforce_fields_041:
   label_name: 
   color: 
   is_lookup: f
-  lookup_object: 
-  lookup_field: 
   salesforce_object_id: '244'

@@ -38,17 +38,25 @@ RSpec.describe OdkToSalesforce::SubmissionProcessor, type: :model do
     end
     subject {}
     it "replaces filenames with a downloadURI for binary ODK fields" do
-      processor = OdkToSalesforce::SubmissionProcessor.new(61, 53)
+      processor = OdkToSalesforce::SubmissionProcessor.new
 
-      processor.perform
+      processor.perform(61,53)
 
       processor.all_import_objects.last.attributes["Photo"].should eql "https://fake.url.for.image"
     end
 
     it "leaves the filename in a binary ODK field in place if it can't be mapped to media data" do
-      processor = OdkToSalesforce::SubmissionProcessor.new(61, 54)
+      processor = OdkToSalesforce::SubmissionProcessor.new
 
-      processor.perform
+      processor.perform(61,54)
+
+      processor.all_import_objects.last.attributes["Photo"].should eql "blah.jpg"
+    end
+
+    it "leaves the filename in a binary ODK field in place if the submission has no media data at all" do
+      processor = OdkToSalesforce::SubmissionProcessor.new
+
+      processor.perform(61,55)
 
       processor.all_import_objects.last.attributes["Photo"].should eql "blah.jpg"
     end
