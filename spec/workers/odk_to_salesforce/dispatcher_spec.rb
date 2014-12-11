@@ -16,6 +16,7 @@ RSpec.describe OdkToSalesforce::Dispatcher do
   subject { described_class.new }
 
   before(:each) do
+    allow(Mapping).to receive(:find).and_return(mapping)
     allow(OdkToSalesforce::Odk).to receive(:new).and_return(odk)
   end
 
@@ -23,20 +24,20 @@ RSpec.describe OdkToSalesforce::Dispatcher do
     it "creates an import instance for the mapping" do
       expect(mapping).to receive(:create_import).with(odk_formid: odk_form.name)
 
-      subject.perform(mapping, limit)
+      subject.perform(mapping.id, limit)
     end
 
     it "does not create an import if there is already one associated with the mapping" do
       allow(mapping).to receive(:import).and_return(import)
       expect(mapping).to_not receive(:create_import)
 
-      subject.perform(mapping, limit)
+      subject.perform(mapping.id, limit)
     end
 
     it "creates an ODK connection" do
       expect(OdkToSalesforce::Odk).to receive(:new).with(odk_form.name, import, limit, user).and_return(odk)
 
-      subject.perform(mapping, limit)
+      subject.perform(mapping.id, limit)
     end
 
     it "creates a submission DB entry for each ODK submission" do
@@ -44,16 +45,16 @@ RSpec.describe OdkToSalesforce::Dispatcher do
       expect(odk).to receive(:fetch_submission).with(uuid).and_return(submission_hash)
       expect(submissions_collection).to receive(:create).with(uuid: uuid, data: data, media_data: media_data).and_return(submission)
 
-      subject.perform(mapping, limit)
+      subject.perform(mapping.id, limit)
     end
 
     it "adds an entry to the queue for import to Salesforce" do
       allow(odk).to receive(:submissions).and_return([uuid])
       allow(odk).to receive(:fetch_submission).and_return(submission_hash)
       allow(submissions_collection).to receive(:create).and_return(submission)
-      expect(Resque).to receive(:enqueue).with(OdkToSalesforce::SubmissionProcessor, mapping.id, submission.id)
+      expect(Sidekiq::Client).to receive(:enqueue).with(OdkToSalesforce::SubmissionProcessor, mapping.id, submission.id)
 
-      subject.perform(mapping, limit)
+      subject.perform(mapping.id, limit)
     end
   end
 end
