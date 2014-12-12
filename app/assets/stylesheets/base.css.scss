@@ -1,12 +1,15 @@
 $bg-color: #fffcf4;
 $bold: 700;
 $semi-bold: 600;
+$regular: 400;
 
 $primary-blue: #3f5666;    // dark blue
 $deeper-blue: #384D5C;    // deeper blue
+$lighter-blue: #3C505E;
 $grey-blue: #5A6C77;
 $off-white: #F2EFE6;
 $grey: #969795;
+$lighter-grey: #CACDCA;
 $light-grey: #A3AAAB;
 
 body {
@@ -19,6 +22,18 @@ body {
 
 b, strong {
   font-weight: $bold;
+}
+
+h1,h2,h3,h4 {
+  color: $primary-blue;
+}
+
+h4 {
+  font-weight: $regular;
+}
+
+a {
+  color: $grey-blue;
 }
 
 .navbar {
@@ -37,7 +52,16 @@ b, strong {
 
   .navbar-nav {
     font-weight: $semi-bold;
-    font-size: rem-calc(15px);
-    color: $primary-blue;
+    font-size: rem-calc(16px);
+
+    li > a {
+      color: $primary-blue;
+
+      // login lock icon
+      i {
+        font-size: 2.2rem;
+        vertical-align: middle;
+      }
+    }
   }
 }

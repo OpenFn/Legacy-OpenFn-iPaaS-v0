@@ -1,51 +1,68 @@
-<div ng-controller="MarketplaceController as marketplace" class="row">
-  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-  <!-- Filters -->
+<div ng-controller="MarketplaceController as marketplace">
+  <div class="container">
+    
+    <div class="row search-container">
+      
+      <div class="col-md-8 col-md-offset-2 col-sm-12"> 
+        <div class="text-center">
+          <h2>open<strong>Marketplace</strong></h2>
+          <h4 class="sub-heading">Find the technology you need to grow your impact.</h4>
+          <div class="search-field">
+            <input type="text" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 filter-options">
+          
+        <div class="new-product-link pull-left">
+          <a href="https://www.formstack.com/forms/?1874808-i8hgbPcov5" class="website-link" target="_blank">
+            <i class="fa fa-plus"></i>&nbsp;Add your product
+          </a>
+        </div>
+        <div class="search-type pull-right">
+          <span>Open Source</span>
+          <span ng-model="searchFilters.integrated">Integrated?</span>
+        </div>
+
+      </div>
+          
+    </div>
   </div>
-  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"> 
-    <div class="search-container row">
-      <div class="search-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h3>open<strong>Marketplace</strong></h3>
-        <h4 class="sub-heading"><strong>Find the technology you need to grow your impact.</strong></h4>
-        <div class="search-field no-padding col-lg-8 col-md-8 col-sm-6 col-xs-12">
-          <input type:"text" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
-        </div>
-        <div class="btn-group search-type">
-          <label class="btn btn-default">Open Source?</label>
-          <label class="btn btn-default" ng-model="searchFilters.integrated" btn-checkbox>Integrated?</label>
+  <div class="featurette dark" id="marketplace">
+    <hr class="light">
+    <hr class="dark">
+    
+    <div class="container">
+      <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
+        <div ng-repeat="product in products | filter:filterProducts" class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div class="product">
+            <h3 class="name">
+              {{product.name}}
+            </h3>
+            <div class='description'>
+              {{product.description}}
+            </div>
+            <div class='rating'>
+              <i class="glyphicon glyphicon-star"></i>
+              <i class="glyphicon glyphicon-star"></i>
+              <i class="glyphicon glyphicon-star"></i>
+              (7)
+            </div>
+            <a ng-href="{{product.website}}" class="website-link" target="_blank">
+              <i class="glyphicon glyphicon-link"></i>
+            </a>
+            <a ng-href="/#/product/{{product.id}}" class="details-link">
+              View Details
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
-      <div ng-repeat="product in products | filter:filterProducts" class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div class="product">
-          <h3 class="name">
-            {{product.name}}
-          </h3>
-          <div class='description'>
-            {{product.description}}
-          </div>
-          <div class='rating'>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            <i class="glyphicon glyphicon-star"></i>
-            (7)
-          </div>
-          <a ng-href="{{product.website}}" class="website-link" target="_blank">
-            <i class="glyphicon glyphicon-link"></i>
-          </a>
-          <a ng-href="/#/product/{{product.id}}" class="details-link">
-            View Details
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="new-product-link">
-      <a href="https://www.formstack.com/forms/?1874808-i8hgbPcov5" class="website-link" target="_blank">
-        <i class="glyphicon glyphicon-plus"></i> Add your product...
-      </a>
-    </div>
-
+    <hr class="dark">
+    <hr class="light">
   </div>
 </div>
+
+

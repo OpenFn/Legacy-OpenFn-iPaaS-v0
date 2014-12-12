@@ -1,14 +1,4 @@
 .search-container {
-  margin: 0;
-  border-radius: 4px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #CCC;
-  background-color: #F5F5F5;
-
-  .sub-heading {
-    color: #A3A3A3;
-  }
 
   .search-box {
     padding: 1.6em 3em 3em 3em;
@@ -18,13 +8,60 @@
     padding: 0;
   }
 
-  .search-type {
-    float: right;
-    min-width: 216px;
+  .search-field {
+    margin-top: 3rem;
+    padding-bottom: 0.5em;
+    input {
+      border: none;
+      background-color: $lighter-grey;
+      color: $off-white;
+
+      font-size: 1.6rem;
+      padding: 13px 19px;
+      height: inherit;
+      // remove bootstrap defaults - refactor when other components need this.
+      border-radius: 0;
+      box-shadow: none;
+      &:focus {
+        box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+      }
+
+      &:-moz-placeholder {
+        text-transform: uppercase;
+        font-weight: $bold;
+        color: $off-white;
+      }
+      &::-moz-placeholder {
+        text-transform: uppercase;
+        font-weight: $bold;
+        color: $off-white;
+      }
+      &:-ms-input-placeholder {
+        text-transform: uppercase;
+        font-weight: $bold;
+        color: $off-white;
+      }
+      &::-webkit-input-placeholder {
+        text-transform: uppercase;
+        font-weight: $bold;
+        color: $off-white;
+      }
+
+    }
   }
 
-  .search-field {
-    padding-bottom: 0.5em;
+  .filter-options {
+
+    margin-bottom: 5rem;
+
+    .new-product-link, .search-type {
+      padding: 1rem 0rem;
+    }
+
+    .new-product-link {
+      font-weight: $bold;
+      font-size: 1.4rem;
+    }
   }
 }
 
@@ -32,14 +69,11 @@
   $product-padding: 1em;
   $product-margin: 0.4em;
   
-  margin: 0;
-  margin-left: -$product-margin;
-  margin-right: -$product-margin;
 
   .product-container {
-    padding: 0;
-    margin: 0;
+    padding: 0 0.75rem;
     height: 14em;
+    margin-bottom: 1.5rem;
 
     .product:hover {
       background-color: #D4EBF6;
@@ -47,10 +81,14 @@
 
     .product {
       height: 100%;
+      background-color: $lighter-blue;
 
+      > h3 {
+        color: $lighter-grey;
+      }
+      color: $lighter-grey;
       position: relative;
-      padding: $product-padding;
-      margin: $product-margin;
+      padding: 0;
   
       .description {
         font-size: 0.8em;
@@ -173,6 +211,3 @@
   }
 }
 
-.new-product-link {
-  padding: 1em;
-}
