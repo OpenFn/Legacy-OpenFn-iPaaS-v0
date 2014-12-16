@@ -4,8 +4,12 @@ OpenFN Bridge
 Getting Started
 ---------------
 
-`bundle install`
-`rbenv rehash` *when using rbenv*
+`rbenv install 2.1.5`  
+`rbenv local 2.1.5`  
+`gem install bundler`  
+`rbenv rehash`  
+`bundle install`  
+`rbenv rehash`  
 
 **Copy the configuration defaults**  
 `cp config/database.yml.example config/database.yml`  
