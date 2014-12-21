@@ -23,6 +23,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 gem 'bootstrap-sass', '~> 3.1.1'
+gem "font-awesome-rails"
 
 gem "resque", '~> 1.25'
 gem 'resque-web', require: 'resque_web'

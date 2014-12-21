@@ -1,0 +1,43 @@
+$bg-color: #fffcf4;
+$bold: 700;
+$semi-bold: 600;
+
+$primary-blue: #3f5666;    // dark blue
+$deeper-blue: #384D5C;    // deeper blue
+$grey-blue: #5A6C77;
+$off-white: #F2EFE6;
+$grey: #969795;
+$light-grey: #A3AAAB;
+
+body {
+  font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif; 
+  line-height: 1;
+
+  background-color: $bg-color;
+  background-image: image-url("noise.png");
+}
+
+b, strong {
+  font-weight: $bold;
+}
+
+.navbar {
+  margin-top: rem-calc(55px);
+
+  border: none;
+  border-radius: 0;
+  background-color: inherit;
+
+
+  .navbar-brand {
+    font-size: rem-calc(35px);
+    font-weight: $bold;
+    color: $primary-blue;
+  }
+
+  .navbar-nav {
+    font-weight: $semi-bold;
+    font-size: rem-calc(15px);
+    color: $primary-blue;
+  }
+}

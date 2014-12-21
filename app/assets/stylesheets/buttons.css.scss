@@ -1,0 +1,15 @@
+.btn {
+
+  text-transform: uppercase;
+
+  i {
+    margin-right: 0.6rem;
+  }
+
+  &.btn-primary {
+    background-color: $grey-blue;
+    font-weight: $bold;
+    border-radius: 3px;
+    border: none;
+  }
+}
