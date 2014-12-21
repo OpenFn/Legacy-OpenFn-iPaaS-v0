@@ -4,25 +4,29 @@ OpenFN Bridge
 Getting Started
 ---------------
 
-`bundle install`
-`rbenv rehash` *when using rbenv*
+`rbenv install 2.1.5`  
+`rbenv local 2.1.5`  
+`gem install bundler`  
+`rbenv rehash`  
+`bundle install`  
+`rbenv rehash`  
 
-**Copy the configuration defaults**
-`cp config/database.yml.example config/database.yml`
-`cp config/application.yml.template config/application.yml`
+**Copy the configuration defaults**  
+`cp config/database.yml.example config/database.yml`  
+`cp config/application.yml.template config/application.yml`  
 
-**Setting up trust authentication for postgres**
+**Setting up trust authentication for postgres**  
 
-Ensure you have the following line somewhere at you `pg_hba.conf` file.
+Ensure you have the following line somewhere at you `pg_hba.conf` file.  
 ```
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
 local   all             all                                     trust
 ```
-
+  
 *The `pg_hba.conf` file is located in `/etc/postgresql/9.3/main/pg_hba.conf` on Ubuntu*
 
-**Clone the staging database over**
-`heroku pg:pull HEROKU_POSTGRESQL_PURPLE_URL thebridge_development --app the-staging-bridge`
+**Clone the staging database over**  
+`heroku pg:pull HEROKU_POSTGRESQL_PURPLE_URL thebridge_development --app the-staging-bridge`  
 
 Configuration
 -------------
