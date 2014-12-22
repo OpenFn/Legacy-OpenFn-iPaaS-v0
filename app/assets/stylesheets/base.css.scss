@@ -9,6 +9,10 @@ $off-white: #F2EFE6;
 $grey: #969795;
 $light-grey: #A3AAAB;
 
+a:hover {
+  text-decoration: none;
+}
+
 body {
   font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif; 
   line-height: 1;
