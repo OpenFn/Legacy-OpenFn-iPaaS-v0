@@ -65,7 +65,7 @@
         $scope.$emit "mapping:saved"
 
     $scope.deleteSfObject = (sfObject) ->
-      if confirm("Are you sure you want to remove this object?")
+      if confirm("Please ensure that all destination fields from this object have been removed before continuing. Are you sure you want to remove this object?")
         SalesforceObject.delete(
           mapping_id: $scope.mapping.id,
           id: sfObject.id
