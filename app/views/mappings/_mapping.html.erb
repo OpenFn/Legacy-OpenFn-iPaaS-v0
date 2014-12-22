@@ -1,5 +1,15 @@
 <tr class="<% if mapping.active? %> success <% end %>">
+  <td><%=mapping.id %></td>
   <td><%= mapping.name %></td>
+  
+  <td>
+    <% if mapping.enabled? %>
+      enabled
+    <% else %>
+      disabled
+    <% end %>
+  </td>
+
   <td>
     <% if mapping.active? %>
       active
@@ -8,7 +18,9 @@
     <% end %>
   </td>
   <td>
-    <%= link_to "View", mapping, class: 'btn btn-success' %>
-    <%= link_to "Process Log", [mapping, :submissions], class: 'btn btn-warning' if mapping.import %>
+
+    <%= link_to "View", mapping, class: 'btn btn-primary' %>
+    <%= link_to "Process Log", [mapping, :submissions], class: 'btn btn-info' if mapping.import %>
+    <%= link_to "Destroy", mapping, method: 'delete', class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this map?'} %>
   </td>
 </tr>
