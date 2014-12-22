@@ -1,5 +1,7 @@
 .welcome {
 
+
+
     .header-image {
         margin-top: -20px;
         width: 100%;
@@ -29,6 +31,7 @@
         color: $primary-blue;
         font-size: 1.8rem;
         line-height: 2.8rem;
+
       }
       &.dark {
         background-color: $deeper-blue;
@@ -126,7 +129,7 @@
         line-height: 2rem;
 
         a {
-          text-decoration: underline;
+          text-decoration: none;
           color: inherit; 
         }
       }
