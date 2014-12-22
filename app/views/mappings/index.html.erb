@@ -3,12 +3,7 @@
 <header class="header-image">
   <div class="headline">
     <h1>open<strong>Integrations</strong></h1>
-    <div class="new-product-link">
-        <ul class="list-group">
-          <li class="list-group-item">
-            <%= link_to "New Mapping", [:new, :mapping] %>
-          </li>
-        </ul>
+    <%= button_to "NewMapping", [:new, :mapping], class: 'btn btn-success' %>
     </div>
 </header>
 
