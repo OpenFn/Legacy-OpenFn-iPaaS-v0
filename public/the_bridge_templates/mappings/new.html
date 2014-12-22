@@ -1,26 +1,12 @@
+<div class="ideas">
+  <div class="container">
 <div id="errorExplanation" class='text-danger' ng-show="errors">
   <ul>
     <li ng-repeat="error in errors">{{error}}</li>
   </ul>
 </div>
 
-<h4>Fill out your mapping details</h4>
-
-<div class="form-group">
-  <label for="mapping_name">Name</label>
-  <input type="text" ng-model="mapping.name" class='form-control' />
-</div>
-
-<div class="checkbox mapping-status-options" >
-  <label>
-    <input type="checkbox" ng-model='mapping.enabled' ng-checked='mapping.enabled'> Enabled
-  </label>
-  <label>
-    <input type="checkbox" ng-model='mapping.active' ng-checked='mapping.active'> Collect automatically (every 10 min)
-  </label>
-</div>
-
-<h4>Step 1: Choose your ODK Form</h4>
+<h4>Choose your ODK Form</h4>
 {{something}}
 
 <div class='row'>
@@ -35,4 +21,18 @@
 
 </div>
 
+<div class="form-group">
+  <label for="mapping_name">Description</label>
+  <input type="text" ng-model="mapping.name" class='form-control' />
+</div>
+
+<div class="checkbox mapping-status-options" >
+  <label>
+    <input type="checkbox" ng-model='mapping.enabled' ng-checked='mapping.enabled'> Enabled
+  </label>
+  <label>
+    <input type="checkbox" ng-model='mapping.active' ng-checked='mapping.active'> Collect automatically (every 10 min)
+  </label>
+</div>
+</div>
 

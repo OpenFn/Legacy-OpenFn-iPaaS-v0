@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.4'
+ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.1.0'
@@ -23,6 +23,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
 gem 'bootstrap-sass', '~> 3.1.1'
+gem "font-awesome-rails"
 
 gem "resque", '~> 1.25'
 gem 'resque-web', require: 'resque_web'

@@ -1,0 +1,125 @@
+.ideas {
+
+    .header-image {
+        margin-top: -20px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .headline {
+        padding: rem-calc(105px) 0 rem-calc(100px);
+        padding-bottom: rem-calc(30px);
+    }
+
+
+    .featurette {
+
+      .featurette-heading {
+        font-size: rem-calc(35px);
+        color: $primary-blue;
+        margin: 2rem 0;
+      }
+
+      p.lead {
+        color: $primary-blue;
+        font-size: 1.8rem;
+        line-height: 2.8rem;
+      }
+      &.dark {
+        background-color: $deeper-blue;
+        background-image: image-url("lighter-noise.png");
+
+        .featurette-heading {
+          color: $off-white;
+        }
+
+        p.lead {
+          color: $off-white;
+        }
+      }
+
+      .container {
+        margin-top: rem-calc(30px);
+        margin-bottom: rem-calc(30px);
+      }
+
+      overflow: hidden;
+
+      padding: 0;
+      margin: 0;
+
+      hr {
+        border: none;
+        height: rem-calc(10px);
+        margin: 0;
+        padding: 0;
+
+        &.light {
+          background-color: lighten($primary-blue, 51);
+        }
+        &.dark {
+          background-color: $primary-blue;
+        }
+      }
+
+      
+
+    }
+
+    footer {
+
+      margin-top: rem-calc(50px);
+      margin-bottom: rem-calc(25px);
+
+      .row {
+        margin-bottom: rem-calc(25px);
+
+        &#opensource-links {
+          
+          a {
+            color: lighten($light-grey,15);
+            &:hover {
+              color: $light-grey;
+            }
+          }
+
+          i {
+            font-size: 4rem;
+          }
+        }
+      }
+
+      p { 
+        text-transform: uppercase;
+        color: $light-grey;
+        font-size: rem-calc(15px);
+        font-weight: $semi-bold;
+        line-height: 2rem;
+
+        a {
+          text-decoration: underline;
+          color: inherit; 
+        }
+      }
+    }   
+
+ .title {
+    color: $off-white;
+  }
+
+  .content {
+    color: $off-white;
+  }
+
+  .rating {
+   color: $off-white;
+  }
+
+
+
+  .table-striped > tbody > tr:nth-child(odd) > td,
+  .table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: #5A6C77;
+  }
+
+}
