@@ -1,15 +1,37 @@
-<div class="container">
-<h1>
-	open<strong>Ideas</strong>
-</h1>
-</br>
-</br>
-<h2>Release Notes</h2>
+<div class="ideas">
+<header class="header-image">
+	<div class="headline">
+		<h1>open<strong>Ideas</strong></h1>
+		<h3>Stay tuned for release notes and curated content here.</h3>
+    </div>
+</header>
 
+<div class="featurette dark">
+	<hr class="light">
+    <hr class="dark">
+
+<div class="container">
 <div ng-controller="ReleaseNotesController as releaseNotes">
 	<div ng-repeat="post in release_notes" class="release-note">
     <div ng-bind-html="post.title" class="title"></div>
 		<div ng-bind-html="post.content" class="content"></div>
 	</div>
 </div>
+</div>
+    <hr class="dark">
+    <hr class="light">
+</div>
+
+  <div class="container">
+    <footer>
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <p class="text-center">
+            Still want more? Check out xkcd's animation of the Rosetta mission <a href="http://xkcd.com/1446/">here.</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
 </div>

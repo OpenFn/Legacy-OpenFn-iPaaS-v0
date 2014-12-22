@@ -1,3 +1,13 @@
+</br>
+</br>
+</br>
+</br>
+
+<input type="text" ng-model="mapping.name" class='form-control' ng-change="saveMapping()" />
+
+<div class="form-group">
+</div>
+
 <div id="errorExplanation" class='text-danger' ng-show="errors || !mapping.can_be_enabled">
   <ul>
     <li ng-repeat="error in errors">{{error}}</li>
@@ -7,12 +17,7 @@
 
 <div class='saved-notification' ng-show="saved">Saved</div>
 
-<h4>Mapping Edit Page</h4>
 
-<div class="form-group">
-  <label for="mapping_name">Mapping Name</label>
-  <input type="text" ng-model="mapping.name" class='form-control' ng-change="saveMapping()" />
-</div>
 
 <div class="checkbox mapping-status-options">
   <label>
@@ -21,11 +26,9 @@
   <label>
     <input type="checkbox" ng-model='mapping.active' ng-checked='mapping.active' ng-change="saveMapping()" ng-disabled="!mapping.enabled || !mapping.can_be_enabled"> Collect automatically (every 10 min)
   </label>
+  <label>Your Source: {{mapping.odk_form.name}}</label>
 </div>
 
-<h4><small>Your Source:</small> {{mapping.odk_form.name}}</h4>
-
-<!-- <h4>Step 2: Load your Salesforce Objects in the order that they must be inserted...</h4> -->
 <div class="row well sf-row" bs-affix data-offset-top="225" data-on-affix="onAffix()" data-on-unaffix="onUnaffix()">
   <div class='col-md-12' ng-include="'/the_bridge_templates/mappings/sf_row.html'"></div>
 </div>

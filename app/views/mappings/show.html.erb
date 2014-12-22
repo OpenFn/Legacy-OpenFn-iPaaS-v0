@@ -1,9 +1,11 @@
-<ol class="breadcrumb">
-  <li><%= link_to "Mappings", :mappings %></li>
-  <li><%= @mapping.name %> (<%= @mapping.active? ? "Active" : "Inactive" %>)</li>
-</ol>
+<div class="ideas">
+  <!-- Full Width Image Header -->
+  <header class="header-image">
+    <div class="headline">
+      <h3>Mapping Edit </h3>
+    </div>
+  </header>
 
-<div class='clearfix'>
   <div class='pull-left'>
     <%= form_tag dispatch_surveys_mapping_path(@mapping), class: 'form-inline', role: 'form' do %>
       <div class="form-group">
@@ -12,13 +14,12 @@
       <%= submit_tag "Import", class: "import-button btn btn-success #{@mapping.enabled? ? '' : 'disabled'}" %>
     <% end %>
   </div>
-</div>
 
 <div class='pull-right'>
   <%= button_to "Destroy", @mapping, method: :delete, class: 'btn btn-danger', confirm: 'Are you sure?' %>
   <%= link_to "View Cursor", '#', class: 'btn btn-primary', data: {toggle: 'modal', target: '#cursor_modal'} if @mapping.import && @mapping.import.cursor %>
   <%= button_to "Clear Cursor", [:clear_cursor, @mapping], class: 'btn btn-warning', confirm: "Are you sure?" %>
-  <%= button_to "Clone", [:clone, @mapping], class: 'btn', confirm: 'Are you sure?' %>
+  <%= button_to "Clone", [:clone, @mapping], class: 'btn btn-success', confirm: 'Are you sure?' %>
 </div>
 
 <%= render "cursor_modal", mapping: @mapping if @mapping.import && @mapping.import.cursor %>

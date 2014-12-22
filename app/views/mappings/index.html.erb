@@ -1,20 +1,19 @@
-<% content_for :sidebar do %>
-  <ul class="list-group">
-    <li class="list-group-item">
-      <%= link_to "New Mapping", [:new, :mapping] %>
-    </li>
-  </ul>
-<% end %>
+<div class="ideas">
 
-<%#
+<header class="header-image">
+  <div class="headline">
+    <h1>open<strong>Integrations</strong></h1>
+    <div class="new-product-link">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <%= link_to "New Mapping", [:new, :mapping] %>
+          </li>
+        </ul>
+    </div>
+</header>
 
-<ol class="breadcrumb">
-  <li>Mappings</li>
-</ol>
-
-%>
-
-<table class='table table-striped'>
+<div class="container-fluid">
+<table class='table'>
   <thead>
     <tr>
       <th>No.</th>
@@ -28,3 +27,7 @@
     <%= render @mappings %>
   </tbody>
 </table>
+</div>
+    </div>
+  </div>
+</div>
