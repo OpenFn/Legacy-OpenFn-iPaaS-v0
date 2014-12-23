@@ -1,10 +1,19 @@
 <table class='table'>
+  <thead>
+    <tr>
+      <th width="5%">uuid</th>
+      <th width="50%">Source Field Name</th>
+      <th width="20%">Source Field Type</th>
+      <th width="25%">Destination Field</th>
+    </tr>
+  </thead>
   <tbody>
     <tr ng-repeat="salesforceObject in mapping.salesforceObjects | filter: {is_repeat: false}"  ng-controller="SalesforceRelationshipCtrl">
       <td></td>
       <td>
         <em>New [ {{salesforceObject.name}}_{{salesforceObject.order}}.ID ]</em>
       </td>
+      <td>SalesforceID</td>
       <td>
         <ul class="list-group sortable-location sf-connected-sortable sf-target" ui-sortable="sfSortableOptions" ng-model="salesforceObject.relationshipFields">
           <li class="list-group-item sf-field" ng-repeat="relationshipField in salesforceObject.relationshipFields" ng-style="{'background-color': relationshipField.color}">
