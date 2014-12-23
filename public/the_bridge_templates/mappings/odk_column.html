@@ -1,4 +1,12 @@
 <table class='table'>
+  <thead>
+    <tr>
+      <th width="5%">uuid</th>
+      <th width="50%">Source Field Name</th>
+      <th width="20%">Source Field Type</th>
+      <th width="25%">Destination Field</th>
+    </tr>
+  </thead>
   <tbody>
     <tr ng-repeat="salesforceObject in mapping.salesforceObjects | filter: {is_repeat: false}"  ng-controller="SalesforceRelationshipCtrl">
       <td></td>

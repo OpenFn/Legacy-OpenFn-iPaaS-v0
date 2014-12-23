@@ -3,7 +3,7 @@ class UserSessionsController < ApplicationController
 
   def create
     if login(params[:email], params[:password])
-      redirect_to(:root, notice: "Welcome Back!")
+      redirect_to(:mappings, notice: "Welcome Back!")
     else
       flash.now[:alert] = 'Login failed'
       render action: 'new'

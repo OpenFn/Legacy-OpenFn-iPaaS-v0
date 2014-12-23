@@ -9,7 +9,7 @@
   <div class='pull-left'>
     <%= form_tag dispatch_surveys_mapping_path(@mapping), class: 'form-inline', role: 'form' do %>
       <div class="form-group">
-        <%= text_field_tag :only, params[:only], class: 'form-control', placeholder: 'Number of surveys to import' %>
+        <%= text_field_tag :only, params[:only], class: 'form-control', placeholder: 'No. of submissions to import' %>
       </div>
       <%= submit_tag "Import", class: "import-button btn btn-success #{@mapping.enabled? ? '' : 'disabled'}" %>
     <% end %>
