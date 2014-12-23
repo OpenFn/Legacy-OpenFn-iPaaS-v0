@@ -12,6 +12,7 @@
     display: block;
   }
 }
+
 #loading-gif {
   width: 50%;
 }
@@ -23,6 +24,12 @@
   }
 
 }
+
+.s-filter{
+  margin-left: 35px;
+  margin-top: 0;
+}
+
 
 .odk-row {
   padding-bottom: 150px;
@@ -96,7 +103,8 @@ input.destroy-field {
 .sf-row.affix {
   position: fixed;
   top: 0;
-  width: 76%;
+  left: 0;
+  width: auto;
   z-index: 1000;
   -webkit-transition: all 1s ease-in;
   transition: all 0.5s ease-in;
