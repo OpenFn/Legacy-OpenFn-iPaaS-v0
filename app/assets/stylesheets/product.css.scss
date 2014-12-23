@@ -30,16 +30,19 @@
 
 .product-list {
   $product-padding: 1em;
-  $product-margin: 0.4em;
+  $product-margin: 0.8em;
   
-  margin: 0;
+  
   margin-left: -$product-margin;
   margin-right: -$product-margin;
+  margin-top: -$product-margin;
+  margin-bottom: -$product-margin;
+
 
   .product-container {
     padding: 0;
-    margin: 0;
-    height: 14em;
+    height: 16em;
+    margin-bottom: 1.6em;
 
     .product:hover {
       background-color: #5A6C77;
@@ -47,6 +50,8 @@
 
     .product {
       height: 100%;
+      background-color: #3f5666;
+      text-align: center;
 
       position: relative;
       padding: $product-padding;
@@ -60,31 +65,33 @@
         text-overflow: ellipsis;
       }
 
+      .title {
+        margin-top: 10px;
+      }
+
       .rating {
-        padding: 0.5em 0;
-        position: absolute;
-        bottom: $product-padding;
-        left: $product-padding;
+        
+        align-content: center;
       }
 
       .details-link {
-        color: #000;
+        color: #384D5C;
         padding: 0.5em;
         position: absolute;
-        bottom: $product-padding;
-        right: $product-padding;
-        border-radius: 4px;
-        border-width: 1px;
-        border-style: solid;
-        border-color: #CCC;
-        background-color: #FFF;
+        bottom: 0;
+        right: 0;
         cursor: pointer;
+        background-color: #A3AAAB;
       }
 
       .website-link {
+        color: #384D5C;
+        padding: 0.5em;
         position: absolute;
-        bottom: $product-padding + 0.5em;
-        right: $product-padding + 7.5em;
+        bottom: 0;
+        left: 0;
+        cursor: pointer;
+        background-color: #A3AAAB;
       }
 
       .details-link:hover {
