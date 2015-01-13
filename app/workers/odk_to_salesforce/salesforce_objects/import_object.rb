@@ -16,9 +16,14 @@ module OdkToSalesforce
 
       def populate_lookup_field(salesforce_field, odk_field_value)
         lookup_field = salesforce_field.odk_field_salesforce_fields.first.lookup_field_name || "name"
-        puts "Finding object #{salesforce_field.field_name} on field #{lookup_field} with value #{odk_field_value}"
-        sf_obj = @rf.query("SELECT Id FROM #{salesforce_field.field_name} WHERE #{lookup_field} = '#{odk_field_value}'").first
-        @attributes[salesforce_field.field_name] = sf_obj.Id if sf_obj
+        puts "Finding object #{salesforce_field.reference_to} on field #{lookup_field} with value #{odk_field_value}"
+        sf_obj = @rf.query("SELECT Id FROM #{salesforce_field.reference_to} WHERE #{lookup_field} = '#{odk_field_value}'").first
+        if sf_obj
+          puts "Found matching #{salesforce_field.reference_to} for #{salesforce_field.field_name}."
+          @attributes[salesforce_field.field_name] = sf_obj.Id
+        else
+          puts "No object found on #{salesforce_field.reference_to} with #{lookup_field} == #{odk_field_value}"
+        end
       end
 
       def populate_record_type_field(salesforce_field, odk_field_value)

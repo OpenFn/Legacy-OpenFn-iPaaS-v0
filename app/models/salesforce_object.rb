@@ -19,13 +19,23 @@ class SalesforceObject < ActiveRecord::Base
 
   def create_fields_from_salesforce
     sf_client = RestforceService.new(self.mapping.user).connection
-    sf_fields = sf_client.describe(self.name)["fields"]
+    fields = sf_client.describe(self.name)["fields"]
 
-    sf_fields.each do |sf_field|
-      self.salesforce_fields.find_or_create_by!({
-        field_name: sf_field["name"],
-        data_type: (sf_field["name"].eql?("RecordTypeId") ? "record_type_id" : sf_field["type"])
-      })
+    fields.each do |field|
+
+      field_attributes = {
+        field_name: field['name'],
+        data_type: field['type'].underscore,
+        # Get the first referenced object name - there are usually only one
+        # of them. However if we are expecting to allow a choice of which
+        # reference object we want to create, this will need to change to an
+        # array to support this case.
+        reference_to: field['referenceTo'].first
+      } 
+
+      salesforce_fields.find_or_create_by!(field_name: field['name']).
+        update!(field_attributes)
+
     end
   end
 
