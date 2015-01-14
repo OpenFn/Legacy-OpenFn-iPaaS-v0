@@ -30,7 +30,9 @@ class SalesforceObject < ActiveRecord::Base
         # of them. However if we are expecting to allow a choice of which
         # reference object we want to create, this will need to change to an
         # array to support this case.
-        reference_to: field['referenceTo'].first
+        reference_to: field['referenceTo'].first,
+        # Human readable name.
+        label_name: field['label']
       } 
 
       salesforce_fields.find_or_create_by!(field_name: field['name']).
