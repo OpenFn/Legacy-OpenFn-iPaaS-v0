@@ -32,7 +32,9 @@ class SalesforceObject < ActiveRecord::Base
         # array to support this case.
         reference_to: field['referenceTo'].first,
         # Human readable name.
-        label_name: field['label']
+        label_name: field['label'],
+        nillable: field['nillable'],
+        unique: field['unique']
       } 
 
       salesforce_fields.find_or_create_by!(field_name: field['name']).

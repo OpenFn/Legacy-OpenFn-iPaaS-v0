@@ -17,9 +17,11 @@
       <td>
         <ul class="list-group sortable-location sf-connected-sortable sf-target" ui-sortable="sfSortableOptions" ng-model="salesforceObject.relationshipFields">
           <li class="list-group-item sf-field" 
-            title="{{relationshipField.field_name}}" 
+            title="{{relationshipField.field_name}} ({{relationshipField.data_type}}){{relationshipField.required ? ' (required)' : ''}}" 
             ng-repeat="relationshipField in salesforceObject.relationshipFields" 
             ng-style="{'background-color': relationshipField.color}">
+            <div class="required" ng-show="relationshipField.required"></div>
+            <i title="Unique" class="unique fa fa-asterisk" ng-show="relationshipField.unique"></i>
             {{relationshipField.label_name || relationshipField.field_name}}
             <a href="#" class='glyphicon glyphicon-remove white' ng-click="deleteRelationship(relationshipField)"></a>
           </li>
@@ -36,9 +38,13 @@
       <td style='width: 25%'>
         <ul class="list-group sortable-location sf-connected-sortable sf-target" ui-sortable="sfSortableOptions" ng-model="odkFormField.salesforceFields">
           <li class="list-group-item sf-field" 
-            title="{{sfField.field_name}}" 
+              title="{{sfField.field_name}} ({{sfField.data_type}}){{sfField.required ? ' (required)' : ''}}" 
             ng-repeat="sfField in odkFormField.salesforceFields" 
             ng-style="{'background-color': sfField.color}">
+
+            <div class="required" ng-show="sfField.required"></div>
+            <i title="Unique" class="unique fa fa-asterisk" ng-show="sfField.unique"></i>
+
             {{sfField.label_name || sfField.field_name}}
             <a href="#" class='glyphicon glyphicon-remove white' ng-click="deleteField(sfField)"></a>
 

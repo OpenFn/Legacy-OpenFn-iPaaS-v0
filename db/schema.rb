@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113120629) do
+ActiveRecord::Schema.define(version: 20150114141246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,8 @@ ActiveRecord::Schema.define(version: 20150113120629) do
     t.boolean  "is_lookup",            default: false
     t.integer  "salesforce_object_id"
     t.string   "reference_to"
+    t.boolean  "nillable"
+    t.boolean  "unique"
   end
 
   add_index "salesforce_fields", ["salesforce_object_id"], name: "index_salesforce_fields_on_salesforce_object_id", using: :btree
