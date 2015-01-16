@@ -1,20 +1,31 @@
 <div ng-controller="ProductController as productCtrl" class="row">
- <div class="container">
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
-    <div class="search-container row">
-      <div class="search-box col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <h3>open<strong>Marketplace</strong></h3>
-        <h4 class="sub-heading"><strong>Find the technology you need to grow your impact.</strong></h4>
-        <div class="search-field no-padding col-lg-8 col-md-8 col-sm-6 col-xs-12">
-          <form ng-submit="searchAgain()">
-            <input type:"text" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
-          </form>
-        </div>
-        <div class="btn-group search-type">
-          <label class="btn btn-default search-button" ng-click="searchAgain()">Search</label>
-        </div>
+<div class="ideas">
+<div ng-controller="MarketplaceController as marketplace" class="row">
+<header class="header-image">
+  <div class="headline">
+    <h1>open<strong>Marketplace</strong></h1>
+    <h3>Find the technology you need to grow your impact.</h3>
+ 
+    <div class="container">
+      <div class="search-field">
+          <input type:"text" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+      </div>
+
+      <div class="new-product-link">
+          <a href="https://www.formstack.com/forms/?1874808-i8hgbPcov5" class="website-link" target="_blank">
+          <i class="glyphicon glyphicon-plus"></i> Add your product...</a>
+
+          <label style="margin-left:12em" class="btn website-link" ng-model="searchFilters.integrated" btn-checkbox>Integrated?</label>
+
       </div>
     </div>
+</header>
+
+<div class="featurette dark">
+  <hr class="light">
+  <hr class="dark">
+
+    <div class="container">
     
     <div class="show-product">
       <h2 class="name">
@@ -24,7 +35,7 @@
         <i class="glyphicon glyphicon-star"></i>
         <i class="glyphicon glyphicon-star"></i>
         <i class="glyphicon glyphicon-star"></i>
-        (7)
+        (237)
       </div>
       <div class='actions'>
         <a ng-href="{{product.website}}" target="_blank"><i class="glyphicon glyphicon-link"></i></a>
@@ -66,5 +77,6 @@
       </tabset>
     </div>
   </div>
+</div>
 </div>
 </div>

@@ -124,6 +124,13 @@
 }
 
 .show-product {
+
+//Taylor's edits to the show product page CSS
+
+  background-color: #3f5666;
+  color: $off-white;
+  padding: 30px;
+
   .actions, .rating, .name {
     display: inline-block;
   }
