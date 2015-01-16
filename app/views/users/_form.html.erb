@@ -1,63 +1,112 @@
-<%= form_for @user, role: 'form' do |f| %>
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.text_field :email, class: 'form-control' %>
+  <div class="row">
+
+    <div class="col-md-6">
+      <%= form_for @user, role: 'form' do |f| %>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.text_field :email, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
+      <%= f.submit "Update", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+
+    <div class="col-md-6">
+<form action="<%= ENV['PAYPAL_URI'] %>" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="<%= ENV['PAYPAL_BUTTON_ID'] %>">
+<input type="hidden" name="custom" value="<%= @user.id %>">
+<table>
+<tr><td><input type="hidden" name="on0" value="Credits">Credits</td></tr><tr><td><select name="os0">
+	<option value="10 (6 Months)">10 (6 Months) $50.00 USD</option>
+	<option value="25 (6 Months)">25 (6 Months) $75.00 USD</option>
+	<option value="100 (6 Months)">100 (6 Months) $125.00 USD</option>
+</select> </td></tr>
+</table>
+<input type="hidden" name="currency_code" value="USD">
+<input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+
+      
+    </div>
+
   </div>
 
-  <div class="form-group">
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
+  <div class="row">
+    <hr />
+    
+    <div class="col-md-6">
+
+      <%= form_for @user, role: 'form' do |f| %>
+      <h3>ODK Credentials</h3>
+      <div class="form-group">
+        <%= f.label :odk_url, "Instance URL" %>
+        <%= f.text_field :odk_url, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :odk_username, "Username" %>
+        <%= f.text_field :odk_username, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :odk_password, "Password" %>
+        <%= f.password_field :odk_password, value: f.object.odk_password, class: 'form-control' %>
+      </div>
+      <%= f.submit "Update", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+
+    <div class="col-md-6">
+      <%= form_for @user, role: 'form' do |f| %>
+      <h3>Salesforce Credentials</h3>
+      <div class="form-group">
+        <%= f.label :sf_username, "Username" %>
+        <%= f.text_field :sf_username, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :sf_password, "Password" %>
+        <%= f.password_field :sf_password, value: f.object.sf_password, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :sf_security_token, "Security Token" %>
+        <%= f.text_field :sf_security_token, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :sf_app_key, "Client Key" %>
+        <%= f.text_field :sf_app_key, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :sf_app_secret, "App Secret" %>
+        <%= f.text_field :sf_app_secret, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :sf_host, "Host" %>
+        <%= f.text_field :sf_host, class: 'form-control', placeholder: "Defaults to login.salesforce.com" %>
+      </div>
+      <%= f.submit "Update", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  <div class="row">
+    <div class="col-md-6">
+    </div>
   </div>
-
-  <div class="form-group">
-    <%= f.label :odk_url %>
-    <%= f.text_field :odk_url, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :odk_username %>
-    <%= f.text_field :odk_username, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :odk_password %>
-    <%= f.password_field :odk_password, value: f.object.odk_password, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :sf_username, "Salesforce Username" %>
-    <%= f.text_field :sf_username, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :sf_password, "Salesforce Password" %>
-    <%= f.password_field :sf_password, value: f.object.sf_password, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :sf_security_token, "Salesforce Security Token" %>
-    <%= f.text_field :sf_security_token, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :sf_app_key, "Salesforce Client Key" %>
-    <%= f.text_field :sf_app_key, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :sf_app_secret, "Salesforce App Secret" %>
-    <%= f.text_field :sf_app_secret, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :sf_host, "Salesforce Host" %>
-    <%= f.text_field :sf_host, class: 'form-control', placeholder: "Defaults to login.salesforce.com" %>
-  </div>
-
-  <%= f.submit "Submit", class: 'btn btn-primary' %>
-<% end %>
+</div>

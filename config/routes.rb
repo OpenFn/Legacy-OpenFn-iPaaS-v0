@@ -7,6 +7,12 @@ SalesForce::Application.routes.draw do
   resources :products, only: [:index, :show]
   resources :blog_posts, only: [:index]
 
+  resource :payment_notification, only: [] do
+    post :completed
+    get :success
+    get :failure
+  end
+
   # slightly weird, but we're getting this from Salesforce in xml, and they always post.
   post "/api/v1/:token/update_products", to: "products#update", defaults: { format: 'xml' }
   post "/api/v1/:token/update_blog_posts", to: "blog_posts#update", defaults: { format: 'xml' }
