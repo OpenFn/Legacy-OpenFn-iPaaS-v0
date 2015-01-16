@@ -51,6 +51,7 @@
     .product {
       height: 100%;
       background-color: #3f5666;
+      background-image: image-url("noise.png");
       text-align: center;
 
       position: relative;
@@ -128,6 +129,7 @@
 //Taylor's edits to the show product page CSS
 
   background-color: #3f5666;
+  background-image: image-url("noise.png");
   color: $off-white;
   padding: 30px;
 

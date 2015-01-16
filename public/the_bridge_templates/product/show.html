@@ -1,6 +1,5 @@
 <div ng-controller="ProductController as productCtrl" class="row">
 <div class="ideas">
-<div ng-controller="MarketplaceController as marketplace" class="row">
 <header class="header-image">
   <div class="headline">
     <h1>open<strong>Marketplace</strong></h1>
@@ -8,8 +7,18 @@
  
     <div class="container">
       <div class="search-field">
-          <input type:"text" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+        <form ng-submit="searchAgain()">
+          <input type:"text" class="form-control" placeholder="Search again..." ng-model="searchText">
+        </form>
       </div>
+
+<!--
+
+      <div class="btn-group search-type">
+        <label class="btn btn-default search-button" ng-click="searchAgain()">Search</label>
+      </div>
+
+-->
 
       <div class="new-product-link">
           <a href="https://www.formstack.com/forms/?1874808-i8hgbPcov5" class="website-link" target="_blank">
@@ -77,6 +86,5 @@
       </tabset>
     </div>
   </div>
-</div>
 </div>
 </div>
