@@ -1,1 +1,3 @@
-REDISCLOUD_URL: 'localhost:6379/0'
+RAILS_RESQUE_REDIS: 'localhost:6379/0'
+PAYPAL_URI: "https://www.sandbox.paypal.com/cgi-bin/webscr"
+PAYPAL_BUTTON_ID: '3AKRYW4MMUGKL'
