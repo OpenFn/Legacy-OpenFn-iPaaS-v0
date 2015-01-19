@@ -4,6 +4,7 @@ class PaymentNotificationsController < ApplicationController
   # IPN from PayPal
   def create
     Rails.logger.info params.inspect
+    Salesforce::Purchase.register!(params)
   end
 
   def success

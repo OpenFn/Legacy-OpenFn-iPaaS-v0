@@ -50,6 +50,7 @@ class Salesforce::Listing::UserListing
     end
 
     def initialize_from_notification(notification)
+      # Account_Number__c is the FK for id for a User.
       @id = notification.at_css('Account_Number__c').try(:content)
       @credits = notification.at_css('Credits__c').try(:content)
       @email = notification.at_css('Email__c').try(:content)
