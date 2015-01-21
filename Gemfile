@@ -47,6 +47,7 @@ gem "active_model_serializers"
 gem 'rails_12factor', group: :production
 
 gem 'faraday', '~> 0.8.6'
+gem 'typhoeus'
 gem 'curb'
 gem 'ox'
 
@@ -60,8 +61,8 @@ group :doc do
 end
 
 # => Funci Gem to interact with ODK aggregate
-gem 'odk_aggregate', :git => 'https://github.com/func-i/odk_aggregate.git', branch: 'feature/9-repeat-block-form-fields'
-#gem 'odk_aggregate', path: "~/Documents/funci/odk_aggregate"
+#gem 'odk_aggregate', :git => 'https://github.com/func-i/odk_aggregate.git', branch: 'feature/9-repeat-block-form-fields'
+gem 'odk_aggregate', github: 'openfn/odk_aggregate', branch: 'typhoeus'
 
 # => Gem for SalesForce
 gem 'restforce', git: 'https://github.com/icambron/restforce.git'

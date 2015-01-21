@@ -1,12 +1,13 @@
 GIT
-  remote: https://github.com/func-i/odk_aggregate.git
-  revision: 6fc824ceaf46e8b2e007d9b2fd0004f904883b35
-  branch: feature/9-repeat-block-form-fields
+  remote: git://github.com/openfn/odk_aggregate.git
+  revision: c34a7c490e99e4d7435f970d78cfca2614485651
+  branch: typhoeus
   specs:
     odk_aggregate (0.0.5)
+      faraday
+      faraday-digestauth
       faraday_middleware
       multi_xml
-      net-http-digest_auth (~> 1.4)
       rash (~> 0.4)
 
 GIT
@@ -85,9 +86,14 @@ GEM
       activerecord (>= 3.1.0, < 5.0.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    ethon (0.7.2)
+      ffi (>= 1.3.0)
     execjs (2.2.2)
     faraday (0.8.9)
       multipart-post (~> 1.2.0)
+    faraday-digestauth (0.2.0)
+      faraday (~> 0.7)
+      net-http-digest_auth (~> 1.4)
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
     ffi (1.9.6)
@@ -276,6 +282,8 @@ GEM
       execjs (~> 2.2)
       rails (~> 4.1)
       railties (~> 4.1)
+    typhoeus (0.7.0)
+      ethon (>= 0.7.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
@@ -336,6 +344,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   state_machine
+  typhoeus
   uglifier (>= 1.3.0)
   vcr
   webmock
