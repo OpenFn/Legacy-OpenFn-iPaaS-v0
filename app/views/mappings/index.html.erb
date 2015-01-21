@@ -7,22 +7,29 @@
     </div>
 </header>
 
-<div class="container-fluid">
-<table class='table'>
-  <thead>
-    <tr>
-      <th>No.</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th>Auto-fetch</th>
-      <th>Commands</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render @mappings %>
-  </tbody>
-</table>
-</div>
+  <div class="featurette dark">
+    <hr class="light">
+    <hr class="dark">
+
+    <div class="container-fluid">
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Auto-fetch</th>
+            <th>Commands</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @mappings %>
+        </tbody>
+      </table>
     </div>
+
+  <hr class="dark">
+  <hr class="light">
   </div>
+
 </div>

@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+table {
+  color: $off-white;
+}
+
+
 #loading  {
   width: 100%;
 
@@ -33,6 +38,7 @@
 
 .odk-row {
   padding-bottom: 150px;
+  background-color: $new-bg-color;
 
   .odk-fields {
     max-height: 400px;
