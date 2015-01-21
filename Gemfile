@@ -109,6 +109,9 @@ gem 'rails-observers', '~> 0.1.2'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 #
+
+gem 'puma'
+
 group :development, :test do
   gem 'byebug'
   gem 'pry-byebug'
