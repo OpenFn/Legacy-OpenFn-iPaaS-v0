@@ -1,4 +1,9 @@
+require 'sidekiq/web'
+require 'admin_constraint'
+
 SalesForce::Application.routes.draw do
+
+  mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
 
   get "submissions_controller/index"
 

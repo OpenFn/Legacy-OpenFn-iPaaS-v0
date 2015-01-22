@@ -26,6 +26,8 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem "font-awesome-rails"
 
 gem 'sidekiq'
+# Required for Sidekiq's web interface
+gem 'sinatra', :require => nil
 gem "newrelic_rpm"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
