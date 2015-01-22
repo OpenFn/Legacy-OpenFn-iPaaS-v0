@@ -32,3 +32,14 @@ salesforce_objects_003:
   updated_at: '2014-11-18 07:41:40.495947'
   order: '3'
   is_repeat: t
+salesforce_objects_004:
+  id: '244'
+  name: vera__Test_Event__c
+  data_type: 
+  label: 
+  color: "#7F8C8D"
+  mapping_id: '61'
+  created_at: '2014-11-18 07:39:58.028277'
+  updated_at: '2014-11-18 07:39:58.028277'
+  order: '1'
+  is_repeat: f

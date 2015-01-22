@@ -36,8 +36,7 @@ module OdkToSalesforce
          topElement: @form[:topElement]
        )
 
-      submission = submission["submission"]["data"]
-      submission.values.first
+      submission = submission["submission"]
     end
 
     private

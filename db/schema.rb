@@ -159,6 +159,7 @@ ActiveRecord::Schema.define(version: 20150114141246) do
     t.datetime "updated_at"
     t.text     "message"
     t.text     "backtrace"
+    t.json     "media_data"
   end
 
   create_table "taggings", force: true do |t|
