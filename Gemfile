@@ -25,9 +25,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem "font-awesome-rails"
 
-gem "resque", '~> 1.25'
-gem 'resque-web', require: 'resque_web'
-
+gem 'sidekiq'
 gem "newrelic_rpm"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

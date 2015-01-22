@@ -43,6 +43,20 @@ To get started, copy it:
 
     $ cp config/application.yml.template config/application.yml
 
+Workers
+-------
+
+The application uses [sidekiq](https://github.com/mperham/sidekiq) to perform
+background tasks.
+
+The environment variable `REDIS_URL` is required to be set for any environment
+where redis is not available on `localhost`.
+
+Sidekiq includes a UI for managing the queues, this is available at the 
+`/sidekiq` URL on the given server.
+
+The management UI requires you to be logged in as admin user.
+
 Running Tests
 -------------
 

@@ -1,13 +1,9 @@
 module OdkToSalesforce
   class SubmissionProcessor
 
-    @queue = :submission_processor
+    include Sidekiq::Worker
 
-    def self.perform(mapping_id, submission_id)
-      new(mapping_id, submission_id).perform
-    end
-
-    def initialize(mapping_id, submission_id)
+    def perform(mapping_id, submission_id)
       @mapping = Mapping.find(mapping_id)
       @submission = Submission.find(submission_id)
       @converter = OdkToSalesforce::Converter.new
@@ -17,9 +13,6 @@ module OdkToSalesforce
       @logger.push_tags("SubmissionProcessor", "Submission##{@submission.id}", "Mapping##{@mapping.id}")
 
       @all_import_objects = []
-    end
-
-    def perform
 
       begin
         process_submission(@submission)
