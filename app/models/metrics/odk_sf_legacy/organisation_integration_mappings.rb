@@ -5,7 +5,7 @@
 
 # This is very simple and explicit right now. There is as yet no 
 # underlying structure to back it up.
-class Metrics::OrganisationIntegrationMappings
+class Metrics::OdkSfLegacy::OrganisationIntegrationMappings
   attr_reader :organisation_name, :integration_mappings
 
   def self.all

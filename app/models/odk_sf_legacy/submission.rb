@@ -1,4 +1,4 @@
-class Submission < ActiveRecord::Base
+class OdkSfLegacy::Submission < ActiveRecord::Base
 
   belongs_to :import
 

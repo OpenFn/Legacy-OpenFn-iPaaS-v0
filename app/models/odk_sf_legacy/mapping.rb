@@ -1,4 +1,4 @@
-class Mapping < ActiveRecord::Base
+class OdkSfLegacy::Mapping < ActiveRecord::Base
 
   belongs_to :user
   has_many :salesforce_objects, dependent: :destroy
@@ -21,7 +21,7 @@ class Mapping < ActiveRecord::Base
   scope :enabled, -> { where(enabled: true) }
 
   def can_be_enabled
-    enabled || MappingLimiter.new(user).credits_available?
+    enabled || OdkSfLegacy::MappingLimiter.new(user).credits_available?
   end
 
   # overwrite the default object dup

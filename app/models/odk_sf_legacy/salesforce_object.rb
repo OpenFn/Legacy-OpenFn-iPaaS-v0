@@ -1,4 +1,4 @@
-class SalesforceObject < ActiveRecord::Base
+class OdkSfLegacy::SalesforceObject < ActiveRecord::Base
 
   COLORS = [
     "#7F8C8D", "#BDC3C7", "#16A085", "#2C3E50", "#2980B9", "#8E44AD", "#C0392B", "#D35400", "#F39C12", "#27AE60",
@@ -46,7 +46,7 @@ class SalesforceObject < ActiveRecord::Base
   protected
 
   def set_color
-    self.color = (SalesforceObject::COLORS - self.mapping.salesforce_objects.collect(&:color)).first
+    self.color = (OdkSfLegacy::SalesforceObject::COLORS - self.mapping.salesforce_objects.collect(&:color)).first
     self.save
   end
 

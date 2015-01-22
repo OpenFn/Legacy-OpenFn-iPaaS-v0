@@ -1,4 +1,4 @@
-class OdkField < ActiveRecord::Base
+class OdkSfLegacy::OdkField < ActiveRecord::Base
   belongs_to :odk_form
   has_many :odk_field_salesforce_fields, dependent: :destroy
   has_many :salesforce_fields, through: :odk_field_salesforce_fields

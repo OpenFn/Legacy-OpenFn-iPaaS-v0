@@ -1,4 +1,4 @@
-class SalesforceFieldSerializer < ActiveModel::Serializer
+class OdkSfLegacy::SalesforceFieldSerializer < ActiveModel::Serializer
   attributes :id, :label_name, :field_name, :data_type, :color, :reference_to,
     :nillable, :unique, :required
 
