@@ -1,7 +1,6 @@
 GIT
   remote: git://github.com/openfn/odk_aggregate.git
   revision: e98954e071f5287cec0e8f51975416935df2c79c
-  branch: typhoeus
   specs:
     odk_aggregate (0.0.5)
       faraday
