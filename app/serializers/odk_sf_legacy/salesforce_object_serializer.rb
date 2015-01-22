@@ -1,4 +1,4 @@
-class SalesforceObjectSerializer < ActiveModel::Serializer
+class OdkSfLegacy::SalesforceObjectSerializer < ActiveModel::Serializer
   attributes :id, :name, :label, :color, :order, :is_repeat, :relationshipFields
 
   has_many :salesforce_fields, root: "salesforceFields"
@@ -7,7 +7,7 @@ class SalesforceObjectSerializer < ActiveModel::Serializer
     arr = []
 
     object.salesforce_relationships.each do |relationship|
-      arr << SalesforceFieldSerializer.new(relationship.salesforce_field, root: false).as_json
+      arr << OdkSfLegacy::SalesforceFieldSerializer.new(relationship.salesforce_field, root: false).as_json
     end
 
     arr

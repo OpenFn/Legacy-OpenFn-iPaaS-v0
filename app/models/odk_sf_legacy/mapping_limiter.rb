@@ -1,4 +1,4 @@
-class MappingLimiter
+class OdkSfLegacy::MappingLimiter
 
   def initialize(user)
     @user = user

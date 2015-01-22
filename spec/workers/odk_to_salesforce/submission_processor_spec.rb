@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe OdkToSalesforce::SubmissionProcessor, type: :model do
+RSpec.describe OdkSfLegacy::OdkToSalesforce::SubmissionProcessor, type: :model do
 
   # User
   # ODK Fields
@@ -20,7 +20,7 @@ RSpec.describe OdkToSalesforce::SubmissionProcessor, type: :model do
   fixtures :odk_fields
   fixtures :odk_field_salesforce_fields
 
-  let(:submission_processor) { OdkToSalesforce::SubmissionProcessor.new(60, 49) }
+  let(:submission_processor) { OdkSfLegacy::OdkToSalesforce::SubmissionProcessor.new(60, 49) }
 
   # subject { submission_processor.perform }
 
