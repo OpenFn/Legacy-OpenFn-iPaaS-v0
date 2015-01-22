@@ -7,7 +7,7 @@ class SalesforceField < ActiveRecord::Base
   has_one :salesforce_relationship
 
   def required
-    !!nillable
+    !nillable
   end
 
 end
