@@ -25,9 +25,9 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem "font-awesome-rails"
 
-gem "resque", '~> 1.25'
-gem 'resque-web', require: 'resque_web'
-
+gem 'sidekiq'
+# Required for Sidekiq's web interface
+gem 'sinatra', :require => nil
 gem "newrelic_rpm"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -61,8 +61,7 @@ group :doc do
 end
 
 # => Funci Gem to interact with ODK aggregate
-#gem 'odk_aggregate', :git => 'https://github.com/func-i/odk_aggregate.git', branch: 'feature/9-repeat-block-form-fields'
-gem 'odk_aggregate', github: 'openfn/odk_aggregate', branch: 'typhoeus'
+gem 'odk_aggregate', github: 'openfn/odk_aggregate'
 
 # => Gem for SalesForce
 gem 'restforce', git: 'https://github.com/icambron/restforce.git'

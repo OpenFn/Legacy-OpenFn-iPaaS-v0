@@ -59,7 +59,7 @@ class MappingsController < ApplicationController
         only = params[:only].to_i
 
         if only > 0
-          Resque.enqueue(OdkToSalesforce::Dispatcher, @mapping.id, only)
+          Sidekiq::Client.enqueue(OdkToSalesforce::Dispatcher, @mapping.id, only)
         end
       end
       redirect_to @mapping

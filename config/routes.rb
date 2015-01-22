@@ -1,8 +1,11 @@
+require 'sidekiq/web'
+require 'admin_constraint'
+
 SalesForce::Application.routes.draw do
 
+  mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
+
   get "submissions_controller/index"
-  ResqueWeb::Engine.eager_load!
-  mount ResqueWeb::Engine => "/resque_web"
 
   resources :products, only: [:index, :show]
   resources :blog_posts, only: [:index]

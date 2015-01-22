@@ -10,7 +10,7 @@ class SubmissionsController < ApplicationController
   end
 
   def reprocess
-    Resque.enqueue(OdkToSalesforce::SubmissionProcessor, @mapping.id, @submission.id)
+    Sidekiq::Client.enqueue(OdkToSalesforce::SubmissionProcessor, @mapping.id, @submission.id)
     redirect_to :back
   end
 
