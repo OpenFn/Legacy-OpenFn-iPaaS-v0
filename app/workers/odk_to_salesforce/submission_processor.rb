@@ -1,3 +1,5 @@
+require 'cgi'
+
 module OdkToSalesforce
   class SubmissionProcessor
     attr_reader :all_import_objects
@@ -117,7 +119,7 @@ module OdkToSalesforce
     def find_full_url_for(media_data, filename)
       if media_data
         data = media_data.select { |hsh| hsh["filename"] == filename }
-        data.any? ? data.first["downloadUrl"] : filename
+        data.any? ? CGI.unescape(data.first["downloadUrl"]) : filename
       else
         filename
       end

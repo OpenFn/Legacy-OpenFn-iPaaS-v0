@@ -42,7 +42,7 @@ RSpec.describe OdkToSalesforce::SubmissionProcessor, type: :model do
 
       processor.perform(61,53)
 
-      processor.all_import_objects.last.attributes["Photo"].should eql "https://fake.url.for.image"
+      processor.all_import_objects.last.attributes["Photo"].should eql "https://fake.url.for.image?blobKey=media_handling[@version=null and @uiVersion=null]/photohandling"
     end
 
     it "leaves the filename in a binary ODK field in place if it can't be mapped to media data" do
