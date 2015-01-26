@@ -28,8 +28,9 @@ b, strong {
 }
 
 .navbar {
-//  margin-top: rem-calc(55px);
-
+  
+  //padding-top: rem-calc(55px);
+  //padding-bottom: rem-calc(20px);
 
   border: none;
   border-radius: 0;
@@ -48,9 +49,11 @@ b, strong {
     font-size: rem-calc(15px);
     color: $primary-blue;
 
-  .btn{
-    //margin-left:10px;
-    }
+  .dropdown.open .dropdown-toggle {
+    background-color: rgba(0, 0, 0, 0.15);
+    background-image: image-url("noise.png");
+    color: $primary-blue
+}
 
   }
 }
