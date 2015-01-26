@@ -15,6 +15,7 @@ a:hover {
 }
 
 body {
+  padding-top: 70px;
   font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif; 
   line-height: 1;
 
@@ -27,12 +28,13 @@ b, strong {
 }
 
 .navbar {
-  margin-top: rem-calc(55px);
+//  margin-top: rem-calc(55px);
 
 
   border: none;
   border-radius: 0;
-  background-color: inherit;
+  background-color: $bg-color;
+  background-image: image-url("noise.png");
 
 
   .navbar-brand {
@@ -45,6 +47,11 @@ b, strong {
     font-weight: $semi-bold;
     font-size: rem-calc(15px);
     color: $primary-blue;
+
+  .btn{
+    //margin-left:10px;
+    }
+
   }
 }
 
