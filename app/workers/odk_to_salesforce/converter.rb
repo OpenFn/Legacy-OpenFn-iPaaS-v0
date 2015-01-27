@@ -85,15 +85,6 @@ module OdkToSalesforce
 
     private
 
-    # temporaryly hardcode all staff members as HQ Staff while issue is
-    # being sorted out.
-    def append_staff_member_type_id(data)
-      if data.has_key?(:staff_member__c)
-        data[:staff_member__c][:RecordTypeId] = "01290000000hbFGAAY"
-      end
-      data
-    end
-
     def transform_value(value, data_type)
       # => Transform value from ODK to data_type SF expects
       case data_type

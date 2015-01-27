@@ -19,8 +19,9 @@
   </td>
   <td>
 
-    <%= link_to "View", mapping, class: 'btn btn-primary' %>
+    <%= link_to "View", mapping, class: 'btn btn-default' %>
     <%= link_to "Process Log", [mapping, :submissions], class: 'btn btn-info' if mapping.import %>
+    <%= link_to "Process Log", [mapping, :submissions], class: 'btn btn-info disabled' if !mapping.import %>
     <%= link_to "Destroy", mapping, method: 'delete', class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this map?'} %>
   </td>
 </tr>
