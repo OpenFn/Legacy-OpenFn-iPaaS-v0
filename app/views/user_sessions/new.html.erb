@@ -1,9 +1,14 @@
 <div class='row'>
-  <div class="col-md-offset-4 col-md-4 well">
-    <h2>Login</h2>
+  <div class="col-md-offset-4 col-md-4 well text-center">
+    <h2>Log in</h2>
     <%= render 'form', user: @user %>
+	</div>
+</div>
 
-    <br />
-    <%= link_to "Signup", :signup %>
-  </div>
+<div class='row'>
+	<div class="col-md-offset-4 col-md-4 text-center">
+		<h4>Click <%= link_to "/signup", method: :get do %>
+    		<button type="button" class="btn btn-success">Sign up</button>
+    	<% end %> to create a new account</h3>
+    </div>
 </div>
