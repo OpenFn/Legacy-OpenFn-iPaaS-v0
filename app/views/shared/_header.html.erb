@@ -34,7 +34,13 @@
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-            
+            <% if current_user && current_user.admin? %>
+              <li>
+                <%= link_to "/#/metrics/organisation" do %>
+                  <span class="glyphicon glyphicon-stats">
+                  <% end %>
+              </li>
+            <% end %>
             <% if current_user %>
               
               <li class="dropdown">
