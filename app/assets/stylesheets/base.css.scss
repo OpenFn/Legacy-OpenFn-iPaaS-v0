@@ -17,7 +17,7 @@ a:hover {
 }
 
 body {
-  padding-top: 70px;
+  padding-top: 69px;
   font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif; 
   color: $off-white;
   line-height: 1;
@@ -71,4 +71,14 @@ b, strong {
 
 .well {
   color: $deeper-blue;
+}
+
+.btn-meh {
+  color: $off-white;
+  padding: 0;
+}
+
+.table tbody tr > td.success {
+  background-color: inherit;
+  color: #5CB85C !important;
 }
