@@ -4,6 +4,9 @@
         margin-top: -20px;
         width: 100%;
         text-align: center;
+        background-color: $cream;
+        background-image: image-url("noise.png");
+        color: $light-grey;
 
     }
 
@@ -19,6 +22,8 @@
         font-size: rem-calc(35px);
         color: $primary-blue;
         margin: 2rem 0;
+        background-color: $cream;
+        background-image: image-url("noise.png");
       }
 
       p.lead {
@@ -30,6 +35,17 @@
         background-color: $deeper-blue;
         background-image: image-url("lighter-noise.png");
 
+        .featurette-heading {
+          color: $off-white;
+        }
+
+        p.lead {
+          color: $off-white;
+        }
+      }
+
+      &.mappings {
+        
         .featurette-heading {
           color: $off-white;
         }
@@ -71,6 +87,8 @@
 
       margin-top: rem-calc(50px);
       margin-bottom: rem-calc(25px);
+      //background-color: $cream;
+      //background-image: image-url("noise.png");
 
       .row {
         margin-bottom: rem-calc(25px);

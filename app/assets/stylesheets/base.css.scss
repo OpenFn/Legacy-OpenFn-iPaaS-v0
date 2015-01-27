@@ -1,5 +1,7 @@
 $new-bg-color: #3f5666;
-$bg-color: #fffcf4;
+// this is the old color--- $bg-color: #fffcf4;
+$cream: #fffcf4;
+$bg-color: #3f5666;
 $bold: 700;
 $semi-bold: 600;
 
@@ -17,6 +19,7 @@ a:hover {
 body {
   padding-top: 70px;
   font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif; 
+  color: $off-white;
   line-height: 1;
 
   background-color: $bg-color;
@@ -34,7 +37,7 @@ b, strong {
 
   border: none;
   border-radius: 0;
-  background-color: $bg-color;
+  background-color: $cream;
   background-image: image-url("noise.png");
 
 
