@@ -22,7 +22,7 @@
         $scope.$emit "mapping:saved"
 
     $scope.checkLookupFields = (field) ->
-      if field.data_type is 'reference'
+      if field.properties.type is 'reference'
         SalesforceObjectField.query(
           mapping_id: $scope.mapping.id
           salesforce_object_id: field.reference_to

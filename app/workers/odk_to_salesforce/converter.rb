@@ -85,9 +85,9 @@ module OdkToSalesforce
 
     private
 
-    def transform_value(value, data_type)
-      # => Transform value from ODK to data_type SF expects
-      case data_type
+    def transform_value(value, type)
+      # => Transform value from ODK to type SF expects
+      case type
       when "checkbox", "boolean"
         if value.nil? || value.empty? || value.eql?("No")
           value = false

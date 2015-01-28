@@ -23,22 +23,54 @@ class SalesforceObject < ActiveRecord::Base
 
     fields.each do |field|
 
-      field_attributes = {
-        field_name: field['name'],
-        data_type: field['type'].underscore,
-        # Get the first referenced object name - there are usually only one
-        # of them. However if we are expecting to allow a choice of which
-        # reference object we want to create, this will need to change to an
-        # array to support this case.
-        reference_to: field['referenceTo'].first,
-        # Human readable name.
-        label_name: field['label'],
-        nillable: field['nillable'],
-        unique: field['unique']
-      } 
+      #{"autoNumber"=>false,
+      #"byteLength"=>18,
+      #"calculated"=>false,
+      #"calculatedFormula"=>nil,
+      #"cascadeDelete"=>false,
+      #"caseSensitive"=>false,
+      #"controllerName"=>nil,
+      #"createable"=>false,
+      #"custom"=>false,
+      #"defaultValue"=>nil,
+      #"defaultValueFormula"=>nil,
+      #"defaultedOnCreate"=>false,
+      #"dependentPicklist"=>false,
+      #"deprecatedAndHidden"=>false,
+      #"digits"=>0,
+      #"displayLocationInDecimal"=>false,
+      #"externalId"=>false,
+      #"filterable"=>true,
+      #"groupable"=>true,
+      #"htmlFormatted"=>false,
+      #"idLookup"=>false,
+      #"inlineHelpText"=>nil,
+      #"label"=>"Received Connection ID",
+      #"length"=>18,
+      #"name"=>"ConnectionReceivedId",
+      #"nameField"=>false,
+      #"namePointing"=>false,
+      #"nillable"=>true,
+      #"permissionable"=>false,
+      #"picklistValues"=>[],
+      #"precision"=>0,
+      #"referenceTo"=>["PartnerNetworkConnection"],
+      #"relationshipName"=>"ConnectionReceived",
+      #"relationshipOrder"=>nil,
+      #"restrictedDelete"=>false,
+      #"restrictedPicklist"=>false,
+      #"scale"=>0,
+      #"soapType"=>"tns:ID",
+      #"sortable"=>true,
+      #"type"=>"reference",
+      #"unique"=>false,
+      #"updateable"=>false,
+      #"writeRequiresMasterRead"=>false}
+
+      properties = field
 
       salesforce_fields.find_or_create_by!(field_name: field['name']).
-        update!(field_attributes)
+        update!(properties: properties)
 
     end
   end

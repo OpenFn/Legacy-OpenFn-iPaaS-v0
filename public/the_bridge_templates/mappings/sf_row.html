@@ -41,13 +41,13 @@
         <div class='external-field-holder'>
           <ul class='list-group sf-connected-sortable sortable-location' ui-sortable="sfSortableOptions" ng-model="sfObject.salesforceFields">
             <li class='list-group-item sf-field' 
-              title="{{sfField.field_name}} ({{sfField.data_type}}){{sfField.required ? ' (required)' : ''}}{{sfField.unique ? ' (unique)' : ''}}" 
+              title="{{sfField.field_name}} ({{sfField.properties.type}}){{sfField.properties.nillable ? '' : ' (required)'}}{{sfField.properties.unique ? ' (unique)' : ''}}" 
               ng-repeat="sfField in sfObject.salesforceFields" 
               ng-style="{'background-color': sfField.color}">
-              <div class="required" ng-show="sfField.required"></div>
-              <i title="Unique" class="unique fa fa-asterisk" ng-show="sfField.unique"></i>
+              <div class="required" ng-hide="sfField.properties.nillable"></div>
+              <i title="Unique" class="unique fa fa-asterisk" ng-show="sfField.properties.unique"></i>
 
-              {{sfField.label_name || sfField.field_name}}
+              {{sfField.properties.label || sfField.field_name}}
             </li>
           </ul>
         </div>
