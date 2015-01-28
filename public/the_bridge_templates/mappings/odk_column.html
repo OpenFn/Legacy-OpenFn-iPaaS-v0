@@ -23,7 +23,7 @@
             <div class="required" ng-hide="relationshipField.properties.nillable"></div>
             <i title="Unique" class="unique fa fa-asterisk" ng-show="relationshipField.properties.unique"></i>
             {{relationshipField.properties.label || relationshipField.field_name}}
-            <a href="#" class='glyphicon glyphicon-remove white' ng-click="deleteRelationship(relationshipField)"></a>
+            <a href="#" class='fa fa-minus-circle' ng-click="deleteRelationship(relationshipField)"></a>
           </li>
         </ul>
       </td>
@@ -46,7 +46,7 @@
             <i title="Unique" class="unique fa fa-asterisk" ng-show="sfField.properties.unique"></i>
 
             {{sfField.properties.label || sfField.field_name}}
-            <a href="#" class='glyphicon glyphicon-remove white' ng-click="deleteField(sfField)"></a>
+            <a href="#" class='fa fa-minus-circle' ng-click="deleteField(sfField)"></a>
 
             <select ng-change="updateLookupField(odkFormField, sfField)" ng-model="sfField.lookupFieldName" ng-options="field.name as field.name for field in sfField.lookupFields" class='form-control' ng-show="sfField.properties.type == 'reference'">
               <option value=""></option>

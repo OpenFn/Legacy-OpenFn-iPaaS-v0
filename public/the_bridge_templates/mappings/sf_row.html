@@ -28,12 +28,12 @@
             <input type="checkbox" ng-click="toggleRepeat(sfObject)" ng-checked="sfObject.is_repeat" /> Repeat Block Destination
             <a href="#" class='btn btn-danger pull-right' ng-click="deleteSfObject(sfObject)">
               Remove
-              <span class='glyphicon glyphicon-remove white'></span>
+              <span class='fa fa-minus-circle'></span>
             </a>
 
             <a href='#' class='btn btn-info pull-right' ng-click='refreshSfFields(sfObject)'>
               Refresh Object
-              <span class='glyphicon glyphicon-refresh white'></span>
+              <span class='fa fa-refresh'></span>
             </a>
           </div>
         </div>
@@ -45,7 +45,7 @@
               ng-repeat="sfField in sfObject.salesforceFields" 
               ng-style="{'background-color': sfField.color}">
               <div class="required" ng-hide="sfField.properties.nillable"></div>
-              <i title="Unique" class="unique fa fa-asterisk" ng-show="sfField.properties.unique"></i>
+              <i title="Unique" class="unique fa fa-key" ng-show="sfField.properties.unique"></i>
 
               {{sfField.properties.label || sfField.field_name}}
             </li>
