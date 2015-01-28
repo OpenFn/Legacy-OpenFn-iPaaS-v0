@@ -13,6 +13,15 @@ $light-grey: #A3AAAB;
 
 a:hover {
   text-decoration: none;
+
+  a:focus {
+  text-decoration: none;
+  }
+
+}
+
+a {
+  color: inherit;
 }
 
 body {
