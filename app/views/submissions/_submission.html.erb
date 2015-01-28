@@ -3,7 +3,12 @@
   <th><%= submission.created_at %></th>
   <th><%= submission.state %></th>
   <th>
-    <%= link_to "View", [@mapping, submission], class: 'btn btn-primary' %>
-    <%= link_to "Reprocess", [:reprocess, @mapping, submission], class: 'btn btn-danger', method: 'post', confirm: 'Are you sure?' if submission.error? %>
+
+<!-- Howdy Stu, can you please make this button only appear when :state == :error ???-->
+
+  	<%= link_to "View", [ @mapping, submission], class: 'btn btn-primary' %>
+  </th>
+  <th>
+	<%= link_to "Reprocess", [:reprocess, @mapping, submission], class: 'btn btn-danger', method: 'post', confirm: 'Are you sure?' if submission.error? %>
   </th>
 </tr>

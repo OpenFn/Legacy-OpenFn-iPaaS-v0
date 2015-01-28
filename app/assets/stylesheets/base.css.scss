@@ -71,10 +71,12 @@ b, strong {
 
 .table-striped {
   background-color: $bg-color;
+  background-image: image-url("noise.png")
 }
 
 .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
    background-color: $deeper-blue;
+   background-image: image-url("noise.png")
 }
 
 .well {
@@ -95,4 +97,9 @@ b, strong {
   background-color: $cream;
   background-image: image-url("noise.png");
   color: $deeper-blue;
+}
+
+.breadcrumb {
+  background-color: $primary-blue;
+  background-image: image-url("noise.png")
 }
