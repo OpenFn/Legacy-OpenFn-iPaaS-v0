@@ -8,7 +8,7 @@ class SalesforceField < ActiveRecord::Base
   has_one :salesforce_relationship
 
   SYSTEM_FIELDS = %w{
-    ConnectionReeivedId
+    ConnectionReceivedId
     ConnectionSentId
     CreatedById
     Id
