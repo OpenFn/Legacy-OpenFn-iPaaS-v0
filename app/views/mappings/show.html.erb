@@ -1,11 +1,17 @@
+</div>
 <div class="ideas">
   <!-- Full Width Image Header -->
   <header class="header-image">
     <div class="headline">
-      <h1>open<strong>Integrations</strong> Map Editor</h1>
+      <h1>open<strong>Integrations</strong> Mapper</h1>
     </div>
   </header>
 
+<div class="featurette dark">
+  <hr class="light">
+    <hr class="dark">
+
+<div class="container">
   <div class='pull-left'>
     <%= form_tag dispatch_surveys_mapping_path(@mapping), class: 'form-inline', role: 'form' do %>
       <div class="form-group">
@@ -24,3 +30,5 @@
 
 <%= render "cursor_modal", mapping: @mapping if @mapping.import && @mapping.import.cursor %>
 <%= render "edit", mapping: @mapping %>
+
+</div>

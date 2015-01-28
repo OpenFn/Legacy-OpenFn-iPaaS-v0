@@ -1,7 +1,6 @@
-$new-bg-color: #3f5666;
 // this is the old color--- $bg-color: #fffcf4;
 $cream: #fffcf4;
-$bg-color: #3f5666;
+$bg-color: #384D5C;
 $bold: 700;
 $semi-bold: 600;
 
@@ -62,7 +61,7 @@ b, strong {
 }
 
 .table-striped {
-  background-color: $new-bg-color;
+  background-color: $bg-color;
 }
 
 .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
@@ -81,4 +80,10 @@ b, strong {
 .table tbody tr > td.success {
   background-color: inherit;
   color: #5CB85C !important;
+}
+
+.panel {
+  background-color: $cream;
+  background-image: image-url("noise.png");
+  color: $deeper-blue;
 }
