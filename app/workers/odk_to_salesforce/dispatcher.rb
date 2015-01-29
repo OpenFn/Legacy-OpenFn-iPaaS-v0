@@ -17,7 +17,8 @@ module OdkToSalesforce
 
         # => Get the ODK Data for this submission_id from the ID
         submission_data = odk.fetch_submission(uuid)
-        submission = import.submissions.create(uuid: uuid, data: submission_data)
+        submission = import.submissions.create(uuid: uuid, data: submission_data["data"].values.first,
+                                               media_data: submission_data["mediaFile"])
         Sidekiq::Client.enqueue(OdkToSalesforce::SubmissionProcessor, mapping.id, submission.id)
 
       end

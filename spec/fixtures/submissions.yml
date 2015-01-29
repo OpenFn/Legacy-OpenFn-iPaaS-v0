@@ -715,3 +715,35 @@ submissions_052:
   updated_at: '2014-11-13 09:35:22.41222'
   message: 
   backtrace: 
+submissions_052:
+  id: '53'
+  uuid: uuid:76e2641d-6d6b-4f15-9758-91ec246ff085
+  state: new
+  data: '{"id":"Events","instanceID":"uuid:76e2641d-6d6b-4f15-9758-91ec246ff085","submissionDate":"2014-11-11T08:04:40.178Z","isComplete":"true","markedAsCompleteDate":"2014-11-11T08:04:40.178Z","event_name":"Catalina wine mixer","event_photo":"blah.jpg", "start_date":"2014-11-11","meta":{"instanceID":"uuid:76e2641d-6d6b-4f15-9758-91ec246ff085"}}'
+  media_data: '[{"filename":"blah.jpg","hash":"md5:5e9af8b323b99cbc33869a46e97c5a54","downloadUrl":"https://fake.url.for.image%3FblobKey%3Dmedia_handling%5B%40version%3Dnull+and+%40uiVersion%3Dnull%5D%2Fphotohandling"}]'
+  import_id: '41'
+  created_at: '2014-11-13 09:35:18.510032'
+  updated_at: '2014-11-13 09:35:22.41222'
+  message: 
+  backtrace: 
+submissions_053:
+  id: '54'
+  uuid: uuid:76e2641d-6d6b-4f15-9758-91ec246ff085
+  state: new
+  data: '{"id":"Events","instanceID":"uuid:76e2641d-6d6b-4f15-9758-91ec246ff085","submissionDate":"2014-11-11T08:04:40.178Z","isComplete":"true","markedAsCompleteDate":"2014-11-11T08:04:40.178Z","event_name":"Catalina wine mixer","event_photo":"blah.jpg", "start_date":"2014-11-11","meta":{"instanceID":"uuid:76e2641d-6d6b-4f15-9758-91ec246ff085"}}'
+  media_data: '[{"filename":"1417594355469.jpg","hash":"md5:5e9af8b323b99cbc33869a46e97c5a54","downloadUrl":"https://fake.url.for.image"}]'
+  import_id: '41'
+  created_at: '2014-11-13 09:35:18.510032'
+  updated_at: '2014-11-13 09:35:22.41222'
+  message: 
+  backtrace: 
+submissions_054:
+  id: '55'
+  uuid: uuid:76e2641d-6d6b-4f15-9758-91ec246ff085
+  state: new
+  data: '{"id":"Events","instanceID":"uuid:76e2641d-6d6b-4f15-9758-91ec246ff085","submissionDate":"2014-11-11T08:04:40.178Z","isComplete":"true","markedAsCompleteDate":"2014-11-11T08:04:40.178Z","event_name":"Catalina wine mixer","event_photo":"blah.jpg", "start_date":"2014-11-11","meta":{"instanceID":"uuid:76e2641d-6d6b-4f15-9758-91ec246ff085"}}'
+  import_id: '41'
+  created_at: '2014-11-13 09:35:18.510032'
+  updated_at: '2014-11-13 09:35:22.41222'
+  message: 
+  backtrace: 
