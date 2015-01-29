@@ -25,7 +25,7 @@
       if field.properties.type is 'reference'
         SalesforceObjectField.query(
           mapping_id: $scope.mapping.id
-          salesforce_object_id: field.reference_to
+          salesforce_object_id: field.properties.referenceTo[0]
         ).$promise.then (response) ->
           field.lookupFields = response
           $scope.$emit "mapping:saved"
