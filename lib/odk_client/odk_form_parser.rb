@@ -72,7 +72,6 @@ class OdkClient::OdkFormParser < ElementEmitter
     start_element: -> (name) {
       @previous_element = @current_element
       @current_element = name
-      binding.pry if @previous_element == @current_element
       emit(@repeat_element) if [:select1, :repeat, :input, :upload].include?(@previous_element)
 
       @repeat_element = {repeat: true} if [:select1, :repeat, :input, :upload].include?(@current_element)
