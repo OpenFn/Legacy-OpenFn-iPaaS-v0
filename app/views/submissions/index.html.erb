@@ -25,10 +25,7 @@
 <%= form_tag [@mapping, :submissions], method: 'get', role: 'form', class: 'form-inline' do %>
   <div class="form-group">
     Filter history by status:&nbsp;
-
-<!-- Hi Stu, why can't I set the options for select default option to: "All", :succcess OR :error] ???? -->
-
-    <%= select_tag :state, options_for_select([["",], ["Successful", :success], ["Error", :error]], params[:state]), class: 'form-control' %>
+    <%= select_tag :state, options_for_select([["Successful", :success], ["Error", :error]], params[:state]), include_blank: "All", class: 'form-control' %>
   </div>
 
    <%= submit_tag "Search", class: 'btn btn-default' %>
