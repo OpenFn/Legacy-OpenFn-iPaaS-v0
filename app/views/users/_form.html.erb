@@ -91,13 +91,14 @@
             <div class="panel-heading" role="tab" id="headingOne">
               <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <%= form_for @user, role: 'form' do |f| %>
                   Settings
                 </a>
               </h4>
             </div>
           <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
-              <%= form_for @user, role: 'form' do |f| %>
+
                   <div class="form-group">
                     <%= f.label :email %>
                     <%= f.text_field :email, class: 'form-control' %>
