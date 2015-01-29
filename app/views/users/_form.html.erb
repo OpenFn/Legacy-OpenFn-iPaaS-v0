@@ -179,18 +179,20 @@
           </div>
 
           <div class="form-group">
-            <%= f.label :sf_app_key, "Client Key" %>
+            <%= f.label :sf_app_key, "Consumer Key" %>
             <%= f.text_field :sf_app_key, class: 'form-control' %>
           </div>
 
           <div class="form-group">
-            <%= f.label :sf_app_secret, "App Secret" %>
+            <%= f.label :sf_app_secret, "Consumer Secret" %>
             <%= f.text_field :sf_app_secret, class: 'form-control' %>
           </div>
 
-          <div class="form-group">
+<!-- There is no need for the user to enter this each time. It's ALWAYS login.salesforce.com and I don't know how to set the default value from the back-end, so I'm passing it through this hidden input form group. - TD -->
+
+          <div class="form-group hidden">
             <%= f.label :sf_host, "Host" %>
-            <%= f.text_field :sf_host, class: 'form-control', placeholder: "Defaults to login.salesforce.com" %>
+            <%= f.text_field :sf_host, :value => "login.salesforce.com" %>
           </div>
           <%= f.submit "Update", class: 'btn btn-primary' %>
           <% end %>
