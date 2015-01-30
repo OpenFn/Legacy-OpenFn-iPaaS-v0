@@ -19,10 +19,10 @@ class SalesforceField < ActiveRecord::Base
   }
 
   scope :without_excluded, -> { 
-    where("((properties->'autoNumber') IS NULL OR (properties->>'autoNumber') = 'false')").
-    where("((properties->'calculated') IS NULL OR (properties->>'calculated') = 'false')").
-    where("((properties->'createable') IS NULL OR (properties->>'createable') = 'true')").
-    where("COALESCE(properties->>'name',field_name) NOT IN (?)",SYSTEM_FIELDS)
+    where("((#{table_name}.properties->'autoNumber') IS NULL OR (#{table_name}.properties->>'autoNumber') = 'false')").
+    where("((#{table_name}.properties->'calculated') IS NULL OR (#{table_name}.properties->>'calculated') = 'false')").
+    where("((#{table_name}.properties->'createable') IS NULL OR (#{table_name}.properties->>'createable') = 'true')").
+    where("COALESCE(#{table_name}.properties->>'name',#{table_name}.field_name) NOT IN (?)",SYSTEM_FIELDS)
   }
 
   default_scope { without_excluded }
