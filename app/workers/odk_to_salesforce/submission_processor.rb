@@ -35,6 +35,9 @@ module OdkToSalesforce
         @submission.message = e.message
         @submission.backtrace = e.backtrace.first(15).join('<br />')
         @submission.failed
+
+        # Reraise the error so tests have some feedback.
+        raise e if Rails.env.test?
       end
     end
 

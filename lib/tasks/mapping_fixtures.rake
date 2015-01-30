@@ -1,11 +1,17 @@
+require 'fileutils'
+
 namespace :db do 
   namespace :fixtures do 
 
     desc 'Create YAML test fixtures from data in an existing database. 
     Defaults to development database. Set RAILS_ENV to override.' 
 
-    def to_file(table_name,data)
-      File.open(Rails.root.to_s + "/spec/fixtures/#{table_name}.yml", 'w') do |file| 
+    def to_file(mapping_name,table_name,data)
+        
+      path = Rails.root.to_s + "/spec/fixtures/#{mapping_name}"
+      FileUtils::mkdir_p path
+
+      File.open("#{path}/#{table_name}.yml", 'w') do |file| 
         i = "000" 
 
         file.write data.inject({}) { |hash, record| 
@@ -56,11 +62,11 @@ namespace :db do
         exit 1
       end
 
-      mapping_id = args[:mapping_id].to_i
+      mapping = Mapping.find(args[:mapping_id])
       ActiveRecord::Base.establish_connection(:development) 
 
       OBJECTS.each { |table_name,query|
-        to_file table_name, execute_query(query[mapping_id])
+        to_file mapping.name.gsub(/ /,"_").underscore, table_name, execute_query(query[mapping.id])
       }
     end 
   end 

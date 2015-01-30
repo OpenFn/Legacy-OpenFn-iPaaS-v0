@@ -1,0 +1,25 @@
+---
+salesforce_relationships_001:
+  id: '100'
+  salesforce_object_id: '340'
+  salesforce_field_id: '10228'
+  created_at: '2015-01-31 09:00:29.682867'
+  updated_at: '2015-01-31 09:00:29.682867'
+salesforce_relationships_002:
+  id: '101'
+  salesforce_object_id: '340'
+  salesforce_field_id: '10214'
+  created_at: '2015-01-31 09:00:33.960484'
+  updated_at: '2015-01-31 09:00:33.960484'
+salesforce_relationships_003:
+  id: '102'
+  salesforce_object_id: '340'
+  salesforce_field_id: '10195'
+  created_at: '2015-01-31 09:00:37.697102'
+  updated_at: '2015-01-31 09:00:37.697102'
+salesforce_relationships_004:
+  id: '103'
+  salesforce_object_id: '339'
+  salesforce_field_id: '9912'
+  created_at: '2015-01-31 09:00:53.100084'
+  updated_at: '2015-01-31 09:00:53.100084'

@@ -1,0 +1,23 @@
+---
+users_001:
+  id: '6'
+  email: kgvk.sandbox@openfn.org
+  crypted_password: "$2a$10$asbUa4mawvFozRlyEGsExO3ud6YjGANea3W.HluBZSGNPQHpFoiZO"
+  salt: 6SQoFpSaDk9CYyAtpxxS
+  created_at: '2014-10-23 07:42:20.850852'
+  updated_at: '2015-01-31 08:53:43.812086'
+  sf_username: kgvk2@vera.org.importer
+  sf_password: data2015
+  odk_url: https://kgvk-odk-sri.appspot.com/
+  sf_security_token: HjfJo1NfGDUr5M9Oer1ASQzPW
+  valid_credentials: t
+  sf_app_secret: '2916665679829985356'
+  sf_app_key: 3MVG9e2mBbZnmM6lMQEgWt.uMk7QtV0Lt.clWujprXtys6TZYsGUwwqVWtRauXNZJ11U2HJ1ShN9iyaqCwjgC
+  odk_username: kgvk.sri
+  odk_password: data2012
+  sf_host: test.salesforce.com
+  role: admin
+  credits: '100'
+  first_name: 
+  last_name: 
+  organisation: 

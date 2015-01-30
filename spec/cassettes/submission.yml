@@ -1,0 +1,175 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://login.salesforce.com/services/oauth2/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=password&client_id=3MVG9QDx8IX8nP5Qy8wN2NJIM_l7G0bhjf6US16ioh4W.OffFYGVqZUzwDO3ZULTmdZRHnptq6U5jWDjq4n4C&client_secret=117412098672293366&username=td%40vera.dev&password=Chapin86%21cOARfUN4a9EfdbHmSjuZVe7Sq
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 30 Jan 2015 15:35:12 GMT
+      Set-Cookie:
+      - BrowserId=hNL6Sav0Que2QNt3ErXZBA;Path=/;Domain=.salesforce.com;Expires=Tue,
+        31-Mar-2015 15:35:12 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":"https://login.salesforce.com/id/00DU0000000KrrwMAC/005U0000000a3wnIAA","issued_at":"1422632113519","token_type":"Bearer","instance_url":"https://na12.salesforce.com","signature":"Jm0d0PlBwMrJSSggcY7/0SlxJ6Mk5Vsi3Ml+phtHCx4=","access_token":"00DU0000000Krrw!AQgAQChSRkTf9j_S4VZHhlk0MCdP8vG5TSIY79MrsfS6jjt5WhamQ7d29SZIn5XMhgzTFSwoYih987i6xWTQCoe0pCsoLFJT"}'
+    http_version: 
+  recorded_at: Fri, 30 Jan 2015 15:35:13 GMT
+- request:
+    method: get
+    uri: https://na12.salesforce.com/services/data/v26.0/query?q=SELECT%20Id%20FROM%20vera__House__c%20WHERE%20vera__house_ID__c%20=%20'0'
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Authorization:
+      - OAuth 00DU0000000Krrw!AQgAQChSRkTf9j_S4VZHhlk0MCdP8vG5TSIY79MrsfS6jjt5WhamQ7d29SZIn5XMhgzTFSwoYih987i6xWTQCoe0pCsoLFJT
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 30 Jan 2015 15:35:17 GMT
+      Set-Cookie:
+      - BrowserId=ZzPzs4d_RmyGrxj8deAmbA;Path=/;Domain=.salesforce.com;Expires=Tue,
+        31-Mar-2015 15:35:17 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=165/15000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"vera__House__c","url":"/services/data/v26.0/sobjects/vera__House__c/a0pU0000001xSkKIAU"},"Id":"a0pU0000001xSkKIAU"}]}'
+    http_version: 
+  recorded_at: Fri, 30 Jan 2015 15:35:17 GMT
+- request:
+    method: get
+    uri: https://na12.salesforce.com/services/data/v26.0/query?q=SELECT%20Id%20FROM%20vera__House__c%20WHERE%20vera__house_ID__c%20=%20'0'
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Authorization:
+      - OAuth 00DU0000000Krrw!AQgAQChSRkTf9j_S4VZHhlk0MCdP8vG5TSIY79MrsfS6jjt5WhamQ7d29SZIn5XMhgzTFSwoYih987i6xWTQCoe0pCsoLFJT
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 30 Jan 2015 15:35:17 GMT
+      Set-Cookie:
+      - BrowserId=ICTRdH7wQl2sb6AdXLwbkQ;Path=/;Domain=.salesforce.com;Expires=Tue,
+        31-Mar-2015 15:35:17 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=165/15000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"vera__House__c","url":"/services/data/v26.0/sobjects/vera__House__c/a0pU0000001xSkKIAU"},"Id":"a0pU0000001xSkKIAU"}]}'
+    http_version: 
+  recorded_at: Fri, 30 Jan 2015 15:35:18 GMT
+- request:
+    method: post
+    uri: https://na12.salesforce.com/services/data/v26.0/sobjects/vera__Beneficiary__c
+    body:
+      encoding: UTF-8
+      string: '{"Name":"2579","vera__Country__c":"0E-10","vera__Emergency_Contact__c":"2","vera__First_Hear_House__c":"a0pU0000001xSkKIAU","vera__Height__c":"0","vera__ODK_Key__c":"uuid:0054ff86-b570-46e4-b401-381637602d2b/1","vera__Town_City__c":"1","vera__Weight__c":null}'
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth 00DU0000000Krrw!AQgAQChSRkTf9j_S4VZHhlk0MCdP8vG5TSIY79MrsfS6jjt5WhamQ7d29SZIn5XMhgzTFSwoYih987i6xWTQCoe0pCsoLFJT
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Fri, 30 Jan 2015 15:35:18 GMT
+      Set-Cookie:
+      - BrowserId=P-4pqZVWQ6W6ahZV4a2Gug;Path=/;Domain=.salesforce.com;Expires=Tue,
+        31-Mar-2015 15:35:18 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=165/15000
+      Location:
+      - "/services/data/v26.0/sobjects/vera__Beneficiary__c/a0JU000000Fn287MAB"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":"a0JU000000Fn287MAB","success":true,"errors":[]}'
+    http_version: 
+  recorded_at: Fri, 30 Jan 2015 15:35:19 GMT
+- request:
+    method: delete
+    uri: https://na12.salesforce.com/services/data/v26.0/sobjects/vera__Beneficiary__c/a0JU000000Fn287MAB
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Authorization:
+      - OAuth 00DU0000000Krrw!AQgAQChSRkTf9j_S4VZHhlk0MCdP8vG5TSIY79MrsfS6jjt5WhamQ7d29SZIn5XMhgzTFSwoYih987i6xWTQCoe0pCsoLFJT
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Date:
+      - Fri, 30 Jan 2015 15:35:19 GMT
+      Set-Cookie:
+      - BrowserId=RYDGHk3AR52S3S-DCF6YFA;Path=/;Domain=.salesforce.com;Expires=Tue,
+        31-Mar-2015 15:35:19 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=165/15000
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Fri, 30 Jan 2015 15:35:20 GMT
+recorded_with: VCR 2.9.3

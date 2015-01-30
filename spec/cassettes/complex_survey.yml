@@ -1,0 +1,441 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test.salesforce.com/services/oauth2/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=password&client_id=3MVG9e2mBbZnmM6lMQEgWt.uMk7QtV0Lt.clWujprXtys6TZYsGUwwqVWtRauXNZJ11U2HJ1ShN9iyaqCwjgC&client_secret=2916665679829985356&username=kgvk2%40vera.org.importer&password=data2015HjfJo1NfGDUr5M9Oer1ASQzPW
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 02 Feb 2015 10:52:19 GMT
+      Set-Cookie:
+      - BrowserId=NgG9LuH5TfK8JlnmMrjcwg;Path=/;Domain=.salesforce.com;Expires=Fri,
+        03-Apr-2015 10:52:19 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":"https://test.salesforce.com/id/00DN0000000UEhHMAW/00590000002beIBAAY","issued_at":"1422874340010","token_type":"Bearer","instance_url":"https://cs6.salesforce.com","signature":"H/z8rV3Rq3qockXqFjSBKZw3oKn8W+HeQSaup83UKmc=","access_token":"00DN0000000UEhH!AR4AQC5TVeKotHAl6AtrtUIvBl0ReynoNsPSICIEDDCXEkFYQpOuJMzG_8LTtZD_64cZ2Y_ufLbeVrDfUHAOpbPiUfOHDB0T"}'
+    http_version: 
+  recorded_at: Mon, 02 Feb 2015 10:52:24 GMT
+- request:
+    method: post
+    uri: https://cs6.salesforce.com/services/data/v26.0/sobjects/Household__c
+    body:
+      encoding: UTF-8
+      string: '{"Head_of_Household__c":"Radhanath Mahto","Mobile_Number__c":null,"ODK_Key__c":"uuid:c1d9fa95-9d79-400a-9bcf-8b6e0db9b55b/1","Tola__c":"Chota
+        Kadal","Village_Name_Text__c":"Chota Kadal"}'
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth 00DN0000000UEhH!AR4AQC5TVeKotHAl6AtrtUIvBl0ReynoNsPSICIEDDCXEkFYQpOuJMzG_8LTtZD_64cZ2Y_ufLbeVrDfUHAOpbPiUfOHDB0T
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Mon, 02 Feb 2015 10:52:27 GMT
+      Set-Cookie:
+      - BrowserId=klbZ5PK1Q_i4DsWMJI3y_A;Path=/;Domain=.salesforce.com;Expires=Fri,
+        03-Apr-2015 10:52:27 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=119/10000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '[{"message":"duplicate value found: ODK_Key__c duplicates value on
+        record with id: a02N00000042aRz","errorCode":"DUPLICATE_VALUE","fields":[]}]'
+    http_version: 
+  recorded_at: Mon, 02 Feb 2015 10:52:32 GMT
+- request:
+    method: get
+    uri: https://cs6.salesforce.com/services/data/v26.0/query?q=SELECT%20Id%20FROM%20Irrigation_Type__c%20WHERE%20Irrigation_Type_Code__c%20=%20''
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Authorization:
+      - OAuth 00DN0000000UEhH!AR4AQC5TVeKotHAl6AtrtUIvBl0ReynoNsPSICIEDDCXEkFYQpOuJMzG_8LTtZD_64cZ2Y_ufLbeVrDfUHAOpbPiUfOHDB0T
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 02 Feb 2015 10:52:28 GMT
+      Set-Cookie:
+      - BrowserId=I_8AMANaTGWPN6HXzkUChQ;Path=/;Domain=.salesforce.com;Expires=Fri,
+        03-Apr-2015 10:52:28 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=119/10000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"totalSize":0,"done":true,"records":[]}'
+    http_version: 
+  recorded_at: Mon, 02 Feb 2015 10:52:33 GMT
+- request:
+    method: post
+    uri: https://cs6.salesforce.com/services/data/v26.0/sobjects/SRI_Survey__c
+    body:
+      encoding: UTF-8
+      string: '{"Caste_Reservation__c":"OBC","Low_Land_Area_Submission__c":null,"Low_Land_Area_Unit__c":null,"Name_of_Head_of_Family__c":"Radhanath
+        Mahto","Name_of_Survey_Recipient__c":"Radhanath Mahto","ODK_Key__c":"uuid:c1d9fa95-9d79-400a-9bcf-8b6e0db9b55b/2","Paddy_Cultivation_through_SRI__c":"Yes","Project_Name__c":"IWMP","Household__c":"a02N00000042aRz"}'
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth 00DN0000000UEhH!AR4AQC5TVeKotHAl6AtrtUIvBl0ReynoNsPSICIEDDCXEkFYQpOuJMzG_8LTtZD_64cZ2Y_ufLbeVrDfUHAOpbPiUfOHDB0T
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Mon, 02 Feb 2015 10:52:29 GMT
+      Set-Cookie:
+      - BrowserId=ukViWV55SHKe8LCx0l3pPQ;Path=/;Domain=.salesforce.com;Expires=Fri,
+        03-Apr-2015 10:52:29 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=120/10000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '[{"message":"duplicate value found: ODK_Key__c duplicates value on
+        record with id: a03N0000004zIBz","errorCode":"DUPLICATE_VALUE","fields":[]}]'
+    http_version: 
+  recorded_at: Mon, 02 Feb 2015 10:52:34 GMT
+- request:
+    method: get
+    uri: https://cs6.salesforce.com/services/data/v26.0/query?q=SELECT%20Id%20FROM%20Sex__c%20WHERE%20Sex_Code__c%20=%20'Male'
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Authorization:
+      - OAuth 00DN0000000UEhH!AR4AQC5TVeKotHAl6AtrtUIvBl0ReynoNsPSICIEDDCXEkFYQpOuJMzG_8LTtZD_64cZ2Y_ufLbeVrDfUHAOpbPiUfOHDB0T
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 02 Feb 2015 10:52:30 GMT
+      Set-Cookie:
+      - BrowserId=0kIaKkR4T-OKu9KDw_TmLg;Path=/;Domain=.salesforce.com;Expires=Fri,
+        03-Apr-2015 10:52:30 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=119/10000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"Sex__c","url":"/services/data/v26.0/sobjects/Sex__c/a08N0000005hyJkIAI"},"Id":"a08N0000005hyJkIAI"}]}'
+    http_version: 
+  recorded_at: Mon, 02 Feb 2015 10:52:35 GMT
+- request:
+    method: post
+    uri: https://cs6.salesforce.com/services/data/v26.0/sobjects/Household_Member__c
+    body:
+      encoding: UTF-8
+      string: '{"Age__c":"33","Class__c":null,"Level_of_Education__c":"Secondary","Name_of_Household_Member__c":"Radhanath
+        Mahto","ODK_Key_Household_Member__c":"uuid:c1d9fa95-9d79-400a-9bcf-8b6e0db9b55b/3r/2","Relationship_to_Head_of_Household__c":"Head_of_Household","Sex__c":"a08N0000005hyJkIAI","SRI_Survey__c":"a03N0000004zIBz"}'
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth 00DN0000000UEhH!AR4AQC5TVeKotHAl6AtrtUIvBl0ReynoNsPSICIEDDCXEkFYQpOuJMzG_8LTtZD_64cZ2Y_ufLbeVrDfUHAOpbPiUfOHDB0T
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Mon, 02 Feb 2015 10:52:32 GMT
+      Set-Cookie:
+      - BrowserId=7ZiqxXtlQsCMx6bjuYgbWA;Path=/;Domain=.salesforce.com;Expires=Fri,
+        03-Apr-2015 10:52:32 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=119/10000
+      Location:
+      - "/services/data/v26.0/sobjects/Household_Member__c/a05N0000003vOVeIAM"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":"a05N0000003vOVeIAM","success":true,"errors":[]}'
+    http_version: 
+  recorded_at: Mon, 02 Feb 2015 10:52:37 GMT
+- request:
+    method: get
+    uri: https://cs6.salesforce.com/services/data/v26.0/query?q=SELECT%20Id%20FROM%20Sex__c%20WHERE%20Sex_Code__c%20=%20'Female'
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Authorization:
+      - OAuth 00DN0000000UEhH!AR4AQC5TVeKotHAl6AtrtUIvBl0ReynoNsPSICIEDDCXEkFYQpOuJMzG_8LTtZD_64cZ2Y_ufLbeVrDfUHAOpbPiUfOHDB0T
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 02 Feb 2015 10:52:34 GMT
+      Set-Cookie:
+      - BrowserId=KkbRA8SISaGrR1ukZTquOg;Path=/;Domain=.salesforce.com;Expires=Fri,
+        03-Apr-2015 10:52:34 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=120/10000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"Sex__c","url":"/services/data/v26.0/sobjects/Sex__c/a08N0000005hyJpIAI"},"Id":"a08N0000005hyJpIAI"}]}'
+    http_version: 
+  recorded_at: Mon, 02 Feb 2015 10:52:38 GMT
+- request:
+    method: post
+    uri: https://cs6.salesforce.com/services/data/v26.0/sobjects/Household_Member__c
+    body:
+      encoding: UTF-8
+      string: '{"Age__c":"28","Class__c":null,"Level_of_Education__c":"Middle","Name_of_Household_Member__c":"Shivani
+        Mahto","ODK_Key_Household_Member__c":"uuid:c1d9fa95-9d79-400a-9bcf-8b6e0db9b55b/3r/3","Relationship_to_Head_of_Household__c":"Spouse_of_Head","Sex__c":"a08N0000005hyJpIAI","SRI_Survey__c":"a03N0000004zIBz"}'
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth 00DN0000000UEhH!AR4AQC5TVeKotHAl6AtrtUIvBl0ReynoNsPSICIEDDCXEkFYQpOuJMzG_8LTtZD_64cZ2Y_ufLbeVrDfUHAOpbPiUfOHDB0T
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Mon, 02 Feb 2015 10:52:35 GMT
+      Set-Cookie:
+      - BrowserId=iEm0x9WmRxaHfZQmyT5ZCw;Path=/;Domain=.salesforce.com;Expires=Fri,
+        03-Apr-2015 10:52:35 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=119/10000
+      Location:
+      - "/services/data/v26.0/sobjects/Household_Member__c/a05N0000003vOVjIAM"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":"a05N0000003vOVjIAM","success":true,"errors":[]}'
+    http_version: 
+  recorded_at: Mon, 02 Feb 2015 10:52:40 GMT
+- request:
+    method: get
+    uri: https://cs6.salesforce.com/services/data/v26.0/query?q=SELECT%20Id%20FROM%20Sex__c%20WHERE%20Sex_Code__c%20=%20'Male'
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Authorization:
+      - OAuth 00DN0000000UEhH!AR4AQC5TVeKotHAl6AtrtUIvBl0ReynoNsPSICIEDDCXEkFYQpOuJMzG_8LTtZD_64cZ2Y_ufLbeVrDfUHAOpbPiUfOHDB0T
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 02 Feb 2015 10:52:36 GMT
+      Set-Cookie:
+      - BrowserId=W_yf3qMuSCOBpSj02BJ0XQ;Path=/;Domain=.salesforce.com;Expires=Fri,
+        03-Apr-2015 10:52:36 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=120/10000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"Sex__c","url":"/services/data/v26.0/sobjects/Sex__c/a08N0000005hyJkIAI"},"Id":"a08N0000005hyJkIAI"}]}'
+    http_version: 
+  recorded_at: Mon, 02 Feb 2015 10:52:41 GMT
+- request:
+    method: post
+    uri: https://cs6.salesforce.com/services/data/v26.0/sobjects/Household_Member__c
+    body:
+      encoding: UTF-8
+      string: '{"Age__c":"9","Class__c":null,"Level_of_Education__c":"Primary","Name_of_Household_Member__c":"Sagar
+        Mahto","ODK_Key_Household_Member__c":"uuid:c1d9fa95-9d79-400a-9bcf-8b6e0db9b55b/3r/4","Relationship_to_Head_of_Household__c":"Son_Daughter","Sex__c":"a08N0000005hyJkIAI","SRI_Survey__c":"a03N0000004zIBz"}'
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth 00DN0000000UEhH!AR4AQC5TVeKotHAl6AtrtUIvBl0ReynoNsPSICIEDDCXEkFYQpOuJMzG_8LTtZD_64cZ2Y_ufLbeVrDfUHAOpbPiUfOHDB0T
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Mon, 02 Feb 2015 10:52:37 GMT
+      Set-Cookie:
+      - BrowserId=sdwd68r_QYKqamdsCgm6hw;Path=/;Domain=.salesforce.com;Expires=Fri,
+        03-Apr-2015 10:52:37 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=120/10000
+      Location:
+      - "/services/data/v26.0/sobjects/Household_Member__c/a05N0000003vOVoIAM"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":"a05N0000003vOVoIAM","success":true,"errors":[]}'
+    http_version: 
+  recorded_at: Mon, 02 Feb 2015 10:52:43 GMT
+- request:
+    method: get
+    uri: https://cs6.salesforce.com/services/data/v26.0/query?q=SELECT%20Id%20FROM%20Sex__c%20WHERE%20Sex_Code__c%20=%20'Male'
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Authorization:
+      - OAuth 00DN0000000UEhH!AR4AQC5TVeKotHAl6AtrtUIvBl0ReynoNsPSICIEDDCXEkFYQpOuJMzG_8LTtZD_64cZ2Y_ufLbeVrDfUHAOpbPiUfOHDB0T
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 02 Feb 2015 10:52:39 GMT
+      Set-Cookie:
+      - BrowserId=Hn-pAGP-TZ6QLuZJp3lUtQ;Path=/;Domain=.salesforce.com;Expires=Fri,
+        03-Apr-2015 10:52:39 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=121/10000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"Sex__c","url":"/services/data/v26.0/sobjects/Sex__c/a08N0000005hyJkIAI"},"Id":"a08N0000005hyJkIAI"}]}'
+    http_version: 
+  recorded_at: Mon, 02 Feb 2015 10:52:43 GMT
+- request:
+    method: post
+    uri: https://cs6.salesforce.com/services/data/v26.0/sobjects/Household_Member__c
+    body:
+      encoding: UTF-8
+      string: '{"Age__c":"4","Class__c":null,"Level_of_Education__c":"Primary","Name_of_Household_Member__c":"Samir
+        Mahto","ODK_Key_Household_Member__c":"uuid:c1d9fa95-9d79-400a-9bcf-8b6e0db9b55b/3r/5","Relationship_to_Head_of_Household__c":"Son_Daughter","Sex__c":"a08N0000005hyJkIAI","SRI_Survey__c":"a03N0000004zIBz"}'
+    headers:
+      User-Agent:
+      - Faraday v0.8.9
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth 00DN0000000UEhH!AR4AQC5TVeKotHAl6AtrtUIvBl0ReynoNsPSICIEDDCXEkFYQpOuJMzG_8LTtZD_64cZ2Y_ufLbeVrDfUHAOpbPiUfOHDB0T
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Mon, 02 Feb 2015 10:52:40 GMT
+      Set-Cookie:
+      - BrowserId=zS7T3xbaREKxCtygT_julw;Path=/;Domain=.salesforce.com;Expires=Fri,
+        03-Apr-2015 10:52:40 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      Sforce-Limit-Info:
+      - api-usage=121/10000
+      Location:
+      - "/services/data/v26.0/sobjects/Household_Member__c/a05N0000003vOVtIAM"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":"a05N0000003vOVtIAM","success":true,"errors":[]}'
+    http_version: 
+  recorded_at: Mon, 02 Feb 2015 10:52:45 GMT
+recorded_with: VCR 2.9.3

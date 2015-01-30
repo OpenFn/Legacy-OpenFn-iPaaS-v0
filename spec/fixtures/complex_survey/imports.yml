@@ -1,0 +1,10 @@
+---
+imports_001:
+  id: '85'
+  odk_formid: SRI_Baseline_Final_NewUnits
+  last_uuid: 
+  cursor: <cursor xmlns="http://www.opendatakit.org/cursor"><attributeName>_LAST_UPDATE_DATE</attributeName><attributeValue>2014-06-03T04:26:15.655+0000</attributeValue><uriLastReturnedValue>uuid:ea496b38-5356-4eb8-b220-1aec725e330f</uriLastReturnedValue><isForwardCursor>true</isForwardCursor></cursor>
+  created_at: '2015-02-02 07:41:18.61977'
+  updated_at: '2015-02-02 08:45:44.549567'
+  num_imported: '0'
+  mapping_id: '111'
