@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :synced
 
-  has_many :mappings, dependent: :destroy
+  has_many :mappings, dependent: :destroy, class_name: "OdkSfLegacy::Mapping"
 
   validates :password, length: { minimum: 3 }, on: :create
   validates :password, confirmation: true, on: :create
