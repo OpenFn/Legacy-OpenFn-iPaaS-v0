@@ -38,20 +38,28 @@
             Maps
           </div><br>
           <div class="progress">
-            <div class="progress-bar progress-bar-default"
+            <div class="progress-bar progress-bar-bolt"
+              role="progressbar"
+              aria-valuenow='<%= @mappings.where(active: true).count %>'
+              aria-valuemin="0"
+              aria-valuemax='<%= current_user.credits %>'
+              style="width: '<%= 100*@mappings.where(active: true).count/current_user.credits %>'%; ">
+              <!-- Stu to #clean later. -->
+              <%= @mappings.where(active: true).count %> <i class="fa fa-bolt" style="color: #5CB85C;"></i>
+            </div>
+            <div class="progress-bar progress-bar-grey"
               role="progressbar"
               aria-valuenow='<%= @mappings.where(enabled: true).count %>'
               aria-valuemin="0"
               aria-valuemax='<%= current_user.credits %>'
-              style="width: '(<%= @mappings.where(enabled: true).count %>/<%= current_user.credits %>)';">
-              <!-- Stu to #clean later. -->
-              <%= @mappings.where(enabled: true).count %>
+              style="width: <%= 100*(@mappings.where(enabled: true).count-@mappings.where(active:true).count)/current_user.credits %>%;">
+              <%= @mappings.where(enabled: true).count-@mappings.where(active:true).count %>
             </div>
           </div>
           <div class="content">
 
 <!-- Here -->
-            <%= @mappings.where(active: true).count %>/<%= current_user.credits %> auto-syncing
+            <%= @mappings.where(enabled: true).count %>/<%= current_user.credits %> maps in use
           
 
           </div>
@@ -61,7 +69,7 @@
             Jobs
           </div><br>
           <div class="progress">
-            <div class="progress-bar progress-bar-default" role="progressbar" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100" style="width: 43%;">
+            <div class="progress-bar progress-bar-grey" role="progressbar" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100" style="width: 43%;">
               *uncapped*
             </div>
           </div>
@@ -96,7 +104,7 @@
           <tr>
             <th>Label</th>
             <th>Source <i class="fa fa-cube"></i></th>
-            <th>Destination <i class="fa fa-cube"></th>
+            <th>Destination <i class="fa fa-cube"></i></th>
             <th align="center" >Enabled?</th>
             <th align="center" >Auto sync</th>
             <th align="center" >History</th>
