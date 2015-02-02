@@ -129,7 +129,7 @@
           <h4 class="panel-title">
             <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
               <%= form_for @user, role: 'form' do |f| %>
-              Open Data Kit
+              ODK / SurveyCTO
             </a>
           </h4>
         </div>
@@ -194,7 +194,8 @@
 <!-- There is no need for the user to enter this each time. It's ALWAYS login.salesforce.com and I don't know how to set the default value from the back-end, so I'm passing it through this hidden input form group. - TD -->
 
           <div class="form-group">
-            <%= f.label :sf_host, "Salesforce Org Type (usually production)" %>&nbsp;
+            <%= f.label :sf_host, "Salesforce Org Type" %>
+            <br>
             <%= f.select :sf_host, class: 'form-control' do %>
               <% [['Production', "login.salesforce.com"], ['Sandbox', "test.salesforce.com"]].each do |c| -%>
                 <%= content_tag(:option, c.first, value: c.last) %>
