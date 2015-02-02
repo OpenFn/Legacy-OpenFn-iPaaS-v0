@@ -14,6 +14,8 @@
 /config/database.yml
 /config/application.yml
 
+.env
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
@@ -23,3 +25,6 @@
 *.ruby-version
 *.directory
 desktop.ini
+
+# Ignore application configuration
+/config/application.yml

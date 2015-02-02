@@ -37,9 +37,25 @@ configuration.
 Using the 12-factor application pattern, anything in the `config/application.yml`
 will be seeded to the environment as Rails initializes.
 
-The bare minimum to run the Rails server currently is:
+There is a template located in `config/application.yml.template`
 
-    REDISCLOUD_URL: 'localhost:6379/0'
+To get started, copy it:
+
+    $ cp config/application.yml.template config/application.yml
+
+Workers
+-------
+
+The application uses [sidekiq](https://github.com/mperham/sidekiq) to perform
+background tasks.
+
+The environment variable `REDIS_URL` is required to be set for any environment
+where redis is not available on `localhost`.
+
+Sidekiq includes a UI for managing the queues, this is available at the 
+`/sidekiq` URL on the given server.
+
+The management UI requires you to be logged in as admin user.
 
 Running Tests
 -------------
@@ -52,6 +68,23 @@ super easy and fast.
 
     # Running guard
     $ guard
+
+Building Mapping Fixtures
+-------------------------
+
+There is a rake task provided for this purpose:
+
+    $ rake db:fixtures:dump[x]
+    # Where x is the ID of the mapping.
+
+In order to load the fixtures, you will need to use namespacing.
+The files are stored in `spec/fixtures/[mapping name]/[table name].yml`.
+So the following method is used to load namespaced fixtures:  
+
+```ruby
+  fixtures "[mapping name]/mappings"
+  set_fixture_class "[mapping name]/mappings" => Mapping
+```
 
 REST API
 --------

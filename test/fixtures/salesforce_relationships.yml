@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  salesforce_object_id: 
-  salesforce_object_field: 
-
-two:
-  salesforce_object_id: 
-  salesforce_object_field: 

@@ -1,63 +1,211 @@
-<%= form_for @user, role: 'form' do |f| %>
-  <div class="form-group">
-    <%= f.label :email %>
-    <%= f.text_field :email, class: 'form-control' %>
-  </div>
+</div>
+<div class="ideas">
+<header class="header-image">
+  <div class="headline">
 
-  <div class="form-group">
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
-  </div>
+<% if current_user %>
 
-  <div class="form-group">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
-  </div>
+  <h1><i class="fa fa-user"></i> your <strong>Account</strong></h1>
+  <h3>Manage credentials and add <strong>credits</strong>.</h3>
+  
+<% else %>
 
-  <div class="form-group">
-    <%= f.label :odk_url %>
-    <%= f.text_field :odk_url, class: 'form-control' %>
-  </div>
+  <h1><i class="fa fa-user"></i> create <strong>Account</strong></h1>
+  <h3>Go ahead and <strong>start mapping</strong> for free. Seriously.</h3>
 
-  <div class="form-group">
-    <%= f.label :odk_username %>
-    <%= f.text_field :odk_username, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :odk_password %>
-    <%= f.password_field :odk_password, value: f.object.odk_password, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :sf_username, "Salesforce Username" %>
-    <%= f.text_field :sf_username, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :sf_password, "Salesforce Password" %>
-    <%= f.password_field :sf_password, value: f.object.sf_password, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :sf_security_token, "Salesforce Security Token" %>
-    <%= f.text_field :sf_security_token, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :sf_app_key, "Salesforce Client Key" %>
-    <%= f.text_field :sf_app_key, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :sf_app_secret, "Salesforce App Secret" %>
-    <%= f.text_field :sf_app_secret, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :sf_host, "Salesforce Host" %>
-    <%= f.text_field :sf_host, class: 'form-control', placeholder: "Defaults to login.salesforce.com" %>
-  </div>
-
-  <%= f.submit "Submit", class: 'btn btn-primary' %>
 <% end %>
+
+  </div>
+</header>
+
+
+
+<div class="featurette dark">
+  <hr class="light">
+    <hr class="dark">
+    <br>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    
+<!--   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingOne">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Subscription
+          </a>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body"> -->
+
+<% if current_user %> 
+      <div class="row">
+
+        <div class="col-md-4">
+          <h1><%= @user.credits %></h1>
+          <h4>Credits</h4>
+        </div>
+
+        <div class="col-md-4">
+          <h1><%= @user.mappings.enabled.count %></h1>
+          <h4>Enabled Mappings</h4>
+        </div>
+        
+        <div class="col-md-4">
+          <div class="paypal-button">
+            <form action="<%= ENV['PAYPAL_URI'] %>" method="post" target="_top">
+              <input type="hidden" name="cmd" value="_s-xclick">
+              <input type="hidden" name="hosted_button_id" value="<%= ENV['PAYPAL_BUTTON_ID'] %>">
+              <input type="hidden" name="custom" value="<%= @user.id %>">
+              <table>
+                <tr>
+                  <td>
+                      <input type="hidden" name="on0" value="Credits">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <select name="os0" class="form-control">
+                      <option value="6 Months">6 Months $50.00 USD</option>
+                      <option value="12 Months">12 Months $75.00 USD</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+              <input type="hidden" name="currency_code" value="USD">
+              <br/>
+              <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+              <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
+            <br>
+          </div>
+          <!-- <div class="col-md-12"><br>
+            <p>Purchase credits for either 6 or 12 months at a time. After clicking "buy now" you'll be asked to specify the quantity. Each credit allows a single mapping to be enabled.</p> 
+            <p>We are shortly shifting to a more user-friendly payment system. Please bear with us in the interim!</p>    
+          </div> -->
+        </div>
+      </div>
+
+<% end %>
+
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <%= form_for @user, role: 'form' do |f| %>
+                  Settings
+                </a>
+              </h4>
+            </div>
+          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+
+                  <div class="form-group">
+                    <%= f.label :email %>
+                    <%= f.text_field :email, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :password %>
+                    <%= f.password_field :password, class: 'form-control' %>
+                  </div>
+                  <div class="form-group">
+                    <%= f.label :password_confirmation %>
+                    <%= f.password_field :password_confirmation, class: 'form-control' %>
+                  </div>
+                  <% if current_user %>
+                    <%= f.submit "Update", class: 'btn btn-primary' %>
+                  <% else %>
+                    <%= f.submit "Sign up", class: 'btn btn-success' %>
+                  <% end %>
+
+              <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <%= form_for @user, role: 'form' do |f| %>
+              ODK / SurveyCTO
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            <div class="form-group">
+              <%= f.label :odk_url, "Instance URL" %>
+              <%= f.text_field :odk_url, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :odk_username, "Username" %>
+              <%= f.text_field :odk_username, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :odk_password, "Password" %>
+              <%= f.password_field :odk_password, value: f.object.odk_password, class: 'form-control' %>
+            </div>
+            <%= f.submit "Update", class: 'btn btn-primary' %>
+            <% end %>
+            </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <%= form_for @user, role: 'form' do |f| %>
+            Salesforce.com
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        <div class="form-group">
+          <div class="form-group">
+            <%= f.label :sf_username, "Username" %>
+            <%= f.text_field :sf_username, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :sf_password, "Password" %>
+            <%= f.password_field :sf_password, value: f.object.sf_password, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :sf_security_token, "Security Token" %>
+            <%= f.text_field :sf_security_token, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :sf_app_key, "Consumer Key" %>
+            <%= f.text_field :sf_app_key, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :sf_app_secret, "Consumer Secret" %>
+            <%= f.text_field :sf_app_secret, class: 'form-control' %>
+          </div>
+
+<!-- There is no need for the user to enter this each time. It's ALWAYS login.salesforce.com and I don't know how to set the default value from the back-end, so I'm passing it through this hidden input form group. - TD -->
+
+          <div class="form-group">
+            <%= f.label :sf_host, "Salesforce Org Type" %>
+            <br>
+            <%= f.select :sf_host, class: 'form-control' do %>
+              <% [['Production', "login.salesforce.com"], ['Sandbox', "test.salesforce.com"]].each do |c| -%>
+                <%= content_tag(:option, c.first, value: c.last) %>
+              <% end %>
+            <% end %>
+            </div>
+          <%= f.submit "Update", class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

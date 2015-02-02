@@ -1,173 +1,11 @@
 ---
 users_001:
-  id: '1'
-  email: td@verasolutions.org
-  crypted_password: "$2a$10$hwmcF3uF8Q5.tiPKy8rJuu2R9DmtDWW4xJ5FDtvkjYhbyYE/1lvx2"
-  salt: 4ezvsPzq7txpnYpWeqWX
-  created_at: '2014-10-03 13:44:43.877923'
-  updated_at: '2014-10-23 12:40:47.027474'
-  sf_username: 
-  sf_password: 
-  odk_url: 
-  sf_security_token: 
-  valid_credentials: f
-  sf_app_secret: 
-  sf_app_key: 
-  odk_username: 
-  odk_password: 
-  sf_host: 
-  role: client
-users_002:
-  id: '2'
-  email: jon@func-i.com
-  crypted_password: "$2a$10$Nt0gxG2CyKBwExIK7nk4HuFKS/HMU5bHkcOEraxJVpLZsJXLUmy8O"
-  salt: 3x82zbhXfM5Tyk25xGRB
-  created_at: '2014-10-03 13:45:21.408142'
-  updated_at: '2014-10-23 12:40:47.037293'
-  sf_username: jon@kgvk.org
-  sf_password: NBQaUi?Gm:wEJt6y
-  odk_url: https://gardensforhealth2012.appspot.com/
-  sf_security_token: BrCnOo14l4J7cRGuCnWtOzOOR
-  valid_credentials: t
-  sf_app_secret: '2039142635308656708'
-  sf_app_key: 3MVG9Y6d_Btp4xp5Y6LOZwISxxpyx0C6ucyAQshbw_uUykjoc862q0xThM4CTzCNUVBKTbNj59V2FK5AyGh9r
-  odk_username: bridge
-  odk_password: data2012
-  sf_host: login.salesforce.com
-  role: client
-users_003:
-  id: '3'
-  email: vivaan@verasolutions.org
-  crypted_password: "$2a$10$zC6X1eKPhLT2VsiwAV68iuDsFKdqwyG/UCriI3bapN9IrWup1P63O"
-  salt: pMpsYYg9AqcYmvNz7Cys
-  created_at: '2014-10-08 06:51:40.645454'
-  updated_at: '2014-10-23 12:40:47.044698'
-  sf_username: kgvk2@vera.org
-  sf_password: data2014
-  odk_url: http://ec2-54-64-23-142.ap-northeast-1.compute.amazonaws.com:8080/
-  sf_security_token: pnlEclp2gbrhTr8zKHKmgEOGf
-  valid_credentials: t
-  sf_app_secret: '2039142635308656708'
-  sf_app_key: 3MVG9Y6d_Btp4xp5Y6LOZwISxxpyx0C6ucyAQshbw_uUykjoc862q0xThM4CTzCNUVBKTbNj59V2FK5AyGh9r
-  odk_username: Vera
-  odk_password: test123
-  sf_host: login.salesforce.com
-  role: client
-users_004:
-  id: '10'
-  email: vivaan
-  crypted_password: "$2a$10$K.XusdbN6mobqqDnUBljPOeNxDxTy21XJJABGxgOsZAgIJ4cS7BGS"
-  salt: xqpnsJufAqpdDaLqxAnj
-  created_at: '2014-11-07 14:16:48.264608'
-  updated_at: '2014-11-07 14:18:15.827696'
-  sf_username: td@vera.dev
-  sf_password: Chapin86!
-  odk_url: http://ec2-54-64-23-142.ap-northeast-1.compute.amazonaws.com:8080/
-  sf_security_token: cOARfUN4a9EfdbHmSjuZVe7Sq
-  valid_credentials: t
-  sf_app_secret: '117412098672293366'
-  sf_app_key: 3MVG9QDx8IX8nP5Qy8wN2NJIM_l7G0bhjf6US16ioh4W.OffFYGVqZUzwDO3ZULTmdZRHnptq6U5jWDjq4n4C
-  odk_username: Vera
-  odk_password: data2012
-  sf_host: login.salesforce.com
-  role: client
-users_005:
-  id: '5'
-  email: jordan@verasolutions.org
-  crypted_password: "$2a$10$f8tZ679/2km95qcyaCR61uSNKyEufLO9eTLucmZMtsdbhQAne2AIW"
-  salt: nhAEj4GUhxev5FtVub1z
-  created_at: '2014-10-22 14:12:11.888215'
-  updated_at: '2014-10-23 12:40:47.06073'
-  sf_username: jordan@40demo.com
-  sf_password: data2012
-  odk_url: https://gardensforhealth2012.appspot.com/
-  sf_security_token: gOhUMMqhDenKURF3dDMWKNLs
-  valid_credentials: t
-  sf_app_secret: '1386204524232317210'
-  sf_app_key: 3MVG9xOCXq4ID1uGfY2vTQasmox6PvKrfe858WEPU5qwxBB5OYEo11VNd9AKECjxT7W.d.knOTE4bVawss5oG
-  odk_username: bridge
-  odk_password: data2012
-  sf_host: login.salesforce.com
-  role: client
-users_006:
-  id: '6'
-  email: downs.taylor@gmail.com
-  crypted_password: "$2a$10$kmelfim008syFqyijgZP7.GF1nnpzOmL2EAYSGXd/TK9ifzRbvx36"
-  salt: f5y1CmpBqVkqkyz9VX6R
-  created_at: '2014-10-23 07:42:20.850852'
-  updated_at: '2014-10-23 12:40:47.067326'
-  sf_username: td@vera.dev
-  sf_password: Chapin86!
-  odk_url: https://gardensforhealth2012.appspot.com/
-  sf_security_token: cOARfUN4a9EfdbHmSjuZVe7Sq
-  valid_credentials: t
-  sf_app_secret: '117412098672293366'
-  sf_app_key: 3MVG9QDx8IX8nP5Qy8wN2NJIM_l7G0bhjf6US16ioh4W.OffFYGVqZUzwDO3ZULTmdZRHnptq6U5jWDjq4n4C
-  odk_username: bridge
-  odk_password: data2012
-  sf_host: login.salesforce.com
-  role: client
-users_007:
-  id: '8'
-  email: julia@vera.org
-  crypted_password: "$2a$10$Pk4BkxAZvxRKDLg9U4ZAmOcfxqvpKvfBeixcQr5sx1dU5UsMVE9.y"
-  salt: eWM25ywxQhqvp2YVyd4d
-  created_at: '2014-11-05 09:02:25.718235'
-  updated_at: '2014-11-05 09:02:25.718235'
-  sf_username: ''
-  sf_password: ''
-  odk_url: ''
-  sf_security_token: ''
-  valid_credentials: f
-  sf_app_secret: ''
-  sf_app_key: ''
-  odk_username: ''
-  odk_password: ''
-  sf_host: ''
-  role: 
-users_008:
-  id: '9'
-  email: stuart@siyelo.com
-  crypted_password: "$2a$10$s88QW.bKjI3dTcMj.MWFcuvFFKaUDaHhH4vl4b0BSguKcoCyE6NKq"
-  salt: gn4tznzKG539ubxojJWA
-  created_at: '2014-11-05 14:18:55.229528'
-  updated_at: '2014-11-05 14:18:55.229528'
-  sf_username: ''
-  sf_password: ''
-  odk_url: ''
-  sf_security_token: ''
-  valid_credentials: f
-  sf_app_secret: ''
-  sf_app_key: ''
-  odk_username: ''
-  odk_password: ''
-  sf_host: ''
-  role: client
-users_009:
-  id: '11'
-  email: test
-  crypted_password: "$2a$10$TFFjbVUUgJKJPalWlAWh6.jm1HPZrRVlSVTilZuaTkV19.ajFYc46"
-  salt: ncHgcm945wXkQobT8Kpx
-  created_at: '2014-11-10 08:47:38.379692'
-  updated_at: '2014-11-10 08:47:57.273961'
-  sf_username: td@vera.dev
-  sf_password: Chapin86!
-  odk_url: https://gardensforhealth2012.appspot.com/
-  sf_security_token: cOARfUN4a9EfdbHmSjuZVe7Sq
-  valid_credentials: t
-  sf_app_secret: '117412098672293366'
-  sf_app_key: 3MVG9QDx8IX8nP5Qy8wN2NJIM_l7G0bhjf6US16ioh4W.OffFYGVqZUzwDO3ZULTmdZRHnptq6U5jWDjq4n4C
-  odk_username: bridge
-  odk_password: data2012
-  sf_host: login.salesforce.com
-  role: client
-users_010:
   id: '4'
   email: td@vera.dev
-  crypted_password: "$2a$10$XQjdcsPkDnFaBDuuWRJGYuSETjsph4/7o73M4rLsUff1qJSPcd4AK"
-  salt: 6ys35RNy6Cpo4t8At5ib
+  crypted_password: "$2a$10$wPw9XKPMdbpA3MMeH6LElOrj0oFf2rZuobd964QDZDE6TFo3iYMUO"
+  salt: s7Sy75d4sDexT26sqnhN
   created_at: '2014-10-21 09:45:43.405033'
-  updated_at: '2014-11-11 11:18:35.443102'
+  updated_at: '2014-12-08 10:28:02.620116'
   sf_username: td@vera.dev
   sf_password: Chapin86!
   odk_url: https://gardensforhealth2012.appspot.com/
@@ -179,3 +17,7 @@ users_010:
   odk_password: data2012
   sf_host: login.salesforce.com
   role: admin
+  credits: '100'
+  first_name: Taylor
+  last_name: Downs
+  organisation: OpenFn

@@ -16,9 +16,14 @@
       <td>SalesforceID</td>
       <td>
         <ul class="list-group sortable-location sf-connected-sortable sf-target" ui-sortable="sfSortableOptions" ng-model="salesforceObject.relationshipFields">
-          <li class="list-group-item sf-field" ng-repeat="relationshipField in salesforceObject.relationshipFields" ng-style="{'background-color': relationshipField.color}">
-            {{relationshipField.field_name}}
-            <a href="#" class='glyphicon glyphicon-remove white' ng-click="deleteRelationship(relationshipField)"></a>
+          <li class="list-group-item sf-field" 
+            title="{{relationshipField.field_name}} ({{relationshipField.properties.type}}){{relationshipField.properties.nillable ? '' : ' (required)'}}{{relationshipField.properties.unique ? ' (unique)' : ''}}" 
+            ng-repeat="relationshipField in salesforceObject.relationshipFields" 
+            ng-style="{'background-color': relationshipField.color}">
+            <div class="required" ng-hide="relationshipField.properties.nillable"></div>
+            <i title="Unique" class="unique fa fa-key" ng-show="relationshipField.properties.unique"></i>
+            {{relationshipField.properties.label || relationshipField.field_name}}
+            <a href="#" class='fa fa-minus-circle' ng-click="deleteRelationship(relationshipField)"></a>
           </li>
         </ul>
       </td>
@@ -32,11 +37,18 @@
       <td style="width: 20%">{{odkFormField.field_type}}</td>
       <td style='width: 25%'>
         <ul class="list-group sortable-location sf-connected-sortable sf-target" ui-sortable="sfSortableOptions" ng-model="odkFormField.salesforceFields">
-          <li class="list-group-item sf-field" ng-repeat="sfField in odkFormField.salesforceFields" ng-style="{'background-color': sfField.color}">
-            {{sfField.field_name}}
-            <a href="#" class='glyphicon glyphicon-remove white' ng-click="deleteField(sfField)"></a>
+          <li class="list-group-item sf-field" 
+            title="{{sfField.field_name}} ({{sfField.properties.type}}){{sfField.properties.nillable ? '' : ' (required)' }}{{sfField.properties.unique ? ' (unique)' : ''}}" 
+            ng-repeat="sfField in odkFormField.salesforceFields" 
+            ng-style="{'background-color': sfField.color}">
 
-            <select ng-change="updateLookupField(odkFormField, sfField)" ng-model="sfField.lookupFieldName" ng-options="field.name as field.name for field in sfField.lookupFields" class='form-control' ng-show="sfField.data_type == 'reference'">
+            <div class="required" ng-hide="sfField.properties.nillable"></div>
+            <i title="Unique" class="unique fa fa-key" ng-show="sfField.properties.unique"></i>
+
+            {{sfField.properties.label || sfField.field_name}}
+            <a href="#" class='fa fa-minus-circle' ng-click="deleteField(sfField)"></a>
+
+            <select ng-change="updateLookupField(odkFormField, sfField)" ng-model="sfField.lookupFieldName" ng-options="field.name as field.name for field in sfField.lookupFields" class='form-control' ng-show="sfField.properties.type == 'reference'">
               <option value=""></option>
             </select>
           </li>

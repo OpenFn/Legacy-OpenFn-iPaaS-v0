@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+table {
+  color: $off-white;
+  }
+
+
 #loading  {
   width: 100%;
 
@@ -33,6 +38,8 @@
 
 .odk-row {
   padding-bottom: 150px;
+  //background-color: $bg-color;
+
 
   .odk-fields {
     max-height: 400px;
@@ -101,10 +108,11 @@ input.destroy-field {
 }
 
 .sf-row.affix {
+  padding-top: 30px;
   position: fixed;
   top: 0;
   left: 0;
-  width: auto;
+  right: 0;
   z-index: 1000;
   -webkit-transition: all 1s ease-in;
   transition: all 0.5s ease-in;

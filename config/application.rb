@@ -10,6 +10,8 @@ Bundler.require(:default, Rails.env)
 # See issue [#62](https://github.com/OpenFn/OpenFn-Site/issues/62)
 MultiXml.parser = :rexml
 
+Faraday.default_adapter = :typhoeus
+
 module SalesForce
   class Application < Rails::Application
 

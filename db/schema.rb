@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204111739) do
+ActiveRecord::Schema.define(version: 20150123112011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,8 +111,6 @@ ActiveRecord::Schema.define(version: 20141204111739) do
   end
 
   create_table "salesforce_fields", force: true do |t|
-    t.integer  "mapping_id"
-    t.string   "object_name"
     t.string   "field_name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -120,9 +118,11 @@ ActiveRecord::Schema.define(version: 20141204111739) do
     t.string   "label_name"
     t.string   "color"
     t.boolean  "is_lookup",            default: false
-    t.string   "lookup_object"
-    t.string   "lookup_field"
     t.integer  "salesforce_object_id"
+    t.string   "reference_to"
+    t.boolean  "nillable"
+    t.boolean  "unique"
+    t.json     "properties"
   end
 
   add_index "salesforce_fields", ["salesforce_object_id"], name: "index_salesforce_fields_on_salesforce_object_id", using: :btree
@@ -160,6 +160,7 @@ ActiveRecord::Schema.define(version: 20141204111739) do
     t.datetime "updated_at"
     t.text     "message"
     t.text     "backtrace"
+    t.json     "media_data"
   end
 
   create_table "taggings", force: true do |t|

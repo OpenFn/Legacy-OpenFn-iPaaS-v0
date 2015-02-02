@@ -19,13 +19,59 @@ class SalesforceObject < ActiveRecord::Base
 
   def create_fields_from_salesforce
     sf_client = RestforceService.new(self.mapping.user).connection
-    sf_fields = sf_client.describe(self.name)["fields"]
+    fields = sf_client.describe(self.name)["fields"]
 
-    sf_fields.each do |sf_field|
-      self.salesforce_fields.find_or_create_by!({
-        field_name: sf_field["name"],
-        data_type: (sf_field["name"].eql?("RecordTypeId") ? "record_type_id" : sf_field["type"])
-      })
+    fields.each do |field|
+
+      #{"autoNumber"=>false,
+      #"byteLength"=>18,
+      #"calculated"=>false,
+      #"calculatedFormula"=>nil,
+      #"cascadeDelete"=>false,
+      #"caseSensitive"=>false,
+      #"controllerName"=>nil,
+      #"createable"=>false,
+      #"custom"=>false,
+      #"defaultValue"=>nil,
+      #"defaultValueFormula"=>nil,
+      #"defaultedOnCreate"=>false,
+      #"dependentPicklist"=>false,
+      #"deprecatedAndHidden"=>false,
+      #"digits"=>0,
+      #"displayLocationInDecimal"=>false,
+      #"externalId"=>false,
+      #"filterable"=>true,
+      #"groupable"=>true,
+      #"htmlFormatted"=>false,
+      #"idLookup"=>false,
+      #"inlineHelpText"=>nil,
+      #"label"=>"Received Connection ID",
+      #"length"=>18,
+      #"name"=>"ConnectionReceivedId",
+      #"nameField"=>false,
+      #"namePointing"=>false,
+      #"nillable"=>true,
+      #"permissionable"=>false,
+      #"picklistValues"=>[],
+      #"precision"=>0,
+      #"referenceTo"=>["PartnerNetworkConnection"],
+      #"relationshipName"=>"ConnectionReceived",
+      #"relationshipOrder"=>nil,
+      #"restrictedDelete"=>false,
+      #"restrictedPicklist"=>false,
+      #"scale"=>0,
+      #"soapType"=>"tns:ID",
+      #"sortable"=>true,
+      #"type"=>"reference",
+      #"unique"=>false,
+      #"updateable"=>false,
+      #"writeRequiresMasterRead"=>false}
+
+      properties = field
+
+      salesforce_fields.find_or_create_by!(field_name: field['name']).
+        update!(properties: properties)
+
     end
   end
 

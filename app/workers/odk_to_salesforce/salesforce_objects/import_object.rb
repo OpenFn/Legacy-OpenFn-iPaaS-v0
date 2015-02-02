@@ -16,14 +16,21 @@ module OdkToSalesforce
 
       def populate_lookup_field(salesforce_field, odk_field_value)
         lookup_field = salesforce_field.odk_field_salesforce_fields.first.lookup_field_name || "name"
-        puts "Finding object #{salesforce_field.field_name} on field #{lookup_field} with value #{odk_field_value}"
-        sf_obj = @rf.query("SELECT Id FROM #{salesforce_field.field_name} WHERE #{lookup_field} = '#{odk_field_value}'").first
-        @attributes[salesforce_field.field_name] = sf_obj.Id if sf_obj
+        reference_to = salesforce_field.properties["referenceTo"][0]
+
+        puts "Finding object #{reference_to} on field #{lookup_field} with value #{odk_field_value}"
+        sf_obj = @rf.query("SELECT Id FROM #{reference_to} WHERE #{lookup_field} = '#{odk_field_value}'").first
+        if sf_obj
+          puts "Found matching #{reference_to} for #{salesforce_field.properties["name"]}."
+          @attributes[salesforce_field.properties["name"]] = sf_obj.Id
+        else
+          puts "No object found on #{reference_to} with #{lookup_field} == #{odk_field_value}"
+        end
       end
 
       def populate_record_type_field(salesforce_field, odk_field_value)
         sf_obj = @rf.query("SELECT Id, Name FROM RecordType WHERE sObjectType = '#{salesforce_field.salesforce_object.name}' AND Name = '#{odk_field_value}'").first
-        @attributes[salesforce_field.field_name] = sf_obj.Id if sf_obj
+        @attributes[salesforce_field.properties["name"]] = sf_obj.Id if sf_obj
       end
 
       def populate_relationships(import_objects)

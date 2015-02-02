@@ -1,4 +1,6 @@
-$bg-color: #fffcf4;
+// this is the old color--- $bg-color: #fffcf4;
+$cream: #fffcf4;
+$bg-color: #384D5C;
 $bold: 700;
 $semi-bold: 600;
 
@@ -11,10 +13,21 @@ $light-grey: #A3AAAB;
 
 a:hover {
   text-decoration: none;
+
+  a:focus {
+  text-decoration: none;
+  }
+
+}
+
+a {
+  color: inherit;
 }
 
 body {
+  padding-top: 69px;
   font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif; 
+  color: $off-white;
   line-height: 1;
 
   background-color: $bg-color;
@@ -26,11 +39,14 @@ b, strong {
 }
 
 .navbar {
-  margin-top: rem-calc(55px);
+  
+  //padding-top: rem-calc(55px);
+  //padding-bottom: rem-calc(20px);
 
   border: none;
   border-radius: 0;
-  background-color: inherit;
+  background-color: $cream;
+  background-image: image-url("noise.png");
 
 
   .navbar-brand {
@@ -43,5 +59,51 @@ b, strong {
     font-weight: $semi-bold;
     font-size: rem-calc(15px);
     color: $primary-blue;
+
+  .dropdown.open .dropdown-toggle {
+    background-color: rgba(0, 0, 0, 0.15);
+    background-image: image-url("noise.png");
+    color: $primary-blue
+}
+
   }
+}
+
+.table-striped {
+  background-color: $bg-color;
+  background-image: image-url("noise.png")
+}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: $deeper-blue;
+   background-image: image-url("noise.png")
+}
+
+.well {
+  color: $deeper-blue;
+}
+
+.btn-meh {
+  color: $off-white;
+  padding: 0;
+}
+
+.btn-map-label {
+  padding-left: 2px;
+}
+
+.table tbody tr > td.success {
+  background-color: inherit;
+  color: #5CB85C !important;
+}
+
+.panel {
+  background-color: $cream;
+  background-image: image-url("noise.png");
+  color: $deeper-blue;
+}
+
+.breadcrumb {
+  background-color: $primary-blue;
+  background-image: image-url("noise.png")
 }

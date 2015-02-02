@@ -84,7 +84,7 @@ class UsersController < ApplicationController
     sf = check_sf_credentials
 
     if odk && sf
-      @user.update_attributes({valid_credentials: true}) unless @user.valid_credentials
+      @user.update_attributes({valid_credentials: true})
     elsif sf
       @user.update_attributes({valid_credentials: false}) if @user.valid_credentials
       flash[:danger] = "Your ODK URL is not valid."
@@ -92,7 +92,7 @@ class UsersController < ApplicationController
       @user.update_attributes({valid_credentials: false}) if @user.valid_credentials
       flash[:danger] = "Your Salesforce credentials are not valid."
     else
-      @user.update_attributes({valid_credentials: false}) if @user.valid_credentials
+      @user.update_attributes({valid_credentials: false})
       flash[:danger] = "Invalid ODK and Salesforce credentials"
     end
   end
@@ -102,7 +102,8 @@ class UsersController < ApplicationController
       odk = OdkAggregate::Connection.new(@user.odk_url, @user.odk_username, @user.odk_password)
       odk.all_forms
       return true
-    rescue
+    rescue => e
+      Rails.logger.info "ODK Credential check failed with:\n#{e.backtrace.join("\n")}"
       return false
     end
   end
@@ -112,7 +113,8 @@ class UsersController < ApplicationController
       rf = RestforceService.new(@user).connection
       rf.describe
       return true
-    rescue
+    rescue => e
+      Rails.logger.info "Salesforce Credential check failed with:\n#{e.backtrace.join("\n")}"
       return false
     end
   end

@@ -1,11 +1,20 @@
+require 'sidekiq/web'
+require 'admin_constraint'
+
 SalesForce::Application.routes.draw do
 
+  mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
+
   get "submissions_controller/index"
-  ResqueWeb::Engine.eager_load!
-  mount ResqueWeb::Engine => "/resque_web"
 
   resources :products, only: [:index, :show]
   resources :blog_posts, only: [:index]
+
+  resource :payment_notification, only: [] do
+    post :completed
+    get :success
+    get :failure
+  end
 
   # slightly weird, but we're getting this from Salesforce in xml, and they always post.
   post "/api/v1/:token/update_products", to: "products#update", defaults: { format: 'xml' }

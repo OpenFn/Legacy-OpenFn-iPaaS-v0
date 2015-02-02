@@ -1,1 +1,2 @@
-worker: env QUEUE=* bundle exec rake resque:work
+web: bundle exec puma -C config/puma.rb
+worker: bundle exec sidekiq -c ${SIDEKIQ_THREADS:-16}

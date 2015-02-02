@@ -25,9 +25,9 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem "font-awesome-rails"
 
-gem "resque", '~> 1.25'
-gem 'resque-web', require: 'resque_web'
-
+gem 'sidekiq'
+# Required for Sidekiq's web interface
+gem 'sinatra', :require => nil
 gem "newrelic_rpm"
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -47,6 +47,7 @@ gem "active_model_serializers"
 gem 'rails_12factor', group: :production
 
 gem 'faraday', '~> 0.8.6'
+gem 'typhoeus'
 gem 'curb'
 gem 'ox'
 
@@ -60,8 +61,7 @@ group :doc do
 end
 
 # => Funci Gem to interact with ODK aggregate
-gem 'odk_aggregate', :git => 'https://github.com/func-i/odk_aggregate.git', branch: 'feature/9-repeat-block-form-fields'
-#gem 'odk_aggregate', path: "~/Documents/funci/odk_aggregate"
+gem 'odk_aggregate', github: 'openfn/odk_aggregate'
 
 # => Gem for SalesForce
 gem 'restforce', git: 'https://github.com/icambron/restforce.git'
@@ -109,6 +109,9 @@ gem 'rails-observers', '~> 0.1.2'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 #
+
+gem 'puma'
+
 group :development, :test do
   gem 'byebug'
   gem 'pry-byebug'

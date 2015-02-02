@@ -59,6 +59,7 @@ class OdkClient
       fields.add element.tap { |e| e[:path].shift }
     end
 
+    @form.rewind
     Ox.sax_parse(handler, @form, smart: false, convert_special: false)
     fields 
   end

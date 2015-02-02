@@ -1,16 +1,10 @@
 module OdkToSalesforce
   class Dispatcher
 
-    @queue = :dispatcher
+    include Sidekiq::Worker
 
-    def self.perform(mapping_id, limit = 500)
+    def perform(mapping_id, limit=500)
       mapping = Mapping.find mapping_id
-      new.perform(mapping, limit)
-    end
-
-    def perform(mapping, limit)
-      # Load the log of the import for this ODK form
-
 
       # Create a new import if there isn't one yet.
       import = mapping.import || mapping.create_import(odk_formid: mapping.odk_form.name)
@@ -23,8 +17,9 @@ module OdkToSalesforce
 
         # => Get the ODK Data for this submission_id from the ID
         submission_data = odk.fetch_submission(uuid)
-        submission = import.submissions.create(uuid: uuid, data: submission_data)
-        Resque.enqueue(OdkToSalesforce::SubmissionProcessor, mapping.id, submission.id)
+        submission = import.submissions.create(uuid: uuid, data: submission_data["data"].values.first,
+                                               media_data: submission_data["mediaFile"])
+        Sidekiq::Client.enqueue(OdkToSalesforce::SubmissionProcessor, mapping.id, submission.id)
 
       end
 

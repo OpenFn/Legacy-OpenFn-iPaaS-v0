@@ -26,7 +26,7 @@
   <label>
     <input type="checkbox" ng-model='mapping.active' ng-checked='mapping.active' ng-change="saveMapping()" ng-disabled="!mapping.enabled || !mapping.can_be_enabled"> Auto-fetch (10 min)
   </label>
-  <label>Data Source: {{mapping.odk_form.name}}</label>
+  <label>Source <i class="fa fa-cube"></i> : <strong>ODK "{{mapping.odk_form.name}}"</strong></label>
 </div>
 
 <div class="row sf-row" bs-affix data-offset-top="225" data-on-affix="onAffix()" data-on-unaffix="onUnaffix()">
