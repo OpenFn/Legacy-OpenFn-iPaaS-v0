@@ -77,22 +77,14 @@ There is a rake task provided for this purpose:
     $ rake db:fixtures:dump[x]
     # Where x is the ID of the mapping.
 
- In order to load the fixtures, use the standard `fixtures :table_name`
- convention.
+In order to load the fixtures, you will need to use namespacing.
+The files are stored in `spec/fixtures/[mapping name]/[table name].yml`.
+So the following method is used to load namespaced fixtures:  
 
- Currently you can load an entire mapping's data with the following fixtures:
-
-     fixtures :mappings
-     fixtures :submissions
-     fixtures :users
-     fixtures :salesforce_objects
-     fixtures :salesforce_fields
-     fixtures :salesforce_relationships
-     fixtures :odk_fields
-     fixtures :odk_field_salesforce_fields
-
-*This is soon to change allowing you to store a set of fixture data keyed by
-the mapping id*
+```ruby
+  fixtures "[mapping name]/mappings"
+  set_fixture_class "[mapping name]/mappings" => Mapping
+```
 
 REST API
 --------
