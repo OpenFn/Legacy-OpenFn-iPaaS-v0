@@ -2,6 +2,7 @@ module OdkToSalesforce
   class Dispatcher
 
     include Sidekiq::Worker
+    sidekiq_options retry: false
 
     def perform(mapping_id, limit=500)
       mapping = Mapping.find mapping_id
