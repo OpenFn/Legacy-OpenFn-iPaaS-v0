@@ -69,11 +69,11 @@
                 
               <% unless current_user %>
                     <li>
-                        <%= link_to "/login", method: :get do %><button type="button" class="btn btn-default">Log in</button><% end %>
+                        <%= link_to "/login", method: :get do %><button type="button" class="btn btn-default btn-sm">Log in</button><% end %>
                     </li>
                     <li>
                         <%= link_to "/signup", method: :get do %>
-                          <button type="button" class="btn btn-success">Sign up</button>
+                          <button type="button" class="btn btn-success btn-sm">Sign up</button>
                         <% end %>
                     </li>
                   <% end %>

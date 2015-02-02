@@ -108,7 +108,7 @@ input.destroy-field {
 }
 
 .sf-row.affix {
-  padding-top: 30px;
+  padding-top: 45px;
   position: fixed;
   top: 0;
   left: 0;
@@ -141,4 +141,12 @@ input.destroy-field {
 
 .mapping-status-options {
   label { padding-right: 20px; }
+}
+
+.progress-bar-grey {
+  background: $light-grey;
+  }
+
+.progress-bar-bolt {
+  background: $grey-blue;
 }
