@@ -69,6 +69,23 @@ super easy and fast.
     # Running guard
     $ guard
 
+Building Mapping Fixtures
+-------------------------
+
+There is a rake task provided for this purpose:
+
+    $ rake db:fixtures:dump[x]
+    # Where x is the ID of the mapping.
+
+In order to load the fixtures, you will need to use namespacing.
+The files are stored in `spec/fixtures/[mapping name]/[table name].yml`.
+So the following method is used to load namespaced fixtures:  
+
+```ruby
+  fixtures "[mapping name]/mappings"
+  set_fixture_class "[mapping name]/mappings" => Mapping
+```
+
 REST API
 --------
     
