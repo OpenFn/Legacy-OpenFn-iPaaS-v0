@@ -1,9 +1,26 @@
 'use strict'
 
-@controllerModule.controller 'LookupObjectCtrl', ['$scope','$rootScope', '$filter',
-  'Mapping', 'OdkForm', 'OdkFormField', 'SalesforceObject', 'SalesforceObjectField', 'MappingService'
-  ($scope, $rootScope, $filter, Mapping, OdkForm, OdkFormField, SalesforceObject, SalesforceObjectField, MappingService) ->
- 
+@controllerModule.controller 'LookupObjectCtrl', [
+  '$scope',
+  '$rootScope',
+  '$filter',
+  'Mapping',
+  'OdkForm',
+  'OdkFormField',
+  'SalesforceObject',
+  'SalesforceObjectField',
+  'MappingService',
+  (
+    $scope,
+    $rootScope,
+    $filter,
+    Mapping,
+    OdkForm,
+    OdkFormField,
+    SalesforceObject,
+    SalesforceObjectField,
+    MappingService
+  ) ->
 
     prepare = ->
       SalesforceObject.query.then (response) ->

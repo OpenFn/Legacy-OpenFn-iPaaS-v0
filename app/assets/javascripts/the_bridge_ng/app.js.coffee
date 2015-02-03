@@ -27,7 +27,7 @@ Array::filter = (func) -> x for x in @ when func(x)
 @filterModule     = angular.module 'the_bridge.filters', []
 @configModule     = angular.module 'the_bridge.config', []
 
-@the_bridge.config ($routeProvider, $locationProvider) ->
+@the_bridge.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
   $locationProvider.html5Mode true
   $routeProvider
     .when '/mappings/new',
@@ -80,3 +80,4 @@ Array::filter = (func) -> x for x in @ when func(x)
         else
           return "/" })
     .otherwise({redirectTo:"/"})
+]
