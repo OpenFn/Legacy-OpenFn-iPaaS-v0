@@ -14,12 +14,15 @@ Array::filter = (func) -> x for x in @ when func(x)
   'the_bridge.services',
   'the_bridge.filters',
   'the_bridge.config',
+  'OpenFn',
+  'OpenFn.Mappings',
   'ui.sortable',
   'ui.bootstrap',
   'ng-rails-csrf',
   'mgcrea.bootstrap.affix',
   'angulartics',
-  'angulartics.google.analytics'
+  'angulartics.google.analytics',
+  'angular-growl'
  ])
 
 @controllerModule = angular.module 'the_bridge.controllers', []
@@ -29,26 +32,33 @@ Array::filter = (func) -> x for x in @ when func(x)
 @filterModule     = angular.module 'the_bridge.filters', []
 @configModule     = angular.module 'the_bridge.config', []
 
-@the_bridge.config ['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
+@the_bridge.config ['$routeProvider', '$locationProvider', 'growlProvider', ($routeProvider, $locationProvider, growlProvider) ->
+  growlProvider.globalTimeToLive(3000);
+  growlProvider.globalPosition('top-right');
+
   $locationProvider.html5Mode true
+
+  unless Features.new_mapping_page
+    $routeProvider
+      .when '/mappings/new',
+        controller: 'NewMappingCtrl'
+        templateUrl: '../the_bridge_templates/mappings/new.html'
+
+      .when '/mappings/:id',
+        controller: 'EditMappingCtrl'
+        templateUrl: '../the_bridge_templates/mappings/edit.html'
+        resolve:
+          mappingResponse: ($q, $route, Mapping) ->
+            defer = $q.defer()
+
+            # Load the mapping
+            Mapping.get(id: $route.current.params.id).$promise.then((response) ->
+              defer.resolve response
+            )
+
+            defer.promise
+
   $routeProvider
-    .when '/mappings/new',
-      controller: 'NewMappingCtrl'
-      templateUrl: '../the_bridge_templates/mappings/new.html'
-
-    .when '/mappings/:id',
-      controller: 'EditMappingCtrl'
-      templateUrl: '../the_bridge_templates/mappings/edit.html'
-      resolve:
-        mappingResponse: ($q, $route, Mapping) ->
-          defer = $q.defer()
-
-          # Load the mapping
-          Mapping.get(id: $route.current.params.id).$promise.then((response) ->
-            defer.resolve response
-          )
-
-          defer.promise
     .when('/metrics/organisation', {
       templateUrl: '../the_bridge_templates/metrics/organisations/index.html',
       controller: 'OrganisationsIndexCtrl'

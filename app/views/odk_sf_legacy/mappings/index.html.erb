@@ -21,8 +21,12 @@
 
         <div class="col-md-2 text-center">
           
-          
-            <%= button_to "Create new map", [:new, :odk_sf_legacy_mapping], class: 'btn btn-default' %><br>
+          <% if Features.new_mapping_page? %>
+            <a href="#/mappings/new" class="btn btn-default">Create new map</a>
+          <% else %>
+            <%= button_to "Create new map", [:new, :odk_sf_legacy_mapping], class: 'btn btn-default' %>
+          <% end %>
+          <br>
           
           <div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle btn-success" data-toggle="dropdown" aria-expanded="false">
