@@ -184,6 +184,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-zippy (2.0.2)
     rails (4.1.9)
       actionmailer (= 4.1.9)
       actionpack (= 4.1.9)
@@ -330,6 +331,7 @@ DEPENDENCIES
   pry-byebug
   pry-rails
   puma
+  rack-zippy
   rails (~> 4.1.0)
   rails-observers (~> 0.1.2)
   rails_12factor

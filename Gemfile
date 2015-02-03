@@ -45,7 +45,10 @@ gem 'jbuilder', '~> 1.2'
 
 gem "active_model_serializers"
 
-gem 'rails_12factor', group: :production
+group :production do
+  gem 'rails_12factor'
+  gem 'rack-zippy'
+end
 
 gem 'faraday', '~> 0.8.6'
 gem 'typhoeus'
