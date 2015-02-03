@@ -78,17 +78,3 @@ angular.module('mgcrea.jquery', [])
 
   });
 
-
-
-/*  .constant('jqPosition', function(obj) {
-    var left = obj.offsetLeft;
-    var top = obj.offsetTop;
-    if(obj.offsetParent) {
-      while (obj.offsetParent) {
-        obj = obj.offsetParent;
-        left += obj.offsetLeft;
-        top += obj.offsetTop;
-      }
-    }
-    return [left, top];
-  })*/
