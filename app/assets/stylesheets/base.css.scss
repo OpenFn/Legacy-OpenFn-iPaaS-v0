@@ -10,6 +10,7 @@ $grey-blue: #5A6C77;
 $off-white: #F2EFE6;
 $grey: #969795;
 $light-grey: #A3AAAB;
+$accent-yellow: #f8ca4d; //dark yellow
 
 a:hover {
   text-decoration: none;
@@ -107,3 +108,8 @@ b, strong {
   background-color: $primary-blue;
   background-image: image-url("noise.png")
 }
+
+.progress-bar-grey {
+  background-color: $light-grey;
+  background-image: image-url("noise.png");
+  }

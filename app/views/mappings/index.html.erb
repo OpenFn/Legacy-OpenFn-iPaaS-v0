@@ -43,9 +43,8 @@
               aria-valuenow='<%= @mappings.where(active: true).count %>'
               aria-valuemin="0"
               aria-valuemax='<%= current_user.credits %>'
-              style="width: '<%= 100*@mappings.where(active: true).count/current_user.credits %>'%; ">
-              <!-- Stu to #clean later. -->
-              <%= @mappings.where(active: true).count %> <i class="fa fa-bolt" style="color: #5CB85C;"></i>
+              style="width: '<%= 100*@mappings.where(active: true).count/current_user.credits %>'%; background: #5A6C77;">
+              <%= @mappings.where(active: true).count %> <i class="fa fa-bolt"></i>
             </div>
             <div class="progress-bar progress-bar-grey"
               role="progressbar"
