@@ -5,24 +5,24 @@
   <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700' rel='stylesheet' type='text/css'>
 </head>
   <body>
-    <div class='container'>
+      
       <%= render "shared/header" %>
-    
 
       <%= render "shared/flash" %>
+      
       <%= render "shared/sidebar" %>
 
-        <% if content_for?(:sidebar) %>
-          <div class='col-md-10'>
-        <% else %>
+      <% if content_for?(:sidebar) %>
+        <div class='col-md-10'>
+      <% else %>
           <div class='col-md-12'>
-        <% end %>
-
-        <%= yield %>
-      </div>
-    </div>
+      <% end %>
+      <%= yield %>
+          </div>
+        </div>
+  
   </body>
 </html>
