@@ -25,6 +25,10 @@ a {
   color: inherit;
 }
 
+html {
+  -ms-overflow-style: none;
+}
+
 body {
   padding-top: 69px;
   font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif; 
@@ -33,6 +37,7 @@ body {
 
   background-color: $bg-color;
   background-image: image-url("noise.png");
+
 }
 
 b, strong {
@@ -113,3 +118,7 @@ b, strong {
   background-color: $light-grey;
   background-image: image-url("noise.png");
   }
+
+::-webkit-scrollbar { 
+    display: none; 
+}

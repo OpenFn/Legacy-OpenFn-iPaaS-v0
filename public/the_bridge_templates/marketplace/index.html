@@ -1,13 +1,14 @@
 <div class="ideas">
-<div ng-controller="MarketplaceController as marketplace" class="row">
 
 <header class="header-image">
   <div class="headline">
-    <h1><i class="fa fa-shopping-cart"></i>
- open<strong>Marketplace</strong></h1>
-    <h3>Find the <strong>tools</strong> you need to grow your impact.</h3>
+    <h1>
+      <i class="fa fa-shopping-cart"></i> open<strong>Marketplace</strong>
+    </h1>
+    <h3>
+      Find the <strong>tools</strong> you need to grow your impact.
+    </h3>
   </div>
-
 </header>
 
 <div class="featurette dark">
@@ -15,61 +16,54 @@
   <hr class="dark">
 
     <div class="container">
-      <div class="col-md-10 col-md-offset-1">
-        <div class="search-field">
-            <input type:"text" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
-        </div>
-      </div>
-      <div class="col-md-10 col-md-offset-1">
+      <div ng-controller="MarketplaceController as marketplace" class="row">  
         
-      <div class="new-product-link">
+        <div class="col-md-10 col-md-offset-1">
+          <div class="search-field">
+              <input type:"text" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+          </div>
+        </div>
         
-          <a href="https://www.formstack.com/forms/?1874808-i8hgbPcov5" class="website-link" target="_blank">
-            <i class="fa fa-plus"></i> Add your product...
-          </a>
-
-          <label style="float: right;" class="btn btn-meh" ng-model="searchFilters.integrated" btn-checkbox>
-              <i class="fa fa-cubes"></i>  Integrated?
-          </label>
-
-        </div>
-      </div>
-    <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
-      </br>
-      <div ng-repeat="product in products | filter:filterProducts" class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <div class="product">
-          <div class='rating'>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            (N votes for integration)
+        <div class="col-md-10 col-md-offset-1">  
+          <div class="new-product-link">
+            <a href="https://www.formstack.com/forms/?1874808-i8hgbPcov5" class="website-link" target="_blank">
+              <i class="fa fa-plus"></i> Add your product...
+            </a>
+            <label style="float: right;" class="btn btn-caution" ng-model="searchFilters.integrated" btn-checkbox>
+                <i class="fa fa-cubes"></i>  Integrated?
+            </label>
           </div>
-          <h3 class="title">
-            {{product.name}}
-          </h3>
-          <div class='content'>
-            {{product.description | limitTo:410}}
-          </div>
-
-          <a ng-href="{{product.website}}" class="website-link" target="_blank">
-            <i class="fa fa-home"></i>
-          </a>
-          <!-- MAKE THIS LINK DO NOTHING UNTIL PRODUCT PAGE LOOKS GREAT
-          <a ng-href="/#/product/{{product.id}}" class="details-link">
-            DETAILS
-          </a>
-          -->
-          <a ng-href="#" class="details-link">
-            +<i class="fa fa-cube"></i>
-
-
-          </a>
-
         </div>
+
+        <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
+          <br>
+          <div ng-repeat="product in products | filter:filterProducts" class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="product">
+              <div class='rating'>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                &nbsp;(n votes for integration)
+              </div>
+              <h3 class="title">
+                {{product.name}}
+              </h3>
+              <div class='content'>
+                {{product.description | limitTo:410}}
+              </div>
+              <a ng-href="{{product.website}}" class="website-link" target="_blank">
+                <i class="fa fa-home"></i>
+              </a>
+              <!-- MAKE THIS LINK DO NOTHING UNTIL PRODUCT PAGE LOOKS GREAT
+              <a ng-href="/#/product/{{product.id}}" class="details-link">
+                DETAILS
+              </a>
+              -->
+              <a ng-href="#" class="details-link">
+                +<i class="fa fa-cube"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
-
-
-
-</div>
-</div>
