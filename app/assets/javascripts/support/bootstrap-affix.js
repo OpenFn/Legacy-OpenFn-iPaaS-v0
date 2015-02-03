@@ -2,7 +2,7 @@
 
 angular.module('mgcrea.bootstrap.affix', ['mgcrea.jquery'])
 
-  .directive('bsAffix', function($window, $location, $routeParams, dimensions) {
+  .directive('bsAffix', ['$window', '$location', '$routeParams', 'dimensions',function($window, $location, $routeParams, dimensions) {
 
     var checkPosition = function(instance, el, options) {
 
@@ -63,4 +63,4 @@ angular.module('mgcrea.bootstrap.affix', ['mgcrea.jquery'])
       }
     };
 
-  });
+  }]);
