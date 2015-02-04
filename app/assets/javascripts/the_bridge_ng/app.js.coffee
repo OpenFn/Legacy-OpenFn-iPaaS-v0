@@ -17,7 +17,9 @@ Array::filter = (func) -> x for x in @ when func(x)
   'ui.sortable',
   'ui.bootstrap',
   'ng-rails-csrf',
-  'mgcrea.bootstrap.affix'
+  'mgcrea.bootstrap.affix',
+  'angulartics',
+  'angulartics.google.analytics'
  ])
 
 @controllerModule = angular.module 'the_bridge.controllers', []
