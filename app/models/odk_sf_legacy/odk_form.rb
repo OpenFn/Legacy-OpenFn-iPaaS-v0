@@ -1,5 +1,7 @@
 require 'odk_client'
 class OdkSfLegacy::OdkForm < ActiveRecord::Base
+  self.table_name = "odk_sf_legacy_odk_forms"
+
   belongs_to :mapping
 
   has_many :odk_fields, dependent: :destroy

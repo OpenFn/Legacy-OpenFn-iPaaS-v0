@@ -1,4 +1,5 @@
 class OdkSfLegacy::SalesforceField < ActiveRecord::Base
+  self.table_name = "odk_sf_legacy_salesforce_fields"
 
   belongs_to :salesforce_object
 

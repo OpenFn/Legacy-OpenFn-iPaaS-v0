@@ -1,4 +1,5 @@
 class OdkSfLegacy::SalesforceObject < ActiveRecord::Base
+  self.table_name = "odk_sf_legacy_salesforce_objects"
 
   COLORS = [
     "#7F8C8D", "#BDC3C7", "#16A085", "#2C3E50", "#2980B9", "#8E44AD", "#C0392B", "#D35400", "#F39C12", "#27AE60",
@@ -15,7 +16,7 @@ class OdkSfLegacy::SalesforceObject < ActiveRecord::Base
   after_create :set_color
   after_create :create_fields_from_salesforce
 
-  default_scope { order("salesforce_objects.order ASC") }
+  default_scope { order("odk_sf_legacy_salesforce_objects.order ASC") }
 
   def create_fields_from_salesforce
     sf_client = RestforceService.new(self.mapping.user).connection

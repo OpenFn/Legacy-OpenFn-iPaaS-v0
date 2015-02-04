@@ -1,5 +1,6 @@
 class OdkSfLegacy::Submission < ActiveRecord::Base
-
+  self.table_name = "odk_sf_legacy_submissions"
+  
   belongs_to :import
 
   state_machine :state, initial: :new do
