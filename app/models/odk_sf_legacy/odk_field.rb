@@ -1,4 +1,6 @@
 class OdkSfLegacy::OdkField < ActiveRecord::Base
+  self.table_name = "odk_sf_legacy_odk_fields"
+
   belongs_to :odk_form
   has_many :odk_field_salesforce_fields, dependent: :destroy
   has_many :salesforce_fields, through: :odk_field_salesforce_fields

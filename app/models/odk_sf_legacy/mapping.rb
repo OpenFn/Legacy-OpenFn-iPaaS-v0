@@ -1,4 +1,5 @@
 class OdkSfLegacy::Mapping < ActiveRecord::Base
+  self.table_name = "odk_sf_legacy_mappings"
 
   belongs_to :user
   has_many :salesforce_objects, dependent: :destroy
