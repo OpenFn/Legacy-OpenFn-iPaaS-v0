@@ -5,7 +5,7 @@
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/#/welcome">Open[Fn]</a>
+      <a class="navbar-brand" href="/#/welcome"><div class="navbar-logo"></div></a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -20,9 +20,6 @@
 <!--    <li>
           <%= link_to "Pricing", "/#/pricing" %>
         </li> -->
-        <li>
-          <%= link_to "Devs", "/#/developers" %>
-        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ideas <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
@@ -35,6 +32,11 @@
               <li class="divider"></li>
               <li>
                 <%= link_to "Release Notes", "/#/release-notes" %>
+              </li>
+              <li>
+                <%= link_to "/#/developers" do %>
+                  Developers
+                <% end %>
               </li>
             </ul>
         </li>
@@ -74,12 +76,12 @@
         <% unless current_user %>
           <li>
             <%= link_to "/login", method: :get do %>
-              <button type="button" class="btn btn-default btn-sm">Log in</button>
+              <button type="button" class="btn btn-default">Log in</button>
             <% end %>
           </li>
           <li>
             <%= link_to "/signup", method: :get do %>
-              <button type="button" class="btn btn-success btn-sm">Sign up</button>
+              <button type="button" class="btn btn-success">Sign up</button>
             <% end %>
           </li>
         <% end %>
