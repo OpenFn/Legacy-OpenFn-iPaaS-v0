@@ -44,10 +44,14 @@ b, strong {
   font-weight: $bold;
 }
 
+.navbar .nav > li > a {
+   line-height: rem-calc(32px);
+}
+
 .navbar {
   
-  padding-top: rem-calc(10px);
-  padding-bottom: rem-calc(10px);
+  padding-top: rem-calc(5px);
+  padding-bottom: rem-calc(5px);
 
   border: none;
   border-radius: 0;
@@ -56,7 +60,7 @@ b, strong {
 
 
   .navbar-brand {
-    font-size: rem-calc(35px);
+    font-size: rem-calc(32px);
     font-weight: $bold;
     color: $primary-blue;
   }
@@ -87,6 +91,7 @@ b, strong {
 
 .well {
   color: $deeper-blue;
+  margin-top: 20px;
 }
 
 .btn-meh {
@@ -121,4 +126,14 @@ b, strong {
 
 ::-webkit-scrollbar { 
     display: none; 
+}
+
+.navbar-logo {
+    background-image: image-url("logo_fn.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: rem-calc(32px);
+    width: rem-calc(32px);
+/*    position: absolute;
+    bottom: 20px;*/
 }

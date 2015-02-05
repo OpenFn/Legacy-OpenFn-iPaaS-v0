@@ -71,11 +71,14 @@ Array::filter = (func) -> x for x in @ when func(x)
     .when('/pricing', {
       templateUrl: '../the_bridge_templates/static/pricing.html'
     })
+    .when('/developers', {
+      templateUrl: '../the_bridge_templates/static/developers.html'
+    })
     .when('/welcome', {
-      templateUrl: '../the_bridge_templates/static/welcome.html'
+      templateUrl: '../the_bridge_templates/static/welcome2.html'
     })
     .when('/', {
-      templateUrl: '../the_bridge_templates/static/welcome.html',
+      templateUrl: '../the_bridge_templates/static/welcome2.html',
       redirectTo: (current, path, search) ->
         if(search.goto)
           return "/" + search.goto
