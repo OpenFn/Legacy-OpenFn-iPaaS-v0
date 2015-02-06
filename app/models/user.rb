@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, on: :create
 
   validates :email, uniqueness: true, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :organisation, presence: true
   validates :role, inclusion: { in: %w(client admin), message: "%{value} is not a valid role" }
 
   before_validation :set_default_role, on: :create
