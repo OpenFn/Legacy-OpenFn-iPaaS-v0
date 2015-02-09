@@ -9,9 +9,18 @@
         min-height: 835px;
         text-align: center;
         background-color: $primary-blue;
-        background-image: image-url("bg-wow-1920.jpg");
+        background-image: image-url("wow_bg.jpg");
+        
         background-repeat: no-repeat;
         background-position: top;
+    }
+
+    .header-detail {
+        background-image: image-url("wow_detail.png");
+        position: relative;
+        width: 100%;
+        height: 835px;
+
     }
 
     .headline {
