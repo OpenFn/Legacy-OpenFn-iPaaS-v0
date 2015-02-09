@@ -6,4 +6,4 @@
 
 require 'features'
 
-ENV["SYNC_WITH_SALESFORCE"] ||= "true"
+ENV["SYNC_WITH_SALESFORCE"] ||= "false"
