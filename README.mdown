@@ -43,6 +43,18 @@ To get started, copy it:
 
     $ cp config/application.yml.template config/application.yml
 
+Features
+--------
+
+Using ENV variables certain aspects of the application can be configured or
+disabled.
+
+- `GA_TRACKING_CODE`  
+  Enabled Google Analytics by setting this to your GA tracking code.
+- `SYNC_WITH_SALESFORCE`  
+  When a user record is changed, set this to "true" to update the Salesforce
+  backend.
+
 Workers
 -------
 
