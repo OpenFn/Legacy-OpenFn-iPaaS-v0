@@ -32,6 +32,19 @@
     })
   </script>
 
+  <script>
+    $(document).ready(function(){
+      $(window).scroll(function(){
+        var y = $(window).scrollTop();
+        if( y > 0 ){
+        $(".top-shadow-mobile").css({'display':'block', 'opacity':y/20});
+      } else {
+        $(".top-shadow-mobile").css({'display':'block', 'opacity':y/20});
+        }
+      });
+    })
+  </script>
+
 </head>
   <body>
       

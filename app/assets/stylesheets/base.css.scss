@@ -111,11 +111,15 @@ b, strong {
     .dropdown.open .dropdown-toggle {
       background-color: rgba(0, 0, 0, 0.15);
       background-image: image-url("noise.png");
-      color: $primary-blue
+      color: $primary-blue;
     }
   
   }
 
+}
+
+.navbar-collapse {
+  border-top: 0;
 }
 
 .table-striped {
@@ -151,6 +155,7 @@ b, strong {
   background-color: $cream;
   background-image: image-url("noise.png");
   color: $deeper-blue;
+  border: 0;
 }
 
 .breadcrumb {
