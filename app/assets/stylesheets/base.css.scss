@@ -30,34 +30,71 @@ html {
 }
 
 body {
-  padding-top: 69px;
+  padding-top: 68px;
   font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif; 
   color: $off-white;
   line-height: 1;
-
   background-color: $bg-color;
   background-image: image-url("noise.png");
-
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 b, strong {
   font-weight: $bold;
 }
 
-.navbar .nav > li > a {
-   line-height: rem-calc(32px);
-}
+// .navbar-logo {
+//     background-image: image-url("logo_fn.png");
+//     background-repeat: no-repeat;
+//     background-size: 100%;
+//     height: rem-calc(32px);
+//     width: rem-calc(32px);
+//     position: absolute;
+//     bottom: 20px;
+// }
+
+.top-shadow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: rem-calc(74px);
+    z-index: -1;
+    -webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
+    display: none;
+  }
+
+.top-shadow-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: rem-calc(60px);
+    z-index: -1;
+    -webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
+    display: none;
+  }
 
 .navbar {
   
   padding-top: rem-calc(5px);
   padding-bottom: rem-calc(5px);
-  z-index: 2;
+  z-index: 9;
   border: none;
   border-radius: 0;
   background-color: $cream;
   background-image: image-url("noise.png");
   position: fixed;
+
+  .nav > li > a {
+    line-height: rem-calc(32px);
+    z-index: 10;
+  }
 
 
   .navbar-brand {
@@ -71,13 +108,14 @@ b, strong {
     font-size: rem-calc(15px);
     color: $primary-blue;
 
-  .dropdown.open .dropdown-toggle {
-    background-color: rgba(0, 0, 0, 0.15);
-    background-image: image-url("noise.png");
-    color: $primary-blue
-}
-
+    .dropdown.open .dropdown-toggle {
+      background-color: rgba(0, 0, 0, 0.15);
+      background-image: image-url("noise.png");
+      color: $primary-blue
+    }
+  
   }
+
 }
 
 .table-striped {
@@ -128,26 +166,3 @@ b, strong {
 ::-webkit-scrollbar { 
     display: none; 
 }
-
-.navbar-logo {
-    background-image: image-url("logo_fn.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: rem-calc(32px);
-    width: rem-calc(32px);
-/*    position: absolute;
-    bottom: 20px;*/
-}
-
-.top-shadow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 74px;
-    z-index: -10;
-    -webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
-    -moz-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
-    display: none;
-  }
