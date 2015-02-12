@@ -1,3 +1,9 @@
+  <script>
+    function NavBarCtrl($scope) {
+    $scope.isCollapsed = true;
+    }
+  </script>
+
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="NavBarCtrl">
 <div class="top-shadow hidden-xs"></div>
 <!-- <div class="top-shadow-mobile"></div> -->
@@ -5,7 +11,7 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
     
-      <button type="button" class="navbar-toggle collapsed"  ng-click="isCollapsed = !isCollapsed">
+      <button type="button" class="navbar-toggle collapsed" ng-click="isCollapsed = !isCollapsed">
         <span class="sr-only">Toggle navigation</span><i class="fa fa-bars" style="color: #3f5666"></i>
       </button>
       <a class="navbar-brand" href="/#/welcome">open[fn]</a>
@@ -15,7 +21,7 @@
       
       <ul class="nav navbar-nav">
         <li>
-          <%= link_to "Marketplace", "/#/marketplace" %>
+          <%= link_to "Marketplace", "/#/marketplace", 'ng-click' => "isCollapsed = !isCollapsed" %>
         </li>
         <li>
           <%= link_to "Integrations", mappings_path, 'ng-click' => "$event.stopPropagation()" %>
@@ -24,7 +30,7 @@
           <%= link_to "Pricing", "/#/pricing" %>
         </li> -->
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Ideas <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Ideas <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li>
                 <a href="#">Case studies (soon)</a>
@@ -34,12 +40,10 @@
               </li>
               <li class="divider"></li>
               <li>
-                <%= link_to "Release Notes", "/#/release-notes" %>
+                <%= link_to "Release Notes", "/#/release-notes", 'ng-click' => "isCollapsed = !isCollapsed" %>
               </li>
               <li>
-                <%= link_to "/#/developers" do %>
-                  Developers
-                <% end %>
+                <%= link_to "Developers", "/#/developers", 'ng-click' => "isCollapsed = !isCollapsed" %>
               </li>
             </ul>
         </li>
