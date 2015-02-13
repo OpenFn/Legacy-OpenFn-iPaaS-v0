@@ -1,24 +1,18 @@
 #designsketch
 
 class Submission::PayloadEncoding
+
+  include Sidekiq::Worker
   
-  def initialize(submission)
-    @submission = submission
-  end
-
-  def queue
-    :pipeline_payload_encoding
-  end
-
-  def work
-    @submission.source_payload = integration_klass.encode(@submission.raw_source_payload)
-    @submission.save!
+  def perform(submission)
+    submission.source_payload = integration_klass.encode(submission.raw_source_payload)
+    submission.save!
     
-    Resque.enqueue Submission::Translation.new(@submission)
+    Sidekiq::Client.enqueue(Submission::Translation, submission)
   end
 
   private
   def integration_klass
-    Integration.const_get(@submission.integration.source.integration_type)
+    Integration.const_get(submission.integration.source.integration_type)
   end
 end

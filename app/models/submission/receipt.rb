@@ -1,19 +1,12 @@
 #designsketch
 
 class Submission::Receipt
-  
-  def initialize(raw_source_message, integration)
-    @raw_source_message = raw_source_message
-    @integration = integration
-  end
 
-  def queue
-    :pipeline_receipt
-  end
+  include Sidekiq::Worker
 
-  def work
-    submission = Submission::Record.create!(raw_source_message: @raw_source_message, integration: @integration)
+  def perform(raw_source_message, integration)
+    submission = Submission::Record.create!(raw_source_message: raw_source_message, integration: integration)
     
-    Resque.enqueue Submission::PayloadEncoding.new(submission)
+    Sidekiq::Client.enqueue(Submission::PayloadEncoding, submission)
   end
 end
