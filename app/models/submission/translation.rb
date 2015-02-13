@@ -1,20 +1,14 @@
 #designsketch
 
 class Submission::Translation
+
+  include Sidekiq::Worker
   
-  def initialize(submission)
-    @submission = submission
-  end
-
-  def queue
-    :pipeline_translation
-  end
-
-  def work
-    translation = Mapping::Translation.new(@submission.source_payload, @submission.integration.mappings)
-    @submission.destination_payload = translation.result
-    @submission.save!
+  def perform(submission)
+    translation = Mapping::Translation.new(submission.source_payload, submission.integration.mappings)
+    submission.destination_payload = translation.result
+    submission.save!
     
-    Resque.enqueue Submission::PayloadDecoding.new(@submission)
+    Sidekiq::Client.enqueue(Submission::PayloadDecoding, submission)
   end
 end
