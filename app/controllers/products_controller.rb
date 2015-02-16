@@ -16,6 +16,12 @@ class ProductsController < ApplicationController
     render json: product.as_json(methods: :tag_list)
   end
 
+  def count
+    render json: {
+      count: Product.count
+    }
+  end
+
   def update
     notification = Salesforce::Notification.new(request.body.read)
     salesforce_product = Salesforce::Listing::Product.new(notification)

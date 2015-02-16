@@ -7,7 +7,6 @@ SalesForce::Application.routes.draw do
 
   get "submissions_controller/index"
 
-  resources :products, only: [:index, :show]
   resources :blog_posts, only: [:index]
 
   resource :payment_notification, only: [] do
@@ -67,7 +66,18 @@ SalesForce::Application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users do
+    collection do
+      get :public_count
+    end
+  end
+
+  resources :products, only: [:index, :show] do
+    collection do
+      get :count
+    end
+  end
+
   resources :odk_forms, only: [:index]
 
   get  "signup", to: "users#new",        as: :signup
