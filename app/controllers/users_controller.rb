@@ -68,13 +68,6 @@ class UsersController < ApplicationController
   def index
   end
 
-  def public_count
-    render json: {
-      count: User.where(role: 'client').count
-    }
-  end
-
-
   private
 
   def user_params

@@ -86,21 +86,12 @@ Array::filter = (func) -> x for x in @ when func(x)
         $scope.submissionCount = null
         $scope.productConnectedCount = null
 
-        $http.get '/submissions/count'
+        $http.get '/welcome_stats'
         .success (data) ->
-          $scope.submissionCount = data.count
-
-        $http.get '/products/public_count'
-        .success (data) ->
-          $scope.productPublicCount = data.count
-
-        $http.get '/products/public_connected_count'
-        .success (data) ->
-          $scope.productConnectedCount = data.count
-
-        $http.get '/users/public_count'
-        .success (data) ->
-          $scope.userPublicCount = data.count
+          $scope.submissionCount = data.submissionCount
+          $scope.userCount = data.userPublicCount
+          $scope.productPublicCount = data.productPublicCount
+          $scope.productConnectedCount = data.productConnectedCount
 
       redirectTo: (current, path, search) ->
         if(search.goto)
