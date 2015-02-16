@@ -4,7 +4,6 @@
   $scope.searchFilters = {}
   
   $http.get('/products.json').success((data) ->
-    ## console.log(data)
     $scope.products = data.products
     if $routeParams.search
       $scope.searchText = $routeParams.search
@@ -37,13 +36,8 @@
     $http.get('/vote/'+product_id)
     return
 
-
   )
 
-  $http.get('/votes/count').success((data1) ->
-    $scope.votes = data1
-    console.log(data1)
 
-  )
 
 ]
