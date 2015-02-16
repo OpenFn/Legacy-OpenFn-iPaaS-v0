@@ -4,9 +4,11 @@
   $scope.searchFilters = {}
   
   $http.get('/products.json').success((data) ->
+    ## console.log(data)
     $scope.products = data.products
     if $routeParams.search
       $scope.searchText = $routeParams.search
+
 
   $scope.filterProducts = (product) ->
     lowercaseSearchText = angular.lowercase($scope.searchText)
@@ -30,5 +32,19 @@
       return product.integrated
     else
       return true
+
+  $scope.changeVote = (product_id) ->
+    alert(product_id)
+    $http.get('/vote/'+flag+'/'+product_id)
+    return
+
+
   )
+
+  $http.get('/votes/count').success((data1) ->
+    $scope.votes = data1
+    console.log(data1)
+
+  )
+
 ]

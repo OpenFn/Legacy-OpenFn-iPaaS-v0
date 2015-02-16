@@ -77,6 +77,9 @@ Array::filter = (func) -> x for x in @ when func(x)
     .when('/welcome', {
       templateUrl: '../the_bridge_templates/static/welcome2.html'
     })
+    .when('/vote/:id', {
+      templateUrl: '../the_bridge_templates/vote.html',
+    })
     .when('/', {
       templateUrl: '../the_bridge_templates/static/welcome2.html',
       redirectTo: (current, path, search) ->
