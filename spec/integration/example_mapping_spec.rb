@@ -6,14 +6,14 @@ RSpec.describe "Example Mapping Submission Integration", :type => :integration d
   # from the namespaced fixures.
   def self.mapping_fixture(name)
     [
-      Mapping,
-      Submission,
+      OdkSfLegacy::Mapping,
+      OdkSfLegacy::Submission,
       User,
-      SalesforceObject,
-      SalesforceField,
-      SalesforceRelationship,
-      OdkField,
-      OdkFieldSalesforceField
+      OdkSfLegacy::SalesforceObject,
+      OdkSfLegacy::SalesforceField,
+      OdkSfLegacy::SalesforceRelationship,
+      OdkSfLegacy::OdkField,
+      OdkSfLegacy::OdkFieldSalesforceField
     ].each { |klass|
       fixtures "#{name}/#{klass.table_name}"
       set_fixture_class "#{name}/#{klass.table_name}" => klass
@@ -22,13 +22,13 @@ RSpec.describe "Example Mapping Submission Integration", :type => :integration d
 
   mapping_fixture('complex_survey')
 
-  describe OdkToSalesforce::SubmissionProcessor do
-    let(:mapping_id) { Mapping.first.id }
-    let(:submission_id) { Submission.first.id }
+  describe OdkSfLegacy::OdkToSalesforce::SubmissionProcessor do
+    let(:mapping_id) { OdkSfLegacy::Mapping.first.id }
+    let(:submission_id) { OdkSfLegacy::Submission.first.id }
     subject { described_class.new.perform(mapping_id,submission_id) }
 
     it "creates a object on Salesforce" do
-      VCR.use_cassette("complex_survey", record: :new_episodes) do
+      VCR.use_cassette("complex_survey", record: :once) do
         subject
       end
     end
