@@ -43,7 +43,7 @@
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
-                &nbsp;({{product.votes.length}} votes for integration)
+                &nbsp;(<span id="num_{{product.id}}">{{product.votes.length}}</span> <span>votes for integration</span>)
               </div>
               <h3 class="title">
                 {{product.name}}
@@ -59,8 +59,12 @@
                 DETAILS
               </a>
               -->
-              <a ng-click="changeVote(product.id)" class="details-link">
+              <a ng-click="changeVote('up', product.id)" class="details-link up_{{product.id}}" style="margin-right:40px;">
                 +<i class="fa fa-cube"></i>
+              </a>
+
+              <a ng-click="changeVote('down', product.id)" class="details-link down_{{product.id}}">
+                -<i class="fa fa-cube"></i>
               </a>
   
             </div>

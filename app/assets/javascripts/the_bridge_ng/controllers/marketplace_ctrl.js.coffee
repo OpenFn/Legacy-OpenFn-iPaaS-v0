@@ -32,8 +32,19 @@
     else
       return true
 
-  $scope.changeVote = (product_id) ->
+  $scope.changeVote = (flag, product_id) ->
+    html = $('#num_'+product_id).html()
+    count = parseInt(html)
+    if flag == 'up'
+      $('#num_'+product_id).html count + 1
+      $('.up_'+product_id).hide()
+      $('.down_'+product_id).show()
+    else
+      $('#num_'+product_id).html count - 1
+      $('.up_'+product_id).show()
+      $('.down_'+product_id).hide()
     $http.get('/vote/'+product_id)
+
     return
 
   )
