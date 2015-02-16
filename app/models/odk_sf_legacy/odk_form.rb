@@ -14,7 +14,7 @@ class OdkSfLegacy::OdkForm < ActiveRecord::Base
 
   def populate_fields
     current_user = mapping.user
-    client = OdkSfLegacy::OdkClient.new( current_user.odk_url, username: current_user.odk_username, password: current_user.odk_password )
+    client = OdkClient.new( current_user.odk_url, username: current_user.odk_username, password: current_user.odk_password )
 
     client.get_form(name).parse.sort_by_grouping.each do |field|
       odk_fields.build({

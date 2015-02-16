@@ -22,36 +22,38 @@ SalesForce::Application.routes.draw do
 
   resources :credentials
 
-  resources :mappings do
-
-    member do
-      post :dispatch_surveys
-      post :clone
-      post :clear_cursor
-    end
-
-    resources :salesforce_objects, only: [:create, :destroy, :update] do
+  namespace :odk_sf_legacy, shallow_path: nil, path: nil do
+    resources :mappings do
 
       member do
-        get :refresh_fields
+        post :dispatch_surveys
+        post :clone
+        post :clear_cursor
       end
 
-      resources :salesforce_object_fields, only: [:index]
-      resources :salesforce_relationships, only: [:create, :destroy]
-    end
-    resource :odk_form
-    resources :odk_fields do
-      resources :odk_field_salesforce_fields
-    end
+      resources :salesforce_objects, only: [:create, :destroy, :update] do
 
-    collection do
-      get :get_odk_forms
-      get :get_salesforce_fields
-    end
+        member do
+          get :refresh_fields
+        end
 
-    resources :submissions do
-      member do
-        post :reprocess
+        resources :salesforce_object_fields, only: [:index]
+        resources :salesforce_relationships, only: [:create, :destroy]
+      end
+      resource :odk_form
+      resources :odk_fields do
+        resources :odk_field_salesforce_fields
+      end
+
+      collection do
+        get :get_odk_forms
+        get :get_salesforce_fields
+      end
+
+      resources :submissions do
+        member do
+          post :reprocess
+        end
       end
     end
   end

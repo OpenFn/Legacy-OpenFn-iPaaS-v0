@@ -14,7 +14,7 @@
 
 <div class="container">
   <div class='pull-left'>
-    <%= form_tag dispatch_surveys_mapping_path(@mapping), class: 'form-inline', role: 'form' do %>
+    <%= form_tag dispatch_surveys_odk_sf_legacy_mapping_path(@mapping), class: 'form-inline', role: 'form' do %>
       <div class="form-group">
         <%= text_field_tag :only, params[:only], class: 'form-control', placeholder: 'No. of jobs' %>
       </div>

@@ -1,31 +1,33 @@
-class OdkSfLegacy::Submission < ActiveRecord::Base
-  self.table_name = "odk_sf_legacy_submissions"
-  
-  belongs_to :import
+module OdkSfLegacy
+  class Submission < ActiveRecord::Base
+    self.table_name = "odk_sf_legacy_submissions"
 
-  state_machine :state, initial: :new do
-    state :new
-    state :processing
-    state :success
-    state :error
+    belongs_to :import
 
-    event :process do
-      transition [:new, :error] => :processing
-    end
+    state_machine :state, initial: :new do
+      state :new
+      state :processing
+      state :success
+      state :error
 
-    event :successful do
-      transition :processing => :success
-    end
+      event :process do
+        transition [:new, :error] => :processing
+      end
 
-    event :failed do
-      transition :processing => :error
-    end
+      event :successful do
+        transition :processing => :success
+      end
 
-    before_transition any => :processing do |submission, transition|
-      submission.backtrace = nil
-      submission.message = nil
+      event :failed do
+        transition :processing => :error
+      end
+
+      before_transition any => :processing do |submission, transition|
+        submission.backtrace = nil
+        submission.message = nil
+      end
+
     end
 
   end
-
 end
