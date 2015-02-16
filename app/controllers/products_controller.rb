@@ -22,6 +22,12 @@ class ProductsController < ApplicationController
     }
   end
 
+  def public_connected_count
+    render json: {
+      count: Product.where(integrated: true).count
+    }
+  end
+
   def update
     notification = Salesforce::Notification.new(request.body.read)
     salesforce_product = Salesforce::Listing::Product.new(notification)
