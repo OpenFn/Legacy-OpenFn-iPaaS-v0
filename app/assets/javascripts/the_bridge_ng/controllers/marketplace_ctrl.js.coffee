@@ -34,8 +34,7 @@
       return true
 
   $scope.changeVote = (product_id) ->
-    alert(product_id)
-    $http.get('/vote/'+flag+'/'+product_id)
+    $http.get('/vote/'+product_id)
     return
 
 
