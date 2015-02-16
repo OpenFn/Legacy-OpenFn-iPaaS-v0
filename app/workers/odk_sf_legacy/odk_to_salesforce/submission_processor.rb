@@ -1,12 +1,13 @@
 module OdkSfLegacy
   module OdkToSalesforce
     class SubmissionProcessor
+      attr_reader :all_import_objects
 
       include Sidekiq::Worker
 
       def perform(mapping_id, submission_id)
         @mapping = Mapping.find(mapping_id)
-        @submission = OdkSfLegacy::Submission.find(submission_id)
+        @submission = Submission.find(submission_id)
         @converter = OdkToSalesforce::Converter.new
         @restforce_connection = RestforceService.new(@mapping.user).connection
 
@@ -33,6 +34,9 @@ module OdkSfLegacy
           @submission.message = e.message
           @submission.backtrace = e.backtrace.first(15).join('<br />')
           @submission.failed
+
+          # Reraise the error so tests have some feedback.
+          raise e if Rails.env.test?
         end
       end
 
@@ -60,14 +64,14 @@ module OdkSfLegacy
               next
             end
 
-            create_in_salesforce(salesforce_object, odk_data, i)
+            create_in_salesforce(salesforce_object, odk_data, submission.media_data, i)
           end
         end
 
         submission.successful
       end
 
-      def create_in_salesforce(salesforce_object, submission_data, index)
+      def create_in_salesforce(salesforce_object, submission_data, submission_media_data, index)
         salesforce_fields = salesforce_object.salesforce_fields.joins(:odk_fields)
 
         import_object = OdkToSalesforce::SalesforceObjects::ImportObject.new(@restforce_connection, salesforce_object)
@@ -80,17 +84,22 @@ module OdkSfLegacy
           odk_field_value = @converter.get_field_content(odk_field, submission_data)
           odk_field_value = transform_uuid_value(odk_field_value, salesforce_object, index) if odk_field.is_uuid
 
-          case salesforce_field.data_type
+          case salesforce_field.properties['type']
           when "reference"
             # => This is a lookup field
             import_object.populate_lookup_field(salesforce_field, odk_field_value)
-          when "record_type_id"
+          when "recordTypeId"
             import_object.populate_record_type_field(salesforce_field, odk_field_value)
           when "boolean"
             import_object.attributes[salesforce_field.field_name] = odk_field_value.to_bool
           else
             # => Process the regular field
-            import_object.attributes[salesforce_field.field_name] = odk_field_value
+            import_object.attributes[salesforce_field.field_name] =
+              if odk_field.field_type == "binary"
+                find_full_url_for(submission_media_data, odk_field_value)
+              else
+                odk_field_value
+              end
           end
         end
 
@@ -106,6 +115,15 @@ module OdkSfLegacy
           return "#{uuid}/#{salesforce_object.order}r/#{index + 1}"
         else
           return "#{uuid}/#{salesforce_object.order}"
+        end
+      end
+
+      def find_full_url_for(media_data, filename)
+        if media_data
+          data = media_data.select { |hsh| hsh["filename"] == filename }
+          data.any? ? CGI.unescape(data.first["downloadUrl"]) : filename
+        else
+          filename
         end
       end
     end
