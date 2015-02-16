@@ -90,7 +90,7 @@ Array::filter = (func) -> x for x in @ when func(x)
 
         $http.get '/products/public_count'
         .success (data) ->
-          $scope.productCount = data.count
+          $scope.productPublicCount = data.count
 
       redirectTo: (current, path, search) ->
         if(search.goto)

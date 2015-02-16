@@ -74,7 +74,7 @@ SalesForce::Application.routes.draw do
 
   resources :products, only: [:index, :show] do
     collection do
-      get :count
+      get :public_count
     end
   end
 

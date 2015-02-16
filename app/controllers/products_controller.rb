@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     render json: product.as_json(methods: :tag_list)
   end
 
-  def count
+  def public_count
     render json: {
       count: Product.count
     }
