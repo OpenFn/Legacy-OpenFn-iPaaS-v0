@@ -37,7 +37,6 @@
     $http.get('/vote/'+product_id)
     return
 
-
   )
 
   $http.get('/votes/count').success((data1) ->

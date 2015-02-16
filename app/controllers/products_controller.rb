@@ -45,4 +45,5 @@ class ProductsController < ApplicationController
   def vote_count
     render json: Vote.all
   end
+  
 end

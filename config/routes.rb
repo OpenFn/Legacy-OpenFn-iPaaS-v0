@@ -76,7 +76,6 @@ SalesForce::Application.routes.draw do
   post  "logout", to: "user_sessions#destroy", as: :logout
 
   get '/vote/:product_id', to: "products#vote"
-
   get '/votes/count', to: "votes#count"
 
 
