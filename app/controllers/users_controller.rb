@@ -70,7 +70,7 @@ class UsersController < ApplicationController
 
   def public_count
     render json: {
-      count: User.count
+      count: User.where(role: 'client').count
     }
   end
 

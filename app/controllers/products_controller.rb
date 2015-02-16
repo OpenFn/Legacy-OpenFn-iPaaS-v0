@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
 
   def public_count
     render json: {
-      count: Product.count
+      count: Product.where(enabled: true).count
     }
   end
 
