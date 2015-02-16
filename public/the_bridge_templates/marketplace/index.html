@@ -37,13 +37,13 @@
 
         <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
           <br>
-          <div ng-repeat="product in products | filter:filterProducts" class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="product">
               <div class='rating'>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
-                &nbsp;(n votes for integration)
+                &nbsp;({{votes.length}} votes for integration)
               </div>
               <h3 class="title">
                 {{product.name}}
@@ -59,11 +59,19 @@
                 DETAILS
               </a>
               -->
-              <a ng-href="#" class="details-link">
+              <a ng-click="changeVote(product.id)" class="details-link">
                 +<i class="fa fa-cube"></i>
               </a>
+
+  
             </div>
           </div>
+
+
+
         </div>
 
       </div>
+
+
+   
