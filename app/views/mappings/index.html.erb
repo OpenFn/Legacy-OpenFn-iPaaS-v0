@@ -43,7 +43,7 @@
               aria-valuenow='<%= @mappings.where(active: true).count %>'
               aria-valuemin="0"
               aria-valuemax='<%= current_user.credits %>'
-              style="width: '<%= 100*@mappings.where(active: true).count/current_user.credits %>'%; background: #5A6C77;">
+              style="width: '<%= current_user.credits > 0 ? 100*@mappings.where(active: true).count/current_user.credits : 0 %>'%; background: #5A6C77;">
               <%= @mappings.where(active: true).count %> <i class="fa fa-bolt"></i>
             </div>
             <div class="progress-bar progress-bar-grey"
@@ -51,7 +51,7 @@
               aria-valuenow='<%= @mappings.where(enabled: true).count %>'
               aria-valuemin="0"
               aria-valuemax='<%= current_user.credits %>'
-              style="width: <%= 100*(@mappings.where(enabled: true).count-@mappings.where(active:true).count)/current_user.credits %>%;">
+              style="width: <%= current_user.credits > 0 ? 100*(@mappings.where(enabled: true).count-@mappings.where(active:true).count)/current_user.credits : 0 %>%;">
               <%= @mappings.where(enabled: true).count-@mappings.where(active:true).count %>
             </div>
           </div>
