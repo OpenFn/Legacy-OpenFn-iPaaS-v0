@@ -25,4 +25,15 @@ class Product < ActiveRecord::Base
 
     return product
   end
+
+  def has_vote_for(product, user)
+    vote = Vote.where(:product_id => product.id, :user_id => user.id).first
+    if vote
+      return true
+    else
+      return false
+    end
+  end
+
+
 end

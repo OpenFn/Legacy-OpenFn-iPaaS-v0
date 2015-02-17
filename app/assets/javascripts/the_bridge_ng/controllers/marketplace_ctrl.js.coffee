@@ -10,6 +10,7 @@
 
 
   $scope.filterProducts = (product) ->
+    
     lowercaseSearchText = angular.lowercase($scope.searchText)
     if (angular.lowercase(product.name).indexOf(lowercaseSearchText)!= -1 || 
       (angular.lowercase(product.description) || "").indexOf(lowercaseSearchText)!= -1 || 
@@ -18,6 +19,11 @@
       filtersMatch(product, $scope.searchFilters)
         return true
     return false
+
+
+  $scope.query = (product) ->
+    product.votes = 3
+    return true
 
   tagMatches = (tag_list, text) ->
     if tag_list
@@ -33,13 +39,10 @@
     else
       return true
 
-  $scope.changeVote = (product) ->
-  
-    
+  $scope.changeVoteFor = (product) ->
     $http.get("/products/#{product.id}/vote").success((data) ->
-      console.log(data)
-      return product.demo = data
-
+      console.log(data.hasVoteForUser)
+      product = data
     )
 
     return true
