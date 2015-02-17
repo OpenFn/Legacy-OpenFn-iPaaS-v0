@@ -66,19 +66,13 @@ SalesForce::Application.routes.draw do
     end
   end
 
-  resources :users do
-    collection do
-      get :public_count
-    end
-  end
+  resources :users
 
-  resources :products, only: [:index, :show] do
-    collection do
-      get :public_count
-    end
-  end
+  resources :products, only: [:index, :show]
 
   resources :odk_forms, only: [:index]
+
+  resource :welcome_stats, only: :show
 
   get  "signup", to: "users#new",        as: :signup
   get  "login",  to: "user_sessions#new",     as: :login

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   respond_to :html, :json, :xml
-  skip_before_filter :require_login, only: [:new, :create, :sync, :public_count]
+  skip_before_filter :require_login, only: [:new, :create, :sync]
 
   skip_before_filter :verify_authenticity_token, only: [:sync]
   before_filter :validate_api_admin, only: [:sync]
@@ -67,13 +67,6 @@ class UsersController < ApplicationController
 
   def index
   end
-
-  def public_count
-    render json: {
-      count: User.where(role: 'client').count
-    }
-  end
-
 
   private
 

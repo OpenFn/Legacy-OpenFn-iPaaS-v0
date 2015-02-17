@@ -1,27 +1,64 @@
 <div class="welcome">
   <!-- Full Width Image Header -->
   <header class="header-image">
+    <div class="header-detail">
     <div class="headline">
       <h3>Technology isn't the answer,<br>but it shouldn't be the problem.</h3>
     </div>
+
+    <div class="row hidden-xs" style="height: 350px"></div>
+
+    <div class="row">
+      <div class="col-xs-6 col-sm-2 col-sm-offset-2">
+        <div class="headline numbers">
+          <h3>{{submissionCount | number }}</h3>
+          <h4>TRANSACTIONS</h4>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-2">
+        <div class="headline numbers">
+          <h3>{{productPublicCount}}</h3>
+          <h4>TECHNOLOGIES</h4>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-2">
+        <div class="headline numbers">
+          <h3>{{productConnectedCount}}</h3>
+          <h4>CONNECTED APPS</h4>
+        </div>
+      </div>
+
+      <div class="col-xs-6 col-sm-2">
+        <div class="headline numbers">
+          <h3>{{orgCount}}</h3>
+          <h4>ORGANIZATIONS</h4>
+        </div>
+      </div>
+    </div>
+    </div>
+    
+
   </header>
 
   <!-- Page Content -->
 
-  <div class="featurette dark" id="marketplace">
-    <hr class="light">
+  <div class="featurette" id="marketplace">
+
     <hr class="dark">
+    <hr class="light">
     <div class="container">
   
       <a href="#/marketplace/">
         <div class="row">
-          <div class="col-md-6 col-md-push-6">
+          <div class="col-md-5 col-md-offset-1 col-md-push-6">
             <div class="openmarket-featurette-image center-block">
             </div>
           </div>
           <div class="col-md-6 col-md-pull-6">
             <h2 class="featurette-heading">
-            open<strong>Marketplace</strong> helps you find the tools you need.
+              open<strong>Marketplace</strong> helps you find the tools you need.
             </h2>
             <p class="lead">
               It's an app store for impact-first organizations.
@@ -38,9 +75,9 @@
     </div>    
   </div>
 
-  <div class="featurette" id="integrations">
-    <hr class="dark">
+  <div class="featurette dark" id="integrations">
     <hr class="light">
+    <hr class="dark">
     <div class="container">
 
       <a href="/mappings" ng-click="$event.stopPropagation()">
@@ -72,9 +109,9 @@
     </div>
   </div>
 
-  <div class="featurette dark" id="marketplace">
-    <hr class="light">
+  <div class="featurette" id="marketplace">
     <hr class="dark">
+    <hr class="light">
     <div class="container">
 
       <a href="#/release-notes">
@@ -103,9 +140,9 @@
     </div>      
   </div>
 
-  <div class="featurette">
-    <hr class="dark">
+  <div class="featurette dark">
     <hr class="light">
+    <hr class="dark">
     <div class="container">
 
       <div class="row text-right">
@@ -126,19 +163,19 @@
     </div>
   </div>
 
- <div class="featurette dark" id="marketplace">
-  <hr class="light">
+ <div class="featurette" id="marketplace">
   <hr class="dark">
+  <hr class="light">
 
     <footer>
       
-      <div class="row">
+<!--       <div class="row">
         <div class="text-center">
           <a href="mailto:admin@openfn.org" class="btn btn-danger btn-lg">
             <i class="fa fa-life-buoy"></i> Help!
           </a>
         </div>
-      </div>
+      </div> -->
       
       <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
@@ -152,6 +189,10 @@
       
       <div class="row" id="opensource-links">
         <div class="text-center">
+          <a href="mailto:admin@openfn.org">
+            <i class="fa fa-envelope-o"></i>
+          </a>
+          &nbsp;
           <a href="https://github.com/OpenFn/OpenFn-Site" target="_blank">
             <i class="fa fa-github"></i>
           </a>
