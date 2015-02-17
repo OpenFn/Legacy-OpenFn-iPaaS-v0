@@ -22,8 +22,8 @@ class Salesforce::Listing::UserListing
       'First_Name__c' => first_name,
       'Last_Name__c' => last_name,
       'Organization__c' => organisation,
-      # 'Role__c' => role,
-      # 'Tier__c' => tier,
+      'Role__c' => role,
+      'Tier__c' => tier,
     }
   end
 
@@ -39,8 +39,8 @@ class Salesforce::Listing::UserListing
       'first_name' => first_name,
       'last_name' => last_name,
       'organisation' => organisation,
-      # 'role' => role,
-      # 'tier' => tier,
+      'role' => role,
+      'tier' => tier,
     }
   end
 
