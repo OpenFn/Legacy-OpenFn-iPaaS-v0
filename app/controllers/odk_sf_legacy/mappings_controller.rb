@@ -26,7 +26,7 @@ module OdkSfLegacy
     end
 
     def new
-      @mapping = Mapping.new
+      @mapping = OdkSfLegacy::Mapping.new
     end
 
     def create

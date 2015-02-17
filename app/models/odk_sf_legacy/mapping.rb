@@ -15,7 +15,7 @@ class OdkSfLegacy::Mapping < ActiveRecord::Base
 
   validate do |mapping|
     if mapping.enabled_changed?(to: true)
-      mapping.errors[:base] << "You need more credits to enable this mapping. Contact the administrator or disable any currently-enabled mappings to get more." unless MappingLimiter.new(mapping.user).credits_available?
+      mapping.errors[:base] << "You need more credits to enable this mapping. Contact the administrator or disable any currently-enabled mappings to get more." unless OdkSfLegacy::MappingLimiter.new(mapping.user).credits_available?
     end
   end
 
