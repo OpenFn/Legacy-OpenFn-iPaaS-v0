@@ -74,12 +74,9 @@ Array::filter = (func) -> x for x in @ when func(x)
     .when('/developers', {
       templateUrl: '../the_bridge_templates/static/developers.html'
     })
-    # .when('/welcome', {
-    #   templateUrl: '../the_bridge_templates/static/welcome2.html',
-    # })
 
     .when('/', {
-      templateUrl: '../the_bridge_templates/static/welcome2.html',
+      templateUrl: '../the_bridge_templates/static/welcome.html',
       controller: ($scope, $http) ->
         $scope.productCount = null
         $scope.userCount = null
@@ -89,7 +86,7 @@ Array::filter = (func) -> x for x in @ when func(x)
         $http.get '/welcome_stats'
         .success (data) ->
           $scope.submissionCount = data.submissionCount
-          $scope.userCount = data.userPublicCount
+          $scope.orgCount = data.orgCount
           $scope.productPublicCount = data.productPublicCount
           $scope.productConnectedCount = data.productConnectedCount
 
