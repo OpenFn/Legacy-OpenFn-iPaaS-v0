@@ -22,8 +22,8 @@ class Salesforce::Listing::UserListing
       'First_Name__c' => first_name,
       'Last_Name__c' => last_name,
       'Organization__c' => organisation,
-      'Role__c' => role,
-      'Tier__c' => tier,
+      # 'Role__c' => role,
+      # 'Tier__c' => tier,
     }
   end
 
@@ -39,8 +39,8 @@ class Salesforce::Listing::UserListing
       'first_name' => first_name,
       'last_name' => last_name,
       'organisation' => organisation,
-      'role' => role,
-      'tier' => tier,
+      # 'role' => role,
+      # 'tier' => tier,
     }
   end
 
@@ -53,8 +53,8 @@ class Salesforce::Listing::UserListing
       @first_name = user.first_name
       @last_name = user.last_name
       @organisation = user.organisation
-      @role = user.role
-      @tier = user.tier
+      # @role = user.role
+      # @tier = user.tier
     end
 
     # # This is to map incoming notifications from Salesforce to our DB
