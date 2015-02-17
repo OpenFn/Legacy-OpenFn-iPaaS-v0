@@ -81,6 +81,8 @@ SalesForce::Application.routes.draw do
   post "login",  to: "user_sessions#create",  as: :create_session
   post  "logout", to: "user_sessions#destroy", as: :logout
 
+  get '/products/:product_id/vote', to: "products#vote"
+
   get "metrics", to: "metrics#index", as: :metrics
 
   match "/*path" => redirect("/?goto=%{path}"), via: [:get, :post]
@@ -88,3 +90,5 @@ SalesForce::Application.routes.draw do
   root to: 'home#index'
   # root to: 'mappings#index'
 end
+
+
