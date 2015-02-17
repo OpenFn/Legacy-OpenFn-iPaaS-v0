@@ -3,7 +3,7 @@ class Salesforce::Listing::UserListing
 
   def initialize(source)
     initialize_from_user(source) if source.is_a?(::User)
-    initialize_from_notification(source) if source.is_a?(Salesforce::Notification)
+    # initialize_from_notification(source) if source.is_a?(Salesforce::Notification)
 
     # else
     raise ArgumentError, "Invalid notification: #{source.class}. Must be User or Salesforce::Notification" unless [User, Salesforce::Notification].include?(source.class)
@@ -45,7 +45,7 @@ class Salesforce::Listing::UserListing
   end
 
   private
-  
+
     def initialize_from_user(user)
       @id = user.id
       @credits = user.credits || 0
@@ -57,9 +57,9 @@ class Salesforce::Listing::UserListing
       @tier = user.tier
     end
 
-    # This is to map incoming notifications from Salesforce to our DB
+    # # This is to map incoming notifications from Salesforce to our DB
     # def initialize_from_notification(notification)
-    #   Account_Number__c is the FK for id for a User.
+    #   # Account_Number__c is the FK for id for a User.
     #   @id = notification.at_css('Account_Number__c').try(:content)
     #   @credits = notification.at_css('Credits__c').try(:content)
     #   @email = notification.at_css('Email__c').try(:content)
@@ -68,6 +68,5 @@ class Salesforce::Listing::UserListing
     #   @organisation = notification.at_css('Organization__c').try(:content)
     #   @role = notification.at_css('Role__c').try(:content)
     #   @tier = notification.at_css('Tier__c').try(:content)
-    #   @sf_id = notifcation.at_css('Id').try(:content)
     # end
 end
