@@ -20,11 +20,6 @@
         return true
     return false
 
-
-  $scope.query = (product) ->
-    product.votes = 3
-    return true
-
   tagMatches = (tag_list, text) ->
     if tag_list
       return tag_list.some (tag) ->
@@ -41,8 +36,8 @@
 
   $scope.changeVoteFor = (product) ->
     $http.get("/products/#{product.id}/vote").success((data) ->
-      console.log(data.hasVoteForUser)
-      product = data
+      console.log(data)
+      product.votes_count = data.votes_count
     )
 
     return true
