@@ -34,15 +34,14 @@ class ProductsController < ApplicationController
   end
 
   def vote
-    vote = Vote.where(:user_id => current_user.id, :product_id => params[:product_id]).first
-    if vote.present?
-      vote.destroy
-    else
-      Vote.create(:user_id => current_user.id, :product_id => params[:product_id])    
-    end
+    product = Product.find(params[:product_id])
+    vote = Vote.where(:user_id => current_user.id, :product_id => product.id).first
+     if vote.present?
+       vote.destroy
+     else
+      Vote.create(:user_id => current_user.id, :product_id => product.id)    
+     end
+    render json: product.as_json(methods: :product)
   end
 
-  def vote_count
-    render json: Vote.all
-  end
 end

@@ -32,20 +32,25 @@
     else
       return true
 
-  $scope.changeVote = (flag, product_id) ->
-    html = $('#num_'+product_id).html()
+  $scope.changeVote = (flag, product) ->
+    
+    html = $('#num_'+product).html()
     count = parseInt(html)
     if flag == 'up'
-      $('#num_'+product_id).html count + 1
-      $('.up_'+product_id).hide()
-      $('.down_'+product_id).show()
+      $('#num_'+product).html count + 1
+      $('.up_'+product).hide()
+      $('.down_'+product).show()
     else
-      $('#num_'+product_id).html count - 1
-      $('.up_'+product_id).show()
-      $('.down_'+product_id).hide()
-    $http.get('/vote/'+product_id)
+      $('#num_'+product).html count - 1
+      $('.up_'+product).show()
+      $('.down_'+product).hide()
+    $http.get("/products/"+product+"/vote.json").success((data) ->
+      console.log(data)
+      $scope.product = data.product
 
-    return
+    )
+
+    return true
 
   )
 

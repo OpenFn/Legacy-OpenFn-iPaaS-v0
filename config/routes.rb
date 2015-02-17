@@ -75,10 +75,7 @@ SalesForce::Application.routes.draw do
   post "login",  to: "user_sessions#create",  as: :create_session
   post  "logout", to: "user_sessions#destroy", as: :logout
 
-  get '/vote/:product_id', to: "products#vote"
-
-  get '/votes/count', to: "votes#count"
-
+  get '/products/:product_id/vote', to: "products#vote"
 
   get "metrics", to: "metrics#index", as: :metrics
 
