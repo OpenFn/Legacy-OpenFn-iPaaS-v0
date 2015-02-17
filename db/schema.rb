@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217080204) do
+ActiveRecord::Schema.define(version: 20150217143344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,20 @@ ActiveRecord::Schema.define(version: 20150217080204) do
   end
 
   add_index "odk_forms", ["mapping_id"], name: "index_odk_forms_on_mapping_id", using: :btree
+
+  create_table "plans", force: true do |t|
+    t.string   "name"
+    t.decimal  "price"
+    t.integer  "project_limit"
+    t.integer  "user_limit"
+    t.integer  "connected_app_limit"
+    t.integer  "map_limit"
+    t.string   "support_type"
+    t.integer  "job_limit"
+    t.string   "sync_interval"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "products", force: true do |t|
     t.string  "name"
