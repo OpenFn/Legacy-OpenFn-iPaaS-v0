@@ -35,5 +35,9 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def votes_count
+    return 3
+  end
+
 
 end
