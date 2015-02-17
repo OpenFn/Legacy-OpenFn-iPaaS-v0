@@ -1,5 +1,5 @@
 class Salesforce::Listing::UserListing
-  attr_reader :id, :credits, :email, :first_name, :last_name, :organisation
+  attr_reader :id, :credits, :email, :first_name, :last_name, :organisation, :tier
 
   def initialize(source)
     initialize_from_user(source) if source.is_a?(::User)
