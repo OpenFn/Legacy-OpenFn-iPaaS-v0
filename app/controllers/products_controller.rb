@@ -41,7 +41,8 @@ class ProductsController < ApplicationController
      else
       Vote.create(:user_id => current_user.id, :product_id => product.id)    
      end
-    render json: product.as_json(methods: :product)
+    votes = product.votes.count
+    render json: votes.as_json(methods: :votes)
   end
 
 end
