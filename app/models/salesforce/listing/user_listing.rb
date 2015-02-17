@@ -13,6 +13,7 @@ class Salesforce::Listing::UserListing
     'User_Account__c'
   end
 
+  # here we define what data is sent to Salesforce
   def salesforce_attributes
     {
       'Account_Number__c' => id,
@@ -40,11 +41,11 @@ class Salesforce::Listing::UserListing
       'organisation' => organisation,
       'role' => role,
       'tier' => tier,
-      'sf_id' => sf_id
     }
   end
 
   private
+  
     def initialize_from_user(user)
       @id = user.id
       @credits = user.credits || 0
