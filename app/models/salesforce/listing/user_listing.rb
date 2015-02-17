@@ -15,29 +15,34 @@ class Salesforce::Listing::UserListing
 
   def salesforce_attributes
     {
-      'Account_Number__c' => id,
+      # 'Account_Number__c' => id,
       'Credits__c' => credits,
       'Email__c' => email,
       'First_Name__c' => first_name,
       'Last_Name__c' => last_name,
       'Organization__c' => organisation,
-      'Role' => role
+      'Role__c' => role,
+      'Tier__c' => tier,
+      'Id' => sf_id
     }
   end
 
   def salesforce_upsert_key
-    'Account_Number__c'
+    # 'Account_Number__c'
+    'Id'
   end
 
   def attributes
     {
-      'id' => id,
+      # 'id' => id,
       'credits' => credits,
       'email' => email,
       'first_name' => first_name,
       'last_name' => last_name,
       'organisation' => organisation,
-      'role' => role
+      'role' => role,
+      'tier' => tier,
+      'sf_id' => sf_id
     }
   end
 
@@ -50,16 +55,19 @@ class Salesforce::Listing::UserListing
       @last_name = user.last_name
       @organisation = user.organisation
       @role = user.role
+      @tier = user.tier
     end
 
     def initialize_from_notification(notification)
       # Account_Number__c is the FK for id for a User.
-      @id = notification.at_css('Account_Number__c').try(:content)
+      # @id = notification.at_css('Account_Number__c').try(:content)
       @credits = notification.at_css('Credits__c').try(:content)
       @email = notification.at_css('Email__c').try(:content)
       @first_name = notification.at_css('First_Name__c').try(:content)
       @last_name = notification.at_css('Last_Name__c').try(:content)
       @organisation = notification.at_css('Organization__c').try(:content)
       @role = notification.at_css('Role__c').try(:content)
+      @tier = notification.at_css('Tier__c').try(:content)
+      @sf_id = notifcation.at_css('Id').try(:content)
     end
 end
