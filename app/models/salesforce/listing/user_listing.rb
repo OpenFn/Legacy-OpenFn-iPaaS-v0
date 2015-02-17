@@ -22,7 +22,7 @@ class Salesforce::Listing::UserListing
       'First_Name__c' => first_name,
       'Last_Name__c' => last_name,
       'Organization__c' => organisation,
-      'Role__c' => role,
+      # 'Role__c' => role,
       'Tier__c' => tier
     }
   end
@@ -39,7 +39,7 @@ class Salesforce::Listing::UserListing
       'first_name' => first_name,
       'last_name' => last_name,
       'organisation' => organisation,
-      'role' => role,
+      # 'role' => role,
       'tier' => tier
     }
   end
@@ -53,7 +53,7 @@ class Salesforce::Listing::UserListing
       @first_name = user.first_name
       @last_name = user.last_name
       @organisation = user.organisation
-      @role = user.role
+      # @role = user.role
       @tier = user.tier
     end
 
@@ -66,7 +66,7 @@ class Salesforce::Listing::UserListing
       @first_name = notification.at_css('First_Name__c').try(:content)
       @last_name = notification.at_css('Last_Name__c').try(:content)
       @organisation = notification.at_css('Organization__c').try(:content)
-      @role = notification.at_css('Role__c').try(:content)
+      # @role = notification.at_css('Role__c').try(:content)
       @tier = notification.at_css('Tier__c').try(:content)
     end
 end
