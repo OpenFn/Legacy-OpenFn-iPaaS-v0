@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217150221) do
+ActiveRecord::Schema.define(version: 20150218094150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20150217150221) do
     t.datetime "publication_date"
     t.text     "title"
   end
+
+  create_table "collaborations", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "collaborations", ["project_id"], name: "index_collaborations_on_project_id", using: :btree
+  add_index "collaborations", ["user_id"], name: "index_collaborations_on_user_id", using: :btree
 
   create_table "connected_apps", force: true do |t|
     t.string  "name"
@@ -50,6 +60,15 @@ ActiveRecord::Schema.define(version: 20150217150221) do
     t.integer "mapping_id"
     t.string  "source_field"
     t.string  "destination_field"
+  end
+
+  create_table "imports", force: true do |t|
+    t.string   "odk_formid"
+    t.string   "last_uuid"
+    t.text     "cursor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "num_imported", default: 0
   end
 
   create_table "legacy_odk_field_salesforce_fields", force: true do |t|
@@ -79,6 +98,17 @@ ActiveRecord::Schema.define(version: 20150217150221) do
     t.integer  "destination_connected_app_id"
     t.boolean  "active"
     t.boolean  "enabled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "project_id"
+  end
+
+  add_index "mappings", ["project_id"], name: "index_mappings_on_project_id", using: :btree
+
+  create_table "odk_fields", force: true do |t|
+    t.string   "field_name"
+    t.string   "field_type"
+    t.integer  "salesforce_field_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -180,6 +210,30 @@ ActiveRecord::Schema.define(version: 20150217150221) do
     t.json     "media_data"
   end
 
+  create_table "organizations", force: true do |t|
+    t.integer  "plan_id"
+    t.integer  "credits",    default: 0
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "organizations", ["plan_id"], name: "index_organizations_on_plan_id", using: :btree
+
+  create_table "plans", force: true do |t|
+    t.string   "name"
+    t.decimal  "price"
+    t.integer  "project_limit"
+    t.integer  "user_limit"
+    t.integer  "connected_app_limit"
+    t.integer  "map_limit"
+    t.string   "support_type"
+    t.integer  "job_limit"
+    t.string   "sync_interval"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "products", force: true do |t|
     t.string  "name"
     t.text    "description"
@@ -196,18 +250,23 @@ ActiveRecord::Schema.define(version: 20150217150221) do
     t.string  "integration_type"
   end
 
-  create_table "plans", force: true do |t|
-    t.string   "name"
-    t.decimal  "price"
-    t.integer  "project_limit"
-    t.integer  "user_limit"
-    t.integer  "connected_app_limit"
-    t.integer  "map_limit"
-    t.string   "support_type"
-    t.integer  "job_limit"
-    t.string   "sync_interval"
+  create_table "projects", force: true do |t|
+    t.integer  "organization_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  add_index "projects", ["organization_id"], name: "index_projects_on_organization_id", using: :btree
+
+  create_table "salesforce_fields", force: true do |t|
+    t.integer  "mapping_id"
+    t.string   "object_name"
+    t.string   "field_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "data_type"
+    t.string   "label_name"
+    t.boolean  "perform_lookups", default: false
   end
 
   create_table "submission_records", force: true do |t|
@@ -262,9 +321,11 @@ ActiveRecord::Schema.define(version: 20150217150221) do
     t.string   "organisation"
     t.string   "tier"
     t.integer  "plan_id"
+    t.integer  "organization_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
   add_index "users", ["plan_id"], name: "index_users_on_plan_id", using: :btree
 
 end
