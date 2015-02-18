@@ -4,6 +4,7 @@ require 'admin_constraint'
 SalesForce::Application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
+  mount Stripe::Engine => '/stripe'
 
   get "submissions_controller/index"
 

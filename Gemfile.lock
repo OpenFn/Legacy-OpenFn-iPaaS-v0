@@ -292,6 +292,9 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     state_machine (1.2.0)
+    stripe-rails (0.3.1)
+      rails (>= 3)
+      stripe
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
@@ -360,6 +363,7 @@ DEPENDENCIES
   spring-commands-rspec
   state_machine
   stripe!
+  stripe-rails
   typhoeus
   uglifier (>= 1.3.0)
   vcr
