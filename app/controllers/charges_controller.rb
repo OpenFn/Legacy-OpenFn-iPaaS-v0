@@ -5,10 +5,12 @@ end
 
 def create
   # Amount in cents
-  @amount = 500
+  @amount = 7900
 
+  #Stu, we need to wrap this in a try catch to handle errors: https://stripe.com/docs/api#errors
   customer = Stripe::Customer.create(
     :email => 'example@stripe.com',
+    :plan => "Startup",
     :card  => params[:stripeToken]
   )
 
