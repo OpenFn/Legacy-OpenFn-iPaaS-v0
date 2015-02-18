@@ -180,6 +180,20 @@ ActiveRecord::Schema.define(version: 20150217150221) do
     t.json     "media_data"
   end
 
+  create_table "plans", force: true do |t|
+    t.string   "name"
+    t.decimal  "price"
+    t.integer  "project_limit"
+    t.integer  "user_limit"
+    t.integer  "connected_app_limit"
+    t.integer  "map_limit"
+    t.string   "support_type"
+    t.integer  "job_limit"
+    t.string   "sync_interval"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "products", force: true do |t|
     t.string  "name"
     t.text    "description"
@@ -194,20 +208,6 @@ ActiveRecord::Schema.define(version: 20150217150221) do
     t.text    "detailed_description"
     t.string  "update_link"
     t.string  "integration_type"
-  end
-
-  create_table "plans", force: true do |t|
-    t.string   "name"
-    t.decimal  "price"
-    t.integer  "project_limit"
-    t.integer  "user_limit"
-    t.integer  "connected_app_limit"
-    t.integer  "map_limit"
-    t.string   "support_type"
-    t.integer  "job_limit"
-    t.string   "sync_interval"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "submission_records", force: true do |t|
@@ -266,5 +266,12 @@ ActiveRecord::Schema.define(version: 20150217150221) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["plan_id"], name: "index_users_on_plan_id", using: :btree
+
+  create_table "votes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
