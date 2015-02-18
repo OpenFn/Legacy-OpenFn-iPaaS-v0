@@ -27,16 +27,11 @@ class Product < ActiveRecord::Base
   end
 
   def has_vote_for(user)
-    vote = Vote.where(:product_id => self.id, :user_id => user.id).first
-    if vote
-      return true
-    else
-      return false
-    end
+    votes.where(user: user).any?
   end
 
   def votes_count
-    return self.votes.count
+    votes.count
   end
 
 

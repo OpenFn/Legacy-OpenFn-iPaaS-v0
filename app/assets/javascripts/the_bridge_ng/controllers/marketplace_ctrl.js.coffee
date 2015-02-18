@@ -3,11 +3,10 @@
   $scope.searchText = ""
   $scope.searchFilters = {}
   
-  $http.get('/products.json').success((data) ->
+  $http.get('/products.json').success (data) ->
     $scope.products = data.products
     if $routeParams.search
       $scope.searchText = $routeParams.search
-
 
   $scope.filterProducts = (product) ->
     
@@ -35,15 +34,8 @@
       return true
 
   $scope.changeVoteFor = (product) ->
-    $http.get("/products/#{product.id}/vote").success((data) ->
-      console.log(data)
-      product.votes_count = data.votes_count
-    )
-
-    return true
-
-  )
-
+    $http.get("/products/#{product.id}/vote").success (data) ->
+      angular.extend(product,data)
 
 
 ]
