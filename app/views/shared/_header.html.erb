@@ -4,7 +4,7 @@
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-    
+
       <button type="button" class="navbar-toggle collapsed" ng-click="isCollapsed = !isCollapsed">
         <span class="sr-only">Toggle navigation</span><i class="fa fa-bars" style="color: #3f5666"></i>
       </button>
@@ -12,7 +12,7 @@
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-collapse collapse" collapse="isCollapsed">
-      
+
       <ul class="nav navbar-nav">
         <li>
           <%= link_to "Marketplace", "/#/marketplace", 'ng-click' => "isCollapsed = !isCollapsed" %>
@@ -51,8 +51,13 @@
               <% end %>
           </li>
         <% end %>
-      
+
         <% if current_user %>
+          <%if current_user.client_admin?%>
+            <li>
+                <a href="javascript:;"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#inviteModal">Invite</button></a>
+            </li>
+          <%end%>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
@@ -73,7 +78,7 @@
             </ul>
           </li>
         <% end %>
-          
+
         <% unless current_user %>
           <li>
             <%= link_to "/login", method: :get do %>
@@ -89,3 +94,6 @@
 
     </div>
 </nav>
+<%if current_user && current_user.client_admin?%>
+  <%=render 'shared/invite_modal'%>
+<%end%>

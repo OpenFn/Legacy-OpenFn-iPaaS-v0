@@ -45,6 +45,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem "active_model_serializers"
 
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 group :production do
   gem 'rails_12factor'
   gem 'rack-zippy'

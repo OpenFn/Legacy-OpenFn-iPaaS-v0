@@ -7,7 +7,7 @@
 
   <h1><i class="fa fa-user"></i> your <strong>Account</strong></h1>
   <h3>Manage credentials and add <strong>credits</strong>.</h3>
-  
+
 <% else %>
 
   <h1><i class="fa fa-user"></i> create <strong>Account</strong></h1>
@@ -26,7 +26,7 @@
     <br>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    
+
 <!--   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
       <div class="panel-heading" role="tab" id="headingOne">
@@ -39,7 +39,7 @@
       <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
       <div class="panel-body"> -->
 
-<% if current_user %> 
+<% if current_user %>
       <div class="row">
 
         <div class="col-md-4">
@@ -51,11 +51,11 @@
           <h1><%= @user.mappings.enabled.count %></h1>
           <h4>Enabled maps</h4>
         </div>
-        
+
         <div class="col-md-4">
           <h1><i class="fa fa-credit-card"></i> / <i class="fa fa-cc-paypal"></i></h1>
           <h4>Accepting cards &amp; Paypal soon.</h4>
-          
+
 <!--           <div class="paypal-button">
             <form action="<%= ENV['PAYPAL_URI'] %>" method="post" target="_top">
               <input type="hidden" name="cmd" value="_s-xclick">
@@ -126,15 +126,33 @@
                     <%= f.text_field :last_name, class: 'form-control' %>
                   </div>
                   <div class="form-group">
-                    <%= f.label :organisation %>
-                    <%= f.text_field :organisation, class: 'form-control' %>
+                    <%= f.label 'Organisation' %>
+
+                    <%=f.fields_for :organization do|org|%>
+                      <%= org.text_field :name, class: 'form-control' %>
+                    <%end%>
+                  </div>
+                  <div class="form-group">
+                    <div class="btn-group">
+                      <a class="btn btn-success dropdown-toggle plan_dropdwn" data-toggle="dropdown" href="#">
+                        Select: Plan
+                        <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a href="javascript:;">Free</a></li>
+                        <li><a href="javascript:;" id="payButton1">Entry</a></li>
+                        <li><a href="javascript:;" id="payButton1">Startup</a></li>
+                        <li><a href="javascript:;" id="payButton1">Growth</a></li>
+                        <li><a href="javascript:;" id="payButton1">Enterprise</a></li>
+                      </ul>
+                    </div>
                   </div>
                   <% if current_user %>
                     <%= f.submit "Update", class: 'btn btn-primary' %>
                   <% else %>
                     <%= f.submit "Sign up", class: 'btn btn-success' %>
                   <% end %>
-
+                  <script src="https://checkout.stripe.com/checkout.js"></script>
               <% end %>
           </div>
         </div>
@@ -205,7 +223,7 @@
               <p>5. Copy your security token from your email and paste it here.</p>
             </div>
           </div>
-          
+
           <div class="form-group">
             <a data-toggle="collapse" data-parent="#accordion21" href="#collapseTwoTwo">
               <%= f.label :sf_app_key, "Consumer Key" %>
@@ -252,3 +270,27 @@
     </div>
   </div>
 </div>
+
+<script>
+  var handler = StripeCheckout.configure({
+    key: "<%= Rails.configuration.stripe[:publishable_key] %>",
+    token: function(token) {
+      console.log(token);
+      // Use the token to create the charge with a server-side script.
+      // You can access the token ID with `token.id`
+    }
+  });
+
+  $('#payButton').on('click', function(e) {
+    // Open Checkout with further options
+    handler.open({
+      name: 'OpenFn'
+    });
+    e.preventDefault();
+  });
+
+  // Close Checkout on page navigation
+  $(window).on('popstate', function() {
+    handler.close();
+  });
+</script>
