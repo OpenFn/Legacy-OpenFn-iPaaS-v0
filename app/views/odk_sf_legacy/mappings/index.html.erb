@@ -1,0 +1,121 @@
+</div>
+</div>
+<div class="ideas">
+
+  <header class="header-image">
+    <div class="headline">
+      <h1><i class="fa fa-cubes"></i>
+   open<strong>Integrations</strong></h1>
+      <h3>Your apps are <strong>better</strong> together.</h3>
+      </div>
+  </header>
+
+  <div class="featurette mappings">
+    <hr class="light">
+    <hr class="dark">
+    <br>
+    
+    <div class="container">
+   
+    <div class="row">
+
+        <div class="col-md-2 text-center"><br>
+          <%= button_to "Create new map", [:new, :odk_sf_legacy_mapping], class: 'btn btn-success' %>
+        </div>
+        <div class="col-md-2 text-center">
+          <div class="content">
+            Subscription Tier
+          </div>
+          <h4 class="title">
+            Pilot A
+          </h4>
+          <div class="content">
+            $ /mo.
+          </div>
+        </div>
+        <div class="col-md-3 text-center">
+          <div class="content">
+            Maps
+          </div><br>
+          <div class="progress">
+            <div class="progress-bar progress-bar-bolt"
+              role="progressbar"
+              aria-valuenow='<%= @mappings.where(active: true).count %>'
+              aria-valuemin="0"
+              aria-valuemax='<%= current_user.credits %>'
+              style="width: '<%= current_user.credits > 0 ? 100*@mappings.where(active: true).count/current_user.credits : 0 %>'%; background: #5A6C77;">
+              <%= @mappings.where(active: true).count %> <i class="fa fa-bolt"></i>
+            </div>
+            <div class="progress-bar progress-bar-grey"
+              role="progressbar"
+              aria-valuenow='<%= @mappings.where(enabled: true).count %>'
+              aria-valuemin="0"
+              aria-valuemax='<%= current_user.credits %>'
+              style="width: <%= current_user.credits > 0 ? 100*(@mappings.where(enabled: true).count-@mappings.where(active:true).count)/current_user.credits : 0 %>%;">
+              <%= @mappings.where(enabled: true).count-@mappings.where(active:true).count %>
+            </div>
+          </div>
+          <div class="content">
+
+<!-- Here -->
+            <%= @mappings.where(enabled: true).count %>/<%= current_user.credits %> maps in use
+          
+
+          </div>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="content">
+            Jobs
+          </div><br>
+          <div class="progress">
+            <div class="progress-bar progress-bar-grey" role="progressbar" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100" style="width: 43%;">
+              *uncapped*
+            </div>
+          </div>
+          <div class="content">
+            *uncapped* of 1,000/mo.
+          </div>
+        </div>
+        <!-- <div class="col-md-3">
+          <div class="form-group">
+              <label class="control-label">Change Tier:</label>
+              <div class="input-group">
+                <select class="form-control">
+                  <option>Micro, 1(100), $10/mo.</option>
+                  <option>Small, 3(1000), $29/mo.</option>
+                  <option>Medium, 5(2000), $59/mo.</option>
+                  <option>Large, 10(10,000), $100/mo.</option>
+                </select>
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="button">Go!</button>
+                </span>
+              </div>
+            </div>
+          </div> -->
+      </div>
+    </div>
+
+    <br>  
+
+    <div class="container">
+      <table class='table table-striped'>
+        <thead>
+          <tr>
+            <th>Label</th>
+            <th>Source <i class="fa fa-cube"></i></th>
+            <th>Destination <i class="fa fa-cube"></i></th>
+            <th align="center" >Enabled?</th>
+            <th align="center" >Auto sync</th>
+            <th align="center" >History</th>
+            <th align="center">Destroy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render @mappings %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>

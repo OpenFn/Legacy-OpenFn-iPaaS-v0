@@ -81,7 +81,20 @@ Array::filter = (func) -> x for x in @ when func(x)
       templateUrl: '../the_bridge_templates/vote.html',
     })
     .when('/', {
-      templateUrl: '../the_bridge_templates/static/welcome2.html',
+      templateUrl: '../the_bridge_templates/static/welcome.html',
+      controller: ($scope, $http) ->
+        $scope.productCount = null
+        $scope.userCount = null
+        $scope.submissionCount = null
+        $scope.productConnectedCount = null
+
+        $http.get '/welcome_stats'
+        .success (data) ->
+          $scope.submissionCount = data.submissionCount
+          $scope.orgCount = data.orgCount
+          $scope.productPublicCount = data.productPublicCount
+          $scope.productConnectedCount = data.productConnectedCount
+
       redirectTo: (current, path, search) ->
         if(search.goto)
           return "/" + search.goto

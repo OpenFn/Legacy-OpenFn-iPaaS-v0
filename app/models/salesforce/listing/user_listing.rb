@@ -1,5 +1,5 @@
 class Salesforce::Listing::UserListing
-  attr_reader :id, :credits, :email, :first_name, :last_name, :organisation
+  attr_reader :id, :credits, :email, :first_name, :last_name, :organisation, :tier, :role
 
   def initialize(source)
     initialize_from_user(source) if source.is_a?(::User)
@@ -13,6 +13,7 @@ class Salesforce::Listing::UserListing
     'User_Account__c'
   end
 
+  # here we define what data is sent to Salesforce
   def salesforce_attributes
     {
       'Account_Number__c' => id,
@@ -20,7 +21,9 @@ class Salesforce::Listing::UserListing
       'Email__c' => email,
       'First_Name__c' => first_name,
       'Last_Name__c' => last_name,
-      'Organization__c' => organisation
+      'Organization__c' => organisation,
+      'Role__c' => role,
+      'Tier__c' => tier
     }
   end
 
@@ -35,11 +38,14 @@ class Salesforce::Listing::UserListing
       'email' => email,
       'first_name' => first_name,
       'last_name' => last_name,
-      'organisation' => organisation
+      'organisation' => organisation,
+      'role' => role,
+      'tier' => tier
     }
   end
 
   private
+
     def initialize_from_user(user)
       @id = user.id
       @credits = user.credits || 0
@@ -47,8 +53,11 @@ class Salesforce::Listing::UserListing
       @first_name = user.first_name
       @last_name = user.last_name
       @organisation = user.organisation
+      @role = user.role
+      @tier = user.tier
     end
 
+    # This is to map incoming notification data to our DB
     def initialize_from_notification(notification)
       # Account_Number__c is the FK for id for a User.
       @id = notification.at_css('Account_Number__c').try(:content)
@@ -57,5 +66,7 @@ class Salesforce::Listing::UserListing
       @first_name = notification.at_css('First_Name__c').try(:content)
       @last_name = notification.at_css('Last_Name__c').try(:content)
       @organisation = notification.at_css('Organization__c').try(:content)
+      @role = notification.at_css('Role__c').try(:content)
+      @tier = notification.at_css('Tier__c').try(:content)
     end
 end

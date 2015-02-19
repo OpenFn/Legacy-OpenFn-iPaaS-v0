@@ -8,7 +8,7 @@
       <button type="button" class="navbar-toggle collapsed" ng-click="isCollapsed = !isCollapsed">
         <span class="sr-only">Toggle navigation</span><i class="fa fa-bars" style="color: #3f5666"></i>
       </button>
-      <a class="navbar-brand" href="/#/welcome">open[fn]</a>
+      <a class="navbar-brand" href="/">open[fn]</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-collapse collapse" collapse="isCollapsed">
@@ -18,7 +18,7 @@
           <%= link_to "Marketplace", "/#/marketplace", 'ng-click' => "isCollapsed = !isCollapsed" %>
         </li>
         <li>
-          <%= link_to "Integrations", mappings_path, 'ng-click' => "$event.stopPropagation()" %>
+          <%= link_to "Integrations", odk_sf_legacy_mappings_path, 'ng-click' => "$event.stopPropagation()" %>
         </li>
 <!--    <li>
           <%= link_to "Pricing", "/#/pricing" %>
