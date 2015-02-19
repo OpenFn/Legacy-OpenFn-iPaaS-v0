@@ -30,7 +30,7 @@
               <i class="fa fa-plus"></i> Add your product...
             </a>
             <label style="float: right;" class="btn btn-caution" ng-model="searchFilters.integrated" btn-checkbox>
-                <i class="fa fa-cubes"></i>  Integrated?
+                <i class="fa fa-plug"></i>  Integrated?
             </label>
           </div>
         </div>
@@ -39,11 +39,13 @@
           <br>
           <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="product">
-              <div class='rating'>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                &nbsp;({{product.votes_count}} votes for integration)
+              <div class='rating' style="color: #f8ca4d">
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                &nbsp;<span style="color: #F2EFE6">(<span style="color: #f8ca4d">0</span> ratings, <span style="color: #f8ca4d">{{product.votes_count}}</span> votes)</span>
               </div>
               <h3 class="title">
                 {{product.name}}
@@ -60,9 +62,11 @@
               </a>
               -->
 
-
-              <a ng-click="changeVoteFor(product)" class="details-link up_{{product.id}}">
-                +<i class="fa fa-cube"></i>
+              <a href="/mappings" class="details-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
+                <i class="fa fa-plug"></i>
+              </a>
+              <a ng-click="changeVoteFor(product)" class="details-link" ng-show="!product.integrated">
+                <i ng-class="{'fa ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>
               </a>
 
   

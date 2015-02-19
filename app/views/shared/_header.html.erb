@@ -15,14 +15,14 @@
       
       <ul class="nav navbar-nav">
         <li>
-          <%= link_to "Marketplace", "/#/marketplace", 'ng-click' => "isCollapsed = !isCollapsed" %>
+          <%= link_to "Marketplace", "/#/marketplace"%>
         </li>
         <li>
           <%= link_to "Integrations", odk_sf_legacy_mappings_path, 'ng-click' => "$event.stopPropagation()" %>
         </li>
-<!--    <li>
+        <li>
           <%= link_to "Pricing", "/#/pricing" %>
-        </li> -->
+        </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Ideas <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
@@ -34,10 +34,10 @@
               </li>
               <li class="divider"></li>
               <li>
-                <%= link_to "Release Notes", "/#/release-notes", 'ng-click' => "isCollapsed = !isCollapsed" %>
+                <%= link_to "Release Notes", "/#/release-notes"%>
               </li>
               <li>
-                <%= link_to "Developers", "/#/developers", 'ng-click' => "isCollapsed = !isCollapsed" %>
+                <%= link_to "Developers", "/#/developers"%>
               </li>
             </ul>
         </li>

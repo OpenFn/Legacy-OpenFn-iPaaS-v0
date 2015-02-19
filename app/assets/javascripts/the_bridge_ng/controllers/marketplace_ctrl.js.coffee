@@ -34,8 +34,12 @@
       return true
 
   $scope.changeVoteFor = (product) ->
-    $http.get("/products/#{product.id}/vote").success (data) ->
-      angular.extend(product,data)
-
+    $http.get("/products/#{product.id}/vote")
+      .success (data) ->
+        angular.extend(product,data)
+    
+      .error (data, status, headers, config) ->
+        window.location="/login" if status == 401
+        # console.log arguments
 
 ]

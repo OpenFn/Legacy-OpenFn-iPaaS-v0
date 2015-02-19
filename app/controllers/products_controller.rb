@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:update]
   before_filter :validate_api_admin, only: [:update]
 
-  skip_before_filter :require_login
+  skip_before_filter :require_login, except: [:vote]
 
   def index
     render json: Product.enabled.order(:name).map { |p|

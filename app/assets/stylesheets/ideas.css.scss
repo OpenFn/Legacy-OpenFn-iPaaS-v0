@@ -124,6 +124,9 @@
 
  .title {
     color: $off-white;
+    font-size: rem-calc(25px);
+    font-weight: $bold;
+    text-transform: uppercase;
   }
 
   .content {
