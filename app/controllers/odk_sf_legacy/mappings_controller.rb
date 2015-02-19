@@ -110,7 +110,7 @@ module OdkSfLegacy
     end
 
     def ensure_valid_credentials
-      redirect_to(:mappings) unless current_user.valid_credentials
+      redirect_to odk_sf_legacy_mappings_path unless current_user.valid_credentials
     end
   end
 end
