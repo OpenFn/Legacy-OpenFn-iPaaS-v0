@@ -8,16 +8,12 @@ class ProductsController < ApplicationController
   skip_before_filter :require_login
 
   def index
-    render json: Product.enabled.order(:name).map { |p|
-        p.as_json(methods: [:votes_count, :tag_list]).
-          merge "hasVoteForUser" => p.has_vote_for(current_user)
-      }
+    render json: Product.enabled.order('name').as_json(methods: [:tag_list, :votes_count])
   end
 
   def show
     product = Product.find(params[:id])
-    render json: product.as_json(methods: [:votes_count, :tag_list]).
-      merge("hasVoteForUser" => product.has_vote_for(current_user))
+    render json: product.as_json(methods: :tag_list)
   end
 
   def update
@@ -39,14 +35,25 @@ class ProductsController < ApplicationController
 
   def vote
     product = Product.find(params[:product_id])
-    if product.has_vote_for(current_user)
-      product.votes.where(user: current_user).destroy_all
+    if current_user
+      vote = Vote.where(:user_id => current_user.id, :product_id => product.id).first
+      if vote.present?
+       vote.destroy
+      else
+      Vote.create(:user_id => current_user.id, :product_id => product.id)    
+      end
+      render json: product.as_json(methods: :votes_count).merge("hasVoteForUser" => product.has_vote_for(current_user))
     else
-      product.votes.create!(user: current_user)
+      render json: product.as_json(methods: :votes_count).merge("current_user" => 0)
     end
+  end
 
-    render json: product.as_json(methods: [:votes_count, :tag_list]).
-      merge("hasVoteForUser" => product.has_vote_for(current_user))
+  def checkuser
+    if current_user
+      render json: current_user.id
+    else
+      render json: 0
+    end
   end
 
 end

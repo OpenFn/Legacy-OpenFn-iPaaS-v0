@@ -83,6 +83,8 @@ SalesForce::Application.routes.draw do
 
   get '/products/:product_id/vote', to: "products#vote"
 
+  get '/user/checkuser', to: "products#checkuser"
+
   get "metrics", to: "metrics#index", as: :metrics
 
   match "/*path" => redirect("/?goto=%{path}"), via: [:get, :post]
@@ -90,5 +92,3 @@ SalesForce::Application.routes.draw do
   root to: 'home#index'
   # root to: 'mappings#index'
 end
-
-

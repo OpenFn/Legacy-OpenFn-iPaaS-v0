@@ -99,3 +99,4 @@ Array::filter = (func) -> x for x in @ when func(x)
           return "/" })
     .otherwise({redirectTo:"/"})
 ]
+
