@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   skip_before_filter :require_login
 
   def index
-    render json: Product.enabled.order('name').as_json(methods: :tag_list)
+    render json: Product.enabled.order('name').as_json(methods: [:tag_list, :votes_count])
   end
 
   def show
