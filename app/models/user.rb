@@ -25,15 +25,16 @@ class User < ActiveRecord::Base
     MappingLimiter.new(self).credits_available?
   end
 
-  include Stripe::Callbacks
+  #Here is where we'll put catches for stripe messages
+  # include Stripe::Callbacks
 
-  after_customer_updated! do |customer, event|
-    user = User.find_by_stripe_customer_id(customer.id)
-    if customer.delinquent
-      user.is_account_current = false
-      user.save!
-    end
-  end
+  # after_customer_updated! do |customer, event|
+  #   user = User.find_by_stripe_customer_id(customer.id)
+  #   if customer.delinquent
+  #     user.is_account_current = false
+  #     user.save!
+  #   end
+  # end
 
   private
   def set_default_role

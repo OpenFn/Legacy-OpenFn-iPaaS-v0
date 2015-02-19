@@ -32,8 +32,6 @@ module SalesForce
     config.assets.paths << "#{Rails.root}/app/assets/templates"
 
     config.active_record.observers = :user_observer
-
-    config.stripe.auto_mount = false
     
   end
 end
