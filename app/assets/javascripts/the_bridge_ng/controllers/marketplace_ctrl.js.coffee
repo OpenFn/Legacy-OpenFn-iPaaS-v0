@@ -2,15 +2,19 @@
   $scope.products = []
   $scope.searchText = ""
   $scope.searchFilters = {}
+
+  $http.get("/user/checkuser").success((user_id) ->
+    $scope.user_id = user_id
+  )
   
   $http.get('/products.json').success((data) ->
-    ## console.log(data)
     $scope.products = data.products
     if $routeParams.search
       $scope.searchText = $routeParams.search
 
 
   $scope.filterProducts = (product) ->
+    
     lowercaseSearchText = angular.lowercase($scope.searchText)
     if (angular.lowercase(product.name).indexOf(lowercaseSearchText)!= -1 || 
       (angular.lowercase(product.description) || "").indexOf(lowercaseSearchText)!= -1 || 
@@ -28,21 +32,21 @@
       false
 
   filtersMatch = (product, filters) ->
+    
     if filters.integrated
       return product.integrated
     else
       return true
 
-  $scope.changeVote = (product_id) ->
-    $http.get('/vote/'+product_id)
-    return
+  $scope.changeVoteFor = (product) ->
+    $http.get("/products/#{product.id}/vote").success((data) ->
+      product.votes_count = data.votes_count
+    )
+
+    return true
 
   )
 
-  $http.get('/votes/count').success((data1) ->
-    $scope.votes = data1
-    console.log(data1)
 
-  )
 
 ]
