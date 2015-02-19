@@ -40,10 +40,12 @@
           <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="product">
               <div class='rating'>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                &nbsp;({{product.votes_count}} votes for integration)
+                <i class="fa fa-star-o" style="color: #f8ca4d"></i>
+                <i class="fa fa-star-o" style="color: #f8ca4d"></i>
+                <i class="fa fa-star-o" style="color: #f8ca4d"></i>
+                <i class="fa fa-star-o" style="color: #f8ca4d"></i>
+                <i class="fa fa-star-o" style="color: #f8ca4d"></i>
+                &nbsp;(0)
               </div>
               <h3 class="title">
                 {{product.name}}
@@ -54,18 +56,21 @@
               <a ng-href="{{product.website}}" class="website-link" target="_blank">
                 <i class="fa fa-home"></i>
               </a>
+              
               <!-- MAKE THIS LINK DO NOTHING UNTIL PRODUCT PAGE LOOKS GREAT
               <a ng-href="/#/product/{{product.id}}" class="details-link">
                 DETAILS
               </a>
               -->
-
-              <a ng-click="changeVoteFor(product)" ng-if="user_id != 0" class="details-link up_{{product.id}}">
-                +<i class="fa fa-cube"></i>
+              <a href="/mappings" ng-show="{{product.integrated}}" class="details-link">
+                <i class="fa fa-check-square"></i>
+              </a>
+              <a ng-click="changeVoteFor(product)" ng-hide="{{product.integrated}}" ng-if="user_id != 0" class="details-link up_{{product.id}}">
+                +1 <i class="fa fa-cube"></i>
               </a>
 
-              <a ng-click="$event.stopPropagation()" href="/login" ng-if="user_id == 0" class="details-link up_{{product.id}}">
-                +<i class="fa fa-cube"></i>
+              <a ng-click="$event.stopPropagation()" href="/login" ng-hide="{{product.integrated}}" ng-if="user_id == 0" class="details-link up_{{product.id}}">
+                {{product.votes_count}} votes for <i class="fa fa-cube"></i>
               </a>
 
   
