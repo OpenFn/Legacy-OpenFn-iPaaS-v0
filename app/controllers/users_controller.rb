@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if @user.save
+    if @user.save_with_payment(params)
       auto_login(@user)
       set_user_credentials_and_flash
       redirect_to(:root, notice: "Welcome!")
@@ -24,8 +24,11 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-
-    if @user.update_attributes(user_params)
+    if params[:organization_name] != @user.organization.try(:name)
+      @user.organization.update(name: params[:organization_name])
+    end
+    if @user.update(user_params)
+      @user.update_plan(params)
       set_user_credentials_and_flash
       flash[:success] = "Settings updated." unless flash[:danger]
       redirect_to(:edit_user)
@@ -46,7 +49,7 @@ class UsersController < ApplicationController
     if user.update_attributes(salesforce_user.attributes)
       limiter = MappingLimiter.new(user)
       limiter.limit!
-      
+
       respond_to do |format|
         format.xml  { render 'salesforce/success', layout: false }
       end
@@ -68,12 +71,24 @@ class UsersController < ApplicationController
   def index
   end
 
+  def send_invite
+    exsiting_user = User.find_by(email: params[:email])
+    if exsiting_user.blank?
+      password = SecureRandom.hex
+      user = User.new(email: params[:email], crypted_password: password, salt: password, organization_id: current_user.organization_id, role: 'client')
+      user.save(validate: false)
+      @success = true
+    else
+      @message = 'User already exist'
+    end
+  end
+
   private
 
   def user_params
     params.require(:user).permit(
       :email, :password, :password_confirmation, :first_name, :last_name, :organisation, :tier, :role,
-      :odk_url, :odk_username, :odk_password,
+      :odk_url, :odk_username, :odk_password, :stripe_token, :subscription_plan,
       :sf_security_token, :sf_username, :sf_password, :sf_app_key, :sf_app_secret, :sf_host
     )
   end
