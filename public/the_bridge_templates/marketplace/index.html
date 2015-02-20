@@ -38,7 +38,7 @@
         <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
           <br>
           <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <!-- <a href="/#/product/{{product.id}}"> -->
+            <a data-toggle="modal" data-target="#product_modal" >
               <div class="product">
                 <div class='rating'>
                   <span class='live'>
@@ -51,6 +51,7 @@
                   &nbsp;(0)
                 </div>
                 <h3 class="title">
+
                   {{product.name}}
                 </h3>
                 <div class='tile-tweet'>
@@ -69,13 +70,41 @@
                   <i ng-class="{'fa ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>
                 </a>
               </div>
-            <!-- </a> -->
-          </div>
-
-
+            </a>
         </div>
 
       </div>
 
+      <div class="modal fade" id="product_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+       <div class="modal-dialog">
+         <div class="modal-content">
+          <div class="featurette dark">
+          <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+             <h4 class="modal-title" id="myModalLabel">More coming soon.</h4>
+          </div>
+          <div class="modal-body">              
+            A full details section—including features, tech specs, pricing, reviews, and case studies—is coming soon for this product.
+            <br>
+            <br>
+            From the marketplace tile you can:
+            <br>
+            <br>
+            <ul>
+              <li>visit an app's <strong>homepage</strong> by clicking the <i class="fa fa-external-link"></i> icon,</li><br>
+              <li>setup your <strong>credentials</strong> if the app is already integrated by clicking the <i class="fa fa-plug"></i> icon,</li><br>
+              <li>see how many votes the app has received <strong>for integration</strong> by checking the <i class="fa fa-angle-double-up"></i><span class="live">N</span> indicator,</li><br>
+              <li>and <strong>vote</strong> for the app if you'd like to see it integrated by clicking the <i class="fa fa-chevron-up"></i> icon.</li>
+            </ul>
+            <br>
+            We'll prioritize development around only those apps which are most needed in the community.
+          </div>
+            <div class="modal-footer">
+             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
    
