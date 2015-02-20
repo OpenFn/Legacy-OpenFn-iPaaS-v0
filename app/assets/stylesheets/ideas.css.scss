@@ -138,11 +138,26 @@
     font-size: rem-calc(20px);
   }
 
+  .tile {
+    cursor: pointer;
+  }
+
   .rating {
    color: $off-white;
   }
 
+  .modal-header {
+    border: 0;
+    background-color: #5A6C77;
+    background-image: inherit;
+  }
 
+  .modal-title {
+    color: $off-white;
+    font-size: rem-calc(20px);
+    font-weight: $bold;
+    text-transform: uppercase;
+  }
 
   .table-striped > tbody > tr:nth-child(odd) > td,
   .table-striped > tbody > tr:nth-child(odd) > th {
