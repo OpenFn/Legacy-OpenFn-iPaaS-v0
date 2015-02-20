@@ -4,7 +4,7 @@
 
   <header class="header-image">
     <div class="headline">
-      <h1><i class="fa fa-cubes"></i>
+      <h1><i class="fa fa-plug"></i>
    open<strong>Integrations</strong></h1>
       <h3>Your apps are <strong>better</strong> together.</h3>
       </div>
@@ -20,7 +20,7 @@
     <div class="row">
 
         <div class="col-md-2 text-center"><br>
-          <%= button_to "Create new map", [:new, :odk_sf_legacy_mapping], class: 'btn btn-success' %>
+          <%= button_to "Create new map", [:new, :odk_sf_legacy_mapping], class: 'btn btn-default' %>
         </div>
         <div class="col-md-2 text-center">
           <div class="content">
@@ -44,7 +44,9 @@
               aria-valuemin="0"
               aria-valuemax='<%= current_user.credits %>'
               style="width: '<%= current_user.credits > 0 ? 100*@mappings.where(active: true).count/current_user.credits : 0 %>'%; background: #5A6C77;">
-              <%= @mappings.where(active: true).count %> <i class="fa fa-bolt"></i>
+              <span class='live'>
+                <%= @mappings.where(active: true).count %> <i class="fa fa-bolt"></i>
+              </span>
             </div>
             <div class="progress-bar progress-bar-grey"
               role="progressbar"
@@ -52,28 +54,26 @@
               aria-valuemin="0"
               aria-valuemax='<%= current_user.credits %>'
               style="width: <%= current_user.credits > 0 ? 100*(@mappings.where(enabled: true).count-@mappings.where(active:true).count)/current_user.credits : 0 %>%;">
-              <%= @mappings.where(enabled: true).count-@mappings.where(active:true).count %>
+              <span class='live'>
+                <%= @mappings.where(enabled: true).count-@mappings.where(active:true).count %>
+              </span>
             </div>
           </div>
           <div class="content">
-
-<!-- Here -->
-            <%= @mappings.where(enabled: true).count %>/<%= current_user.credits %> maps in use
-          
-
+            <span class="live"><%= @mappings.where(enabled: true).count %></span>/<span class='live'><%= current_user.credits %></span> maps in use
           </div>
         </div>
         <div class="col-md-4 text-center">
           <div class="content">
-            Jobs
+            Transactions
           </div><br>
           <div class="progress">
-            <div class="progress-bar progress-bar-grey" role="progressbar" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100" style="width: 43%;">
+            <div class="progress-bar progress-bar-grey" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
               *uncapped*
             </div>
           </div>
           <div class="content">
-            *uncapped* of 1,000/mo.
+            *uncapped*
           </div>
         </div>
         <!-- <div class="col-md-3">
@@ -102,8 +102,8 @@
         <thead>
           <tr>
             <th>Label</th>
-            <th>Source <i class="fa fa-cube"></i></th>
-            <th>Destination <i class="fa fa-cube"></i></th>
+            <th>Source <i class="fa fa-plug"></i></th>
+            <th>Destination <i class="fa fa-plug"></i></th>
             <th align="center" >Enabled?</th>
             <th align="center" >Auto sync</th>
             <th align="center" >History</th>

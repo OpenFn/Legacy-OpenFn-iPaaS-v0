@@ -6,7 +6,7 @@
       <i class="fa fa-shopping-cart"></i> open<strong>Marketplace</strong>
     </h1>
     <h3>
-      Find the <strong>tools</strong> you need to grow your impact.
+      Find the <strong>tools</strong> you need to grow your impact; vote for new <i class="fa fa-plug"></i> integrations.
     </h3>
   </div>
 </header>
@@ -38,39 +38,38 @@
         <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
           <br>
           <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div  ng-mouseenter="detail_link = true" ng-mouseleave="detail_link = false"class="product">
-              <div class='rating' style="color: #f8ca4d">
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                <i class="fa fa-star-o"></i>
-                &nbsp;<span style="color: #F2EFE6">(0)</span>
+            <!-- <a href="/#/product/{{product.id}}"> -->
+              <div class="product">
+                <div class='rating'>
+                  <span class='live'>
+                  <i class="fa fa-star-o"></i>
+                  <i class="fa fa-star-o"></i>
+                  <i class="fa fa-star-o"></i>
+                  <i class="fa fa-star-o"></i>
+                  <i class="fa fa-star-o"></i>
+                  </span>
+                  &nbsp;(0)
+                </div>
+                <h3 class="title">
+                  {{product.name}}
+                </h3>
+                <div class='content'>
+                  {{product.description | limitTo:410}}
+                </div>
+                <a ng-href="{{product.website}}" class="website-link" target="_blank">
+                  <i class="fa fa-external-link"></i>
+                </a>              
+                <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
+                  <i class="fa fa-plug"></i>
+                </a>
+                <a ng-hide="product.integrated" class="vote-count">
+                  <span style="color: #F2EFE6"><i class="fa fa-angle-double-up"></i></span> {{product.votes_count}}<span style="color: #F2EFE6"></span>
+                </a>
+                <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">               
+                  <i ng-class="{'fa ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>
+                </a>
               </div>
-              <h3 class="title">
-                {{product.name}}
-              </h3>
-              <div class='content'>
-                {{product.description | limitTo:410}}
-              </div>
-              <a ng-href="{{product.website}}" class="website-link" target="_blank">
-                <i class="fa fa-external-link"></i>
-              </a>              
-              <a ng-show="detail_link" class="details-link" ng-href="/#/product/{{product.id}}">
-                { click for details }
-              </a>
-              <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
-                <i class="fa fa-plug"></i>
-              </a>
-              <a ng-hide="product.integrated" class="vote-count">
-                <span style="color: #F2EFE6"><i class="fa fa-code"></i></span> {{product.votes_count}}<span style="color: #F2EFE6"></span>
-              </a>
-              <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">               
-                <i ng-class="{'fa ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>
-              </a>
-
-  
-            </div>
+            <!-- </a> -->
           </div>
 
 

@@ -71,7 +71,6 @@
       }
 
       .rating {
-        
         align-content: center;
       }
 
@@ -103,13 +102,27 @@
         background-color: #A3AAAB;
       }
 
+      
+      // .deatils-link-wrapper {
+      //   position: relative;
+      //   // float: left;
+      //   text-align: center;
+      //   margin: 0 auto; 
+      // }
+
       .details-link {
-        color: #384D5C;
+        // color: #384D5C;
         padding: 0.5em;
         position: absolute;
-        bottom: 0;
-        cursor: pointer;
-        background-color: #A3AAAB;
+        // float: left;
+        // left: 50%;
+        // background-color: #A3AAAB;
+        // text-align:center;
+        // margin: 0px auto 0px auto;
+        top: 0;
+        right: 0;
+        // margin-left: -7px;
+        // margin: 0 auto;
       }
 
       .details-link:hover {
