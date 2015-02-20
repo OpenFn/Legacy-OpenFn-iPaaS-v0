@@ -9,6 +9,6 @@ class Metrics::OrganisationIntegrationMappingsController < ApplicationController
   end
 
   def set_organisation_mappings
-    @organisation_mappings = Metrics::OrganisationIntegrationMappings.all
+    @organisation_mappings = Metrics::OdkSfLegacy::OrganisationIntegrationMappings.all
   end
 end
