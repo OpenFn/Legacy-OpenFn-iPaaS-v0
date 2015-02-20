@@ -22,36 +22,38 @@ SalesForce::Application.routes.draw do
 
   resources :credentials
 
-  resources :mappings do
-
-    member do
-      post :dispatch_surveys
-      post :clone
-      post :clear_cursor
-    end
-
-    resources :salesforce_objects, only: [:create, :destroy, :update] do
+  namespace :odk_sf_legacy, shallow_path: nil, path: nil do
+    resources :mappings do
 
       member do
-        get :refresh_fields
+        post :dispatch_surveys
+        post :clone
+        post :clear_cursor
       end
 
-      resources :salesforce_object_fields, only: [:index]
-      resources :salesforce_relationships, only: [:create, :destroy]
-    end
-    resource :odk_form
-    resources :odk_fields do
-      resources :odk_field_salesforce_fields
-    end
+      resources :salesforce_objects, only: [:create, :destroy, :update] do
 
-    collection do
-      get :get_odk_forms
-      get :get_salesforce_fields
-    end
+        member do
+          get :refresh_fields
+        end
 
-    resources :submissions do
-      member do
-        post :reprocess
+        resources :salesforce_object_fields, only: [:index]
+        resources :salesforce_relationships, only: [:create, :destroy]
+      end
+      resource :odk_form
+      resources :odk_fields do
+        resources :odk_field_salesforce_fields
+      end
+
+      collection do
+        get :get_odk_forms
+        get :get_salesforce_fields
+      end
+
+      resources :submissions do
+        member do
+          post :reprocess
+        end
       end
     end
   end
@@ -79,6 +81,8 @@ SalesForce::Application.routes.draw do
   post "login",  to: "user_sessions#create",  as: :create_session
   post  "logout", to: "user_sessions#destroy", as: :logout
 
+  get '/products/:product_id/vote', to: "products#vote"
+
   get "metrics", to: "metrics#index", as: :metrics
 
   match "/*path" => redirect("/?goto=%{path}"), via: [:get, :post]
@@ -86,3 +90,5 @@ SalesForce::Application.routes.draw do
   root to: 'home#index'
   # root to: 'mappings#index'
 end
+
+

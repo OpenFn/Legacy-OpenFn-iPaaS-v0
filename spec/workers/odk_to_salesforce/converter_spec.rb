@@ -1,16 +1,16 @@
 require "rails_helper"
 
-RSpec.describe OdkToSalesforce::Converter do
+RSpec.describe OdkSfLegacy::OdkToSalesforce::Converter do
   
   describe "#get_field_content" do
 
-    subject { OdkToSalesforce::Converter.new.get_field_content(field,data) }
+    subject { OdkSfLegacy::OdkToSalesforce::Converter.new.get_field_content(field,data) }
 
     context "odk data with a 'class' key" do
       let(:data) { { "class"=>"p1" } }
 
       let(:field) {  
-        OdkField.new({
+        OdkSfLegacy::OdkField.new({
           "field_name"=>"/class",
           "field_type"=>"string",
           "salesforce_field_id"=>nil,
@@ -28,14 +28,14 @@ RSpec.describe OdkToSalesforce::Converter do
   describe "#odk_data" do
 
     subject { converter.odk_data(salesforce_object,submission_data) }
-    let(:converter) { OdkToSalesforce::Converter.new }
+    let(:converter) { OdkSfLegacy::OdkToSalesforce::Converter.new }
 
     # Recent partial changes to the converter have allowed us to stub out
     # fields, these tests will live on for now.
     context "with real objects" do
 
-      let(:odk_form) { OdkForm.new(name: "Test ODKForm") }
-      let(:mapping) { Mapping.create!(name: "Test", odk_form: odk_form) }
+      let(:odk_form) { OdkSfLegacy::OdkForm.new(name: "Test ODKForm") }
+      let(:mapping) { OdkSfLegacy::Mapping.create!(name: "Test", odk_form: odk_form) }
 
 
       before(:each) do
@@ -68,7 +68,7 @@ RSpec.describe OdkToSalesforce::Converter do
             {
               "field_name"=>"vera__ODK_Key__c",
               "data_type"=>"string",
-              odk_fields: [ OdkField.new(
+              odk_fields: [ OdkSfLegacy::OdkField.new(
                 {
                   "field_name"=>"/meta/instanceID",
                   "field_type"=>"string",
@@ -81,7 +81,7 @@ RSpec.describe OdkToSalesforce::Converter do
             {
               "field_name"=>"vera__Start_Date__c",
               "data_type"=>"date",
-              odk_fields: [ OdkField.new(
+              odk_fields: [ OdkSfLegacy::OdkField.new(
                 {
                   "field_name"=>"/start_date",
                   "field_type"=>"date",
@@ -95,7 +95,7 @@ RSpec.describe OdkToSalesforce::Converter do
             {
               "field_name"=>"vera__Test_Event_Name_Unique__c",
               "data_type"=>"string",
-              odk_fields: [ OdkField.new(
+              odk_fields: [ OdkSfLegacy::OdkField.new(
                 {
                   "field_name"=>"/event_name",
                   "field_type"=>"string",
@@ -106,11 +106,11 @@ RSpec.describe OdkToSalesforce::Converter do
                 }
               ) ]
             }
-          ].collect { |attrs| SalesforceField.new(attrs) } 
+          ].collect { |attrs| OdkSfLegacy::SalesforceField.new(attrs) } 
         }
 
         let(:salesforce_object) { 
-          SalesforceObject.new({
+          OdkSfLegacy::SalesforceObject.new({
             "name"=>"vera__Test_Event__c",
             "order"=>1,
             "is_repeat"=>false,
@@ -135,7 +135,7 @@ RSpec.describe OdkToSalesforce::Converter do
             {
               "field_name"=>"Name",
               "data_type"=>"string",
-              odk_fields: [ OdkField.new(
+              odk_fields: [ OdkSfLegacy::OdkField.new(
                 {
                   "field_name"=>"/boats/boat_name",
                   "field_type"=>"string",
@@ -147,7 +147,7 @@ RSpec.describe OdkToSalesforce::Converter do
             {
               "field_name"=>"vera__Boat_Maker__c",
               "data_type"=>"string",
-              odk_fields: [ OdkField.new(
+              odk_fields: [ OdkSfLegacy::OdkField.new(
                 {
                   "field_name"=>"/boats/boat_name",
                   "field_type"=>"string",
@@ -159,7 +159,7 @@ RSpec.describe OdkToSalesforce::Converter do
             {
               "field_name"=>"vera__odk_key__c",
               "data_type"=>"string",
-              odk_fields: [ OdkField.new(
+              odk_fields: [ OdkSfLegacy::OdkField.new(
                 {
                   "field_name"=>"/meta/instanceID",
                   "field_type"=>"string",
@@ -173,7 +173,7 @@ RSpec.describe OdkToSalesforce::Converter do
             {
               "field_name"=>"Methods_Used_Score__c",
               "data_type"=>"string",
-              odk_fields: [ OdkField.new(
+              odk_fields: [ OdkSfLegacy::OdkField.new(
                 {
                   "field_name"=>"/methods",
                   "field_type"=>"string",
@@ -182,11 +182,11 @@ RSpec.describe OdkToSalesforce::Converter do
                 }
               ) ]
             }
-          ].collect { |attrs| SalesforceField.new(attrs) } 
+          ].collect { |attrs| OdkSfLegacy::SalesforceField.new(attrs) } 
         }
 
         let(:salesforce_object) { 
-          SalesforceObject.new({
+          OdkSfLegacy::SalesforceObject.new({
             "name"=>"vera__Boat__c",
             "order"=>1,
             "is_repeat"=>true,

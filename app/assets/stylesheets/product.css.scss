@@ -71,11 +71,10 @@
       }
 
       .rating {
-        
         align-content: center;
       }
 
-      .details-link {
+      .vote-link {
         color: #384D5C;
         padding: 0.5em;
         position: absolute;
@@ -85,6 +84,14 @@
         background-color: #A3AAAB;
       }
 
+      .vote-count {
+        color: $accent-yellow;
+        padding: 0.5em;
+        position: absolute;
+        bottom: 0;
+        right: 2.0em;
+        }
+
       .website-link {
         color: #384D5C;
         padding: 0.5em;
@@ -93,6 +100,29 @@
         left: 0;
         cursor: pointer;
         background-color: #A3AAAB;
+      }
+
+      
+      // .deatils-link-wrapper {
+      //   position: relative;
+      //   // float: left;
+      //   text-align: center;
+      //   margin: 0 auto; 
+      // }
+
+      .details-link {
+        // color: #384D5C;
+        padding: 0.5em;
+        position: absolute;
+        // float: left;
+        // left: 50%;
+        // background-color: #A3AAAB;
+        // text-align:center;
+        // margin: 0px auto 0px auto;
+        top: 0;
+        right: 0;
+        // margin-left: -7px;
+        // margin: 0 auto;
       }
 
       .details-link:hover {

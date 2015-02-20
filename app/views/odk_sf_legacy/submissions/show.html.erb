@@ -1,0 +1,42 @@
+</div>
+</div>
+<div class="ideas">
+
+<header class="header-image">
+  <div class="headline">
+    <h1><i class="fa fa-cubes"></i>
+ open<strong>Integrations</strong></h1>
+    <h3>Your apps are <strong>better</strong> together.</h3>
+    </div>
+</header>
+
+  <div class="featurette mappings">
+    <hr class="light">
+    <hr class="dark">
+    
+    <div class="container">
+
+<ol class="breadcrumb">
+  <li><%= link_to "Mappings", odk_sf_legacy_mappings_path %></li>
+  <li><%= link_to @mapping.name, @mapping %></li>
+  <li><%= link_to "Submissions", [@mapping, :submissions] %></li>
+  <li>Submission <%= @submission.uuid %></li>
+</ol>
+
+<%= link_to "Reprocess", reprocess_odk_sf_legacy_mapping_submission_path(@mapping, @submission), class: 'btn btn-danger pull-right', method: 'post', confirm: 'Are you sure?' if @submission.error? %>
+
+<h3>
+  <dl>
+    <dt>State</dt>
+    <dd><%= @submission.state %></dd>
+  </dl>
+</h3>
+
+<% if @submission.message %>
+  <div class="panel panel-default">
+    <div class="panel-heading"><%= @submission.message %></div>
+    <div class="panel-body">
+      <%= @submission.backtrace.try(:html_safe) %>
+    </div>
+  </div>
+<% end %>

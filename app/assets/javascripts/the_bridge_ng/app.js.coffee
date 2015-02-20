@@ -74,7 +74,9 @@ Array::filter = (func) -> x for x in @ when func(x)
     .when('/developers', {
       templateUrl: '../the_bridge_templates/static/developers.html'
     })
-
+    .when('/welcome', {
+      templateUrl: '../the_bridge_templates/static/welcome2.html'
+    })
     .when('/', {
       templateUrl: '../the_bridge_templates/static/welcome.html',
       controller: ($scope, $http) ->

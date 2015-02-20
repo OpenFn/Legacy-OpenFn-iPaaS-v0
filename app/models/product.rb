@@ -1,6 +1,8 @@
 class Product < ActiveRecord::Base
   acts_as_taggable
 
+  has_many :votes
+
   validates :name, presence: true
 
   scope :enabled, -> { where(enabled: true ) }
@@ -23,4 +25,14 @@ class Product < ActiveRecord::Base
 
     return product
   end
+
+  def has_vote_for(user)
+    votes.where(user: user).any?
+  end
+
+  def votes_count
+    votes.count
+  end
+
+
 end

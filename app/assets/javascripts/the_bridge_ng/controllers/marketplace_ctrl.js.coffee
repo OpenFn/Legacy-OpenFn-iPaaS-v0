@@ -3,12 +3,13 @@
   $scope.searchText = ""
   $scope.searchFilters = {}
   
-  $http.get('/products.json').success((data) ->
+  $http.get('/products.json').success (data) ->
     $scope.products = data.products
     if $routeParams.search
       $scope.searchText = $routeParams.search
 
   $scope.filterProducts = (product) ->
+    
     lowercaseSearchText = angular.lowercase($scope.searchText)
     if (angular.lowercase(product.name).indexOf(lowercaseSearchText)!= -1 || 
       (angular.lowercase(product.description) || "").indexOf(lowercaseSearchText)!= -1 || 
@@ -26,9 +27,19 @@
       false
 
   filtersMatch = (product, filters) ->
+    
     if filters.integrated
       return product.integrated
     else
       return true
-  )
+
+  $scope.changeVoteFor = (product) ->
+    $http.get("/products/#{product.id}/vote")
+      .success (data) ->
+        angular.extend(product,data)
+    
+      .error (data, status, headers, config) ->
+        window.location="/login" if status == 401
+        # console.log arguments
+
 ]
