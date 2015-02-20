@@ -75,7 +75,7 @@
         align-content: center;
       }
 
-      .details-link {
+      .vote-link {
         color: #384D5C;
         padding: 0.5em;
         position: absolute;
@@ -85,6 +85,14 @@
         background-color: #A3AAAB;
       }
 
+      .vote-count {
+        color: $accent-yellow;
+        padding: 0.5em;
+        position: absolute;
+        bottom: 0;
+        right: 2.0em;
+        }
+
       .website-link {
         color: #384D5C;
         padding: 0.5em;
@@ -93,6 +101,16 @@
         left: 0;
         cursor: pointer;
         background-color: #A3AAAB;
+      }
+
+      .details-link {
+        // color: #384D5C;
+        padding: 0.5em;
+        position: absolute;
+        bottom: 0;
+        // left: 0;
+        cursor: pointer;
+        // background-color: #A3AAAB;
       }
 
       .details-link:hover {

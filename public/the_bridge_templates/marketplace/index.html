@@ -45,7 +45,7 @@
                 <i class="fa fa-star-o"></i>
                 <i class="fa fa-star-o"></i>
                 <i class="fa fa-star-o"></i>
-                &nbsp;<span style="color: #F2EFE6">(<span style="color: #f8ca4d">0</span> ratings, <span style="color: #f8ca4d">{{product.votes_count}}</span> votes)</span>
+                &nbsp;<span style="color: #F2EFE6">(0)</span>
               </div>
               <h3 class="title">
                 {{product.name}}
@@ -54,18 +54,19 @@
                 {{product.description | limitTo:410}}
               </div>
               <a ng-href="{{product.website}}" class="website-link" target="_blank">
-                <i class="fa fa-home"></i>
+                <i class="fa fa-external-link"></i>
               </a>
-              <!-- MAKE THIS LINK DO NOTHING UNTIL PRODUCT PAGE LOOKS GREAT
-              <a ng-href="/#/product/{{product.id}}" class="details-link">
-                DETAILS
+              
+              <a ng-mouseover="hoverIn()" ng-href="/#/product/{{product.id}}" class="details-link">
+                DETAIL
               </a>
-              -->
-
-              <a href="/mappings" class="details-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
+              <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
                 <i class="fa fa-plug"></i>
               </a>
-              <a ng-click="changeVoteFor(product)" class="details-link" ng-show="!product.integrated">
+              <a ng-hide="product.integrated" class="vote-count">
+                <span style="color: #F2EFE6"><i class="fa fa-code"></i></span> {{product.votes_count}}<span style="color: #F2EFE6"></span>
+              </a>
+              <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">               
                 <i ng-class="{'fa ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>
               </a>
 
