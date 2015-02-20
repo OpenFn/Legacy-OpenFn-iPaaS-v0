@@ -7,7 +7,8 @@ class Submission::PayloadEncoding
 
   include Sidekiq::Worker
   
-  def perform(record)
+  def perform(record_id)
+    record = Submission::Record.find(record_id)
     integration_klass = integration_klass_for(record)
 
     # Once a submission has been received, we request the integration class
@@ -16,11 +17,11 @@ class Submission::PayloadEncoding
     record.save!
     
     # Queue up the submission for translating.
-    Sidekiq::Client.enqueue(Submission::Translation, record)
+    Sidekiq::Client.enqueue(Submission::Translation, record.id)
   end
 
   private
   def integration_klass_for(record)
-    Integration.const_get(record.integration.source.integration_type)
+    Integration.const_get(record.mapping.source_app.integration_type)
   end
 end

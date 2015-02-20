@@ -11,16 +11,14 @@
 
 class Submission::Receipt
 
-  def initialize(raw_source_message, mapping)
-    @raw_source_message = raw_source_message
-    @mapping = mapping
-  end
-
   include Sidekiq::Worker
 
-  def perform(raw_source_message, mapping)
-    record = Submission::Record.create!(raw_source_message: raw_source_message, mapping: mapping)
-    
-    Sidekiq::Client.enqueue(Submission::PayloadEncoding, record)
+  def perform(raw_source_message,mapping_id)
+    record = Submission::Record.create!({
+      raw_source_message: raw_source_message, 
+      mapping_id: mapping_id
+    })
+
+    Sidekiq::Client.enqueue(Submission::PayloadEncoding, record.id)
   end
 end
