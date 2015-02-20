@@ -38,7 +38,7 @@
         <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
           <br>
           <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <div class="product">
+            <div  ng-mouseenter="detail_link = true" ng-mouseleave="detail_link = false"class="product">
               <div class='rating' style="color: #f8ca4d">
                 <i class="fa fa-star-o"></i>
                 <i class="fa fa-star-o"></i>
@@ -55,11 +55,10 @@
               </div>
               <a ng-href="{{product.website}}" class="website-link" target="_blank">
                 <i class="fa fa-external-link"></i>
+              </a>              
+              <a ng-show="detail_link" class="details-link" ng-href="/#/product/{{product.id}}">
+                { click for details }
               </a>
-              
-<!--               <a ng-mouseover="hoverIn()" ng-href="/#/product/{{product.id}}" class="details-link">
-                DETAILS
-              </a> -->
               <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
                 <i class="fa fa-plug"></i>
               </a>
