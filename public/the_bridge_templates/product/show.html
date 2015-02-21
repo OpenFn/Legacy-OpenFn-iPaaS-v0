@@ -34,57 +34,58 @@
   <hr class="light">
   <hr class="dark">
 
-    <div class="container">
+  <div class="container">
+    <div class="row flat">
+
+      <div class="col-sm-10">
+        <div class="show-product">
+          <div class="product">
+            <div class='rating'>
+              <span class='live'>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              <i class="fa fa-star-o"></i>
+              </span>
+              &nbsp;(0)
+            </div>
+            <h3 class="title">
+              {{product.name}}
+            </h3>
+            <div class='content'>
+              <div class="tab-content-text" ng-bind-html="product.detailed_description"></div>
+              <div class="tab-content-text" ng-bind-html="product.costs"></div>
+              <div class="tab-content-text" ng-bind-html="product.reviews"></div>
+              <div class="tab-content-text" ng-bind-html="product.resources"></div>
+              <span class="tab-content-text" ng-repeat="tag in product.tag_list">{{tag}}</span>
+            </div>
+            <div><br>
+              <a ng-href="{{product.website}}" class="website-link" target="_blank">
+                <i class="fa fa-external-link"></i>
+              </a>              
+              <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
+                <i class="fa fa-plug"></i>
+              </a>
+              <a ng-hide="product.integrated" class="vote-count">
+                <span style="color: #F2EFE6"><i class="fa fa-angle-double-up"></i></span> {{product.votes_count}}<span style="color: #F2EFE6"></span>
+              </a>
+              <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">               
+                <i ng-class="{'fa ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-sm-2">
+        <ul class="nav nav-pills nav-stacked">
+          <tab heading="Description"></tab>
+          <tab heading="Costs"></tab>
+          <tab heading="Reviews"></tab>
+          <tab heading="Resources"></tab>
+          <tab heading="Provider"></tab>
+        </ul>
+      </div>
     
-    <div class="show-product">
-      <h2 class="name">
-        {{product.name}}
-      </h2>
-      <div class='rating'>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        <i class="fa fa-star"></i>
-        (sample rating)
-      </div>
-      <div class='actions'>
-        <a ng-href="{{product.website}}" target="_blank"><i class="fa fa-link"></i></a>
-        <a ng-href="{{product.update_link}}" target="_blank"><i class="fa fa-pencil"></i></a>
-      </div>
-
-
-      <tabset>
-        <tab heading="Description" class="description">
-          <div class="tab-content-text" ng-bind-html="product.detailed_description"></div>
-          <div class="tag-list">
-            <span ng-repeat="tag in product.tag_list" class="tag label label-info" >{{tag}}</span>
-          </div>
-        </tab>
-        <tab heading="Costs">
-          <div class="tab-content-text" ng-bind-html="product.costs"></div>
-          <div class="tag-list">
-            <span ng-repeat="tag in product.tag_list" class="tag label label-info">{{tag}}</span>
-          </div>
-        </tab>
-        <tab heading="Reviews">
-          <div class="tab-content-text" ng-bind-html="product.reviews"></div>
-          <div class="tag-list">
-            <span ng-repeat="tag in product.tag_list" class="tag label label-info">{{tag}}</span>
-          </div>
-        </tab>
-        <tab heading="Resources">
-          <div class="tab-content-text" ng-bind-html="product.resources"></div>
-          <div class="tag-list">
-            <span ng-repeat="tag in product.tag_list" class="tag label label-info">{{tag}}</span>
-          </div>
-        </tab>
-        <tab heading="Provider">
-          <div class="tab-content-text" ng-bind-html="product.provider"></div>
-          <div class="tag-list">
-            <span ng-repeat="tag in product.tag_list" class="tag label label-info">{{tag}}</span>
-          </div>
-        </tab>
-      </tabset>
     </div>
-  </div>
-</div>
-</div>
