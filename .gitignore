@@ -20,6 +20,8 @@
 /log/*.log
 /tmp
 
+.tags
+tags
 *.swp
 .rvmrc
 *.ruby-version

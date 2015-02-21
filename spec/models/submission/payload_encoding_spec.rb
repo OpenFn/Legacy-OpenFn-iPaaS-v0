@@ -2,49 +2,41 @@ require 'rails_helper'
 
 RSpec.describe Submission::PayloadEncoding, :type => :model do
 
-  let(:submission) { double(Submission, raw_source_payload: "<raw><source>payload</source></raw>", integration: integration) }
-  let(:integration) { double(Integration, source: source) }
-  let(:source) { double(Integration::Source, integration_type: 'TestProduct') }
+  let(:record) { 
+    double(Submission::Record, 
+      raw_source_payload: "<raw><source>payload</source></raw>", 
+      mapping: mapping,
+      id: 10
+    )
+  }
 
-  before(:each) do
-    @encoding = Submission::PayloadEncoding.new(submission)
-  end
+  let(:mapping) { 
+    double(Mapping, source_app: double({integration_type: "TestProduct"})) 
+  }
+
+  subject { Submission::PayloadEncoding.new.perform(record.id) }
 
   describe "responsibilities" do
-    before(:each) do
-      allow(Resque).to receive(:enqueue)
+    before :each do
+      expect(Submission::Record).to receive(:find).with(10).and_return record
+      allow(Sidekiq::Client).to receive(:enqueue)
     end
 
     it "decodes the raw message according to the relevant Product Module" do
-      allow(submission).to receive(:source_payload=)
-      allow(submission).to receive(:save!)
-      expect(Integration::TestProduct).to receive(:encode).with(submission.raw_source_payload)
+      allow(record).to receive(:source_payload=)
+      allow(record).to receive(:save!)
+      expect(Integration::TestProduct).to receive(:encode).with(record.raw_source_payload)
 
-      @encoding.work
+      subject
     end
 
-    it "adds the decoded message to the submission record" do
+    it "adds the decoded message to the record record" do
       expect(Integration::TestProduct).to receive(:encode).and_return(decoded_payload = "{raw: {source: 'payload'}}")
-      expect(submission).to receive(:source_payload=).with(decoded_payload)
-      expect(submission).to receive(:save!)
+      expect(record).to receive(:source_payload=).with(decoded_payload)
+      expect(record).to receive(:save!)
 
-      @encoding.work
+      subject
     end
   end
 
-  describe "pipeline" do
-    before(:each) do
-      allow(Integration::TestProduct).to receive(:encode)
-      allow(submission).to receive(:source_payload=)
-      allow(submission).to receive(:save!)
-    end
-
-    it "enqueues Dispatch" do
-      expect(Submission::Translation).to receive(:new).with(submission).and_return(step = double)
-      expect(Resque).to receive(:enqueue).with(step)
-
-      @encoding.work
-    end
-  end
-  
 end

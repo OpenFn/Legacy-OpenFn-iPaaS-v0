@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217150221) do
+ActiveRecord::Schema.define(version: 20150219162811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -211,7 +211,7 @@ ActiveRecord::Schema.define(version: 20150217150221) do
   end
 
   create_table "submission_records", force: true do |t|
-    t.integer  "integration_id"
+    t.integer  "mapping_id"
     t.text     "raw_source_payload"
     t.hstore   "source_payload"
     t.hstore   "destination_payload"
