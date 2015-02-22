@@ -127,10 +127,9 @@
                   </div>
                   <div class="form-group">
                     <%= f.label 'Organisation' %>
-
-                    <%=f.fields_for :organization do|org|%>
-                      <%= org.text_field :name, class: 'form-control' %>
-                    <%end%>
+                    <%= text_field_tag :organization_name, @user.organization.try(:name), class: 'form-control' %>
+                    <%=f.hidden_field :stripe_token %>
+                    <%=f.hidden_field :subscription_plan, value: @user.new_record? ? nil : @user.organization.plan.try(:name)%>
                   </div>
                   <div class="form-group">
                     <div class="btn-group">
@@ -139,18 +138,18 @@
                         <span class="caret"></span>
                       </a>
                       <ul class="dropdown-menu">
-                        <li><a href="javascript:;">Free</a></li>
-                        <li><a href="javascript:;" id="payButton1">Entry</a></li>
-                        <li><a href="javascript:;" id="payButton1">Startup</a></li>
-                        <li><a href="javascript:;" id="payButton1">Growth</a></li>
-                        <li><a href="javascript:;" id="payButton1">Enterprise</a></li>
+                        <li><a href="javascript:;" class="payButton" data-amount="free">Free</a></li>
+                        <li><a href="javascript:;" class="payButton" data-amount="3900">Entry</a></li>
+                        <li><a href="javascript:;" class="payButton" data-amount="7900">Startup</a></li>
+                        <li><a href="javascript:;" class="payButton" data-amount="29900">Growth</a></li>
+                        <li><a href="javascript:;" class="payButton" data-amount="99900">Enterprise</a></li>
                       </ul>
                     </div>
                   </div>
                   <% if current_user %>
                     <%= f.submit "Update", class: 'btn btn-primary' %>
                   <% else %>
-                    <%= f.submit "Sign up", class: 'btn btn-success' %>
+                    <%= f.submit "Sign up", class: 'btn btn-success', id: 'submit_btn', disabled: true %>
                   <% end %>
                   <script src="https://checkout.stripe.com/checkout.js"></script>
               <% end %>
@@ -272,20 +271,35 @@
 </div>
 
 <script>
+  <%if current_user%>
+    plan = '<%=current_user.organization.plan.try(:name)%>'
+    $(".plan_dropdwn").html(plan+'<span class="caret"></span>');
+  <%end%>
+
   var handler = StripeCheckout.configure({
     key: "<%= Rails.configuration.stripe[:publishable_key] %>",
     token: function(token) {
       console.log(token);
-      // Use the token to create the charge with a server-side script.
-      // You can access the token ID with `token.id`
+      $("#user_stripe_token").val(token.id);
+      $("#submit_btn").attr('disabled', false);
     }
   });
 
-  $('#payButton').on('click', function(e) {
+  $('.payButton').on('click', function(e) {
+    text = $(this).text();
     // Open Checkout with further options
-    handler.open({
-      name: 'OpenFn'
-    });
+    $(".plan_dropdwn").html($(this).text()+'<span class="caret"></span>');
+    $("#user_subscription_plan").val(text);
+    if(text != 'Free'){
+      $("#submit_btn").attr('disabled', true);
+      amount = $(this).data('amount');
+      handler.open({
+        name: 'OpenFn',
+        amount: amount
+      });
+    }else if(text == 'Free'){
+      $("#submit_btn").attr('disabled', false);
+    }
     e.preventDefault();
   });
 
