@@ -7,13 +7,12 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    @organization = @user.build_organization if @user.organization.blank?
   end
 
   def create
     @user = User.new(user_params)
 
-    if @user.save
+    if @user.save_with_payment(params)
       auto_login(@user)
       set_user_credentials_and_flash
       redirect_to(:root, notice: "Welcome!")
@@ -25,8 +24,11 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-
-    if @user.update_attributes(user_params)
+    if params[:organization_name] != @user.organization.try(:name)
+      @user.organization.update(name: params[:organization_name])
+    end
+    if @user.update(user_params)
+      @user.update_plan(params)
       set_user_credentials_and_flash
       flash[:success] = "Settings updated." unless flash[:danger]
       redirect_to(:edit_user)
@@ -63,7 +65,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
-    @organization = @user.build_organization if @user.organization.blank?
     set_user_credentials_and_flash
   end
 
@@ -87,8 +88,8 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(
       :email, :password, :password_confirmation, :first_name, :last_name, :organisation, :tier, :role,
-      :odk_url, :odk_username, :odk_password,
-      :sf_security_token, :sf_username, :sf_password, :sf_app_key, :sf_app_secret, :sf_host, organization_attributes: [:name, :plan_id]
+      :odk_url, :odk_username, :odk_password, :stripe_token, :subscription_plan,
+      :sf_security_token, :sf_username, :sf_password, :sf_app_key, :sf_app_secret, :sf_host
     )
   end
 
