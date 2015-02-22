@@ -76,6 +76,12 @@ SalesForce::Application.routes.draw do
 
   resource :welcome_stats, only: :show
 
+  resources :organizations
+
+  resources :projects do
+    resources :collaborations, only: [:new, :create, :update, :destroy]
+  end
+
   get  "signup", to: "users#new",        as: :signup
   get  "login",  to: "user_sessions#new",     as: :login
   post "login",  to: "user_sessions#create",  as: :create_session
