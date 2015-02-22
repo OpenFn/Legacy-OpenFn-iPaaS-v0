@@ -52,7 +52,7 @@ class Salesforce::Listing::UserListing
       @email = user.email
       @first_name = user.first_name
       @last_name = user.last_name
-      @organisation = user.organisation
+      @organisation = user.organization.try(:name)
       @role = user.role
       @tier = user.tier
     end

@@ -86,6 +86,7 @@ SalesForce::Application.routes.draw do
   get  "login",  to: "user_sessions#new",     as: :login
   post "login",  to: "user_sessions#create",  as: :create_session
   post  "logout", to: "user_sessions#destroy", as: :logout
+  post :send_invite, to: 'users#send_invite'
 
   get '/products/:product_id/vote', to: "products#vote"
 

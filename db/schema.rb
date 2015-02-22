@@ -290,10 +290,10 @@ ActiveRecord::Schema.define(version: 20150221094150) do
     t.integer  "credits",           default: 0
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "organisation"
     t.string   "tier"
     t.integer  "plan_id"
     t.integer  "organization_id"
+    t.string   "organisation"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
