@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    @organization = @user.build_organization if @user.organization.blank?
   end
 
   def create
@@ -46,7 +47,7 @@ class UsersController < ApplicationController
     if user.update_attributes(salesforce_user.attributes)
       limiter = MappingLimiter.new(user)
       limiter.limit!
-      
+
       respond_to do |format|
         format.xml  { render 'salesforce/success', layout: false }
       end
@@ -62,10 +63,23 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    @organization = @user.build_organization if @user.organization.blank?
     set_user_credentials_and_flash
   end
 
   def index
+  end
+
+  def send_invite
+    exsiting_user = User.find_by(email: params[:email])
+    if exsiting_user.blank?
+      password = SecureRandom.hex
+      user = User.new(email: params[:email], crypted_password: password, salt: password, organization_id: current_user.organization_id, role: 'client')
+      user.save(validate: false)
+      @success = true
+    else
+      @message = 'User already exist'
+    end
   end
 
   private
@@ -74,7 +88,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :email, :password, :password_confirmation, :first_name, :last_name, :organisation, :tier, :role,
       :odk_url, :odk_username, :odk_password,
-      :sf_security_token, :sf_username, :sf_password, :sf_app_key, :sf_app_secret, :sf_host
+      :sf_security_token, :sf_username, :sf_password, :sf_app_key, :sf_app_secret, :sf_host, organization_attributes: [:name, :plan_id]
     )
   end
 
