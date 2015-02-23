@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   attr_accessor :synced
 
   has_many :mappings, dependent: :destroy, class_name: "OdkSfLegacy::Mapping"
+  has_many :collaborations, dependent: :destroy
+  has_many :projects, through: :collaborations
+  belongs_to :organization
 
   validates :password, length: { minimum: 3 }, on: :create
   validates :password, confirmation: true, on: :create
@@ -13,7 +16,7 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :organisation, presence: true
-  validates :role, inclusion: { in: %w(client admin), message: "%{value} is not a valid role" }
+  validates :role, inclusion: { in: %w(client client_admin admin), message: "%{value} is not a valid role" }
 
   before_validation :set_default_role, on: :create
 
@@ -21,12 +24,16 @@ class User < ActiveRecord::Base
     self.role == 'admin'
   end
 
+  def client_admin?
+    role == 'client_admin'
+  end
+
   def has_available_mapping_credits?
     MappingLimiter.new(self).credits_available?
   end
 
   private
-  def set_default_role
-    self.role ||= 'client'
-  end
+    def set_default_role
+      self.role ||= 'client'
+    end
 end
