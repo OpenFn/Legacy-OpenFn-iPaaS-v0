@@ -54,7 +54,7 @@
               {{product.name}}
             </h3>
             <div class='content'>
-              <div class="tab-content-text" ng-bind-html="product.detailed_description"></div>
+              <div class="tab-content-text" id="info-tab" ng-bind-html="product.detailed_description"></div>
               <div class="tab-content-text" ng-bind-html="product.costs"></div>
               <div class="tab-content-text" ng-bind-html="product.reviews"></div>
               <div class="tab-content-text" ng-bind-html="product.resources"></div>
@@ -80,7 +80,7 @@
       
       <div class="col-sm-2">
         <ul class="nav nav-pills nav-stacked">
-          <tab heading="Description"></tab>
+          <tab heading="Description" a href="#info-tab" data-toggle="tab"></tab>
           <tab heading="Costs"></tab>
           <tab heading="Reviews"></tab>
           <tab heading="Resources"></tab>
@@ -89,3 +89,36 @@
       </div>
     
     </div>
+
+          <tabset>
+        <tab heading="Description" class="description">
+          <div class="tab-content-text" ng-bind-html="product.detailed_description"></div>
+          <div class="tag-list">
+            <span ng-repeat="tag in product.tag_list" class="tag label label-info" >{{tag}}</span>
+          </div>
+        </tab>
+        <tab heading="Costs">
+          <div class="tab-content-text" ng-bind-html="product.costs"></div>
+          <div class="tag-list">
+            <span ng-repeat="tag in product.tag_list" class="tag label label-info">{{tag}}</span>
+          </div>
+        </tab>
+        <tab heading="Reviews">
+          <div class="tab-content-text" ng-bind-html="product.reviews"></div>
+          <div class="tag-list">
+            <span ng-repeat="tag in product.tag_list" class="tag label label-info">{{tag}}</span>
+          </div>
+        </tab>
+        <tab heading="Resources">
+          <div class="tab-content-text" ng-bind-html="product.resources"></div>
+          <div class="tag-list">
+            <span ng-repeat="tag in product.tag_list" class="tag label label-info">{{tag}}</span>
+          </div>
+        </tab>
+        <tab heading="Provider">
+          <div class="tab-content-text" ng-bind-html="product.provider"></div>
+          <div class="tag-list">
+            <span ng-repeat="tag in product.tag_list" class="tag label label-info">{{tag}}</span>
+          </div>
+        </tab>
+      </tabset>
