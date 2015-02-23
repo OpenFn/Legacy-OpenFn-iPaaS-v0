@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 require 'admin_constraint'
 
-SalesForce::Application.routes.draw do
+OpenFn::Application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
 
