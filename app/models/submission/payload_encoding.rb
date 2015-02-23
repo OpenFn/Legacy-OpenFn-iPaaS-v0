@@ -22,6 +22,6 @@ class Submission::PayloadEncoding
 
   private
   def integration_klass_for(record)
-    Integration.const_get(record.mapping.source_app.integration_type)
+    OpenFn.const_get(record.mapping.source_app.product.integration_type)
   end
 end

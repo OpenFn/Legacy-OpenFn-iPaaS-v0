@@ -2,49 +2,50 @@ require 'rails_helper'
 
 RSpec.describe Submission::PayloadDecoding, :type => :model do
 
-  let(:submission) { double(Submission, destination_payload: "{destination: 'payload'}", integration: integration) }
-  let(:integration) { double(Integration, destination: destination) }
-  let(:destination) { double(Integration::Destination, integration_type: 'TestProduct') }
+  class OpenFn::TestProduct
+    def self.decode(destination_payload)
+    end
+  end
+
+  let(:record) { double(Submission::Record, { 
+    id: 10,
+    destination_payload: "{destination: 'payload'}",
+    mapping: mapping
+  }) }
+
+  let(:mapping) { double(Mapping, {
+    destination_app: double(ConnectedApp, product: product)
+  }) }
+
+  let(:product) { double(Product, integration_type: "TestProduct") }
 
   before(:each) do
-    @decoding = Submission::PayloadDecoding.new(submission)
+    expect(Submission::Record).to receive(:find).with(10).and_return record
   end
+
+  subject { Submission::PayloadDecoding.new.perform(record.id) }
 
   describe "responsibilities" do
     before(:each) do
-      allow(Resque).to receive(:enqueue)
+      allow(Sidekiq::Client).to receive(:enqueue)
     end
 
     it "decodes the raw message according to the relevant Product Module" do
-      allow(submission).to receive(:raw_destination_payload=)
-      allow(submission).to receive(:save!)
-      expect(Integration::TestProduct).to receive(:decode).with(submission.destination_payload)
+      allow(record).to receive(:raw_destination_payload=)
+      allow(record).to receive(:save!)
+      expect(OpenFn::TestProduct).to receive(:decode).with(record.destination_payload)
 
-      @decoding.work
+      subject
     end
 
-    it "adds the decoded message to the submission record" do
-      expect(Integration::TestProduct).to receive(:decode).and_return(decoded_payload = "<raw><destination>payload</destination></raw>")
-      expect(submission).to receive(:raw_destination_payload=).with(decoded_payload)
-      expect(submission).to receive(:save!)
+    it "adds the decoded message to the record record" do
+      expect(OpenFn::TestProduct).to receive(:decode).and_return(decoded_payload = "<raw><destination>payload</destination></raw>")
+      expect(record).to receive(:raw_destination_payload=).with(decoded_payload)
+      expect(record).to receive(:save!)
 
-      @decoding.work
-    end
-  end
-
-  describe "pipeline" do
-    before(:each) do
-      allow(Integration::TestProduct).to receive(:decode)
-      allow(submission).to receive(:raw_destination_payload=)
-      allow(submission).to receive(:save!)
-    end
-
-    it "enqueues Dispatch" do
-      expect(Submission::Dispatch).to receive(:new).with(submission).and_return(step = double)
-      expect(Resque).to receive(:enqueue).with(step)
-
-      @decoding.work
+      subject
     end
   end
+
   
 end

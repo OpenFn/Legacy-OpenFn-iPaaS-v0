@@ -2,6 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Submission::PayloadEncoding, :type => :model do
 
+  class OpenFn::TestProduct
+    def self.encode(raw_source_payload)
+    end
+  end
+
   let(:record) { 
     double(Submission::Record, 
       raw_source_payload: "<raw><source>payload</source></raw>", 
@@ -25,13 +30,13 @@ RSpec.describe Submission::PayloadEncoding, :type => :model do
     it "decodes the raw message according to the relevant Product Module" do
       allow(record).to receive(:source_payload=)
       allow(record).to receive(:save!)
-      expect(Integration::TestProduct).to receive(:encode).with(record.raw_source_payload)
+      expect(OpenFn::TestProduct).to receive(:encode).with(record.raw_source_payload)
 
       subject
     end
 
     it "adds the decoded message to the record record" do
-      expect(Integration::TestProduct).to receive(:encode).and_return(decoded_payload = "{raw: {source: 'payload'}}")
+      expect(OpenFn::TestProduct).to receive(:encode).and_return(decoded_payload = "{raw: {source: 'payload'}}")
       expect(record).to receive(:source_payload=).with(decoded_payload)
       expect(record).to receive(:save!)
 

@@ -13,9 +13,9 @@ class Submission::Receipt
 
   include Sidekiq::Worker
 
-  def perform(raw_source_message,mapping_id)
+  def perform(raw_source_payload,mapping_id)
     record = Submission::Record.create!({
-      raw_source_message: raw_source_message, 
+      raw_source_payload: raw_source_payload, 
       mapping_id: mapping_id
     })
 
