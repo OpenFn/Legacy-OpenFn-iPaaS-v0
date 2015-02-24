@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220093326) do
+ActiveRecord::Schema.define(version: 20150224120606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,6 +104,29 @@ ActiveRecord::Schema.define(version: 20150220093326) do
   end
 
   add_index "mappings", ["project_id"], name: "index_mappings_on_project_id", using: :btree
+
+  create_table "object_descriptions", force: true do |t|
+    t.integer  "connected_app_id"
+    t.string   "identifier"
+    t.string   "label"
+    t.json     "meta"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "object_descriptions", ["connected_app_id"], name: "index_object_descriptions_on_connected_app_id", using: :btree
+
+  create_table "object_descriptors", force: true do |t|
+    t.integer  "object_description_id"
+    t.string   "identifier"
+    t.string   "label"
+    t.boolean  "hidden"
+    t.json     "meta"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "object_descriptors", ["object_description_id"], name: "index_object_descriptors_on_object_description_id", using: :btree
 
   create_table "odk_fields", force: true do |t|
     t.string   "field_name"
@@ -218,6 +241,7 @@ ActiveRecord::Schema.define(version: 20150220093326) do
     t.datetime "updated_at"
     t.string   "stripe_customer_token"
     t.string   "stripe_subscription_token"
+    t.string   "stripe_current_period_end"
   end
 
   add_index "organizations", ["plan_id"], name: "index_organizations_on_plan_id", using: :btree

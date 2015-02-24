@@ -43,8 +43,8 @@ class User < ActiveRecord::Base
         customer = Stripe::Customer.create(description: org.id, plan: plan.name, card: params[:user][:stripe_token])
         org.stripe_customer_token = customer.id
         org.stripe_subscription_token = customer.subscriptions.first.id
+        org.stripe_current_period_end = Time.at(customer.subscriptions.first.current_period_end)
         org.save
-        plan.update(price: customer.subscriptions.first.plan.amount)
         save!
       else
         save
@@ -64,11 +64,11 @@ class User < ActiveRecord::Base
       else
         customer = Stripe::Customer.create(description: organization.id, plan: plan.name, card: params[:user][:stripe_token])
       end
-      plan.update(price: customer.subscriptions.first.plan.amount)
       organization.plan_id = plan.id
       organization.stripe_customer_token = customer.id
       organization.stripe_subscription_token = customer.subscriptions.first.id
-      organization.save
+      organization.stripe_current_period_end = Time.at(customer.subscriptions.first.current_period_end)
+      organization.save!
     end
   rescue Stripe::StripeError => e
     logger.error "Stripe Error: " + e.message
