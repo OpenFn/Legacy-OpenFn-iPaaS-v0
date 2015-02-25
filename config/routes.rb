@@ -82,6 +82,17 @@ OpenFn::Application.routes.draw do
     resources :collaborations, only: [:new, :create, :update, :destroy]
   end
 
+  resources :connected_apps do
+    member do
+      get 'object_description/:identifier', to: 'object_descriptions#show'
+      get 'object_descriptions/new', to: 'object_descriptions#new'
+      post 'object_descriptions', to: 'object_descriptions#create'
+      get 'object_descriptions/:identifier/edit', to: 'object_descriptions#edit'
+      patch 'object_description/:identifier', to: 'object_descriptions#update'
+      delete 'object_description/:identifier', to: 'object_descriptions#destroy'
+    end
+  end
+
   get  "signup", to: "users#new",        as: :signup
   get  "login",  to: "user_sessions#new",     as: :login
   post "login",  to: "user_sessions#create",  as: :create_session
