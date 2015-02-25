@@ -36,8 +36,8 @@ class User < ActiveRecord::Base
   def save_with_payment(params)
     if valid?
       org = Organization.create(name: params[:organization_name])
-      plan = Plan.find_or_create_by(name: subscription_plan)
-      org.update(plan_id: plan.id)
+      plan = Plan.find_by(name: subscription_plan)
+      org.update(plan_id: plan.try(:id))
       self.organization_id = org.id
       unless subscription_plan == 'Free'
         customer = Stripe::Customer.create(description: org.id, plan: plan.name, card: params[:user][:stripe_token])
@@ -56,8 +56,8 @@ class User < ActiveRecord::Base
   end
 
   def update_plan(params)
-    if organization.plan.try(:name) != params[:user][:subscription_plan]
-      plan = Plan.find_or_create_by(name: params[:user][:subscription_plan])
+    if self.client_admin? && organization.plan.try(:name) != params[:user][:subscription_plan]
+      plan = Plan.find_by(name: params[:user][:subscription_plan])
       if organization.stripe_customer_token.present?
         customer = Stripe::Customer.retrieve(organization.stripe_customer_token)
         customer.update_subscription(plan: params[:user][:subscription_plan])
