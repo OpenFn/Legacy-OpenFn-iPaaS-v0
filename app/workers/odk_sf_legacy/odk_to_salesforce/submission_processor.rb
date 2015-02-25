@@ -119,9 +119,11 @@ module OdkSfLegacy
       end
 
       def find_full_url_for(media_data, filename)
-        if media_data
+        if media_data.is_a? Array
           data = media_data.select { |hsh| hsh["filename"] == filename }
           data.any? ? CGI.unescape(data.first["downloadUrl"]) : filename
+        elsif media_data.is_a? Hash
+          media_data["filename"] == filename ? CGI.unescape(media_data["downloadUrl"]) : filename
         else
           filename
         end
