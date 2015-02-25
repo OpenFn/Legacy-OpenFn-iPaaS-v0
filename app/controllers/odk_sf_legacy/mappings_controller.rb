@@ -48,7 +48,7 @@ module OdkSfLegacy
 
     def destroy
       if @mapping.destroy
-        redirect_to(mappings_url)
+        redirect_to(odk_sf_legacy_mappings_path)
       else
         render(:show, notice: "Mapping could not be destoyed.")
       end
