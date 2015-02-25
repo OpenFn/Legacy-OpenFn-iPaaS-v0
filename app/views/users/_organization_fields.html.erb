@@ -1,0 +1,27 @@
+<div class="form-group">
+  <%= f.label 'Organisation' %>
+  <%= text_field_tag :organization_name, @user.organization.try(:name), class: 'form-control' %>
+  <%=f.hidden_field :stripe_token %>
+  <%=f.hidden_field :subscription_plan, value: @user.new_record? ? nil : @user.organization.plan.try(:name)%>
+</div>
+<div class="form-group">
+  <%= f.label 'Plan' %><br>
+  <div class="btn-group plan_btn" data-toggle="buttons">
+    <label class="btn btn-default active">
+      <input type="radio" name="options" data-name="Free" data-amount="free"> Free
+    </label>
+    <label class="btn btn-default">
+      <input type="radio" name="options" data-name="Entry" data-amount="3900"> Entry $39/mo.
+    </label>
+    <label class="btn btn-default">
+      <input type="radio" name="options" data-name="Startup" data-amount="7900"> Startup $79/mo.
+    </label>
+    <label class="btn btn-default">
+      <input type="radio" name="options" data-name="Growth" data-amount="24900"> Growth $249/mo.
+    </label>
+    <label class="btn btn-default">
+      <input type="radio" name="options" data-name="Enterprise" data-amount="99900"> Enterprise $999/mo.
+    </label>
+  </div>
+</div>
+

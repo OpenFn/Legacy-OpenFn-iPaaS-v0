@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :password, confirmation: true, on: :create
   validates :password_confirmation, presence: true, on: :create
 
-  validates :email, uniqueness: true, presence: true
+  validates :email, :invitation_token, uniqueness: true, presence: true
   validates :first_name, :last_name, presence: true
   validates :role, inclusion: { in: %w(client client_admin admin), message: "%{value} is not a valid role" }
 
@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
 
   def client_admin?
     role == 'client_admin'
+  end
+
+  def client?
+    role == 'client'
   end
 
   def has_available_mapping_credits?

@@ -44,7 +44,7 @@
 
         <!-- Ankur, display the plan name here. -->
         <div class="col-md-4">
-          <h1><%= @user.organization.plan.try(:name) %></h1>
+          <h1><%= @user.organization.plan.name rescue 'No Plan' %></h1>
           <h4>Current Plan</h4>
         </div>
 
@@ -126,41 +126,17 @@
                     <%= f.label :last_name %>
                     <%= f.text_field :last_name, class: 'form-control' %>
                   </div>
-                  <%if current_user && current_user.role == 'client_admin'%>
-                    <div class="form-group">
-                      <%= f.label 'Organisation' %>
-                      <%= text_field_tag :organization_name, @user.organization.try(:name), class: 'form-control' %>
-                      <%=f.hidden_field :stripe_token %>
-                      <%=f.hidden_field :subscription_plan, value: @user.new_record? ? nil : @user.organization.plan.try(:name)%>
-                    </div>
-                    <div class="form-group">
-                      <%= f.label 'Plan' %><br>
-                      <!-- Ankur, please use this format, and don't ask for credit card information until "Sign up" is clicked. -->
-                      <div class="btn-group plan_btn" data-toggle="buttons">
-                        <label class="btn btn-default active">
-                          <input type="radio" name="options" data-name="Free" data-amount="free" checked> Free
-                        </label>
-                        <label class="btn btn-default">
-                          <input type="radio" name="options" data-name="Entry" data-amount="3900"> Entry $39/mo.
-                        </label>
-                        <label class="btn btn-default">
-                          <input type="radio" name="options" data-name="Startup" data-amount="7900"> Startup $79/mo.
-                        </label>
-                        <label class="btn btn-default">
-                          <input type="radio" name="options" data-name="Growth" data-amount="24900"> Growth $249/mo.
-                        </label>
-                        <label class="btn btn-default">
-                          <input type="radio" name="options" data-name="Enterprise" data-amount="99900"> Enterprise $999/mo.
-                        </label>
-                      </div>
-                    </div>
-                  <%else%>
+                  <% if current_user.blank? %>
+                    <%= render 'organization_fields', f: f%>
+                  <% elsif current_user && current_user.client_admin? %>
+                    <%= render 'organization_fields', f: f%>
+                  <% elsif current_user && current_user.client? %>
                     <%= hidden_field_tag :organization_name, @user.organization.try(:name)%>
                   <%end%>
                   <% if current_user %>
-                    <%= f.submit "Update", class: 'btn btn-primary' %>
+                    <%= f.submit "Update", class: 'btn btn-primary submit_btn' %>
                   <% else %>
-                    <%= f.submit "Sign up", class: 'btn btn-success', id: 'submit_btn' %>
+                    <%= f.submit "Sign up", class: 'btn btn-success submit_btn' %>
                   <% end %>
                   <script src="https://checkout.stripe.com/checkout.js"></script>
               <% end %>
@@ -283,15 +259,23 @@
 
 <script>
   <%if current_user%>
-    plan = '<%=current_user.organization.plan.try(:name)%>'
+    plan = '<%=current_user.organization.plan.try(:name)%>';
+    SetPlan(plan);
+  <%end%>
+  <%if params[:plan].present?%>
+    plan = '<%=params[:plan]%>';
+    SetPlan(plan);
+  <%end%>
+
+  function SetPlan(plan){
     $('.plan_btn label').removeClass('active');
     $('.plan_btn input').each(function(){
       if ($(this).data('name') == plan){
-        $(this).attr('checked');
+        $(this).attr('checked', true);
         $(this).parent('label').addClass('active');
       }
     })
-  <%end%>
+  }
 
   var handler = StripeCheckout.configure({
     key: "<%= Rails.configuration.stripe[:publishable_key] %>",
@@ -302,7 +286,7 @@
     }
   });
 
-  $("form#signup_form").submit(function(e){
+  $(".submit_btn").click(function(e){
     amount = $('.plan_btn').find('input:checked').data('amount');
     plan_name = $('.plan_btn').find('input:checked').data('name');
     if($("#user_subscription_plan").val() != plan_name){

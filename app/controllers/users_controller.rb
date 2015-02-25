@@ -75,7 +75,8 @@ class UsersController < ApplicationController
     exsiting_user = User.find_by(email: params[:email])
     if exsiting_user.blank?
       password = SecureRandom.hex
-      user = User.new(email: params[:email], crypted_password: password, salt: password, organization_id: current_user.organization_id, role: 'client')
+      invite_token = password + SecureRandom.hex
+      user = User.new(email: params[:email], crypted_password: password, salt: password, invitation_token: invite_token, organization_id: current_user.organization_id, role: 'client')
       user.save(validate: false)
       @success = true
     else
