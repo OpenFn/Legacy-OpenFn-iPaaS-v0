@@ -6,7 +6,7 @@ class Submission::Translation
   
   def perform(record_id)
     record = Submission::Record.find(record_id)
-    translation = Mapping::Translation.new(record.source_payload, record.mapping_id)
+    translation = Mapping::Translation.new(record.source_payload, record.mapping)
     record.destination_payload = translation.result
     record.save!
     
