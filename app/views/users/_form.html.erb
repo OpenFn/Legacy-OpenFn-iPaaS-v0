@@ -125,7 +125,7 @@
           </div>
       </div>
     </div>
-    
+
     <div class="panel panel-default">
       <div class="panel-heading" role="tab" id="headingThree">
         <h4 class="panel-title">
@@ -225,6 +225,9 @@
       if ($(this).data('name') == plan){
         $(this).attr('checked', true);
         $(this).parent('label').addClass('active');
+      }else{
+        $('.plan_btn input').first().attr('checked', true);
+        $('.plan_btn input').first().parent('label').addClass('active');
       }
     })
   }
