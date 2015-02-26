@@ -212,11 +212,16 @@
 <script>
   <%if current_user%>
     plan = '<%=current_user.organization.plan.try(:name)%>';
-    SetPlan(plan);
+    if (plan != "")
+      SetPlan(plan);
+  <%else%>
+    $('.plan_btn input').first().attr('checked', true)
+    $('.plan_btn label').first().addClass('active');
   <%end%>
   <%if params[:plan].present?%>
     plan = '<%=params[:plan]%>';
-    SetPlan(plan);
+    if (plan != "")
+      SetPlan(plan);
   <%end%>
 
   function SetPlan(plan){
@@ -225,9 +230,6 @@
       if ($(this).data('name') == plan){
         $(this).attr('checked', true);
         $(this).parent('label').addClass('active');
-      }else{
-        $('.plan_btn input').first().attr('checked', true);
-        $('.plan_btn input').first().parent('label').addClass('active');
       }
     })
   }
