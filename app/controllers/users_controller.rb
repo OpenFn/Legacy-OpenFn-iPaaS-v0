@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   respond_to :html, :json, :xml
-  skip_before_filter :require_login, only: [:new, :create, :sync]
+  skip_before_filter :require_login, only: [:new, :create, :sync, :set_password]
 
   skip_before_filter :verify_authenticity_token, only: [:sync]
   before_filter :validate_api_admin, only: [:sync]
@@ -75,11 +75,40 @@ class UsersController < ApplicationController
     exsiting_user = User.find_by(email: params[:email])
     if exsiting_user.blank?
       password = SecureRandom.hex
-      user = User.new(email: params[:email], crypted_password: password, salt: password, organization_id: current_user.organization_id, role: 'client')
+      invite_token = SecureRandom.urlsafe_base64
+      user = User.new(email: params[:email], crypted_password: password, salt: password, invitation_token: invite_token, organization_id: current_user.organization_id, role: 'client')
       user.save(validate: false)
       @success = true
     else
       @message = 'User already exist'
+    end
+  end
+
+  def set_password
+    if request.post?
+      user = User.find_by(invitation_token: params[:token])
+      user.password = params[:user][:password]
+      user.password_confirmation = params[:user][:password]
+      user.invitation_token = nil
+      if user.save(validate: false)
+        auto_login(user)
+        flash[:success] = "Password updated." unless flash[:danger]
+        redirect_to edit_user_path(user)
+      else
+        flash.now[:danger] = "Password could not be updated successfully."
+        render :set_password
+      end
+    else
+      if params[:token].present?
+        @user = User.find_by(invitation_token: params[:token])
+        unless @user.present?
+          flash.now[:alert] = "Invalid Invitation Token!"
+          redirect_to root_path and return
+        end
+      else
+        flash.now[:alert] = "Invalid Url!"
+        redirect_to root_path
+      end
     end
   end
 
@@ -88,7 +117,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(
       :email, :password, :password_confirmation, :first_name, :last_name, :organisation, :tier, :role,
-      :odk_url, :odk_username, :odk_password, :stripe_token, :subscription_plan,
+      :odk_url, :odk_username, :odk_password, :stripe_token, :subscription_plan, :stripe_coupon,
       :sf_security_token, :sf_username, :sf_password, :sf_app_key, :sf_app_secret, :sf_host
     )
   end
