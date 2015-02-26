@@ -87,6 +87,7 @@ OpenFn::Application.routes.draw do
   post "login",  to: "user_sessions#create",  as: :create_session
   post  "logout", to: "user_sessions#destroy", as: :logout
   post :send_invite, to: 'users#send_invite'
+  match :set_password, to: 'users#set_password', via: [:get, :post]
 
   get '/products/:product_id/vote', to: "products#vote"
 

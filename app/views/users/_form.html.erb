@@ -211,7 +211,7 @@
 
 <script>
   <%if current_user%>
-    plan = '<%=current_user.organization.plan.try(:name)%>';
+    plan = '<%=current_user.organization.plan.try(:name) rescue ""%>';
     if (plan != "")
       SetPlan(plan);
   <%else%>
