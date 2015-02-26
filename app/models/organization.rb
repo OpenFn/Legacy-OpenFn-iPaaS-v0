@@ -4,4 +4,5 @@ class Organization < ActiveRecord::Base
   belongs_to :plan
 
   validates :name, presence: true, uniqueness: true
+
 end

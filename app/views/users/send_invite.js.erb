@@ -1,6 +1,8 @@
 <%if @success%>
   $(".error").html("<p class='success'>You have successfully sent the invitation</p>");
   $("#inviteModal").modal('hide');
-<%else%>
+<%elsif @errors%>
+  $("#errors").html("<%=j render 'shared/error_messages', target: @user%>")
+<%elsif @message%>
   $(".error").html("<p class='success'><%=@message%></p>")
 <%end%>

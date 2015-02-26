@@ -21,6 +21,14 @@ class User < ActiveRecord::Base
   before_validation :set_default_role, on: :create
   after_create :set_role
 
+  validate :validate_users, on: :create
+
+  def validate_users
+    if organization.users.count >= user_limits
+      errors.add :base, "Organization has reached to the max user limit"
+    end
+  end
+
   def admin?
     self.role == 'admin'
   end
@@ -91,6 +99,10 @@ class User < ActiveRecord::Base
 
     def set_role
       self.update(role: 'client_admin') if organization.present?
+    end
+
+    def user_limits
+      organization.plan.user_limit rescue 1
     end
 
 end

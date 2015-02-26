@@ -76,9 +76,12 @@ class UsersController < ApplicationController
     if exsiting_user.blank?
       password = SecureRandom.hex
       invite_token = SecureRandom.urlsafe_base64
-      user = User.new(email: params[:email], crypted_password: password, salt: password, invitation_token: invite_token, organization_id: current_user.organization_id, role: 'client')
-      user.save(validate: false)
-      @success = true
+      @user = User.new(email: params[:email], password: password, password_confirmation: password, invitation_token: invite_token, organization_id: current_user.organization_id, role: 'client', first_name: "Invited", last_name: "User")
+      if @user.save
+        @success = true
+      else
+        @errors = @user.errors.full_messages
+      end
     else
       @message = 'User already exist'
     end
@@ -90,6 +93,8 @@ class UsersController < ApplicationController
       user.password = params[:user][:password]
       user.password_confirmation = params[:user][:password]
       user.invitation_token = nil
+      user.first_name = nil
+      user.last_name = nil
       if user.save(validate: false)
         auto_login(user)
         flash[:success] = "Password updated." unless flash[:danger]
