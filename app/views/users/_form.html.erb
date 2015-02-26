@@ -231,8 +231,19 @@
         $(this).attr('checked', true);
         $(this).parent('label').addClass('active');
       }
+      if ($(this).data('name') != 'Free'){
+        $(".coupon_field").show();
+      }
     })
   }
+
+  $(".pay").click(function(){
+    $(".coupon_field").show();
+  });
+
+  $(".free").click(function(){
+    $(".coupon_field").hide();
+  });
 
   var handler = StripeCheckout.configure({
     key: "<%= Rails.configuration.stripe[:publishable_key] %>",
@@ -246,13 +257,16 @@
   $(".submit_btn").click(function(e){
     amount = $('.plan_btn').find('input:checked').data('amount');
     plan_name = $('.plan_btn').find('input:checked').data('name');
+    email = $("#user_email").val();
     if($("#user_subscription_plan").val() != plan_name){
       $("#user_subscription_plan").val(plan_name);
       if(amount != 'free'){
         if($("#user_stripe_token").val() == ""){
           handler.open({
             name: 'OpenFn',
-            amount: amount
+            amount: amount,
+            email: email,
+            panelLabel: 'Signup for '+ plan_name
           });
           return false;
         }else{
@@ -260,6 +274,11 @@
         }
       }
     }
+  });
+
+  // Close Checkout on page navigation
+  $(window).on('popstate', function() {
+    handler.close();
   });
 
 </script>

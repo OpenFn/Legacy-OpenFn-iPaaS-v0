@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
-  attr_accessor :synced, :stripe_token, :subscription_plan
+  attr_accessor :synced, :stripe_token, :subscription_plan, :stripe_coupon
 
   has_many :mappings, dependent: :destroy, class_name: "OdkSfLegacy::Mapping"
   has_many :collaborations, dependent: :destroy
@@ -39,18 +39,19 @@ class User < ActiveRecord::Base
 
   def save_with_payment(params)
     if valid?
-      org = Organization.create(name: params[:organization_name])
+      org = Organization.new(name: params[:organization_name])
       plan = Plan.find_by(name: subscription_plan)
-      org.update(plan_id: plan.try(:id))
-      self.organization_id = org.id
+      org.plan_id = plan.try(:id)
       unless subscription_plan == 'Free'
-        customer = Stripe::Customer.create(description: org.id, plan: plan.name, card: params[:user][:stripe_token])
+        customer = Stripe::Customer.create(description: org.id, plan: plan.name, card: params[:user][:stripe_token], coupon: stripe_coupon.blank? ? nil : stripe_coupon)
         org.stripe_customer_token = customer.id
         org.stripe_subscription_token = customer.subscriptions.first.id
         org.save
-        plan.update(price: customer.subscriptions.first.plan.amount)
+        self.organization_id = org.id
         save!
       else
+        org.save
+        self.organization_id = org.id
         save
       end
     end
@@ -60,15 +61,18 @@ class User < ActiveRecord::Base
   end
 
   def update_plan(params)
-    if self.client_admin? && organization.plan.try(:name) != params[:user][:subscription_plan]
+    if (self.client_admin? && organization.plan.try(:name) != params[:user][:subscription_plan]) || stripe_coupon.present?
       plan = Plan.find_by(name: params[:user][:subscription_plan])
       if organization.stripe_customer_token.present?
         customer = Stripe::Customer.retrieve(organization.stripe_customer_token)
+        if stripe_coupon.present?
+          customer.coupon = stripe_coupon
+          customer.save
+        end
         customer.update_subscription(plan: params[:user][:subscription_plan])
       else
-        customer = Stripe::Customer.create(description: organization.id, plan: plan.name, card: params[:user][:stripe_token])
+        customer = Stripe::Customer.create(description: organization.id, plan: plan.name, card: params[:user][:stripe_token], coupon: stripe_coupon.blank? ? nil : stripe_coupon)
       end
-      plan.update(price: customer.subscriptions.first.plan.amount)
       organization.plan_id = plan.id
       organization.stripe_customer_token = customer.id
       organization.stripe_subscription_token = customer.subscriptions.first.id
