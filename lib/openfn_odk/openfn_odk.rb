@@ -1,6 +1,10 @@
 class OpenFn::Odk
   class << self
+
+    # Raw Source Encoding
+    # -------------------
     def encode(raw_source_payload)
+      raw_source_payload["data"].first[1]
     end
 
     def decode(destination_payload)
