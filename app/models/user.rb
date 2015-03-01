@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :organization, allow_destroy: true
 
   before_validation :set_default_role, on: :create
-  after_create :set_role
 
   def admin?
     self.role == 'admin'
@@ -48,10 +47,12 @@ class User < ActiveRecord::Base
         org.stripe_subscription_token = customer.subscriptions.first.id
         org.save
         self.organization_id = org.id
+        self.role = 'client_admin'
         save!
       else
         org.save
         self.organization_id = org.id
+        self.role = 'client_admin'
         save
       end
     end
@@ -87,10 +88,6 @@ class User < ActiveRecord::Base
   private
     def set_default_role
       self.role ||= 'client'
-    end
-
-    def set_role
-      self.update(role: 'client_admin') if organization.present?
     end
 
 end

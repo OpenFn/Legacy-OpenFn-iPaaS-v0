@@ -95,5 +95,6 @@
     </div>
 </nav>
 <%if current_user && current_user.client_admin?%>
-  <%=render 'shared/invite_modal'%>
+  <%= render 'shared/invite_modal'%>
+  <%= render 'shared/confirm_modal'%>
 <%end%>
