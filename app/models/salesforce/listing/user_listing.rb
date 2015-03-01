@@ -23,7 +23,8 @@ class Salesforce::Listing::UserListing
       'Last_Name__c' => last_name,
       'Organization__c' => organisation,
       'Role__c' => role,
-      'Invitation_Token__c' => invitation_token
+      'Invitation_Token__c' => invitation_token,
+      'Organization_ID__c' => organization_id
     }
   end
 
@@ -40,7 +41,8 @@ class Salesforce::Listing::UserListing
       'last_name' => last_name,
       'organisation' => organisation,
       'role' => role,
-      'invitation_token' => invitation_token
+      'invitation_token' => invitation_token,
+      'organization_id' => organization_id
     }
   end
 
@@ -55,6 +57,7 @@ class Salesforce::Listing::UserListing
       @organisation = user.organization.try(:name)
       @role = user.role
       @invitation_token = user.invitation_token
+      @organization_id = user.organization_id
     end
 
     # This is to map incoming notification data to our DB
@@ -68,5 +71,6 @@ class Salesforce::Listing::UserListing
       @organisation = notification.at_css('Organization__c').try(:content)
       @role = notification.at_css('Role__c').try(:content)
       @invitation_token = notification.at_css('Invitation_Token__c').try(:content)
+      @organization_id = notification.at_css('Organization_ID__c').try(:content)
     end
 end
