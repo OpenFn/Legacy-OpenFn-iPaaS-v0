@@ -20,9 +20,6 @@
         <li>
           <%= link_to "Integrations", odk_sf_legacy_mappings_path, 'ng-click' => "$event.stopPropagation()" %>
         </li>
-<!--         <li>
-          <%= link_to "Pricing", "/#/pricing" %>
-        </li> -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Ideas <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
@@ -41,6 +38,9 @@
               </li>
             </ul>
         </li>
+        <li>
+          <%= link_to "Pricing", "/#/pricing" %>
+        </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -52,12 +52,12 @@
           </li>
         <% end %>
 
-        <% if current_user %>
+<!--         <% if current_user %>
           <%if current_user.client_admin?%>
             <li>
                 <a href="javascript:;"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#inviteModal"><i class="fa fa-user-plus"></i> Invite collaborator</button></a>
             </li>
-          <%end%>
+          <%end%> -->
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
