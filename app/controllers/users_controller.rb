@@ -12,6 +12,14 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
+    respond_to do |format|
+      if @user.save
+        format.json { render json: @user, status: :created }
+      else
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+
     if @user.save_with_payment(params)
       auto_login(@user)
       set_user_credentials_and_flash
@@ -24,9 +32,18 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    if params[:organization_name] != @user.organization.try(:name)
-      @user.organization.update(name: params[:organization_name])
-    end
+    # if params[:organization_name] != @user.organization.try(:name)
+    #   @user.organization.update(name: params[:organization_name])
+    # end
+
+    # respond_to do |format|
+    #   if @user.update(user_params)
+    #     format.json { head :no_content }
+    #   else
+    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
     if @user.update(user_params)
       @user.update_plan(params)
       set_user_credentials_and_flash
@@ -60,7 +77,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
+  def show
+    render json: @user
   end
 
   def edit
@@ -68,55 +86,63 @@ class UsersController < ApplicationController
     set_user_credentials_and_flash
   end
 
-  def index
-  end
-
-  def send_invite
-    exsiting_user = User.find_by(email: params[:email])
-    if exsiting_user.blank?
-      password = SecureRandom.hex
-      invite_token = SecureRandom.urlsafe_base64
-      user = User.new(email: params[:email], crypted_password: password, salt: password, invitation_token: invite_token, organization_id: current_user.organization_id, role: 'client')
-      user.save(validate: false)
-      @success = true
-    else
-      @message = 'User already exist'
+  # DELETE /organizations/:id.json
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.json { head :no_content }
     end
   end
 
-  def set_password
-    if request.post?
-      user = User.find_by(invitation_token: params[:token])
-      user.password = params[:user][:password]
-      user.password_confirmation = params[:user][:password]
-      user.invitation_token = nil
-      if user.save(validate: false)
-        auto_login(user)
-        flash[:success] = "Password updated." unless flash[:danger]
-        redirect_to edit_user_path(user)
-      else
-        flash.now[:danger] = "Password could not be updated successfully."
-        render :set_password
-      end
-    else
-      if params[:token].present?
-        @user = User.find_by(invitation_token: params[:token])
-        unless @user.present?
-          flash.now[:alert] = "Invalid Invitation Token!"
-          redirect_to root_path and return
-        end
-      else
-        flash.now[:alert] = "Invalid Url!"
-        redirect_to root_path
-      end
-    end
-  end
+  # def send_invite
+  #   exsiting_user = User.find_by(email: params[:email])
+  #   if exsiting_user.blank?
+  #     password = SecureRandom.hex
+  #     invite_token = SecureRandom.urlsafe_base64
+  #     user = User.new(email: params[:email], crypted_password: password, salt: password, invitation_token: invite_token, organization_id: current_user.organization_id, role: 'client')
+  #     user.save(validate: false)
+  #     @success = true
+  #   else
+  #     @message = 'User already exist'
+  #   end
+  # end
+
+  # def set_password
+  #   if request.post?
+  #     user = User.find_by(invitation_token: params[:token])
+  #     user.password = params[:user][:password]
+  #     user.password_confirmation = params[:user][:password]
+  #     user.invitation_token = nil
+  #     if user.save(validate: false)
+  #       auto_login(user)
+  #       flash[:success] = "Password updated." unless flash[:danger]
+  #       redirect_to edit_user_path(user)
+  #     else
+  #       flash.now[:danger] = "Password could not be updated successfully."
+  #       render :set_password
+  #     end
+  #   else
+  #     if params[:token].present?
+  #       @user = User.find_by(invitation_token: params[:token])
+  #       unless @user.present?
+  #         flash.now[:alert] = "Invalid Invitation Token!"
+  #         redirect_to root_path and return
+  #       end
+  #     else
+  #       flash.now[:alert] = "Invalid Url!"
+  #       redirect_to root_path
+  #     end
+  #   end
+  # end
+
+
 
   private
 
   def user_params
     params.require(:user).permit(
-      :email, :password, :password_confirmation, :first_name, :last_name, :organisation, :role, :invitation_token, :organization_id,
+      :email, :password, :password_confirmation, :first_name, :last_name, :organisation, :role, :plan_id, 
+      # :invitation_token, :organization_id,
       :odk_url, :odk_username, :odk_password, :stripe_token, :subscription_plan, :stripe_coupon,
       :sf_security_token, :sf_username, :sf_password, :sf_app_key, :sf_app_secret, :sf_host
     )
@@ -161,4 +187,5 @@ class UsersController < ApplicationController
       return false
     end
   end
+
 end

@@ -1,5 +1,5 @@
 class Salesforce::Listing::UserListing
-  attr_reader :id, :credits, :email, :first_name, :last_name, :organisation, :role, :invitation_token, :organization_id
+  attr_reader :id, :credits, :email, :first_name, :last_name, :organisation, :role, :invitation_token, :plan_id
 
   def initialize(source)
     initialize_from_user(source) if source.is_a?(::User)
@@ -21,10 +21,11 @@ class Salesforce::Listing::UserListing
       'Email__c' => email,
       'First_Name__c' => first_name,
       'Last_Name__c' => last_name,
-      'Organization__c' => organisation,
+      'Organisation__c' => organisation,
       'Role__c' => role,
       'Invitation_Token__c' => invitation_token,
-      'Organization_ID__c' => organization_id
+      # 'Organization_ID__c' => organization_id
+      'Tier__c' => plan_id
     }
   end
 
@@ -42,7 +43,8 @@ class Salesforce::Listing::UserListing
       'organisation' => organisation,
       'role' => role,
       'invitation_token' => invitation_token,
-      'organization_id' => organization_id
+      # 'organization_id' => organization_id
+      'plan_id' => plan.id
     }
   end
 
@@ -54,7 +56,8 @@ class Salesforce::Listing::UserListing
       @email = user.email
       @first_name = user.first_name
       @last_name = user.last_name
-      @organisation = user.organization.try(:name)
+      # @organisation = user.organization.try(:name)
+      @organisation = user.organisation
       @role = user.role
       @invitation_token = user.invitation_token
       @organization_id = user.organization_id
@@ -71,6 +74,6 @@ class Salesforce::Listing::UserListing
       @organisation = notification.at_css('Organization__c').try(:content)
       @role = notification.at_css('Role__c').try(:content)
       @invitation_token = notification.at_css('Invitation_Token__c').try(:content)
-      @organization_id = notification.at_css('Organization_ID__c').try(:content)
+      # @organization_id = notification.at_css('Organization_ID__c').try(:content)
     end
 end
