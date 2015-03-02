@@ -30,18 +30,19 @@
     <% if current_user %>
       <div class="row">
         <div class="col-md-4">
-          <h1><%= @user.organization.plan.name rescue 'No Plan' %></h1>
-          <h4>Current Plan</h4>
+          <h1><%= @user.plan.name rescue 'No Plan' %></h1>
+          <h4>Plan</h4>
         </div>
         <div class="col-md-4">
-          <h1><%= @user.credits %></h1>
+          <h1><%= @user.mappings.enabled.count %> / <%= @user.plan.map_limit %></h1>
           <h4>Maps</h4>
         </div>
         <div class="col-md-4">
-          <h1><%= @user.mappings.enabled.count %></h1>
-          <h4>Enabled maps</h4>
+          <h1>N / <%= @user.plan.job_limit %></h1>
+          <h4>Jobs</h4>
         </div>
       </div>
+      </br>
     <% end %>
 
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -77,13 +78,38 @@
                   <%= f.label :last_name %>
                   <%= f.text_field :last_name, class: 'form-control' %>
                 </div>
-                <% if current_user.blank? %>
-                  <%= render 'organization_fields', f: f%>
-                <% elsif current_user && current_user.client_admin? || current_user.admin? %>
-                  <%= render 'organization_fields', f: f%>
-                <% elsif current_user && current_user.client? %>
-                  <%= hidden_field_tag :organization_name, @user.organization.try(:name)%>
-                <%end%>
+                <div class="form-group">
+                  <%= f.label :organisation %>
+                  <%= f.text_field :organisation, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%=f.hidden_field :stripe_token %>
+                  <%=f.hidden_field :subscription_plan, value: @user.new_record? ? nil : @plan.try(:name)%>
+                </div>
+                <div class="form-group">
+                  <%= f.label 'Plan' %><br>
+                  <div class="btn-group plan_btn" data-toggle="buttons">
+                    <label class="btn btn-default free">
+                      <input type="radio" name="options" data-name="Free" data-amount="free"> Free
+                    </label>
+                    <label class="btn btn-default pay">
+                      <input type="radio" name="options" data-name="Entry" data-amount="3900"> Entry $39/mo.
+                    </label>
+                    <label class="btn btn-default pay">
+                      <input type="radio" name="options" data-name="Startup" data-amount="7900"> Startup $79/mo.
+                    </label>
+                    <label class="btn btn-default pay">
+                      <input type="radio" name="options" data-name="Growth" data-amount="29900"> Growth $299/mo.
+                    </label>
+                    <label class="btn btn-default pay disabled">
+                      <input type="radio" name="options" data-name="Enterprise" data-amount="99900"> Enterprise
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group coupon_field" style="display:none">
+                  <%= f.label 'Coupon Code' %>
+                  <%= f.text_field :stripe_coupon, class: 'form-control'%>
+                </div>
                 <% if current_user %>
                   <%= f.submit "Update", class: 'btn btn-primary submit_btn' %>
                 <% else %>
@@ -211,7 +237,7 @@
 
 <script>
   <%if current_user%>
-    plan = '<%=current_user.organization.plan.try(:name) rescue ""%>';
+    plan = '<%=current_user.plan.try(:name) rescue ""%>';
     if (plan != "")
       SetPlan(plan);
   <%else%>

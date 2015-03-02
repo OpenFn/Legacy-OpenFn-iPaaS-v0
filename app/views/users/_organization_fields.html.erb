@@ -4,10 +4,10 @@
   <%=f.hidden_field :stripe_token %>
   <%=f.hidden_field :subscription_plan, value: @user.new_record? ? nil : @user.organization.plan.try(:name)%>
 </div>
-<!-- <div class="form-group coupon_field" style="display:none">
+<div class="form-group coupon_field" style="display:none">
   <%= f.label 'Coupon Code' %>
   <%= f.text_field :stripe_coupon, class: 'form-control'%>
-</div> -->
+</div>
 <div class="form-group">
   <%= f.label 'Plan' %><br>
   <div class="btn-group plan_btn" data-toggle="buttons">
