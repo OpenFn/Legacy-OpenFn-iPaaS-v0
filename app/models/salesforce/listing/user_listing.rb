@@ -21,7 +21,7 @@ class Salesforce::Listing::UserListing
       'Email__c' => email,
       'First_Name__c' => first_name,
       'Last_Name__c' => last_name,
-      'Organization__c' => organisation,
+      'Organisation__c' => organisation,
       'Role__c' => role,
       'Invitation_Token__c' => invitation_token,
       # 'Organization_ID__c' => organization_id
