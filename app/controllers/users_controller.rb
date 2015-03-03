@@ -12,13 +12,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    respond_to do |format|
-      if @user.save
-        format.json { render json: @user, status: :created }
-      else
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @user.save
+    #     format.json { render json: @user, status: :created }
+    #   else
+    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
+    # end
 
     if @user.save_with_payment(params)
       auto_login(@user)
@@ -141,7 +141,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(
-      :email, :password, :password_confirmation, :first_name, :last_name, :organisation, :role, :plan_id, 
+      :email, :password, :password_confirmation, :first_name, :last_name, :organisation, :role, :plan_id,
       # :invitation_token, :organization_id,
       :odk_url, :odk_username, :odk_password, :stripe_token, :subscription_plan, :stripe_coupon,
       :sf_security_token, :sf_username, :sf_password, :sf_app_key, :sf_app_secret, :sf_host

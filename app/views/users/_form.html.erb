@@ -84,7 +84,7 @@
                 </div>
                 <div class="form-group">
                   <%=f.hidden_field :stripe_token %>
-                  <%=f.hidden_field :subscription_plan, value: @user.new_record? ? nil : @plan.try(:name)%>
+                  <%=f.hidden_field :subscription_plan, value: @user.new_record? ? nil : @user.plan.try(:name)%>
                 </div>
                 <div class="form-group">
                   <%= f.label 'Plan' %><br>
@@ -274,8 +274,9 @@
   var handler = StripeCheckout.configure({
     key: "<%= Rails.configuration.stripe[:publishable_key] %>",
     token: function(token) {
-      console.log(token);
       $("#user_stripe_token").val(token.id);
+      plan_name = $('.plan_btn').find('input:checked').data('name');
+      $("#user_subscription_plan").val(plan_name);
       $("form#signup_form").submit();
     }
   });
@@ -285,7 +286,6 @@
     plan_name = $('.plan_btn').find('input:checked').data('name');
     email = $("#user_email").val();
     if($("#user_subscription_plan").val() != plan_name){
-      $("#user_subscription_plan").val(plan_name);
       if(amount != 'free'){
         if($("#user_stripe_token").val() == ""){
           handler.open({
