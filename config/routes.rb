@@ -88,6 +88,7 @@ OpenFn::Application.routes.draw do
   post  "logout", to: "user_sessions#destroy", as: :logout
   post :send_invite, to: 'users#send_invite'
   match :set_password, to: 'users#set_password', via: [:get, :post]
+  post :receive_stripe_events, to: 'webhooks#receive_stripe_events'
 
   get '/products/:product_id/vote', to: "products#vote"
 
