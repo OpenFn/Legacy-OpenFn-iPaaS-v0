@@ -40,19 +40,19 @@ class User < ActiveRecord::Base
 
   def save_with_payment(params)
     if valid?
-      # org = Organization.new(name: params[:organization_name])
+      user = User.new(params[:user])
       plan_id = Plan.find_by(name: subscription_plan)
-      # org.plan_id = plan.try(:id)
+      plan_id = plan.try(:id)
       unless subscription_plan == 'Free'
-        customer = Stripe::Customer.create(description: org.id, plan: plan.name, card: params[:user][:stripe_token], coupon: stripe_coupon.blank? ? nil : stripe_coupon)
+        customer = Stripe::Customer.create(description: user.id, plan: plan.name, card: params[:user][:stripe_token], coupon: stripe_coupon.blank? ? nil : stripe_coupon)
         stripe_customer_token = customer.id
         stripe_subscription_token = customer.subscriptions.first.id
-        # self.organization_id = org.id
+        self.organisation = :organisation
         self.role = 'client_admin'
         save!
       else
-        # org.save
-        # self.organization_id = org.id
+        org.save
+        self.organization_id = org.id
         self.role = 'client_admin'
         save
       end

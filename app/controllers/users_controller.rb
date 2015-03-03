@@ -77,6 +77,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    render json: @user
+  end
+
   def edit
     @user = current_user
     set_user_credentials_and_flash
