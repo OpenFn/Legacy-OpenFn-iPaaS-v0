@@ -98,11 +98,55 @@ So the following method is used to load namespaced fixtures:
   set_fixture_class "[mapping name]/mappings" => Mapping
 ```
 
-REST API
---------
+Contribution Guide
+------------------
+
+We use Github to track our features and bugs, so head over to 
+the [issues](https://github.com/OpenFn/OpenFn-Site/issues) page.
+
+Being a remote team, we encourage everyone to work out in the open.
+Part of that is being vocal, asking questions, giving feedback and generally
+being a good *person*.
+
+When doing pull requests, there are a few critera that need to be met:
+
+- Up to date with develop  
+    On the theme of being nice, make sure your branch can be cleanly merged
+    with develop.
+
+    We don't have super strong oppinions (yet) on rebasing vs. merging, but
+    the least you can do is resolve your merge conflicts before we get your
+    changes upstream.
     
-GET /api/integrations
+    **#protip** keep your branches lean, if you feel stuff getting crazy theres a
+    good chance we underestimated the issue.  
+    Maybe it's 2 issues?
 
-    POST /api/integrations/:integration_api_key/message
+- Tag your commits  
+    Since we work using Github Issues, it's super cool to be able to track  
+    a feature/bug in one place. So please use the #[issue number] convention
+    on your commits.
 
+    This way everyone knows whats going on, and it helps keep you focussed on
+    a single issue.
+
+- No mixed pull requests  
+    Seriously, shouldn't need to tell you this. Keep your branches on point  
+    and focussed on what the issue describes.
+
+    No one likes cherry picking. We will totally ask you to split your commits
+    out if you mix code from other issues.
+
+- Clean commits  
+    Squashing commits is a great way to compact and condense your work, and  
+    allows a scattered commit trail to end up being clear and concise.
+
+    We all have to live with the code history, so try avoid 
+    'oops, I forgot one thing' commits.
+
+Any questions or feedback, pleasure raise an issue. We're all about improving
+things.
+
+[Don't be a dickm with Git](http://www.alexefish.com/post/52e5652520a0460016000002)  
+[A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
 
