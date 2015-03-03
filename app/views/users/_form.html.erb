@@ -285,7 +285,9 @@
     amount = $('.plan_btn').find('input:checked').data('amount');
     plan_name = $('.plan_btn').find('input:checked').data('name');
     email = $("#user_email").val();
-    if($("#user_subscription_plan").val() != plan_name){
+    if(amount == 'free'){
+      $("#user_subscription_plan").val('Free');
+    }else if($("#user_subscription_plan").val() != plan_name){
       if(amount != 'free'){
         if($("#user_stripe_token").val() == ""){
           handler.open({
@@ -295,8 +297,6 @@
             panelLabel: 'Signup for '+ plan_name
           });
           return false;
-        }else{
-          return true;
         }
       }
     }
