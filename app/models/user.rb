@@ -42,16 +42,15 @@ class User < ActiveRecord::Base
   def save_with_payment(params)
     if valid?
       plan = Plan.find_by(name: subscription_plan)
+      self.role = 'client_admin'
       unless subscription_plan == 'Free'
         customer = Stripe::Customer.create(email: self.email, plan: plan.try(:name), card: params[:user][:stripe_token], coupon: stripe_coupon.blank? ? nil : stripe_coupon)
         self.stripe_customer_token = customer.id
         self.stripe_subscription_token = customer.subscriptions.first.id
         self.stripe_curent_period_end = Time.at(customer.subscriptions.first.current_period_end)
         self.plan_id = plan.try(:id)
-        self.role = 'client_admin'
         save!
       else
-        self.role = 'client_admin'
         save
       end
     end
