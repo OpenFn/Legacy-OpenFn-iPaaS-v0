@@ -53,10 +53,6 @@ class UsersController < ApplicationController
         flash.now[:danger] = "Settings could not be updated successfully."
         render :edit
       end
-      else
-        flash.now[:danger] = "Settings could not be updated successfully."
-        render :edit
-      end
     end
 
   # From SalesForce
