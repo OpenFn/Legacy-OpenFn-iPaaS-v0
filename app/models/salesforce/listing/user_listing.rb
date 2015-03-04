@@ -44,7 +44,7 @@ class Salesforce::Listing::UserListing
       'role' => role,
       'invitation_token' => invitation_token,
       # 'organization_id' => organization_id
-      'plan_id' => plan.id
+      'plan_id' => plan_id
     }
   end
 
@@ -61,6 +61,7 @@ class Salesforce::Listing::UserListing
       @role = user.role
       @invitation_token = user.invitation_token
       @organization_id = user.organization_id
+      @plan_id = user.plan_id
     end
 
     # This is to map incoming notification data to our DB
