@@ -76,11 +76,17 @@ class User < ActiveRecord::Base
       self.plan_id = plan.id
       self.stripe_customer_token = customer.id
       self.stripe_subscription_token = customer.subscriptions.first.id
-      save
+      save!
     end
   rescue Stripe::StripeError => e
     logger.error "Stripe Error: " + e.message
-    errors.add :base, "Unable to update your subscription. #{e.message}."
+    if e.message.include?("Coupon expired")
+      errors.add :base, "The coupon code you've entered has expired. Plan not updated."
+    elsif e.message.include?("No such coupon")
+      errors.add :base, "The coupon code you've entered doesn't exist. Plan not updated."
+    else
+      errors.add :base, "Unable to update your subscription. #{e.message}."
+    end
     false
   end
 
