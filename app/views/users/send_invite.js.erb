@@ -1,0 +1,7 @@
+<%if @success%>
+  $(".error").html("<p class='success'>Invite sent.</p>");
+  $("#inviteModal").modal('hide');
+  $("#confirmModal").modal('show');
+<%else%>
+  $(".error").html("<p class='success'><%=@message%></p>")
+<%end%>

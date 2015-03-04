@@ -1,7 +1,7 @@
 require 'sidekiq/web'
 require 'admin_constraint'
 
-SalesForce::Application.routes.draw do
+OpenFn::Application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
 
@@ -76,10 +76,19 @@ SalesForce::Application.routes.draw do
 
   resource :welcome_stats, only: :show
 
+  resources :organizations
+
+  resources :projects do
+    resources :collaborations, only: [:new, :create, :update, :destroy]
+  end
+
   get  "signup", to: "users#new",        as: :signup
   get  "login",  to: "user_sessions#new",     as: :login
   post "login",  to: "user_sessions#create",  as: :create_session
   post  "logout", to: "user_sessions#destroy", as: :logout
+  post :send_invite, to: 'users#send_invite'
+  match :set_password, to: 'users#set_password', via: [:get, :post]
+  post :receive_stripe_events, to: 'webhooks#receive_stripe_events'
 
   get '/products/:product_id/vote', to: "products#vote"
 

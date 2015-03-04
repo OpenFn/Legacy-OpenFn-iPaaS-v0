@@ -45,6 +45,8 @@ gem 'jbuilder', '~> 1.2'
 
 gem "active_model_serializers"
 
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 group :production do
   gem 'rails_12factor'
   gem 'rack-zippy'
@@ -81,6 +83,7 @@ gem 'spring'
 
 # => Clone AR objects
 gem 'deep_cloneable', '~> 2.0.0'
+gem 'deep_merge', require: 'deep_merge/rails_compat'
 
 # => Using jquery UI for draggable
 gem 'jquery-ui-rails'

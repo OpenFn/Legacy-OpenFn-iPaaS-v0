@@ -11,7 +11,7 @@ RSpec.describe Submission::Receipt, :type => :model do
   describe "responsibilities" do
     it "creates a submission record" do
       expect(Submission::Record).to receive(:create!).
-        with(raw_source_message: message, mapping_id: mapping.id).
+        with(raw_source_payload: message, mapping_id: mapping.id).
         and_return(record)
 
       expect(Sidekiq::Client).to receive(:enqueue).

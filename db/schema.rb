@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219162811) do
+ActiveRecord::Schema.define(version: 20150302195508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20150219162811) do
     t.datetime "publication_date"
     t.text     "title"
   end
+
+  create_table "collaborations", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "collaborations", ["project_id"], name: "index_collaborations_on_project_id", using: :btree
+  add_index "collaborations", ["user_id"], name: "index_collaborations_on_user_id", using: :btree
 
   create_table "connected_apps", force: true do |t|
     t.string  "name"
@@ -81,7 +91,10 @@ ActiveRecord::Schema.define(version: 20150219162811) do
     t.boolean  "enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "project_id"
   end
+
+  add_index "mappings", ["project_id"], name: "index_mappings_on_project_id", using: :btree
 
   create_table "odk_sf_legacy_credentials", force: true do |t|
     t.integer  "user_id"
@@ -180,6 +193,19 @@ ActiveRecord::Schema.define(version: 20150219162811) do
     t.json     "media_data"
   end
 
+  create_table "organizations", force: true do |t|
+    t.integer  "plan_id"
+    t.integer  "credits",                   default: 0
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "stripe_customer_token"
+    t.string   "stripe_subscription_token"
+    t.string   "stripe_current_period_end"
+  end
+
+  add_index "organizations", ["plan_id"], name: "index_organizations_on_plan_id", using: :btree
+
   create_table "plans", force: true do |t|
     t.string   "name"
     t.decimal  "price"
@@ -210,13 +236,21 @@ ActiveRecord::Schema.define(version: 20150219162811) do
     t.string  "integration_type"
   end
 
+  create_table "projects", force: true do |t|
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects", ["organization_id"], name: "index_projects_on_organization_id", using: :btree
+
   create_table "submission_records", force: true do |t|
     t.integer  "mapping_id"
     t.text     "raw_source_payload"
-    t.hstore   "source_payload"
-    t.hstore   "destination_payload"
     t.text     "raw_destination_payload"
     t.datetime "processed_at"
+    t.json     "source_payload"
+    t.json     "destination_payload"
   end
 
   create_table "taggings", force: true do |t|
@@ -240,31 +274,36 @@ ActiveRecord::Schema.define(version: 20150219162811) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                             null: false
-    t.string   "crypted_password",                  null: false
-    t.string   "salt",                              null: false
+    t.string   "email",                                     null: false
+    t.string   "crypted_password",                          null: false
+    t.string   "salt",                                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "sf_username"
     t.string   "sf_password"
     t.string   "odk_url"
     t.string   "sf_security_token"
-    t.boolean  "valid_credentials", default: false
+    t.boolean  "valid_credentials",         default: false
     t.string   "sf_app_secret"
     t.string   "sf_app_key"
     t.string   "odk_username"
     t.string   "odk_password"
     t.string   "sf_host"
     t.string   "role"
-    t.integer  "credits",           default: 0
+    t.integer  "credits",                   default: 0
     t.string   "first_name"
     t.string   "last_name"
     t.string   "organisation"
-    t.string   "tier"
+    t.integer  "organization_id"
+    t.string   "invitation_token"
+    t.string   "stripe_customer_token"
+    t.string   "stripe_subscription_token"
+    t.string   "stripe_curent_period_end"
     t.integer  "plan_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["organization_id"], name: "index_users_on_organization_id", using: :btree
   add_index "users", ["plan_id"], name: "index_users_on_plan_id", using: :btree
 
   create_table "votes", force: true do |t|

@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-SalesForce::Application.load_tasks
+OpenFn::Application.load_tasks

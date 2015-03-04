@@ -3,7 +3,11 @@ class UserSessionsController < ApplicationController
 
   def create
     if login(params[:email], params[:password])
-      redirect_to odk_sf_legacy_mappings_path, notice: "Welcome Back!"
+      if current_user.mappings.present?
+        redirect_to(odk_sf_legacy_mappings_path, notice: "Welcome Back!")
+      else
+        redirect_to(root_path, notice: "Welcome Back!")
+      end
     else
       flash.now[:alert] = 'Login failed'
       render action: 'new'

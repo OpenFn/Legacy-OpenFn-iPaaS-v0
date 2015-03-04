@@ -12,7 +12,7 @@ MultiXml.parser = :rexml
 
 Faraday.default_adapter = :typhoeus
 
-module SalesForce
+module OpenFn
   class Application < Rails::Application
 
     require 'to_bool'

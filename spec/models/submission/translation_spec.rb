@@ -2,49 +2,41 @@ require 'rails_helper'
 
 RSpec.describe Submission::Translation, :type => :model do
 
-  let(:submission) { double(Submission, source_payload: "{raw: {source: 'payload'}}", integration: integration) }
-  let(:integration) { double(Integration, mappings: mappings) }
-  let(:mappings) { [ double(Mapping::Definition) ] }
-  let(:translation) { double(Mapping::Translation, result: "{destination: 'payload'}") }
+  let(:record) { double(Submission::Record, {
+    id: 10, 
+    mapping: double(Mapping),
+    source_payload: "source payload!"
+  }) }
 
-  before(:each) do
-    @encoding = Submission::Translation.new(submission)
+  let(:translation) { double(Mapping::Translation, result: "result!") }
+
+  subject { Submission::Translation.new.perform(record.id) }
+
+  before :each do
+    allow(Submission::Record).to receive(:find).with(10).and_return record
+    allow(record).to receive(:destination_payload=)
+    allow(record).to receive(:save!)
+    allow(Sidekiq::Client).to receive(:enqueue)
+    allow(Mapping::Translation).to receive(:new).and_return translation
   end
 
-  describe "responsibilities" do
-    before(:each) do
-      allow(Resque).to receive(:enqueue)
-    end
-
-    it "translates the source payload according to the specified mappings" do
-      allow(submission).to receive(:destination_payload=)
-      allow(submission).to receive(:save!)
-      expect(Mapping::Translation).to receive(:new).with(submission.source_payload, mappings).and_return(translation)
-
-      @encoding.work
-    end
-
-    it "adds the decoded message to the submission record" do
-      allow(Mapping::Translation).to receive(:new).and_return(translation)
-      expect(submission).to receive(:destination_payload=).with(translation.result)
-      expect(submission).to receive(:save!)
-
-      @encoding.work
-    end
+  it "finds the record" do
+    expect(Submission::Record).to receive(:find).with(10)
+    subject
   end
 
-  describe "pipeline" do
-    before(:each) do
-      allow(Mapping::Translation).to receive(:new).and_return(translation)
-      allow(submission).to receive(:destination_payload=)
-      allow(submission).to receive(:save!)
-    end
+  it "translates the source_payload and saves it as the destination_payload" do
+    expect(Mapping::Translation).to receive(:new).
+      with(record.source_payload, record.mapping).
+      and_return translation
+    expect(record).to receive(:destination_payload=).with translation.result
+    expect(record).to receive(:save!)
+    subject
+  end
 
-    it "enqueues Dispatch" do
-      expect(Submission::PayloadDecoding).to receive(:new).with(submission).and_return(step = double)
-      expect(Resque).to receive(:enqueue).with(step)
-
-      @encoding.work
-    end
+  it "queues up the payload decoder" do
+    expect(Sidekiq::Client).to receive(:enqueue).
+      with(Submission::PayloadDecoding, record.id)
+    subject
   end
 end

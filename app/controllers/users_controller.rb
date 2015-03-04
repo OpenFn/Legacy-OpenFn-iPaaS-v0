@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   respond_to :html, :json, :xml
-  skip_before_filter :require_login, only: [:new, :create, :sync]
+  skip_before_filter :require_login, only: [:new, :create, :sync, :set_password]
 
   skip_before_filter :verify_authenticity_token, only: [:sync]
   before_filter :validate_api_admin, only: [:sync]
@@ -12,7 +12,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if @user.save
+    # respond_to do |format|
+    #   if @user.save
+    #     format.json { render json: @user, status: :created }
+    #   else
+    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
+    if @user.save_with_payment(params)
       auto_login(@user)
       set_user_credentials_and_flash
       redirect_to(:root, notice: "Welcome!")
@@ -24,16 +32,32 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
+    # if params[:organization_name] != @user.organization.try(:name)
+    #   @user.organization.update(name: params[:organization_name])
+    # end
 
-    if @user.update_attributes(user_params)
-      set_user_credentials_and_flash
-      flash[:success] = "Settings updated." unless flash[:danger]
-      redirect_to(:edit_user)
-    else
-      flash.now[:danger] = "Settings could not be updated successfully."
-      render :edit
+    # respond_to do |format|
+    #   if @user.update(user_params)
+    #     format.json { head :no_content }
+    #   else
+    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
+    # end
+
+    if @user.update(user_params)
+      if @user.update_plan(params)
+        set_user_credentials_and_flash
+        flash[:success] = "Settings updated." unless flash[:danger]
+        redirect_to(:edit_user)
+      else
+        flash.now[:danger] = "Settings could not be updated successfully."
+        render :edit
+      end
+      else
+        flash.now[:danger] = "Settings could not be updated successfully."
+        render :edit
+      end
     end
-  end
 
   # From SalesForce
   def sync
@@ -46,7 +70,7 @@ class UsersController < ApplicationController
     if user.update_attributes(salesforce_user.attributes)
       limiter = MappingLimiter.new(user)
       limiter.limit!
-      
+
       respond_to do |format|
         format.xml  { render 'salesforce/success', layout: false }
       end
@@ -57,7 +81,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
+  def show
+    render json: @user
   end
 
   def edit
@@ -65,15 +90,64 @@ class UsersController < ApplicationController
     set_user_credentials_and_flash
   end
 
-  def index
+  # DELETE /organizations/:id.json
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.json { head :no_content }
+    end
   end
+
+  # def send_invite
+  #   exsiting_user = User.find_by(email: params[:email])
+  #   if exsiting_user.blank?
+  #     password = SecureRandom.hex
+  #     invite_token = SecureRandom.urlsafe_base64
+  #     user = User.new(email: params[:email], crypted_password: password, salt: password, invitation_token: invite_token, organization_id: current_user.organization_id, role: 'client')
+  #     user.save(validate: false)
+  #     @success = true
+  #   else
+  #     @message = 'User already exist'
+  #   end
+  # end
+
+  # def set_password
+  #   if request.post?
+  #     user = User.find_by(invitation_token: params[:token])
+  #     user.password = params[:user][:password]
+  #     user.password_confirmation = params[:user][:password]
+  #     user.invitation_token = nil
+  #     if user.save(validate: false)
+  #       auto_login(user)
+  #       flash[:success] = "Password updated." unless flash[:danger]
+  #       redirect_to edit_user_path(user)
+  #     else
+  #       flash.now[:danger] = "Password could not be updated successfully."
+  #       render :set_password
+  #     end
+  #   else
+  #     if params[:token].present?
+  #       @user = User.find_by(invitation_token: params[:token])
+  #       unless @user.present?
+  #         flash.now[:alert] = "Invalid Invitation Token!"
+  #         redirect_to root_path and return
+  #       end
+  #     else
+  #       flash.now[:alert] = "Invalid Url!"
+  #       redirect_to root_path
+  #     end
+  #   end
+  # end
+
+
 
   private
 
   def user_params
     params.require(:user).permit(
-      :email, :password, :password_confirmation, :first_name, :last_name, :organisation, :tier, :role,
-      :odk_url, :odk_username, :odk_password,
+      :email, :password, :password_confirmation, :first_name, :last_name, :organisation, :role, :plan_id,
+      # :invitation_token, :organization_id,
+      :odk_url, :odk_username, :odk_password, :stripe_token, :subscription_plan, :stripe_coupon,
       :sf_security_token, :sf_username, :sf_password, :sf_app_key, :sf_app_secret, :sf_host
     )
   end
@@ -117,4 +191,5 @@ class UsersController < ApplicationController
       return false
     end
   end
+
 end

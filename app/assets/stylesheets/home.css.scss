@@ -45,3 +45,15 @@
   }
 
 }
+
+#inviteModal, #confirmModal{
+  h2, h4, label, div{
+    color:#333333;
+  }
+}
+
+#confirmModal{
+  .modal-content{
+    padding-left: 15px;
+  }
+}

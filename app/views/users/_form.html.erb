@@ -7,11 +7,11 @@
 
   <h1><i class="fa fa-user"></i> your <strong>Account</strong></h1>
   <h3>Manage credentials and add <strong>credits</strong>.</h3>
-  
+
 <% else %>
 
   <h1><i class="fa fa-user"></i> create <strong>Account</strong></h1>
-  <h3>Go ahead and <strong>start mapping</strong> for free. Seriously.</h3>
+  <h3>Go ahead and <strong>start connecting</strong> for free. Seriously.</h3>
 
 <% end %>
 
@@ -26,229 +26,285 @@
     <br>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    
-<!--   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+    <% if current_user %>
+      <div class="row">
+        <div class="col-md-4">
+          <h1><%= @user.plan.name rescue 'No Plan' %></h1>
+          <h4>Plan</h4>
+        </div>
+        <div class="col-md-4">
+          <h1><%= @user.mappings.enabled.count %> / <%= @user.plan.map_limit rescue 0 %></h1>
+          <h4>Maps</h4>
+        </div>
+        <div class="col-md-4">
+          <h1>N / <%= @user.plan.job_limit rescue 0 %></h1>
+          <h4>Jobs</h4>
+        </div>
+      </div>
+      </br>
+    <% end %>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <%= form_for @user, role: 'form', html: {id: 'signup_form'} do |f| %>
+                User and Organization Settings
+              </a>
+            </h4>
+          </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+
+                <div class="form-group">
+                  <%= f.label :email %>
+                  <%= f.text_field :email, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :password %>
+                  <%= f.password_field :password, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :password_confirmation %>
+                  <%= f.password_field :password_confirmation, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :first_name %>
+                  <%= f.text_field :first_name, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :last_name %>
+                  <%= f.text_field :last_name, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%= f.label :organisation %>
+                  <%= f.text_field :organisation, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <%=f.hidden_field :stripe_token %>
+                  <%=f.hidden_field :subscription_plan, value: @user.new_record? ? nil : @user.plan.try(:name)%>
+                </div>
+                <div class="form-group">
+                  <%= f.label 'Plan' %><br>
+                  <div class="btn-group plan_btn" data-toggle="buttons">
+                    <label class="btn btn-default free">
+                      <input type="radio" name="options" data-name="Free" data-amount="free"> Free
+                    </label>
+                    <label class="btn btn-default pay">
+                      <input type="radio" name="options" data-name="Entry" data-amount="3900"> Entry $39/mo.
+                    </label>
+                    <label class="btn btn-default pay">
+                      <input type="radio" name="options" data-name="Startup" data-amount="7900"> Startup $79/mo.
+                    </label>
+                    <label class="btn btn-default pay">
+                      <input type="radio" name="options" data-name="Growth" data-amount="29900"> Growth $299/mo.
+                    </label>
+                    <label class="btn btn-default pay disabled">
+                      <input type="radio" name="options" data-name="Enterprise" data-amount="99900"> Enterprise
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group coupon_field" style="display:none">
+                  <%= f.label 'Coupon Code' %>
+                  <%= f.text_field :stripe_coupon, class: 'form-control'%>
+                </div>
+                <% if current_user %>
+                  <%= f.submit "Update", class: 'btn btn-primary submit_btn' %>
+                <% else %>
+                  <%= f.submit "Sign up", class: 'btn btn-success submit_btn' %>
+                <% end %>
+                <script src="https://checkout.stripe.com/checkout.js"></script>
+            <% end %>
+        </div>
+      </div>
+    </div>
+
     <div class="panel panel-default">
-      <div class="panel-heading" role="tab" id="headingOne">
+      <div class="panel-heading" role="tab" id="headingTwo">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Subscription
+          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <%= form_for @user, role: 'form' do |f| %>
+            ODK / SurveyCTO
           </a>
         </h4>
       </div>
-      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body"> -->
-
-<% if current_user %> 
-      <div class="row">
-
-        <div class="col-md-4">
-          <h1><%= @user.credits %></h1>
-          <h4>Maps</h4>
-        </div>
-
-        <div class="col-md-4">
-          <h1><%= @user.mappings.enabled.count %></h1>
-          <h4>Enabled maps</h4>
-        </div>
-        
-        <div class="col-md-4">
-          <h1><i class="fa fa-credit-card"></i> / <i class="fa fa-cc-stripe"></i></h1>
-          <h4>Accepting cards &amp; stripe soon.</h4>
-          
-<!--           <div class="paypal-button">
-            <form action="<%= ENV['PAYPAL_URI'] %>" method="post" target="_top">
-              <input type="hidden" name="cmd" value="_s-xclick">
-              <input type="hidden" name="hosted_button_id" value="<%= ENV['PAYPAL_BUTTON_ID'] %>">
-              <input type="hidden" name="custom" value="<%= @user.id %>">
-              <table>
-                <tr>
-                  <td>
-                      <input type="hidden" name="on0" value="Credits">
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <select name="os0" class="form-control">
-                      <option value="6 Months">Free $ /mo.</option>
-                      <option value="12 Months">Entry $ /mo.</option>
-                      <option value="12 Months">Startup $ /mo.</option>
-                      <option value="12 Months">Growth $ /mo.</option>
-                      <option value="12 Months">Enterprise $ /mo.</option>
-                    </select>
-                  </td>
-                </tr>
-              </table>
-              <input type="hidden" name="currency_code" value="USD">
-              <br/>
-              <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-              <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
-            </form>
-            <br>
-          </div> -->
-        </div>
-
-      </div>
-
-<% end %>
-
-      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-              <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  <%= form_for @user, role: 'form' do |f| %>
-                  Settings
-                </a>
-              </h4>
-            </div>
-          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-
-                  <div class="form-group">
-                    <%= f.label :email %>
-                    <%= f.text_field :email, class: 'form-control' %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :password %>
-                    <%= f.password_field :password, class: 'form-control' %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :password_confirmation %>
-                    <%= f.password_field :password_confirmation, class: 'form-control' %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :first_name %>
-                    <%= f.text_field :first_name, class: 'form-control' %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :last_name %>
-                    <%= f.text_field :last_name, class: 'form-control' %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :organisation %>
-                    <%= f.text_field :organisation, class: 'form-control' %>
-                  </div>
-                  <% if current_user %>
-                    <%= f.submit "Update", class: 'btn btn-primary' %>
-                  <% else %>
-                    <%= f.submit "Sign up", class: 'btn btn-success' %>
-                  <% end %>
-
-              <% end %>
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingTwo">
-          <h4 class="panel-title">
-            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              <%= form_for @user, role: 'form' do |f| %>
-              ODK / SurveyCTO
-            </a>
-          </h4>
-        </div>
-        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-          <div class="panel-body">
-            <div class="form-group">
-              <%= f.label :odk_url, "Instance URL" %>
-              <%= f.text_field :odk_url, class: 'form-control' %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :odk_username, "Username" %>
-              <%= f.text_field :odk_username, class: 'form-control' %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :odk_password, "Password" %>
-              <%= f.password_field :odk_password, value: f.object.odk_password, class: 'form-control' %>
-            </div>
-            <%= f.submit "Update", class: 'btn btn-primary' %>
-            <% end %>
-            </div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            <%= form_for @user, role: 'form' do |f| %>
-            Salesforce.com
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body">
-        <div class="form-group">
+      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="panel-body">
           <div class="form-group">
-            <%= f.label :sf_username, "Username" %>
-            <%= f.text_field :sf_username, class: 'form-control' %>
+            <%= f.label :odk_url, "Instance URL" %>
+            <%= f.text_field :odk_url, class: 'form-control' %>
           </div>
 
           <div class="form-group">
-            <%= f.label :sf_password, "Password" %>
-            <%= f.password_field :sf_password, value: f.object.sf_password, class: 'form-control' %>
+            <%= f.label :odk_username, "Username" %>
+            <%= f.text_field :odk_username, class: 'form-control' %>
           </div>
 
           <div class="form-group">
-            <a data-toggle="collapse" data-parent="#accordion21" href="#collapseTwoOne">
-            <%= f.label :sf_security_token, "Security Token" %>
-            <i class="fa fa-question-circle"></i>
-            </a>
-            <%= f.text_field :sf_security_token, class: 'form-control' %>
-            <div id="collapseTwoOne" class="panel-collapse collapse"><br>
-              <p>1. Search “security token” in your email to see if you've received a security token in the past. (If you have, go to step 5.)</p>
-              <p>2. To reset or create a new security token, click your name and “Setup” in Salesforce</p>
-              <p>3. Go to “Personal Information” and click “reset your security token”.</p>
-              <p>4. Read the warnings, then click “Reset Security Token”.</p>
-              <p>5. Copy your security token from your email and paste it here.</p>
-            </div>
+            <%= f.label :odk_password, "Password" %>
+            <%= f.password_field :odk_password, value: f.object.odk_password, class: 'form-control' %>
           </div>
-          
-          <div class="form-group">
-            <a data-toggle="collapse" data-parent="#accordion21" href="#collapseTwoTwo">
-              <%= f.label :sf_app_key, "Consumer Key" %>
-              <i class="fa fa-question-circle"></i>
-            </a>
-            <%= f.text_field :sf_app_key, class: 'form-control' %>
-            <div id="collapseTwoTwo" class="panel-collapse collapse">
-                <br>
-                <p>1. Goto “Apps” (in the “App Setup” / “Create” section) in your Salesforce Setup menu.</p>
-                <p>2. Click “New” in the “Connected Apps” section at the bottom of the page.</p>
-                <p>3. Type “OpenFn” in the “Connected App Name” field.</p>
-                <p>4. Type “OpenFn” in the “API Name” field.</p>
-                <p>5. Type your email in the “Contact Email” field.</p>
-                <p>6. Click “Enable OAuth Settings” in the “API (Enable OAuth Settings)” section.</p>
-                <p>7. Enter “https://login.salesforce.com” in the “Callback URL” field.</p>
-                <p>8. Add “Access and manage your data (api)” in the “Available OAuth Scopes” section.</p>
-                <p>9. Click “Save”.</p>
-                <p>10. Copy the “Consumer Key” and paste it here.</p>
-                <p>11. Click to reveal your “Consumer Secret”, then copy it and paste it here.</p>
-            </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <%= f.label :sf_app_secret, "Consumer Secret" %>
-            <%= f.text_field :sf_app_secret, class: 'form-control' %>
-          </div>
-
-<!-- There is no need for the user to enter this each time. It's ALWAYS login.salesforce.com and I don't know how to set the default value from the back-end, so I'm passing it through this hidden input form group. - TD -->
-
-          <div class="form-group">
-            <%= f.label :sf_host, "Salesforce Org Type" %>
-            <br>
-            <%= f.select :sf_host, class: 'form-control' do %>
-              <% [['Production', "login.salesforce.com"], ['Sandbox', "test.salesforce.com"]].each do |c| -%>
-                <%= content_tag(:option, c.first, value: c.last) %>
-              <% end %>
-            <% end %>
-            </div>
           <%= f.submit "Update", class: 'btn btn-primary' %>
           <% end %>
+          </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingThree">
+        <h4 class="panel-title">
+          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <%= form_for @user, role: 'form' do |f| %>
+              Salesforce.com
+          </a>
+        </h4>
+      </div>
+      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+        <div class="panel-body">
+          <div class="form-group">
+
+            <div class="form-group">
+              <%= f.label :sf_username, "Username" %>
+              <%= f.text_field :sf_username, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :sf_password, "Password" %>
+              <%= f.password_field :sf_password, value: f.object.sf_password, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <a data-toggle="collapse" data-parent="#accordion21" href="#collapseTwoOne">
+              <%= f.label :sf_security_token, "Security Token" %>
+              <i class="fa fa-question-circle"></i>
+              </a>
+              <%= f.text_field :sf_security_token, class: 'form-control' %>
+              <div id="collapseTwoOne" class="panel-collapse collapse"><br>
+                <p>1. Search “security token” in your email to see if you've received a security token in the past. (If you have, go to step 5.)</p>
+                <p>2. To reset or create a new security token, click your name and “Setup” in Salesforce</p>
+                <p>3. Go to “Personal Information” and click “reset your security token”.</p>
+                <p>4. Read the warnings, then click “Reset Security Token”.</p>
+                <p>5. Copy your security token from your email and paste it here.</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <a data-toggle="collapse" data-parent="#accordion21" href="#collapseTwoTwo">
+                <%= f.label :sf_app_key, "Consumer Key" %>
+                <i class="fa fa-question-circle"></i>
+              </a>
+              <%= f.text_field :sf_app_key, class: 'form-control' %>
+              <div id="collapseTwoTwo" class="panel-collapse collapse">
+                  <br>
+                  <p>1. Goto “Apps” (in the “App Setup” / “Create” section) in your Salesforce Setup menu.</p>
+                  <p>2. Click “New” in the “Connected Apps” section at the bottom of the page.</p>
+                  <p>3. Type “OpenFn” in the “Connected App Name” field.</p>
+                  <p>4. Type “OpenFn” in the “API Name” field.</p>
+                  <p>5. Type your email in the “Contact Email” field.</p>
+                  <p>6. Click “Enable OAuth Settings” in the “API (Enable OAuth Settings)” section.</p>
+                  <p>7. Enter “https://login.salesforce.com” in the “Callback URL” field.</p>
+                  <p>8. Add “Access and manage your data (api)” in the “Available OAuth Scopes” section.</p>
+                  <p>9. Click “Save”.</p>
+                  <p>10. Copy the “Consumer Key” and paste it here.</p>
+                  <p>11. Click to reveal your “Consumer Secret”, then copy it and paste it here.</p>
+              </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :sf_app_secret, "Consumer Secret" %>
+              <%= f.text_field :sf_app_secret, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :sf_host, "Salesforce Org Type" %>
+              <br>
+              <%= f.select :sf_host, class: 'form-control' do %>
+                <% [['Production', "login.salesforce.com"], ['Sandbox', "test.salesforce.com"]].each do |c| -%>
+                  <%= content_tag(:option, c.first, value: c.last) %>
+                <% end %>
+              <% end %>
+              </div>
+            <%= f.submit "Update", class: 'btn btn-primary' %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+
+<script>
+  <%if current_user%>
+    plan = '<%=current_user.plan.try(:name) rescue ""%>';
+    if (plan != "")
+      SetPlan(plan);
+  <%else%>
+    $('.plan_btn input').first().attr('checked', true)
+    $('.plan_btn label').first().addClass('active');
+  <%end%>
+  <%if params[:plan].present?%>
+    plan = '<%=params[:plan]%>';
+    if (plan != "")
+      SetPlan(plan);
+  <%end%>
+
+  function SetPlan(plan){
+    $('.plan_btn label').removeClass('active');
+    $('.plan_btn input').each(function(){
+      if ($(this).data('name') == plan){
+        $(this).attr('checked', true);
+        $(this).parent('label').addClass('active');
+      }
+      if ($(this).data('name') != 'Free'){
+        $(".coupon_field").show();
+      }
+    })
+  }
+
+  $(".pay").click(function(){
+    $(".coupon_field").show();
+  });
+
+  $(".free").click(function(){
+    $(".coupon_field").hide();
+  });
+
+  var handler = StripeCheckout.configure({
+    key: "<%= Rails.configuration.stripe[:publishable_key] %>",
+    token: function(token) {
+      $("#user_stripe_token").val(token.id);
+      plan_name = $('.plan_btn').find('input:checked').data('name');
+      $("#user_subscription_plan").val(plan_name);
+      $("form#signup_form").submit();
+    }
+  });
+
+  $(".submit_btn").click(function(e){
+    amount = $('.plan_btn').find('input:checked').data('amount');
+    plan_name = $('.plan_btn').find('input:checked').data('name');
+    email = $("#user_email").val();
+    if(amount == 'free'){
+      $("#user_subscription_plan").val('Free');
+    }else if($("#user_subscription_plan").val() != plan_name){
+      if(amount != 'free'){
+        if($("#user_stripe_token").val() == ""){
+          handler.open({
+            name: 'OpenFn',
+            amount: amount,
+            email: email,
+            panelLabel: 'Signup for '+ plan_name
+          });
+          return false;
+        }
+      }
+    }
+  });
+
+  // Close Checkout on page navigation
+  $(window).on('popstate', function() {
+    handler.close();
+  });
+
+</script>

@@ -1,0 +1,36 @@
+require 'spec_helper'
+require 'openfn_odk/openfn_odk'
+
+describe OpenFn::Odk do
+
+  describe ".encode" do
+
+    let(:raw_source_payload) {
+      {"xmlns"=>"http://opendatakit.org/submissions",
+       "xmlns:orx"=>"http://openrosa.org/xforms",
+       "data"=>
+       {"event_cars_boats"=>
+        {"id"=>"Events_Boats_Cars",
+         "instanceID"=>"uuid:76e2641d-6d6b-4f15-9758-91ec246ff084",
+         "submissionDate"=>"2014-11-11T08:04:40.178Z",
+         "isComplete"=>"true",
+         "markedAsCompleteDate"=>"2014-11-11T08:04:40.178Z",
+         "event_name"=>"Catalina wine mixer",
+         "start_date"=>"2014-11-11",
+         "boats"=>[{"boat_name"=>"Big boat"}, {"boat_name"=>"Catamaran"}, {"boat_name"=>"Catatafish"}],
+         "cars"=>{"car_name"=>"Peugeot"},
+         "meta"=>{"instanceID"=>"uuid:76e2641d-6d6b-4f15-9758-91ec246ff084"}}}}
+    }
+
+    subject { OpenFn::Odk.encode(raw_source_payload) }
+
+    it "returns a generic data structure for OpenFn" do
+      expect(subject).to eql raw_source_payload["data"]["event_cars_boats"]
+    end
+  end
+
+  describe ".decode" do
+
+  end
+
+end
