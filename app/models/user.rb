@@ -51,6 +51,8 @@ class User < ActiveRecord::Base
         self.plan_id = plan.try(:id)
         save!
       else
+        free_plan = Plan.find_by(name: 'Free')
+        self.plan_id = free_plan.try(:id)
         save
       end
     end
