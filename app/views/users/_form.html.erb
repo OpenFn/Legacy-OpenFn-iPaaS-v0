@@ -34,11 +34,11 @@
           <h4>Plan</h4>
         </div>
         <div class="col-md-4">
-          <h1><%= @user.mappings.enabled.count %> / <%= @user.plan.map_limit %></h1>
+          <h1><%= @user.mappings.enabled.count %> / <%= @user.plan.map_limit rescue 0 %></h1>
           <h4>Maps</h4>
         </div>
         <div class="col-md-4">
-          <h1>N / <%= @user.plan.job_limit %></h1>
+          <h1>N / <%= @user.plan.job_limit rescue 0 %></h1>
           <h4>Jobs</h4>
         </div>
       </div>

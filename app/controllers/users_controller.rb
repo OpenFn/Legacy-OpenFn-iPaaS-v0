@@ -45,15 +45,19 @@ class UsersController < ApplicationController
     # end
 
     if @user.update(user_params)
-      @user.update_plan(params)
-      set_user_credentials_and_flash
-      flash[:success] = "Settings updated." unless flash[:danger]
-      redirect_to(:edit_user)
-    else
-      flash.now[:danger] = "Settings could not be updated successfully."
-      render :edit
+      if @user.update_plan(params)
+        set_user_credentials_and_flash
+        flash[:success] = "Settings updated." unless flash[:danger]
+        redirect_to(:edit_user)
+      else
+        flash.now[:danger] = "Settings could not be updated successfully."
+        render :edit
+      end
+      else
+        flash.now[:danger] = "Settings could not be updated successfully."
+        render :edit
+      end
     end
-  end
 
   # From SalesForce
   def sync
