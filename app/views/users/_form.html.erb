@@ -89,7 +89,7 @@
                 <div class="form-group">
                   <%= f.label 'Plan' %><br>
                   <div class="btn-group plan_btn" data-toggle="buttons">
-                    <label class="btn btn-default free">
+                    <label class="btn btn-default free pay">
                       <input type="radio" name="options" data-name="Free" data-amount="free"> Free
                     </label>
                     <label class="btn btn-default pay">
@@ -107,7 +107,7 @@
                   </div>
                 </div>
                 <div class="form-group coupon_field" style="display:none">
-                  <%= f.label 'Coupon Code' %>
+                  <%= f.label 'Pilot code' %>
                   <%= f.text_field :stripe_coupon, class: 'form-control'%>
                 </div>
                 <% if current_user %>
