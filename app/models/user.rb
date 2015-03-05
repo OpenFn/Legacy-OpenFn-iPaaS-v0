@@ -77,6 +77,8 @@ class User < ActiveRecord::Base
       self.stripe_customer_token = customer.id
       self.stripe_subscription_token = customer.subscriptions.first.id
       save!
+    else
+      true
     end
   rescue Stripe::StripeError => e
     logger.error "Stripe Error: " + e.message

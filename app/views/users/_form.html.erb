@@ -89,7 +89,7 @@
                 <div class="form-group">
                   <%= f.label 'Plan' %><br>
                   <div class="btn-group plan_btn" data-toggle="buttons">
-                    <label class="btn btn-default free">
+                    <label class="btn btn-default free pay">
                       <input type="radio" name="options" data-name="Free" data-amount="free"> Free
                     </label>
                     <label class="btn btn-default pay">
@@ -107,7 +107,7 @@
                   </div>
                 </div>
                 <div class="form-group coupon_field" style="display:none">
-                  <%= f.label 'Coupon Code' %>
+                  <%= f.label 'Pilot code' %>
                   <%= f.text_field :stripe_coupon, class: 'form-control'%>
                 </div>
                 <% if current_user %>
@@ -241,6 +241,7 @@
     if (plan != "")
       SetPlan(plan);
   <%else%>
+    plan = 'Free'
     $('.plan_btn input').first().attr('checked', true)
     $('.plan_btn label').first().addClass('active');
   <%end%>
@@ -257,18 +258,17 @@
         $(this).attr('checked', true);
         $(this).parent('label').addClass('active');
       }
-      if ($(this).data('name') != 'Free'){
-        $(".coupon_field").show();
-      }
     })
   }
 
   $(".pay").click(function(){
-    $(".coupon_field").show();
-  });
-
-  $(".free").click(function(){
-    $(".coupon_field").hide();
+    input = $(this).find('input');
+    if (plan != 'Startup'){
+      if(input.data('name') == 'Startup' && !input.is(":checked") )
+        $(".coupon_field").show();
+      else
+        $(".coupon_field").hide();
+    }
   });
 
   var handler = StripeCheckout.configure({
