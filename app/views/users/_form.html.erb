@@ -241,6 +241,7 @@
     if (plan != "")
       SetPlan(plan);
   <%else%>
+    plan = 'Free'
     $('.plan_btn input').first().attr('checked', true)
     $('.plan_btn label').first().addClass('active');
   <%end%>
