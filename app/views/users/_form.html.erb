@@ -257,18 +257,17 @@
         $(this).attr('checked', true);
         $(this).parent('label').addClass('active');
       }
-      if ($(this).data('name') != 'Free'){
-        $(".coupon_field").show();
-      }
     })
   }
 
   $(".pay").click(function(){
-    $(".coupon_field").show();
-  });
-
-  $(".free").click(function(){
-    $(".coupon_field").hide();
+    input = $(this).find('input');
+    if (plan != 'Startup'){
+      if(input.data('name') == 'Startup' && !input.is(":checked") )
+        $(".coupon_field").show();
+      else
+        $(".coupon_field").hide();
+    }
   });
 
   var handler = StripeCheckout.configure({
