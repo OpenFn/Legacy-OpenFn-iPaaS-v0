@@ -76,6 +76,7 @@ class User < ActiveRecord::Base
       self.plan_id = plan.id
       self.stripe_customer_token = customer.id
       self.stripe_subscription_token = customer.subscriptions.first.id
+      self.stripe_curent_period_end = Time.at(customer.subscriptions.first.current_period_end)
       save!
     else
       true
@@ -90,6 +91,18 @@ class User < ActiveRecord::Base
       errors.add :base, "Unable to update your subscription. #{e.message}."
     end
     false
+  end
+
+  def plan_period_start
+    stripe_curent_period_end? ? DateTime.strptime(stripe_curent_period_end, "%Y-%m-%d %H:%M:%S") - 1.month : Date.current.beginning_of_month
+  end
+
+  def plan_period_end
+    stripe_curent_period_end? ? DateTime.strptime(stripe_curent_period_end, "%Y-%m-%d %H:%M:%S") : Date.current.end_of_month
+  end
+
+  def legacy_count
+    OdkSfLegacy::Submission.joins(import: {mapping: :user}).where(users: {id: id}).where( "odk_sf_legacy_submissions.created_at BETWEEN ? AND ?", plan_period_start, plan_period_end).count
   end
 
   private
