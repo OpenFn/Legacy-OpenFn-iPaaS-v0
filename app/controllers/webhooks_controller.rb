@@ -2,7 +2,8 @@ require 'json'
 Stripe.api_key = Rails.configuration.stripe[:secret_key]
 
 class WebhooksController < ApplicationController
-	skip_before_filter  :verify_authenticity_token, :authenticate_user!
+	protect_from_forgery except: :receive_stripe_events
+	skip_before_filter  :verify_authenticity_token, :require_login
 
 	def receive_stripe_events
 		event = request.body.read
