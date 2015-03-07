@@ -42,8 +42,7 @@
           <h4>Jobs</h4>
         </div>
         <div class="col-md-3">
-          <h1><%= (@user.plan_period_end - Date.today).to_i %></h4>
-          <h4>Days till reset</h4>
+          <h3><%= @user.reset_countdown %> until limits reset</h3>
         </div>
       </div>
       </br>

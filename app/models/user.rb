@@ -94,15 +94,29 @@ class User < ActiveRecord::Base
   end
 
   def plan_period_start
-    stripe_curent_period_end? ? DateTime.strptime(stripe_curent_period_end, "%Y-%m-%d %H:%M:%S") - 1.month : Date.current.beginning_of_month
+    stripe_current_period_end? ? DateTime.strptime(stripe_current_period_end, "%Y-%m-%d %H:%M:%S") - 1.month : Date.current.beginning_of_month
   end
 
   def plan_period_end
-    stripe_curent_period_end? ? DateTime.strptime(stripe_curent_period_end, "%Y-%m-%d %H:%M:%S") : Date.current.end_of_month
+    stripe_current_period_end? ? DateTime.strptime(stripe_current_period_end, "%Y-%m-%d %H:%M:%S") : Date.current.end_of_month
   end
 
   def legacy_count
     OdkSfLegacy::Submission.joins(import: {mapping: :user}).where(users: {id: id}).where( "odk_sf_legacy_submissions.created_at BETWEEN ? AND ?", plan_period_start, plan_period_end).count
+  end
+
+  def seconds_to_units(seconds)
+  '%d days, %d hours, and %d minutes' %
+    # the .reverse lets us put the larger units first for readability
+    [24,60].reverse.inject([seconds]) {|result, unitsize|
+      result[0,0] = result.shift.divmod(unitsize)
+      result
+    }
+  end
+
+  def reset_countdown
+    seconds = (stripe_current_period_end? ? stripe_current_period_end : DateTime.current.end_of_month - DateTime.now) * 24 * 60
+    seconds_to_units(seconds)
   end
 
   private
