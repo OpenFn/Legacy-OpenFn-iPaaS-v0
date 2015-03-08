@@ -29,18 +29,18 @@
               Change Plan<span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="/users/<%= current_user.id %>/edit">Entry</a></li>
-              <li><a href="/users/<%= current_user.id %>/edit">Startup</a></li>
-              <li><a href="/users/<%= current_user.id %>/edit">Growth</a></li>
+              <li><a href="/users/<%= current_user.id %>/edit?plan=Entry">Entry</a></li>
+              <li><a href="/users/<%= current_user.id %>/edit?plan=Startup">Startup</a></li>
+              <li><a href="/users/<%= current_user.id %>/edit?plan=Growth">Growth</a></li>
               <li class="divider"></li>
-              <li><a href="/users/<%= current_user.id %>/edit">Free</a></li>
+              <li><a href="/users/<%= current_user.id %>/edit?plan=Free">Free</a></li>
             </ul>
           </div>
         </div>
         
         <div class="col-md-2 text-center">
           <div class="content">
-            Subscription Tier
+            Plan
           </div>
           <h4 class="title">
             <%= current_user.plan.name %>
@@ -50,7 +50,7 @@
           </div>
         </div>
         
-        <div class="col-md-4 text-center">
+        <div class="col-md-3 text-center">
           <div class="content">
             Maps
           </div><br>
@@ -59,10 +59,10 @@
               role="progressbar"
               aria-valuenow='<%= @mappings.where(enabled: true).count %>'
               aria-valuemin="0"
-              aria-valuemax='<%= current_user.credits %>'
-              style="width: <%= current_user.credits > 0 ? 100*(@mappings.where(enabled: true).count-@mappings.where(active:true).count)/current_user.credits : 0 %>%;">
+              aria-valuemax='<%= current_user.plan.map_limit %>'
+              style="width: <%= current_user.plan.map_limit > 0 ? 100*@mappings.where(enabled: true).count/current_user.plan.map_limit : 0 %>%;">
               <span class='live'>
-                <%= @mappings.where(enabled: true).count %>
+                <!-- <%= @mappings.where(enabled: true).count %> -->
               </span>
             </div>
           </div>
@@ -71,12 +71,17 @@
           </div>
         </div>
         
-        <div class="col-md-4 text-center">
+        <div class="col-md-3 text-center">
           <div class="content">
             Transactions
           </div><br>
           <div class="progress">
-            <div class="progress-bar progress-bar-grey" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+            <div class="progress-bar progress-bar-grey"
+              role="progressbar"
+              aria-valuenow="100"
+              aria-valuemin="0"
+              aria-valuemax='<%= current_user.plan.job_limit %>'
+              style="width: <%= current_user.plan.job_limit > 0 ? 100*current_user.legacy_count/current_user.plan.job_limit : 0 %>%;">
               <%= current_user.legacy_count %> / <%= current_user.plan.job_limit rescue 0 %>
             </div>
           </div>
@@ -85,6 +90,14 @@
           </div>
         </div>
 
+        <div class="col-md-2 text-center">
+          <div class="content">
+            Cycle
+          </div><br>
+          <%= current_user.reset_countdown %>
+          <div class="content"><br>
+          until limits reset
+          </div>
       </div>
     </div>
 
