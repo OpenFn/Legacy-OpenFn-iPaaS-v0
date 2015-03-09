@@ -6,16 +6,16 @@ class OdkSfLegacy::MappingLimiter
   end
 
   def valid?
-    (@user.credits || 0) >= @active_mappings.count
+    (@user.plan.map_limit || 0) >= @active_mappings.count
   end
 
   def credits_available?
-    ((@user.credits || 0) - @active_mappings.count) > 0
+    ((@user.plan.map_limit || 0) - @active_mappings.count) > 0
   end
 
   def limit!
     unless valid?
-      @active_mappings[@user.credits .. -1].each do |mapping|
+      @active_mappings[@user.plan.map_limit .. -1].each do |mapping|
         mapping.enabled = false
         mapping.save!
       end

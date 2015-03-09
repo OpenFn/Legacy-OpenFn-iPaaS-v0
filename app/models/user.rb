@@ -94,11 +94,11 @@ class User < ActiveRecord::Base
   end
 
   def plan_period_start
-    stripe_current_period_end? ? DateTime.strptime(stripe_current_period_end, "%Y-%m-%d %H:%M:%S") - 1.month : Date.current.beginning_of_month
+    stripe_current_period_end? ? stripe_current_period_end - 1.month : Date.current.beginning_of_month
   end
 
   def plan_period_end
-    stripe_current_period_end? ? DateTime.strptime(stripe_current_period_end, "%Y-%m-%d %H:%M:%S") : Date.current.end_of_month
+    stripe_current_period_end? ? stripe_current_period_end : Date.current.end_of_month
   end
 
   def legacy_count
