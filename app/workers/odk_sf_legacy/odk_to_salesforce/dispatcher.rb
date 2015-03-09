@@ -25,7 +25,7 @@ module OdkSfLegacy
 
             # => Get the ODK Data for this submission_id from the ID
             submission_data = odk.fetch_submission(uuid)
-            if user.plan.job_limit >= user.legacy_count
+            if user.plan.job_limit > user.legacy_count
               submission = import.submissions.create(uuid: uuid, data: submission_data["data"].values.first,
                                                    media_data: submission_data["mediaFile"])
               Sidekiq::Client.enqueue(OdkToSalesforce::SubmissionProcessor, mapping.id, submission.id)
