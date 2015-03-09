@@ -26,7 +26,7 @@
           
           <div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle btn-success" data-toggle="dropdown" aria-expanded="false">
-              Change Plan<span class="caret"></span>
+              Change Plan <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
               <li><a href="/users/<%= current_user.id %>/edit?plan=Entry">Entry</a></li>
@@ -50,55 +50,29 @@
           </div>
         </div>
         
-        <div class="col-md-3 text-center">
+        <div class="col-md-4 text-center">
           <div class="content">
             Maps
-          </div><br>
-          <div class="progress">
-            <div class="progress-bar progress-bar-grey"
-              role="progressbar"
-              aria-valuenow='<%= @mappings.where(enabled: true).count %>'
-              aria-valuemin="0"
-              aria-valuemax='<%= current_user.plan.map_limit %>'
-              style="width: <%= current_user.plan.map_limit > 0 ? 100*@mappings.where(enabled: true).count/current_user.plan.map_limit : 0 %>%;">
-              <span class='live'>
-                <!-- <%= @mappings.where(enabled: true).count %> -->
-              </span>
-            </div>
           </div>
+          <h4 class="title">
+            <%= @mappings.where(enabled: true).count %>/<%= current_user.plan.map_limit %>
+          </h4>
           <div class="content">
-            <span class="live"><%= @mappings.where(enabled: true).count %></span>/<span class='live'><%= current_user.plan.map_limit %></span> maps in use, <span class="live"><%= @mappings.where(active:true).count %></span> active
+            <%= @mappings.where(active:true).count %> active
           </div>
         </div>
         
-        <div class="col-md-3 text-center">
+        <div class="col-md-4 text-center">
           <div class="content">
             Transactions
-          </div><br>
-          <div class="progress">
-            <div class="progress-bar progress-bar-grey"
-              role="progressbar"
-              aria-valuenow="100"
-              aria-valuemin="0"
-              aria-valuemax='<%= current_user.plan.job_limit %>'
-              style="width: <%= current_user.plan.job_limit > 0 ? 100*current_user.legacy_count/current_user.plan.job_limit : 0 %>%;">
-              <%= current_user.legacy_count %> / <%= current_user.plan.job_limit rescue 0 %>
-            </div>
           </div>
+          <h4 class="title">
+            <%= current_user.legacy_count %>/<%= current_user.plan.job_limit %>
+          </h4>
           <div class="content">
-            <%= current_user.legacy_count %> / <%= current_user.plan.job_limit rescue 0 %>
+            <%= current_user.reset_countdown %> until limits reset
           </div>
         </div>
-
-        <div class="col-md-2 text-center">
-          <div class="content">
-            Cycle
-          </div><br>
-          <%= current_user.reset_countdown %>
-          <div class="content"><br>
-          until limits reset
-          </div>
-      </div>
     </div>
 
     <br>  
@@ -110,10 +84,10 @@
             <th>Label</th>
             <th>Source <i class="fa fa-plug"></i></th>
             <th>Destination <i class="fa fa-plug"></i></th>
-            <th align="center" >Enabled?</th>
-            <th align="center" >Auto sync</th>
-            <th align="center" >History</th>
-            <th align="center">Destroy</th>
+            <th style="text-align:center">Enabled?</th>
+            <th style="text-align:center">Auto sync</th>
+            <th style="text-align:center">History</th>
+            <th style="text-align:center">Destroy</th>
           </tr>
         </thead>
         <tbody>
