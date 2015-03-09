@@ -11,7 +11,7 @@
 <div id="errorExplanation" class='text-danger' ng-show="errors || !mapping.can_be_enabled">
   <ul>
     <li ng-repeat="error in errors">{{error}}</li>
-    <li ng-show="!mapping.can_be_enabled">You need more credits to enable this mapping. Contact the administrator or disable any currently-enabled mappings to get more.</li>
+    <li ng-show="!mapping.can_be_enabled">You need to upgrade your plan or disable other mappings to enable this mapping.</li>
   </ul>
 </div>
 

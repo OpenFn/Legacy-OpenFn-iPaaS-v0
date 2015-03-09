@@ -13,6 +13,7 @@ module OdkSfLegacy
           NewRelic::Agent.add_custom_parameters(mapping_id: mapping_id, limit: limit)
 
           mapping = Mapping.find mapping_id
+          user = mapping.user
           # Create a new import if there isn't one yet.
           import = mapping.import || mapping.create_import(odk_formid: mapping.odk_form.name)
 
@@ -24,9 +25,11 @@ module OdkSfLegacy
 
             # => Get the ODK Data for this submission_id from the ID
             submission_data = odk.fetch_submission(uuid)
-            submission = import.submissions.create(uuid: uuid, data: submission_data["data"].values.first,
+            if user.plan.job_limit > user.legacy_count
+              submission = import.submissions.create(uuid: uuid, data: submission_data["data"].values.first,
                                                    media_data: submission_data["mediaFile"])
-            Sidekiq::Client.enqueue(OdkToSalesforce::SubmissionProcessor, mapping.id, submission.id)
+              Sidekiq::Client.enqueue(OdkToSalesforce::SubmissionProcessor, mapping.id, submission.id)
+            end
 
           end
 
