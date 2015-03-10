@@ -146,6 +146,11 @@
             <%= f.label :odk_password, "Password" %>
             <%= f.password_field :odk_password, value: f.object.odk_password, class: 'form-control' %>
           </div>
+
+          <div class="form-group">
+            <%=f.hidden_field :subscription_plan, value: @user.new_record? ? nil : @user.plan.try(:name)%>
+          </div>
+
           <%= f.submit "Update", class: 'btn btn-primary' %>
           <% end %>
           </div>
@@ -216,6 +221,10 @@
             <div class="form-group">
               <%= f.label :sf_app_secret, "Consumer Secret" %>
               <%= f.text_field :sf_app_secret, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%=f.hidden_field :subscription_plan, value: @user.new_record? ? nil : @user.plan.try(:name)%>
             </div>
 
             <div class="form-group">
