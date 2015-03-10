@@ -26,7 +26,7 @@ class WebhooksController < ApplicationController
 		if customer.present?
 	      user = User.find_by_email(customer.email)
 		  if user.present?
-		    user.stripe_curent_period_end = Time.at(customer.subscriptions.data[0].current_period_end)
+		    user.stripe_current_period_end = Time.at(customer.subscriptions.data[0].current_period_end)
 			user.save
 		  end
 		end
