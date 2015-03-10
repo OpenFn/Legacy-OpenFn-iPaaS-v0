@@ -40,30 +40,44 @@ class User < ActiveRecord::Base
   end
 
   def save_with_payment(params)
-    if valid?
-      plan = Plan.find_by(name: subscription_plan)
-      self.role = 'client_admin'
-      unless subscription_plan == 'Free'
-        customer = Stripe::Customer.create(email: self.email, plan: plan.try(:name), card: params[:user][:stripe_token], coupon: stripe_coupon.blank? ? nil : stripe_coupon)
-        self.stripe_customer_token = customer.id
-        self.stripe_subscription_token = customer.subscriptions.first.id
-        self.stripe_curent_period_end = Time.at(customer.subscriptions.first.current_period_end)
-        self.plan_id = plan.try(:id)
-        save!
-      else
-        self.plan_id = plan.try(:id)
-        save
+    begin
+
+      if valid?
+        self.plan = Plan.find_by(name: subscription_plan)
+        self.role = 'client_admin'
+
+        unless subscription_plan == 'Free'
+          customer = Stripe::Customer.create(email: self.email, plan: plan.try(:name), card: params[:user][:stripe_token], coupon: stripe_coupon.blank? ? nil : stripe_coupon)
+          self.stripe_customer_token = customer.id
+          self.stripe_subscription_token = customer.subscriptions.first.id
+          self.stripe_current_period_end = Time.at(customer.subscriptions.first.current_period_end)
+        end
       end
+
+    rescue Stripe::InvalidRequestError => e
+      # We leverage the errors facility to provide feedback and context to the User.
+      errors.add :base, "Stripe error while creating customer: #{e.message}"
+    ensure
+      # Returns true if everything went ok, false otherwise. 
+      # We avoid calling #valid? after called errors.add
+      # since it resets all errors.
+      return !!errors.any?
     end
-  rescue Stripe::InvalidRequestError => e
-    errors.add :base, "Stripe error while creating customer: #{e.message}"
-    false
   end
 
   def update_plan(params)
-    if (self.client_admin? && self.plan.try(:name) != params[:user][:subscription_plan]) || stripe_coupon.present?
-      plan = Plan.find_by(name: params[:user][:subscription_plan])
-      if self.stripe_customer_token.present?
+    # Don't attempt to update the plan if a plan isn't provided
+    return true unless params[:user][:subscription_plan]
+
+    begin
+      # Don't do anything if they aren't a client_admin
+      return true unless client_admin?
+      # Don't do anything if they haven't changed their plan
+      return true unless !changes[:plan_id]
+  
+      self.plan = Plan.find_by(name: params[:user][:subscription_plan])
+
+      if stripe_customer_token.present?
         customer = Stripe::Customer.retrieve(self.stripe_customer_token)
         if stripe_coupon.present?
           customer.coupon = stripe_coupon
@@ -71,25 +85,31 @@ class User < ActiveRecord::Base
         end
         customer.update_subscription(plan: params[:user][:subscription_plan])
       else
-        customer = Stripe::Customer.create(email: self.email, plan: plan.name, card: params[:user][:stripe_token], coupon: stripe_coupon.blank? ? nil : stripe_coupon)
+        customer = Stripe::Customer.create({
+          email: self.email, 
+          plan: plan.name, 
+          card: params[:user][:stripe_token], 
+          coupon: stripe_coupon.blank? ? nil : stripe_coupon
+        })
       end
-      self.plan_id = plan.id
+
       self.stripe_customer_token = customer.id
       self.stripe_subscription_token = customer.subscriptions.first.id
+
       save!
-    else
-      true
+
+    rescue Stripe::StripeError => e
+      logger.error "Stripe Error: " + e.message
+      if e.message.include?("Coupon expired")
+        errors.add :base, "The coupon code you've entered has expired. Plan not updated."
+      elsif e.message.include?("No such coupon")
+        errors.add :base, "The coupon code you've entered doesn't exist. Plan not updated."
+      else
+        errors.add :base, "Unable to update your subscription. #{e.message}."
+      end
+    ensure
+      return !!errors.any?
     end
-  rescue Stripe::StripeError => e
-    logger.error "Stripe Error: " + e.message
-    if e.message.include?("Coupon expired")
-      errors.add :base, "The coupon code you've entered has expired. Plan not updated."
-    elsif e.message.include?("No such coupon")
-      errors.add :base, "The coupon code you've entered doesn't exist. Plan not updated."
-    else
-      errors.add :base, "Unable to update your subscription. #{e.message}."
-    end
-    false
   end
 
   private
