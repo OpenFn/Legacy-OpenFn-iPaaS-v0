@@ -106,16 +106,16 @@ class User < ActiveRecord::Base
   end
 
   def seconds_to_units(seconds)
-  '%d days, %d hours, and %d minutes' %
-    # the .reverse lets us put the larger units first for readability
-    [24,60].reverse.inject([seconds]) {|result, unitsize|
-      result[0,0] = result.shift.divmod(unitsize)
-      result
-    }
+    '%d days, %d hours, and %d minutes' %
+      # the .reverse lets us put the larger units first for readability
+      [24,60,60].reverse.inject([seconds]) {|result, unitsize|
+        result[0,0] = result.shift.divmod(unitsize)
+        result
+      }
   end
 
   def reset_countdown
-    seconds = (stripe_current_period_end? ? stripe_current_period_end : DateTime.current.end_of_month - DateTime.now) * 24 * 60
+    seconds = (stripe_current_period_end? ? (stripe_current_period_end - DateTime.now) : (DateTime.current.end_of_month - DateTime.now)*24*60*60)
     seconds_to_units(seconds)
   end
 
