@@ -12,31 +12,31 @@
     Salesforce.com
   </td>
    
-  <td align="center" class="<% if mapping.enabled? %> success <% end %>">
+  <td style="text-align:center" class="<% if mapping.enabled? %> success <% end %>">
     <% if mapping.enabled? %>
       <span class='live'><i class="fa fa-check-circle fa-lg"></i></span>
     <% else %>
-      
     <% end %>
   </td>
 
-  <td align="center" class="<% if mapping.active? %> success <% end %>">
+  <td style="text-align:center" class="<% if mapping.active? %> success <% end %>">
     <% if mapping.active? %>
       <span class='live'><i class="fa fa-bolt fa-lg"></i></span>
     <% else %>
-      
     <% end %>
   </td>
-  <td align="center">
+
+  <td style="text-align:center">
     <% if mapping.import %>
       <%= link_to [mapping, :submissions], class: 'btn btn-map-label' do %>
         <i class="fa fa-history fa-lg"></i>
-      <% end%>
-    <% end%>
+      <% end %>
+    <% end %>
   </td>
 
-  <td align="center">
-    <%= link_to mapping, method: 'delete', class: 'btn btn-map-label', data: { confirm: 'Are you sure you want to delete this map?'} do %><i class="fa fa-trash-o fa-lg"></i><% end %>
-
+  <td style="text-align:center">
+    <%= link_to mapping, method: 'delete', class: 'btn btn-map-label', data: { confirm: 'Are you sure you want to delete this map?'} do %>
+      <i class="fa fa-trash-o fa-lg"></i>
+    <% end %>
   </td>
 </tr>

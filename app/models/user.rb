@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
         customer = Stripe::Customer.create(email: self.email, plan: plan.try(:name), card: params[:user][:stripe_token], coupon: stripe_coupon.blank? ? nil : stripe_coupon)
         self.stripe_customer_token = customer.id
         self.stripe_subscription_token = customer.subscriptions.first.id
-        self.stripe_curent_period_end = Time.at(customer.subscriptions.first.current_period_end)
+        self.stripe_current_period_end = Time.at(customer.subscriptions.first.current_period_end)
         self.plan_id = plan.try(:id)
         save!
       else
@@ -76,6 +76,7 @@ class User < ActiveRecord::Base
       self.plan_id = plan.id
       self.stripe_customer_token = customer.id
       self.stripe_subscription_token = customer.subscriptions.first.id
+      self.stripe_current_period_end = Time.at(customer.subscriptions.first.current_period_end)
       save!
     else
       true
@@ -90,6 +91,32 @@ class User < ActiveRecord::Base
       errors.add :base, "Unable to update your subscription. #{e.message}."
     end
     false
+  end
+
+  def plan_period_start
+    stripe_current_period_end? ? stripe_current_period_end - 1.month : Date.current.beginning_of_month
+  end
+
+  def plan_period_end
+    stripe_current_period_end? ? stripe_current_period_end : Date.current.end_of_month
+  end
+
+  def legacy_count
+    OdkSfLegacy::Submission.joins(import: {mapping: :user}).where(users: {id: id}).where( "odk_sf_legacy_submissions.created_at BETWEEN ? AND ?", plan_period_start, plan_period_end).count
+  end
+
+  def seconds_to_units(seconds)
+    '%d days, %d hours, and %d minutes' %
+      # the .reverse lets us put the larger units first for readability
+      [24,60,60].reverse.inject([seconds]) {|result, unitsize|
+        result[0,0] = result.shift.divmod(unitsize)
+        result
+      }
+  end
+
+  def reset_countdown
+    seconds = (stripe_current_period_end? ? (stripe_current_period_end - DateTime.now) : (DateTime.current.end_of_month - DateTime.now)*24*60*60)
+    seconds_to_units(seconds)
   end
 
   private
