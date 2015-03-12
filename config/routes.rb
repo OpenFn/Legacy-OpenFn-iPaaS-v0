@@ -3,6 +3,14 @@ require 'admin_constraint'
 
 OpenFn::Application.routes.draw do
 
+  get 'password_resets/create'
+
+  get 'password_resets/edit'
+
+  get 'password_resets/update'
+
+  resources :password_resets
+
   mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
 
   get "submissions_controller/index"
