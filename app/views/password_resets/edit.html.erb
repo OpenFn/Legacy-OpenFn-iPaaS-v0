@@ -1,5 +1,11 @@
-<h1>Choose a new password</h1>
-<%= form_for @user, :url => password_reset_path(@token), :html => {:method => :put} do |f| %>
+<div class='container'>
+
+<div class='row'>
+  <div class="col-sm-offset-3 col-sm-6 well text-center">
+    <h2>Choose a new password</h2>
+
+    <%= form_for @user, :url => password_reset_path(@token), :html => {:method => :put} do |f| %>
+
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -12,19 +18,22 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br />
+  <div class="form-group">
     <%= @user.email %>
   </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
+
+  <div class="form-group">
+    <!-- <%= f.label :password %> -->
+    <%= f.password_field :password, placeholder: 'Password', class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
+
+  <div class="form-group">
+    <!-- <%= f.label :password_confirmation %> -->
+    <%= f.password_field :password_confirmation, placeholder: 'Password Confirmation', class: 'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Change password", class: 'btn btn-primary submit_btn' %>
   </div>
 <% end %>
+  </div>
+</div>

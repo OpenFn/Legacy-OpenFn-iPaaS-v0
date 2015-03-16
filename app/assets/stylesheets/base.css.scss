@@ -135,6 +135,14 @@ b, strong {
 .well {
   color: $deeper-blue;
   margin-top: 20px;
+
+  &.dark {
+    background-color: $primary-blue;
+    background-image: image-url("noise.png");
+    border-color: $deeper-blue;
+    color: $off-white;
+  }
+
 }
 
 .btn-meh {
