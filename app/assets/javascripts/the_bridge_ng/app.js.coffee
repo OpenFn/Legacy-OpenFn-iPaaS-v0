@@ -25,6 +25,17 @@ Array::filter = (func) -> x for x in @ when func(x)
   'angular-growl'
  ])
 
+# Handles to controllers for namespace collisions with the new OpenFn app.
+# As of today AngularJS doesn't handle namespace collisions for services so 
+# if you've got 2 different modules with the service named the same way and 
+# you include both modules in your app, only one service will be available.
+@Legacy = {
+  controllers: {},
+  modules: {
+
+  }
+}
+
 @controllerModule = angular.module 'the_bridge.controllers', []
 @directiveModule  = angular.module 'the_bridge.directives', []
 @resourceModule   = angular.module 'the_bridge.resources', []
@@ -41,7 +52,7 @@ Array::filter = (func) -> x for x in @ when func(x)
   unless Features.new_mapping_page
     $routeProvider
       .when '/mappings/new',
-        controller: 'NewMappingCtrl'
+        controller: Legacy.controllers.NewMappingCtrl
         templateUrl: '../the_bridge_templates/mappings/new.html'
 
       .when '/mappings/:id',

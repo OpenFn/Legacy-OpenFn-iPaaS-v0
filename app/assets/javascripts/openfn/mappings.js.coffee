@@ -8,7 +8,7 @@ OpenFn.Mappings.config [
   ($routeProvider, $locationProvider) ->
     $locationProvider.html5Mode true
 
-    if Features.new_mapping_page?
+    if Features.new_mapping_page
       $routeProvider
       .when '/mappings/new',
         templateUrl: '/templates/loading.html'
