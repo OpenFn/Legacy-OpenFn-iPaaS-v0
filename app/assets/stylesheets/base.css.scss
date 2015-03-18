@@ -206,6 +206,15 @@ b, strong {
 
 .live {
   color: $accent-yellow;
+
+  &.little {
+    font-size: rem-calc(15px);
+  }
+}
+
+.little {
+  font-size: rem-calc(15px);
+  font-weight: normal;
 }
 
 .flash {

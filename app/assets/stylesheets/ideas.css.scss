@@ -127,6 +127,12 @@
     font-size: rem-calc(28px);
     font-weight: $bold;
     text-transform: uppercase;
+
+    &.show {
+      font-size: rem-calc(42px);
+      margin-top: -30px;
+      margin-bottom: -15px;
+    }
   }
 
   .content {
@@ -154,7 +160,7 @@
 
   .modal-title {
     color: $off-white;
-    font-size: rem-calc(20px);
+    font-size: rem-calc(24px);
     font-weight: $bold;
     text-transform: uppercase;
   }
@@ -163,5 +169,114 @@
   .table-striped > tbody > tr:nth-child(odd) > th {
     background-color: #5A6C77;
   }
+
+  .tabs-below, .tabs-right, .tabs-left {
+  .nav-tabs {
+    border-bottom: 0;
+  }
+}
+ 
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+  display: none;
+}
+ 
+.tab-content > .active,
+.pill-content > .active {
+  display: block;
+}
+ 
+.tabs-below {
+  > .nav-tabs {
+    border-top: 1px solid #ddd;
+ 
+    > li {
+      margin-top: -1px;
+      margin-bottom: 0;
+ 
+      > a {
+        -webkit-border-radius: 0 0 4px 4px;
+           -moz-border-radius: 0 0 4px 4px;
+                border-radius: 0 0 4px 4px;
+ 
+        &:hover, &:focus {
+          border-top-color: #ddd;
+          border-bottom-color: transparent;
+        }
+      }
+    }
+    > .active a {
+      &, &:hover, &:focus {
+        border-color: transparent #ddd #ddd #ddd;
+      }
+    }
+  }
+}
+ 
+.tabs-left, .tabs-right {
+  > .nav-tabs > li {
+    float: none;
+ 
+    > a {
+      min-width: 74px;
+      margin-right: 0;
+      margin-bottom: 3px;
+    }
+  }
+}
+ 
+.tabs-left > .nav-tabs {
+  float: left;
+  margin-right: 19px;
+  border-right: 1px solid #ddd;
+ 
+  > li > a {
+    margin-right: -1px;
+    -webkit-border-radius: 4px 0 0 4px;
+       -moz-border-radius: 4px 0 0 4px;
+            border-radius: 4px 0 0 4px;
+ 
+    &:hover, &:focus {
+      // border-color: #eee #ddd #eee #eee;
+    }
+  }
+ 
+  > .active a {
+    &, &:hover, &:focus {
+      // border-color: #ddd transparent #ddd #ddd;
+      // *border-right-color: #fff;
+    }
+  }
+}
+ 
+.tabs-right > .nav-tabs {
+  float: right;
+  margin-left: 19px;
+  padding: 5px; 
+  // border-left: 1px solid #ddd;
+ 
+  > li > a {
+    // margin-left: -1px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+       -moz-border-radius: 6px 6px 6px 6px;
+            border-radius: 6px 6px 6px 6px;
+            border: none;
+ 
+    &:hover, &:focus {
+      background-color: $bg-color;
+      color: $accent-yellow;
+      border: none;
+    }
+  }
+ 
+  > .active a {
+    &, &:hover, &:focus {
+      border: none;
+      // *border-left-color: #fff;
+      color: $accent-yellow;
+      background-color: $bg-color;
+    }
+  }
+}
 
 }
