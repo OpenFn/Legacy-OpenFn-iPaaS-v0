@@ -88,7 +88,7 @@ gem 'deep_merge', require: 'deep_merge/rails_compat'
 # => Using jquery UI for draggable
 gem 'jquery-ui-rails'
 
-gem 'angularjs-rails', '1.2.16'
+gem 'angularjs-rails', '~> 1.3.14'
 gem 'angular-ui-bootstrap-rails'
 gem 'angular_ui_tree_rails'
 gem 'ng-rails-csrf'
@@ -126,7 +126,7 @@ group :development, :test do
   gem 'shoulda-matchers', require: false
   gem 'spring-commands-rspec'
   gem 'guard-rspec'
-  gem 'guard-livereload'
+  gem 'guard-livereload', require: false
   # gem 'rb-fsevent' if `uname` =~ /Darwin/
 end
 

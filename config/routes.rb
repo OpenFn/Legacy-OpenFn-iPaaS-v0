@@ -66,6 +66,13 @@ OpenFn::Application.routes.draw do
     end
   end
 
+  namespace :api do
+    namespace :v1 do
+      # We don't need to list of describe the new mappings yet.
+      resources :mappings, only: [:create, :edit]
+    end
+  end
+
   namespace :metrics do
     get "organisation_integration_mappings", to: "organisation_integration_mappings#index", as: :organisation_integration_mappings
   end

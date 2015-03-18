@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312132547) do
+ActiveRecord::Schema.define(version: 20150316141754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,10 +91,10 @@ ActiveRecord::Schema.define(version: 20150312132547) do
     t.boolean  "enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "project_id"
+    t.integer  "user_id"
   end
 
-  add_index "mappings", ["project_id"], name: "index_mappings_on_project_id", using: :btree
+  add_index "mappings", ["user_id"], name: "index_mappings_on_user_id", using: :btree
 
   create_table "odk_sf_legacy_credentials", force: true do |t|
     t.integer  "user_id"
