@@ -81,7 +81,8 @@
         bottom: 0;
         right: 0;
         cursor: pointer;
-        background-color: #A3AAAB;
+        background-color: $grey-blue;
+        background-image: image-url("noise.png");
       }
 
       .vote-count {
@@ -99,7 +100,8 @@
         bottom: 0;
         left: 0;
         cursor: pointer;
-        background-color: #A3AAAB;
+        background-color: $grey-blue;
+        background-image: image-url("noise.png");
       }
 
       
@@ -167,8 +169,53 @@
     display: inline-block;
   }
 
+        .vote-link {
+        color: #384D5C;
+        padding: 1.65em;
+        position: absolute;
+        bottom: 0.0em;
+        right: 1em;
+        cursor: pointer;
+        background-color: $grey-blue;
+        background-image: image-url("noise.png");
+
+      }
+
+      .vote-count {
+        color: $accent-yellow;
+        font-size: 1.22em;
+        padding: 1.65em;
+        position: absolute;
+        bottom: 0.0em;
+        right: 4.5em;
+        // cursor: pointer;
+        // background-color: $grey-blue;
+        // background-image: image-url("noise.png");
+        }
+
+      .website-link {
+        color: #384D5C;
+        padding: 1.65em;
+        position: absolute;
+        bottom: 0.0em;
+        left: 1em;
+        cursor: pointer;
+        background-color: $grey-blue;
+        background-image: image-url("noise.png");
+      }
+
   .name {
     margin-right: 0.8em;
+  }
+
+  .title {
+    text-align: center;
+  }
+
+  .rating {
+    // float: right;
+    text-align: center;
+    padding-right: 29px; 
   }
 
   .actions, .rating {
@@ -184,8 +231,13 @@
   }
 
   .nav-tabs {
-    margin-bottom: 0;
+    // margin-bottom: 0;
     border-bottom: 0;
+    color: $off-white;
+    font-size: rem-calc(20px);
+    font-weight: $bold;
+    text-transform: uppercase;
+    text-align: center;
 
     li {
       cursor: pointer;
@@ -197,8 +249,9 @@
   .tab-pane {
     border-radius: 4px;
     border-width: 1px;
-    border-style: solid;
-    border-color: #dddddd;
+    // border-style: solid;
+    // border-color: #dddddd;
+    min-height: 220px;
   }
 
   .tab-pane:nth-child(1) {
@@ -209,12 +262,18 @@
   .tab-content-text {
     padding-top: 0.8em;
     margin: 0 0.8em 0.8em 0.8em;
+    font-size: rem-calc(18px);
   }
 
   .tag-list {
-    margin: 0.8em;
+    // margin: 0.8em;
+    text-align: center;
     .tag {
       margin-right: 0.5em;
+      background-color: $bg-color;
+      font-size: rem-calc(14px);
+      text-transform: uppercase;
+      text-align: center;
     }
   }
 }
