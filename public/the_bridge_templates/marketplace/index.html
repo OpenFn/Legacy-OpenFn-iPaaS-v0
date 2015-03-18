@@ -39,7 +39,8 @@
         <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
           <br>
           <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a class="tile" data-toggle="modal" data-target="#product_modal" >
+            
+          <a class="tile" ng-attr-href="{{ product.detail_active && '/#/product/'+product.id || '' }}" ng-attr-data-toggle="{{ !product.detail_active && 'modal' || '' }}" ng-attr-data-target="{{ !product.detail_active && '#product_modal' || '' }}">
               <div class="product">
                 <div class='rating'>
                   <span class='live'>
