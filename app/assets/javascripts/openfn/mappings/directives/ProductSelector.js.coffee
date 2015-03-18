@@ -3,3 +3,6 @@ OpenFn.Mappings.directive 'productSelector', ->
   templateUrl: '/templates/mappings/product_selector.html'
   scope:
     mapping: '='
+    newProfileAction: '='
+   	destinationProfiles: '='
+   	sourceProfiles: '='

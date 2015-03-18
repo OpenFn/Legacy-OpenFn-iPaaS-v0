@@ -1,0 +1,28 @@
+<div class="modal-content" id='connectionProfileModal'>
+  <div class="modal-header">
+    <h3 class="modal-title">Create new ODK product connection</h3>
+  </div>
+  <div class="modal-body">
+    <form novalidate action='#' name='profileForm'>
+      <div class="input-group">
+        <label for="profileName">Profile Name</label>
+        <input type="text" class="form-control" id="profileName" aria-describedby="basic-addon1" ng-model="profileObj.name" required>
+      </div>
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" aria-describedby="basic-addon1" ng-model="credential.username" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" aria-describedby="basic-addon1" ng-model="credential.password" required>
+      </div>
+      <div class="input-group">
+        <label for="url">URL</label>
+        <input type="text" class="form-control" id="url" aria-describedby="basic-addon1" ng-model="credential.url" required>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <input type='submit' class="btn btn-primary" value='Save' ng-click="create()" ng-disabled="profileForm.$invalid"/>
+    </div>
+  </form>
+</div>

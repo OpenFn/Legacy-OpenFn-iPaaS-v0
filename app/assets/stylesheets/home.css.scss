@@ -57,3 +57,18 @@
     padding-left: 15px;
   }
 }
+
+#connectionProfileModal {
+  h3, label {
+    color: #428bca;
+  }
+
+  label {
+    font-weight: normal;
+  }
+
+  .input-group {
+    margin-top: 10px;
+    width: 100%;
+  }
+}

@@ -1,12 +1,11 @@
 'use strict'
 
 OpenFn.Mappings.factory 'MappingViewModel', [
-  '$resource','$http','$q', ($resource,$http,$q) ->
+  '$resource','$http','$q', 'ConnectionProfiles', ($resource,$http,$q,ConnectionProfiles) ->
 
     class Mapping
 
-      constructor: (id,callbacks) ->
-
+      constructor: (id, callbacks) ->
         @callbacks = callbacks
 
         @attrs = {
@@ -59,7 +58,7 @@ OpenFn.Mappings.factory 'MappingViewModel', [
           console.error arguments
           @state.loading = false
 
-      
+
       resourceAttrs: () ->
         {
           id: @attrs.id,

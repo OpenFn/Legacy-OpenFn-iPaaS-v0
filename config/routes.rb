@@ -28,8 +28,6 @@ OpenFn::Application.routes.draw do
   post "/api/v1/:token/update_blog_posts", to: "blog_posts#update", defaults: { format: 'xml' }
   post "/api/v1/:token/update_users", to: "users#sync", defaults: { format: 'xml' }
 
-  resources :credentials
-
   namespace :odk_sf_legacy, shallow_path: nil, path: nil do
     resources :mappings do
 
@@ -70,6 +68,10 @@ OpenFn::Application.routes.draw do
     namespace :v1 do
       # We don't need to list of describe the new mappings yet.
       resources :mappings, only: [:create, :edit]
+
+      resources :connection_profiles, only: [:index, :edit, :create]
+
+      resources :credentials, only: [:index, :create, :edit]
     end
   end
 

@@ -1,16 +1,22 @@
 <div class="row" ng-hide="mapping.state.new">
   <div class="col-md-5">
     <div class="btn-group">
-      <button 
-        type="button" 
-        class="btn btn-default dropdown-toggle" 
-        data-toggle="dropdown" 
+      <button
+        type="button"
+        class="btn btn-default dropdown-toggle"
+        data-toggle="dropdown"
         aria-expanded="false">
-        Source 
+        Source
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Open Data Kit</a></li>
+        <li ng-repeat='product in sourceProfiles.products'>
+          <a href="#" ng-click="newProfileAction(product)">{{ product.name }}</a>
+        </li>
+        <li class="divider"></li>
+        <li ng-repeat='profile in sourceProfiles.connection_profiles'>
+          <a href="#">{{ profile.name }}</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -21,16 +27,22 @@
   </div>
   <div class="col-md-5">
     <div class="btn-group">
-      <button 
-        type="button" 
-        class="btn btn-default dropdown-toggle" 
-        data-toggle="dropdown" 
+      <button
+        type="button"
+        class="btn btn-default dropdown-toggle"
+        data-toggle="dropdown"
         aria-expanded="false">
-        Destination 
+        Destination
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
-        <li><a href="#">Salesforce</a></li>
+        <li ng-repeat='product in destinationProfiles.products'>
+          <a href="#" ng-click="newProfileAction(product)">{{ product.name }}</a>
+        </li>
+        <li class="divider"></li>
+        <li ng-repeat='profile in destinationProfiles.connection_profiles'>
+          <a href="#">{{ profile.name }}</a>
+        </li>
       </ul>
     </div>
   </div>

@@ -33,4 +33,21 @@ describe OpenFn::Odk do
 
   end
 
+  describe ".verify" do
+    before :each do
+      @odk_connection = double
+      @credential = OdkCredential.new(details: { username: 'ABC', password: '123', url: 'http://example.net' }, verified: nil)
+      expect(OdkAggregate::Connection).to receive(:new).and_return(@odk_connection)
+    end
+
+    it 'verifies the credential object and returns true if valid' do
+      expect(@odk_connection).to receive(:all_forms).and_return(true)
+      expect(described_class.verify(@credential)).to eq true
+    end
+
+    it 'verifies the credential object and returns false if invalid' do
+      expect(@odk_connection).to receive(:all_forms).and_raise("Nope")
+      expect(described_class.verify(@credential)).to eq false
+    end
+  end
 end
