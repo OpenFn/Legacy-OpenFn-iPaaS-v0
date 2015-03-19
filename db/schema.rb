@@ -300,7 +300,7 @@ ActiveRecord::Schema.define(version: 20150306162524) do
     t.string   "stripe_subscription_token"
     t.integer  "plan_id"
     t.datetime "stripe_current_period_end"
-    t.boolean  "unlimited"
+    t.boolean  "unlimited"                  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
