@@ -85,27 +85,12 @@
 
     footer {
 
-      margin-top: rem-calc(50px);
+      margin-top: rem-calc(20px);
       margin-bottom: rem-calc(25px);
-      //background-color: $cream;
-      //background-image: image-url("noise.png");
 
       .row {
         margin-bottom: rem-calc(25px);
 
-        &#opensource-links {
-          
-          a {
-            color: lighten($light-grey,15);
-            &:hover {
-              color: $light-grey;
-            }
-          }
-
-          i {
-            font-size: 4rem;
-          }
-        }
       }
 
       p { 
@@ -278,5 +263,7 @@
     }
   }
 }
+
+ 
 
 }
