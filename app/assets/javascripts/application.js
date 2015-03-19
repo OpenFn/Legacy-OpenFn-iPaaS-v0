@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require features
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
@@ -26,10 +27,12 @@
 //= require angular-ui-bootstrap-tpls
 //= require angular-animate
 //= require angular-sanitize
+//= require angular-growl
 //= require angular-ui-tree
 //= require ng-rails-csrf
 //= require_tree ./support
 
+//= require_tree ./openfn
 //= require_tree ./the_bridge_ng
 
 Array.prototype.diff = function(a) {

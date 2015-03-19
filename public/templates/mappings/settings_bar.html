@@ -1,0 +1,51 @@
+<div class="row">
+  <form name="mappingSettings">
+    
+    <div class="col-md-3">
+      <input type="text" 
+        required
+        ng-model="mapping.name"
+        class="form-control"
+        placeholder="Name">
+    </div>
+    <div class="col-md-9 text-right" ng-show="mapping.state.new">
+      <button ng-disabled="mappingSettings.$invalid || mapping.state.saving" 
+        class="btn btn-primary"
+        ng-click="mapping.create()"
+        >Create</a>
+    </div>
+    <div ng-hide="mapping.state.new">
+      <div class="col-md-1">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="mapping.enabled">Enabled?</label>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Manual Test (0-10)">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="mapping.auto">Auto?</label>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <a class="btn btn-default">Clone</a>
+      </div>
+      <div class="col-md-1">
+        <a class="btn btn-warning">Reset</a>
+      </div>
+      <div class="col-md-1">
+        <a class="btn btn-danger">Destroy</a>
+      </div>
+
+    </div>
+
+  </form>
+</div>

@@ -22,6 +22,8 @@ class Product < ActiveRecord::Base
     product.provider = salesforce_product.provider
     product.detailed_description = salesforce_product.detailed_description
     product.update_link = salesforce_product.update_link
+    product.details_active = salesforce_product.details_active
+    product.tech_specs = salesforce_product.tech_specs
 
     return product
   end

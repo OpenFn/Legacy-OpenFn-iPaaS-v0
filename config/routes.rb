@@ -3,6 +3,14 @@ require 'admin_constraint'
 
 OpenFn::Application.routes.draw do
 
+  get 'password_resets/create'
+
+  get 'password_resets/edit'
+
+  get 'password_resets/update'
+
+  resources :password_resets
+
   mount Sidekiq::Web => '/sidekiq', :constraints => AdminConstraint.new
 
   get "submissions_controller/index"
@@ -55,6 +63,13 @@ OpenFn::Application.routes.draw do
           post :reprocess
         end
       end
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      # We don't need to list of describe the new mappings yet.
+      resources :mappings, only: [:create, :edit]
     end
   end
 

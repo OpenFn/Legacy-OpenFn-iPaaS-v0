@@ -1,6 +1,6 @@
 'use strict'
 
-@controllerModule.controller 'NewMappingCtrl', ['$scope', 'MappingService', 'OdkService',
+Legacy.controllers.NewMappingCtrl = ['$scope', 'MappingService', 'OdkService',
   ($scope, MappingService, OdkService) ->
 
     ########## VARIABLE ASSIGNMENT
@@ -30,5 +30,9 @@
     ########## BEFORE FILTERS
 
     $scope.loadOdkForms()
-
 ]
+
+# Trying out working around angulars module system, namespacing doesn't
+# work as expected. So I've commented this out to see if I can get away with
+# using vars as dependencies.
+#@controllerModule.controller 'NewMappingCtrl', Legacy.controllers.NewMappingCtrl
