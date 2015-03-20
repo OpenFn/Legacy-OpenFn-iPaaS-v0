@@ -1,20 +1,10 @@
-</div>
-</div>
-
 <%= render "shared/error_messages", target: @user %>
-
 <div class="ideas">
   <header class="header-image">
     <div class="headline">
-      <% if current_user %>
-        <h1><i class="fa fa-user"></i> your <strong>Account</strong></h1>
-        <h3>Manage credentials and your <strong>plan</strong>.</h3>
-      <% else %>
-        <h1><i class="fa fa-user"></i> create <strong>Account</strong></h1>
-        <h3>Go ahead and <strong>start connecting</strong> for free. Seriously.</h3>
-      <% end %>
+      <h1><i class="fa fa-user"></i> create <strong>Account</strong></h1>
+      <h3>Go ahead and <strong>start connecting</strong> for free. Seriously.</h3>
     </div>
   </header>
 </div>
-
 <%= render 'form', user: @user %>

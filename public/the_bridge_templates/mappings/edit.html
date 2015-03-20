@@ -1,38 +1,30 @@
-<br>
-<br>
-<br>
-<br>
-
 <input type="text" ng-model="mapping.name" class='form-control' ng-change="saveMapping()" />
-
+<!-- #fix, why is this here??? -->
 <div class="form-group">
 </div>
-
 <div id="errorExplanation" class='text-danger' ng-show="errors || !mapping.can_be_enabled">
   <ul>
     <li ng-repeat="error in errors">{{error}}</li>
     <li ng-show="!mapping.can_be_enabled">You need to upgrade your plan or disable other mappings to enable this mapping.</li>
   </ul>
 </div>
-
-<div class='saved-notification' ng-show="saved">Saved</div>
-
-
-
+<div class='saved-notification' ng-show="saved">
+  Saved
+</div>
 <div class="checkbox mapping-status-options">
   <label>
     <input type="checkbox" ng-model='mapping.enabled' ng-checked='mapping.enabled' ng-change="saveMapping()" ng-disabled="!mapping.can_be_enabled"> Enabled
   </label>
   <label>
-    <input type="checkbox" ng-model='mapping.active' ng-checked='mapping.active' ng-change="saveMapping()" ng-disabled="!mapping.enabled || !mapping.can_be_enabled"> Auto-fetch (10 min)
+    <input type="checkbox" ng-model='mapping.active' ng-checked='mapping.active' ng-change="saveMapping()" ng-disabled="!mapping.enabled || !mapping.can_be_enabled"> Auto-sync (10 min)
   </label>
   <label>Source <i class="fa fa-cube"></i> : <strong>ODK "{{mapping.odk_form.name}}"</strong></label>
 </div>
-
 <div class="row sf-row" bs-affix data-offset-top="225" data-on-affix="onAffix()" data-on-unaffix="onUnaffix()">
-  <div class='col-md-12' ng-include="'/the_bridge_templates/mappings/sf_row.html'"></div>
+  <div class='col-md-12' ng-include="'/the_bridge_templates/mappings/sf_row.html'">
+  </div>
 </div>
-
 <div class='row odk-row'>
-  <div class='col-md-12' ng-include="'/the_bridge_templates/mappings/odk_column.html'"></div>
+  <div class='col-md-12' ng-include="'/the_bridge_templates/mappings/odk_column.html'">
+  </div>
 </div>

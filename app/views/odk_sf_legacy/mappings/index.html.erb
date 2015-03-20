@@ -1,30 +1,22 @@
-</div>
-</div>
 <div class="ideas">
-
   <header class="header-image">
     <div class="headline">
-      <h1><i class="fa fa-plug"></i>
-   open<strong>Integrations</strong></h1>
+      <h1><i class="fa fa-plug"></i> open<strong>Integrations</strong></h1>
       <h3>Your apps are <strong>better</strong> together.</h3>
-      </div>
+    </div>
   </header>
-
   <div class="featurette mappings">
     <hr class="light">
     <hr class="dark">
     <br>
-    
     <div class="container">
-   
-    <div class="row">
-
+      <div class="row">
         <div class="col-md-2 text-center">
-          
-          <%= link_to "Create new map", "/mappings/new", class: 'btn btn-default' %><br>
-          
+          <%= link_to "Create new map", "/mappings/new", class: 'btn btn-success' %>
+          <br>
+          <br>
           <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle btn-success" data-toggle="dropdown" aria-expanded="false">
+            <button type="button" class="btn btn-default dropdown-toggle btn-default" data-toggle="dropdown" aria-expanded="false">
               Change Plan <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
@@ -35,8 +27,7 @@
               <li><a href="/users/<%= current_user.id %>/edit?plan=Free">Free</a></li>
             </ul>
           </div>
-        </div>
-        
+        </div>        
         <div class="col-md-2 text-center">
           <div class="content">
             Plan
@@ -47,8 +38,7 @@
           <div class="content">
             $<%= current_user.plan.price.to_i %>/mo.
           </div>
-        </div>
-        
+        </div>        
         <div class="col-md-4 text-center">
           <div class="content">
             Maps
@@ -59,8 +49,7 @@
           <div class="content">
             <%= @mappings.where(active:true).count %> active
           </div>
-        </div>
-        
+        </div> 
         <div class="col-md-4 text-center">
           <div class="content">
             Transactions
@@ -72,11 +61,9 @@
             <%= current_user.reset_countdown %> until limits reset
           </div>
         </div>
-    </div>
-
-    <br>  
-
-    <div class="container">
+      </div>
+      <br>
+      <br>
       <table class='table table-striped'>
         <thead>
           <tr>
@@ -94,7 +81,5 @@
         </tbody>
       </table>
     </div>
-
   </div>
-
 </div>
