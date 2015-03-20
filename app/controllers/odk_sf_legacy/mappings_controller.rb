@@ -30,7 +30,7 @@ module OdkSfLegacy
       # page, and let the angular routes deal with it.
       # This is how we should deal with Rails -> Angular pages.
       # Handling Angular -> Rails routes varies.
-      render "home/index"
+      render "home/index", layout: nil
     end
 
     def create
