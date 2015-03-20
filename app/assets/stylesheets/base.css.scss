@@ -32,7 +32,7 @@ html {
 }
 
 body {
-  margin-top: 68px;
+  margin-top: 70px;
   font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif; 
   color: $off-white;
   line-height: 1;
@@ -41,7 +41,7 @@ body {
   max-width: 100%;
   overflow-x: hidden;
   margin-bottom: 60px;
-  height: 100%;
+  min-height: 100%;
 }
 
 .footer {
