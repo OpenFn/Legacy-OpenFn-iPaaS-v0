@@ -13,14 +13,17 @@
 
 <div class="featurette dark">
 	<hr class="light">
-    <hr class="dark">
-
-<div class="container">
-	<div ng-controller="ReleaseNotesController as releaseNotes">
-		<div ng-repeat="post in release_notes" class="release-note">
-    		<div ng-bind-html="post.title" class="title">
-       		</div>
-			<div ng-bind-html="post.content" class="content">
+	<hr class="dark">
+	<div class="container">
+		<div ng-controller="ReleaseNotesController as releaseNotes">
+			<div ng-repeat="post in release_notes" class="release-note">
+    				<div ng-bind-html="post.title" class="title">
+       				</div>
+				<div ng-bind-html="post.content" class="content">
+				</div>
 			</div>
 		</div>
 	</div>
+</div>
+
+<script async src="https://static.medium.com/embed.js"></script>
