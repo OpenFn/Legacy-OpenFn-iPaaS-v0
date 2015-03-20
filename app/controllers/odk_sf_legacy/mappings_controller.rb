@@ -26,7 +26,11 @@ module OdkSfLegacy
     end
 
     def new
-      @mapping = OdkSfLegacy::Mapping.new
+      # The mappings page is an angular page, so we return the angular bootstrapping
+      # page, and let the angular routes deal with it.
+      # This is how we should deal with Rails -> Angular pages.
+      # Handling Angular -> Rails routes varies.
+      render "home/index"
     end
 
     def create
