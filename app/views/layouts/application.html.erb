@@ -51,8 +51,8 @@
   <div class='col-md-12'>
     <%= yield %>
   </div>
-
+  <% unless current_user %>
   <%= render "shared/footer" %>
-
+  <% end %>
 </body>
 </html>

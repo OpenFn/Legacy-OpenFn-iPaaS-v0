@@ -51,8 +51,8 @@
     <div class='growl-wrapper'>
       <div growl></div>
     </div>
-
+    <% unless current_user %>
     <%= render "shared/footer" %>
-
+    <% end %>
   </body>
 </html>
