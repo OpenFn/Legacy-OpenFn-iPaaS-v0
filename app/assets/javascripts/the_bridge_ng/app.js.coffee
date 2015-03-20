@@ -92,10 +92,6 @@ Array::filter = (func) -> x for x in @ when func(x)
           $scope.productPublicCount = data.productPublicCount
           $scope.productConnectedCount = data.productConnectedCount
 
-      redirectTo: (current, path, search) ->
-        if(search.goto)
-          return "/" + search.goto
-        else
-          return "/" })
+    })
     .otherwise({redirectTo:"/"})
 ]
