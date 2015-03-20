@@ -23,6 +23,7 @@
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
     ga('create', '<%= Features.ga_tracking_code %>', 'auto');
+    <%# We need to do a 'send' from the Rails views %>
     ga('send', 'pageview');
 
     </script>
@@ -40,12 +41,6 @@
       });
     })
   </script>
-
-
-
-
-
-
 
 </head>
 <body>
