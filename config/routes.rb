@@ -109,7 +109,7 @@ OpenFn::Application.routes.draw do
 
   get "metrics", to: "metrics#index", as: :metrics
 
-  match "/*path" => redirect("/?goto=%{path}"), via: [:get, :post]
+  match "/*path" => redirect("#/%{path}"), via: [:get, :post]
 
   root to: 'home#index'
   # root to: 'mappings#index'
