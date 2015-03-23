@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306162524) do
+ActiveRecord::Schema.define(version: 20150318124814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,10 +91,10 @@ ActiveRecord::Schema.define(version: 20150306162524) do
     t.boolean  "enabled"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "project_id"
+    t.integer  "user_id"
   end
 
-  add_index "mappings", ["project_id"], name: "index_mappings_on_project_id", using: :btree
+  add_index "mappings", ["user_id"], name: "index_mappings_on_user_id", using: :btree
 
   create_table "odk_sf_legacy_credentials", force: true do |t|
     t.integer  "user_id"
@@ -234,6 +234,8 @@ ActiveRecord::Schema.define(version: 20150306162524) do
     t.text    "detailed_description"
     t.string  "update_link"
     t.string  "integration_type"
+    t.boolean "detail_active"
+    t.text    "tech_specs"
   end
 
   create_table "projects", force: true do |t|
@@ -274,23 +276,23 @@ ActiveRecord::Schema.define(version: 20150306162524) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                                     null: false
-    t.string   "crypted_password",                          null: false
-    t.string   "salt",                                      null: false
+    t.string   "email",                                           null: false
+    t.string   "crypted_password",                                null: false
+    t.string   "salt",                                            null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "sf_username"
     t.string   "sf_password"
     t.string   "odk_url"
     t.string   "sf_security_token"
-    t.boolean  "valid_credentials",         default: false
+    t.boolean  "valid_credentials",               default: false
     t.string   "sf_app_secret"
     t.string   "sf_app_key"
     t.string   "odk_username"
     t.string   "odk_password"
     t.string   "sf_host"
     t.string   "role"
-    t.integer  "credits",                   default: 0
+    t.integer  "credits",                         default: 0
     t.string   "first_name"
     t.string   "last_name"
     t.string   "organisation"
@@ -300,7 +302,10 @@ ActiveRecord::Schema.define(version: 20150306162524) do
     t.string   "stripe_subscription_token"
     t.integer  "plan_id"
     t.datetime "stripe_current_period_end"
-    t.boolean  "unlimited"                  default: false
+    t.boolean  "unlimited"                        default: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

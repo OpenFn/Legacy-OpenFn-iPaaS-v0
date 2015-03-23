@@ -1,16 +1,16 @@
-// this is the old color--- $bg-color: #fffcf4;
-$cream: #fffcf4;
-$bg-color: #384D5C;
+// this is the old color--- $bg-color: #fffcf4, $cream: #fffcf4
+$cream: #fffcf4;          //header and footer, featurette light
+$bg-color: #384D5C;       //main background color
 $bold: 700;
 $semi-bold: 600;
 
-$primary-blue: #3f5666;    // dark blue
-$deeper-blue: #384D5C;    // deeper blue
+$primary-blue: #3f5666;   // dark blue, used to differentiate rows and featurettes from bg-color
+$deeper-blue: #384D5C;    // deeper blue, currently same as main background color
 $grey-blue: #5A6C77;
 $off-white: #F2EFE6;
 $grey: #969795;
 $light-grey: #A3AAAB;
-$accent-yellow: #f8ca4d; //dark yellow
+$accent-yellow: #f8ca4d;  //dark yellow, used for live stats and accents
 
 a:hover {
   text-decoration: none;
@@ -27,10 +27,12 @@ a {
 
 html {
   -ms-overflow-style: none;
+  position: relative;
+  height: 100%;
 }
 
 body {
-  padding-top: 68px;
+  margin-top: 68px;
   font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif; 
   color: $off-white;
   line-height: 1;
@@ -38,6 +40,23 @@ body {
   background-image: image-url("noise.png");
   max-width: 100%;
   overflow-x: hidden;
+  margin-bottom: 60px;
+  min-height: 100%;
+}
+
+.footer {
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    color: black;
+    background-color: $accent-yellow;
+    padding-top: 10px;
+    background-image: image-url("noise.png");
+    -moz-box-shadow: 0 -8px 8px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0 -8px 8px rgba(0,0,0,0.25);
+    box-shadow: 0 -8px 8px rgba(0,0,0,0.25);
 }
 
 b, strong {
@@ -59,7 +78,7 @@ b, strong {
     top: 0;
     left: 0;
     width: 100%;
-    height: rem-calc(74px);
+    height: rem-calc(72px);
     z-index: -1;
     -webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
@@ -135,6 +154,14 @@ b, strong {
 .well {
   color: $deeper-blue;
   margin-top: 20px;
+
+  &.dark {
+    background-color: $primary-blue;
+    background-image: image-url("noise.png");
+    border-color: $deeper-blue;
+    color: $off-white;
+  }
+
 }
 
 .btn-meh {
@@ -171,7 +198,6 @@ b, strong {
 .progress-bar-grey {
   background-color: $light-grey;
   background-image: image-url("noise.png");
-  // color: $cream;
   }
 
 // ::-webkit-scrollbar-track
@@ -198,6 +224,15 @@ b, strong {
 
 .live {
   color: $accent-yellow;
+
+  &.little {
+    font-size: rem-calc(15px);
+  }
+}
+
+.little {
+  font-size: rem-calc(15px);
+  font-weight: normal;
 }
 
 .flash {
@@ -206,4 +241,8 @@ b, strong {
 
 .center {
   text-align: center;
+}
+
+.pad_for_footer {
+  margin-bottom: 60px
 }

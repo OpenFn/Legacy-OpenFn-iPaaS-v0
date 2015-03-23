@@ -1,29 +1,25 @@
+<script async src="https://static.medium.com/embed.js"></script>
 <div class="ideas">
-
-<header class="header-image">
-	<div class="headline">
-		<h1>
-			<i class="fa fa-code"></i> open<strong>Developments</strong>
-		</h1>
- 		<h3>
- 			Vote for <a href="https://trello.com/b/uOdx8xCZ/open-fn-development" target="_blank">features <i class="fa fa-trello"></i></a>&nbsp;in our product backlog, browse our <a href="https://github.com/OpenFn/OpenFn-Site/" target="_blank">repo <i class="fa fa-github"></i></a>, or watch our progress here.
-		</h3>
-	</div>
-</header>
-
 <div class="featurette dark">
-	<hr class="light">
-	<hr class="dark">
 	<div class="container">
-		<div ng-controller="ReleaseNotesController as releaseNotes">
-			<div ng-repeat="post in release_notes" class="release-note">
-    				<div ng-bind-html="post.title" class="title">
-       				</div>
-				<div ng-bind-html="post.content" class="content">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="release-note">
+					<div class="content">
+						<a class="m-profile" data-collapsed="false" data-width="100%" href="https://medium.com/@openFn">open[Fn]</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<div class="row">
+			<div ng-controller="ReleaseNotesController as releaseNotes">
+				<div ng-repeat="post in release_notes" ng-class-odd="'col-md-6'" ng-class-even="'row'" class="release-note">
+    				<div ng-bind-html="post.title" class="rn-title"></div>
+					<div ng-bind-html="post.content" class="rn-content"></div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-<script async src="https://static.medium.com/embed.js"></script>

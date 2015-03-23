@@ -1,0 +1,24 @@
+(function (window) {
+
+  // JS Port for Features singleton.
+  // See lib/features for the Ruby counterpart.
+  
+  function Features(constants) {
+    for(var key in constants) {
+      var flag = constants[key];
+
+      Object.defineProperty(this, key.replace('?',''), {
+        enumerable: true,
+        configurable: false,
+        writable: false,
+        value: flag
+      });
+    }
+  }
+
+  window.Features = new Features(featureFlags);
+
+  // > Features.new_mapping_page
+  // false
+
+}(this));
