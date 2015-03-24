@@ -4,20 +4,18 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="release-note">
 					<div class="content">
 						<a class="m-profile" data-collapsed="false" data-width="100%" href="https://medium.com/@openFn">open[Fn]</a>
 					</div>
-				</div>
 			</div>
 		</div>
-		<br>
-		<br>
 		<div class="row">
 			<div ng-controller="ReleaseNotesController as releaseNotes">
-				<div ng-repeat="post in release_notes" ng-class-odd="'col-md-6'" ng-class-even="'row'" class="release-note">
-    				<div ng-bind-html="post.title" class="rn-title"></div>
-					<div ng-bind-html="post.content" class="rn-content"></div>
+				<div class="content">
+					<div ng-repeat="post in release_notes" ng-class-odd="'col-md-6'" ng-class-even="'row'">
+	    				<div ng-bind-html="post.title" class="rn-title"></div>
+						<div ng-bind-html="post.content" class="rn-content"></div>
+					</div>
 				</div>
 			</div>
 		</div>
