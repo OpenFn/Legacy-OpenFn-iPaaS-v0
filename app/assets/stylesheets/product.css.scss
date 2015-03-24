@@ -169,40 +169,45 @@
     display: inline-block;
   }
 
-        .vote-link {
-        color: #384D5C;
-        padding: 1.65em;
-        position: absolute;
-        bottom: 0.0em;
-        right: 1em;
-        cursor: pointer;
-        background-color: $grey-blue;
-        background-image: image-url("noise.png");
+  .vote-link {
+    color: #384D5C;
+    padding: 1.65em;
+    position: absolute;
+    bottom: 0.0em;
+    right: 1em;
+    cursor: pointer;
+    background-color: $grey-blue;
+    background-image: image-url("noise.png");
+  }
 
-      }
+  .vote-count {
+    color: $accent-yellow;
+    font-size: 1.22em;
+    padding: 1.65em;
+    position: absolute;
+    bottom: 0.0em;
+    right: 4.5em;
+    // cursor: pointer;
+    // background-color: $grey-blue;
+    // background-image: image-url("noise.png");
+    }
 
-      .vote-count {
-        color: $accent-yellow;
-        font-size: 1.22em;
-        padding: 1.65em;
-        position: absolute;
-        bottom: 0.0em;
-        right: 4.5em;
-        // cursor: pointer;
-        // background-color: $grey-blue;
-        // background-image: image-url("noise.png");
-        }
+  .website-link {
+    color: #384D5C;
+    padding: 1.65em;
+    position: absolute;
+    bottom: 0.0em;
+    left: 1em;
+    cursor: pointer;
+    background-color: $grey-blue;
+    background-image: image-url("noise.png");
+  }
 
-      .website-link {
-        color: #384D5C;
-        padding: 1.65em;
-        position: absolute;
-        bottom: 0.0em;
-        left: 1em;
-        cursor: pointer;
-        background-color: $grey-blue;
-        background-image: image-url("noise.png");
-      }
+  .tab-content-text {
+    a {
+      text-decoration: underline;
+    }
+  }
 
   .name {
     margin-right: 0.8em;
