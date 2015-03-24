@@ -72,25 +72,24 @@
             <div class="show-product">
               <div class="product">
                 <div class="tag-list">
-
-                  <span ng-repeat="tag in product.tag_list" class="tag label label-info" >
+                  <div ng-repeat="tag in product.tag_list" class="tag label label-info">
                     {{tag}}
-                  </span>
-
+                  </div>
                   <a ng-href="{{product.website}}" class="website-link" target="_blank">
-                    <i class="fa fa-external-link fa-2x"></i>
+                    <i class="fa fa-external-link fa-lg"></i>
                   </a>&nbsp;&nbsp;              
 
                   <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
-                    <i class="fa fa-plug fa-2x"></i>
-                  </a>
-                  <a ng-hide="product.integrated" class="vote-count">
-                      <span style="color: #F2EFE6"><i class="fa fa-plug"></i>+ </span> {{product.votes_count}}<span style="color: #F2EFE6"></span>
-                    </a>
-                  <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">               
-                    <i ng-class="{'fa fa-2x ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>
+                    <i class="fa fa-plug fa-lg"></i>
                   </a>
 
+                  <a ng-hide="product.integrated" class="vote-count">
+                      <span style="color: #F2EFE6"><i class="fa fa-plug"></i>+ </span> {{product.votes_count}}<span style="color: #F2EFE6"></span>
+                  </a>
+
+                  <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">               
+                    <i ng-class="{'fa fa-lg ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>
+                  </a>
                 </div>
               </div>
             </div>
