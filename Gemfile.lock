@@ -90,6 +90,7 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     curb (0.8.6)
+    database_cleaner (1.4.1)
     debugger-linecache (1.2.0)
     deep_cloneable (2.0.2)
       activerecord (>= 3.1.0, < 5.0.0)
@@ -333,6 +334,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   colored
   curb
+  database_cleaner
   deep_cloneable (~> 2.0.0)
   deep_merge
   faraday (~> 0.8.6)

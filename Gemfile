@@ -128,6 +128,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-livereload', require: false
   # gem 'rb-fsevent' if `uname` =~ /Darwin/
+  gem 'database_cleaner', require: false
 end
 
 group :test do
