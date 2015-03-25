@@ -23,18 +23,21 @@
         </div>
         <div class="col-md-10 col-md-offset-1">  
           <div class="new-product-link">
-            <label style="float: left;" data-toggle="modal" data-target="#add_modal" class="btn btn-caution">
-              <i class="fa fa-plus"></i> Add your product...
+            <label style="float: left;" data-toggle="modal" data-target="#add_modal" class="btn btn-open">
+              <i class="fa fa-plus"></i> Add a new technology.
             </label>
-            <label style="float: right;" class="btn btn-caution" ng-model="searchFilters.integrated" btn-checkbox>
-                <i class="fa fa-plug"></i>  Integrated?
+            <label style="margin-left: 1em;" data-toggle="modal" data-target="#help_modal" class="btn btn-open">
+              <i class="fa fa-question-circle"></i> Help.
+            </label>
+            <label style="float: right;" class="btn btn-open" ng-model="searchFilters.integrated" btn-checkbox>
+                <i class="fa fa-plug"></i>  Show integrated technologies.
             </label>
           </div>
         </div>
         <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
           <br>
           <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a class="tile" ng-attr-data-toggle="{{ !product.detail_active ? 'modal' : '' }}" ng-attr-data-target="{{ !product.detail_active ? '#product_modal' : '' }}" ng-attr-href="{{ product.detail_active ? '/#/product/'+product.id : '#' }}">
+            <a class="tile" href="/#/product/{{product.id}}">
               <div class="product">
                 <div class='rating'>
                   <span class='live'>
@@ -69,29 +72,32 @@
             </a>
           </div>
         </div>
-        <div class="modal fade" id="product_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="help_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="featurette dark">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">App details coming soon...</h4>
+                  <h4 class="modal-title" id="myModalLabel">How to use the marketplace.</h4>
                 </div>
                 <div class="modal-body">          
-                  A full details section—including features, tech specs, pricing, reviews, and case studies—is coming soon.
+                  <span class="mb-title">Search</span> for technologies by typing anything you want: the job you want to perform, features you know you'll need, the name of the tool or even the device you need to run it on. We'll scan all of the text associated with each technology and return those results that match.
                   <br>
                   <br>
-                  From the marketplace tile you can:
+                  <span class="mb-title">Click</span> on a technology to learn about it. Each day we're adding more, including features, tech specs, pricing, reviews, and a list of useful resources including case-studies from open[Fn]content.
+                  <br>
+                  <br>
+                  From the marketplace tile, or a technology's detail page you can:
                   <br>
                   <br>
                   <ul>
-                    <li>visit an app's <strong>homepage</strong> by clicking the <i class="fa fa-external-link"></i> icon,</li><br>
-                    <li>setup your <strong>credentials</strong> if the app is already integrated by clicking the <i class="fa fa-plug"></i> icon,</li><br>
-                    <li>see how many votes the app has received <strong>for integration</strong> by checking the <i class="fa fa-plug"></i>+<span class="live"> N</span> indicator,</li><br>
-                    <li>and <strong>vote</strong> for the app if you'd like to see it integrated by clicking the <i class="fa fa-chevron-up"></i> icon.</li>
+                    <li>Visit an app's <strong>homepage</strong> by clicking the <i class="fa fa-external-link"></i> icon,</li><br>
+                    <li>Setup your <strong>credentials</strong> if the app is already integrated by clicking the <i class="fa fa-plug"></i> icon,</li><br>
+                    <li>See how many votes the app has received <strong>for integration</strong> by checking the <i class="fa fa-plug"></i>+<span class="live"> N</span> indicator,</li><br>
+                    <li>And <strong>vote</strong> for the app if you'd like to see it integrated by clicking the <i class="fa fa-chevron-up"></i> icon.</li>
                   </ul>
                   <br>
-                  We'll prioritize the development of new endpoint technologies according to the needs of the community.
+                  We'll prioritize the <span class="mb-title">integration</span> of new technologies according to your votes.
                 </div>
               </div>
             </div>

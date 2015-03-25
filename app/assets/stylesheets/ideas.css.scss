@@ -144,6 +144,17 @@
     text-transform: uppercase;
   }
 
+  .modal-body {
+
+    .mb-title {
+      color: $off-white;
+      font-size: rem-calc(18px);
+      font-weight: $bold;
+      text-transform: uppercase;
+    }
+
+  }
+
   .table-striped > tbody > tr:nth-child(odd) > td,
   .table-striped > tbody > tr:nth-child(odd) > th {
     background-color: #5A6C77;
