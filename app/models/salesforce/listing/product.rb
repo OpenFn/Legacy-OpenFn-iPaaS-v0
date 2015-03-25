@@ -1,5 +1,5 @@
 class Salesforce::Listing::Product
-  attr_reader :id, :description, :name, :tags, :website, :enabled, 
+  attr_reader :id, :description, :name, :tags, :website, :enabled, :salesforce_id,
               :integrated, :costs, :reviews, :resources, :provider,
               :detailed_description, :update_link, :detail_active, :tech_specs
 
@@ -21,5 +21,6 @@ class Salesforce::Listing::Product
     @update_link = notification.at_css('Update_Link__c').try(:content)
     @detail_active = notification.at_css('Detail_Active__c').try(:content)
     @tech_specs = notification.at_css('Tech_Specs__c').try(:content)
+    @salesforce_id = notification.at_css('Id').try(:content)
   end
 end
