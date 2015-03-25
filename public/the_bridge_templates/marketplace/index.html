@@ -23,18 +23,21 @@
         </div>
         <div class="col-md-10 col-md-offset-1">  
           <div class="new-product-link">
-            <label style="float: left;" data-toggle="modal" data-target="#add_modal" class="btn btn-caution">
-              <i class="fa fa-plus"></i> Add your product...
+            <label style="float: left;" data-toggle="modal" data-target="#add_modal" class="btn btn-open">
+              <i class="fa fa-plus"></i> Add a new technology.
             </label>
-            <label style="float: right;" class="btn btn-caution" ng-model="searchFilters.integrated" btn-checkbox>
-                <i class="fa fa-plug"></i>  Integrated?
+            <label style="margin-left: 1em;" data-toggle="modal" data-target="#product_modal" class="btn btn-open">
+              <i class="fa fa-question-circle"></i> Help.
+            </label>
+            <label style="float: right;" class="btn btn-open" ng-model="searchFilters.integrated" btn-checkbox>
+                <i class="fa fa-plug"></i>  Show integrated technologies.
             </label>
           </div>
         </div>
         <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
           <br>
           <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a class="tile" ng-attr-data-toggle="{{ !product.detail_active ? 'modal' : '' }}" ng-attr-data-target="{{ !product.detail_active ? '#product_modal' : '' }}" ng-attr-href="{{ product.detail_active ? '/#/product/'+product.id : '#' }}">
+            <a class="tile" href="/#/product/{{product.id}}">
               <div class="product">
                 <div class='rating'>
                   <span class='live'>

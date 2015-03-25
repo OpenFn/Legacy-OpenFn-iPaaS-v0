@@ -246,3 +246,21 @@ b, strong {
 .pad_for_footer {
   margin-bottom: 60px
 }
+
+.btn-open {
+  color: $off-white;
+  background-color: $primary-blue;
+  background-image: image-url("noise.png");
+  // border-radius: 0;
+}
+
+.btn-open-light {
+  color: $off-white;
+  background-color: $grey-blue;
+  background-image: image-url("noise.png");
+  // border-radius: 0;
+}
+
+// * {
+//   border-radius: 0 !important;
+// }
