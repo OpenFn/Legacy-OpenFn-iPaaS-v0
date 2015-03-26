@@ -2,9 +2,11 @@
   $scope.products = []
   $scope.searchText = ""
   $scope.searchFilters = {}
-  
+  $scope.isLoading = true
+
   $http.get('/products.json').success (data) ->
     $scope.products = data.products
+    $scope.isLoading = false
     if $routeParams.search
       $scope.searchText = $routeParams.search
 

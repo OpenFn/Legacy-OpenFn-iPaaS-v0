@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318124814) do
+ActiveRecord::Schema.define(version: 20150326102705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -236,6 +236,7 @@ ActiveRecord::Schema.define(version: 20150318124814) do
     t.string  "integration_type"
     t.boolean "detail_active"
     t.text    "tech_specs"
+    t.string  "sf_link"
   end
 
   create_table "projects", force: true do |t|
@@ -302,10 +303,10 @@ ActiveRecord::Schema.define(version: 20150318124814) do
     t.string   "stripe_subscription_token"
     t.integer  "plan_id"
     t.datetime "stripe_current_period_end"
-    t.boolean  "unlimited"                        default: false
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.boolean  "unlimited",                       default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
