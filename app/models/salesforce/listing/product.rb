@@ -21,6 +21,6 @@ class Salesforce::Listing::Product
     @update_link = notification.at_css('Update_Link__c').try(:content)
     @detail_active = notification.at_css('Detail_Active__c').try(:content)
     @tech_specs = notification.at_css('Tech_Specs__c').try(:content)
-    @sf_link = notification.at_css('Id').try(:content)
+    @sf_link = notification.at_css('Sf_Id__c').try(:content)
   end
 end
