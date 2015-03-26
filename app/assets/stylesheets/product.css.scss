@@ -203,6 +203,28 @@
     background-image: image-url("noise.png");
   }
 
+  .edit-link {
+    color: #384D5C;
+    padding: 0.8em;
+    position: absolute;
+    top: 0.0em;
+    left: 1em;
+    cursor: pointer;
+    background-color: $grey-blue;
+    background-image: image-url("noise.png");
+  }
+
+    .review-link {
+    color: #384D5C;
+    padding: 0.8em;
+    position: absolute;
+    top: 0.0em;
+    right: 1em;
+    cursor: pointer;
+    background-color: $grey-blue;
+    background-image: image-url("noise.png");
+  }   
+
   .tab-content-text {
     a {
       text-decoration: underline;
@@ -271,7 +293,9 @@
   }
 
   .tag-list {
-    // margin: 0.8em;
+    margin-left: 1.2em;
+    margin-right: 1.2em;
+    // margin-bottom: 1em;
     text-align: center;
 
     .tag {

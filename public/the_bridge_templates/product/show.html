@@ -75,18 +75,21 @@
                   <div ng-repeat="tag in product.tag_list" class="tag label label-info">
                     {{tag}}
                   </div>
+                  <a data-toggle="modal" data-target="#edit_modal" class="edit-link">
+                    <i class="fa fa-edit fa-lg"></i>
+                  </a>
+                  <a ng-href="" target="_blank" class="review-link">
+                    <i class="fa fa-comment fa-lg"></i>
+                  </a>
                   <a ng-href="{{product.website}}" class="website-link" target="_blank">
                     <i class="fa fa-external-link fa-lg"></i>
-                  </a>&nbsp;&nbsp;              
-
+                  </a>              
                   <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
                     <i class="fa fa-plug fa-lg"></i>
                   </a>
-
                   <a ng-hide="product.integrated" class="vote-count">
                       <span style="color: #F2EFE6"><i class="fa fa-plug"></i>+ </span> {{product.votes_count}}<span style="color: #F2EFE6"></span>
                   </a>
-
                   <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">               
                     <i ng-class="{'fa fa-lg ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>
                   </a>
@@ -95,5 +98,200 @@
             </div>
           </div>
         </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="featurette dark">
+        <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+           <h4 class="modal-title" id="myModalLabel">Edit {{product.name}}.</h4>
+        </div>
+        <div class="modal-body add-modal">
+
+                <!-- Add FORMSTACK FORM HERE -->
+<form method="post" novalidate enctype="multipart/form-data" action="https://www.formstack.com/forms/index.php" class="fsForm fsSingleColumn fsMaxCol1" id="fsForm1974742">
+<input type="hidden" name="form" value="1974742" />
+<input type="hidden" name="viewkey" value="i8hgbPcov5" />
+<input type="hidden" name="hidden_fields" id="hidden_fields1974742" value="" />
+<input type="hidden" name="_submit" value="1" />
+<input type="hidden" name="incomplete" id="incomplete1974742" value="" />
+<input type="hidden" name="style_version" value="3" />
+<div role="alert" id="requiredFieldsError" style="display:none;">Please fill in a valid value for all required fields</div>
+<div role="alert" id="invalidFormatError" style="display:none;">Please ensure all values are in a proper format.</div>
+<div role="alert" id="resumeConfirm" style="display:none;">Are you sure you want to leave this form and resume later?</div>
+<div role="alert" id="fileTypeAlert" style="display:none;">You must upload one of the following file types for the selected field:</div>
+<div role="alert" id="embedError" style="display:none;">There was an error displaying the form. Please copy and paste the embed code again.</div>
+<div role="alert" id="applyDiscountButton" style="display:none;">Apply Discount</div>
+<div role="alert" id="dcmYouSaved" style="display:none;">You saved</div>
+<div role="alert" id="dcmWithCode" style="display:none;">with code</div>
+<div role="alert" id="submitButtonText" style="display:none;">Submit Form</div>
+<div role="alert" id="submittingText" style="display:none;">Submitting</div>
+<div role="alert" id="autocaptureDisabledText" style="display:none;"></div>
+<div class="fsPage" id="fsPage1974742-1">
+<div class="fsSection fs1Col">
+<div id="fsRow1974742-1" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100 hidden" id="fsCell31496832" lang="en">
+<h1>Edit {{product.name}}</h1>
+</div>
+</div>
+<div id="fsRow1974742-2" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496833" lang="en">
+<p>We encourage suggestions from all members of the community whether they be product developers, consultants, or end-user organizations. There are a few required fields that cover basic and summary information. Beyond that, we ask that listings focus on the functionality of each technology and what it enables users to do and avoid statements that place more value on one technology over another. Your submission must be reviewed and accepted by one of the core contributors at openfn before it is updated. Again, please refrain from using value words to ensure the listing is accepted promptly.</p>
+</div>
+</div>
+<div id="fsRow1974742-3" class="fsRow fsFieldRow fsLastRow fsHidden">
+<div class="fsRowBody fsCell fsFieldCell fsReadOnly fsFirst fsLast fsLabelVertical fsHidden fsSpan100 fsHiddenByFieldSetting" id="fsCell31496999" lang="en">
+<label id="label31496999" class="fsLabel fsRequiredLabel hidden" for="field31496999">Listing Id<span class="fsRequiredMarker">*</span>                    </label>
+<input type="text" id="field31496999" name="field31496999" size="50" class="hidden" required value="{{product.sf_link}}" readonly="readonly" class="fsField fsRequired" aria-required="true" />
+</div>
+</div><br>
+<div id="fsRow1974742-4" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496834" lang="en">
+<!-- <span id="label31496834" class="fsLabel fsRequiredLabel">Name<span class="fsRequiredMarker">*</span></span> -->
+<div class="fsSubFieldGroup">
+<div class="fsSubField">
+<input type="text" id="field31496834-first" name="field31496834-first" size="20" value="" required class="fsField fsFieldName fsRequired" aria-required="true" />
+<label class="fsSupporting fsRequiredLabel" for="field31496834-first">First Name<span class="hidden">*</span></label>
+</div>
+<div class="fsSubField">
+<input type="text" id="field31496834-last" name="field31496834-last" size="20" value="" required class="fsField fsFieldName fsRequired" aria-required="true" />
+<label class="fsSupporting fsRequiredLabel" for="field31496834-last">Last Name<span class="hidden">*</span></label>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+<br>
+<div id="fsRow1974742-5" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496835" lang="en">
+<label id="label31496835" class="fsLabel fsRequiredLabel" for="field31496835">Email<span class="fsRequiredMarker">*</span>                    </label>
+<input type="email" id="field31496835" name="field31496835" size="50" required="required" value="" class="fsField fsFormatEmail fsRequired" aria-required="true" />
+</div>
+</div>
+<div id="fsRow1974742-6" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496836" lang="en">
+<label id="label31496836" class="fsLabel fsRequiredLabel" for="field31496836">Technology<span class="fsRequiredMarker">*</span>                    </label>
+<input type="text" id="field31496836" name="field31496836" size="50" required value="" class="fsField fsRequired" aria-required="true" />
+</div>
+</div>
+<div id="fsRow1974742-7" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496837" aria-describedby="fsSupporting31496837" lang="en">
+<label id="label31496837" class="fsLabel fsRequiredLabel" for="field31496837">Website<span class="fsRequiredMarker">*</span>                    </label>
+<input type="text" id="field31496837" name="field31496837" size="50" required placeholder="http://" title="http://" value="" class="fsField fsRequired fsAutocomplete" aria-required="true" />
+<input type="hidden" id="field31496837_options" value="|" />
+<div id="fsSupporting31496837" class="fsSupporting">Must begin with http:// or https://</div>
+</div>
+</div>
+<div id="fsRow1974742-8" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496838" lang="en">
+<label id="label31496838" class="fsLabel" for="field31496838">Twitter handle                    </label>
+<input type="text" id="field31496838" name="field31496838" size="50" value="" class="fsField" />
+</div>
+</div>
+<div id="fsRow1974742-9" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496839" lang="en">
+<label id="label31496839" class="fsLabel" for="field31496839">Provider email                    </label>
+<input type="text" id="field31496839" name="field31496839" size="50" value="" class="fsField" />
+</div>
+</div>
+<div id="fsRow1974742-10" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496840" aria-describedby="fsSupporting31496840" lang="en">
+<label id="label31496840" class="fsLabel" for="field31496840">Do you represent this technology?                    </label>
+<select id="field31496840" name="field31496840" size="1" class="fsField">
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+<div id="fsSupporting31496840" class="fsSupporting">Open[Fn] is committed to open source technology and transparent communications. If a listing is added by the product developer or distributor, we want to let our users know. Please indicate here if you are associated with the listed technology.</div>
+</div><br>
+</div>
+</div>
+<div class="fsSection fs1Col" id="fsSection31496841">
+<div class="fsSectionHeader">
+<h2 class="fsSectionHeading">Summary info</h2>
+</div>
+<div id="fsRow1974742-12" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496842" lang="en">
+The following information will help social impact organizations find the right technology to fit their needs. The “tile summary” is the main listing on openMarketplace. The filter tags help organizations sort through numerous technologies based on their needs, location, field users, and other factors.
+</div>
+</div><br>
+<div id="fsRow1974742-13" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496843" lang="en">
+<label id="label31496843" class="fsLabel fsRequiredLabel" for="field31496843">Tile summary (116 chars)<span class="fsRequiredMarker">*</span>                    </label>
+<span class="hidden">Number of characters remaining: </span>
+<div id="fsCounter31496843" class="fsCounter" style="display:none">116</div>
+<textarea id="field31496843" name="field31496843" rows="10" cols="50" required placeholder="Describe what this technology does as clearly as possible in 116 characters. Omit buzzwords and sensational claims." title="Describe what this technology does as clearly as possible in 116 characters. Omit buzzwords and sensational claims." class="fsField fsRequired fsTextAreaMaxLength" maxlength="116" aria-required="true"></textarea>
+</div>
+</div>
+<div id="fsRow1974742-14" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496844" lang="en">
+<label id="label31496844" class="fsLabel" for="field31496844">Proposed Tags                    </label>
+<textarea id="field31496844" name="field31496844" rows="10" cols="50" placeholder="Semi-colon separated, e.g.: Android; iOS; Feature Phone; Mobile Surveys" title="Semi-colon separated, e.g.: Android; iOS; Feature Phone; Mobile Surveys" class="fsField"></textarea>
+</div>
+</div>
+</div>
+<div class="fsSection fs1Col" id="fsSection31496845">
+<div class="fsSectionHeader">
+<h2 class="fsSectionHeading">Detailed info</h2>
+</div>
+<div id="fsRow1974742-16" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496846" lang="en">
+The information in this section populates each technology’s dedicated page on openMarketplace. Contributors are reminded to focus on product functionality and user actions.
+</div>
+</div><br>
+<div id="fsRow1974742-17" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496847" lang="en">
+<label id="label31496847" class="fsLabel" for="field31496847">Description (4000 chars)                    </label>
+<span class="hidden">Number of characters remaining: </span>
+<div id="fsCounter31496847" class="fsCounter" style="display:none">4000</div>
+<textarea id="field31496847" name="field31496847" rows="10" cols="50" placeholder="Describe what the technology allows users to do in non-technical terms. Please include a few summary sentences, a bulleted “How-to Overview” section, and a bulleted “Features” section." title="Describe what the technology allows users to do in non-technical terms. Please include a few summary sentences, a bulleted “How-to Overview” section, and a bulleted “Features” section." class="fsField fsTextAreaMaxLength" maxlength="4000"></textarea>
+</div>
+</div>
+<div id="fsRow1974742-18" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496848" lang="en">
+<label id="label31496848" class="fsLabel" for="field31496848">Technical specifications (2500 chars)                    </label>
+<span class="hidden">Number of characters remaining: </span>
+<div id="fsCounter31496848" class="fsCounter" style="display:none">2500</div>
+<textarea id="field31496848" name="field31496848" rows="10" cols="50" placeholder="Include relevant information for technical readers. Please include bulleted lists of “Technical Features” (e.g. operating system compatibility) and “Requirements” (e.g. hosting platform)." title="Include relevant information for technical readers. Please include bulleted lists of “Technical Features” (e.g. operating system compatibility) and “Requirements” (e.g. hosting platform)." class="fsField fsTextAreaMaxLength" maxlength="2500"></textarea>
+</div>
+</div>
+<div id="fsRow1974742-19" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496849" lang="en">
+<label id="label31496849" class="fsLabel" for="field31496849">Costs (2500 chars)                    </label>
+<span class="hidden">Number of characters remaining: </span>
+<div id="fsCounter31496849" class="fsCounter" style="display:none">2500</div>
+<textarea id="field31496849" name="field31496849" rows="10" cols="50" placeholder="Include price(s) charged by technology distributor as well as differences in the technology at different pricing tiers. Additionally, include information about other costs likely to be incurred by users of this technology (e.g. virtual server services for hosting web applications)." title="Include price(s) charged by technology distributor as well as differences in the technology at different pricing tiers. Additionally, include information about other costs likely to be incurred by users of this technology (e.g. virtual server services for hosting web applications)." class="fsField fsTextAreaMaxLength" maxlength="2500"></textarea>
+</div>
+</div>
+<div id="fsRow1974742-20" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496850" lang="en">
+<label id="label31496850" class="fsLabel" for="field31496850">Resources                    </label>
+<textarea id="field31496850" name="field31496850" rows="10" cols="50" placeholder="Include links to helpful external resources." title="Include links to helpful external resources." class="fsField"></textarea>
+</div>
+</div><br>
+<div id="fsRow1974742-21" class="fsRow fsFieldRow fsLastRow">
+<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496851" lang="en">
+Terms and Conditions: Open[Fn] reserves editorial decision-making power over listings that are published. We reserve the right to edit posts or request revisions. In the spirit of openness, we also maintain the right to indicate the author of listings on the openMarketplace.
+</div>
+</div><br>
+</div>
+</div>
+<div id="fsSubmit1974742" class="fsSubmit fsPagination">
+<button type="button" id="fsPreviousButton1974742" class="fsPreviousButton" value="Previous Page" style="display:none;"><span class="fsFull">Previous</span><span class="fsSlim">&larr;</span></button>
+<button type="button" id="fsNextButton1974742" class="fsNextButton" value="Next Page" style="display:none;"><span class="fsFull">Next</span><span class="fsSlim">&rarr;</span></button>
+<input id="fsSubmitButton1974742"
+class="fsSubmitButton"
+style="display: block;"
+type="submit"
+value="Submit Form" />
+<div class="clear"></div>
+</div>
+</form>
+
+        </div>
       </div>
     </div>
+  </div>
+</div>
