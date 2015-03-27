@@ -188,13 +188,13 @@
 <div id="fsRow1974742-6" class="fsRow fsFieldRow fsLastRow">
 <div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496836" lang="en">
 <label id="label31496836" class="fsLabel fsRequiredLabel" for="field31496836">Technology<span class="fsRequiredMarker">*</span>                    </label>
-<input type="text" id="field31496836" name="field31496836" size="50" required value="" class="fsField fsRequired" aria-required="true" />
+<input type="text" id="field31496836" name="field31496836" size="50" required value="{{product.name}}" class="fsField fsRequired" aria-required="true" />
 </div>
 </div>
 <div id="fsRow1974742-7" class="fsRow fsFieldRow fsLastRow">
 <div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496837" aria-describedby="fsSupporting31496837" lang="en">
 <label id="label31496837" class="fsLabel fsRequiredLabel" for="field31496837">Website<span class="fsRequiredMarker">*</span>                    </label>
-<input type="text" id="field31496837" name="field31496837" size="50" required placeholder="http://" title="http://" value="" class="fsField fsRequired fsAutocomplete" aria-required="true" />
+<input type="text" id="field31496837" name="field31496837" size="50" required value="{{product.website}}" title="http://" value="" class="fsField fsRequired fsAutocomplete" aria-required="true" />
 <input type="hidden" id="field31496837_options" value="|" />
 <div id="fsSupporting31496837" class="fsSupporting">Must begin with http:// or https://</div>
 </div>
@@ -236,7 +236,7 @@ The following information will help social impact organizations find the right t
 <label id="label31496843" class="fsLabel fsRequiredLabel" for="field31496843">Tile summary (116 chars)<span class="fsRequiredMarker">*</span>                    </label>
 <span class="hidden">Number of characters remaining: </span>
 <div id="fsCounter31496843" class="fsCounter" style="display:none">116</div>
-<textarea id="field31496843" name="field31496843" rows="10" cols="50" required placeholder="Describe what this technology does as clearly as possible in 116 characters. Omit buzzwords and sensational claims." title="Describe what this technology does as clearly as possible in 116 characters. Omit buzzwords and sensational claims." class="fsField fsRequired fsTextAreaMaxLength" maxlength="116" aria-required="true"></textarea>
+<textarea id="field31496843" name="field31496843" rows="10" cols="50" title="Describe what this technology does as clearly as possible in 116 characters. Omit buzzwords and sensational claims." class="fsField fsRequired fsTextAreaMaxLength" maxlength="116" aria-required="true">{{product.description}}</textarea>
 </div>
 </div>
 <div id="fsRow1974742-14" class="fsRow fsFieldRow fsLastRow">
@@ -260,7 +260,7 @@ The information in this section populates each technology’s dedicated page on 
 <label id="label31496847" class="fsLabel" for="field31496847">Description (4000 chars)                    </label>
 <span class="hidden">Number of characters remaining: </span>
 <div id="fsCounter31496847" class="fsCounter" style="display:none">4000</div>
-<textarea id="field31496847" name="field31496847" rows="10" cols="50" placeholder="Describe what the technology allows users to do in non-technical terms. Please include a few summary sentences, a bulleted “How-to Overview” section, and a bulleted “Features” section." title="Describe what the technology allows users to do in non-technical terms. Please include a few summary sentences, a bulleted “How-to Overview” section, and a bulleted “Features” section." class="fsField fsTextAreaMaxLength" maxlength="4000"></textarea>
+<textarea id="field31496847" name="field31496847" rows="10" cols="50" title="Describe what the technology allows users to do in non-technical terms. Please include a few summary sentences, a bulleted “How-to Overview” section, and a bulleted “Features” section." class="fsField fsTextAreaMaxLength" maxlength="4000">{{product.detailed_description}}</textarea>
 </div>
 </div>
 <div id="fsRow1974742-18" class="fsRow fsFieldRow fsLastRow">
@@ -268,7 +268,7 @@ The information in this section populates each technology’s dedicated page on 
 <label id="label31496848" class="fsLabel" for="field31496848">Technical specifications (2500 chars)                    </label>
 <span class="hidden">Number of characters remaining: </span>
 <div id="fsCounter31496848" class="fsCounter" style="display:none">2500</div>
-<textarea id="field31496848" name="field31496848" rows="10" cols="50" placeholder="Include relevant information for technical readers. Please include bulleted lists of “Technical Features” (e.g. operating system compatibility) and “Requirements” (e.g. hosting platform)." title="Include relevant information for technical readers. Please include bulleted lists of “Technical Features” (e.g. operating system compatibility) and “Requirements” (e.g. hosting platform)." class="fsField fsTextAreaMaxLength" maxlength="2500"></textarea>
+<textarea id="field31496848" name="field31496848" rows="10" cols="50" title="Include relevant information for technical readers. Please include bulleted lists of “Technical Features” (e.g. operating system compatibility) and “Requirements” (e.g. hosting platform)." class="fsField fsTextAreaMaxLength" maxlength="2500">{{product.tech_specs}}</textarea>
 </div>
 </div>
 <div id="fsRow1974742-19" class="fsRow fsFieldRow fsLastRow">
@@ -276,13 +276,13 @@ The information in this section populates each technology’s dedicated page on 
 <label id="label31496849" class="fsLabel" for="field31496849">Costs (2500 chars)                    </label>
 <span class="hidden">Number of characters remaining: </span>
 <div id="fsCounter31496849" class="fsCounter" style="display:none">2500</div>
-<textarea id="field31496849" name="field31496849" rows="10" cols="50" placeholder="Include price(s) charged by technology distributor as well as differences in the technology at different pricing tiers. Additionally, include information about other costs likely to be incurred by users of this technology (e.g. virtual server services for hosting web applications)." title="Include price(s) charged by technology distributor as well as differences in the technology at different pricing tiers. Additionally, include information about other costs likely to be incurred by users of this technology (e.g. virtual server services for hosting web applications)." class="fsField fsTextAreaMaxLength" maxlength="2500"></textarea>
+<textarea id="field31496849" name="field31496849" rows="10" cols="50" title="Include price(s) charged by technology distributor as well as differences in the technology at different pricing tiers. Additionally, include information about other costs likely to be incurred by users of this technology (e.g. virtual server services for hosting web applications)." class="fsField fsTextAreaMaxLength" maxlength="2500">{{product.costs}}</textarea>
 </div>
 </div>
 <div id="fsRow1974742-20" class="fsRow fsFieldRow fsLastRow">
 <div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31496850" lang="en">
 <label id="label31496850" class="fsLabel" for="field31496850">Resources                    </label>
-<textarea id="field31496850" name="field31496850" rows="10" cols="50" placeholder="Include links to helpful external resources." title="Include links to helpful external resources." class="fsField"></textarea>
+<textarea id="field31496850" name="field31496850" rows="10" cols="50" title="Include links to helpful external resources." class="fsField">{{product.resources}}</textarea>
 </div>
 </div><br>
 <div id="fsRow1974742-21" class="fsRow fsFieldRow fsLastRow">
