@@ -36,10 +36,42 @@
                 &nbsp;(0)
               </span>
               <br>
-              {{product.name}}
+              {{product.name}}         
             </div>
+            <br>
+            <br>
+            <ul class="nav nav-pills nav-justified right-pills">
+              <li role="presentation" class="active">
+                <a data-toggle="modal" data-target="#edit_modal" class="edit-link">
+                  <i class="fa fa-edit fa-lg"></i> Edit
+                </a>
+              </li>
+              <li role="presentation">
+                <a ng-href="" target="_blank" class="review-link">
+                  <i class="fa fa-comment fa-lg"></i> Review (soon)
+                </a>
+              </li>
+              <li role="presentation">
+                <a ng-href="{{product.website}}" class="website-link" target="_blank">
+                  <i class="fa fa-external-link fa-lg"></i> Product website
+                </a>
+              </li>
+              <li role="presentation">
+                <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
+                  <i class="fa fa-plug fa-lg"></i> Make a mapping
+                </a>
+                  
+                <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">               
+                  <span class="vote-count" style="color: #F2EFE6"><i class="fa fa-plug"></i>+ </span> <span class="vote-count">{{product.votes_count}}</span><span style="color: #F2EFE6"></span> <i ng-class="{'fa fa-lg ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i> Vote
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
+      </div>
+
+    </div>
+
         <br>
     <div class="row flat">
       <div class="col-sm-12">
@@ -75,24 +107,6 @@
                   <div ng-repeat="tag in product.tag_list" class="tag label label-info">
                     {{tag}}
                   </div>
-                  <a data-toggle="modal" data-target="#edit_modal" class="edit-link">
-                    <i class="fa fa-edit fa-lg"></i>
-                  </a>
-                  <a ng-href="" target="_blank" class="review-link">
-                    <i class="fa fa-comment fa-lg"></i>
-                  </a>
-                  <a ng-href="{{product.website}}" class="website-link" target="_blank">
-                    <i class="fa fa-external-link fa-lg"></i>
-                  </a>              
-                  <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
-                    <i class="fa fa-plug fa-lg"></i>
-                  </a>
-                  <a ng-hide="product.integrated" class="vote-count">
-                      <span style="color: #F2EFE6"><i class="fa fa-plug"></i>+ </span> {{product.votes_count}}<span style="color: #F2EFE6"></span>
-                  </a>
-                  <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">               
-                    <i ng-class="{'fa fa-lg ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>
-                  </a>
                 </div>
               </div>
             </div>
