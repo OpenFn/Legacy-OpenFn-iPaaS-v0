@@ -1,10 +1,13 @@
+
+<facebook-plugin></facebook-plugin>
+
 <div ng-controller="ProductController as productCtrl" class="row">
 <div class="ideas">
 <header class="header-image">
   <div class="headline">
     <h1>open<strong>Marketplace</strong></h1>
     <h3>Find the technology you need to grow your impact.</h3>
- 
+
     <div class="container">
       <div class="search-field">
         <form ng-submit="searchAgain()">
@@ -36,7 +39,7 @@
                 &nbsp;(0)
               </span>
               <br>
-              {{product.name}}         
+              {{product.name}}
             </div>
             <br>
             <br>
@@ -60,8 +63,8 @@
                 <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
                   <i class="fa fa-plug fa-lg"></i> Make a mapping
                 </a>
-                  
-                <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">               
+
+                <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">
                   <span class="vote-count" style="color: #F2EFE6"><i class="fa fa-plug"></i>+ </span> <span class="vote-count">{{product.votes_count}}</span><span style="color: #F2EFE6"></span> <i ng-class="{'fa fa-lg ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i> Vote
                 </a>
               </li>
@@ -95,7 +98,7 @@
                   <div class="tab-content-text" ng-bind-html="product.resources" active="tab.active" disabled="tab.disabled"></div>
                 </tab>
               </tabset>
-            </div>      
+            </div>
           </div>
         </div>
         <br>
