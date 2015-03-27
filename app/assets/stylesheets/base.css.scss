@@ -247,20 +247,26 @@ b, strong {
   margin-bottom: 60px
 }
 
+// Buttons yay!
+
 .btn-open {
   color: $off-white;
   background-color: $primary-blue;
   background-image: image-url("noise.png");
-  // border-radius: 0;
 }
 
-.btn-open-light {
-  color: $off-white;
-  background-color: $grey-blue;
-  background-image: image-url("noise.png");
-  // border-radius: 0;
+* {
+  border-radius: 0 !important;
 }
 
-// * {
-//   border-radius: 0 !important;
+// .btn-success {
+//   background-color: $grey-blue;
+//   background-image: image-url("noise.png");
+//   border-color: $grey-blue;
+// }
+
+// .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open > .dropdown-toggle.btn-primary {
+//   background-color: $light-grey;
+//   background-image: image-url("noise.png");
+//   border-color: $light-grey;
 // }

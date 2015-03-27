@@ -170,59 +170,64 @@
   }
 
   .vote-link {
-    color: #384D5C;
-    padding: 0.8em;
-    position: absolute;
-    bottom: 0.0em;
-    right: 1em;
+    // color: $bg-color;
+    // padding: 0.8em;
+    padding-right: 2em;
+    // position: absolute;
+    // bottom: 0.0em;
+    // right: 1em;
     cursor: pointer;
-    background-color: $grey-blue;
-    background-image: image-url("noise.png");
+    // background-color: $grey-blue;
+    // background-image: image-url("noise.png");
   }
 
   .vote-count {
     color: $accent-yellow;
     // font-size: 1.22em;
-    padding: 0.8em;
-    position: absolute;
-    bottom: 0.0em;
-    right: 4em;
+    // padding: 0.8em;
+    padding-right: 0.8em;
+    // position: absolute;
+    // bottom: 0.0em;
+    // right: 4em;
     // cursor: pointer;
     // background-color: $grey-blue;
     // background-image: image-url("noise.png");
     }
 
   .website-link {
-    color: #384D5C;
-    padding: 0.8em;
-    position: absolute;
-    bottom: 0.0em;
-    left: 1em;
+    // color: $bg-color;
+    // padding: 0.8em;
+    padding-right: 2em;
+    // position: absolute;
+    // bottom: 0.0em;
+    // left: 1em;
     cursor: pointer;
-    background-color: $grey-blue;
-    background-image: image-url("noise.png");
+    // background-color: $grey-blue;
+    // background-image: image-url("noise.png");
   }
 
   .edit-link {
-    color: #384D5C;
-    padding: 0.8em;
-    position: absolute;
-    top: 0.0em;
-    left: 1em;
+    // color: $bg-color;
+    // padding: 0.8em;
+    padding-right: 2em;
+    // position: absolute;
+    // top: 0.0em;
+    // left: 1em;
     cursor: pointer;
-    background-color: $grey-blue;
-    background-image: image-url("noise.png");
+    // background-color: $grey-blue;
+    // background-image: image-url("noise.png");
   }
 
     .review-link {
-    color: #384D5C;
-    padding: 0.8em;
-    position: absolute;
-    top: 0.0em;
-    right: 1em;
+    // color: $bg-color;
+    // padding: 0.8em;
+    padding-right: 2em;
+    // position: absolute;
+    // top: 0.0em;
+    // right: 1em;
     cursor: pointer;
-    background-color: $grey-blue;
-    background-image: image-url("noise.png");
+    // background-color: $grey-blue;
+    // background-image: image-url("noise.png");
   }   
 
   .tab-content-text {
@@ -255,6 +260,30 @@
     a {
       padding-left: 0.5em;
     }
+  }
+
+  .right-pills {
+  color: $off-white;
+  font-size: rem-calc(12px);
+  font-weight: $bold;
+  text-transform: uppercase;
+  margin-bottom: -30px;
+  background-color: $primary-blue;
+  background-image: image-url("noise.png");
+
+  }
+
+  .right-pills > li > a:hover {
+    background-color: $bg-color;
+    background-image: image-url("noise.png");
+    color: $accent-yellow;
+  }
+
+  .right-pills .active a,
+  .red .active a:hover{
+    background-color: $primary-blue;
+    background-image: image-url("noise.png");
+    color: $off-white;
   }
 
   .nav-tabs {
