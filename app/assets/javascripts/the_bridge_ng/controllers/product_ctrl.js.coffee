@@ -4,6 +4,8 @@
   
   $http.get('/products/' + $routeParams.id + '.json').success((data) ->
     $scope.product = data
+    $scope.twitterApi = $scope.product.twitter.substring(1)
+    twttr.widgets.load()
 
   $scope.changeVoteFor = (product) ->
     $http.get("/products/#{product.id}/vote")
