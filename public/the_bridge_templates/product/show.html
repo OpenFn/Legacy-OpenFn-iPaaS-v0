@@ -113,26 +113,17 @@
         </div>
         <br>
         <div class="row flat">
-          <div class="col-sm-6">
-            <div class="show-product">
-              <div class="product">
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-                <a class="twitter-timeline"
-                  href="https://twitter.com/{{twitterApi}}"
-                  data-widget-id="581403911644385280"
-                  width="500"
-                  height="500"
-                  data-screen-name="{{twitterApi}}">loading recent tweets...
-                </a>
+          <div class="col-sm-12 center" >
+<!--                       <div class="show-product">
+              <div class="product"> -->
+            <div class="rn-title">
+              {{product.twitter}}
+            </div><br>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><a class="twitter-timeline" href="https://twitter.com/{{twitterApi}}" data-widget-id="581403911644385280" width="520" height="500" data-screen-name="{{twitterApi}}"><i class="fa fa-spinner fa-pulse fa-lg"></i></a>
               </div>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="show-product">
-              <div class="product">
-                <div id='fb-root'></div><script>(function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = '//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3'; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));</script><div class='fb-page' data-href='https://www.facebook.com/{{product.facebook}}' data-show-facepile='true' width='500' height='500' data-show-posts='true'>loading recent facebook posts...</div>
               </div>
-            </div>
+              </div>
+          
           </div>
 
 

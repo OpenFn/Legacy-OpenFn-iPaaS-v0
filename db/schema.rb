@@ -49,21 +49,23 @@ ActiveRecord::Schema.define(version: 20150327122825) do
 
   create_table "connection_profiles", force: true do |t|
     t.string   "name"
-    t.string   "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "product_id"
     t.integer  "user_id"
     t.integer  "credential_id"
-  end
-
-  create_table "credentials", force: true do |t|
-    t.hstore   "details"
-    t.datetime "verified"
-    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "credentials", force: true do |t|
+    t.integer  "connected_app_id"
+    t.hstore   "details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
+    t.datetime "verified"
+  end
+
+  add_index "credentials", ["type"], name: "index_credentials_on_type", using: :btree
 
   create_table "field_mappings", force: true do |t|
     t.integer "mapping_id"
@@ -104,6 +106,13 @@ ActiveRecord::Schema.define(version: 20150327122825) do
   end
 
   add_index "mappings", ["user_id"], name: "index_mappings_on_user_id", using: :btree
+
+  create_table "odk_sf_legacy_credentials", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.hstore   "details"
+  end
 
   create_table "odk_sf_legacy_imports", force: true do |t|
     t.string   "odk_formid"
