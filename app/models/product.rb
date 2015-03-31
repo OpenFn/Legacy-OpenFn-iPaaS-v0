@@ -27,9 +27,9 @@ class Product < ActiveRecord::Base
     product.detail_active = salesforce_product.detail_active
     product.tech_specs = salesforce_product.tech_specs
     product.sf_link = salesforce_product.sf_link
-    product.twitter = product.twitter
-    product.facebook = product.facebook
-    product.email = product.email
+    product.twitter = salesforce_product.twitter
+    product.facebook = salesforce_product.facebook
+    product.email = salesforce_product.email
     
     return product
   end
