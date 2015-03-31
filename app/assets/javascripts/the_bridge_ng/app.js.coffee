@@ -16,6 +16,7 @@ Array::filter = (func) -> x for x in @ when func(x)
   'the_bridge.config',
   'OpenFn',
   'OpenFn.Mappings',
+  'OpenFn.Services',
   'ui.sortable',
   'ui.bootstrap',
   'ng-rails-csrf',

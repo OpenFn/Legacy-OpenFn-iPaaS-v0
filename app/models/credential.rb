@@ -1,15 +1,25 @@
-#designsketch
-
-# This will NOT be ApiKeys...
-# it will store the credentials used to connect to a 3rd party product API
-
-# This will NOT be ApiKeys...
-# it will store the credentials used to connect to a 3rd party product API
-
 class Credential < ActiveRecord::Base
-  belongs_to :user # #designsketch - decomission this. It should go through connected app to user
-  belongs_to :connected_app
-  validates_presence_of :details, :connected_app_id, :user_id
+  store_accessor :details
+
+  has_many :users, through: :connection_profiles
+  has_many :connection_profiles
+  validates_presence_of :type, :details
+
+  scope :odk, -> { where(type: 'OdkCredential') }
+  scope :salesforce, -> { where(type: 'SalesforceCredential') }
 
   # credential details are stored in an hstore hash called details.
+
+  def is_valid?
+    !verified.nil?
+  end
+
+  def verify
+    self.verified = Date.today
+  end
+
+  def verify!
+    verify
+    self.save!
+  end
 end

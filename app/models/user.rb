@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   attr_accessor :synced, :stripe_token, :subscription_plan, :stripe_coupon
 
   has_many :mappings, dependent: :destroy, class_name: "OdkSfLegacy::Mapping"
+  has_many :credentials, through: :connection_profiles
+  has_many :connection_profiles
   # has_many :collaborations, dependent: :destroy
   # has_many :projects, through: :collaborations
   # belongs_to :organization

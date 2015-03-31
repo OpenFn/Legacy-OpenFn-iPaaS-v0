@@ -1,0 +1,40 @@
+<div class="modal-content" id='connectionProfileModal'>
+  <div class="modal-header">
+    <h3 class="modal-title">Create new Salesforce product connection</h3>
+  </div>
+  <div class="modal-body">
+    <form novalidate action='#' name='profileForm'>
+      <div class="input-group">
+        <label for="name">Connection Name</label>
+        <input type="text" class="form-control" id="name" aria-describedby="basic-addon1"  ng-model="profileObj.name" required>
+      </div>
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" aria-describedby="basic-addon1"  ng-model="credential.username" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" aria-describedby="basic-addon1" ng-model="credential.password" required>
+      </div>
+      <div class="input-group">
+        <label for="securityToken">Security Token</label>
+        <input type="text" class="form-control" id="securityToken" aria-describedby="basic-addon1" ng-model="credential.security_token" required>
+      </div>
+      <div class="input-group">
+        <label for="clientId">Application Key</label>
+        <input type="text" class="form-control" id="clientId" aria-describedby="basic-addon1" ng-model="credential.app_key" required>
+      </div>
+      <div class="input-group">
+        <label for="clientSecret">Application Secret</label>
+        <input type="text" class="form-control" id="clientSecret" aria-describedby="basic-addon1" ng-model="credential.app_secret" required>
+      </div>
+      <div class="input-group">
+        <label for="clietnSecret">Host</label>
+        <input type="text" class="form-control" id="host" aria-describedby="basic-addon1" ng-model="credential.host" required>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" ng-click="create()" ng-disabled="profileForm.$invalid">Save</button>
+    </div>
+  </form>
+</div>

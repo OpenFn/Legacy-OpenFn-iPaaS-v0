@@ -1,6 +1,6 @@
 class Salesforce::Listing::Product
   attr_reader :id, :description, :name, :tags, :website, :enabled, :sf_link,
-              :integrated, :costs, :reviews, :resources, :provider,
+              :integrated, :costs, :reviews, :resources, :provider, :email, :facebook, :twitter,
               :detailed_description, :update_link, :detail_active, :tech_specs
 
   def initialize(notification)
@@ -22,5 +22,8 @@ class Salesforce::Listing::Product
     @detail_active = notification.at_css('Detail_Active__c').try(:content)
     @tech_specs = notification.at_css('Tech_Specs__c').try(:content)
     @sf_link = notification.at_css('Sf_Id__c').try(:content)
+    @twitter = notification.at_css('Twitter_Handle__c').try(:content)
+    @facebook = notification.at_css('Facebook_Url__c').try(:content)
+    @email = notification.at_css('Email__c').try(:content)
   end
 end

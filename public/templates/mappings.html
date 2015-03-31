@@ -21,17 +21,17 @@
         </div>
       </div>
       <settings-bar mapping="mappingCtrl.mapping"></settings-bar>
-      <product-selector mapping="mappingCtrl.mapping"></product-selector>
+      <product-selector new-profile-action="mappingCtrl.showNewProfileModal" mapping="mappingCtrl.mapping" destination-profiles='mappingCtrl.destinationProfiles' source-profiles='mappingCtrl.sourceProfiles'></product-selector>
 
       <div class="row">
         <div class="col-md-5">
           <source-criteria mapping="mappingCtrl.mapping"></source-criteria>
-          
+
         </div>
-        
+
         <div class="col-md-5 col-md-offset-2">
           <destination-criteria mapping="mappingCtrl.mapping"></destination-criteria>
-          
+
         </div>
       </div>
     </div>

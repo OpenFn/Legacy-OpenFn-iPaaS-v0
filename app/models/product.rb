@@ -2,14 +2,16 @@ class Product < ActiveRecord::Base
   acts_as_taggable
 
   has_many :votes
+  has_many :connection_profiles
 
   validates :name, presence: true
 
-  scope :enabled, -> { where(enabled: true ) }
+  scope :enabled, -> { where(enabled: true) }
+  scope :integrated, -> { where(integrated: true) }
 
   def self.from_salesforce(salesforce_product)
     product = where(salesforce_id: salesforce_product.id).first_or_initialize
-    
+
     product.name = salesforce_product.name
     product.description = salesforce_product.description
     product.website = salesforce_product.website
@@ -25,6 +27,9 @@ class Product < ActiveRecord::Base
     product.detail_active = salesforce_product.detail_active
     product.tech_specs = salesforce_product.tech_specs
     product.sf_link = salesforce_product.sf_link
+    product.twitter = product.twitter
+    product.facebook = product.facebook
+    product.email = product.email
     
     return product
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326102705) do
+ActiveRecord::Schema.define(version: 20150330142429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,14 +47,26 @@ ActiveRecord::Schema.define(version: 20150326102705) do
     t.integer "user_id"
   end
 
+  create_table "connection_profiles", force: true do |t|
+    t.string   "name"
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.integer  "credential_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "type"
+  end
+
   create_table "credentials", force: true do |t|
-    t.string   "label"
-    t.string   "endpoint"
     t.integer  "connected_app_id"
     t.hstore   "details"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type"
+    t.datetime "verified"
   end
+
+  add_index "credentials", ["type"], name: "index_credentials_on_type", using: :btree
 
   create_table "field_mappings", force: true do |t|
     t.integer "mapping_id"
@@ -237,6 +249,9 @@ ActiveRecord::Schema.define(version: 20150326102705) do
     t.boolean "detail_active"
     t.text    "tech_specs"
     t.string  "sf_link"
+    t.string  "twitter"
+    t.string  "email"
+    t.string  "facebook"
   end
 
   create_table "projects", force: true do |t|
