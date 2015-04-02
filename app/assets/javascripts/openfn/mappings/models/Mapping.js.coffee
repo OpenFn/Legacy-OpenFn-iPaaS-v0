@@ -56,7 +56,6 @@ OpenFn.Mappings.factory 'MappingViewModel', [
             @emit('onUpdate')
             angular.extend(@attrs, data.mapping)
             @state.canSave = false
-            resolve(true)
           .error (data, status, headers, config) ->
             if status == 401
               reject("You need to be logged in to create a mapping.")
@@ -66,6 +65,14 @@ OpenFn.Mappings.factory 'MappingViewModel', [
       updateFromServer: (resp) ->
         angular.extend(@.attrs, resp)
         console.log resp
+
+      updateSource: (profileId) ->
+        @source_connected_app_id = profileId
+        @update()
+
+      updateDestination: (profileId) ->
+        @destination_connected_app_id = profileId
+        @update()
 
       fetchFromServer: () ->
         @state.loading = true
