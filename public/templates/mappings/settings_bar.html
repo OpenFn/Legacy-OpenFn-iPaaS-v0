@@ -1,15 +1,15 @@
 <div class="row">
   <form name="mappingSettings">
-    
+
     <div class="col-md-3">
-      <input type="text" 
+      <input type="text"
         required
         ng-model="mapping.name"
         class="form-control"
         placeholder="Name">
     </div>
     <div class="col-md-9 text-right" ng-show="mapping.state.new">
-      <button ng-disabled="mappingSettings.$invalid || mapping.state.saving" 
+      <button ng-disabled="mappingSettings.$invalid || mapping.state.saving"
         class="btn btn-primary"
         ng-click="mapping.create()"
         >Create</a>
@@ -34,6 +34,11 @@
           <label>
             <input type="checkbox" ng-model="mapping.auto">Auto?</label>
         </div>
+      </div>
+      <div class="col-md-1">
+        <a class="btn btn-primary"
+           ng-disabled='!mapping.state.canSave || mappingSettings.$invalid'
+           ng-click='mapping.update()'>Save</a>
       </div>
       <div class="col-md-1">
         <a class="btn btn-default">Clone</a>
