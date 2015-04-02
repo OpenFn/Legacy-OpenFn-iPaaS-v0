@@ -67,7 +67,7 @@ OpenFn::Application.routes.draw do
   namespace :api do
     namespace :v1 do
       # We don't need to list of describe the new mappings yet.
-      resources :mappings, only: [:create, :edit, :update]
+      resources :mappings, only: [:show, :create, :update]
 
       resources :connection_profiles, only: [:index, :edit, :create]
 

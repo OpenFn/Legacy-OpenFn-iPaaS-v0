@@ -25,7 +25,11 @@ OpenFn.Mappings.factory 'MappingViewModel', [
           'name'
           'active'
           'enabled'
+          'destination_connected_app_id'
+          'source_connected_app_id'
         ]
+
+        @fetchFromServer()
 
       initializeProps: (properties) ->
 
@@ -65,8 +69,8 @@ OpenFn.Mappings.factory 'MappingViewModel', [
 
       fetchFromServer: () ->
         @state.loading = true
-        $http.get("/mappings/#{@id}.json").success (data) =>
-          @updateFromServer(data.mapping)
+        $http.get("/api/v1/mappings/#{@id}.json").success (data) =>
+          @updateFromServer(data)
           @state.loading = false
         .error () ->
           console.error arguments

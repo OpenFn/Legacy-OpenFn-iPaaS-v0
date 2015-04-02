@@ -9,7 +9,6 @@ OpenFn.Mappings.controller 'MappingViewCtrl',
       initializing: true
     }
 
-
     ConnectionProfiles.fetchDestinations().then (cp) =>
       self.destinationProfiles = cp.data
 
@@ -18,33 +17,36 @@ OpenFn.Mappings.controller 'MappingViewCtrl',
 
     self.showNewProfileModal = (product) ->
       modalInstance = null
+
+      # TODO: This should be replaced when Product(s) have a flag on them
+      # representing if it's a source or destination (or both) product.
+
       if(/odk/i.test(product.name))
-        modalInstance = $modal.open
-          templateUrl: '/templates/mappings/new_odk_profile_modal.html',
-          controller: 'NewProfileModalController',
-          size: 'md',
-          resolve:
-            product: -> product
-            connectionProfileType: -> 'source'
+        templateUrl = '/templates/mappings/new_odk_profile_modal.html'
+        connectionProfileType = 'source'
       else
-        modalInstance = $modal.open
-          templateUrl: '/templates/mappings/new_sf_profile_modal.html',
-          controller: 'NewProfileModalController',
-          size: 'md',
-          resolve:
-            product: -> product
-            connectionProfileType: -> 'destination'
+        templateUrl = '/templates/mappings/new_sf_profile_modal.html'
+        connectionProfileType = 'destination'
+
+      modalInstance = $modal.open
+        templateUrl: templateUrl
+        controller: 'NewProfileModalController',
+        size: 'md',
+        resolve:
+          product: -> product
+          connectionProfileType: -> connectionProfileType
 
       modalInstance.result.then (profile) ->
-        ConnectionProfiles.save(profile).then (newConnectionProfile) ->
-          if newConnectionProfile.type == 'source'
-            self.sourceProfiles.connection_profiles.push newConnectionProfile
-          else
-            self.destinationProfiles.connection_profiles.push newConnectionProfile
-          growl.success("The new prodct connection has been saved.", { ttl: 5000 })
-        , (error) ->
-          $log.error(error);
-          growl.error("We could not save the product connection. Please try again.", { ttl: 5000 })
+        ConnectionProfiles.save(profile)
+          .success (newConnectionProfile) ->
+            if newConnectionProfile.type == 'source'
+              self.sourceProfiles.connection_profiles.push newConnectionProfile
+            else
+              self.destinationProfiles.connection_profiles.push newConnectionProfile
+            growl.success("The new prodct connection has been saved.", { ttl: 5000 })
+          .error (error) ->
+            $log.error(error);
+            growl.error("We could not save the product connection. Please try again.", { ttl: 5000 })
       , ->
         $log.info('Modal dismissed at: ' + new Date())
 
@@ -86,6 +88,7 @@ OpenFn.Mappings.controller 'MappingViewCtrl',
 
 .controller 'NewProfileModalController',
   ($modalInstance, $scope, product, connectionProfileType, CredentialsService, growl) ->
+    console.log connectionProfileType
     $scope.profileObj = { type: connectionProfileType }
     $scope.credential = { type: product.credential_type }
 

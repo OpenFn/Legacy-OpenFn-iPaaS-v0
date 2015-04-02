@@ -15,7 +15,10 @@
         </li>
         <li class="divider"></li>
         <li ng-repeat='profile in sourceProfiles.connection_profiles'>
-          <a href="#">{{ profile.name }}</a>
+          <a href="#" ng-click='mapping.source_connected_app_id = profile.id'>
+            {{ profile.name }}
+            <i class="glyphicon glyphicon-ok" ng-show='profile.id === mapping.source_connected_app_id'></i>
+          </a>
         </li>
       </ul>
     </div>
@@ -41,7 +44,10 @@
         </li>
         <li class="divider"></li>
         <li ng-repeat='profile in destinationProfiles.connection_profiles'>
-          <a href="#">{{ profile.name }}</a>
+          <a href="#" ng-click='mapping.destination_connected_app_id = profile.id'>
+            {{ profile.name }}
+            <i class="glyphicon glyphicon-ok" ng-show='profile.id === mapping.destination_connected_app_id'></i>
+          </a>
         </li>
       </ul>
     </div>
