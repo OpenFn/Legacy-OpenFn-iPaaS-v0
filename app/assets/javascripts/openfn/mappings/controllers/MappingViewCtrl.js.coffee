@@ -56,6 +56,7 @@ OpenFn.Mappings.controller 'MappingViewCtrl',
         # Just in case for now, props seem to update quickly.
         onUpdate: ->
           $scope.$apply()
+          growl.success 'Mapping successfully updated.', ttl: 5000
         onChange: ->
           console.log "got change from viewmodel:", arguments
         # Open modal when we get an error

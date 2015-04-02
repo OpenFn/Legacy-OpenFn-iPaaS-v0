@@ -17,6 +17,7 @@ OpenFn.Mappings.factory 'MappingViewModel', [
         @state = {
           new: !id
           loading: false
+          canSave: false
         }
 
         @initializeProps [
@@ -34,6 +35,7 @@ OpenFn.Mappings.factory 'MappingViewModel', [
               get: -> @attrs[property]
               set: (newValue) ->
                 @attrs[property] = newValue
+                @state['canSave'] = true
                 @emit('onChange')
                 @attrs[property]
               enumerable: true
@@ -44,8 +46,20 @@ OpenFn.Mappings.factory 'MappingViewModel', [
         console.log "Called #{evt}"
         @callbacks[evt](this,payload)
 
+      update: ->
+        $http.put("/api/v1/mappings/#{@id}.json", @attrs)
+          .success (data) =>
+            @emit('onUpdate')
+            angular.extend(@attrs, data.mapping)
+            @state.canSave = false
+            resolve(true)
+          .error (data, status, headers, config) ->
+            if status == 401
+              reject("You need to be logged in to create a mapping.")
+            else
+              reject(status)
+
       updateFromServer: (resp) ->
-        # TODO use api v1
         angular.extend(@.attrs, resp)
         console.log resp
 
