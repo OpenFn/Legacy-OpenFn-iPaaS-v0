@@ -14,9 +14,11 @@ $accent-yellow: #f8ca4d;  //dark yellow, used for live stats and accents
 
 a:hover {
   text-decoration: none;
+  color: inherit;
 
   a:focus {
   text-decoration: none;
+  color: inherit;
   }
 
 }
@@ -28,11 +30,11 @@ a {
 html {
   -ms-overflow-style: none;
   position: relative;
-  height: 100%;
+  // height: 100%;
 }
 
 body {
-  margin-top: 68px;
+  padding-top: 68px;
   font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif; 
   color: $off-white;
   line-height: 1;
@@ -40,16 +42,28 @@ body {
   background-image: image-url("noise.png");
   max-width: 100%;
   overflow-x: hidden;
-  margin-bottom: 60px;
   min-height: 100%;
 }
 
+html, body {
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow: auto;
+  padding-bottom: 68px; /* make same height as footer */
+}
+
 .footer {
-    position: fixed; 
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
+    position: relative;
+    margin-top: -68px;
+    height: 68px;
+    clear: both; 
+
     color: black;
     background-color: $cream;
     padding-top: 10px;
@@ -156,7 +170,7 @@ b, strong {
   margin-top: 20px;
 
   &.dark {
-    background-color: $primary-blue;
+    background-color: $bg-color;
     background-image: image-url("noise.png");
     border-color: $deeper-blue;
     color: $off-white;
@@ -255,9 +269,9 @@ b, strong {
   background-image: image-url("noise.png");
 }
 
-* {
-  border-radius: 0 !important;
-}
+// * {
+//   border-radius: 0 !important;
+// }
 
 // .btn-success {
 //   background-color: $grey-blue;

@@ -40,12 +40,18 @@
 
   </head>
   <body>
-    <%= render "shared/header" %>
-    <div ng-view>
+    <div id="wrap">
+      <div id="main">
+        <%= render "shared/header" %>
+        <div ng-view>
+        </div>
+        <div class='growl-wrapper'>
+          <div growl></div>
+        </div>
+      </div>
     </div>
-    <div class='growl-wrapper'>
-      <div growl></div>
-    </div>
-    <%= render "shared/footer" %>
+    <footer class="footer">
+      <%= render "shared/footer" %>
+    </footer>
   </body>
 </html>

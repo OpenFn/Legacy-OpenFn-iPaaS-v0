@@ -30,26 +30,12 @@
                 </li>
               <% end %>
               <li>
-                <%= link_to "About us (soon)", "#"%>
-              </li>
-              <li>
-                <%= link_to "Build new integrations", "/#/developers"%>
+                <%= link_to "Developers", "/#/developers"%>
               </li>
             </ul>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-<!--         <li>
-          <%= link_to "Donate", "#"%>
-        </li> -->
-        <% if current_user && current_user.admin? %>
-          <li>
-            <%= link_to "/#/metrics/organisation" do %>
-              <span class="glyphicon glyphicon-stats">
-              <% end %>
-          </li>
-        <% end %>
-
         <% if current_user %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
@@ -75,7 +61,7 @@
         <% unless current_user %>
           <li>
             <%= link_to "/login", method: :get do %>
-              <button type="button" class="btn btn-default">Log in</button>
+              Log in
             <% end %>
           </li>
           <li>
@@ -83,6 +69,10 @@
               <button type="button" class="btn btn-success">Sign up</button>
             <% end %>
           </li>
+          <li>
+            <%= link_to "#", method: :get do %>
+              <button type="button" class="btn btn-danger">Donate</button>
+            <% end %>
         <% end %>
 
     </div>
