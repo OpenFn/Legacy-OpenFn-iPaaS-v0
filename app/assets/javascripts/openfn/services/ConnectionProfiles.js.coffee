@@ -16,7 +16,7 @@
   @save = (obj) ->
     return $http.post('/api/v1/connection_profiles', { connection_profile: obj })
     .success (results) ->
-      return results.data
+      return results
     .error (err) ->
       console.error(err)
       return null
