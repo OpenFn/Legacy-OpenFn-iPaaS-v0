@@ -69,7 +69,11 @@ OpenFn::Application.routes.draw do
       # We don't need to list of describe the new mappings yet.
       resources :mappings, only: [:show, :create, :update]
 
-      resources :connection_profiles, only: [:index, :edit, :create]
+      resources :connection_profiles, only: [:index, :edit, :create] do
+        member do
+          get :connected_apps
+        end
+      end
 
       resources :credentials, only: [:index, :create, :edit]
     end

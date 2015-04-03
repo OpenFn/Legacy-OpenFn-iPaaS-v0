@@ -14,12 +14,17 @@ class OpenFn::Odk
     end
 
     def list_objects(credentials)
+      connection = OdkAggregate::Connection.new(credential.url, credential.username, credential.password)
+      connection.all_forms
     end
 
     def verify credential
       connection = OdkAggregate::Connection.new(credential.url, credential.username, credential.password)
 
       begin
+        # connection.all_forms.each do |form|
+        #   puts form.get_top_element.inspect
+        # end
         connection.all_forms
         return true
       rescue => e

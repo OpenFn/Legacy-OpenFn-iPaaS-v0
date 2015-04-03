@@ -19,6 +19,12 @@ module Api::V1
       end
     end
 
+    def connected_apps
+      connection_profile = ConnectionProfile.find(params[:id])
+      descriptions = connection_profile.fetch_object_descriptions
+      render json: descriptions
+    end
+
     private
 
     def connection_profile_params

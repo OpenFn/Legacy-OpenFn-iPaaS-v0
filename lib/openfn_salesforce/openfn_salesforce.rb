@@ -12,7 +12,7 @@ class OpenFn::Salesforce
         })
 
       begin
-        connection.describe
+        puts connection.describe.inspect
         return true
       rescue => e
         Rails.logger.info "Salesforce Credential check failed with:\n#{e.backtrace.join("\n")}"
@@ -20,5 +20,17 @@ class OpenFn::Salesforce
       end
     end
 
+    def list_objects credential
+      connection = Restforce.new({
+        username: credential.username,
+        password: credential.password,
+        security_token: credential.security_token,
+        client_id: credential.app_key,
+        client_secret: credential.app_secret,
+        host: credential.host
+        })
+
+      connection.describe
+    end
   end
 end
