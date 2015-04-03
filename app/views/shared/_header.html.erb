@@ -131,12 +131,17 @@
             <br>
             <div class="row center">
               <div class="col-sm-2 col-sm-offset-3">
-                <button class="btn btn-donate" id="d1k"><span class="mb-title">$1000</span></button>
+                <%= form_tag charges_path do %>
+                  <div class="input-group">
+                    <input id="btn_amount" type="hidden" value="1000" />
+                    <button type="button" class="btn btn-donate" id="customButton"><span class="mb-title">$1000</span></button>
+                  </div>
+                <% end %>
               </div>
               <div class="col-sm-4">
                 <div class="input-group">
                   <span class="input-group-addon">$</span>
-                  <input type="text" class="form-control" style="height: 50px;" aria-label="Amount (to the nearest dollar)" id="custom-donation-amount" placeholder="Custom">
+                  <input type="text" class="form-control" style="height: 50px;" aria-label="Amount (to the nearest dollar)" id="btn_amount" placeholder="Custom">
                   <span class="input-group-btn">
                     <button class="btn btn-donate-go" type="button" id="customButton"><span class="mb-title">Go</span></button>
                   </span>
@@ -144,6 +149,21 @@
               </div>
             </div>
             <br>
+            <br>
+            <div class="row center">
+            <%= form_tag charges_path do %>
+              <article>
+                <label class="amount">
+                  <span>Amount: $5.00</span>
+                </label>
+              </article>
+
+              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                      data-description="A month's subscription"
+                      data-amount="500"></script>
+            <% end %>
+            </div>
           </div>
         </div>
       </div>
@@ -156,74 +176,17 @@
 <script>
   var handler = StripeCheckout.configure({
     key: 'pk_test_W9FR29OKTtcmeAftxYCHtEM2',
-    name: 'open[Fn]',
     panelLabel: "Donate {{amount}}",
-    description: 'One-time donation to open[Fn]',
+    description: 'Donation to open[Fn]',
     token: function(token) {
       // Use the token to create the charge with a server-side script.
       // You can access the token ID with `token.id`
     }
   });
 
-  $('#d10').on('click', function(e) {
-    // Open Checkout with further options
-    handler.open({
-      amount: 1000
-    });
-    e.preventDefault();
-  });
-
-  $('#d25').on('click', function(e) {
-    // Open Checkout with further options
-    handler.open({
-      amount: 2500
-    });
-    e.preventDefault();
-  });
-
-  $('#d50').on('click', function(e) {
-    // Open Checkout with further options
-    handler.open({
-      amount: 5000
-    });
-    e.preventDefault();
-  });
-
-  $('#d100').on('click', function(e) {
-    // Open Checkout with further options
-    handler.open({
-      amount: 10000
-    });
-    e.preventDefault();
-  });
-
-  $('#d200').on('click', function(e) {
-    // Open Checkout with further options
-    handler.open({
-      amount: 20000
-    });
-    e.preventDefault();
-  });
-
-  $('#d300').on('click', function(e) {
-    // Open Checkout with further options
-    handler.open({
-      amount: 30000
-    });
-    e.preventDefault();
-  });
-
-  $('#d1k').on('click', function(e) {
-    // Open Checkout with further options
-    handler.open({
-      amount: 100000
-    });
-    e.preventDefault();
-  });
-
     $('#customButton').on('click', function(e) {
     // Open Checkout with further options
-    var amount = $("#custom-donation-amount").val() * 100;
+    var amount = $("#btn_amount").val() * 100;
     handler.open({
       amount: amount
     });
