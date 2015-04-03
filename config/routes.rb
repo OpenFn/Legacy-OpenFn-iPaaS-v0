@@ -87,6 +87,8 @@ OpenFn::Application.routes.draw do
 
   resources :users
 
+  resources :charges
+
   resources :products, only: [:index, :show]
 
   resources :odk_forms, only: [:index]

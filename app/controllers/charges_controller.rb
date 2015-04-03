@@ -1,5 +1,7 @@
 class ChargesController < ApplicationController
 
+skip_before_filter :require_login
+
 	def new
 	end
 
@@ -23,5 +25,5 @@ class ChargesController < ApplicationController
 	  flash[:error] = e.message
 	  redirect_to charges_path
 	end
-	
+
 end
