@@ -107,63 +107,46 @@
             <br>
             <div class="row center">
               <div class="col-sm-2 col-sm-offset-3">
-                <button class="btn btn-donate" id="d10"><span class="mb-title">$10</span></button>
+                <button class="btn btn-donate" data-amount='10'>$10</button>
               </div>
               <div class="col-sm-2">
-                <button class="btn btn-donate" id="d25"><span class="mb-title">$25</span></button>
+                <button class="btn btn-donate" data-amount='25'>$25</button>
               </div>
               <div class="col-sm-2">
-                <button class="btn btn-donate" id="d50"><span class="mb-title">$50</span></button>
+                <button class="btn btn-donate" data-amount='50'>$50</button>
               </div>
             </div>
             <br>
             <div class="row center">
               <div class="col-sm-2 col-sm-offset-3">
-                <button class="btn btn-donate" id="d100"><span class="mb-title">$100</span></button>
+                <button class="btn btn-donate" data-amount='100'>$100</button>
               </div>
               <div class="col-sm-2">
-                <button class="btn btn-donate" id="d200"><span class="mb-title">$200</span></button>
+                <button class="btn btn-donate" data-amount='200'>$200</button>
               </div>
               <div class="col-sm-2">
-                <button class="btn btn-donate" id="d300"><span class="mb-title">$300</span></button>
+                <button class="btn btn-donate" data-amount='300'>$300</button>
               </div>
             </div>
             <br>
             <div class="row center">
               <div class="col-sm-2 col-sm-offset-3">
-                <%= form_tag charges_path do %>
-                  <div class="input-group">
-                    <input id="btn_amount" name='charges[amount]' type="hidden" value="1000" />
-                    <button type="submit" class="btn btn-donate" id="customButton"><span class="mb-title">$1000</span></button>
-                  </div>
-                <% end %>
+                <div class="input-group">
+                  <button type="submit" class="btn btn-donate" data-amount='1000' id="customButton">$1000</button>
+                </div>
               </div>
               <div class="col-sm-4">
                 <div class="input-group">
                   <span class="input-group-addon">$</span>
-                  <input type="text" class="form-control" style="height: 50px;" aria-label="Amount (to the nearest dollar)" id="btn_amount" placeholder="Custom">
+                  <input type="text" class="form-control" id='customDonation' style="height: 50px;" aria-label="Amount (to the nearest dollar)" placeholder="Custom">
                   <span class="input-group-btn">
-                    <button class="btn btn-donate-go" type="button" id="customButton"><span class="mb-title">Go</span></button>
+                    <button class="btn btn-donate-go" type="button">Go</button>
                   </span>
                 </div>
               </div>
             </div>
             <br>
             <br>
-            <div class="row center">
-            <%= form_tag charges_path do %>
-              <article>
-                <label class="amount">
-                  <span>Amount: $5.00</span>
-                </label>
-              </article>
-
-              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                      data-description="A month's subscription"
-                      data-amount="500"></script>
-            <% end %>
-            </div>
           </div>
         </div>
       </div>
@@ -171,23 +154,51 @@
   </div>
 </div>
 
+<%= form_tag charges_path, id: 'chargesForm' do %>
+  <input type='hidden' id='token' name='token' />
+  <input type='hidden' id='email' name='email' />
+  <input type='hidden' id='amount' name='amount' />
+<% end %>
+
 <script src="https://checkout.stripe.com/checkout.js"></script>
 
 <script>
-  $('#customButton').on('click', function(e) {
+  function loadStripe(amount) {
     var handler = StripeCheckout.configure({
-      key: 'pk_test_W9FR29OKTtcmeAftxYCHtEM2',
+      key: "<%= Rails.configuration.stripe[:publishable_key] %>",
       panelLabel: "Donate {{amount}}",
       description: 'Donation to open[Fn]',
       token: function(token) {
         // Use the token to create the charge with a server-side script.
         // You can access the token ID with `token.id`
-        $(e.target).parents('form').submit();
+        var id = token.id;
+        var email = token.email;
+
+        $('#chargesForm').children('#token').val(id);
+        $('#chargesForm').children('#email').val(email);
+        $('#chargesForm').children('#amount').val(amount);
+        $('#chargesForm').submit();
       }
     });
 
+    return handler;
+  };
+
+  $('.btn-donate-go').on('click', function(e) {
+    var amount = Number($('#customDonation').val()) * 100;
+    var handler = loadStripe(amount);
+
     // Open Checkout with further options
-    var amount = $("#btn_amount").val() * 100;
+    handler.open({
+      amount: amount
+    });
+  });
+
+  $('.btn-donate').on('click', function(e) {
+    var amount = Number($(e.target).attr('data-amount')) * 100;
+    var handler = loadStripe(amount);
+
+    // Open Checkout with further options
     handler.open({
       amount: amount
     });

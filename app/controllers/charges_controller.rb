@@ -6,18 +6,12 @@ class ChargesController < ApplicationController
 	end
 
 	def create
-		puts '@@@@@@@@@@@@@'
-		puts '@@@@@@@@@@@@@'
-		puts params
-		puts '@@@@@@@@@@@@@'
-		puts '@@@@@@@@@@@@@'
-
 	  # Amount in cents
-	  @amount = charges_params[:amount]
+	  @amount = params[:amount]
 
 	  customer = Stripe::Customer.create(
 	  	:email => 'example@stripe.com',
-	  	:card  => charges_params[:token]
+	  	:card  => params[:token]
 	  	)
 
 	  begin
@@ -28,20 +22,12 @@ class ChargesController < ApplicationController
 		  	:currency    => 'usd'
 		  	)
 
-			puts 'DIDNT ERROR!'
-
-		  redirect_to root_path
+		  render :create
 
 		rescue Stripe::CardError => e
-			puts 'ERRORED!'
 			flash[:error] = e.message
-			redirect_to charges_path
+			redirect_to root_path
 		end
 	end
 
-	private
-
-	def charges_params
-		params.require(:charges).permit(:token, :amount)
-	end
 end
