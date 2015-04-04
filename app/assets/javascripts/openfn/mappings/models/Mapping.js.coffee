@@ -17,6 +17,7 @@ OpenFn.Mappings.factory 'MappingViewModel', [
         @state = {
           new: !id
           loading: false
+          canSave: false
         }
 
         @initializeProps [
@@ -24,7 +25,11 @@ OpenFn.Mappings.factory 'MappingViewModel', [
           'name'
           'active'
           'enabled'
+          'destination_connected_app_id'
+          'source_connected_app_id'
         ]
+
+        @fetchFromServer()
 
       initializeProps: (properties) ->
 
@@ -34,6 +39,7 @@ OpenFn.Mappings.factory 'MappingViewModel', [
               get: -> @attrs[property]
               set: (newValue) ->
                 @attrs[property] = newValue
+                @state['canSave'] = true
                 @emit('onChange')
                 @attrs[property]
               enumerable: true
@@ -44,15 +50,34 @@ OpenFn.Mappings.factory 'MappingViewModel', [
         console.log "Called #{evt}"
         @callbacks[evt](this,payload)
 
+      update: ->
+        $http.put("/api/v1/mappings/#{@id}.json", @attrs)
+          .success (data) =>
+            @emit('onUpdate')
+            angular.extend(@attrs, data.mapping)
+            @state.canSave = false
+          .error (data, status, headers, config) ->
+            if status == 401
+              reject("You need to be logged in to create a mapping.")
+            else
+              reject(status)
+
       updateFromServer: (resp) ->
-        # TODO use api v1
         angular.extend(@.attrs, resp)
         console.log resp
 
+      updateSource: (profileId) ->
+        @source_connected_app_id = profileId
+        @update()
+
+      updateDestination: (profileId) ->
+        @destination_connected_app_id = profileId
+        @update()
+
       fetchFromServer: () ->
         @state.loading = true
-        $http.get("/mappings/#{@id}.json").success (data) =>
-          @updateFromServer(data.mapping)
+        $http.get("/api/v1/mappings/#{@id}.json").success (data) =>
+          @updateFromServer(data)
           @state.loading = false
         .error () ->
           console.error arguments
