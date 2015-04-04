@@ -1,6 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-init="isCollapsed = true">
-<div class="top-shadow hidden-xs"></div>
-<!-- <div class="top-shadow-mobile"></div> -->
+  <div class="top-shadow hidden-xs"></div>
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -66,15 +65,14 @@
           </li>
           <li>
             <%= link_to "/signup", method: :get do %>
-              <button type="button" class="btn btn-success">Sign up</button>
+              <button style="margin-top: -0.35em;" type="button" class="btn btn-success">Sign up</button>
             <% end %>
           </li>
-          <li>
         <% end %>
         <li>
-          <button style="margin-top: 1.1em; margin-left: .75em;" type="button" data-toggle="modal" data-target="#donate_modal" class="btn btn-danger">Donate</button>
+          <button style="margin-top: 0.75em;" type="button" data-toggle="modal" data-target="#donate_modal" class="btn btn-danger">Donate</button>
         </li>
-
+      </ul>
     </div>
 </nav>
 <%if current_user && current_user.client_admin?%>
