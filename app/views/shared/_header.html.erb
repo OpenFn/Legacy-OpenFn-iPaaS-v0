@@ -70,10 +70,10 @@
             <% end %>
           </li>
           <li>
-            
-              <button style="margin-top: 1.1em; margin-left: .75em;" type="button" data-toggle="modal" data-target="#donate_modal" class="btn btn-danger">Donate</button>
-            
         <% end %>
+        <li>
+          <button style="margin-top: 1.1em; margin-left: .75em;" type="button" data-toggle="modal" data-target="#donate_modal" class="btn btn-danger">Donate</button>
+        </li>
 
     </div>
 </nav>
@@ -91,7 +91,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title center" id="myModalLabel">Make a donation.</h4>
           </div>
-          <div class="modal-body">          
+          <div class="modal-body">
             <strong>Thanks so much for your support</strong>. Before you continue, there are a couple of things you should know about this project.
             <br>
             <br>
@@ -107,42 +107,45 @@
             <br>
             <div class="row center">
               <div class="col-sm-2 col-sm-offset-3">
-                <button class="btn btn-donate" id="d10"><span class="mb-title">$10</span></button>
+                <button class="btn btn-donate" data-amount='10'>$10</button>
               </div>
               <div class="col-sm-2">
-                <button class="btn btn-donate" id="d25"><span class="mb-title">$25</span></button>
+                <button class="btn btn-donate" data-amount='25'>$25</button>
               </div>
               <div class="col-sm-2">
-                <button class="btn btn-donate" id="d50"><span class="mb-title">$50</span></button>
+                <button class="btn btn-donate" data-amount='50'>$50</button>
               </div>
             </div>
             <br>
             <div class="row center">
               <div class="col-sm-2 col-sm-offset-3">
-                <button class="btn btn-donate" id="d100"><span class="mb-title">$100</span></button>
+                <button class="btn btn-donate" data-amount='100'>$100</button>
               </div>
               <div class="col-sm-2">
-                <button class="btn btn-donate" id="d200"><span class="mb-title">$200</span></button>
+                <button class="btn btn-donate" data-amount='200'>$200</button>
               </div>
               <div class="col-sm-2">
-                <button class="btn btn-donate" id="d300"><span class="mb-title">$300</span></button>
+                <button class="btn btn-donate" data-amount='300'>$300</button>
               </div>
             </div>
             <br>
             <div class="row center">
               <div class="col-sm-2 col-sm-offset-3">
-                <button class="btn btn-donate" id="d1k"><span class="mb-title">$1000</span></button>
+                <div class="input-group">
+                  <button type="submit" class="btn btn-donate" data-amount='1000' id="customButton">$1000</button>
+                </div>
               </div>
               <div class="col-sm-4">
                 <div class="input-group">
                   <span class="input-group-addon">$</span>
-                  <input type="text" class="form-control" style="height: 50px;" aria-label="Amount (to the nearest dollar)" id="custom-donation-amount" placeholder="Custom">
+                  <input type="text" class="form-control" id='customDonation' style="height: 50px;" aria-label="Amount (to the nearest dollar)" placeholder="Custom">
                   <span class="input-group-btn">
-                    <button class="btn btn-donate-go" type="button" id="customButton"><span class="mb-title">Go</span></button>
+                    <button class="btn btn-donate-go" type="button">Go</button>
                   </span>
                 </div>
               </div>
             </div>
+            <br>
             <br>
           </div>
         </div>
@@ -151,79 +154,51 @@
   </div>
 </div>
 
+<%= form_tag charges_path, id: 'chargesForm' do %>
+  <input type='hidden' id='token' name='token' />
+  <input type='hidden' id='email' name='email' />
+  <input type='hidden' id='amount' name='amount' />
+<% end %>
+
 <script src="https://checkout.stripe.com/checkout.js"></script>
 
 <script>
-  var handler = StripeCheckout.configure({
-    key: 'pk_test_W9FR29OKTtcmeAftxYCHtEM2',
-    name: 'open[Fn]',
-    panelLabel: "Donate {{amount}}",
-    description: 'One-time donation to open[Fn]',
-    token: function(token) {
-      // Use the token to create the charge with a server-side script.
-      // You can access the token ID with `token.id`
-    }
-  });
+  function loadStripe(amount) {
+    var handler = StripeCheckout.configure({
+      key: "<%= Rails.configuration.stripe[:publishable_key] %>",
+      panelLabel: "Donate {{amount}}",
+      description: 'Donation, Tax ID 47-2201616',
+      token: function(token) {
+        // Use the token to create the charge with a server-side script.
+        // You can access the token ID with `token.id`
+        var id = token.id;
+        var email = token.email;
 
-  $('#d10').on('click', function(e) {
+        $('#chargesForm').children('#token').val(id);
+        $('#chargesForm').children('#email').val(email);
+        $('#chargesForm').children('#amount').val(amount);
+        $('#chargesForm').submit();
+      }
+    });
+
+    return handler;
+  };
+
+  $('.btn-donate-go').on('click', function(e) {
+    var amount = Number($('#customDonation').val()) * 100;
+    var handler = loadStripe(amount);
+
     // Open Checkout with further options
     handler.open({
-      amount: 1000
+      amount: amount
     });
-    e.preventDefault();
   });
 
-  $('#d25').on('click', function(e) {
-    // Open Checkout with further options
-    handler.open({
-      amount: 2500
-    });
-    e.preventDefault();
-  });
+  $('.btn-donate').on('click', function(e) {
+    var amount = Number($(e.target).attr('data-amount')) * 100;
+    var handler = loadStripe(amount);
 
-  $('#d50').on('click', function(e) {
     // Open Checkout with further options
-    handler.open({
-      amount: 5000
-    });
-    e.preventDefault();
-  });
-
-  $('#d100').on('click', function(e) {
-    // Open Checkout with further options
-    handler.open({
-      amount: 10000
-    });
-    e.preventDefault();
-  });
-
-  $('#d200').on('click', function(e) {
-    // Open Checkout with further options
-    handler.open({
-      amount: 20000
-    });
-    e.preventDefault();
-  });
-
-  $('#d300').on('click', function(e) {
-    // Open Checkout with further options
-    handler.open({
-      amount: 30000
-    });
-    e.preventDefault();
-  });
-
-  $('#d1k').on('click', function(e) {
-    // Open Checkout with further options
-    handler.open({
-      amount: 100000
-    });
-    e.preventDefault();
-  });
-
-    $('#customButton').on('click', function(e) {
-    // Open Checkout with further options
-    var amount = $("#custom-donation-amount").val() * 100;
     handler.open({
       amount: amount
     });

@@ -35,7 +35,7 @@ html {
 
 body {
   padding-top: 68px;
-  font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif; 
+  font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif;
   color: $off-white;
   line-height: 1;
   background-color: $bg-color;
@@ -62,7 +62,7 @@ html, body {
     position: relative;
     margin-top: -68px;
     height: 68px;
-    clear: both; 
+    clear: both;
 
     color: black;
     background-color: $cream;
@@ -114,7 +114,7 @@ b, strong {
   }
 
 .navbar {
-  
+
   padding-top: rem-calc(5px);
   padding-bottom: rem-calc(5px);
   z-index: 9;
@@ -146,7 +146,7 @@ b, strong {
       background-image: image-url("noise.png");
       color: $primary-blue;
     }
-  
+
   }
 
 }
@@ -285,12 +285,16 @@ b, strong {
 //   border-color: $light-grey;
 // }
 
-.btn-donate {
+.btn-donate, .btn-donate:hover {
   color: $off-white;
   background-color: $grey-blue;
   background-image: image-url("noise.png");
   width: 75px;
   height: 50px;
+
+  font-size: rem-calc(18px);
+  font-weight: $bold;
+  text-transform: uppercase;
 }
 
 .btn-donate-go {
@@ -299,4 +303,8 @@ b, strong {
   background-image: image-url("noise.png");
   width: 50px;
   height: 50px;
+
+  font-size: rem-calc(18px);
+  font-weight: $bold;
+  text-transform: uppercase;;
 }
