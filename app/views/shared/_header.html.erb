@@ -70,7 +70,7 @@
           </li>
         <% end %>
         <li>
-          <button style="margin-top: 0.75em;" onClick="_gaq.push(['_trackEvent', 'Revenue', 'Donate', 'Open Donate Modal']);" type="button" data-toggle="modal" data-target="#donate_modal" class="btn btn-danger">Donate</button>
+          <button style="margin-top: 0.75em;" onClick="ga('send', 'event', 'Revenue', 'Open Donate Modal');" type="button" data-toggle="modal" data-target="#donate_modal" class="btn btn-danger">Donate</button>
         </li>
       </ul>
     </div>
@@ -105,32 +105,32 @@
             <br>
             <div class="row center">
               <div class="col-sm-2 col-sm-offset-3">
-                <button class="btn btn-donate" data-amount='10'>$10</button>
+                <button class="btn btn-donate" data-amount='10' onClick="ga('send', 'event', 'Revenue', 'Donate Picker', 'Donate 10', 10);">$10</button>
               </div>
               <div class="col-sm-2">
-                <button class="btn btn-donate" data-amount='25'>$25</button>
+                <button class="btn btn-donate" data-amount='25' onClick="ga('send', 'event', 'Revenue', 'Donate Picker', 'Donate 25', 25);">$25</button>
               </div>
               <div class="col-sm-2">
-                <button class="btn btn-donate" data-amount='50'>$50</button>
+                <button class="btn btn-donate" data-amount='50' onClick="ga('send', 'event', 'Revenue', 'Donate Picker', 'Donate 50', 50);">$50</button>
               </div>
             </div>
             <br>
             <div class="row center">
               <div class="col-sm-2 col-sm-offset-3">
-                <button class="btn btn-donate" data-amount='100'>$100</button>
+                <button class="btn btn-donate" data-amount='100' onClick="ga('send', 'event', 'Revenue', 'Donate Picker', 'Donate 100', 100);">$100</button>
               </div>
               <div class="col-sm-2">
-                <button class="btn btn-donate" data-amount='200'>$200</button>
+                <button class="btn btn-donate" data-amount='200' onClick="ga('send', 'event', 'Revenue', 'Donate Picker', 'Donate 200', 200);">$200</button>
               </div>
               <div class="col-sm-2">
-                <button class="btn btn-donate" data-amount='300'>$300</button>
+                <button class="btn btn-donate" data-amount='300' onClick="ga('send', 'event', 'Revenue', 'Donate Picker', 'Donate 300', 300);">$300</button>
               </div>
             </div>
             <br>
             <div class="row center">
               <div class="col-sm-2 col-sm-offset-3">
                 <div class="input-group">
-                  <button type="submit" class="btn btn-donate" data-amount='1000' id="customButton">$1000</button>
+                  <button type="submit" class="btn btn-donate" data-amount='1000' id="customButton" onClick="ga('send', 'event', 'Revenue', 'Donate 1k', 1000);">$1000</button>
                 </div>
               </div>
               <div class="col-sm-4">
@@ -138,7 +138,7 @@
                   <span class="input-group-addon">$</span>
                   <input type="text" class="form-control" id='customDonation' style="height: 50px;" aria-label="Amount (to the nearest dollar)" placeholder="Custom">
                   <span class="input-group-btn">
-                    <button class="btn btn-donate-go" type="button">Go</button>
+                    <button class="btn btn-donate-go" type="button" onClick="ga('send', 'event', 'Revenue', 'Donate Picker', 'Donate Custom');">Go</button>
                   </span>
                 </div>
               </div>
