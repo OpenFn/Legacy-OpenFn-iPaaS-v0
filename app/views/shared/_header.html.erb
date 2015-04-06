@@ -70,7 +70,7 @@
           </li>
         <% end %>
         <li>
-          <button style="margin-top: 0.75em;" type="button" data-toggle="modal" data-target="#donate_modal" class="btn btn-danger">Donate</button>
+          <button style="margin-top: 0.75em;" onClick="_gaq.push(['_trackEvent', 'Revenue', 'Donate', 'Open Donate Modal']);" type="button" data-toggle="modal" data-target="#donate_modal" class="btn btn-danger">Donate</button>
         </li>
       </ul>
     </div>
@@ -158,9 +158,9 @@
   <input type='hidden' id='amount' name='amount' />
 <% end %>
 
-<script src="https://checkout.stripe.com/checkout.js"></script>
+<script async src="https://checkout.stripe.com/checkout.js"></script>
 
-<script>
+<script async>
   function loadStripe(amount) {
     var handler = StripeCheckout.configure({
       key: "<%= Rails.configuration.stripe[:publishable_key] %>",
