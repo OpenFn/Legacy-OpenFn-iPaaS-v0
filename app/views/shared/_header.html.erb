@@ -165,6 +165,7 @@
     var handler = StripeCheckout.configure({
       key: "<%= Rails.configuration.stripe[:publishable_key] %>",
       panelLabel: "Donate {{amount}}",
+      name: "Donate to openFn",
       description: 'Donation, Tax ID 47-2201616',
       token: function(token) {
         // Use the token to create the charge with a server-side script.
