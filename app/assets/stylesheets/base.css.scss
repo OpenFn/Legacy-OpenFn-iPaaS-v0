@@ -34,7 +34,7 @@ html {
 }
 
 body {
-  padding-top: rem-calc(68px);
+  padding-top: 68px;
   font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif;
   color: $off-white;
   line-height: 1;
@@ -92,20 +92,7 @@ b, strong {
     top: 0;
     left: 0;
     width: 100%;
-    height: rem-calc(68px);
-    z-index: -1;
-    -webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
-    -moz-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
-    display: none;
-  }
-
-.top-shadow-mobile {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: rem-calc(60px);
+    height: 68px;
     z-index: -1;
     -webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.25);
@@ -120,13 +107,20 @@ b, strong {
   z-index: 9;
   border: none;
   border-radius: 0;
-  background-color: $cream;
+  background-color: $cream !important;
   background-image: image-url("noise.png");
   position: fixed;
+  margin-bottom: 15px;
+  height: 68px;
 
   .nav > li > a {
     line-height: rem-calc(24px);
     z-index: 10;
+  }
+
+  .btn {
+    margin-top: 10px;
+    margin-left: 10px;
   }
 
 
@@ -138,11 +132,12 @@ b, strong {
 
   .navbar-nav {
     font-weight: $semi-bold;
+    // line-height: rem-calc(24px);
     font-size: rem-calc(15px);
     color: $primary-blue;
 
     .dropdown.open .dropdown-toggle {
-      background-color: rgba(0, 0, 0, 0.15);
+      background-color: $off-white;
       background-image: image-url("noise.png");
       color: $primary-blue;
     }

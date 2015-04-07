@@ -4,9 +4,9 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" ng-click="isCollapsed = !isCollapsed">
-        <span class="sr-only">Toggle navigation</span><i class="fa fa-bars" style="color: #3f5666"></i>
+        <span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
       </button>
-      <a class="navbar-brand" href="/">open[Fn]</a>
+      <a class="navbar-brand" href="#">open[Fn]</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-collapse collapse" collapse="isCollapsed">
@@ -64,13 +64,13 @@
             <% end %>
           </li>
           <li>
-            <%= link_to "/signup", method: :get do %>
-              <button style="margin-top: -0.35em;" type="button" class="btn btn-success">Sign up</button>
+            <%= button_to "/signup", :class => "btn btn-success", method: :get do %>
+              Sign up
             <% end %>
           </li>
         <% end %>
         <li>
-          <button style="margin-top: 0.75em;" onClick="ga('send', 'event', 'Revenue', 'Open Donate Modal');" type="button" data-toggle="modal" data-target="#donate_modal" class="btn btn-danger">Donate</button>
+          <button onClick="ga('send', 'event', 'Revenue', 'Open Donate Modal');" type="button" data-toggle="modal" data-target="#donate_modal" class="btn btn-danger">Donate</button>
         </li>
       </ul>
     </div>
