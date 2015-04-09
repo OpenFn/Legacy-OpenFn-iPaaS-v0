@@ -46,9 +46,10 @@
                       </a>
                     </li>
                     <li role="presentation">
-                      <a ng-href="" target="_blank" class="review-link">
-                        <i class="fa fa-comment fa-lg"></i> Review (soon)
-                      </a>
+                        <a data-toggle="modal" data-target="#review_modal" target="_blank" class="review-link">
+                          <i class="fa fa-comment fa-lg"></i> Review ({{product.reviews_count}})
+                        </a>
+                      </form>
                     </li>
                     <li role="presentation">
                       <a ng-href="{{product.website}}" class="website-link" target="_blank">
@@ -123,6 +124,33 @@
   </div>
 </div>
 
+<div class="modal fade" id="review_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="featurette dark">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Submit a review for {{product.name}}.</h4>
+        </div>
+        <div class="modal-body center">          
+          <span class="mb-title">Your</span> reviews are what drive the community. Thanks for taking the time to open-source your knowledge of {{product.name}}.
+          <br>
+          <br>
+          <form method="post" action="BLAH">
+            <input type="string" name="text" placeholder="something thougtful and helpful" style="color: red;">
+            <br>
+            <br>
+            <input type="integer" name="rating" placeholder="0-5" style="color: red;">
+            <br>
+            <br>
+            <button class="btn btn-success" type="submit">done</button>
+          <br>
+          Thanks for your time.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">

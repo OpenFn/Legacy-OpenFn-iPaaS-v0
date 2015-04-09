@@ -5,12 +5,13 @@ class ProductsController < ApplicationController
   skip_before_filter :verify_authenticity_token, only: [:update]
   before_filter :validate_api_admin, only: [:update]
 
-  skip_before_filter :require_login, except: [:vote]
+  skip_before_filter :require_login, except: [:vote, :review]
 
   def index
     render json: Product.enabled.order(:name).map { |p|
-        p.as_json(methods: [:votes_count, :tag_list]).
+        p.as_json(methods: [:votes_count, :tag_list, :reviews_count]).
           merge "hasVoteForUser" => p.has_vote_for(current_user)
+          # merge "hasReviewForUser" => p.has_review_for(current_user)
       }
   end
 
@@ -18,6 +19,7 @@ class ProductsController < ApplicationController
     product = Product.find(params[:id])
     render json: product.as_json(methods: [:votes_count, :tag_list]).
       merge("hasVoteForUser" => product.has_vote_for(current_user))
+      # merge("hasReviewForUser" => product.has_review_for(current_user))
   end
 
   def update
@@ -47,6 +49,18 @@ class ProductsController < ApplicationController
 
     render json: product.as_json(methods: [:votes_count, :tag_list]).
       merge("hasVoteForUser" => product.has_vote_for(current_user))
+  end
+
+  def review
+    product = Product.find(params[:product_id])
+    if product.has_review_for(current_user)
+      product.reviews.where(user: current_user).destroy_all
+    else
+      product.reviews.create!(user: current_user, rating: rating, text: text)
+    end
+
+    render json: product.as_json(methods: [:reviews_count, :tag_list]).
+      merge("hasReviewForUser" => product.has_review_for(current_user))
   end
 
 end

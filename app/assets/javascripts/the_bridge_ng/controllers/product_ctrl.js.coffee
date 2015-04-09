@@ -18,6 +18,15 @@
         window.location="/login" if status == 401
         # console.log arguments
 
+  $scope.changeReviewFor = (product) ->
+    $http.get("/products/#{product.id}/review")
+      .success (data) ->
+        angular.extend(product,data)
+
+      .error (data, status, headers, config) ->
+        window.location="/login" if status == 401
+        # console.log arguments
+
   $scope.searchAgain = () ->
     $location.path('/marketplace/search/' + $scope.searchText)
   )

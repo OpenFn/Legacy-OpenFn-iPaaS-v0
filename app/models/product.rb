@@ -2,6 +2,7 @@ class Product < ActiveRecord::Base
   acts_as_taggable
 
   has_many :votes
+  has_many :reviews
   has_many :connection_profiles
 
   validates :name, presence: true
@@ -42,5 +43,12 @@ class Product < ActiveRecord::Base
     votes.count
   end
 
+  def has_review_for(user)
+    reviews.where(user: user).any?
+  end
+
+  def reviews_count
+    reviews.count
+  end
 
 end
