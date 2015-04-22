@@ -120,5 +120,3 @@ OpenFn::Application.routes.draw do
   root to: 'home#index'
   # root to: 'mappings#index'
 end
-
-
