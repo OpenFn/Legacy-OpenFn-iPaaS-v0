@@ -4,7 +4,7 @@ module OdkSfLegacy
     before_action :ensure_valid_credentials, only: [:new, :show, :edit]
 
     def index
-      @mappings = current_user.mappings.page params[:page]
+      @mappings = current_user.mappings.order("active desc", :enabled, :name)
       unless current_user.valid_credentials
         flash[:danger] = "Please add valid Salesforce and ODK
                          credentials in your settings."
