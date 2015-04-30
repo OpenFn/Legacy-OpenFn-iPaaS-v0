@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :mappings, dependent: :destroy, class_name: "OdkSfLegacy::Mapping"
   has_many :credentials, through: :connection_profiles
   has_many :connection_profiles
+  has_many :reviews
+  has_many :review_votes
   # has_many :collaborations, dependent: :destroy
   # has_many :projects, through: :collaborations
   # belongs_to :organization
@@ -109,6 +111,14 @@ class User < ActiveRecord::Base
 
   def all_time_count
     OdkSfLegacy::Submission.joins(import: {mapping: :user}).where(users: {id: id}).count
+  end
+
+  def today_count
+    OdkSfLegacy::Submission.joins(import: {mapping: :user}).where(users: {id: id}).where( "odk_sf_legacy_submissions.created_at BETWEEN ? AND ?", Date.today-1, Date.today+1).count
+  end
+
+  def yesterday_count
+    OdkSfLegacy::Submission.joins(import: {mapping: :user}).where(users: {id: id}).where( "odk_sf_legacy_submissions.created_at BETWEEN ? AND ?", Date.today-2, Date.today).count
   end
 
   def seconds_to_units(seconds)
