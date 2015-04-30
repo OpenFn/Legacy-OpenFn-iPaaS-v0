@@ -3,6 +3,7 @@ class Product < ActiveRecord::Base
 
   has_many :votes
   has_many :connection_profiles
+  has_many :reviews
 
   validates :name, presence: true
 
@@ -30,7 +31,7 @@ class Product < ActiveRecord::Base
     product.twitter = salesforce_product.twitter
     product.facebook = salesforce_product.facebook
     product.email = salesforce_product.email
-    
+
     return product
   end
 

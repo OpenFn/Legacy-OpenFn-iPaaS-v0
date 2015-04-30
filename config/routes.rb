@@ -72,6 +72,7 @@ OpenFn::Application.routes.draw do
       resources :connection_profiles, only: [:index, :edit, :create]
 
       resources :credentials, only: [:index, :create, :edit]
+
     end
   end
 
@@ -90,6 +91,10 @@ OpenFn::Application.routes.draw do
   resources :charges
 
   resources :products, only: [:index, :show]
+
+  resources :reviews, only: [:create, :show, :index]
+
+  resources :review_votes, only: [:create, :show, :index]
 
   resources :odk_forms, only: [:index]
 

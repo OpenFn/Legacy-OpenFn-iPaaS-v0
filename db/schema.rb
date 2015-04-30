@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330142429) do
+ActiveRecord::Schema.define(version: 20150429125046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,10 +109,9 @@ ActiveRecord::Schema.define(version: 20150330142429) do
   add_index "mappings", ["user_id"], name: "index_mappings_on_user_id", using: :btree
 
   create_table "odk_sf_legacy_credentials", force: true do |t|
-    t.integer  "user_id"
+    t.hstore   "details"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.hstore   "details"
   end
 
   create_table "odk_sf_legacy_imports", force: true do |t|
@@ -174,7 +173,6 @@ ActiveRecord::Schema.define(version: 20150330142429) do
     t.string   "reference_to"
     t.boolean  "nillable"
     t.boolean  "unique"
-    t.json     "properties"
   end
 
   add_index "odk_sf_legacy_salesforce_fields", ["salesforce_object_id"], name: "index_odk_sf_legacy_salesforce_fields_on_salesforce_object_id", using: :btree
@@ -262,6 +260,30 @@ ActiveRecord::Schema.define(version: 20150330142429) do
 
   add_index "projects", ["organization_id"], name: "index_projects_on_organization_id", using: :btree
 
+  create_table "review_votes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "review_id"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "review_votes", ["review_id"], name: "index_review_votes_on_review_id", using: :btree
+  add_index "review_votes", ["user_id"], name: "index_review_votes_on_user_id", using: :btree
+
+  create_table "reviews", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.string   "review"
+    t.float    "rating"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["product_id"], name: "index_reviews_on_product_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
+
   create_table "submission_records", force: true do |t|
     t.integer  "mapping_id"
     t.text     "raw_source_payload"
@@ -318,10 +340,10 @@ ActiveRecord::Schema.define(version: 20150330142429) do
     t.string   "stripe_subscription_token"
     t.integer  "plan_id"
     t.datetime "stripe_current_period_end"
+    t.boolean  "unlimited",                       default: false
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
-    t.boolean  "unlimited",                       default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
