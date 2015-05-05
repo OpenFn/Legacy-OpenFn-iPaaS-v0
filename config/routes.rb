@@ -92,8 +92,6 @@ OpenFn::Application.routes.draw do
 
   resources :products, only: [:index, :show]
 
-  resources :reviews, only: [:create, :show, :index]
-
   resources :review_votes, only: [:create, :show, :index]
 
   resources :odk_forms, only: [:index]
@@ -116,7 +114,8 @@ OpenFn::Application.routes.draw do
 
   get '/products/:product_id/vote', to: "products#vote"
 
-  get '/products/:product_id/review', to: "products#review"
+  post '/products/:product_id/review/new', to: "reviews#create"
+  get '/products/:product_id/review/show', to: "reviews#index"
 
   get "metrics", to: "metrics#index", as: :metrics
 

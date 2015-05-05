@@ -6,23 +6,25 @@ class ReviewsController < ApplicationController
 
   def new
     @review = Review.new
+    @review = Review.find(:all)
   end
 
   def show
     @review = Review.find(params[:id])
-    render json: @review
+    #render json: @review
   end
 
   def index
-    @reviews = Review.all
-    render json: @reviews
+    @reviews = Review.where(:product_id => params[:product_id])
+    #render json: @reviews
   end
 
   def create
     @review = Review.new(review_params)
     respond_to do |format|
       if @review.save
-        format.json { render json: @review, status: :created }
+        #format.json { render json: @review, status: :created }
+        redirect_to :action => 'index'
       else
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
