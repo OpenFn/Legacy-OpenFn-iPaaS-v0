@@ -4,7 +4,7 @@
   <p>These are the current reviews for this product in our system</p>
   <ul id="reviews">
   <% @reviews.each do |c| %>
-    <li><%= c.review %></li>
+    <li>Review: <%= c.review %></li><span>Rating: <%= c.rating %></span>
   <% end %>
   </ul>
 <% end %>
