@@ -6,7 +6,6 @@ class ReviewsController < ApplicationController
 
   def new
     @review = Review.new
-    @review = Review.find(:all)
   end
 
   def show
@@ -21,20 +20,25 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    respond_to do |format|
+    #respond_to do |format|
       if @review.save
         #format.json { render json: @review, status: :created }
-        redirect_to :action => 'index'
+        redirect_to :controller => 'reviews', :action => 'index', :product_id => 1
       else
         format.json { render json: @review.errors, status: :unprocessable_entity }
+        render :action => 'new'
       end
-    end
+    #end
   end
+
 
   private
 
   def review_params
-    params.require(:review).permit(:user_id, :product_id, :review, :rating, :date)
+    params[:review][:user_id] ||= current_user.id
+    params[:review][:date] ||= Time.now.to_date
+    params.require(:review).permit(:user_id, :review, :rating, :date)
+
   end
 
 end
