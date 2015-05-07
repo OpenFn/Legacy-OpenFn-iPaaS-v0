@@ -114,10 +114,12 @@ OpenFn::Application.routes.draw do
   match :set_password, to: 'users#set_password', via: [:get, :post]
   post :receive_stripe_events, to: 'webhooks#receive_stripe_events'
 
+
+
   get '/products/:product_id/vote', to: "products#vote"
 
   get '/products/:product_id/review/show', to: "reviews#index"
-  get '/products/:product_id/review/new', to: "reviews#new"
+  post '/products/:product_id/review/new', to: "reviews#create"
 
   get "metrics", to: "metrics#index", as: :metrics
 

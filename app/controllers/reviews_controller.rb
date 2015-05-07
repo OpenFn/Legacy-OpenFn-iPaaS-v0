@@ -19,11 +19,16 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
+    Rails.logger.info {"#{__FILE__}:#{__LINE__} #{params[:review]}, #{params[:rating]}, #{params[:product_id]}, #{current_user.id}"}
+    @review = Review.new(:review => params[:review],
+                         :rating => params[:rating],
+                         :product_id => params[:product_id],
+                         :user_id => current_user.id,
+                         :date => Time.now.to_date)
     #respond_to do |format|
       if @review.save
         #format.json { render json: @review, status: :created }
-        redirect_to :controller => 'reviews', :action => 'index', :product_id => 1
+        redirect_to :controller => 'reviews', :action => 'index', :product_id => params[:product_id]
       else
         format.json { render json: @review.errors, status: :unprocessable_entity }
         render :action => 'new'
@@ -31,14 +36,5 @@ class ReviewsController < ApplicationController
     #end
   end
 
-
-  private
-
-  def review_params
-    params[:review][:user_id] ||= current_user.id
-    params[:review][:date] ||= Time.now.to_date
-    params.require(:review).permit(:user_id, :review, :rating, :date)
-
-  end
 
 end
