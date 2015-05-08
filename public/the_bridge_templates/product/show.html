@@ -89,7 +89,10 @@
                         <div class="tab-content-text" ng-bind-html="product.tech_specs" active="tab.active" disabled="tab.disabled"></div>
                       </tab>
                       <tab heading="Reviews">
-                        <div class="tab-content-text" ng-bind-html="product.reviews" active="tab.active" disabled="tab.disabled"></div>
+                      <div ng-repeat = "n in product.reviews">
+                        <div class="tab-content-text" ng-bind-html="n.review" active="tab.active" disabled="tab.disabled">
+                        </div>
+                      </div>
                       </tab>
                       <tab heading="Resources">
                         <div class="tab-content-text" ng-bind-html="product.resources" active="tab.active" disabled="tab.disabled"></div>
@@ -136,7 +139,7 @@
           <span class="mb-title">Your</span> reviews are what drive the community. Thanks for taking the time to open-source your knowledge of {{product.name}}.
           <br>
           <br>
-          <form method="post" action="/products/2/review/new">
+          <form method="post" action="{{'/products/'+product.id+'/review/new'}}">
             <span><strong>*Write Review (116 chars).</strong></span><br><br>
             <textarea rows="10" cols="50" name="review" placeholder="something thougtful and helpful" style = "color: red;" class="fsField fsRequired fsTextAreaMaxLength", maxlength = "116"></textarea>
             <br>

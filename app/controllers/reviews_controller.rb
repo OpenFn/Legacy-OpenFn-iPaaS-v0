@@ -28,10 +28,10 @@ class ReviewsController < ApplicationController
     #respond_to do |format|
       if @review.save
         #format.json { render json: @review, status: :created }
-        redirect_to :controller => 'reviews', :action => 'index', :product_id => params[:product_id]
+        redirect_to :back
       else
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-        render :action => 'new'
+        redirect_to :back
+        #format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     #end
   end
