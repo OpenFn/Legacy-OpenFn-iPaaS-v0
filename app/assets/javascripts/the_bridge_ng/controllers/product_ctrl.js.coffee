@@ -29,6 +29,17 @@
 
   $scope.searchAgain = () ->
     $location.path('/marketplace/search/' + $scope.searchText)
+
+  $scope.upVote = (review) ->
+    $http.get("/review/#{review.id}/up_vote")
+    console.log("In Upvote",review.id)
+
+  $scope.downVote = (review) ->
+    $http.get("/review/#{review.id}/down_vote")
+    console.log("In downvote",review.id)
+
+
+
   )
 
 ]

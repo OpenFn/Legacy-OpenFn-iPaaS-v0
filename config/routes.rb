@@ -90,7 +90,7 @@ OpenFn::Application.routes.draw do
 
   resources :charges
 
-  resources :reviews, only: [:create]
+  resources :reviews, only: [:create, :index, :show]
 
   resources :products, only: [:index, :show]
 
@@ -120,6 +120,9 @@ OpenFn::Application.routes.draw do
 
   get '/products/:product_id/review/show', to: "reviews#index"
   post '/products/:product_id/review/new', to: "reviews#create"
+
+  get '/review/:review_id/up_vote', to: "review_votes#upvote"
+  get '/review/:review_id/down_vote', to: "review_votes#downvote"
 
   get "metrics", to: "metrics#index", as: :metrics
 

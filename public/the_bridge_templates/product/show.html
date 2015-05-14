@@ -92,6 +92,8 @@
                       <div ng-repeat = "n in product.reviews">
                         <div class="tab-content-text" ng-bind-html="n.review" active="tab.active" disabled="tab.disabled">
                         </div>
+                          <a ng-click="upVote(n)" class="vote-link" >Upvote</a>
+                          <a ng-click="downVote(n)" class="vote-link" >Downvote</a>
                       </div>
                       </tab>
                       <tab heading="Resources">

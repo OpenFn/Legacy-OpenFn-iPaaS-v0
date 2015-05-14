@@ -29,6 +29,27 @@ class ReviewVotesController < ApplicationController
     end
   end
 
+  def upvote
+    duplicate_entry = ReviewVote.where(:user_id => current_user.id,:review_id => params[:review_id], :value => 1).first
+    if duplicate_entry.present?
+      Rails.logger.info {"#{__FILE__}:#{__LINE__} bike_unlock method start"}
+      flash[:notice] = "You have already upvoted this review"
+    end
+    @review_vote = ReviewVote.new(:user_id => current_user.id,
+                                  :review_id => params[:review_id],
+                                  :value => 1)
+    @review_vote.save
+    render json: @review_vote
+  end
+
+  def downvote
+    @review_vote = ReviewVote.new(:user_id => current_user.id,
+                                  :review_id => params[:review_id],
+                                  :value => 0)
+    @review_vote.save
+    render json: @review_vote
+  end
+
   private
 
   def review_vote_params

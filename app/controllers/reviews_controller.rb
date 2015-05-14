@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
-    #render json: @review
+    render json: @review
   end
 
   def index
