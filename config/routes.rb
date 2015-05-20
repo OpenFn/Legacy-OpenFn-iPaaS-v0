@@ -96,6 +96,8 @@ OpenFn::Application.routes.draw do
 
   resources :review_votes, only: [:create, :show, :index]
 
+  resources :tags, only: [:index, :show]
+
   resources :odk_forms, only: [:index]
 
   resource :welcome_stats, only: :show
