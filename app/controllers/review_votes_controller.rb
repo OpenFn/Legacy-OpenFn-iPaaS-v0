@@ -30,7 +30,10 @@ class ReviewVotesController < ApplicationController
   end
 
   def upvote
-
+    if !current_user.present?
+      redirect_to :controller => 'user_sessions', :action => 'create'
+      return
+    end
     @review_vote = ReviewVote.new(:user_id => current_user.id,
                                   :review_id => params[:review_id],
                                   :value => 1)
@@ -39,6 +42,10 @@ class ReviewVotesController < ApplicationController
   end
 
   def downvote
+    if !current_user.present?
+      redirect_to :controller => 'user_sessions', :action => 'create'
+      return
+    end
     @review_vote = ReviewVote.new(:user_id => current_user.id,
                                   :review_id => params[:review_id],
                                   :value => 0)
