@@ -19,7 +19,10 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    Rails.logger.info {"#{__FILE__}:#{__LINE__} #{params[:review]}, #{params[:rating]}, #{params[:product_id]}, #{current_user.id}"}
+    if !current_user.present?
+      redirect_to :controller => 'user_sessions', :action => 'create'
+      return
+    end
     @review = Review.new(:review => params[:review],
                          :rating => params[:rating],
                          :product_id => params[:product_id],

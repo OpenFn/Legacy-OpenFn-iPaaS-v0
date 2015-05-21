@@ -30,11 +30,7 @@ class ReviewVotesController < ApplicationController
   end
 
   def upvote
-    duplicate_entry = ReviewVote.where(:user_id => current_user.id,:review_id => params[:review_id], :value => 1).first
-    if duplicate_entry.present?
-      Rails.logger.info {"#{__FILE__}:#{__LINE__} bike_unlock method start"}
-      flash[:notice] = "You have already upvoted this review"
-    end
+
     @review_vote = ReviewVote.new(:user_id => current_user.id,
                                   :review_id => params[:review_id],
                                   :value => 1)
