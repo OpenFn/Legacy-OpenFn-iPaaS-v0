@@ -113,6 +113,8 @@ OpenFn::Application.routes.draw do
 
   get '/products/:product_id/vote', to: "products#vote"
 
+  get '/products/:product_id/tags', to: "tags#product_tags"
+
   get "metrics", to: "metrics#index", as: :metrics
 
   match "/*path" => redirect("#/%{path}"), via: [:get, :post]
