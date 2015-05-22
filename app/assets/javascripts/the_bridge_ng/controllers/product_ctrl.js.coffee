@@ -4,6 +4,8 @@
 
   $http.get('/products/' + $routeParams.id + '.json').success((data) ->
     $scope.product = data
+    $scope.product.reviews_count = $scope.product.reviews.length
+    $scope.productRating($scope.product)
     $scope.twitterApi = $scope.product.twitter.substring(1)
     $timeout ->
       twttr.widgets.load()
@@ -30,16 +32,23 @@
   $scope.searchAgain = () ->
     $location.path('/marketplace/search/' + $scope.searchText)
 
+  $scope.productRating = (product) ->
+    $http.get("/product/#{product.id}/rating").success((data) ->
+      $scope.product.rating = data
+  )
+
   $scope.upVote = (review) ->
     $http.get("/review/#{review.id}/up_vote")
-    console.log("In Upvote",review.id)
+    review.review_score = review.review_score + 1
 
   $scope.downVote = (review) ->
     $http.get("/review/#{review.id}/down_vote")
-    console.log("In downvote",review.id)
+    review.review_score = review.review_score - 1
 
-
-
+  $scope.reviewScore = (review) ->
+    $http.get("/review/#{review.id}/score").success((data) ->
+      review.review_score = data
   )
-
+  )
 ]
+

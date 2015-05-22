@@ -4,6 +4,7 @@ class ReviewVotesController < ApplicationController
   skip_before_filter :verify_authenticity_token
   skip_before_filter :require_login
 
+
   def new
     @review_vote = ReviewVote.new
   end
@@ -48,9 +49,15 @@ class ReviewVotesController < ApplicationController
     end
     @review_vote = ReviewVote.new(:user_id => current_user.id,
                                   :review_id => params[:review_id],
-                                  :value => 0)
+                                  :value => -1)
     @review_vote.save
     render json: @review_vote
+  end
+
+  def count_rating
+    reviews = ReviewVote.where(:review_id => params[:review_id])
+    total_rating = reviews.sum('value')
+    render json: total_rating
   end
 
   private

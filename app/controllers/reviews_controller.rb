@@ -39,5 +39,19 @@ class ReviewsController < ApplicationController
     #end
   end
 
+  def product_rating
+    reviews = Review.where(:product_id => params[:product_id])
+    if reviews.present?
+      reviews_count = reviews.count
+      Rails.logger.info {"#{__FILE__}:#{__LINE__} reviews_count => #{reviews_count}"}
+      rating = reviews.sum('rating')/reviews_count
+      Rails.logger.info {"#{__FILE__}:#{__LINE__} rating => #{rating}"}
+      render json: rating
+    else
+      render json: 0
+    end
+
+  end
+
 
 end

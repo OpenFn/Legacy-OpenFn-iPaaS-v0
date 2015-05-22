@@ -31,8 +31,8 @@
                       <i class="fa fa-star-o"></i>
                       <i class="fa fa-star-o"></i>
                     </span>
-                    <span class="little">
-                      &nbsp;(0)
+                    <span class="little" >
+                      ({{product.rating}})
                     </span>
                     <br>
                     {{product.name}}
@@ -90,10 +90,12 @@
                       </tab>
                       <tab heading="Reviews">
                       <div ng-repeat = "n in product.reviews">
-                        <div class="tab-content-text" ng-bind-html="n.review" active="tab.active" disabled="tab.disabled">
+                        <div class="tab-content-text" active="tab.active" disabled="tab.disabled"><strong>{{n.review}}</strong>
                         </div>
-                          <a ng-click="upVote(n)" class="vote-link" >Upvote</a>
-                          <a ng-click="downVote(n)" class="vote-link" >Downvote</a>
+                        <!-- <div class="tab-content-text" ng-bind-html="rating(n)">Rating</div> -->
+                        <span ng-init="reviewScore(n)">Review score:{{n.review_score}}</span><br/ >
+                          <a ng-click="upVote(n)" class="vote-link" ng-disabled="checked">Upvote</a>
+                          <a ng-click="downVote(n)" class="vote-link" ng-disabled="checked">Downvote</a>
                       </div>
                       </tab>
                       <tab heading="Resources">

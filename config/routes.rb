@@ -120,9 +120,11 @@ OpenFn::Application.routes.draw do
 
   get '/products/:product_id/review/show', to: "reviews#index"
   post '/products/:product_id/review/new', to: "reviews#create"
+  get '/product/:product_id/rating', to: "reviews#product_rating"
 
   get '/review/:review_id/up_vote', to: "review_votes#upvote"
   get '/review/:review_id/down_vote', to: "review_votes#downvote"
+  get '/review/:review_id/score', to: "review_votes#count_rating"
 
   get "metrics", to: "metrics#index", as: :metrics
 
