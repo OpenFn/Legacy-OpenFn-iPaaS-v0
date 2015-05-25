@@ -89,11 +89,10 @@
                         <div class="tab-content-text" ng-bind-html="product.tech_specs" active="tab.active" disabled="tab.disabled"></div>
                       </tab>
                       <tab heading="Reviews">
-                      <div ng-repeat = "n in product.reviews">
+                      <div ng-repeat = "n in product.reviews | orderBy:'-review_score'">
                         <div class="tab-content-text" active="tab.active" disabled="tab.disabled"><strong>{{n.review}}</strong>
                         </div>
-                        <!-- <div class="tab-content-text" ng-bind-html="rating(n)">Rating</div> -->
-                        <span ng-init="reviewScore(n)">Review score:{{n.review_score}}</span><br/ >
+                        <span ng-init="reviewScore(n,product)">Review score:{{n.review_score}}</span><br/ >
                           <a ng-click="upVote(n)" class="vote-link" ng-disabled="checked">Upvote</a>
                           <a ng-click="downVote(n)" class="vote-link" ng-disabled="checked">Downvote</a>
                       </div>

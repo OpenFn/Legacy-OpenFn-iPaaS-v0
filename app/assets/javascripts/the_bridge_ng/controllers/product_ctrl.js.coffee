@@ -4,6 +4,7 @@
 
   $http.get('/products/' + $routeParams.id + '.json').success((data) ->
     $scope.product = data
+    console.log("product",data)
     $scope.product.reviews_count = $scope.product.reviews.length
     $scope.productRating($scope.product)
     $scope.twitterApi = $scope.product.twitter.substring(1)
@@ -45,9 +46,13 @@
     $http.get("/review/#{review.id}/down_vote")
     review.review_score = review.review_score - 1
 
-  $scope.reviewScore = (review) ->
+  $scope.reviewScore = (review,product) ->
     $http.get("/review/#{review.id}/score").success((data) ->
-      review.review_score = data
+      i = 0
+      while i < product.reviews.length
+        if product.reviews[i].id == review.id
+          $scope.product.reviews[i].review_score = data
+        i++
   )
   )
 ]
