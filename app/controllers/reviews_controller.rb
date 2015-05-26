@@ -23,6 +23,11 @@ class ReviewsController < ApplicationController
       redirect_to :controller => 'user_sessions', :action => 'create'
       return
     end
+    if Review.where(:user_id => current_user.id, :product_id => params[:product_id]).first.present?
+      Rails.logger.info {"#{__FILE__}:#{__LINE__} Duplicate Entry"}
+      render json: {status: "duplicate"}
+      return
+    end
     @review = Review.new(:review => params[:review],
                          :rating => params[:rating],
                          :product_id => params[:product_id],
@@ -30,8 +35,7 @@ class ReviewsController < ApplicationController
                          :date => Time.now.to_date)
     #respond_to do |format|
       if @review.save
-        #format.json { render json: @review, status: :created }
-        redirect_to :back
+        render json: {status: "success", redirect_url: "/product/#{params[:product_id]}"}
       else
         redirect_to :back
         #format.json { render json: @review.errors, status: :unprocessable_entity }

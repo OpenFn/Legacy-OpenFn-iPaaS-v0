@@ -54,6 +54,23 @@
           $scope.product.reviews[i].review_score = data
         i++
   )
+
+  $scope.submitReview = (product)->
+    $scope.review =
+      'review': $scope.post.review
+      'rating': $scope.post.rating
+      'product_id': product.id
+
+    $http.post("/products/#{product.id}/review/new",$scope.review).success((data) ->
+      console.log("data",data.status)
+      if data.status == 'duplicate'
+        $scope.duplicate_status = true
+
+      if data.status == 'success'
+        $scope.success_status = true
+        window.location = data.redirect_url
+    )
+
   )
 ]
 
