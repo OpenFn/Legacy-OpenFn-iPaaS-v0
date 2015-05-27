@@ -2,7 +2,9 @@ class Product < ActiveRecord::Base
   acts_as_taggable
 
   has_many :votes
+  has_many :reviews
   has_many :connection_profiles
+  has_many :reviews
 
   validates :name, presence: true
 
@@ -30,7 +32,7 @@ class Product < ActiveRecord::Base
     product.twitter = salesforce_product.twitter
     product.facebook = salesforce_product.facebook
     product.email = salesforce_product.email
-    
+
     return product
   end
 
@@ -42,5 +44,12 @@ class Product < ActiveRecord::Base
     votes.count
   end
 
+  def has_review_for(user)
+    reviews.where(user: user).any?
+  end
+
+  def reviews_count
+    reviews.count
+  end
 
 end

@@ -31,8 +31,8 @@
                       <i class="fa fa-star-o"></i>
                       <i class="fa fa-star-o"></i>
                     </span>
-                    <span class="little">
-                      &nbsp;(0)
+                    <span class="little" >
+                      ({{product.rating}})
                     </span>
                     <br>
                     {{product.name}}
@@ -46,9 +46,10 @@
                       </a>
                     </li>
                     <li role="presentation">
-                      <a ng-href="" target="_blank" class="review-link">
-                        <i class="fa fa-comment fa-lg"></i> Review (soon)
-                      </a>
+                         <a data-toggle="modal" data-target="#review_modal" target="_blank" class="review-link">
+                         <i class="fa fa-comment fa-lg"></i> Review ({{product.reviews_count}})
+                        </a>
+                      </form>
                     </li>
                     <li role="presentation">
                       <a ng-href="{{product.website}}" class="website-link" target="_blank">
@@ -88,7 +89,13 @@
                         <div class="tab-content-text" ng-bind-html="product.tech_specs" active="tab.active" disabled="tab.disabled"></div>
                       </tab>
                       <tab heading="Reviews">
-                        <div class="tab-content-text" ng-bind-html="product.reviews" active="tab.active" disabled="tab.disabled"></div>
+                      <div ng-repeat = "n in product.reviews | orderBy:'-review_score'">
+                        <div class="tab-content-text" active="tab.active" disabled="tab.disabled"><strong>{{n.review}}</strong>
+                        </div>
+                        <span ng-init="reviewScore(n,product)">Review score:{{n.review_score}}</span><br/ >
+                          <a ng-click="upVote(n)" class="vote-link" ng-disabled="checked">Upvote</a>
+                          <a ng-click="downVote(n)" class="vote-link" ng-disabled="checked">Downvote</a>
+                      </div>
                       </tab>
                       <tab heading="Resources">
                         <div class="tab-content-text" ng-bind-html="product.resources" active="tab.active" disabled="tab.disabled"></div>
@@ -123,6 +130,39 @@
   </div>
 </div>
 
+<div class="modal fade" id="review_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="featurette dark">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Submit a review for {{product.name}}.</h4>
+        </div>
+        <div class="modal-body center">
+          <span class="mb-title">Your</span> reviews are what drive the community. Thanks for taking the time to open-source your knowledge of {{product.name}}.
+          <br>
+          <br>
+          <form method="post">
+            <span><strong>*Write Review (116 chars).</strong></span><br><br>
+            <textarea ng-model = "post.review" rows="10" cols="50" name="review" placeholder="something thougtful and helpful" style = "color: red;" class="fsField fsRequired fsTextAreaMaxLength", maxlength = "116"></textarea>
+            <br>
+            <br>
+            <span><strong>*Ratings (0-10).</strong></span><br><br>
+            <input ng-model = "post.rating" type="integer" name="rating" placeholder="0-10" style="color: red;" class="fsField fsRequired fsTextAreaMaxLength", maxlength = "116">
+            <br>
+            <br>
+            <button ng-click = "submitReview(product)" class="btn btn-success" type="submit">Submit</button>
+          <br>
+          <br>
+          <div ng-show = "duplicate_status" class = "submitStatus">*You have already submitted review for this Product</div>
+          <div ng-show = "success_status" class = "submitStatus">*Your Review is successfully submitted</div>
+          <br>
+          Thanks for your time.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">

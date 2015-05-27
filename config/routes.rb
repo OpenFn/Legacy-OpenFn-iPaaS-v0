@@ -72,6 +72,7 @@ OpenFn::Application.routes.draw do
       resources :connection_profiles, only: [:index, :edit, :create]
 
       resources :credentials, only: [:index, :create, :edit]
+
     end
   end
 
@@ -89,7 +90,11 @@ OpenFn::Application.routes.draw do
 
   resources :charges
 
+  resources :reviews, only: [:create, :index, :show]
+
   resources :products, only: [:index, :show]
+
+  resources :review_votes, only: [:create, :show, :index]
 
   resources :odk_forms, only: [:index]
 
@@ -109,7 +114,17 @@ OpenFn::Application.routes.draw do
   match :set_password, to: 'users#set_password', via: [:get, :post]
   post :receive_stripe_events, to: 'webhooks#receive_stripe_events'
 
+
+
   get '/products/:product_id/vote', to: "products#vote"
+
+  get '/products/:product_id/review/show', to: "reviews#index"
+  post '/products/:product_id/review/new', to: "reviews#create"
+  get '/product/:product_id/rating', to: "reviews#product_rating"
+
+  get '/review/:review_id/up_vote', to: "review_votes#upvote"
+  get '/review/:review_id/down_vote', to: "review_votes#downvote"
+  get '/review/:review_id/score', to: "review_votes#count_rating"
 
   get "metrics", to: "metrics#index", as: :metrics
 
@@ -118,5 +133,3 @@ OpenFn::Application.routes.draw do
   root to: 'home#index'
   # root to: 'mappings#index'
 end
-
-

@@ -31,8 +31,8 @@
 .product-list {
   $product-padding: 1em;
   $product-margin: 0.8em;
-  
-  
+
+
   margin-left: -$product-margin;
   margin-right: -$product-margin;
   margin-top: -$product-margin;
@@ -57,7 +57,7 @@
       position: relative;
       padding: $product-padding;
       margin: $product-margin;
-  
+
       .description {
         font-size: 0.8em;
         line-height: 1.2;
@@ -104,12 +104,12 @@
         background-image: image-url("noise.png");
       }
 
-      
+
       // .deatils-link-wrapper {
       //   position: relative;
       //   // float: left;
       //   text-align: center;
-      //   margin: 0 auto; 
+      //   margin: 0 auto;
       // }
 
       .details-link {
@@ -144,12 +144,12 @@
     position: relative;
     display: block;
   }
-   
+
   .product-container.ng-enter.ng-enter-active,
   .product-container.ng-leave {
     opacity: 1;
   }
-   
+
   .product-container.ng-leave.ng-leave-active,
   .product-container.ng-enter {
     opacity: 0;
@@ -228,7 +228,7 @@
     cursor: pointer;
     // background-color: $grey-blue;
     // background-image: image-url("noise.png");
-  }   
+  }
 
   .tab-content-text {
     a {
@@ -247,7 +247,7 @@
   .rating {
     // float: right;
     text-align: center;
-    padding-right: 29px; 
+    padding-right: 29px;
   }
 
   .actions, .rating {
@@ -350,10 +350,15 @@
 }
 
 .fsField {
-  color: black; 
+  color: black;
   width: 508px;
 }
 
 .fsSubmitButton {
   color: black;
+}
+
+.submitStatus{
+  color:red;
+  font-weight: bold;
 }
