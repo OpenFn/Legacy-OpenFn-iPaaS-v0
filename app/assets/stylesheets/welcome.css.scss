@@ -1,14 +1,12 @@
 .welcome {
 
-
-
     .header-image {
         margin-top: -30px;
         margin-bottom: -30px;
         width: 100%;
         min-height: 435px;
         text-align: center;
-        //background-color: $primary-blue;
+        // background-color: #CCFFFF;
         //background-image: image-url("wow_bg.jpg");
         
         /*background-repeat: no-repeat;*/
@@ -22,8 +20,7 @@
     }
 
     .headline {
-        padding: rem-calc(80px) 0 rem-calc(25px);
-
+        padding: rem-calc(80px) 0 rem-calc(5px);
     }
 
     .headline h3 {
@@ -39,9 +36,8 @@
         margin-bottom: 0;
         font-weight: $bold;
         text-transform: uppercase;
-        color: $accent-yellow;
+        color: $dynamic;
         opacity: 0.8;
-
     }
 
     .numbers h4 {
@@ -53,61 +49,7 @@
         opacity: 0.6;
     }
 
-    .featurette {
-
-      background-color: $cream;
-      //background-image: image-url("noise.png");
-
-      .featurette-heading {
-        font-size: rem-calc(35px);
-        color: $primary-blue;
-        margin: 2rem 0;
-      }
-
-      p.lead {
-        color: $primary-blue;
-        font-size: 1.8rem;
-        line-height: 2.8rem;
-
-      }
-      &.dark {
-        background-color: $deeper-blue;
-        //background-image: image-url("noise.png");
-
-        .featurette-heading {
-          color: $off-white;
-        }
-
-        p.lead {
-          color: $off-white;
-        }
-      }
-
-      .container {
-        margin-top: rem-calc(65px);
-        margin-bottom: rem-calc(65px);
-      }
-
-      overflow: hidden;
-
-      padding: 0;
-      margin: 0;
-
-      hr {
-        border: none;
-        height: rem-calc(10px);
-        margin: 0;
-        padding: 0;
-
-        &.light {
-          background-color: lighten($primary-blue, 51);
-        }
-        &.dark {
-          background-color: $primary-blue;
-        }
-      }
-
-      
+    .featurette {      
 
       .openmarket-featurette-image {
         background-image: image-url("openmarket-featurette.png");
