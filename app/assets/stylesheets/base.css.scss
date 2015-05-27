@@ -6,13 +6,16 @@ $bold: 700;
 $semi-bold: 600;
 
 $primary-blue: #428bca;   // dark blue, used to differentiate rows and featurettes from bg-color
-$deeper-blue: #ffffff;    // deeper blue, currently same as main background color
-$grey-blue: #ffffff;
+
 $off-white: #F8F8F8;
 $grey: #969795;
 $light-grey: #A3AAAB;
 $dynamic: #f0ad4e;  //used for live stats and accents
-$accent-yellow: red;
+$lilac: #CCCCFF;
+
+$deeper-blue: red;    // deprecated
+$accent-yellow: red;  // depreacted
+$grey-blue: red;      // deprecated
 
 a:hover {
   text-decoration: none;
@@ -38,10 +41,7 @@ html {
 body {
   padding-top: 68px;
   font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif;
-  // color: $off-white;
   line-height: 1;
-  // background-color: $bg-color;
-  // background-image: image-url("noise.png");
   max-width: 100%;
   overflow-x: hidden;
   min-height: 100%;
@@ -65,7 +65,6 @@ html, body {
     margin-top: -68px;
     height: 68px;
     clear: both;
-    // color: black;
     background-color: $nav;
     padding-top: 12px;
 }
@@ -91,8 +90,6 @@ b, strong {
   z-index: 9;
   border: none;
   border-radius: 0;
-  // background-color: $cream !important;
-  // background-image: image-url("noise.png");
   position: fixed;
   margin-bottom: 15px;
   height: 68px;
@@ -534,11 +531,11 @@ b, strong {
        -moz-border-radius: 6px 6px 6px 6px;
             border-radius: 6px 6px 6px 6px;
             border: none;
-            background-color: $nav;
-            color: black;
+    //         background-color: $nav;
+    //         color: black;
  
     &:hover, &:focus {
-      background-color: $primary-blue;
+      // background-color: $lilac;
       // color: $dynamic;
       // border: none;
     }
@@ -546,7 +543,7 @@ b, strong {
  
   > .active a {
     &, &:hover, &:focus {
-      // border: none;
+      border: none;
       // *border-left-color: #fff;
       // color: $dynamic;
       // background-color: $bg-color;

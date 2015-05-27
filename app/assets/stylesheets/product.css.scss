@@ -45,13 +45,14 @@
     margin-bottom: 1.6em;
 
     .product:hover {
-      background-color: #428bca;
+      background-color: $nav;
+      background-image: image-url("noise.png");
     }
 
     .product {
       height: 100%;
-      background-color: $bg-color;
-      background-image: image-url("noise.png");
+      background-color: $nav;
+      // background-image: image-url("noise.png");
       text-align: center;
 
       position: relative;
@@ -75,14 +76,14 @@
       }
 
       .vote-link {
-        color: #384D5C;
+        // color: #384D5C;
         padding: 0.5em;
         position: absolute;
         bottom: 0;
         right: 0;
         cursor: pointer;
-        background-color: $grey-blue;
-        background-image: image-url("noise.png");
+        // background-color: $grey-blue;
+        // background-image: image-url("noise.png");
       }
 
       .vote-count {
@@ -94,14 +95,14 @@
         }
 
       .website-link {
-        color: #384D5C;
+        // color: #384D5C;
         padding: 0.5em;
         position: absolute;
         bottom: 0;
         left: 0;
         cursor: pointer;
-        background-color: $grey-blue;
-        background-image: image-url("noise.png");
+        // background-color: $grey-blue;
+        // background-image: image-url("noise.png");
       }
 
 
@@ -158,11 +159,9 @@
 
 .show-product {
 
-//Taylor's edits to the show product page CSS
-
-  background-color: $bg-color;
-  background-image: image-url("noise.png");
-  color: $off-white;
+  background-color: $nav;
+  // background-image: image-url("noise.png");
+  // color: $off-white;
   padding: 30px;
 
   .actions, .rating, .name {
@@ -268,7 +267,7 @@
   font-weight: $bold;
   text-transform: uppercase;
   margin-bottom: -30px;
-  // background-color: $primary-blue;
+  // background-color: $nav;
   // background-image: image-url("noise.png");
 
   }
@@ -330,7 +329,7 @@
     .tag {
       margin-right: 0.5em;
       margin-top: 0.5em;
-      // background-color: $bg-color;
+      background-color: $lilac;
       font-size: rem-calc(14px);
       text-transform: uppercase;
       display: inline-block;

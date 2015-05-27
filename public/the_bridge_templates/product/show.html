@@ -25,13 +25,10 @@
                 <div class="product">
                   <div class="title show">
                     <span class='live little'>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                      <i class="fa fa-star-o"></i>
-                    </span>
-                    <span class="little" >
+                      {{product.rating}}
+                      <i class="fa fa-star"></i>
+                      </span>
+                    <span class="little">
                       ({{product.reviews_count}})
                     </span>
                     <br>
@@ -141,7 +138,7 @@
           <h4 class="modal-title" id="myModalLabel">Submit a review for {{product.name}}.</h4>
         </div>
         <div class="modal-body center">
-          <span class="mb-title">Your</span> reviews are what drive the community. Thanks for taking the time to open-source your knowledge of {{product.name}}.
+          Your reviews are what drive the community forward. Thanks for taking the time to open-source your knowledge of {{product.name}}. Your fellow users will vote your review up or down based on its usefulness.
           <br>
           <br>
           <form method="post">
