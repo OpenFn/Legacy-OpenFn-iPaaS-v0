@@ -5,14 +5,14 @@ $bg-color: #ffffff;       //main background color
 $bold: 700;
 $semi-bold: 600;
 
-$primary-blue: #000000;   // dark blue, used to differentiate rows and featurettes from bg-color
+$primary-blue: #428bca;   // dark blue, used to differentiate rows and featurettes from bg-color
 $deeper-blue: #ffffff;    // deeper blue, currently same as main background color
 $grey-blue: #ffffff;
-$off-white: #428bca;
+$off-white: #F8F8F8;
 $grey: #969795;
 $light-grey: #A3AAAB;
-$dynamic: #428bca;  //used for live stats and accents
-$accent-yellow: yellow;
+$dynamic: #f0ad4e;  //used for live stats and accents
+$accent-yellow: red;
 
 a:hover {
   text-decoration: none;
@@ -534,20 +534,22 @@ b, strong {
        -moz-border-radius: 6px 6px 6px 6px;
             border-radius: 6px 6px 6px 6px;
             border: none;
+            background-color: $nav;
+            color: black;
  
     &:hover, &:focus {
-      background-color: $bg-color;
-      color: $dynamic;
-      border: none;
+      background-color: $primary-blue;
+      // color: $dynamic;
+      // border: none;
     }
   }
  
   > .active a {
     &, &:hover, &:focus {
-      border: none;
+      // border: none;
       // *border-left-color: #fff;
-      color: $dynamic;
-      background-color: $bg-color;
+      // color: $dynamic;
+      // background-color: $bg-color;
     }
   }
 }

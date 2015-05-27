@@ -86,7 +86,7 @@
       }
 
       .vote-count {
-        color: $accent-yellow;
+        color: $dynamic;
         padding: 0.5em;
         position: absolute;
         bottom: 0;
@@ -182,7 +182,7 @@
   }
 
   .vote-count {
-    color: $accent-yellow;
+    color: $dynamic;
     // font-size: 1.22em;
     // padding: 0.8em;
     padding-right: 0.8em;
@@ -276,7 +276,7 @@
   .right-pills > li > a:hover {
     // background-color: $bg-color;
     // background-image: image-url("noise.png");
-    // color: $accent-yellow;
+    // color: $dynamic;
   }
 
   .right-pills .active a,
