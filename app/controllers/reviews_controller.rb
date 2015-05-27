@@ -54,8 +54,6 @@ class ReviewsController < ApplicationController
     else
       render json: 0
     end
-
   end
-
 
 end

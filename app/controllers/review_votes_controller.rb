@@ -32,26 +32,34 @@ class ReviewVotesController < ApplicationController
 
   def upvote
     if !current_user.present?
-      redirect_to :controller => 'user_sessions', :action => 'create'
+      render json: {status: "login", redirect_url: "/login"}
+      return
+    end
+    if @review_vote = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id], :value => 1).first.present?
+      render json: {review_vote: @review_vote, status: "duplicate"}
       return
     end
     @review_vote = ReviewVote.new(:user_id => current_user.id,
                                   :review_id => params[:review_id],
                                   :value => 1)
     @review_vote.save
-    render json: @review_vote
+    render json: {review_vote: @review_vote, status: "success"}
   end
 
   def downvote
     if !current_user.present?
-      redirect_to :controller => 'user_sessions', :action => 'create'
+      render json: {status: "login", redirect_url: "/login"}
+      return
+    end
+    if @review_vote = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id], :value => -1).first.present?
+      render json: {review_vote: @review_vote, status: "duplicate"}
       return
     end
     @review_vote = ReviewVote.new(:user_id => current_user.id,
                                   :review_id => params[:review_id],
                                   :value => -1)
     @review_vote.save
-    render json: @review_vote
+    render json: {review_vote: @review_vote, status: "success"}
   end
 
   def count_rating
@@ -59,6 +67,11 @@ class ReviewVotesController < ApplicationController
     total_rating = reviews.sum('value')
     render json: total_rating
   end
+
+  def check_upvote_downvote
+    review_vote = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id])
+  end
+
 
   private
 

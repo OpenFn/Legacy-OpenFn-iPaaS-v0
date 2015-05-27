@@ -95,6 +95,8 @@
                         <span ng-init="reviewScore(n,product)">Review score:{{n.review_score}}</span><br/ >
                           <a ng-click="upVote(n)" class="vote-link" ng-disabled="checked">Upvote</a>
                           <a ng-click="downVote(n)" class="vote-link" ng-disabled="checked">Downvote</a>
+                          <span ng-show = "n.duplicate_upvote" class="submitStatus">*You have already Upvoted this review</span>
+                          <span ng-show = "n.duplicate_downvote" class="submitStatus">*You have already Downvoted this review</span>
                       </div>
                       </tab>
                       <tab heading="Resources">
