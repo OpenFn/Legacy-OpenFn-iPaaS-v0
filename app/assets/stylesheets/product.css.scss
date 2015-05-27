@@ -50,7 +50,7 @@
 
     .product {
       height: 100%;
-      background-color: #3f5666;
+      background-color: $bg-color;
       background-image: image-url("noise.png");
       text-align: center;
 
@@ -160,7 +160,7 @@
 
 //Taylor's edits to the show product page CSS
 
-  background-color: #3f5666;
+  background-color: $bg-color;
   background-image: image-url("noise.png");
   color: $off-white;
   padding: 30px;
@@ -263,33 +263,33 @@
   }
 
   .right-pills {
-  color: $off-white;
+  // color: $off-white;
   font-size: rem-calc(12px);
   font-weight: $bold;
   text-transform: uppercase;
   margin-bottom: -30px;
-  background-color: $primary-blue;
-  background-image: image-url("noise.png");
+  // background-color: $primary-blue;
+  // background-image: image-url("noise.png");
 
   }
 
   .right-pills > li > a:hover {
-    background-color: $bg-color;
-    background-image: image-url("noise.png");
-    color: $accent-yellow;
+    // background-color: $bg-color;
+    // background-image: image-url("noise.png");
+    // color: $accent-yellow;
   }
 
   .right-pills .active a,
   .red .active a:hover{
-    background-color: $primary-blue;
-    background-image: image-url("noise.png");
-    color: $off-white;
+    // background-color: $primary-blue;
+    // background-image: image-url("noise.png");
+    // color: $off-white;
   }
 
   .nav-tabs {
     // margin-bottom: 0;
     border-bottom: 0;
-    color: $off-white;
+    // color: $off-white;
     font-size: rem-calc(20px);
     font-weight: $bold;
     text-transform: uppercase;
@@ -330,7 +330,7 @@
     .tag {
       margin-right: 0.5em;
       margin-top: 0.5em;
-      background-color: $bg-color;
+      // background-color: $bg-color;
       font-size: rem-calc(14px);
       text-transform: uppercase;
       display: inline-block;

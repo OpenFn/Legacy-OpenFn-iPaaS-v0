@@ -1,13 +1,13 @@
 // this is the old color--- $bg-color: #fffcf4, $cream: #fffcf4
-$cream: #fffcf4;          //header and footer, featurette light
-$bg-color: #384D5C;       //main background color
+$cream: #ffffff;          //header and footer, featurette light
+$bg-color: #ffffff;       //main background color
 $bold: 700;
 $semi-bold: 600;
 
-$primary-blue: #3f5666;   // dark blue, used to differentiate rows and featurettes from bg-color
-$deeper-blue: #384D5C;    // deeper blue, currently same as main background color
-$grey-blue: #5A6C77;
-$off-white: #F2EFE6;
+$primary-blue: #000000;   // dark blue, used to differentiate rows and featurettes from bg-color
+$deeper-blue: #ffffff;    // deeper blue, currently same as main background color
+$grey-blue: #ffffff;
+$off-white: #000000;
 $grey: #969795;
 $light-grey: #A3AAAB;
 $accent-yellow: #f8ca4d;  //dark yellow, used for live stats and accents
@@ -36,10 +36,10 @@ html {
 body {
   padding-top: 68px;
   font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif;
-  color: $off-white;
+  // color: $off-white;
   line-height: 1;
-  background-color: $bg-color;
-  background-image: image-url("noise.png");
+  // background-color: $bg-color;
+  // background-image: image-url("noise.png");
   max-width: 100%;
   overflow-x: hidden;
   min-height: 100%;
@@ -63,14 +63,13 @@ html, body {
     margin-top: -68px;
     height: 68px;
     clear: both;
-
-    color: black;
-    background-color: $cream;
-    padding-top: 10px;
-    background-image: image-url("noise.png");
-    -moz-box-shadow: 0 -8px 8px rgba(0,0,0,0.25);
-    -webkit-box-shadow: 0 -8px 8px rgba(0,0,0,0.25);
-    box-shadow: 0 -8px 8px rgba(0,0,0,0.25);
+    // color: black;
+    // background-color: $accent-yellow;
+    padding-top: 12px;
+    // background-image: image-url("noise.png");
+    // -moz-box-shadow: 0 -8px 8px rgba(0,0,0,0.25);
+    // -webkit-box-shadow: 0 -8px 8px rgba(0,0,0,0.25);
+    // box-shadow: 0 -8px 8px rgba(0,0,0,0.25);
 }
 
 b, strong {
@@ -107,8 +106,8 @@ b, strong {
   z-index: 9;
   border: none;
   border-radius: 0;
-  background-color: $cream !important;
-  background-image: image-url("noise.png");
+  // background-color: $cream !important;
+  // background-image: image-url("noise.png");
   position: fixed;
   margin-bottom: 15px;
   height: 68px;
@@ -127,19 +126,19 @@ b, strong {
   .navbar-brand {
     font-size: rem-calc(24px);
     font-weight: $bold;
-    color: $primary-blue;
+    // color: $primary-blue;
   }
 
   .navbar-nav {
     font-weight: $semi-bold;
     // line-height: rem-calc(24px);
     font-size: rem-calc(15px);
-    color: $primary-blue;
+    // color: $primary-blue;
 
     .dropdown.open .dropdown-toggle {
-      background-color: $off-white;
-      background-image: image-url("noise.png");
-      color: $primary-blue;
+      // background-color: $off-white;
+      // background-image: image-url("noise.png");
+      // color: $primary-blue;
     }
 
   }
@@ -151,30 +150,30 @@ b, strong {
 }
 
 .table-striped {
-  background-color: $bg-color;
-  background-image: image-url("noise.png")
+  // background-color: $bg-color;
+  // background-image: image-url("noise.png")
 }
 
 .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
-   background-color: $deeper-blue;
-   background-image: image-url("noise.png")
+   // background-color: $deeper-blue;
+   // background-image: image-url("noise.png")
 }
 
 .well {
-  color: $deeper-blue;
+  // color: $deeper-blue;
   margin-top: 20px;
 
   &.dark {
-    background-color: $bg-color;
-    background-image: image-url("noise.png");
-    border-color: $deeper-blue;
-    color: $off-white;
+    // background-color: $bg-color;
+    //background-image: image-url("noise.png");
+    // border-color: $deeper-blue;
+    // color: $off-white;
   }
 
 }
 
 .btn-meh {
-  color: $off-white;
+  // color: $off-white;
   padding: 0;
 }
 
@@ -184,28 +183,28 @@ b, strong {
 
 .table tbody tr > td.success {
   background-color: inherit;
-  color: #5CB85C !important;
+  // color: #5CB85C !important;
 }
 
 .panel {
-  background-color: $cream;
-  background-image: image-url("noise.png");
-  color: $deeper-blue;
+  // background-color: $cream;
+  // background-image: image-url("noise.png");
+  // color: $deeper-blue;
   border: 0;
 }
 
 .breadcrumb {
-  background-color: $primary-blue;
+  // background-color: $primary-blue;
   background-image: image-url("noise.png")
 }
 
 .progress {
-  background-color: $off-white;
+  // background-color: $off-white;
   background-image: image-url("noise.png");
 }
 
 .progress-bar-grey {
-  background-color: $light-grey;
+  // background-color: $light-grey;
   background-image: image-url("noise.png");
   }
 
@@ -245,7 +244,7 @@ b, strong {
 }
 
 .flash {
-  color: $bg-color;
+  // color: $bg-color;
 }
 
 .center {
@@ -259,9 +258,9 @@ b, strong {
 // Buttons yay!
 
 .btn-open {
-  color: $off-white;
-  background-color: $primary-blue;
-  background-image: image-url("noise.png");
+  // color: $off-white;
+  // background-color: $primary-blue;
+  // background-image: image-url("noise.png");
 }
 
 // * {
@@ -281,9 +280,9 @@ b, strong {
 // }
 
 .btn-donate, .btn-donate:hover {
-  color: $off-white;
-  background-color: $grey-blue;
-  background-image: image-url("noise.png");
+  // color: $off-white;
+  // background-color: $grey-blue;
+  // background-image: image-url("noise.png");
   width: 75px;
   height: 50px;
 
