@@ -95,6 +95,8 @@
                         <span ng-init="reviewScore(n,product)">Review score:{{n.review_score}}</span><br/ >
                           <a ng-click="upVote(n)" class="vote-link" ng-disabled="checked">Upvote</a>
                           <a ng-click="downVote(n)" class="vote-link" ng-disabled="checked">Downvote</a>
+                          <span ng-show = "n.duplicate_upvote" class="submitStatus">*You have already Upvoted this review</span>
+                          <span ng-show = "n.duplicate_downvote" class="submitStatus">*You have already Downvoted this review</span>
                       </div>
                       </tab>
                       <tab heading="Resources">
@@ -144,11 +146,11 @@
           <br>
           <form method="post">
             <span><strong>*Write Review (116 chars).</strong></span><br><br>
-            <textarea ng-model = "post.review" rows="10" cols="50" name="review" placeholder="something thougtful and helpful" style = "color: red;" class="fsField fsRequired fsTextAreaMaxLength", maxlength = "116"></textarea>
+            <textarea ng-model = "post.review" rows="10" cols="50" name="review" placeholder="Something thougtful and helpful" style = "color: red;" class="fsField fsRequired fsTextAreaMaxLength", maxlength = "116" required /></textarea>
             <br>
             <br>
             <span><strong>*Ratings (0-10).</strong></span><br><br>
-            <input ng-model = "post.rating" type="integer" name="rating" placeholder="0-10" style="color: red;" class="fsField fsRequired fsTextAreaMaxLength", maxlength = "116">
+            <input ng-model = "post.rating" type="integer" name="rating" placeholder="0-10" style="color: red;" class="fsField fsRequired fsTextAreaMaxLength", maxlength = "116" required />
             <br>
             <br>
             <button ng-click = "submitReview(product)" class="btn btn-success" type="submit">Submit</button>

@@ -4,7 +4,6 @@
 
   $http.get('/products/' + $routeParams.id + '.json').success((data) ->
     $scope.product = data
-    console.log("product",data)
     $scope.product.reviews_count = $scope.product.reviews.length
     $scope.productRating($scope.product)
     $scope.twitterApi = $scope.product.twitter.substring(1)
@@ -39,12 +38,43 @@
   )
 
   $scope.upVote = (review) ->
-    $http.get("/review/#{review.id}/up_vote")
-    review.review_score = review.review_score + 1
+    i = 0
+    while i < $scope.product.reviews.length
+      $scope.product.reviews[i].duplicate_upvote = false
+      $scope.product.reviews[i].duplicate_downvote = false
+      i++
+    $http.get("/review/#{review.id}/up_vote").success((data) ->
+      if data.status == 'login'
+        window.location = data.redirect_url
+
+      if data.status == 'duplicate'
+        review.duplicate_upvote = true
+        review.duplicate_downvote = false
+
+      if data.status == 'success'
+        review.review_score = review.review_score + 1
+        review.duplicate_downvote = false
+    )
 
   $scope.downVote = (review) ->
-    $http.get("/review/#{review.id}/down_vote")
-    review.review_score = review.review_score - 1
+    i = 0
+    while i < $scope.product.reviews.length
+      $scope.product.reviews[i].duplicate_upvote = false
+      $scope.product.reviews[i].duplicate_downvote = false
+      i++
+    $http.get("/review/#{review.id}/down_vote").success((data) ->
+      if data.status == 'login'
+        window.location = data.redirect_url
+
+      if data.status == 'duplicate'
+        review.duplicate_downvote = true
+        review.duplicate_upvote = false
+
+      if data.status == 'success'
+        review.review_score = review.review_score - 1
+        review.duplicate_upvote = false
+    )
+
 
   $scope.reviewScore = (review,product) ->
     $http.get("/review/#{review.id}/score").success((data) ->
