@@ -1,13 +1,14 @@
 $light: 300;
 $bold: 800;
 
-$nav: #F8F8F8;
 $bg-color: #FFFFFF;       //main background color, white
-$primary-blue: #428BCA;   // bootstrap primary blue
-$grey: #969795;
-$light-grey: #A3AAAB;
-$dynamic: #F0AD4E;  //used for live stats and accents
-$lilac: #CCCCFF;
+$nav: #F8F8F8;
+
+$dark: #2c2c2c;
+$light-grey: #787878;
+$base: #406DE4;
+$light: #E7F0FA;
+$accent: #FFBD31;
 
 // These need to be removed, but log files, caches prevent removal.
 $off-white: red;      // deprecated
@@ -15,6 +16,9 @@ $deeper-blue: red;    // deprecated
 $accent-yellow: red;  // depreacted
 $grey-blue: red;      // deprecated
 $cream: red;          // deprecated
+$primary-blue: #428BCA;   // bootstrap primary blue
+$grey: #969795;
+$dynamic: #F0AD4E;  //used for live stats and accents
 
 a:hover {
   text-decoration: none;
@@ -38,6 +42,8 @@ html {
 }
 
 body {
+  background-color: $bg-color;
+  color: $dark;
   padding-top: 68px;
   font-family : 'Open Sans',Verdana,Helvetica,sans-serif;
   line-height: 1;
@@ -65,6 +71,7 @@ html, body {
     height: 68px;
     clear: both;
     background-color: $nav;
+    // background-image: image-url("noise.png");
     padding-top: 12px;
 }
 
@@ -92,6 +99,7 @@ b, strong {
   position: fixed;
   margin-bottom: 15px;
   height: 68px;
+  // background-image: image-url("noise.png");
 
   .nav > li > a {
     line-height: rem-calc(24px);
@@ -185,7 +193,7 @@ b, strong {
   }
 
 .live {
-  color: $dynamic;
+  color: $accent;
 
   &.little {
     font-size: rem-calc(15px);
@@ -265,7 +273,8 @@ b, strong {
         line-height: 2.8rem;
       }
       &.dark {
-        // background-color: $deeper-blue;
+        // background-color: $base;
+        // color: $light;
         //background-image: image-url("noise.png");
 
         .featurette-heading {
@@ -349,11 +358,6 @@ b, strong {
       margin-top: -30px;
       margin-bottom: -15px;
     }
-  }
-
-  .tile-tweet {
-    // color: $off-white;
-    font-size: rem-calc(20px);
   }
 
   .tile {

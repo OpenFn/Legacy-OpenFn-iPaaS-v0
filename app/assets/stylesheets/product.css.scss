@@ -4,10 +4,10 @@
   border-width: 1px;
   border-style: solid;
   border-color: #CCC;
-  background-color: #F5F5F5;
+  // background-color: red;
 
   .sub-heading {
-    color: #A3A3A3;
+    // color: red;
   }
 
   .search-box {
@@ -42,16 +42,16 @@
     margin-bottom: 1.6em;
 
     .product:hover {
-      background-color: $nav;
+      background-color: $light;
       background-image: image-url("noise.png");
     }
 
     .product {
       height: 100%;
+      color: $light-grey;
       background-color: $nav;
-      // background-image: image-url("noise.png");
+      background-image: image-url("noise.png");
       text-align: center;
-
       position: relative;
       padding: $product-padding;
       margin: $product-margin;
@@ -66,6 +66,12 @@
 
       .title {
         margin-top: 10px;
+        color: $dark;
+      }
+
+      .tile-tweet {
+        color: $light-grey;
+        font-size: rem-calc(20px);
       }
 
       .rating {
@@ -157,7 +163,7 @@
 .show-product {
 
   background-color: $nav;
-  // background-image: image-url("noise.png");
+  background-image: image-url("noise.png");
   // color: $off-white;
   padding: 30px;
 
@@ -178,7 +184,7 @@
   }
 
   .vote-count {
-    color: $dynamic;
+    color: $accent;
     // font-size: 1.22em;
     // padding: 0.8em;
     padding-right: 0.8em;
@@ -326,7 +332,7 @@
     .tag {
       margin-right: 0.5em;
       margin-top: 0.5em;
-      background-color: $lilac;
+      background-color: $base;
       font-size: rem-calc(14px);
       text-transform: uppercase;
       display: inline-block;
