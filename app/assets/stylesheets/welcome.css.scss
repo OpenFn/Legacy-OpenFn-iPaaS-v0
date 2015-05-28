@@ -4,13 +4,8 @@
         margin-top: -30px;
         margin-bottom: -30px;
         width: 100%;
-        min-height: 435px;
+        min-height: 500px;
         text-align: center;
-        // background-color: #CCFFFF;
-        //background-image: image-url("wow_bg.jpg");
-        
-        /*background-repeat: no-repeat;*/
-        background-position: top;
     }
 
     .header-detail {
@@ -21,32 +16,33 @@
 
     .headline {
         padding: rem-calc(80px) 0 rem-calc(5px);
+        margin-top: 60px;
     }
 
     .headline h3 {
       font-size: rem-calc(35px);
-      font-weight: $bold;
+      font-weight: $light;
       text-transform: uppercase;
-      color: $primary-blue;
+      // color: $primary-blue;
     }
 
     .numbers h3 {
         font-size: rem-calc(35px);
-        font-weight: $bold;
         margin-bottom: 0;
-        font-weight: $bold;
-        text-transform: uppercase;
-        color: $dynamic;
-        opacity: 0.8;
+        margin-top: 150px;
+        // font-weight: $bold;
+        // text-transform: uppercase;
+        // color: $dynamic;
+        // opacity: 0.8;
     }
 
     .numbers h4 {
         font-size: rem-calc(20px);
-        font-weight: $bold;
+        // font-weight: $bold;
         margin-top: 0;
         text-transform: uppercase;
-        color: $light-grey;
-        opacity: 0.6;
+        // color: $light-grey;
+        // opacity: 0.6;
     }
 
     .featurette {      

@@ -28,7 +28,7 @@ body {
   padding: 15px;
   font-size: 24px;
   line-height: 24px;
-  color: $off-white;
+  color: $nav;
   background: $primary-blue;
   margin-bottom: 30px;
   border-top: 0;  
@@ -51,7 +51,7 @@ body {
 }
 .flat .plan.featured li.plan-name {
   background: #000;
-  color: $off-white;
+  color: $nav;
 }
 .flat .plan.featured:hover li.plan-name {
   background: #c0392b;

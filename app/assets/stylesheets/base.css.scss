@@ -1,21 +1,20 @@
-// this is the old color--- $bg-color: #fffcf4, $cream: #fffcf4
+$light: 300;
+$bold: 800;
+
 $nav: #F8F8F8;
-$cream: #ffffff;          //header and footer, featurette light
-$bg-color: #ffffff;       //main background color
-$bold: 700;
-$semi-bold: 600;
-
-$primary-blue: #428bca;   // dark blue, used to differentiate rows and featurettes from bg-color
-
-$off-white: #F8F8F8;
+$bg-color: #FFFFFF;       //main background color, white
+$primary-blue: #428BCA;   // bootstrap primary blue
 $grey: #969795;
 $light-grey: #A3AAAB;
-$dynamic: #f0ad4e;  //used for live stats and accents
+$dynamic: #F0AD4E;  //used for live stats and accents
 $lilac: #CCCCFF;
 
+// These need to be removed, but log files, caches prevent removal.
+$off-white: red;      // deprecated
 $deeper-blue: red;    // deprecated
 $accent-yellow: red;  // depreacted
 $grey-blue: red;      // deprecated
+$cream: red;          // deprecated
 
 a:hover {
   text-decoration: none;
@@ -40,7 +39,7 @@ html {
 
 body {
   padding-top: 68px;
-  font-family : 'Source Sans Pro',Verdana,Helvetica,Arial,serif;
+  font-family : 'Open Sans',Verdana,Helvetica,sans-serif;
   line-height: 1;
   max-width: 100%;
   overflow-x: hidden;
@@ -106,15 +105,15 @@ b, strong {
 
 
   .navbar-brand {
-    font-size: rem-calc(24px);
-    font-weight: $bold;
+    // font-size: rem-calc(24px);
+    // font-weight: $bold;
     // color: $primary-blue;
   }
 
   .navbar-nav {
-    font-weight: $semi-bold;
+    // font-weight: $semi-bold;
     // line-height: rem-calc(24px);
-    font-size: rem-calc(15px);
+    // font-size: rem-calc(15px);
     // color: $primary-blue;
 
     .dropdown.open .dropdown-toggle {
@@ -185,28 +184,6 @@ b, strong {
   background-image: image-url("noise.png");
   }
 
-// ::-webkit-scrollbar-track
-// {
-//   -webkit-box-shadow: inset 0 0 8px rgba(0,0,0,0.3);
-//   border-radius: 8px;
-//   background-image: image-url("lighter-noise.png")
-// }
-
-// ::-webkit-scrollbar
-// {
-//   width: 10px;
-//   background-image: image-url("lighter-noise.png")
-// }
-
-// ::-webkit-scrollbar-thumb
-// {
-//     background-color: $light-grey;
-//     border: 3px solid transparent;
-//     border-radius: 9px;
-//     background-clip: content-box;
-// }
-
-
 .live {
   color: $dynamic;
 
@@ -232,30 +209,6 @@ b, strong {
   margin-bottom: 60px
 }
 
-// Buttons yay!
-
-.btn-open {
-  // color: $off-white;
-  // background-color: $primary-blue;
-  // background-image: image-url("noise.png");
-}
-
-// * {
-//   border-radius: 0 !important;
-// }
-
-// .btn-success {
-//   background-color: $grey-blue;
-//   background-image: image-url("noise.png");
-//   border-color: $grey-blue;
-// }
-
-// .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open > .dropdown-toggle.btn-primary {
-//   background-color: $light-grey;
-//   background-image: image-url("noise.png");
-//   border-color: $light-grey;
-// }
-
 .btn-donate, .btn-donate:hover {
   // color: $off-white;
   // background-color: $grey-blue;
@@ -269,7 +222,7 @@ b, strong {
 }
 
 .btn-donate-go {
-  color: $off-white;
+  color: $nav;
   background-color: $grey-blue;
   background-image: image-url("noise.png");
   width: 50px;

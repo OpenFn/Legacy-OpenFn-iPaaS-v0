@@ -15,22 +15,24 @@
 
     <div class="container">
       <div ng-controller="MarketplaceController as marketplace" class="row">          
-        <div class="col-md-10 col-md-offset-1">
-          <div class="search-field">
-              <input type:"text" class="form-control" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="new-product-link">
+                <input type:"text" class="form-control" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+            </div>
           </div>
-        </div>
-        <div class="col-md-10 col-md-offset-1">  
-          <div class="new-product-link">
-            <label style="float: left;" data-toggle="modal" data-target="#add_modal" class="btn btn-primary">
-              <i class="fa fa-plus"></i> Add a new technology.
-            </label>
-            <label style="margin-left: 1em;" data-toggle="modal" data-target="#help_modal" class="btn btn-primary">
-              <i class="fa fa-question-circle"></i> Help.
-            </label>
-            <label style="float: right;" class="btn btn-primary" ng-model="searchFilters.integrated" btn-checkbox>
-                <i class="fa fa-plug"></i>  Show integrated technologies.
-            </label>
+          <div class="col-lg-6">  
+            <div class="new-product-link">
+              <label style="float: left;" data-toggle="modal" data-target="#add_modal" class="btn btn-default">
+                <i class="fa fa-plus"></i> Add a new technology.
+              </label>
+              <label style="margin-left: 1em;" data-toggle="modal" data-target="#help_modal" class="btn btn-default">
+                <i class="fa fa-question-circle"></i> Help.
+              </label>
+              <label style="float: right;" class="btn btn-default" ng-model="searchFilters.integrated" btn-checkbox>
+                  <i class="fa fa-plug"></i>  Show connected apps.
+              </label>
+            </div>
           </div>
         </div>
         <div class="product-list row" ng-if="isLoading">
@@ -64,7 +66,7 @@
                   <i class="fa fa-plug"></i>
                 </a>
                 <a ng-hide="product.integrated" class="vote-count">
-                  <i class="fa fa-plug"></i>+ {{product.votes_count}}
+                  <i class="fa fa-plug"></i>+ <span class="live">{{product.votes_count}}</span>
                 </a>
                 <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">               
                   <i ng-class="{'fa ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>

@@ -23,9 +23,6 @@
     min-width: 216px;
   }
 
-  .search-field {
-    padding-bottom: 0.5em;
-  }
 }
 
 .product-list {
@@ -87,7 +84,7 @@
       }
 
       .vote-count {
-        color: $dynamic;
+        // color: $dynamic;
         padding: 0.5em;
         position: absolute;
         bottom: 0;
