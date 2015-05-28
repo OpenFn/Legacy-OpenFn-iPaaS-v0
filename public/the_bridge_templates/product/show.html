@@ -142,12 +142,12 @@
           <br>
           <br>
           <form method="post">
-            <span><strong>*Write Review (116 chars).</strong></span><br><br>
-            <textarea ng-model = "post.review" rows="10" cols="50" name="review" placeholder="Something thougtful and helpful" style = "color: red;" class="fsField fsRequired fsTextAreaMaxLength", maxlength = "116" required /></textarea>
+            <span><strong>Review (1000 chars)</strong></span><br><br>
+            <textarea ng-model = "post.review" rows="40" cols="50" name="review" placeholder="Something thougtful and helpful..." class="fsField fsRequired fsTextAreaMaxLength", maxlength = "1000" required /></textarea>
             <br>
             <br>
-            <span><strong>*Ratings (0-10).</strong></span><br><br>
-            <input ng-model = "post.rating" type="integer" name="rating" placeholder="0-10" style="color: red;" class="fsField fsRequired fsTextAreaMaxLength", maxlength = "116" required />
+            <span><strong>Rating (0-5)</strong></span><br><br>
+            <input ng-model = "post.rating" type="integer" name="rating" placeholder="0-5" class="fsField fsRequired fsTextAreaMaxLength", maxlength = "2" required />
             <br>
             <br>
             <button ng-click = "submitReview(product)" class="btn btn-success" type="submit">Submit</button>
