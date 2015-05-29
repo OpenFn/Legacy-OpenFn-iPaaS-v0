@@ -241,20 +241,25 @@ b, strong {
   text-transform: uppercase;;
 }
 
-    .header-image {
-        margin-top: -20px;
-        width: 100%;
-        text-align: center;
-        // background-color: $cream;
-        // background-image: image-url("noise.png");
-        // color: $light-grey;
+.header-image {
+    margin-top: -20px;
+    width: 100%;
+    text-align: center;
+    // background-color: $cream;
+    // background-image: image-url("noise.png");
+    // color: $light-grey;
+}
 
-    }
+.headline {
+    padding: rem-calc(55px) 0 rem-calc(50px);
+    padding-bottom: rem-calc(30px);
+    background-color: $base;
+    color: $bg-color;
+}
 
-    .headline {
-        padding: rem-calc(55px) 0 rem-calc(50px);
-        padding-bottom: rem-calc(30px);
-    }
+  .controls {
+    color: red !important;
+  }
 
 
     .featurette {

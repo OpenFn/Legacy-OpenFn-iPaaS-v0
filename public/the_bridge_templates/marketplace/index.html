@@ -1,24 +1,23 @@
 <header class="header-image">
-  <div class="headline">
-    <h1>
-      <i class="fa fa-shopping-cart"></i> open<strong>Marketplace</strong>
-    </h1>
-    <h3>
-      Find the <strong>tools</strong> you need to grow your impact; vote for new <i class="fa fa-plug"></i> integrations.
-    </h3>
-  </div>
+    <div class="headline">
+      <h1>
+        <i class="fa fa-shopping-cart"></i> open<strong>Marketplace</strong>
+      </h1>
+      <h3>
+        Find the <strong>tools</strong> you need to grow your impact; vote for new <i class="fa fa-plug"></i> integrations.
+      </h3>
+    </div>
 </header>
 
   <div class="featurette dark">
-
     <div class="container">
       <div ng-controller="MarketplaceController as marketplace" class="row">          
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="new-product-link">
-                <input type:"text" class="form-control" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="new-product-link">
+                  <input type:"text" class="form-control" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+              </div>
             </div>
-          </div>
           <div class="col-lg-6">  
             <div class="new-product-link">
               <label style="float: left;" data-toggle="modal" data-target="#add_modal" class="btn btn-default">
@@ -41,9 +40,9 @@
         </div>
         <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
           <br>
-          <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-4 col-md-6 col-sm-6 col-xs-12">
             <a class="tile" href="/#/product/{{product.id}}">
-              <div class="product">
+              <div ng-class="product.integrated ? 'product integrated' : 'product'">
                 <div class='rating'>
                   <span class='live'>
                   <i class="fa fa-star"></i>
@@ -51,7 +50,6 @@
                   &nbsp;({{product.reviews_count}})
                 </div>
                 <h3 class="title">
-
                   {{product.name}}
                 </h3>
                 <div class='tile-tweet'>

@@ -35,7 +35,6 @@
   margin-top: -$product-margin;
   margin-bottom: -$product-margin;
 
-
   .product-container {
     padding: 0;
     height: 16em;
@@ -55,6 +54,10 @@
       position: relative;
       padding: $product-padding;
       margin: $product-margin;
+
+      &.integrated {
+        background-color: $light;
+      }
 
       .description {
         font-size: 0.8em;
@@ -162,9 +165,9 @@
 
 .show-product {
 
-  background-color: $nav;
+  background-color: $light;
   background-image: image-url("noise.png");
-  // color: $off-white;
+  color: $light-grey;
   padding: 30px;
 
   .actions, .rating, .name {
@@ -343,7 +346,7 @@
 
 .new-product-link {
   padding: 1em;
-
+  // background-color: $light;
 }
 
 .add-modal {
