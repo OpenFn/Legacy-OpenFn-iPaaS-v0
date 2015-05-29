@@ -35,9 +35,13 @@ class ReviewVotesController < ApplicationController
       render json: {status: "login", redirect_url: "/login"}
       return
     end
-    if @review_vote = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id], :value => 1).first.present?
-      render json: {review_vote: @review_vote, status: "duplicate"}
-      return
+    reviews_votes = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id])
+    if reviews_votes.present?
+      value = reviews_votes.order("created_at").last.value
+      if value.eql?(1)
+        render json: {review_vote: @review_vote, status: "duplicate"}
+        return
+      end
     end
     @review_vote = ReviewVote.new(:user_id => current_user.id,
                                   :review_id => params[:review_id],
@@ -51,9 +55,13 @@ class ReviewVotesController < ApplicationController
       render json: {status: "login", redirect_url: "/login"}
       return
     end
-    if @review_vote = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id], :value => -1).first.present?
-      render json: {review_vote: @review_vote, status: "duplicate"}
-      return
+    reviews_votes = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id])
+    if reviews_votes.present?
+      value = reviews_votes.order("created_at").last.value
+      if value.eql?(-1)
+        render json: {review_vote: @review_vote, status: "duplicate"}
+        return
+      end
     end
     @review_vote = ReviewVote.new(:user_id => current_user.id,
                                   :review_id => params[:review_id],
@@ -64,8 +72,15 @@ class ReviewVotesController < ApplicationController
 
   def count_rating
     reviews = ReviewVote.where(:review_id => params[:review_id])
-    total_rating = reviews.sum('value')
-    render json: total_rating
+    if reviews.present?
+      total_rating = reviews.sum('value')
+      if total_rating.eql?(0)
+        total_rating = reviews.order("created_at").last.value
+      end
+      render json: total_rating
+    else
+      render json: 0
+    end
   end
 
   def check_upvote_downvote

@@ -4,6 +4,7 @@
 
   $http.get('/products/' + $routeParams.id + '.json').success((data) ->
     $scope.product = data
+    console.log("data",data)
     $scope.product.reviews_count = $scope.product.reviews.length
     $scope.productRating($scope.product)
     $scope.twitterApi = $scope.product.twitter.substring(1)
@@ -52,7 +53,10 @@
         review.duplicate_downvote = false
 
       if data.status == 'success'
-        review.review_score = review.review_score + 1
+        if review.review_score == -1
+          review.review_score = review.review_score + 2
+        else
+          review.review_score = review.review_score + 1
         review.duplicate_downvote = false
     )
 
@@ -71,7 +75,10 @@
         review.duplicate_upvote = false
 
       if data.status == 'success'
-        review.review_score = review.review_score - 1
+        if review.review_score == 1
+          review.review_score = review.review_score - 2
+        else
+          review.review_score = review.review_score - 1
         review.duplicate_upvote = false
     )
 
