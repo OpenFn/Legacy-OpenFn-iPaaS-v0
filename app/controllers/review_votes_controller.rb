@@ -64,8 +64,15 @@ class ReviewVotesController < ApplicationController
 
   def count_rating
     reviews = ReviewVote.where(:review_id => params[:review_id])
-    total_rating = reviews.sum('value')
-    render json: total_rating
+    if reviews.present?
+      total_rating = reviews.sum('value')
+      if total_rating.eql?(0)
+        total_rating = reviews.order("created_at").last.value
+      end
+      render json: total_rating
+    else
+      render json: 0
+    end
   end
 
   def check_upvote_downvote
