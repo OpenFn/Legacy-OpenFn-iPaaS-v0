@@ -53,7 +53,7 @@
         review.duplicate_downvote = false
 
       if data.status == 'success'
-        if review.review_score = -1
+        if review.review_score == -1
           review.review_score = review.review_score + 2
         else
           review.review_score = review.review_score + 1
@@ -75,7 +75,7 @@
         review.duplicate_upvote = false
 
       if data.status == 'success'
-        if review.review_score = 1
+        if review.review_score == 1
           review.review_score = review.review_score - 2
         else
           review.review_score = review.review_score - 1
