@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
 
   def index
     render json: Product.enabled.order(:name).map { |p|
-        p.as_json(methods: [:votes_count, :tag_list, :reviews_count]).
+        p.as_json(methods: [:votes_count, :tag_list, :reviews_count, :rating]).
           merge "hasVoteForUser" => p.has_vote_for(current_user)
           # merge "hasReviewForUser" => p.has_review_for(current_user)
       }

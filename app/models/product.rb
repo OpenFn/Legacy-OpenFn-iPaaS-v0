@@ -52,4 +52,8 @@ class Product < ActiveRecord::Base
     reviews.count
   end
 
+  def rating
+    reviews.map(&:rating).inject(0, &:+).to_f / reviews_count
+  end
+
 end
