@@ -129,7 +129,6 @@ OpenFn::Application.routes.draw do
   get '/review/:review_id/score', to: "review_votes#count_rating"
   get '/products/:product_id/tags', to: "tags#product_tags"
   post '/products/:product_id/tags/add', to: "tags#product_tags_add"
-  post '/products/:product_id/tags/delete', to: "tags#product_tags_delete"
   post '/products/:product_id/tags/edit', to: "tags#product_tags_edit"
 
   get "metrics", to: "metrics#index", as: :metrics
