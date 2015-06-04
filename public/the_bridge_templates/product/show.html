@@ -104,11 +104,22 @@
                     <div class="product">
                       <div class="tag-list">
                         <div ng-repeat="tag in product.tag_list" class="tag label label-info">
-                          {{tag}}
+                          {{tag.name}}
                         </div>
-                        <a data-toggle="modal" data-target="#tag_modal" class="edit-link">
+                        <a data-toggle="modal" class="edit-link">
                         Add/Edit Tags
                       </a>
+                      <!-- <form method = "post"> -->
+                        <div class = "tag-editor">
+                          <span ng-repeat = "n in product.tag_list" class = "post-tag">
+                            {{n.name}}
+                            <span ng-click = "deleteTag(n,product)" class = "delete-tag" title = "remove this tag">X</span>
+                          </span>
+                          <input type = "text" ng-model="searchText" ng-change = "searchTags(searchText,product)"></input>
+                        </div>
+                        <button ng-click = "submitTags(product.tag_list,product)" class="btn btn-success" type="submit">Submit</button>
+                        <div ng-repeat = "tag in tag_match track by $index">{{tag.name}}</div>
+                      <!-- </form> -->
                       </div>
                     </div>
                   </div>

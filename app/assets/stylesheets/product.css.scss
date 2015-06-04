@@ -22,7 +22,7 @@
     float: right;
     min-width: 216px;
   }
-
+fsField
   .search-field {
     padding-bottom: 0.5em;
   }
@@ -31,8 +31,8 @@
 .product-list {
   $product-padding: 1em;
   $product-margin: 0.8em;
-  
-  
+
+
   margin-left: -$product-margin;
   margin-right: -$product-margin;
   margin-top: -$product-margin;
@@ -57,7 +57,7 @@
       position: relative;
       padding: $product-padding;
       margin: $product-margin;
-  
+
       .description {
         font-size: 0.8em;
         line-height: 1.2;
@@ -104,12 +104,12 @@
         background-image: image-url("noise.png");
       }
 
-      
+
       // .deatils-link-wrapper {
       //   position: relative;
       //   // float: left;
       //   text-align: center;
-      //   margin: 0 auto; 
+      //   margin: 0 auto;
       // }
 
       .details-link {
@@ -144,12 +144,12 @@
     position: relative;
     display: block;
   }
-   
+
   .product-container.ng-enter.ng-enter-active,
   .product-container.ng-leave {
     opacity: 1;
   }
-   
+
   .product-container.ng-leave.ng-leave-active,
   .product-container.ng-enter {
     opacity: 0;
@@ -228,7 +228,7 @@
     cursor: pointer;
     // background-color: $grey-blue;
     // background-image: image-url("noise.png");
-  }   
+  }
 
   .tab-content-text {
     a {
@@ -247,7 +247,7 @@
   .rating {
     // float: right;
     text-align: center;
-    padding-right: 29px; 
+    padding-right: 29px;
   }
 
   .actions, .rating {
@@ -350,10 +350,80 @@
 }
 
 .fsField {
-  color: black; 
+  color: black;
   width: 508px;
 }
 
 .fsSubmitButton {
   color: black;
 }
+
+.tag-editor{
+  width: 658px;
+  height: 35px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1) inset;
+  border: 1px solid #CCC;
+  cursor: text;
+  background-color: #FFF;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 210px;
+}
+
+.tag-editor .post-tag:first-child {
+    margin-left: 6px;
+}
+
+.tag-editor .post-tag {
+    margin: 6px 3px 0px;
+}
+
+.post-tag {
+  color: #3E6D8E;
+  font-size: 12px;
+  white-space: nowrap;
+  background: none repeat scroll 0% 0% #E4EDF4;
+  border: 1px solid #E4EDF4;
+  display: inline-block;
+  margin: 2px 2px 2px 0px;
+  border-radius: 0px;
+  transition: color 0.15s ease 0s, #F2F1F0 0.15s ease 0s, border 0.15s ease 0s;
+  padding: 0.25em 0.5em;
+  text-decoration: none;
+  line-height: 1;
+  float: left
+}
+
+.delete-tag {
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  display: inline-block;
+  background-position: -40px -319px;
+  cursor: pointer;
+  margin-left: 3px;
+  margin-top: 1px;
+  margin-bottom: -1px;
+}
+
+input[type="text"]{
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background: none repeat scroll 0% 0% #FFF;
+    color: #444;
+    border: 1px solid #CCC;
+    font-size: 14px;
+    padding: 8px 10px;
+    float: left;
+}
+
+.tag-editor input {
+    border: medium none !important;
+    box-shadow: none !important;
+    outline: 0px none !important;
+    padding: 0px !important;
+    margin: 4px 3px 0px;
+    background-color: transparent !important;
+    height: 25px;
+}
+
