@@ -118,7 +118,9 @@
                           <input type = "text" ng-model="searchText" ng-change = "searchTags(searchText,product)"></input>
                         </div>
                         <button ng-click = "submitTags(product.tag_list,product)" class="btn btn-success" type="submit">Submit</button>
-                        <div ng-repeat = "tag in tag_match track by $index">{{tag.name}}</div>
+                        <div ng-repeat = "tag in tag_match track by $index">
+                          <a ng-click = "addTag(tag,product)">{{tag.name}}<a>
+                        </div>
                       <!-- </form> -->
                       </div>
                     </div>

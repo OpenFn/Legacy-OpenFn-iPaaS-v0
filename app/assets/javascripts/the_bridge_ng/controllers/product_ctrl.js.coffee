@@ -34,16 +34,13 @@
      )
 
   $scope.deleteTag = (tag,product) ->
-    console.log($scope.product.tags.indexOf(tag))
-    index = $scope.product.tags.indexOf(tag)
-    $scope.product.tags.splice(index, 1);
-    #$scope.deleteTagInfo =
-    #  'tag_id': tag.id
+    index = $scope.product.tag_list.indexOf(tag)
+    $scope.product.tag_list.splice(index, 1);
 
-    #$http.post("/products/#{product.id}/tags/delete",$scope.deleteTagInfo).success((data) ->
-    #  console.log(data)
-    #  $scope.product.tags = data.tags
-    #)
+  $scope.addTag = (tag,product) ->
+    console.log(tag)
+    $scope.product.tag_list.push tag
+    console.log($scope.product.tag_list)
 
   $scope.submitTags = (tags,product) ->
     console.log(tags)
@@ -69,7 +66,7 @@
         x++
     else
       $scope.tag_match = []
-      console.log($scope.tag_match[x])
+
 
 
 

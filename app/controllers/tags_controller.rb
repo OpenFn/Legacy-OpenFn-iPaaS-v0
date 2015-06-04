@@ -29,16 +29,6 @@ class TagsController < ApplicationController
     tagging.save
   end
 
-  def product_tags_delete
-    Rails.logger.info {"#{__FILE__}:#{__LINE__} #{params[:product_id]}"}
-    #tag = Tag.find(params[:tag_id])
-    #tag.delete
-    tagging = Tagging.where(:tag_id => params[:tag_id], :taggable_id => params[:product_id]).first
-    tagging.delete
-    #render json: tag
-    product_tags
-  end
-
   def product_tags_edit
     tags = params["_json"]
     Rails.logger.info {"#{__FILE__}:#{__LINE__} .............#{tags}"}
@@ -54,7 +44,6 @@ class TagsController < ApplicationController
        tagging.save
      end
      product_tags
-    #render json: params
   end
 
 end
