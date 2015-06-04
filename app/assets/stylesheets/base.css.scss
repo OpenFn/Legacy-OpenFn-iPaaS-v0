@@ -112,6 +112,10 @@ b, strong {
     margin-left: 10px;
   }
 
+  .btn-accent {
+    background-color: $accent;
+  }
+
 
   .navbar-brand {
     // font-size: rem-calc(24px);
@@ -139,37 +143,41 @@ b, strong {
   border-top: 0;
 }
 
-.table-striped {
+// .table-striped {
   // background-color: $bg-color;
   // background-image: image-url("noise.png")
-}
+// }
 
-.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+// .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
    // background-color: $deeper-blue;
    // background-image: image-url("noise.png")
-}
+// }
 
 .well {
   // color: $deeper-blue;
   margin-top: 20px;
 
-  &.dark {
+  // &.dark {
     // background-color: $bg-color;
     //background-image: image-url("noise.png");
     // border-color: $deeper-blue;
     // color: $off-white;
-  }
+  // }
 
+}
+
+.dest {
+  background-color: red !important;
 }
 
 .btn-map-label {
   padding-left: 2px;
 }
 
-.table tbody tr > td.success {
-  background-color: inherit;
+// .table tbody tr > td.success {
+  // background-color: inherit;
   // color: #5CB85C !important;
-}
+// }
 
 .panel {
   // background-color: $cream;
@@ -218,22 +226,34 @@ b, strong {
   margin-bottom: 60px
 }
 
-.btn-donate, .btn-donate:hover {
-  // color: $off-white;
-  // background-color: $grey-blue;
+.btn-open-donation, .btn-open-donation:hover {
+  color: $nav;
+  background-color: $red-accent;
   // background-image: image-url("noise.png");
-  width: 75px;
-  height: 50px;
+  // width: 75px;
+  // height: 50px;
 
-  font-size: rem-calc(18px);
-  font-weight: $bold;
+  // font-size: rem-calc(18px);
+  // font-weight: $bold;
+  text-transform: uppercase;
+}
+
+.btn-donate, .btn-donate:hover {
+  color: $nav;
+  background-color: $red-accent;
+  // background-image: image-url("noise.png");
+  // width: 75px;
+  // height: 50px;
+
+  // font-size: rem-calc(18px);
+  // font-weight: $bold;
   text-transform: uppercase;
 }
 
 .btn-donate-go {
   color: $nav;
-  background-color: $grey-blue;
-  background-image: image-url("noise.png");
+  background-color: $red-accent;
+  // background-image: image-url("noise.png");
   width: 50px;
   height: 50px;
 

@@ -1,167 +1,56 @@
 <div class="welcome">
   <!-- Full Width Image Header -->
-  <header class="header-image">
-    <div class="header-detail">
-      <div class="headline">
-        <h3>Technology isn't the answer,<br>but it shouldn't be the problem.</h3>
-      </div>   
-      <div class="row">
-      <div class="col-xs-6 col-sm-2 col-sm-offset-2">
+    <div id="particles-js"></div>
+    <header class="header-image">
+        <div class="headline">
+        <div class="col-xs-12">
+          Technology isn't the answer,
+          <br>
+          but it shouldn't be the problem.
+          <!-- <br><br><br> -->
+          <!-- <i class="fa fa-user-md"></i>  -->
+          <!-- <i class="fa fa-line-chart"></i>  -->
+          <!-- <i class="fa fa-university"></i>  -->
+          <!-- <i class="fa fa-tachometer"></i>  -->
+          <!-- <i class="fa fa-graduation-cap"></i>  -->
+          <!-- <i class="fa fa-cloud"></i>  -->
+          <!-- <i class="fa fa-child"></i>  -->
+          <!-- <i class="fa fa-android"></i> -->
+          <!-- <i class="fa fa-leaf"></i>  -->
+          <!-- <i class="fa fa-heartbeat"></i> -->
+          <!-- <i class="fa fa-medkit"></i>  -->
+          <!-- <i class="fa fa-globe"></i>  -->
+          <!-- <i class="fa fa-bar-chart"></i> -->
+          <!-- <i class="fa fa-signal"></i> -->
+          <!-- <i class="fa fa-money"></i>  -->
+          <!-- <i class="fa fa-lightbulb-o"></i> -->
+          <!-- <i class="fa fa-qrcode"></i> -->
+          <!-- <i class="fa fa-wheelchair"></i> -->
+          <!-- <i class="fa fa-apple"></i> -->
+        </div>   
         <div class="numbers">
-          <h3 class="live">{{submissionCount | number }}</h3>
-          <h4>Transactions</h4>
+          <div class="col-xs-6 col-sm-2 col-sm-offset-2">
+            <h3 class="live">{{submissionCount | number }}</h3>
+            <h4>Transactions</h4>
+          </div>
+          <div class="col-xs-6 col-sm-2">
+            <h3 class="live">{{productPublicCount}}</h3>
+            <h4>Technologies</h4>
+          </div>
+          <div class="col-xs-6 col-sm-2">
+            <h3 class="live">{{productConnectedCount}}</h3>
+            <h4>Connected Apps</h4>
+          </div>
+          <div class="col-xs-6 col-sm-2">
+            <h3 class="live">{{orgCount}}</h3>
+            <h4>Organizations</h4>
+          </div>
         </div>
-      </div>
-      <div class="col-xs-6 col-sm-2">
-        <div class="numbers">
-          <h3 class="live">{{productPublicCount}}</h3>
-          <h4>Technologies</h4>
-        </div>
-      </div>
-      <div class="col-xs-6 col-sm-2">
-        <div class="numbers">
-          <h3 class="live">{{productConnectedCount}}</h3>
-          <h4>Connected Apps</h4>
-        </div>
-      </div>
-      <div class="col-xs-6 col-sm-2">
-        <div class="numbers">
-          <h3 class="live">{{orgCount}}</h3>
-          <h4>Organizations</h4>
-        </div>
-      </div>
-    </div>
-    </div>
-
-  </header>
+    </header>
 
   <!-- Page Content -->
   <br>
   <br>
-  <div id="particles-js"></div>
-  <script src="/assets/particles.js"></script>
-  <script type="text/javascript">
-particlesJS('particles-js',
-  
-  {
-    "particles": {
-      "number": {
-        "value": 80,
-        "density": {
-          "enable": true,
-          "value_area": 800
-        }
-      },
-      "color": {
-        "value": "#ffffff"
-      },
-      "shape": {
-        "type": "circle",
-        "stroke": {
-          "width": 0,
-          "color": "#000000"
-        },
-        "polygon": {
-          "nb_sides": 5
-        },
-        "image": {
-          "src": "img/github.svg",
-          "width": 100,
-          "height": 100
-        }
-      },
-      "opacity": {
-        "value": 0.5,
-        "random": false,
-        "anim": {
-          "enable": false,
-          "speed": 1,
-          "opacity_min": 0.1,
-          "sync": false
-        }
-      },
-      "size": {
-        "value": 5,
-        "random": true,
-        "anim": {
-          "enable": false,
-          "speed": 40,
-          "size_min": 0.1,
-          "sync": false
-        }
-      },
-      "line_linked": {
-        "enable": true,
-        "distance": 150,
-        "color": "#ffffff",
-        "opacity": 0.4,
-        "width": 1
-      },
-      "move": {
-        "enable": true,
-        "speed": 6,
-        "direction": "none",
-        "random": false,
-        "straight": false,
-        "out_mode": "out",
-        "attract": {
-          "enable": false,
-          "rotateX": 600,
-          "rotateY": 1200
-        }
-      }
-    },
-    "interactivity": {
-      "detect_on": "canvas",
-      "events": {
-        "onhover": {
-          "enable": true,
-          "mode": "repulse"
-        },
-        "onclick": {
-          "enable": true,
-          "mode": "push"
-        },
-        "resize": true
-      },
-      "modes": {
-        "grab": {
-          "distance": 400,
-          "line_linked": {
-            "opacity": 1
-          }
-        },
-        "bubble": {
-          "distance": 400,
-          "size": 40,
-          "duration": 2,
-          "opacity": 8,
-          "speed": 3
-        },
-        "repulse": {
-          "distance": 200
-        },
-        "push": {
-          "particles_nb": 4
-        },
-        "remove": {
-          "particles_nb": 2
-        }
-      }
-    },
-    "retina_detect": true,
-    "config_demo": {
-      "hide_card": false,
-      "background_color": "#b61924",
-      "background_image": "",
-      "background_position": "50% 50%",
-      "background_repeat": "no-repeat",
-      "background_size": "cover"
-    }
-  }
-
-);
-  </script>
   <br>
 
   <div class="featurette" id="marketplace">
@@ -262,3 +151,116 @@ particlesJS('particles-js',
   </div>
 
 </div>
+<script src="/assets/particles.js"></script>
+<script type="text/javascript">
+  particlesJS("particles-js", {
+    "particles": {
+      "number": {
+        "value": 120,
+        "density": {
+          "enable": true,
+          "value_area": 800
+        }
+      },
+      "color": {
+        "value": "#ffffff"
+      },
+      "shape": {
+        "type": "circle",
+        "stroke": {
+          "width": 0,
+          "color": "#000000"
+        },
+        "polygon": {
+          "nb_sides": 5
+        },
+        "image": {
+          "src": "img/github.svg",
+          "width": 100,
+          "height": 100
+        }
+      },
+      "opacity": {
+        "value": 0.5,
+        "random": false,
+        "anim": {
+          "enable": false,
+          "speed": 1,
+          "opacity_min": 0.1,
+          "sync": false
+        }
+      },
+      "size": {
+        "value": 3,
+        "random": true,
+        "anim": {
+          "enable": false,
+          "speed": 40,
+          "size_min": 0.1,
+          "sync": false
+        }
+      },
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#ffffff",
+        "opacity": 0.4,
+        "width": 1
+      },
+      "move": {
+        "enable": true,
+        "speed": 6,
+        "direction": "none",
+        "random": false,
+        "straight": false,
+        "out_mode": "out",
+        "bounce": false,
+        "attract": {
+          "enable": false,
+          "rotateX": 600,
+          "rotateY": 1200
+        }
+      }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": {
+          "enable": true,
+          "mode": "grab"
+        },
+        "onclick": {
+          "enable": true,
+          "mode": "push"
+        },
+        "resize": true
+      },
+      "modes": {
+        "grab": {
+          "distance": 140,
+          "line_linked": {
+            "opacity": 1
+          }
+        },
+        "bubble": {
+          "distance": 400,
+          "size": 40,
+          "duration": 2,
+          "opacity": 8,
+          "speed": 3
+        },
+        "repulse": {
+          "distance": 200,
+          "duration": 0.4
+        },
+        "push": {
+          "particles_nb": 4
+        },
+        "remove": {
+          "particles_nb": 2
+        }
+      }
+    },
+    "retina_detect": true
+  });
+</script>
