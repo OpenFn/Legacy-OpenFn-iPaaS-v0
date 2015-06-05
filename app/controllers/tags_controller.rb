@@ -34,16 +34,20 @@ class TagsController < ApplicationController
     Rails.logger.info {"#{__FILE__}:#{__LINE__} .............#{tags}"}
     taggings = Tagging.where(:taggable_id => params[:product_id])
     taggings.delete_all
-     tags.each do |tag|
-       name = tag["name"]
-       id = tag["id"]
-       tagging = Tagging.new(:tag_id => tag["id"],
-                          :taggable_id => params[:product_id],
-                          :tagger_id => current_user.id)
-       Rails.logger.info {"#{__FILE__}:#{__LINE__} ------------#{tagging}"}
+    if tags.present?
+      tags.each do |tag|
+      name = tag["name"]
+      id = tag["id"]
+      tagging = Tagging.new(:tag_id => tag["id"],
+                            :taggable_id => params[:product_id],
+                            :tagger_id => current_user.id)
+      Rails.logger.info {"#{__FILE__}:#{__LINE__} ------------#{tagging}"}
        tagging.save
-     end
+      end
      product_tags
+    else
+      render json: {tags: tags, redirect_url: "/product/#{params[:product_id]}"}
+    end
   end
 
 end

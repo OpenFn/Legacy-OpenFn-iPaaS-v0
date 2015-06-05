@@ -381,9 +381,9 @@
 
 .tag-editor{
   width: 658px;
-  height: 35px;
+  padding-bottom:5px;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1) inset;
-  border: 1px solid #CCC;
+  border-bottom: 1px solid #000;
   cursor: text;
   background-color: #FFF;
   position: relative;
@@ -446,4 +446,22 @@ input[type="text"]{
     margin: 4px 3px 0px;
     background-color: transparent !important;
     height: 25px;
+}
+
+.tag-box{
+  width: 206px;
+  margin: 10px 6.5px;
+  padding: 8px 0px 8px 0px;
+  display:inline-block;
+}
+
+.tag-suggestions{
+  width: 658px;
+  margin-left: 210px;
+  background-color: #FFF;
+  overflow: hidden;
+}
+
+a:hover{
+  color:#000;
 }
