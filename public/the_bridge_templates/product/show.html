@@ -109,7 +109,7 @@
                         <a data-toggle="modal" class="edit-link">
                         Add/Edit Tags
                         </a>
-                        <div style="position:relative">
+                        <!-- <div style="position:relative"> -->
                           <div class = "tag-editor">
                             <span ng-repeat = "n in product.tag_list track by $index" class = "post-tag">
                             {{n.name}}
@@ -118,10 +118,12 @@
                             </span>
                             <input type = "text" ng-model="searchText" ng-change = "searchTags(searchText,product)">
                           </div>
-                          <div ng-repeat = "tag in tag_match track by $index">
-                            <a ng-click = "addTag(tag,product)">{{tag.name}}<a>
+                          <div class = "tag-suggestions">
+                            <div ng-repeat = "tag in tag_match track by $index">
+                              <a ng-click = "addTag(tag,product)" class = "post-tag tag-box">{{tag.name}} x {{tag.taggings_count}}</a>
+                            </div>
                           </div>
-                        </div>
+                        <!-- </div> -->
                         <button ng-click = "submitTags(product.tag_list,product)" class="btn btn-success" type="submit">Submit</button>
                       </div>
                     </div>

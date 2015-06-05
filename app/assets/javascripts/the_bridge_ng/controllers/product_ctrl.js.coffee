@@ -53,23 +53,22 @@
     $http.post("/products/#{product.id}/tags/edit",tags).success((data) ->
       console.log(data.tags)
       window.location = data.redirect_url
-
     )
+
 
   $scope.searchTags = (tagText,product) ->
     $scope.tag_match = []
     lowercaseSearchText = angular.lowercase($scope.searchText)
     console.log(lowercaseSearchText)
-    console.log($scope.tags)
     x = 0
     if (lowercaseSearchText)
       while x < $scope.tags.length
-        #console.log($scope.tags[x].name)
         value = $scope.tags[x].name.search(lowercaseSearchText)
         if (value > -1)
-          $scope.tag_match[x] = $scope.tags[x]
+          $scope.tag_match.push $scope.tags[x]
           console.log($scope.tag_match[x])
         x++
+      console.log($scope.tag_match)
     else
       $scope.tag_match = []
 
