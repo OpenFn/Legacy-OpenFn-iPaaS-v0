@@ -7,9 +7,9 @@
 
     productTags($scope.product)
     #$scope.twitterApi = $scope.product.twitter.substring(1)
-    $timeout ->
-      twttr.widgets.load()
-    , 500
+    #$timeout ->
+    #  twttr.widgets.load()
+    #, 500
 
   $scope.changeVoteFor = (product) ->
     $http.get("/products/#{product.id}/vote")
@@ -38,8 +38,14 @@
     $scope.product.tag_list.splice(index, 1);
 
   $scope.addTag = (tag,product) ->
-    console.log(tag)
-    $scope.product.tag_list.push tag
+    addToArray = true
+    i = 0
+    while i < $scope.product.tag_list.length
+      if $scope.product.tag_list[i].name == tag.name
+        addToArray = false
+      i++
+    if addToArray
+      $scope.product.tag_list.push tag
     console.log($scope.product.tag_list)
 
   $scope.submitTags = (tags,product) ->
