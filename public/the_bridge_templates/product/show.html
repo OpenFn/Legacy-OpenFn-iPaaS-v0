@@ -116,7 +116,7 @@
                               <span ng-click = "deleteTag(n,product)" class = "delete-tag" title = "remove this tag">X
                               </span>
                             </span>
-                            <input type = "text" ng-model="searchText" ng-change = "searchTags(searchText,product)">
+                            <input type = "text" class = "search-tags" ng-model="searchTagText" ng-change = "searchTags(searchTagText,product)">
                           </div>
                           <div class = "tag-suggestions">
                             <div ng-repeat = "tag in tag_match track by $index">

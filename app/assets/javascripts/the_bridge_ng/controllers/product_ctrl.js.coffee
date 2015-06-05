@@ -1,6 +1,7 @@
 @controllerModule.controller 'ProductController', ['$scope', '$location', '$http', '$routeParams', '$timeout', ($scope, $location, $http, $routeParams, $timeout) ->
   $scope.product = {}
   $scope.searchText = ""
+  $scope.searchTagText = ""
 
   $http.get('/products/' + $routeParams.id + '.json').success((data) ->
     $scope.product = data
@@ -58,7 +59,7 @@
 
   $scope.searchTags = (tagText,product) ->
     $scope.tag_match = []
-    lowercaseSearchText = angular.lowercase($scope.searchText)
+    lowercaseSearchText = angular.lowercase($scope.searchTagText)
     console.log(lowercaseSearchText)
     x = 0
     if (lowercaseSearchText)
