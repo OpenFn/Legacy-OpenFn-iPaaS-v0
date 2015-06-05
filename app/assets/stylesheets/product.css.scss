@@ -165,8 +165,8 @@
 
 .show-product {
 
-  background-color: $light;
-  background-image: image-url("noise.png");
+  background-color: $nav;
+  // background-image: image-url("noise.png");
   color: $light-grey;
   padding: 30px;
 
@@ -325,6 +325,7 @@
     padding-top: 0.8em;
     margin: 0 0.8em 0.8em 0.8em;
     font-size: rem-calc(18px);
+          color: $dark;
   }
 
   .tag-list {
@@ -367,4 +368,8 @@
 .submitStatus{
   color:red;
   font-weight: bold;
+}
+
+.rscore {
+  font-size: rem-calc(20px);
 }

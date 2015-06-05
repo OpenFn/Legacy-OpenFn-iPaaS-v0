@@ -34,6 +34,7 @@ a:hover {
 
 a {
   color: inherit;
+  cursor: pointer;
 }
 
 html {
@@ -44,6 +45,7 @@ html {
 
 body {
   background-color: $bg-color;
+  // background-image: image-url("noise.png");
   color: $dark;
   padding-top: 68px;
   font-family : 'Open Sans',Verdana,Helvetica,sans-serif;
