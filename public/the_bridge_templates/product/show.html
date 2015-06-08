@@ -107,20 +107,20 @@
                   <div ng-repeat="tag in product.tag_list track by $index" class="tag label label-info">
                     {{tag.name}}
                   </div>
-                    <div class="tag-editor">
-                      <span ng-repeat="n in product.tag_list track by $index" class="post-tag">
-                      {{n.name}}
-                        <span ng-click="deleteTag(n,product)" class = "delete-tag" title="remove this tag">X
-                        </span>
+                  <div class="tag-editor">
+                    <span ng-repeat="n in product.tag_list track by $index" class="post-tag">
+                    {{n.name}}
+                      <span ng-click="deleteTag(n,product)" class = "delete-tag" title="remove this tag">X
                       </span>
-                      <input type = "text" class="search-tags" ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
+                    </span>
+                    <input type="text" class="search-tags" ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
+                  </div>
+                  <div class="tag-suggestions">
+                    <div ng-repeat="tag in tag_match track by $index">
+                      <a ng-click="addTag(tag,product)" class="post-tag tag-box">{{tag.name}} x{{tag.taggings_count}}</a>
                     </div>
-                    <div class = "tag-suggestions">
-                      <div ng-repeat="tag in tag_match track by $index">
-                        <a ng-click="addTag(tag,product)" class="post-tag tag-box">{{tag.name}} x{{tag.taggings_count}}</a>
-                      </div>
-                    </div>
-                  <button ng-click="submitTags(product.tag_list,product)" class="btn btn-success" type="submit">Submit</button>
+                  </div>
+                  <button ng-click="submitTags(product.tag_list,product)" class="btn btn-default" type="submit">Submit</button>
                 </div>
               </div>
             </div>
