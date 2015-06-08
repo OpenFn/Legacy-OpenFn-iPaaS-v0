@@ -1,5 +1,8 @@
 class TagsController < ApplicationController
 
+  skip_before_filter :require_login
+
+
   def index
     @tags = Tag.all
     render json: @tags
@@ -30,6 +33,11 @@ class TagsController < ApplicationController
   end
 
   def product_tags_edit
+     if !current_user.present?
+       Rails.logger.info {"#{__FILE__}:#{__LINE__} .............inside login"}
+       render json: {status: "login", redirect_url: "/login"}
+       return
+     end
     tags = params["_json"]
     Rails.logger.info {"#{__FILE__}:#{__LINE__} .............#{tags}"}
     taggings = Tagging.where(:taggable_id => params[:product_id])
