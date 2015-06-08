@@ -152,7 +152,7 @@
     x = 0
     if (lowercaseSearchText)
       while x < $scope.tags.length
-        value = $scope.tags[x].name.search(lowercaseSearchText)
+        value = $scope.tags[x].name.toLowerCase().search(lowercaseSearchText)
         if (value > -1)
           $scope.tag_match.push $scope.tags[x]
           console.log($scope.tag_match[x])
@@ -160,9 +160,5 @@
       console.log($scope.tag_match)
     else
       $scope.tag_match = []
-
-
-
-
 
 ]
