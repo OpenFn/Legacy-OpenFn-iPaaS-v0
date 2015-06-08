@@ -29,7 +29,7 @@
     $http.get("/products/#{product.id}/tags").success((data) ->
       $scope.product.tag_list = data.tags
     )
-    $http.get("/tags/").success((data) ->
+    $http.get("/tags").success((data) ->
       $scope.tags = data.tags
       #console.log($scope.tags)
      )
@@ -50,7 +50,7 @@
     console.log($scope.product.tag_list)
 
   $scope.submitTags = (tags,product) ->
-    console.log(tags)
+    console.log(product)
     $http.post("/products/#{product.id}/tags/edit",tags).success((data) ->
       console.log(data.tags)
       window.location = data.redirect_url
