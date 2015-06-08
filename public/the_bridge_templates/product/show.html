@@ -118,6 +118,7 @@
 
         <div class="col-md-6">
         <div class="rn-title center">Reviews</div><br>
+          <div ng-show="product.reviews_count == 0">Nobody has review this product yet. Be the first! <a data-toggle="modal" data-target="#review_modal" target="_blank" class="review-link"><strong>Click to rate & review {{product.name}}.</strong></a></div>
           <div ng-repeat="n in product.reviews | orderBy:'-review_score'">
               <div class="row">
               <div class="col-md-1">
