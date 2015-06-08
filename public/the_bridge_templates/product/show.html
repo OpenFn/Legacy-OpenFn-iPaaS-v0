@@ -107,10 +107,6 @@
                   <div ng-repeat="tag in product.tag_list track by $index" class="tag label label-info">
                     {{tag.name}}
                   </div>
-                  <a data-toggle="modal" class="edit-link">
-                  Add or edit tags
-                  </a>
-                  <!-- <div style="position:relative"> -->
                     <div class = "tag-editor">
                       <span ng-repeat = "n in product.tag_list track by $index" class = "post-tag">
                       {{n.name}}
@@ -124,7 +120,6 @@
                         <a ng-click = "addTag(tag,product)" class = "post-tag tag-box">{{tag.name}} x{{tag.taggings_count}}</a>
                       </div>
                     </div>
-                  <!-- </div> -->
                   <button ng-click = "submitTags(product.tag_list,product)" class="btn btn-success" type="submit">Submit</button>
                 </div>
               </div>
@@ -410,35 +405,4 @@
     </div>
   </div>
 </div>
-</div>
-
-<div class="modal fade" id="tag_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="featurette dark">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Submit a review for {{product.name}}.</h4>
-        </div>
-        <div class="modal-body center">
-          <span class="mb-title">Your</span> reviews are what drive the community. Thanks for taking the time to open-source your knowledge of {{product.name}}.
-          <br>
-          <br>
-          <form method="post" action="{{'/products/'+product.id+'/review/new'}}">
-            <span><strong>*Write Review (116 chars).</strong></span><br><br>
-            <textarea rows="10" cols="50" name="review" placeholder="something thougtful and helpful" style = "color: red;" class="fsField fsRequired fsTextAreaMaxLength", maxlength = "116"></textarea>
-            <br>
-            <br>
-            <span><strong>*Ratings (0-10).</strong></span><br><br>
-            <input type="integer" name="rating" placeholder="0-10" style="color: red;" class="fsField fsRequired fsTextAreaMaxLength", maxlength = "116">
-            <br>
-            <br>
-            <button class="btn btn-success" type="submit">Submit</button>
-          <br>
-          <br>
-          Thanks for your time.
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
