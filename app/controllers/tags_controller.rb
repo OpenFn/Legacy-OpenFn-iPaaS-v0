@@ -16,7 +16,6 @@ class TagsController < ApplicationController
       tag = Tag.find(tag_id)
       tags.push(tag)
     end
-    #render json: tags
     render json: {tags: tags, redirect_url: "/product/#{params[:product_id]}"}
   end
 
@@ -25,7 +24,6 @@ class TagsController < ApplicationController
                   :taggings_count => params[:count])
     tag.save
     tag_id = Tag.find(:name => params[:name]).id
-    #tag_id = tag_record.id
     tagging = Tagging.new(:tag_id => tag_id,
                           :taggable_id => params[:product_id],
                           :tagger_id => current_user.id)

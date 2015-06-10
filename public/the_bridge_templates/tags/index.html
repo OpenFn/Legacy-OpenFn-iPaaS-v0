@@ -1,0 +1,32 @@
+<div ng-controller="TagController as tagCtrl" class="row">
+  <div class = "tags">
+    <div class = "container">
+      <div class = "headerText">
+        <h3>Tags</h3>
+      </div>
+      <div class = "tagsDescription">
+        A tag is a keyword or label that categorizes your question with other, similar questions. Using the right tags makes it easier for others to find and answer your question.
+      </div>
+      <form ng-submit="searchTags()">
+        <span class = "searchTagsText">Search tags</span>
+        <input type="text" class="form-control searchTagsBox" placeholder="Type a search term and press enter to search it..." ng-model="searchTagText" ng-change="searchTags(searchTagText)">
+      </form>
+      <div id = "tags_list">
+      <table id = "tags-browser">
+        <tbody>
+          <tr >
+            <td ng-repeat = "n in tag_match | orderBy:'-taggings_count'" class = "tagCell">
+              <a href = "#" class = "post-tag" title rel = "tag">{{n.name}}</a>
+              <span class = "item-multiplier">
+                <span class = "item-multiplier-x">x</span>
+                <span class = "item-multiplier-count">{{n.taggings_count}}</span>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>
+

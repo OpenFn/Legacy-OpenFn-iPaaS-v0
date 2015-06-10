@@ -116,7 +116,6 @@
     )
     $http.get("/tags").success((data) ->
       $scope.tags = data.tags
-      console.log($scope.tags)
      )
 
   $scope.deleteTag = (tag,product) ->
@@ -148,7 +147,6 @@
         value = $scope.tags[x].name.toLowerCase().search(lowercaseSearchText)
         if (value > -1)
           $scope.tag_match.push $scope.tags[x]
-          console.log($scope.tag_match)
         x++
     else
       $scope.tag_match = []
