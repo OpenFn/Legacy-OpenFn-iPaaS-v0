@@ -130,6 +130,7 @@ OpenFn::Application.routes.draw do
   get '/products/:product_id/tags', to: "tags#product_tags"
   post '/products/:product_id/tags/add', to: "tags#product_tags_add"
   post '/products/:product_id/tags/edit', to: "tags#product_tags_edit"
+  get '/tag/tagging_count/:tag_id', to: "tags#tagging_count"
 
   get "metrics", to: "metrics#index", as: :metrics
 

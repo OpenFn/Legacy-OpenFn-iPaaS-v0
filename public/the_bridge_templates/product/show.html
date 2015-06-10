@@ -20,15 +20,15 @@
                 <i class="fa fa-star-o" ng-show="product.rating<=1"></i>
                 <i class="fa fa-star-half-o" ng-show="product.rating>1 && product.rating<=1.5"></i>
                 <i class="fa fa-star" ng-show="product.rating>1.5"></i>
-                
+
                 <i class="fa fa-star-o" ng-show="product.rating<=2"></i>
                 <i class="fa fa-star-half-o" ng-show="product.rating>2 && product.rating<=2.5"></i>
                 <i class="fa fa-star" ng-show="product.rating>2.5"></i>
-                
+
                 <i class="fa fa-star-o" ng-show="product.rating<=3"></i>
                 <i class="fa fa-star-half-o" ng-show="product.rating>3 && product.rating<=3.5"></i>
                 <i class="fa fa-star" ng-show="product.rating>3.5"></i>
-                
+
                 <i class="fa fa-star-o" ng-show="product.rating<=4"></i>
                 <i class="fa fa-star-half-o" ng-show="product.rating>4 && product.rating<=4.5"></i>
                 <i class="fa fa-star" ng-show="product.rating>4.5"></i>
@@ -116,8 +116,8 @@
                     <input type="text" class="search-tags" ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
                   </div>
                   <div class="tag-suggestions">
-                    <div ng-repeat="tag in tag_match track by $index">
-                      <a ng-click="addTag(tag,product)" class="post-tag tag-box">{{tag.name}} x{{tag.taggings_count}}</a>
+                    <div ng-repeat="tag in tag_match track by $index |filter:tag">
+                      <a ng-click="addTag(tag,product)" ng-init = "tagging_count(tag)" class="post-tag tag-box">{{tag.name}} x{{tag.tag_count}}</a>
                     </div>
                   </div>
                   <button ng-click="submitTags(product.tag_list,product)" class="btn btn-default" type="submit">Submit</button>
@@ -151,15 +151,15 @@
                   <i class="fa fa-star-o" ng-show="n.rating<=1"></i>
                   <i class="fa fa-star-half-o" ng-show="n.rating>1 && n.rating<=1.5"></i>
                   <i class="fa fa-star" ng-show="n.rating>1.5"></i>
-                  
+
                   <i class="fa fa-star-o" ng-show="n.rating<=2"></i>
                   <i class="fa fa-star-half-o" ng-show="n.rating>2 && n.rating<=2.5"></i>
                   <i class="fa fa-star" ng-show="n.rating>2.5"></i>
-                  
+
                   <i class="fa fa-star-o" ng-show="n.rating<=3"></i>
                   <i class="fa fa-star-half-o" ng-show="n.rating>3 && n.rating<=3.5"></i>
                   <i class="fa fa-star" ng-show="n.rating>3.5"></i>
-                  
+
                   <i class="fa fa-star-o" ng-show="n.rating<=4"></i>
                   <i class="fa fa-star-half-o" ng-show="n.rating>4 && n.rating<=4.5"></i>
                   <i class="fa fa-star" ng-show="n.rating>4.5"></i>

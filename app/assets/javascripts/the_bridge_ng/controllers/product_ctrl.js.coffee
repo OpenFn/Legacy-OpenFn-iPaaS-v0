@@ -5,9 +5,7 @@
 
   $http.get('/products/' + $routeParams.id + '.json').success((data) ->
     $scope.product = data
-
     productTags($scope.product)
-    console.log("data",data)
     $scope.product.reviews_count = $scope.product.reviews.length
     $scope.productRating($scope.product)
     $scope.twitterApi = $scope.product.twitter.substring(1)
@@ -102,7 +100,6 @@
       'product_id': product.id
 
     $http.post("/products/#{product.id}/review/new",$scope.review).success((data) ->
-      console.log("data",data.status)
       if data.status == 'duplicate'
         $scope.duplicate_status = true
 
@@ -119,7 +116,7 @@
     )
     $http.get("/tags").success((data) ->
       $scope.tags = data.tags
-      #console.log($scope.tags)
+      console.log($scope.tags)
      )
 
   $scope.deleteTag = (tag,product) ->
@@ -135,12 +132,9 @@
       i++
     if addToArray
       $scope.product.tag_list.push tag
-    console.log($scope.product.tag_list)
 
   $scope.submitTags = (tags,product) ->
-    console.log(product)
     $http.post("/products/#{product.id}/tags/edit",tags).success((data) ->
-      console.log(data.tags)
       window.location = data.redirect_url
     )
 
@@ -148,17 +142,24 @@
   $scope.searchTags = (tagText,product) ->
     $scope.tag_match = []
     lowercaseSearchText = angular.lowercase($scope.searchTagText)
-    console.log(lowercaseSearchText)
     x = 0
     if (lowercaseSearchText)
       while x < $scope.tags.length
         value = $scope.tags[x].name.toLowerCase().search(lowercaseSearchText)
         if (value > -1)
           $scope.tag_match.push $scope.tags[x]
-          console.log($scope.tag_match[x])
+          console.log($scope.tag_match)
         x++
-      console.log($scope.tag_match)
     else
       $scope.tag_match = []
+
+  $scope.tagging_count = (tag) ->
+    $http.get("/tag/tagging_count/#{tag.id}").success((data) ->
+      i = 0
+      while i < $scope.tags.length
+        if $scope.tags[i].id == tag.id
+          $scope.tags[i].tag_count = data
+        i++
+    )
 
 ]

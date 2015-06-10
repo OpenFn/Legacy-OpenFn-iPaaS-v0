@@ -34,12 +34,10 @@ class TagsController < ApplicationController
 
   def product_tags_edit
      if !current_user.present?
-       Rails.logger.info {"#{__FILE__}:#{__LINE__} .............inside login"}
        render json: {status: "login", redirect_url: "/login"}
        return
      end
     tags = params["_json"]
-    Rails.logger.info {"#{__FILE__}:#{__LINE__} .............#{tags}"}
     taggings = Tagging.where(:taggable_id => params[:product_id])
     taggings.delete_all
     if tags.present?
@@ -49,13 +47,17 @@ class TagsController < ApplicationController
       tagging = Tagging.new(:tag_id => tag["id"],
                             :taggable_id => params[:product_id],
                             :tagger_id => current_user.id)
-      Rails.logger.info {"#{__FILE__}:#{__LINE__} ------------#{tagging}"}
        tagging.save
       end
      product_tags
     else
       render json: {tags: tags, redirect_url: "/product/#{params[:product_id]}"}
     end
+  end
+
+  def tagging_count
+    tags = Tagging.where(:tag_id => params[:tag_id])
+    render json: tags.count
   end
 
 end
