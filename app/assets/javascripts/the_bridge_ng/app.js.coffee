@@ -99,7 +99,7 @@ Array::filter = (func) -> x for x in @ when func(x)
     .when('/welcome', {
       templateUrl: '../the_bridge_templates/static/welcome2.html'
     })
-    .when('/tag', {
+    .when('/tags', {
       templateUrl: '../the_bridge_templates/tags/index.html'
     })
     .when('/', {
