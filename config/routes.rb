@@ -135,8 +135,8 @@ OpenFn::Application.routes.draw do
   get "metrics", to: "metrics#index", as: :metrics
 
   # to solve issue rendering json on /tags, redirecting to /tag
-  match "/tags" => redirect("/tag"), via: [:get]
-  match "/tags/index" => redirect("/tag"), via: [:get]
+  #match "/tags" => redirect("/tag"), via: [:get]
+  #match "/tags/index" => redirect("/tag"), via: [:get]
 
   # changes tags/index to tags/get_all
   get '/tags/get_all', to: "tags#get_all"
