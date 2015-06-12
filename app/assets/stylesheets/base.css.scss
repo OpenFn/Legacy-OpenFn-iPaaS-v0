@@ -64,7 +64,7 @@ html, body {
 }
 
 #main {
-  overflow: auto;
+  //overflow: auto;
   padding-bottom: 68px; /* make same height as footer */
 }
 
@@ -311,7 +311,7 @@ b, strong {
       }
 
       &.mappings {
-        
+
         .featurette-heading {
           // color: $off-white;
         }
@@ -345,7 +345,7 @@ b, strong {
         }
       }
 
-    }   
+    }
 
  .title {
     // color: $off-white;
@@ -426,30 +426,30 @@ b, strong {
     border-bottom: 0;
   }
 }
- 
+
 .tab-content > .tab-pane,
 .pill-content > .pill-pane {
   display: none;
 }
- 
+
 .tab-content > .active,
 .pill-content > .active {
   display: block;
 }
- 
+
 .tabs-below {
   > .nav-tabs {
     border-top: 1px solid #ddd;
- 
+
     > li {
       margin-top: -1px;
       margin-bottom: 0;
- 
+
       > a {
         -webkit-border-radius: 0 0 4px 4px;
            -moz-border-radius: 0 0 4px 4px;
                 border-radius: 0 0 4px 4px;
- 
+
         &:hover, &:focus {
           border-top-color: #ddd;
           border-bottom-color: transparent;
@@ -463,11 +463,11 @@ b, strong {
     }
   }
 }
- 
+
 .tabs-left, .tabs-right {
   > .nav-tabs > li {
     float: none;
- 
+
     > a {
       min-width: 74px;
       margin-right: 0;
@@ -475,23 +475,23 @@ b, strong {
     }
   }
 }
- 
+
 .tabs-left > .nav-tabs {
   float: left;
   margin-right: 19px;
   border-right: 1px solid #ddd;
- 
+
   > li > a {
     margin-right: -1px;
     -webkit-border-radius: 4px 0 0 4px;
        -moz-border-radius: 4px 0 0 4px;
             border-radius: 4px 0 0 4px;
- 
+
     &:hover, &:focus {
       // border-color: #eee #ddd #eee #eee;
     }
   }
- 
+
   > .active a {
     &, &:hover, &:focus {
       // border-color: #ddd transparent #ddd #ddd;
@@ -499,13 +499,13 @@ b, strong {
     }
   }
 }
- 
+
 .tabs-right > .nav-tabs {
   float: right;
   margin-left: 19px;
-  padding: 5px; 
+  padding: 5px;
   // border-left: 1px solid #ddd;
- 
+
   > li > a {
     // margin-left: -1px;
     -webkit-border-radius: 6px 6px 6px 6px;
@@ -514,14 +514,14 @@ b, strong {
             border: none;
     //         background-color: $nav;
     //         color: black;
- 
+
     &:hover, &:focus {
       // background-color: $lilac;
       // color: $dynamic;
       // border: none;
     }
   }
- 
+
   > .active a {
     &, &:hover, &:focus {
       border: none;

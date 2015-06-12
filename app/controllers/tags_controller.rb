@@ -2,8 +2,13 @@ class TagsController < ApplicationController
 
   skip_before_filter :require_login
 
+  # commented to hide index
+  #def index
+  #  @tags = Tag.all
+  #  render json: @tags
+  #end
 
-  def index
+  def get_all
     @tags = Tag.all
     render json: @tags
   end

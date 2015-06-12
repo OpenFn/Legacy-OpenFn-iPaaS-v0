@@ -96,7 +96,7 @@ OpenFn::Application.routes.draw do
 
   resources :review_votes, only: [:create, :show, :index]
 
-  resources :tags, only: [:index, :show]
+  resources :tags, only: []
 
   resources :odk_forms, only: [:index]
 
@@ -133,6 +133,13 @@ OpenFn::Application.routes.draw do
   get '/tag/tagging_count/:tag_id', to: "tags#tagging_count"
 
   get "metrics", to: "metrics#index", as: :metrics
+
+  # to solve issue rendering json on /tags, redirecting to /tag
+  match "/tags" => redirect("/tag"), via: [:get]
+  match "/tags/index" => redirect("/tag"), via: [:get]
+
+  # changes tags/index to tags/get_all
+  get '/tags/get_all', to: "tags#get_all"
 
   match "/*path" => redirect("#/%{path}"), via: [:get, :post]
 

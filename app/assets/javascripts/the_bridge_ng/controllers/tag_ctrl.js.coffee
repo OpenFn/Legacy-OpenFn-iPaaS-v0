@@ -3,7 +3,7 @@
   $scope.searchText = ""
   $scope.searchTagText = ""
 
-  $http.get('/tags').success((data) ->
+  $http.get('/tags/get_all').success((data) ->
     $scope.tags = data.tags;
     $scope.tag_match = $scope.tags
     $scope.tags_duplicate = angular.copy($scope.tags)
@@ -22,6 +22,15 @@
         x++
     else
       $scope.tag_match = $scope.tags_duplicate
+
+  $scope.tagging_count = (tag) ->
+    $http.get("/tag/tagging_count/#{tag.id}").success((data) ->
+      i = 0
+      while i < $scope.tag_match.length
+        if $scope.tag_match[i].id == tag.id
+          $scope.tag_match[i].tag_count = data
+        i++
+    )
 ]
 
 
