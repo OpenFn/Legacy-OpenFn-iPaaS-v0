@@ -119,7 +119,7 @@
                   </div>
                   <div class="tag-suggestions">
                     <div ng-repeat="tag in tag_match track by $index |filter:tag">
-                      <a ng-click="addTag(tag,product)" ng-init = "tagging_count(tag)" class="post-tag tag-box">{{tag.name}} x{{tag.taggings_count}}</a>
+                      <a ng-click="addTag(tag,product)" ng-init = "tagging_count(tag)" class="post-tag tag-box">{{tag.name}} x{{tag.tag_count}}</a>
                     </div>
                   </div>
                   <button ng-click="submitTags(product.tag_list,product)" class="btn btn-default" type="submit">Submit</button>

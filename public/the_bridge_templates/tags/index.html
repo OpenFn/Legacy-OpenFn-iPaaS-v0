@@ -16,11 +16,11 @@
         <tbody>
           <tr >
             <td ng-repeat = "n in tag_match | orderBy:'-taggings_count' |
-             orderBy:'name'" class = "tagCell">
+             orderBy:'name'" ng-init = "tagging_count(n)" class = "tagCell">
               <a href = "#" class = "post-tag" title rel = "tag">{{n.name}}</a>
               <span class = "item-multiplier">
                 <span class = "item-multiplier-x">x</span>
-                <span class = "item-multiplier-count">{{n.taggings_count}}</span>
+                <span class = "item-multiplier-count">{{n.tag_count}}</span>
               </span>
             </td>
           </tr>
