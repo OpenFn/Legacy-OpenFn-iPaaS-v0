@@ -15,8 +15,7 @@
       <table id = "tags-browser">
         <tbody>
           <tr >
-            <td ng-repeat = "n in tag_match | orderBy:'-taggings_count' |
-             orderBy:'name'" ng-init = "tagging_count(n)" class = "tagCell">
+            <td ng-repeat = "n in tag_match | orderBy:'name' | orderBy:'-tag_count' " ng-init = "tagging_count(n)" class = "tagCell">
               <a href = "#" class = "post-tag" title rel = "tag">{{n.name}}</a>
               <span class = "item-multiplier">
                 <span class = "item-multiplier-x">x</span>
