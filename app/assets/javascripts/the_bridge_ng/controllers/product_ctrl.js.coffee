@@ -2,6 +2,7 @@
   $scope.product = {}
   $scope.searchText = ""
   $scope.searchTagText = ""
+  $scope.editTags = false
 
   $http.get('/products/' + $routeParams.id + '.json').success((data) ->
     $scope.product = data
@@ -116,7 +117,6 @@
     )
     $http.get("/tags/get_all").success((data) ->
       $scope.tags = data.tags
-      console.log("data :"+JSON.stringify($scope.tags))
      )
 
   $scope.deleteTag = (tag,product) ->
@@ -144,14 +144,19 @@
     lowercaseSearchText = angular.lowercase($scope.searchTagText)
     x = 0
     if (lowercaseSearchText)
+      $scope.new_tag = false
       while x < $scope.tags.length
         value = $scope.tags[x].name.toLowerCase().search(lowercaseSearchText)
-        console.log("tag :"+JSON.stringify($scope.tags[x]))
         if (value > -1)
           $scope.tag_match.push $scope.tags[x]
+          $scope.new_tag = false
         x++
+        if $scope.tag_match.length == 0 && lowercaseSearchText
+          $scope.new_tag = true
+          $scope.newTag = lowercaseSearchText
     else
       $scope.tag_match = []
+      $scope.new_tag = false
 
   $scope.tagging_count = (tag) ->
     $http.get("/tag/tagging_count/#{tag.id}").success((data) ->
@@ -162,4 +167,15 @@
         i++
     )
 
+  $scope.addNewTag = (product) ->
+    newTagName =
+      'name': $scope.newTag
+    $http.post("/products/#{product.id}/tags/add",newTagName).success((data) ->
+      if data.status == 'login'
+        window.location = data.redirect_url
+      productTags(product)
+    )
+
+  $scope.showEditTagsBox = () ->
+    $scope.editTags = true
 ]

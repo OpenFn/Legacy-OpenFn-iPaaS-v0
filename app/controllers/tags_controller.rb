@@ -25,14 +25,21 @@ class TagsController < ApplicationController
   end
 
   def product_tags_add
-    tag = Tag.new(:name => params[:name],
+    Rails.logger.info {"#{__FILE__}:#{__LINE__} #{params}"}
+    if !current_user.present?
+       render json: {status: "login", redirect_url: "/login"}
+       return
+     end
+    id = Tag.maximum(:id).next
+    tag = Tag.new(:id => id,
+                  :name => params[:name],
                   :taggings_count => params[:count])
     tag.save
-    tag_id = Tag.find(:name => params[:name]).id
-    tagging = Tagging.new(:tag_id => tag_id,
+    tagging = Tagging.new(:tag_id => id,
                           :taggable_id => params[:product_id],
                           :tagger_id => current_user.id)
     tagging.save
+    render json: tagging
   end
 
   def product_tags_edit

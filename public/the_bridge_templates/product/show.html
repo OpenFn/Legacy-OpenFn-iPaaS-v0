@@ -107,15 +107,17 @@
                   <div ng-repeat="tag in product.tag_list track by $index" class="tag label label-info">
                     {{tag.name}}
                   </div>
+                  <a ng-click = "showEditTagsBox()">Edit Tags</a>
+                  <div ng-show = "editTags">
                   <div class="tag-editor">
-
-                    <span ng-repeat="n in product.tag_list track by $index" class="post-tag">
-                    {{n.name}}
-                      <span ng-click="deleteTag(n,product)" class = "delete-tag" title="remove this tag">X
+                    <div style="float:left">
+                      <span ng-repeat="n in product.tag_list track by $index" class="post-tag">
+                      {{n.name}}
+                        <span ng-click="deleteTag(n,product)" class = "delete-tag" title="remove this tag">X
+                        </span>
                       </span>
-                    </span>
-                     <input type="text" class="search-tags" ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
-
+                    </div>
+                      <input type="text" class="search-tags" ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
                   </div>
                   <div class="tag-suggestions">
                     <div ng-repeat="tag in tag_match | orderBy:'name' | orderBy:'-tag_count'" >
@@ -123,6 +125,8 @@
                     </div>
                   </div>
                   <button ng-click="submitTags(product.tag_list,product)" class="btn btn-default" type="submit">Submit</button>
+                  <a ng-show = "new_tag" ng-click = "addNewTag(product)" >Add this Tag</a>
+                  </div>
                 </div>
               </div>
             </div>
