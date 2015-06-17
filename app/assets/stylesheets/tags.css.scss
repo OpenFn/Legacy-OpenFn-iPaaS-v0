@@ -1,36 +1,11 @@
-tags {
-
-
-    .container{
-      width: 1170px;
-      margin: 0 auto;
-    }
-
-    .headerText{
-      border-bottom: 1px solid #ccc;
-    }
-
-
-    .tagsDescription{
-      font-size: 17px;
-      padding-top: 15px;
-      padding-bottom: 15px;
-    }
+.tags {
 
     .searchTagsText{
       padding-bottom: 10px;
       display: block;
     }
 
-    .tagName{
-      display: block;
-      font-size: 16px;
-      padding-top: 35px;
-    }
-
     .tagCell{
-      width: 230px;
-      border-bottom: 1px dotted #E0E0E0;
       padding-bottom: 12px;
       padding-right: 6px;
       padding-top: 6px;
@@ -38,35 +13,21 @@ tags {
       float: left;
     }
 
-    table {
-      border-collapse: collapse;
-      border-spacing: 0;
-    }
-
     .item-multiplier {
-      margin-right: 4px;
-
-    }
-
-    .item-multiplier-count {
-      font-size: 11px;
-
+      padding-bottom: 6px;
+      padding-top: 12px;
+      vertical-align: bottom;
+      float: left;
     }
 
     .post-tag:hover {
-      color: #3f5666;
+      color: $dark;
     }
 
     .post-tag {
-      color: #000;
-      background: #fff;
-      padding: 2px 5px 2px 5px;
+      color: $bg-color;
+      background: $base;
+      font-size: rem-calc(20px);
     }
-
-    #tags_list{
-        padding-top: 40px;
-    }
-
-
 
 }
