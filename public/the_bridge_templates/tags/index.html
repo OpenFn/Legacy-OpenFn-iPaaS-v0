@@ -13,12 +13,12 @@
     <div class="container">
       <br>
       <h4>Tags are applied to different tools so that you can find them more easily...</h4>
-      <form ng-submit="searchTags()">
+      <form ng-submit="searchAgain()">
         <input type="text" class="form-control searchTagsBox" placeholder="Search for specific tags by typing..." ng-model="searchTagText" ng-change="searchTags(searchTagText)">
       </form>
       <br>
       <div ng-repeat="n in tag_match | orderBy:'name' | orderBy:'-tag_count' " ng-init="tagging_count(n)" class="tagCell col-lg-3 col-md-3 col-sm-4 col-xs-6">
-          <a href="#" class="post-tag" title rel="tag">{{n.name}}</a>
+          <a href="/marketplace/search/{{n.name}}" class="post-tag" title rel="tag">{{n.name}}</a>
           <span class="item-multiplier">x{{n.tag_count}}</span>
       </div>
     </div>

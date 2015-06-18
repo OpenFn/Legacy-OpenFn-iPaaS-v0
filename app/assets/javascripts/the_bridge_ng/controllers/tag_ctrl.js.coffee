@@ -23,6 +23,9 @@
     else
       $scope.tag_match = $scope.tags_duplicate
 
+  $scope.searchAgain = () ->
+    $location.path('/marketplace/search/' + $scope.searchTagText)
+
   $scope.tagging_count = (tag) ->
     $http.get("/tag/tagging_count/#{tag.id}").success((data) ->
       i = 0
@@ -32,5 +35,3 @@
         i++
     )
 ]
-
-
