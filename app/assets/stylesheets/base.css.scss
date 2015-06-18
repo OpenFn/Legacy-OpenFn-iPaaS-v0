@@ -64,7 +64,7 @@ html, body {
 }
 
 #main {
-  overflow: auto;
+  overflow-x: hidden;
   padding-bottom: 68px; /* make same height as footer */
 }
 
