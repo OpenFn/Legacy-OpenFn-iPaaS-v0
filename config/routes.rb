@@ -96,6 +96,8 @@ OpenFn::Application.routes.draw do
 
   resources :review_votes, only: [:create, :show, :index]
 
+  resources :tags, only: []
+
   resources :odk_forms, only: [:index]
 
   resource :welcome_stats, only: :show
@@ -125,8 +127,19 @@ OpenFn::Application.routes.draw do
   get '/review/:review_id/up_vote', to: "review_votes#upvote"
   get '/review/:review_id/down_vote', to: "review_votes#downvote"
   get '/review/:review_id/score', to: "review_votes#count_rating"
+  get '/products/:product_id/tags', to: "tags#product_tags"
+  post '/products/:product_id/tags/add', to: "tags#product_tags_add"
+  post '/products/:product_id/tags/edit', to: "tags#product_tags_edit"
+  get '/tag/tagging_count/:tag_id', to: "tags#tagging_count"
 
   get "metrics", to: "metrics#index", as: :metrics
+
+  # to solve issue rendering json on /tags, redirecting to /tag
+  #match "/tags" => redirect("/tag"), via: [:get]
+  #match "/tags/index" => redirect("/tag"), via: [:get]
+
+  # changes tags/index to tags/get_all
+  get '/tags/get_all', to: "tags#get_all"
 
   match "/*path" => redirect("#/%{path}"), via: [:get, :post]
 

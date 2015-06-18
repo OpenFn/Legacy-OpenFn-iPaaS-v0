@@ -1,12 +1,11 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-init="isCollapsed = true">
-  <div class="top-shadow hidden-xs"></div>
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" ng-click="isCollapsed = !isCollapsed">
         <span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
       </button>
-      <a class="navbar-brand" href="#">open[Fn]</a>
+      <a class="navbar-brand" href="/">open[Fn]</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-collapse collapse" collapse="isCollapsed">
@@ -64,13 +63,13 @@
             <% end %>
           </li>
           <li>
-            <%= button_to "/signup", :class => "btn btn-success", method: :get do %>
+            <%= button_to "/signup", :class => "btn btn-default", method: :get do %>
               Sign up
             <% end %>
           </li>
         <% end %>
         <li>
-          <button onClick="ga('send', 'event', 'Revenue', 'Open Donate Modal');" type="button" data-toggle="modal" data-target="#donate_modal" class="btn btn-danger">Donate</button>
+          <button onClick="ga('send', 'event', 'Revenue', 'Open Donate Modal');" type="button" data-toggle="modal" data-target="#donate_modal" class="btn btn-open-donation">Donate</button>
         </li>
       </ul>
     </div>
@@ -90,10 +89,7 @@
             <h4 class="modal-title center" id="myModalLabel">Make a donation.</h4>
           </div>
           <div class="modal-body">
-            <strong>Thanks so much for your support</strong>. Before you continue, there are a couple of things you should know about this project.
-            <br>
-            <br>
-            OpenFn is a registered non-profit, but we don't yet have 501(c)3 approval.
+            <strong>Thanks so much for your support</strong>.
             <br>
             <br>
             We believe that we'll receive 501(c)3 approval in this tax year, 2015. When we are granted 501(c)3 status, all donations that were made previously will be recognized as tax deductible. To learn more, click <a href="http://www.irs.gov/Charities-&-Non-Profits/Charitable-Organizations/Contributions-to-Organization-with-IRS-Application-Pending" target="_blank">here.</a>

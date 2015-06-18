@@ -1,0 +1,33 @@
+.tags {
+
+    .searchTagsText{
+      padding-bottom: 10px;
+      display: block;
+    }
+
+    .tagCell{
+      padding-bottom: 12px;
+      padding-right: 6px;
+      padding-top: 6px;
+      vertical-align: top;
+      float: left;
+    }
+
+    .item-multiplier {
+      padding-bottom: 6px;
+      padding-top: 12px;
+      vertical-align: bottom;
+      float: left;
+    }
+
+    .post-tag:hover {
+      color: $dark;
+    }
+
+    .post-tag {
+      color: $bg-color;
+      background: $base;
+      font-size: rem-calc(20px);
+    }
+
+}
