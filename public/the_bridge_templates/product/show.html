@@ -43,8 +43,7 @@
             <br>
             <ul class="nav nav-pills nav-justified right-pills">
               <li role="presentation">
-                <!-- <a data-toggle="modal" data-target="#edit_modal" class="edit-link"> -->
-                <a data-toggle="modal" class="edit-link" ng-click = "checkLogin(product)">
+                <a data-toggle="modal" class="edit-link" ng-click="checkLogin(product)">
                   <i class="fa fa-edit fa-lg"></i> Edit this listing
                 </a>
               </li>
@@ -108,8 +107,8 @@
                   <div ng-repeat="tag in product.tag_list track by $index" class="tag label label-info">
                     {{tag.name}}
                   </div>
-                  <a ng-click = "showEditTagsBox()">Edit Tags</a>
-                  <div ng-show = "editTags">
+                  <a ng-click="showEditTagsBox()">Edit Tags</a>
+                  <div ng-show="editTags">
                     <div class="tag-editor">
                       <div style="float:left">
                         <span ng-repeat="n in product.tag_list track by $index" class="post-tag">

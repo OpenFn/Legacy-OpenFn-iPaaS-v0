@@ -190,7 +190,12 @@
     )
 
   $scope.showEditTagsBox = () ->
-    $scope.editTags = true
+    $http.get("/user/check_login").success((data) ->
+      if data.status == 'login'
+        window.location = data.redirect_url
+      else
+        $scope.editTags = true
+    )
 
   $scope.editProduct = (product) ->
     window.location = "/product/#{product.id}/edit"
