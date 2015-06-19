@@ -24,7 +24,6 @@ Array::filter = (func) -> x for x in @ when func(x)
   'angulartics',
   'angulartics.google.analytics',
   'angular-growl'
-  'ngTagsInput'
  ])
 
 # Handles to controllers for namespace collisions with the new OpenFn app.
