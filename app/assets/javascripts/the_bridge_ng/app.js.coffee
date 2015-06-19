@@ -24,6 +24,7 @@ Array::filter = (func) -> x for x in @ when func(x)
   'angulartics',
   'angulartics.google.analytics',
   'angular-growl'
+  'ngTagsInput'
  ])
 
 # Handles to controllers for namespace collisions with the new OpenFn app.
@@ -86,6 +87,9 @@ Array::filter = (func) -> x for x in @ when func(x)
     })
     .when('/product/:id', {
       templateUrl: '../the_bridge_templates/product/show.html',
+    })
+    .when('/product/:id/edit', {
+      templateUrl: '../the_bridge_templates/product/edit.html',
     })
     .when('/release-notes', {
       templateUrl: '../the_bridge_templates/release_notes/index.html'

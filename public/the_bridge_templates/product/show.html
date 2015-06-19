@@ -43,7 +43,8 @@
             <br>
             <ul class="nav nav-pills nav-justified right-pills">
               <li role="presentation">
-                <a data-toggle="modal" data-target="#edit_modal" class="edit-link">
+                <!-- <a data-toggle="modal" data-target="#edit_modal" class="edit-link"> -->
+                <a data-toggle="modal" class="edit-link" ng-click = "checkLogin(product)">
                   <i class="fa fa-edit fa-lg"></i> Edit this listing
                 </a>
               </li>
@@ -109,23 +110,28 @@
                   </div>
                   <a ng-click = "showEditTagsBox()">Edit Tags</a>
                   <div ng-show = "editTags">
-                  <div class="tag-editor">
-                    <div style="float:left">
-                      <span ng-repeat="n in product.tag_list track by $index" class="post-tag">
-                      {{n.name}}
-                        <span ng-click="deleteTag(n,product)" class = "delete-tag" title="remove this tag">X
+                    <div class="tag-editor">
+                      <div style="float:left">
+                        <span ng-repeat="n in product.tag_list track by $index" class="post-tag">
+                        {{n.name}}
+                          <span ng-click="deleteTag(n,product)" class = "delete-tag" title="remove this tag">X
+                          </span>
                         </span>
+                      </div>
+                      <span class = "tag-editor-span">
+                        <input type="text" class="search-tags" ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
                       </span>
                     </div>
-                      <input type="text" class="search-tags" ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
-                  </div>
-                  <div class="tag-suggestions">
-                    <div ng-repeat="tag in tag_match | orderBy:'name' | orderBy:'-tag_count'" >
-                      <a ng-click="addTag(tag,product)" ng-init = "tagging_count(tag)" class="post-tag tag-box">{{tag.name}} x{{tag.tag_count}}</a>
+                    <!-- <tags-input ng-model="tag_list" display-property="name">
+                    </tags-input> -->
+
+                    <div class="tag-suggestions">
+                      <div ng-repeat="tag in tag_match | orderBy:'name' | orderBy:'-tag_count'" >
+                        <a ng-click="addTag(tag,product)" ng-init = "tagging_count(tag)" class="post-tag tag-box">{{tag.name}} x{{tag.tag_count}}</a>
+                      </div>
                     </div>
-                  </div>
-                  <button ng-click="submitTags(product.tag_list,product)" class="btn btn-default" type="submit">Submit</button>
-                  <a ng-show = "new_tag" ng-click = "addNewTag(product)" >Add this Tag</a>
+                    <button ng-click="submitTags(product.tag_list,product)" class="btn btn-default" type="submit">Submit</button>
+                    <a ng-show = "new_tag" ng-click = "addNewTag(product)" >Add this Tag</a>
                   </div>
                 </div>
               </div>
