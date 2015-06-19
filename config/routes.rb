@@ -119,6 +119,7 @@ OpenFn::Application.routes.draw do
 
 
   get '/products/:product_id/vote', to: "products#vote"
+  #post '/products/:product_id/edit', to: "products#edit"
 
   get '/products/:product_id/review/show', to: "reviews#index"
   post '/products/:product_id/review/new', to: "reviews#create"
@@ -133,6 +134,7 @@ OpenFn::Application.routes.draw do
   get '/tag/tagging_count/:tag_id', to: "tags#tagging_count"
 
   get "metrics", to: "metrics#index", as: :metrics
+  get '/user/check_login', to: "users#check_login"
 
   # to solve issue rendering json on /tags, redirecting to /tag
   #match "/tags" => redirect("/tag"), via: [:get]

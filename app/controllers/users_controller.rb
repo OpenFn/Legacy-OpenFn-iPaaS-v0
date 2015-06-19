@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   respond_to :html, :json, :xml
-  skip_before_filter :require_login, only: [:new, :create, :sync, :set_password]
+  skip_before_filter :require_login, only: [:new, :create, :sync, :set_password, :check_login]
 
   skip_before_filter :verify_authenticity_token, only: [:sync]
   before_filter :validate_api_admin, only: [:sync]
@@ -96,6 +96,15 @@ class UsersController < ApplicationController
     @user.destroy
     respond_to do |format|
       format.json { head :no_content }
+    end
+  end
+
+  def check_login
+    if !current_user.present?
+       render json: {status: "login", redirect_url: "/login"}
+       return
+    else
+      render :nothing => true, :status => 200
     end
   end
 
