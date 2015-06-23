@@ -1,23 +1,32 @@
 <div ng-controller="ProductController as productCtrl">
-  <p>First Name</p><input type = "text">
-  <p>Last Name</p><input type = "text">
-  <p>Email*</p><input type = "text">
-  <p>Technology*</p><input type = "text">
-  <p>Website*</p><input type = "text">
-  <p>Twitter Handle</p><input type = "text">
-  <p>Provider Email</p><input type = "text">
+  <h2>EDIT {{product.name}}</h2>
+  <p>We encourage suggestions from all members of the community whether they be product developers, consultants, or end-user organizations. There are a few required fields that cover basic and summary information. Beyond that, we ask that listings focus on the functionality of each technology and what it enables users to do and avoid statements that place more value on one technology over another. Your submission must be reviewed and accepted by one of the core contributors at openfn before it is updated. Again, please refrain from using value words to ensure the listing is accepted promptly.</p>
+  <p>First Name</p><input type = "text" ng-model = "fname">
+  <p>Last Name</p><input type = "text" ng-model = "lname">
+  <p>Email*</p><input type = "text" ng-model = "product.email">
+  <p>Technology*</p><input type = "text" ng-model = "product.name">
+  <p>Website*</p><input type = "text" ng-model = "product.website">
+  <p>Twitter Handle</p><input type = "text" ng-model = "product.twitter">
+  <p>Provider Email</p><input type = "text" ng-model = "product.provider">
+  <p>Do you represent this technology ?</p>
+  <select ng-model = "represent">
+    <option value = "Yes">Yes</option>
+    <option value = "No">No</option>
+  </select>
   <h2>Summary Info</h2>
   <p>The following information will help social impact organizations find the right technology to fit their needs. The “tile summary” is the main listing on openMarketplace. The filter tags help organizations sort through numerous technologies based on their needs, location, field users, and other factors.</p>
   <p>Tile summary (116 chars)*</p>
-  <textarea title = "Describe what this technology does as clearly as possible in 116 characters. Omit buzzwords and sensational claims." rows="10" cols="50"></textarea>
+  <textarea title = "Describe what this technology does as clearly as possible in 116 characters. Omit buzzwords and sensational claims." rows="10" cols="50" ng-model = "product.description"></textarea>
   <h2>Detailed Info</h2>
   <p>The information in this section populates each technology’s dedicated page on openMarketplace. Contributors are reminded to focus on product functionality and user actions.</p>
   <p>Description (4000 chars)</p>
-  <textarea title = "Describe what the technology allows users to do in non-technical terms. Please include a few summary sentences, a bulleted “How-to Overview” section, and a bulleted “Features” section." rows="10" cols="50"></textarea>
+  <textarea title = "Describe what the technology allows users to do in non-technical terms. Please include a few summary sentences, a bulleted “How-to Overview” section, and a bulleted “Features” section." rows="10" cols="50" ng-model = "product.detailed_description"></textarea>
   <p>Technical specifications (2500 chars)</p>
-  <textarea title = "Include relevant information for technical readers. Please include bulleted lists of “Technical Features” (e.g. operating system compatibility) and “Requirements” (e.g. hosting platform)." rows="10" cols="50"></textarea>
+  <textarea title = "Include relevant information for technical readers. Please include bulleted lists of “Technical Features” (e.g. operating system compatibility) and “Requirements” (e.g. hosting platform)." rows="10" cols="50" ng-model = "product.tech_specs"></textarea>
   <p>Costs (2500 chars)</p>
-  <textarea title = "Include price(s) charged by technology distributor as well as differences in the technology at different pricing tiers. Additionally, include information about other costs likely to be incurred by users of this technology (e.g. virtual server services for hosting web applications)." rows="10" cols="50"></textarea>
+  <textarea title = "Include price(s) charged by technology distributor as well as differences in the technology at different pricing tiers. Additionally, include information about other costs likely to be incurred by users of this technology (e.g. virtual server services for hosting web applications)." rows="10" cols="50" ng-model = "product.costs"></textarea>
   <p>Resources</p>
-  <textarea title = "Include links to helpful external resources." rows="10" cols="50"></textarea>
+  <textarea title = "Include links to helpful external resources." rows="10" cols="50" ng-model = "resources"></textarea>
+  <p>Terms and Conditions: Open[Fn] reserves editorial decision-making power over listings that are published. We reserve the right to edit posts or request revisions. In the spirit of openness, we also maintain the right to indicate the author of listings on the openMarketplace.</p>
+  <button ng-click = "editProduct(product)" class="btn btn-success" type="submit">Submit</button>
 </div>
