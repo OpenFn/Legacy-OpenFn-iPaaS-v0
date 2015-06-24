@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409154813) do
+ActiveRecord::Schema.define(version: 20150622062046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,24 @@ ActiveRecord::Schema.define(version: 20150409154813) do
   end
 
   add_index "credentials", ["type"], name: "index_credentials_on_type", using: :btree
+
+  create_table "drafts", force: true do |t|
+    t.string   "item_type",      null: false
+    t.integer  "item_id",        null: false
+    t.string   "event",          null: false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.text     "previous_draft"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "drafts", ["created_at"], name: "index_drafts_on_created_at", using: :btree
+  add_index "drafts", ["event"], name: "index_drafts_on_event", using: :btree
+  add_index "drafts", ["item_id"], name: "index_drafts_on_item_id", using: :btree
+  add_index "drafts", ["item_type"], name: "index_drafts_on_item_type", using: :btree
+  add_index "drafts", ["updated_at"], name: "index_drafts_on_updated_at", using: :btree
+  add_index "drafts", ["whodunnit"], name: "index_drafts_on_whodunnit", using: :btree
 
   create_table "field_mappings", force: true do |t|
     t.integer "mapping_id"
@@ -233,25 +251,28 @@ ActiveRecord::Schema.define(version: 20150409154813) do
   end
 
   create_table "products", force: true do |t|
-    t.string  "name"
-    t.text    "description"
-    t.string  "salesforce_id"
-    t.string  "website"
-    t.boolean "enabled"
-    t.boolean "integrated",           default: false
-    t.text    "costs"
-    t.text    "reviews"
-    t.text    "resources"
-    t.text    "provider"
-    t.text    "detailed_description"
-    t.string  "update_link"
-    t.string  "integration_type"
-    t.boolean "detail_active"
-    t.text    "tech_specs"
-    t.string  "sf_link"
-    t.string  "twitter"
-    t.string  "email"
-    t.string  "facebook"
+    t.string   "name"
+    t.text     "description"
+    t.string   "salesforce_id"
+    t.string   "website"
+    t.boolean  "enabled"
+    t.boolean  "integrated",           default: false
+    t.text     "costs"
+    t.text     "reviews"
+    t.text     "resources"
+    t.text     "provider"
+    t.text     "detailed_description"
+    t.string   "update_link"
+    t.string   "integration_type"
+    t.boolean  "detail_active"
+    t.text     "tech_specs"
+    t.string   "sf_link"
+    t.string   "twitter"
+    t.string   "email"
+    t.string   "facebook"
+    t.integer  "draft_id"
+    t.datetime "published_at"
+    t.datetime "trashed_at"
   end
 
   create_table "projects", force: true do |t|
@@ -262,14 +283,29 @@ ActiveRecord::Schema.define(version: 20150409154813) do
 
   add_index "projects", ["organization_id"], name: "index_projects_on_organization_id", using: :btree
 
-  create_table "reviews", force: true do |t|
+  create_table "review_votes", force: true do |t|
     t.integer  "user_id"
-    t.integer  "product_id"
-    t.integer  "rating"
-    t.string   "text"
+    t.integer  "review_id"
+    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "review_votes", ["review_id"], name: "index_review_votes_on_review_id", using: :btree
+  add_index "review_votes", ["user_id"], name: "index_review_votes_on_user_id", using: :btree
+
+  create_table "reviews", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.string   "review"
+    t.float    "rating"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reviews", ["product_id"], name: "index_reviews_on_product_id", using: :btree
+  add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
   create_table "submission_records", force: true do |t|
     t.integer  "mapping_id"
@@ -288,6 +324,9 @@ ActiveRecord::Schema.define(version: 20150409154813) do
     t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
+    t.integer  "draft_id"
+    t.datetime "published_at"
+    t.datetime "trashed_at"
   end
 
   add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
