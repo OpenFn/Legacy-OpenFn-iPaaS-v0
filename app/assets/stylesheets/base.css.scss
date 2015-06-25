@@ -6,7 +6,7 @@ $nav: #F8F8F8;
 
 $dark: #2c2c2c;
 $light-grey: #787878;
-$base: #2c2c2c;                  //#406DE4
+$base: #406DE4;                  //#406DE4
 $light: #E7F0FA;                 // #E7F0FA
 $accent: #FFBD31;
 $red-accent: #D84765;
@@ -435,33 +435,6 @@ b, strong {
 .tab-content > .active,
 .pill-content > .active {
   display: block;
-}
-
-.tabs-below {
-  > .nav-tabs {
-    border-top: 1px solid #ddd;
-
-    > li {
-      margin-top: -1px;
-      margin-bottom: 0;
-
-      > a {
-        -webkit-border-radius: 0 0 4px 4px;
-           -moz-border-radius: 0 0 4px 4px;
-                border-radius: 0 0 4px 4px;
-
-        &:hover, &:focus {
-          border-top-color: #ddd;
-          border-bottom-color: transparent;
-        }
-      }
-    }
-    > .active a {
-      &, &:hover, &:focus {
-        border-color: transparent #ddd #ddd #ddd;
-      }
-    }
-  }
 }
 
 .tabs-left, .tabs-right {

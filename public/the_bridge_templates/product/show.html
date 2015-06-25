@@ -43,7 +43,7 @@
             <br>
             <ul class="nav nav-pills nav-justified right-pills">
               <li role="presentation">
-                <a data-toggle="modal" class="edit-link" ng-click="checkLogin(product)">
+                <a class="edit-link" ng-click="checkLogin(product)">
                   <i class="fa fa-edit fa-lg"></i> Edit this listing
                 </a>
               </li>
@@ -71,29 +71,21 @@
           </div>
         </div>
       </div>
-
     </div>
-
     <br>
     <div class="row flat">
       <div class="col-sm-12">
         <div class="show-product">
           <div class="product">
             <div class='content'>
-              <tabset class="tabs-right">
-                <tab heading="Description" class="description">
-                  <div class="tab-content-text" ng-bind-html="product.detailed_description" active="tab.active" disabled="tab.disabled"></div>
-                </tab>
-                <tab heading="Costs">
-                  <div class="tab-content-text" ng-bind-html="product.costs" active="tab.active" disabled="tab.disabled"></div>
-                </tab>
-                <tab heading="Tech Specs">
-                  <div class="tab-content-text" ng-bind-html="product.tech_specs" active="tab.active" disabled="tab.disabled"></div>
-                </tab>
-                <tab heading="Resources">
-                  <div class="tab-content-text" ng-bind-html="product.resources" active="tab.active" disabled="tab.disabled"></div>
-                </tab>
-              </tabset>
+              <div class="col-md-10 tab-content-text" ng-repeat="tab in tabs" ng-show="tab.active" ng-hide="tab.disabled">
+                {{tab.content}}
+              </div>
+              <div class="col-md-2">
+                <tabset class="tabs-right">
+                  <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled"></tab>
+                </tabset>
+              </div>
             </div>
           </div>
         </div>

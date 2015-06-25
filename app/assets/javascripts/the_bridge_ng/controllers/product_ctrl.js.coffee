@@ -4,13 +4,25 @@
   $scope.searchTagText = ""
   $scope.editTags = false
 
-
   $http.get('/products/' + $routeParams.id + '.json').success((data) ->
     $scope.product = data
     console.log($scope.product)
     productTags($scope.product)
     $scope.product.reviews_count = $scope.product.reviews.length
     $scope.productRating($scope.product)
+    $scope.tabs = [
+      { title:'Description', content: $scope.product.detailed_description },
+      { title:'Costs', content: $scope.product.costs, disabled: true },
+      { title:'Tech Specs', content: $scope.product.tech_sepcs, disabled: true },
+      { title:'Resources', content: $scope.product.resources, disabled: true }
+    ];
+    $scope.edit_tabs = [
+      { title:'Tile', content: 'work on this' },
+      { title:'Description', content: $scope.product.detailed_description disabled: true},
+      { title:'Costs', content: $scope.product.costs, disabled: true },
+      { title:'Tech Specs', content: $scope.product.tech_sepcs, disabled: true },
+      { title:'Resources', content: $scope.product.resources, disabled: true }
+    ];
     # console.log arguments
     #$scope.twitterApi = $scope.product.twitter.substring(1)
     #$timeout ->

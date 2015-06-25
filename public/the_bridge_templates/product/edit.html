@@ -29,10 +29,10 @@
         <div class="show-product">
           <div class="product">
             <div class='content'>
-              <tabset class="tabs-right">
-                <tab heading="Summary Info" class="description">
+              <tabset justified="true">
+                <tab heading="Tile" class="description">
                   <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
-                    <div class="form-group col-md-9">
+                    <div class="form-group">
                       <label for="InputTechName">Name</label>
                       <input type="email" class="form-control" id="InputTechName" ng-model="product.name"><br>
                       <label for="InputTechName">Website</label>
@@ -48,22 +48,30 @@
                 </tab>
                 <tab heading="Description" class="description">
                   <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
-                    <textarea title="Describe what the technology allows users to do in non-technical terms. Please include a few summary sentences, a bulleted “How-to Overview” section, and a bulleted “Features” section." rows="10" cols="50" ng-model="product.detailed_description"></textarea>
+                    <div class="form-group">
+                      <textarea class="form-control" id="InputDesc" ng-model="product.detailed_description" title="Describe what the technology allows users to do in non-technical terms. Please include a few summary sentences, a bulleted “How-to Overview” section, and a bulleted “Features” section." ng-model="product.detailed_description" rows="19"></textarea>
+                    </div>
                   </div>
                 </tab>
                 <tab heading="Costs">
                   <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
-                    <textarea title="Include price(s) charged by technology distributor as well as differences in the technology at different pricing tiers. Additionally, include information about other costs likely to be incurred by users of this technology (e.g. virtual server services for hosting web applications)." rows="10" cols="50" ng-model="product.costs"></textarea>
+                    <div class="form-group">
+                      <textarea class="form-control" id="InputCosts" ng-model="product.costs" title="Include price(s) charged by technology distributor as well as differences in the technology at different pricing tiers. Additionally, include information about other costs likely to be incurred by users of this technology (e.g. virtual server services for hosting web applications)." rows="19"></textarea>
+                    </div>
                   </div>
                 </tab>
-                <tab heading="Tech Specs">
+                <tab heading="Specs">
                   <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
-                    <textarea title="Include relevant information for technical readers. Please include bulleted lists of “Technical Features” (e.g. operating system compatibility) and “Requirements” (e.g. hosting platform)." rows="10" cols="50" ng-model="product.tech_specs"></textarea>
+                    <div class="form-group">
+                      <textarea class="form-control" id="InputSpecs" ng-model="product.tech_specs" title="Include relevant information for technical readers. Please include bulleted lists of “Technical Features” (e.g. operating system compatibility) and “Requirements” (e.g. hosting platform)." rows="19"></textarea>
+                    </div>
                   </div>
                 </tab>
                 <tab heading="Resources">
                   <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
-                    <textarea title ="Include links to helpful external resources." rows="10" cols="50" ng-model="resources"></textarea>
+                    <div class="form-group">
+                      <textarea class="form-control" id="InputResources" ng-model="product.resources" title="Include links to helpful external resources." rows="19"></textarea>
+                    </div>
                   </div>
                 </tab>
               </tabset>

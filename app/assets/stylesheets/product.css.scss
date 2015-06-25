@@ -284,19 +284,6 @@
 
   }
 
-  .right-pills > li > a:hover {
-    // background-color: $bg-color;
-    // background-image: image-url("noise.png");
-    // color: $dynamic;
-  }
-
-  .right-pills .active a,
-  .red .active a:hover{
-    // background-color: $primary-blue;
-    // background-image: image-url("noise.png");
-    // color: $off-white;
-  }
-
   .nav-tabs {
     // margin-bottom: 0;
     border-bottom: 0;
@@ -328,7 +315,7 @@
 
   .tab-content-text {
     padding-top: 0.8em;
-    margin: 0 0.8em 0.8em 0.8em;
+    // margin: 0 0.8em 0.8em 0.8em;
     font-size: rem-calc(18px);
           color: $dark;
   }
