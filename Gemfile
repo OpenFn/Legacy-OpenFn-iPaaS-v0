@@ -136,3 +136,5 @@ group :test do
   gem 'webmock'
 end
 
+gem 'draftsman', '0.3.1'
+

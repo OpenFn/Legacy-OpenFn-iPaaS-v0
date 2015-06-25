@@ -121,10 +121,8 @@
       i = 0
       while i < $scope.tag_list.length
         $scope.tag_list[i].text = $scope.product.tag_list[i].name
-        console.log($scope.tag_list[i].text)
         i++
       $scope.tag_list = JSON.stringify($scope.tag_list)
-      console.log($scope.tag_list)
     )
     $http.get("/tags/get_all").success((data) ->
       $scope.tags = data.tags
@@ -197,14 +195,28 @@
         $scope.editTags = true
     )
 
-  $scope.editProduct = (product) ->
-    window.location = "/product/#{product.id}/edit"
-
   $scope.checkLogin = (product) ->
     $http.get("/user/check_login").success((data) ->
       if data.status == 'login'
         window.location = data.redirect_url
       else
         window.location = "/product/#{product.id}/edit"
+    )
+
+  $scope.editProduct = (product) ->
+    productEdit =
+      'id': product.id
+      'name': product.name
+      'email': product.email
+      'website': product.website
+      'twitter': product.twitter
+      'provider': product.provider
+      'description': product.description
+      'detailed_description': product.detailed_description
+      'tech_specs': product.tech_specs
+      'costs': product.costs
+      'resources': product.resources
+    $http.post("/products/#{product.id}/admin_edit",productEdit).success((data) ->
+      window.location = "/product/#{product.id}"
     )
 ]

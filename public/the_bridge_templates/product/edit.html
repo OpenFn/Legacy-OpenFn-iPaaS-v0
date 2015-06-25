@@ -1,23 +1,117 @@
-<div ng-controller="ProductController as productCtrl">
-  <p>First Name</p><input type = "text">
-  <p>Last Name</p><input type = "text">
-  <p>Email*</p><input type = "text">
-  <p>Technology*</p><input type = "text">
-  <p>Website*</p><input type = "text">
-  <p>Twitter Handle</p><input type = "text">
-  <p>Provider Email</p><input type = "text">
-  <h2>Summary Info</h2>
-  <p>The following information will help social impact organizations find the right technology to fit their needs. The “tile summary” is the main listing on openMarketplace. The filter tags help organizations sort through numerous technologies based on their needs, location, field users, and other factors.</p>
-  <p>Tile summary (116 chars)*</p>
-  <textarea title = "Describe what this technology does as clearly as possible in 116 characters. Omit buzzwords and sensational claims." rows="10" cols="50"></textarea>
-  <h2>Detailed Info</h2>
-  <p>The information in this section populates each technology’s dedicated page on openMarketplace. Contributors are reminded to focus on product functionality and user actions.</p>
-  <p>Description (4000 chars)</p>
-  <textarea title = "Describe what the technology allows users to do in non-technical terms. Please include a few summary sentences, a bulleted “How-to Overview” section, and a bulleted “Features” section." rows="10" cols="50"></textarea>
-  <p>Technical specifications (2500 chars)</p>
-  <textarea title = "Include relevant information for technical readers. Please include bulleted lists of “Technical Features” (e.g. operating system compatibility) and “Requirements” (e.g. hosting platform)." rows="10" cols="50"></textarea>
-  <p>Costs (2500 chars)</p>
-  <textarea title = "Include price(s) charged by technology distributor as well as differences in the technology at different pricing tiers. Additionally, include information about other costs likely to be incurred by users of this technology (e.g. virtual server services for hosting web applications)." rows="10" cols="50"></textarea>
-  <p>Resources</p>
-  <textarea title = "Include links to helpful external resources." rows="10" cols="50"></textarea>
+<div class="edit">
+<div ng-controller="ProductController as productCtrl" class="row">
+  <br>
+  <div class="container">
+    <div class="search-field">
+      <form ng-submit="searchAgain()">
+        <input type:"text" class="form-control" placeholder="Type a search term and press enter to search again..." ng-model="searchText">
+      </form>
+    </div>
+    <br>
+    <div class="row flat">
+      <div class="col-sm-12">
+        <div class="show-product">
+          <div class="product">
+            <div class="title show">
+              <span class="little">
+                Editor - <i class="fa fa-edit fa-lg"></i>
+              </span>
+              <br>
+              {{product.name}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row flat">
+      <div class="col-sm-12">
+        <div class="show-product">
+          <div class="product">
+            <div class='content'>
+              <tabset class="tabs-right">
+                <tab heading="Summary Info" class="description">
+                  <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
+                    <div class="form-group col-md-9">
+                      <label for="InputTechName">Name</label>
+                      <input type="email" class="form-control" id="InputTechName" ng-model="product.name"><br>
+                      <label for="InputTechName">Website</label>
+                      <input type="email" class="form-control" id="InputTechName" ng-model="product.website"><br>
+                      <label for="InputTechName">Twitter handle</label>
+                      <input type="email" class="form-control" id="InputTechName" ng-model="product.twitter"><br>
+                      <label for="InputTechName">Contact email</label>
+                      <input type="email" class="form-control" id="InputTechName" ng-model="product.provider"><br>
+                      <label for="InputTechName">Tile summary (116 chars.)</label>
+                      <textarea class="form-control" id="InputTechName" ng-model="product.description" title="Describe what this technology does as clearly as possible in 116 characters. Omit buzzwords and sensational claims." rows="3"></textarea>
+                    </div>
+                  </div>
+                </tab>
+                <tab heading="Description" class="description">
+                  <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
+                    <textarea title="Describe what the technology allows users to do in non-technical terms. Please include a few summary sentences, a bulleted “How-to Overview” section, and a bulleted “Features” section." rows="10" cols="50" ng-model="product.detailed_description"></textarea>
+                  </div>
+                </tab>
+                <tab heading="Costs">
+                  <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
+                    <textarea title="Include price(s) charged by technology distributor as well as differences in the technology at different pricing tiers. Additionally, include information about other costs likely to be incurred by users of this technology (e.g. virtual server services for hosting web applications)." rows="10" cols="50" ng-model="product.costs"></textarea>
+                  </div>
+                </tab>
+                <tab heading="Tech Specs">
+                  <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
+                    <textarea title="Include relevant information for technical readers. Please include bulleted lists of “Technical Features” (e.g. operating system compatibility) and “Requirements” (e.g. hosting platform)." rows="10" cols="50" ng-model="product.tech_specs"></textarea>
+                  </div>
+                </tab>
+                <tab heading="Resources">
+                  <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
+                    <textarea title ="Include links to helpful external resources." rows="10" cols="50" ng-model="resources"></textarea>
+                  </div>
+                </tab>
+              </tabset>
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row flat">
+          <div class="col-sm-12">
+            <div class="show-product">
+              <div class="product">
+                <div class="tag-list">
+                  <div ng-repeat="tag in product.tag_list track by $index" class="tag label label-info">
+                    {{tag.name}}
+                  </div>
+                  <a ng-click="showEditTagsBox()">Edit Tags</a>
+                  <div ng-show="editTags">
+                    <div class="tag-editor">
+                      <div style="float:left">
+                        <span ng-repeat="n in product.tag_list track by $index" class="post-tag">
+                        {{n.name}}
+                          <span ng-click="deleteTag(n,product)" class = "delete-tag" title="remove this tag">X
+                          </span>
+                        </span>
+                      </div>
+                      <span class = "tag-editor-span">
+                        <input type="text" class="search-tags" ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
+                      </span>
+                    </div>
+                    <div class="tag-suggestions">
+                      <div ng-repeat="tag in tag_match | orderBy:'name' | orderBy:'-tag_count'" >
+                        <a ng-click="addTag(tag,product)" ng-init = "tagging_count(tag)" class="post-tag tag-box">{{tag.name}} x{{tag.tag_count}}</a>
+                      </div>
+                    </div>
+                    <button ng-click="submitTags(product.tag_list,product)" class="btn btn-default" type="submit">Submit</button>
+                    <a ng-show = "new_tag" ng-click = "addNewTag(product)" >Add this Tag</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+        <br>
+        <p>The following information will help social impact organizations find the right technology to fit their needs. The “tile summary” is the main listing on openMarketplace. The filter tags help organizations sort through numerous technologies based on their needs, location, field users, and other factors.</p>
+        <p>We encourage suggestions from all members of the community whether they be product developers, consultants, or end-user organizations. There are a few required fields that cover basic and summary information. Beyond that, we ask that listings focus on the functionality of each technology and what it enables users to do and avoid statements that place more value on one technology over another. Your submission must be reviewed and accepted by one of the core contributors at openfn before it is updated. Again, please refrain from using value words to ensure the listing is accepted promptly.</p>
+        <p>Terms and Conditions: Open[Fn] reserves editorial decision-making power over listings that are published. We reserve the right to edit posts or request revisions. In the spirit of openness, we also maintain the right to indicate the author of listings on the openMarketplace.</p>
+        <button ng-click="editProduct(product)" class="btn btn-success" type="submit">Submit Edits</button>
+</div>
 </div>

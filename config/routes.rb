@@ -119,7 +119,7 @@ OpenFn::Application.routes.draw do
 
 
   get '/products/:product_id/vote', to: "products#vote"
-  #post '/products/:product_id/edit', to: "products#edit"
+  post '/products/:product_id/admin_edit', to: "products#admin_edit"
 
   get '/products/:product_id/review/show', to: "reviews#index"
   post '/products/:product_id/review/new', to: "reviews#create"
@@ -142,6 +142,11 @@ OpenFn::Application.routes.draw do
 
   # changes tags/index to tags/get_all
   get '/tags/get_all', to: "tags#get_all"
+
+  namespace :admin do
+    resources :products, only: [:index, :show]
+    resources :drafts, only: [:index, :show]
+  end
 
   match "/*path" => redirect("#/%{path}"), via: [:get, :post]
 

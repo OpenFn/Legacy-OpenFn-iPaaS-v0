@@ -96,6 +96,8 @@ GEM
       activerecord (>= 3.1.0, < 5.0.0)
     deep_merge (1.0.1)
     diff-lcs (1.2.5)
+    draftsman (0.3.1)
+      activerecord (>= 3.0, < 5.0)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -337,6 +339,7 @@ DEPENDENCIES
   database_cleaner
   deep_cloneable (~> 2.0.0)
   deep_merge
+  draftsman (= 0.3.1)
   faraday (~> 0.8.6)
   figaro
   font-awesome-rails

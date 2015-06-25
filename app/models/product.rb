@@ -1,4 +1,6 @@
 class Product < ActiveRecord::Base
+  #require 'draftsman'
+  has_drafts
   acts_as_taggable
 
   has_many :votes
