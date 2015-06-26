@@ -15,7 +15,7 @@ class TagsController < ApplicationController
 
   def product_tags
     tags = []
-    taggings = Tagging.where(:taggable_id => params[:product_id])
+    taggings = Tagging.live.includes(:draft).where(:taggable_id => params[:product_id])
     taggings.each do |tagging|
       tag_id = tagging.tag_id
       tag = Tag.find(tag_id)
@@ -25,7 +25,6 @@ class TagsController < ApplicationController
   end
 
   def product_tags_add
-    Rails.logger.info {"#{__FILE__}:#{__LINE__} #{params}"}
     if !current_user.present?
        render json: {status: "login", redirect_url: "/login"}
        return
@@ -68,6 +67,30 @@ class TagsController < ApplicationController
   def tagging_count
     tags = Tagging.where(:tag_id => params[:tag_id])
     render json: tags.count
+  end
+
+  def tags_add
+    tags = params["_json"]
+    if tags.present?
+      tags.each do |tag|
+      tagging =  Tagging.new(:tag_id => tag["id"],
+                            :taggable_id => params[:product_id],
+                            :tagger_id => current_user.id)
+      tagging.draft_creation
+      end
+    end
+    render json: params
+  end
+
+  def tags_delete
+    tags = params["_json"]
+    if tags.present?
+      tags.each do |tag|
+        tagging = Tagging.where(:tag_id => tag["id"], :taggable_id => params[:product_id]).first
+        tagging.draft_destroy
+      end
+    end
+    render json: params
   end
 
 end

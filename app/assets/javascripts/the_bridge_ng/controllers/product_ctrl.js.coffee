@@ -3,11 +3,14 @@
   $scope.searchText = ""
   $scope.searchTagText = ""
   $scope.editTags = false
+  $scope.added_tags = []
+  $scope.tags_added = []
+  $scope.deleted_tags = []
+  $scope.tags_deleted = []
 
 
   $http.get('/products/' + $routeParams.id + '.json').success((data) ->
     $scope.product = data
-    console.log($scope.product)
     productTags($scope.product)
     $scope.product.reviews_count = $scope.product.reviews.length
     $scope.productRating($scope.product)
@@ -117,12 +120,13 @@
   productTags = (product) ->
     $http.get("/products/#{product.id}/tags").success((data) ->
       $scope.product.tag_list = data.tags
-      $scope.tag_list = angular.copy($scope.product.tag_list)
-      i = 0
-      while i < $scope.tag_list.length
-        $scope.tag_list[i].text = $scope.product.tag_list[i].name
-        i++
-      $scope.tag_list = JSON.stringify($scope.tag_list)
+      #$scope.tag_list = angular.copy($scope.product.tag_list)
+      #i = 0
+      #while i < $scope.tag_list.length
+      #  $scope.tag_list[i].text = $scope.product.tag_list[i].name
+      #  i++
+      #$scope.tag_list = JSON.stringify($scope.tag_list)
+      console.log($scope.product.tag_list)
     )
     $http.get("/tags/get_all").success((data) ->
       $scope.tags = data.tags
@@ -131,6 +135,15 @@
   $scope.deleteTag = (tag,product) ->
     index = $scope.product.tag_list.indexOf(tag)
     $scope.product.tag_list.splice(index, 1);
+    i = 0
+    addToArray = true
+    while i < $scope.added_tags.length
+      if $scope.added_tags[i].name == tag.name
+        addToArray = false
+      i++
+    if addToArray
+      $scope.deleted_tags.push tag
+    $scope.tags_deleted = JSON.stringify($scope.deleted_tags)
 
   $scope.addTag = (tag,product) ->
     addToArray = true
@@ -141,6 +154,8 @@
       i++
     if addToArray
       $scope.product.tag_list.push tag
+      $scope.added_tags.push tag
+    $scope.tags_added = JSON.stringify($scope.added_tags)
 
   $scope.submitTags = (tags,product) ->
     $http.post("/products/#{product.id}/tags/edit",tags).success((data) ->
@@ -204,6 +219,7 @@
     )
 
   $scope.editProduct = (product) ->
+    console.log(product.website)
     productEdit =
       'id': product.id
       'name': product.name
@@ -216,7 +232,15 @@
       'tech_specs': product.tech_specs
       'costs': product.costs
       'resources': product.resources
+    console.log(productEdit)
+
+    $http.post("/admin/products/#{product.id}/tags/add",$scope.tags_added).success((data) ->
+    )
+
+    $http.post("/admin/products/#{product.id}/tags/delete",$scope.tags_deleted).success((data) ->
+    )
     $http.post("/products/#{product.id}/admin_edit",productEdit).success((data) ->
       window.location = "/product/#{product.id}"
     )
+
 ]

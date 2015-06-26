@@ -33,11 +33,11 @@
                   <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
                     <div class="form-group col-md-9">
                       <label for="InputTechName">Name</label>
-                      <input type="email" class="form-control" id="InputTechName" ng-model="product.name"><br>
+                      <input type="text" class="form-control" id="InputTechName" ng-model="product.name"><br>
                       <label for="InputTechName">Website</label>
-                      <input type="email" class="form-control" id="InputTechName" ng-model="product.website"><br>
+                      <input type="text" class="form-control" id="InputTechName" ng-model="product.website"><br>
                       <label for="InputTechName">Twitter handle</label>
-                      <input type="email" class="form-control" id="InputTechName" ng-model="product.twitter"><br>
+                      <input type="text" class="form-control" id="InputTechName" ng-model="product.twitter"><br>
                       <label for="InputTechName">Contact email</label>
                       <input type="email" class="form-control" id="InputTechName" ng-model="product.provider"><br>
                       <label for="InputTechName">Tile summary (116 chars.)</label>
@@ -62,7 +62,7 @@
                 </tab>
                 <tab heading="Resources">
                   <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
-                    <textarea title ="Include links to helpful external resources." rows="10" cols="50" ng-model="resources"></textarea>
+                    <textarea title ="Include links to helpful external resources." rows="10" cols="50" ng-model="product.resources"></textarea>
                   </div>
                 </tab>
               </tabset>
@@ -106,7 +106,7 @@
               </div>
             </div>
           </div>
-        </div>  
+        </div>
         <br>
         <p>The following information will help social impact organizations find the right technology to fit their needs. The “tile summary” is the main listing on openMarketplace. The filter tags help organizations sort through numerous technologies based on their needs, location, field users, and other factors.</p>
         <p>We encourage suggestions from all members of the community whether they be product developers, consultants, or end-user organizations. There are a few required fields that cover basic and summary information. Beyond that, we ask that listings focus on the functionality of each technology and what it enables users to do and avoid statements that place more value on one technology over another. Your submission must be reviewed and accepted by one of the core contributors at openfn before it is updated. Again, please refrain from using value words to ensure the listing is accepted promptly.</p>
