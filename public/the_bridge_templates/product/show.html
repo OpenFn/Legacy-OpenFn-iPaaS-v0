@@ -96,7 +96,6 @@
 
 <!-- THIS SHOULD BE IT'S OWN RESOURCE, USED HERE AND ON THE PRODUCT/#/EDIT PAGE -->
 <div class="tags">
-  
   <div ng-hide="editTags" ng-repeat="tag in product.tag_list track by $index" class="tag label">
     {{tag.name}} <span class="badge">7</span>
   </div>
@@ -109,7 +108,6 @@
       </span>
         <input type="text" class="search-tags" placeholder="Type here to tag..." ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
     </div>
-
     <div class="tag-suggestions">
       <div ng-repeat="tag in tag_match | orderBy:'name' | orderBy:'-tag_count'" >
         <a ng-click="addTag(tag,product)" ng-init = "tagging_count(tag)" title="Add this tag" class="off tag label">
@@ -122,10 +120,9 @@
     </div>
     <br><br>
     <div class="text-center">
-      <button ng-click="submitTags(product.tag_list,product)" class="btn btn-default" type="submit">Submit</button>
+      <button ng-click="editProduct(product)" class="btn btn-default" type="submit">Submit</button>
     </div>
   </div>
-
 </div>
 <!-- END OF "TAGS.HTML" RESOURCE -->
 
