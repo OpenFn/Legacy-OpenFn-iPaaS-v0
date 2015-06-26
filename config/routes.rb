@@ -119,11 +119,10 @@ OpenFn::Application.routes.draw do
 
 
   get '/products/:product_id/vote', to: "products#vote"
-  post '/products/:product_id/admin_edit', to: "products#admin_edit"
-
   get '/products/:product_id/review/show', to: "reviews#index"
   post '/products/:product_id/review/new', to: "reviews#create"
   get '/product/:product_id/rating', to: "reviews#product_rating"
+  post '/products/:product_id/admin_edit', to: "products#admin_edit"
 
   get '/review/:review_id/up_vote', to: "review_votes#upvote"
   get '/review/:review_id/down_vote', to: "review_votes#downvote"
@@ -136,6 +135,9 @@ OpenFn::Application.routes.draw do
   get "metrics", to: "metrics#index", as: :metrics
   get '/user/check_login', to: "users#check_login"
 
+  post '/admin/products/:product_id/tags/add', to: "tags#tags_add"
+  post '/admin/products/:product_id/tags/delete', to: "tags#tags_delete"
+
   # to solve issue rendering json on /tags, redirecting to /tag
   #match "/tags" => redirect("/tag"), via: [:get]
   #match "/tags/index" => redirect("/tag"), via: [:get]
@@ -144,8 +146,8 @@ OpenFn::Application.routes.draw do
   get '/tags/get_all', to: "tags#get_all"
 
   namespace :admin do
-    resources :products, only: [:index, :show]
-    resources :drafts, only: [:index, :show]
+    #resources :products, only: [:index, :show, :update]
+    resources :drafts, only: [:index, :show, :update, :destroy]
   end
 
   match "/*path" => redirect("#/%{path}"), via: [:get, :post]

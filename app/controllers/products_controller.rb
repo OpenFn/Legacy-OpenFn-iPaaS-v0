@@ -66,7 +66,7 @@ class ProductsController < ApplicationController
   def admin_edit
     product = Product.find(params[:id])
     product.name = params[:name]
-    product.website = params[:description]
+    product.website = params[:website]
     product.twitter = params[:twitter]
     product.provider = params[:provider]
     product.description = params[:description]

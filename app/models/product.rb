@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
-  #require 'draftsman'
-  has_drafts
+
+
   acts_as_taggable
 
   has_many :votes
@@ -12,6 +12,8 @@ class Product < ActiveRecord::Base
 
   scope :enabled, -> { where(enabled: true) }
   scope :integrated, -> { where(integrated: true) }
+
+  has_drafts
 
   def self.from_salesforce(salesforce_product)
     product = where(salesforce_id: salesforce_product.id).first_or_initialize

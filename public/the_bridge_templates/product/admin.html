@@ -1,0 +1,14 @@
+<div ng-controller="AdminController as adminCtrl">
+  <div ng-repeat = "draft in drafts">
+  <div><strong>Changes in Schema: </strong>{{draft.item_type}}</div>
+  <div><strong>Event: </strong>{{draft.event}}</div>
+  <div><strong>User: </strong>{{draft.whodunnit}}</div>
+  <div><strong>Last Updated at: </strong>{{draft.updated_at}}</div>
+  <div><strong>Changes: </strong>{{draft.object}}</div>
+  <strong>
+    <a ng-click ="publish(draft)" style="color:red">Publish</a>
+    <a ng-click ="discard(draft)" style="color:red">Discard</a>
+  </strong>
+  <br><br>
+  </div>
+</div>

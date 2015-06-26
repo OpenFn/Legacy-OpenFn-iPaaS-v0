@@ -6,47 +6,69 @@ class Admin::DraftsController < Admin::BaseAdminController
     render json: @drafts
   end
 
-  def show
+  def new
+    @draft = Draftsman::Draft.new
   end
 
   # Post draft ID here to publish it
   def update
-    # Call `draft_publication_dependencies` to check if any other drafted records should be published along with this
-    # `@draft`.
-    @dependencies = @draft.draft_publication_dependencies
-
-    # If you would like to warn the user about dependent drafts that would need to be published along with this one, you
-    # would implement an `app/views/drafts/update.html.erb` view template. In that view template, you could list the
-    # `@dependencies` and show a button posting back to this action with a name of `commit_publication`. (The button's
-    # being clicked indicates to your application that the user accepts that the dependencies should be published along
-    # with the `@draft`, thus avoiding orphaned records).
-    if @dependencies.empty? || params[:commit_publication]
-      @draft.publish!
-      flash[:success] = 'The draft was published successfully.'
-      redirect_to admin_drafts_path
-    else
-      # Renders `app/views/drafts/update.html.erb`
+    if @draft.event.eql?("update") and @draft.item_type.eql?("Product")
+      schema = @draft.item_type.constantize
+      record = schema.find(@draft.object['id'])
+      record.update(:id => @draft.object['id'],
+                    :name => @draft.object['name'],
+                    :description => @draft.object['description'],
+                    :salesforce_id => @draft.object['salesforce_id'],
+                    :website => @draft.object['website'],
+                    :enabled => @draft.object['enabled'],
+                    :integrated => @draft.object['integrated'],
+                    :costs => @draft.object['costs'],
+                    :resources => @draft.object['resources'],
+                    :provider => @draft.object['provider'],
+                    :detailed_description => @draft.object['detailed_description'],
+                    :update_link => @draft.object['update_link'],
+                    :integration_type => @draft.object['integration_type'],
+                    :detail_active => @draft.object['detail_active'],
+                    :tech_specs => @draft.object['tech_specs'],
+                    :sf_link => @draft.object['sf_link'],
+                    :twitter => @draft.object['twitter'],
+                    :email => @draft.object['email'],
+                    :facebook => @draft.object['facebook'],
+                    :draft_id => nil,
+                    :published_at => Time.now,
+                    :trashed_at => nil)
+      @draft.destroy
+      render json: record
     end
+    if @draft.event.eql?("create") and @draft.item_type.eql?("Tagging")
+      schema = @draft.item_type.constantize
+      record = schema.find(@draft.object['id'])
+      record.update(:published_at => Time.now)
+      @draft.destroy
+      render json: record
+    end
+    if @draft.event.eql?("destroy") and @draft.item_type.eql?("Tagging")
+      schema = @draft.item_type.constantize
+      record = schema.find(@draft.object['id'])
+      record.destroy
+      @draft.destroy
+      render json: record
+    end
+
   end
 
   # Post draft ID here to revert it
   def destroy
-    # Call `draft_reversion_dependencies` to check if any other drafted records should be reverted along with this
-    # `@draft`.
-    @dependencies = @draft.draft_reversion_dependencies
-
-    # If you would like to warn the user about dependent drafts that would need to be reverted along with this one, you
-    # would implement an `app/views/drafts/destroy.html.erb` view template. In that view template, you could list the
-    # `@dependencies` and show a button posting back to this action with a name of `commit_reversion`. (The button's
-    # being clicked indicates to your application that the user accepts that the dependencies should be reverted along
-    # with the `@draft`, thus avoiding orphaned records).
-    if @dependencies.empty? || params[:commit_reversion]
-      @draft.revert!
-      flash[:success] = 'The draft was reverted successfully.'
-      redirect_to admin_drafts_path
-    else
-      # Renders `app/views/drafts/destroy.html.erb`
+    if @draft.event.eql?("destroy") and @draft.item_type.eql?("Tagging")
+      schema = @draft.item_type.constantize
+      record = schema.find(@draft.object['id'])
+      record.update(:trashed_at => nil)
+      @draft.destroy
+      render json: record
+      return
     end
+    @draft.revert!
+    render json: @draft
   end
 
 private
