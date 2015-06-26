@@ -16,7 +16,7 @@
     $scope.tabs = [
       { title:'Description', content: $scope.product.detailed_description },
       { title:'Costs', content: $scope.product.costs, disabled: true },
-      { title:'Tech Specs', content: $scope.product.tech_sepcs, disabled: true },
+      { title:'Tech Specs', content: $scope.product.tech_specs, disabled: true },
       { title:'Resources', content: $scope.product.resources, disabled: true }
     ];
     # console.log arguments
@@ -244,6 +244,7 @@
 
     $http.post("/admin/products/#{product.id}/tags/delete",$scope.tags_deleted).success((data) ->
     )
+
     $http.post("/products/#{product.id}/admin_edit",productEdit).success((data) ->
       window.location = "/product/#{product.id}"
     )

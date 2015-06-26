@@ -84,35 +84,39 @@
         <div class="row flat">
           <div class="col-sm-12">
             <div class="show-product">
-              <div class="product">
-                <div class="tag-list">
-                  <div ng-repeat="tag in product.tag_list track by $index" class="tag label label-info">
-                    {{tag.name}}
-                  </div>
-                  <a ng-click="showEditTagsBox()">Edit Tags</a>
-                  <div ng-show="editTags">
-                    <div class="tag-editor">
-                      <div style="float:left">
-                        <span ng-repeat="n in product.tag_list track by $index" class="post-tag">
-                        {{n.name}}
-                          <span ng-click="deleteTag(n,product)" class = "delete-tag" title="remove this tag">X
-                          </span>
-                        </span>
-                      </div>
-                      <span class = "tag-editor-span">
-                        <input type="text" class="search-tags" ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
-                      </span>
-                    </div>
-                    <div class="tag-suggestions">
-                      <div ng-repeat="tag in tag_match | orderBy:'name' | orderBy:'-tag_count'" >
-                        <a ng-click="addTag(tag,product)" ng-init = "tagging_count(tag)" class="post-tag tag-box">{{tag.name}} x{{tag.tag_count}}</a>
-                      </div>
-                    </div>
-                    <button ng-click="submitTags(product.tag_list,product)" class="btn btn-default" type="submit">Submit</button>
-                    <a ng-show = "new_tag" ng-click = "addNewTag(product)" >Add this Tag</a>
-                  </div>
-                </div>
-              </div>
+
+<!-- THIS SHOULD BE IT'S OWN RESOURCE, USED HERE AND ON THE PRODUCT/#/EDIT PAGE -->
+<div class="tags">
+<!--   <div ng-hide="editTags" ng-repeat="tag in product.tag_list track by $index" class="tag label">
+    {{tag.name}} <span class="badge">7</span>
+  </div>
+  <a class="xxx tag label" ng-hide="editTags" ng-click="showEditTagsBox()">Edit Tags <span class="badge">+/-</span></a>
+
+  <div ng-show="editTags"> -->
+    <div class="tag-editor">
+      <span ng-repeat="n in product.tag_list track by $index" class="on tag label" ng-click="deleteTag(n,product)" title="Remove this tag.">
+        {{n.name}} <span class="badge">7</span>
+      </span>
+        <input type="text" class="search-tags" placeholder="Type here to tag..." ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
+    </div>
+    <div class="tag-suggestions">
+      <div ng-repeat="tag in tag_match | orderBy:'name' | orderBy:'-tag_count'" >
+        <a ng-click="addTag(tag,product)" ng-init = "tagging_count(tag)" title="Add this tag" class="off tag label">
+          {{tag.name}} <span class="badge">{{tag.tag_count}}</span>
+        </a>
+      </div>
+      <a class="off tag label" ng-show="new_tag" ng-click="addNewTag(product)">
+        <i class="fa fa-plus"></i> Create new tag... <span class="badge">+</span>
+      </a>
+    </div>
+<!--     <br><br>
+    <div class="text-center">
+      <button ng-click="editProduct(product)" class="btn btn-default" type="submit">Submit</button>
+    </div>
+  </div> -->
+</div>
+<!-- END OF "TAGS.HTML" RESOURCE -->
+
             </div>
           </div>
         </div>
