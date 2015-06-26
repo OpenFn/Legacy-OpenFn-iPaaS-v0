@@ -174,6 +174,7 @@
   // background-image: image-url("noise.png");
   color: $light-grey;
   padding: 30px;
+  overflow:auto;
 
   .actions, .rating, .name {
     display: inline-block;
@@ -320,22 +321,7 @@
           color: $dark;
   }
 
-  .tag-list {
-    margin-left: 1.2em;
-    margin-right: 1.2em;
-    // margin-bottom: 1em;
-    text-align: center;
 
-    .tag {
-      margin-right: 0.5em;
-      margin-top: 0.5em;
-      background-color: $base;
-      font-size: rem-calc(14px);
-      text-transform: uppercase;
-      display: inline-block;
-
-    }
-  }
 }
 
 .new-product-link {
@@ -366,90 +352,7 @@
   font-size: rem-calc(20px);
 }
 
-.tag-editor{
-  // width: 658px;
-  padding-bottom:5px;
-  // box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1) inset;
-  border-bottom: 1px solid #000;
-  cursor: text;
-  background-color: $bg-color;
-  position: relative;
-  overflow: hidden;
-  white-space: nowrap;
-  // margin-left: 210px;
-}
 
-.tag-editor .post-tag:first-child {
-    margin-left: 6px;
-}
-
-.tag-editor .post-tag {
-    margin: 6px 3px 0px;
-}
-
-.post-tag {
-  color: $bg-color;
-  font-size: 12px;
-  white-space: nowrap;
-  background: none repeat scroll 0% 0% $base;
-  border: 1px solid #E4EDF4;
-  display: inline-block;
-  margin: 2px 2px 2px 0px;
-  border-radius: 0px;
-  transition: color 0.15s ease 0s, #F2F1F0 0.15s ease 0s, border 0.15s ease 0s;
-  padding: 0.25em 0.5em;
-  text-decoration: none;
-  line-height: 1;
-  float: left
-}
-
-.delete-tag {
-  width: 14px;
-  height: 14px;
-  vertical-align: middle;
-  display: inline-block;
-  background-position: -40px -319px;
-  cursor: pointer;
-  margin-left: 3px;
-  margin-top: 1px;
-  margin-bottom: -1px;
-}
-
-.search-tags{
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    background: none repeat scroll 0% 0% #FFF;
-    color: #444;
-    border: 1px solid #CCC;
-    font-size: 14px;
-    padding: 8px 10px;
-    float: left;
-    //width: auto;
-    //overflow: hidden;
-}
-
-.tag-editor input {
-    border: medium none !important;
-    box-shadow: none !important;
-    outline: 0px none !important;
-    padding: 0px !important;
-    margin: 4px 3px 0px;
-    background-color: transparent !important;
-    height: 25px;
-}
-
-.tag-box{
-  width: 206px;
-  margin: 10px 6.5px;
-  padding: 8px 0px 8px 0px;
-  display:inline-block;
-}
-
-.tag-suggestions{
-  width: 658px;
-  margin-left: 210px;
-  background-color: #FFF;
-  overflow: hidden;
-}
 
 a:hover{
   color:#000;

@@ -1,33 +1,95 @@
 .tags {
 
-    .searchTagsText{
-      padding-bottom: 10px;
-      display: block;
-    }
+  float: left;
 
-    .tagCell{
-      padding-bottom: 12px;
-      padding-right: 6px;
-      padding-top: 6px;
-      vertical-align: top;
+  .tag {
+    background-color: $dark;
+    text-transform: uppercase;
+    float: left;
+    margin-top: .5em;
+    margin-left: .5em;
+    margin-bottom: .5em;
+    margin-right: .5em;
+  }
+
+  .tag-editor{
+    border-bottom: 1px solid $dark;
+    background-color: $bg-color;
+    overflow: hidden;
+  }
+
+  .tag-editor input {
+      border: medium none !important;
+      box-shadow: none !important;
+      outline: 0px none !important;
+      margin-top: 8px;
+  }
+
+  .xxx {
+    background-color: $base;
+    cursor: pointer;
+  }
+
+  .on {
+    cursor: pointer;
+  }
+
+  .off {
+    background-color: $light-grey;
+    cursor: pointer;
+  }
+
+  .search-tags{
       float: left;
-    }
+      // background: none repeat scroll 0% 0% #FFF;
+      // color: #444;
+      // border: 1px solid #CCC;
+      // font-size: 14px;
+      // padding: 8px 10px;
+      //width: auto;
+      //overflow: hidden;
+  }
 
-    .item-multiplier {
-      padding-bottom: 6px;
-      padding-top: 12px;
-      vertical-align: bottom;
-      float: left;
-    }
+  .tag-suggestions{
+    // width: 658px;
+    // margin-left: 210px;
+    background-color: $bg-color;
+    overflow: hidden;
+  }
 
-    .post-tag:hover {
-      color: $dark;
-    }
+  .tag-box{
+    // width: 206px;
+    // margin: 10px 6.5px;
+    // padding: 8px 0px 8px 0px;
+    // display:inline-block;
+  }
 
-    .post-tag {
-      color: $bg-color;
-      background: $base;
-      font-size: rem-calc(20px);
-    }
+  .tag-editor .post-tag:first-child {
+      // margin-left: 6px;
+  }
+
+  .tag-editor .post-tag {
+      // margin: 6px 3px 0px;
+  }
+
+  .item-multiplier {
+    // padding-bottom: 6px;
+    // padding-top: 12px;
+    // vertical-align: bottom;
+    // float: left;
+  }
+
+  .searchTagsText{
+    // padding-bottom: 10px;
+    // display: block;
+  }
+
+  .tagCell{
+    // padding-bottom: 12px;
+    // padding-right: 6px;
+    // padding-top: 6px;
+    // // vertical-align: top;
+    // float: left;
+  }
 
 }

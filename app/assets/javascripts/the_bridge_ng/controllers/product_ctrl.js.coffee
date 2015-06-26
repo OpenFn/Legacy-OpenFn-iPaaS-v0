@@ -16,13 +16,6 @@
       { title:'Tech Specs', content: $scope.product.tech_sepcs, disabled: true },
       { title:'Resources', content: $scope.product.resources, disabled: true }
     ];
-    $scope.edit_tabs = [
-      { title:'Tile', content: 'work on this' },
-      { title:'Description', content: $scope.product.detailed_description disabled: true},
-      { title:'Costs', content: $scope.product.costs, disabled: true },
-      { title:'Tech Specs', content: $scope.product.tech_sepcs, disabled: true },
-      { title:'Resources', content: $scope.product.resources, disabled: true }
-    ];
     # console.log arguments
     #$scope.twitterApi = $scope.product.twitter.substring(1)
     #$timeout ->
