@@ -7,6 +7,7 @@
   $scope.tags_added = []
   $scope.deleted_tags = []
   $scope.tags_deleted = []
+  $('#editor').wysiwyg()
 
   $http.get('/products/' + $routeParams.id + '.json').success((data) ->
     $scope.product = data

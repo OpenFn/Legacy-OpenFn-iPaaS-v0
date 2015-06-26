@@ -60,6 +60,8 @@
       padding: $product-padding;
       margin: $product-margin;
 
+      #editor {overflow:scroll; max-height:300px}
+
       &.integrated {
         background-color: $light;
       }
