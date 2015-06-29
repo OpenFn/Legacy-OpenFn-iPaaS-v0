@@ -72,6 +72,7 @@ OpenFn::Application.routes.draw do
       resources :connection_profiles, only: [:index, :edit, :create]
 
       resources :credentials, only: [:index, :create, :edit]
+
     end
   end
 
@@ -89,7 +90,13 @@ OpenFn::Application.routes.draw do
 
   resources :charges
 
+  resources :reviews, only: [:create, :index, :show]
+
   resources :products, only: [:index, :show]
+
+  resources :review_votes, only: [:create, :show, :index]
+
+  resources :tags, only: []
 
   resources :odk_forms, only: [:index]
 
@@ -109,14 +116,42 @@ OpenFn::Application.routes.draw do
   match :set_password, to: 'users#set_password', via: [:get, :post]
   post :receive_stripe_events, to: 'webhooks#receive_stripe_events'
 
+
+
   get '/products/:product_id/vote', to: "products#vote"
+  get '/products/:product_id/review/show', to: "reviews#index"
+  post '/products/:product_id/review/new', to: "reviews#create"
+  get '/product/:product_id/rating', to: "reviews#product_rating"
+  post '/products/:product_id/admin_edit', to: "products#admin_edit"
+
+  get '/review/:review_id/up_vote', to: "review_votes#upvote"
+  get '/review/:review_id/down_vote', to: "review_votes#downvote"
+  get '/review/:review_id/score', to: "review_votes#count_rating"
+  get '/products/:product_id/tags', to: "tags#product_tags"
+  post '/products/:product_id/tags/add', to: "tags#product_tags_add"
+  post '/products/:product_id/tags/edit', to: "tags#product_tags_edit"
+  get '/tag/tagging_count/:tag_id', to: "tags#tagging_count"
 
   get "metrics", to: "metrics#index", as: :metrics
+  get '/user/check_login', to: "users#check_login"
+
+  post '/admin/products/:product_id/tags/add', to: "tags#tags_add"
+  post '/admin/products/:product_id/tags/delete', to: "tags#tags_delete"
+
+  # to solve issue rendering json on /tags, redirecting to /tag
+  #match "/tags" => redirect("/tag"), via: [:get]
+  #match "/tags/index" => redirect("/tag"), via: [:get]
+
+  # changes tags/index to tags/get_all
+  get '/tags/get_all', to: "tags#get_all"
+
+  namespace :admin do
+    #resources :products, only: [:index, :show, :update]
+    resources :drafts, only: [:index, :show, :update, :destroy]
+  end
 
   match "/*path" => redirect("#/%{path}"), via: [:get, :post]
 
   root to: 'home#index'
   # root to: 'mappings#index'
 end
-
-

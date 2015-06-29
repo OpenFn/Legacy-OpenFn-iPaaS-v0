@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :mappings, dependent: :destroy, class_name: "OdkSfLegacy::Mapping"
   has_many :credentials, through: :connection_profiles
   has_many :connection_profiles
+  has_many :reviews
+  has_many :review_votes
   # has_many :collaborations, dependent: :destroy
   # has_many :projects, through: :collaborations
   # belongs_to :organization

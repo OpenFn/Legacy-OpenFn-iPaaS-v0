@@ -20,6 +20,9 @@
 //= require jquery-ui/mouse
 //= require jquery-ui/position
 //= require jquery-ui/sortable
+//= require particles.js
+//= require jquery.hotkeys.js
+//= require bootstrap-wysiwyg.js
 
 //= require angular
 //= require angular-resource

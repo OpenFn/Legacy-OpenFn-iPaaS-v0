@@ -1,0 +1,25 @@
+<header class="header-image">
+  <div class="headline">
+    <h1>
+      <i class="fa fa-credit-card"></i> functional <strong>Tags</strong>
+    </h1>
+    <h3>
+      Find tools by feature, platform, or even program focus.
+    </h3>
+  </div>
+</header>
+<div ng-controller="TagController as tagCtrl" class="row">
+  <div class="container">
+    <br>
+    <h4>Tags are applied to different tools so that you can find them more easily...</h4>
+    <div class="tags">
+      <form ng-submit="searchAgain()">
+        <input type="text" class="form-control searchTagsBox" placeholder="Search for specific tags by typing..." ng-model="searchTagText" ng-change="searchTags(searchTagText)">
+      </form>
+      <br>
+      <div ng-repeat="n in tag_match | orderBy:'name' | orderBy:'-tag_count' " ng-init="tagging_count(n)" class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+          <a href="/marketplace/search/{{n.name}}" class="tag label" title rel="tag">{{n.name}} <span class="badge">{{n.tag_count}}</span></a>
+      </div>
+    </div>
+  </div>
+</div>
