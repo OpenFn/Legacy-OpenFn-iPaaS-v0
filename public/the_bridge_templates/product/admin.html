@@ -1,6 +1,6 @@
 <div ng-controller="AdminController as adminCtrl">
   <div class="container">
-    <div ng-repeat = "draft in drafts">
+    <div ng-repeat="draft in drafts">
       <div class="h1">
         {{draft.item_type}} {{draft.event}} by user {{draft.whodunnit}}
       </div>
@@ -15,6 +15,12 @@
       <a class="btn btn-danger" ng-click ="discard(draft)">Discard</a>
       <br>
       <br>
+    </div>
+    <div ng-show="drafts.length == 0">
+      <div class="h1 center">
+        <br>
+        There are no drafts pending review.
+      </div>
     </div>
   </div>
 </div>
