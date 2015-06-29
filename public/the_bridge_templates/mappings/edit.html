@@ -13,7 +13,7 @@
 </div>
 <div class="checkbox mapping-status-options">
   <label>
-    <input type="checkbox" ng-model='mapping.enabled' ng-click='mapping.active = false' ng-checked='mapping.enabled' ng-change="saveMapping()" ng-disabled="!mapping.can_be_enabled"> Enabled
+    <input type="checkbox" ng-model='mapping.enabled' ng-checked='mapping.enabled' ng-click='mapping.active = false' ng-change="saveMapping()" ng-disabled="!mapping.can_be_enabled"> Enabled
   </label>
   <label>
     <input type="checkbox" ng-model='mapping.active' ng-checked='mapping.active' ng-change="saveMapping()" ng-disabled="!mapping.enabled || !mapping.can_be_enabled"> Auto-sync (10 min)
