@@ -19,6 +19,8 @@ class TagsController < ApplicationController
     taggings.each do |tagging|
       tag_id = tagging.tag_id
       tag = Tag.find(tag_id)
+      tag.taggings_count = Tagging.where(:tag_id => tag_id).count
+      tag.save
       tags.push(tag)
     end
     render json: {tags: tags, redirect_url: "/product/#{params[:product_id]}"}
