@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150622062046) do
+ActiveRecord::Schema.define(version: 20150630130628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,10 +73,10 @@ ActiveRecord::Schema.define(version: 20150622062046) do
     t.integer  "item_id",        null: false
     t.string   "event",          null: false
     t.string   "whodunnit"
-    t.text     "object"
-    t.text     "previous_draft"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.json     "object"
+    t.json     "previous_draft"
   end
 
   add_index "drafts", ["created_at"], name: "index_drafts_on_created_at", using: :btree
@@ -316,6 +316,12 @@ ActiveRecord::Schema.define(version: 20150622062046) do
     t.json     "destination_payload"
   end
 
+  create_table "tag_categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -334,10 +340,12 @@ ActiveRecord::Schema.define(version: 20150622062046) do
 
   create_table "tags", force: true do |t|
     t.string  "name"
-    t.integer "taggings_count", default: 0
+    t.integer "taggings_count",  default: 0
+    t.integer "tag_category_id"
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+  add_index "tags", ["tag_category_id"], name: "index_tags_on_tag_category_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                                           null: false
