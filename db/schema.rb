@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150622062046) do
+ActiveRecord::Schema.define(version: 20150625160407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,10 +73,10 @@ ActiveRecord::Schema.define(version: 20150622062046) do
     t.integer  "item_id",        null: false
     t.string   "event",          null: false
     t.string   "whodunnit"
-    t.text     "object"
-    t.text     "previous_draft"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.json     "object"
+    t.json     "previous_draft"
   end
 
   add_index "drafts", ["created_at"], name: "index_drafts_on_created_at", using: :btree
@@ -90,6 +90,15 @@ ActiveRecord::Schema.define(version: 20150622062046) do
     t.integer "mapping_id"
     t.string  "source_field"
     t.string  "destination_field"
+  end
+
+  create_table "imports", force: true do |t|
+    t.string   "odk_formid"
+    t.string   "last_uuid"
+    t.text     "cursor"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "num_imported", default: 0
   end
 
   create_table "legacy_odk_field_salesforce_fields", force: true do |t|
@@ -125,6 +134,14 @@ ActiveRecord::Schema.define(version: 20150622062046) do
   end
 
   add_index "mappings", ["user_id"], name: "index_mappings_on_user_id", using: :btree
+
+  create_table "odk_fields", force: true do |t|
+    t.string   "field_name"
+    t.string   "field_type"
+    t.integer  "salesforce_field_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "odk_sf_legacy_credentials", force: true do |t|
     t.integer  "user_id"
@@ -306,6 +323,17 @@ ActiveRecord::Schema.define(version: 20150622062046) do
 
   add_index "reviews", ["product_id"], name: "index_reviews_on_product_id", using: :btree
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
+
+  create_table "salesforce_fields", force: true do |t|
+    t.integer  "mapping_id"
+    t.string   "object_name"
+    t.string   "field_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "data_type"
+    t.string   "label_name"
+    t.boolean  "perform_lookups", default: false
+  end
 
   create_table "submission_records", force: true do |t|
     t.integer  "mapping_id"
