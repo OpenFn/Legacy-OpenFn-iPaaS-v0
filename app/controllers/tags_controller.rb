@@ -66,7 +66,7 @@ class TagsController < ApplicationController
 
   def tagging_count
     tags = Tagging.where(:tag_id => params[:tag_id])
-    render json: tags.count
+    render json: tags.count 
   end
 
   def tags_add
