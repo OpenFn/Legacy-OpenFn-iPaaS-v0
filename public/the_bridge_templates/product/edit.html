@@ -143,8 +143,8 @@
 
   <div ng-show="editTags"> -->
     <div class="tag-editor">
-      <span ng-repeat="n in product.tag_list track by $index" class="on tag label" ng-click="deleteTag(n,product)" title="Remove this tag.">
-        {{n.name}} <span class="badge">7</span>
+      <span ng-repeat="n in product.tag_list track by $index" ng-init= "taggings_count(n)" class="on tag label" ng-click="deleteTag(n,product)" title="Remove this tag.">
+        {{n.name}} <span class="badge">{{n.tag_count}}</span>
       </span>
         <input type="text" class="search-tags" placeholder="Type here to tag..." ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
     </div>

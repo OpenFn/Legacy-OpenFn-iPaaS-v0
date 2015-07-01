@@ -198,6 +198,10 @@
           $scope.tags[i].tag_count = data
         i++
     )
+  $scope.taggings_count = (tag) ->
+    $http.get("/tag/tagging_count/#{tag.id}").success((data) ->
+      tag.tag_count = data
+    )
 
   $scope.addNewTag = (product) ->
     newTagName =
