@@ -98,6 +98,8 @@ OpenFn::Application.routes.draw do
 
   resources :tags, only: []
 
+  resources :tag_categories, only: [:show, :index]
+
   resources :odk_forms, only: [:index]
 
   resource :welcome_stats, only: :show

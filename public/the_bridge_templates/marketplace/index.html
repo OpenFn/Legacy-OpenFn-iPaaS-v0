@@ -39,6 +39,76 @@
               </a>
             </div>
         </div>
+        <div ng-controller="Tag_CategoryController as tag_category_ctrl">
+          <div class="row">
+            <div class="col-md-2">
+              <div class="dropdown">
+                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Accessibility
+                 <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="tag in tags | filter:{tag_category_id: 1}"><a href="#">{{tag.name}}</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="dropdown">
+                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Cost
+                 <span class="caret"></span>
+                </button>
+                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="tag in tags | filter:{tag_category_id: 2}"><a href="#">{{tag.name}}</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="dropdown">
+                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Devices
+                 <span class="caret"></span>
+                </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="tag in tags | filter:{tag_category_id: 3}"><a href="#">{{tag.name}}</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="dropdown">
+                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Function
+                 <span class="caret"></span>
+                </button>
+                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="tag in tags | filter:{tag_category_id: 4}"><a href="#">{{tag.name}}</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="dropdown">
+                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Integrated
+                 <span class="caret"></span>
+                </button>
+                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="tag in tags | filter:{tag_category_id: 5}"><a href="#">{{tag.name}}</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="dropdown">
+                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Users
+                 <span class="caret"></span>
+                </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="tag in tags | filter:{tag_category_id: 6}"><a href="#">{{tag.name}}</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+         </div>
         <div class="product-list row" ng-if="isLoading">
           <div class="col-xs-12 center">
           <br><br><br><br><br>
