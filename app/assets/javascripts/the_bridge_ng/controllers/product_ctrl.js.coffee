@@ -12,6 +12,9 @@
   $http.get('/products/' + $routeParams.id + '.json').success((data) ->
     $scope.product = data
     productTags($scope.product)
+    console.log("product tags:")
+    console.log(productTags)
+    
     $scope.product.reviews_count = $scope.product.reviews.length
     $scope.productRating($scope.product)
     $scope.tabs = [
@@ -132,10 +135,16 @@
       #  $scope.tag_list[i].text = $scope.product.tag_list[i].name
       #  i++
       #$scope.tag_list = JSON.stringify($scope.tag_list)
+      console.log("in product tags")
       console.log($scope.product.tag_list)
+
+      console.log($scope.product.tag_list[0].name)
+      console.log($scope.product.tag_list[1].name)
     )
     $http.get("/tags/get_all").success((data) ->
       $scope.tags = data.tags
+      console.log("get all tags")
+      console.log($scope.tags)
      )
 
   $scope.deleteTag = (tag,product) ->
@@ -162,6 +171,8 @@
       $scope.product.tag_list.push tag
       $scope.added_tags.push tag
     $scope.tags_added = JSON.stringify($scope.added_tags)
+    console.log("tags added:")
+    console.log(tags_added)
 
   $scope.submitTags = (tags,product) ->
     $http.post("/products/#{product.id}/tags/edit",tags).success((data) ->

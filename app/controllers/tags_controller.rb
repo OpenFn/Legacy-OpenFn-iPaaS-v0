@@ -29,6 +29,7 @@ class TagsController < ApplicationController
        render json: {status: "login", redirect_url: "/login"}
        return
      end
+     
     id = Tag.maximum(:id).next
     tag = Tag.new(:id => id,
                   :name => params[:name],

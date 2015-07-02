@@ -4,29 +4,93 @@
   $scope.searchFilters = {}
   $scope.isLoading = true
 
+  
   $http.get('/products.json').success (data) ->
+
+    console.log("data")
+    console.log(data)
+
     $scope.products = data.products
+    console.log("scope products")
+    console.log($scope.products)
+    
     $scope.isLoading = false
+
     if $routeParams.search
       $scope.searchText = $routeParams.search
 
   $scope.filterProducts = (product) ->
     
+    console.log("THE PRODUCT:")
+    console.log(product)
+    console.log("product tag list:")
+    console.log(product.tag_list)
+
     lowercaseSearchText = angular.lowercase($scope.searchText)
-    if (angular.lowercase(product.name).indexOf(lowercaseSearchText)!= -1 || 
-      (angular.lowercase(product.description) || "").indexOf(lowercaseSearchText)!= -1 || 
-      (angular.lowercase(product.website) || "").indexOf(lowercaseSearchText)!= -1 || 
-      tagMatches(product.tag_list, lowercaseSearchText)) &&
-      filtersMatch(product, $scope.searchFilters)
-        return true
-    return false
+    # if (angular.lowercase(product.name).indexOf(lowercaseSearchText)!= -1 || 
+    #   (angular.lowercase(product.description) || "").indexOf(lowercaseSearchText)!= -1 || 
+    #   (angular.lowercase(product.website) || "").indexOf(lowercaseSearchText)!= -1 || 
+    tagMatches(product.tag_list, lowercaseSearchText)#) &&
+    #   filtersMatch(product, $scope.searchFilters)
+    #     return true
+    #     console.log("truuuuu")
+    # return false
+    # console.log("falseeee")
 
   tagMatches = (tag_list, text) ->
-    if tag_list
-      return tag_list.some (tag) ->
-        angular.lowercase(tag).indexOf(text) != -1
-    else
-      false
+    # if tag_list
+    #   return tag_list.some (tag) ->
+    #     angular.lowercase(tag).indexOf(text) != -1
+    # else
+    #   false
+
+    # if tag_list[1] === text
+    #   return true
+    # else
+    #   false
+
+#     
+
+
+      if tag_list
+        # if(!localStorage["alertdisplayed"]) 
+          # console.log("yo")
+          console.log("tag list in tagMatches")
+          console.log(tag_list)
+         
+          # console.log(tag_list[0].name)# + text)#tag_list.toString())#.toString())# + tag_list[0].name)
+          # localStorage["alertdisplayed"] = true
+        # alert()
+          return true
+      else
+        console.log("hi")
+        return false
+
+      # if tag_list.length > 0
+      #  # alert(tag_list[0].name)
+      #  alert(hi)
+
+
+
+
+    #   if tag_list
+    #         {
+
+    #           ww = tag_list.length
+
+    #           while ww > 0
+                
+    #               tag_list[ww].indexOf(text)
+                    
+                
+
+    #         }
+            
+    #   # return tag_list.some (tag) ->
+    #   #   angular.lowercase(tag).indexOf(text) != -1
+    # else
+    #   false
+
 
   filtersMatch = (product, filters) ->
     
