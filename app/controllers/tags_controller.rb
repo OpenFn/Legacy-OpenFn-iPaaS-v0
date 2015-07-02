@@ -13,6 +13,11 @@ class TagsController < ApplicationController
     render json: @tags
   end
 
+  def get_all_json
+    @tags = Tag.all
+    render json: @tags.to_json
+  end
+
   def product_tags
     tags = []
     taggings = Tagging.live.includes(:draft).where(:taggable_id => params[:product_id])

@@ -1,8 +1,8 @@
 class TagCategoriesController < ApplicationController
 
 	def index
-		tags = Tag.all
-		render json: tags.to_json
+		categories = TagCategory.order('id ASC')
+		render json: categories.to_json
 	end
 
 end
