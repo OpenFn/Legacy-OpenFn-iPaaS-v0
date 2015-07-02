@@ -39,7 +39,6 @@
               </a>
             </div>
         </div>
-        <div ng-controller="Tag_CategoryController as tag_category_ctrl">
           <div class="row">
             <div class="col-md-2" ng-repeat="category in categories">
               <div class="dropdown">
@@ -48,7 +47,7 @@
                  <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li ng-repeat="tag in tags | filter:{tag_category_id: category.id }" ng-init="taggings_count(tag)"><a href="#">{{tag.name}} <span class="badge">{{tag.tag_count}}</span></a></li>
+                    <li ng-repeat="tag in tags | filter:{tag_category_id: category.id }" ng-init="taggings_count(tag)" ng-click="tagFilter(tag)"><a href="#">{{tag.name}} <span class="badge">{{tag.tag_count}}</span></a></li>
                 </ul>
               </div>
             </div> 
@@ -107,7 +106,6 @@
                 </ul>
               </div>
             </div> -->
-          </div>
          </div>
         <div class="product-list row" ng-if="isLoading">
           <div class="col-xs-12 center">
