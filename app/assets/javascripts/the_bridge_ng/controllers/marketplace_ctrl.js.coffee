@@ -39,47 +39,29 @@
     
     lowercaseSearchText = lowercaseSearchText.split(' ')
 
-    # product.tag_list.push "a tag woo"
-
     if product.tag_list.length == 1
       product.tag_list.push "a tag woo"
 
     y = 0
 
     while (y < product.tag_list.length)
-      all_info_string += product.tag_list[y]
-      # product.tag_list[y] = product.tag_list[y].replace(/\ /g, "_")
-      # all_info_string += (" _" + product.tag_list[y] + "_")
+      all_info_string += (" " + product.tag_list[y])
       y++
-
-    # console.log(all_info_string)
 
     all_info.push angular.lowercase(product.name)
     all_info.push angular.lowercase(product.description)
     all_info.push angular.lowercase(product.website)
-    # (this works::::::) all_info.push angular.lowercase(product.tag_list[0])
     all_info.push angular.lowercase(all_info_string)
     all_info = all_info.join(' ')
-
-    # console.log(product.tag_list instanceof Array)
-
-    # console.log(all_info)
-    # console.log(lowercaseSearchText)
-
-    # hi = tagMatches(product.tag_list, lowercaseSearchText)
-    # console.log("hi is:")
-    # console.log(hi)
-
+    
     console.log (all_info)
 
-    # console.log(typeof lowercaseSearchText)
     console.log(lowercaseSearchText)
-
 
     x = 0
 
     while x < lowercaseSearchText.length
-      if (all_info.includes(" " + lowercaseSearchText[x])) ||  
+      if (all_info.includes(" " + lowercaseSearchText[x]))  
         x++
       else
         break
