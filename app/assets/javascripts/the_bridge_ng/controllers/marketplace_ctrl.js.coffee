@@ -3,6 +3,24 @@
   $scope.searchText = ""
   $scope.searchFilters = {}
   $scope.isLoading = true
+  $scope.tags
+  $scope.categories = {};
+
+  $http.get('/tag_categories.json').success((data) ->
+    $scope.categories = data;
+    )
+
+  $http.get('/tags/get_all_json.json').success((data) ->
+    $scope.tags = data;
+    )
+
+  $scope.taggings_count = (tag) ->
+    $http.get("/tag/tagging_count/#{tag.id}").success((data) ->
+      tag.tag_count = data
+    )
+
+  $scope.tagFilter = (tag) ->
+    $scope.searchText += tag.name + " "
 
   $http.get('/products.json').success (data) ->
     $scope.products = data.products
@@ -11,7 +29,6 @@
       $scope.searchText = $routeParams.search
 
   $scope.filterProducts = (product) ->
-    
     lowercaseSearchText = angular.lowercase($scope.searchText)
     if (angular.lowercase(product.name).indexOf(lowercaseSearchText)!= -1 || 
       (angular.lowercase(product.description) || "").indexOf(lowercaseSearchText)!= -1 || 

@@ -39,6 +39,74 @@
               </a>
             </div>
         </div>
+          <div class="row">
+            <div class="col-md-2" ng-repeat="category in categories">
+              <div class="dropdown">
+                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  {{category.name}}
+                 <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="tag in tags | filter:{tag_category_id: category.id }  | orderBy: '-tag_count'" ng-init="taggings_count(tag)" ng-click="tagFilter(tag)"><a href="#">{{tag.name}} <span class="badge">{{tag.tag_count}}</span></a></li>
+                </ul>
+              </div>
+            </div> 
+         <!--   <div class="col-md-2">
+              <div class="dropdown">
+                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Cost
+                 <span class="caret"></span>
+                </button>
+                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="tag in tags | filter:{tag_category_id: 2}" ng-init="taggings_count(tag)"><a href="#">{{tag.name}} <span class="badge">{{tag.tag_count}}</span></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="dropdown">
+                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Devices
+                 <span class="caret"></span>
+                </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="tag in tags | filter:{tag_category_id: 3}" ng-init="taggings_count(tag)"><a href="#">{{tag.name}} <span class="badge">{{tag.tag_count}}</span></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="dropdown">
+                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Function
+                 <span class="caret"></span>
+                </button>
+                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="tag in tags | filter:{tag_category_id: 4}" ng-init="taggings_count(tag)"><a href="#">{{tag.name}} <span class="badge">{{tag.tag_count}}</span></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="dropdown">
+                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Integrated
+                 <span class="caret"></span>
+                </button>
+                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="tag in tags | filter:{tag_category_id: 5}" ng-init="taggings_count(tag)"><a href="#">{{tag.name}} <span class="badge">{{tag.tag_count}}</span></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="dropdown">
+                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  Users
+                 <span class="caret"></span>
+                </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="tag in tags | filter:{tag_category_id: 6}" ng-init="taggings_count(tag)"><a href="#">{{tag.name}} <span class="badge">{{tag.tag_count}}</span></a></li>
+                </ul>
+              </div>
+            </div> -->
+         </div>
         <div class="product-list row" ng-if="isLoading">
           <div class="col-xs-12 center">
           <br><br><br><br><br>
