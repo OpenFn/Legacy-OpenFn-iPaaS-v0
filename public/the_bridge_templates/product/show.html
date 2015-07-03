@@ -78,9 +78,7 @@
         <div class="show-product">
           <div class="product">
             <div class='content'>
-              <div class="col-md-10 tab-content-text" ng-repeat="tab in tabs" ng-show="tab.active" ng-hide="tab.disabled">
-                {{tab.content}}
-              </div>
+              <div class="col-md-10 tab-content-text" ng-repeat="tab in tabs" ng-show="tab.active" ng-hide="tab.disabled" ng-bind-html="tab.content"></div>
               <div class="col-md-2">
                 <tabset class="tabs-right">
                   <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled"></tab>
