@@ -3,11 +3,10 @@ $bold: 800;
 
 $bg-color: #FFFFFF;       //main background color, white
 $nav: #F8F8F8;
-
 $dark: #2c2c2c;
 $light-grey: #787878;
-$base: #406DE4;                  //#406DE4
-$light: #E7F0FA;                 // #E7F0FA
+$base: #406DE4;
+$light: #E7F0FA;
 $accent: #FFBD31;
 $red-accent: #D84765;
 
@@ -69,8 +68,8 @@ html, body {
   color: $dark;
 }
 
-.btn-accent-yellow {
-  background-color: $accent-yellow;
+.btn-red {
+  background-color: $red-accent;
   color: $dark;
 }
 
@@ -118,6 +117,7 @@ b, strong {
   margin-bottom: 15px;
   height: 68px;
   // background-image: image-url("noise.png");
+  background-color: $nav;
 
   .nav > li > a {
     line-height: rem-calc(24px);
