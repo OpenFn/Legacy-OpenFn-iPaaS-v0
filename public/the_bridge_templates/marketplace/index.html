@@ -9,34 +9,34 @@
     </div>
 </header>
 
+<div class="floater-1 alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  Learn <strong><a data-toggle="modal" data-target="#help_modal">how to</a></strong> use the marketplace.
+</div>
+<div class="floater-2 alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  Submit a <strong><a data-toggle="modal" data-target="#add_modal">new product</a></strong> listing.
+</div>
+
   <div class="featurette dark">
     <div class="container">
       <div ng-controller="MarketplaceController as marketplace" class="row">          
           <div class="row">
-            <div class="col-lg-6">
-              <div class="new-product-link">
-                  <input type:"text" class="form-control" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+            <div class="col-lg-12">
+              <div class="input-group">
+                <input type="text" class="form-control" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" ng-model="searchFilters.integrated" btn-checkbox>
+                    <i class="fa fa-plug"></i>  Show connected apps.
+                  </button>
+                </span>
               </div>
-            </div>
-          <div class="col-lg-6">  
-            <div class="new-product-link">
-              <label data-toggle="modal" data-target="#add_modal" class="btn btn-default">
-                <i class="fa fa-plus"></i> Add a new technology.
-              </label>
-              <label class="btn btn-default" ng-model="searchFilters.integrated" btn-checkbox>
-                  <i class="fa fa-plug"></i>  Show connected apps.
-              </label>
-            </div>
           </div>
         </div>
+        <br>
         <div class="row">
-          <div class="btn-group btn-group-justified" role="group" aria-label="...">
-            <div class="col-md-2 btn-group" role="group">
-              <a role="button" class="btn btn-default" type="button" href="/tags/" class="btn btn-default">
-                <i class="fa fa-search"></i>Browse tags.
-              </a>
-            </div>
-            <div class="col-md-2 btn-group" role="group" ng-repeat="category in categories">
+          <div class="col-md-12 btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group" ng-repeat="category in categories">
               <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               {{category.name}}
                <span class="caret"></span>
@@ -56,14 +56,6 @@
         </div>
         <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
           <br>
-                <div class="floater-1 alert alert-warning alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        Learn <strong><a data-toggle="modal" data-target="#help_modal">how to</a></strong> use the marketplace.
-      </div>
-      <div class="floater-2 alert alert-warning alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        Submit a <strong><a data-toggle="modal" data-target="#add_modal">new product</a></strong> listing.
-      </div>
           <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-4 col-md-6 col-sm-6 col-xs-12">
             <a class="tile" href="/#/product/{{product.id}}">
               <div ng-class="product.integrated ? 'product integrated' : 'product'">
