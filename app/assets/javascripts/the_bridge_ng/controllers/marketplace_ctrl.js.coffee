@@ -29,14 +29,36 @@
       $scope.searchText = $routeParams.search
 
   $scope.filterProducts = (product) ->
+    
     lowercaseSearchText = angular.lowercase($scope.searchText)
-    if (angular.lowercase(product.name).indexOf(lowercaseSearchText)!= -1 || 
-      (angular.lowercase(product.description) || "").indexOf(lowercaseSearchText)!= -1 || 
-      (angular.lowercase(product.website) || "").indexOf(lowercaseSearchText)!= -1 || 
-      tagMatches(product.tag_list, lowercaseSearchText)) &&
-      filtersMatch(product, $scope.searchFilters)
-        return true
-    return false
+    all_info = []
+
+    if (lowercaseSearchText == "")
+      return true
+    
+    lowercaseSearchText = lowercaseSearchText.split(' ')
+
+    all_info.push angular.lowercase(product.name)
+    all_info.push angular.lowercase(product.description)
+    all_info.push angular.lowercase(product.website)
+    all_info = all_info.join(' ')
+
+    console.log(all_info)
+    console.log(lowercaseSearchText)
+
+    x = 0
+
+    while x < lowercaseSearchText.length
+      if (all_info.includes(lowercaseSearchText[x]))
+        x++
+      else
+        break
+
+    if x == (lowercaseSearchText.length)
+      return true
+    else
+      return false
+
 
   tagMatches = (tag_list, text) ->
     if tag_list
