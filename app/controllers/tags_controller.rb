@@ -42,7 +42,7 @@ class TagsController < ApplicationController
     tagging = Tagging.new(:tag_id => id,
                           :taggable_id => params[:product_id],
                           :tagger_id => current_user.id)
-    tagging.save
+    tagging.draft_creation
     render json: tagging
   end
 
@@ -61,7 +61,7 @@ class TagsController < ApplicationController
       tagging = Tagging.new(:tag_id => tag["id"],
                             :taggable_id => params[:product_id],
                             :tagger_id => current_user.id)
-       tagging.save
+       tagging.draft_creation
       end
      product_tags
     else
