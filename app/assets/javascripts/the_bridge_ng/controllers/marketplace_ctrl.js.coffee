@@ -29,7 +29,6 @@
       $scope.searchText = $routeParams.search
 
   $scope.filterProducts = (product) ->
-    
     lowercaseSearchText = angular.lowercase($scope.searchText)
     if (angular.lowercase(product.name).indexOf(lowercaseSearchText)!= -1 || 
       (angular.lowercase(product.description) || "").indexOf(lowercaseSearchText)!= -1 || 
