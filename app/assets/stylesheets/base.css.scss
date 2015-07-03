@@ -59,6 +59,21 @@ html, body {
   height: 100%;
 }
 
+.btn-light {
+  background-color: $light;
+  color: $dark;
+}
+
+.btn-accent {
+  background-color: $accent;
+  color: $dark;
+}
+
+.btn-accent-yellow {
+  background-color: $accent-yellow;
+  color: $dark;
+}
+
 #wrap {
   min-height: 100%;
 }
@@ -117,7 +132,6 @@ b, strong {
   .btn-accent {
     background-color: $accent;
   }
-
 
   .navbar-brand {
     // font-size: rem-calc(24px);
@@ -273,6 +287,7 @@ b, strong {
     padding: rem-calc(55px) 0 rem-calc(50px);
     padding-bottom: rem-calc(30px);
     background-color: $base;
+    background-image: image-url("noise.png");
     color: $bg-color;
 }
 
