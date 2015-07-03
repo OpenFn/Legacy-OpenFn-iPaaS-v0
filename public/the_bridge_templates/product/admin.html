@@ -1,7 +1,18 @@
+<header class="header-image">
+  <div class="headline">
+    <h1>
+      <i class="fa fa-code"></i> review <strong>Product</strong> updates
+    </h1>
+    <h3>
+      Publish or discard proposed changes using the drafstman gem.
+    </h3>
+  </div>
+</header>
+
 <div ng-controller="AdminController as adminCtrl">
   <div class="container">
     <div ng-repeat="draft in drafts">
-      <div class="h1">
+      <div class="h2">
         {{draft.item_type}} {{draft.event}} by user {{draft.whodunnit}}
       </div>
       <div class="h3">
@@ -17,7 +28,7 @@
       <br>
     </div>
     <div ng-show="drafts.length == 0">
-      <div class="h1 center">
+      <div class="h2 center">
         <br>
         There are no drafts pending review.
       </div>
