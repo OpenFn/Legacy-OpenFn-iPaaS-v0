@@ -3,8 +3,6 @@ open[Fn] <img src="https://img.shields.io/badge/license-GPLv3-blue.svg" /> [![Bu
 
 Find and connect technologies across the international development sector. openFn contains an "AppStore" for social impact and a point-and-click data integration tool to automate the flow of data between mobile survey tools, medical devices, clinic systems, sensors, ERPs, data-visualization applications, and other critical technologies being used by impact-first organizations.
 
-develop: [![Build Status](https://travis-ci.org/OpenFn/OpenFn-Site.svg?branch=develop)](https://travis-ci.org/OpenFn/OpenFn-Site)
-
 <img src="https://img.shields.io/github/issues/OpenFn/OpenFn-Site.svg" />
 <img src="https://img.shields.io/github/forks/OpenFn/OpenFn-Site.svg" />
 <img src="https://img.shields.io/github/stars/OpenFn/OpenFn-Site.svg" />
