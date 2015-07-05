@@ -1,9 +1,13 @@
-OpenFN Bridge
+open[Fn] <img src="https://img.shields.io/badge/license-GPLv3-blue.svg" /> [![Build Status](https://travis-ci.org/OpenFn/OpenFn-Site.svg?branch=master)](https://travis-ci.org/OpenFn/OpenFn-Site) <a href="https://codeclimate.com/github/OpenFn/OpenFn-Site"><img src="https://codeclimate.com/github/OpenFn/OpenFn-Site/badges/gpa.svg" /></a> <a href="https://codeclimate.com/github/OpenFn/OpenFn-Site/coverage"><img src="https://codeclimate.com/github/OpenFn/OpenFn-Site/badges/coverage.svg" /></a>
 =============
 
-Master status: [![Build Status](https://travis-ci.org/OpenFn/OpenFn-Site.svg?branch=master)](https://travis-ci.org/OpenFn/OpenFn-Site)
+Find and connect technologies across the international development sector. openFn contains an "AppStore" for social impact and a point-and-click data integration tool to automate the flow of data between mobile survey tools, medical devices, clinic systems, sensors, ERPs, data-visualization applications, and other critical technologies being used by impact-first organizations.
 
-Develop status: [![Build Status](https://travis-ci.org/OpenFn/OpenFn-Site.svg?branch=develop)](https://travis-ci.org/OpenFn/OpenFn-Site)
+develop: [![Build Status](https://travis-ci.org/OpenFn/OpenFn-Site.svg?branch=develop)](https://travis-ci.org/OpenFn/OpenFn-Site)
+
+<img src="https://img.shields.io/github/issues/OpenFn/OpenFn-Site.svg" />
+<img src="https://img.shields.io/github/forks/OpenFn/OpenFn-Site.svg" />
+<img src="https://img.shields.io/github/stars/OpenFn/OpenFn-Site.svg" />
 
 Getting Started
 ---------------
