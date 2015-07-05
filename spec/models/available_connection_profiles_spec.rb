@@ -4,14 +4,15 @@ RSpec.describe AvailableConnectionProfiles, type: :model do
   before :each do
     @product1 = Product.create(name: 'ODK1', description: "Open Data Kit (ODK)", integrated: true)
     @product2 = Product.create(name: 'SalesForce', description: "SalesForce", integrated: true)
-    @source_profile = ConnectionProfile.create(name: 'ODK', type: 'source', product: @product1, user_id: 123)
-    @destination_profile = ConnectionProfile.create(name: 'SalesForce1', type: 'destination', product: @product2, user_id: 123)
+    @source_profile = ConnectionProfile.create(name: 'ODK', type: 'source', product: @product1, user_id: 123, credential_id: 123)
+    @destination_profile = ConnectionProfile.create(name: 'SalesForce1', type: 'destination', product: @product2, user_id: 123,
+                                                   credential_id: 123)
   end
 
   describe '.for' do
     describe 'finds all available source connections' do
       before :each do
-        @connections = described_class.for('source', 123)
+        @connections = described_class.for(:source, 123)
       end
 
       it "returns profiles" do
@@ -28,7 +29,7 @@ RSpec.describe AvailableConnectionProfiles, type: :model do
 
     describe 'finds all available destination connections' do
       before :each do
-        @connections = described_class.for('destination', 123)
+        @connections = described_class.for(:destination, 123)
       end
 
       it "returns profiles" do
