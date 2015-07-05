@@ -8,6 +8,4 @@ RSpec.describe Project, type: :model do
 
   it { should have_many(:users) }
 
-  it { should have_many(:mappings) }
-
 end
