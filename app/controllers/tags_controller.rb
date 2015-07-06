@@ -37,15 +37,19 @@ class TagsController < ApplicationController
        return
      end
     id = Tag.maximum(:id).next
+
     tag = Tag.new(:id => id,
                   :name => params[:name],
                   :taggings_count => params[:count])
     tag.save
-    tagging = Tagging.new(:tag_id => id,
-                          :taggable_id => params[:product_id],
-                          :tagger_id => current_user.id)
-    tagging.draft_creation
-    render json: tagging
+    product = Product.find(params[:product_id])
+    # tagging = Tagging.new(:tag_id => id,
+    #                       :taggable_id => params[:product_id],
+    #                       :tagger_id => current_user.id)
+    product.tag_list.add(params[:name])
+    product.save
+    #tagging.draft_creation
+    render json: product
   end
 
   def product_tags_edit
