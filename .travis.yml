@@ -12,7 +12,7 @@ install:
 # - bundle install by default
 
 before_script:
- - cp config/application.yml.example config/application.yml
+ - cp config/application.yml.template config/application.yml
  - cp config/database.yml.example config/database.yml
  - psql -c 'create database travis_ci_test;' -U postgres
  - bundle exec rake db:schema:load
