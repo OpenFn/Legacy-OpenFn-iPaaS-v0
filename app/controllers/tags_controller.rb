@@ -1,14 +1,6 @@
 class TagsController < ApplicationController
 
   skip_before_filter :require_login
-  #acts_as_taggable
-  #acts_as_taggable_on :taggings
-
-  # commented to hide index
-  #def index
-  #  @tags = Tag.all
-  #  render json: @tags
-  #end
 
   def get_all
     @tags = Tag.all
@@ -33,9 +25,9 @@ class TagsController < ApplicationController
 
   def product_tags_add
     if !current_user.present?
-       render json: {status: "login", redirect_url: "/login"}
-       return
-     end
+      render json: {status: "login", redirect_url: "/login"}
+      return
+    end
     id = Tag.maximum(:id).next
 
     tag = Tag.new(:id => id,
@@ -43,36 +35,10 @@ class TagsController < ApplicationController
                   :taggings_count => params[:count])
     tag.save
     product = Product.find(params[:product_id])
-    # tagging = Tagging.new(:tag_id => id,
-    #                       :taggable_id => params[:product_id],
-    #                       :tagger_id => current_user.id)
     product.tag_list.add(params[:name])
     product.save
-    #tagging.draft_creation
+    create_admin_taggings
     render json: product
-  end
-
-  def product_tags_edit
-     if !current_user.present?
-       render json: {status: "login", redirect_url: "/login"}
-       return
-     end
-    tags = params["_json"]
-    taggings = Tagging.where(:taggable_id => params[:product_id])
-    taggings.delete_all
-    if tags.present?
-      tags.each do |tag|
-      name = tag["name"]
-      id = tag["id"]
-      tagging = Tagging.new(:tag_id => tag["id"],
-                            :taggable_id => params[:product_id],
-                            :tagger_id => current_user.id)
-      tagging.draft_creation
-      end
-    product_tags
-    else
-      render json: {tags: tags, redirect_url: "/product/#{params[:product_id]}"}
-    end
   end
 
   def tagging_count
@@ -86,16 +52,12 @@ class TagsController < ApplicationController
     if tags.present?
       tags.each do |tag|
       name = tag["name"]
-      #tagging =  Tagging.new(:tag_id => tag["id"],
-      #                      :taggable_id => params[:product_id],
-      #                      :tagger_id => current_user.id)
       product.tag_list.add(name)
-      #tagging.draft_creation
       product.save
-      #product.tag_list.draft_creation
+      create_admin_taggings
       end
     end
-    render json: params
+    render json: product
   end
 
   def tags_delete
@@ -104,12 +66,57 @@ class TagsController < ApplicationController
     if tags.present?
       tags.each do |tag|
       name = tag["name"]
-      product.tag_list.remove(name)
-      #tagging = Tagging.where(:tag_id => tag["id"], :taggable_id => params[:product_id]).first
-      product.save
+      delete_admin_taggings(name,params[:product_id])
       end
     end
-    render json: params
+    render json: product
+  end
+
+  private
+
+  def create_admin_taggings
+    tagging = Tagging.order("created_at").last
+    tagging_instance = Tagging.find(tagging.id).to_json
+    drafts = Draftsman::Draft.all
+    if drafts.present?
+      draft_id = Draftsman::Draft.maximum(:id).next
+    else
+      draft_id = 1
+    end
+    created_time = Time.now
+    draft = Draftsman::Draft.new(:id => draft_id,
+                                 :item_type => "Tagging",
+                                 :item_id => tagging.id,
+                                 :event => "create",
+                                 :whodunnit => current_user.id,
+                                 :created_at => created_time,
+                                 :updated_at => created_time,
+                                 :object => tagging_instance)
+    draft.save
+    tagging.update(:draft_id => draft_id, :published_at => Time.now)
+  end
+
+  def delete_admin_taggings(tag_name,product_id)
+    tag_id = Tag.find_by_name(tag_name).id
+    tagging = Tagging.where(:tag_id => tag_id, :taggable_id => product_id).first
+    tagging_instance = Tagging.find(tagging.id).to_json
+    drafts = Draftsman::Draft.all
+    if drafts.present?
+      draft_id = Draftsman::Draft.maximum(:id).next
+    else
+      draft_id = 1
+    end
+    created_time = Time.now
+    draft = Draftsman::Draft.new(:id => draft_id,
+                                 :item_type => "Tagging",
+                                 :item_id => tagging.id,
+                                 :event => "destroy",
+                                 :whodunnit => current_user.id,
+                                 :created_at => created_time,
+                                 :updated_at => created_time,
+                                 :object => tagging_instance)
+    draft.save
+    tagging.update(:draft_id => draft_id, :trashed_at => Time.now)
   end
 
 end
