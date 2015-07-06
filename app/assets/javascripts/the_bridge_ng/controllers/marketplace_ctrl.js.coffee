@@ -30,17 +30,14 @@
 
   $scope.filterProducts = (product) ->
     
-    lowercaseSearchText = angular.lowercase($scope.searchText)
+    lowercaseSearchText = angular.lowercase ($scope.searchText)
     all_info = []
     all_info_string = ""
 
-    if (lowercaseSearchText == "")
-      return true
+    # if (lowercaseSearchText == "")
+    #   return true
     
     lowercaseSearchText = lowercaseSearchText.split(' ')
-
-    if product.tag_list.length == 1
-      product.tag_list.push "a tag woo"
 
     y = 0
 
@@ -61,7 +58,7 @@
     x = 0
 
     while x < lowercaseSearchText.length
-      if (all_info.includes(" " + lowercaseSearchText[x]))  
+      if ((all_info.includes(lowercaseSearchText[x])) && filtersMatch(product, $scope.searchFilters))  
         x++
       else
         break
