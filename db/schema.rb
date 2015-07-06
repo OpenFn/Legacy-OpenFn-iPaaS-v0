@@ -23,14 +23,6 @@ ActiveRecord::Schema.define(version: 20150630130628) do
     t.integer "connected_app_id"
   end
 
-  create_table "blog_posts", force: true do |t|
-    t.string   "salesforce_name"
-    t.text     "content"
-    t.boolean  "published"
-    t.datetime "publication_date"
-    t.text     "title"
-  end
-
   create_table "collaborations", force: true do |t|
     t.integer  "user_id"
     t.integer  "project_id"
