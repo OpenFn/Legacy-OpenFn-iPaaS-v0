@@ -156,12 +156,6 @@
       $scope.added_tags.push tag
     $scope.tags_added = JSON.stringify($scope.added_tags)
 
-  #$scope.submitTags = (tags,product) ->
-  #  $http.post("/products/#{product.id}/tags/edit",tags).success((data) ->
-  #    window.location = data.redirect_url
-  #  )
-
-
   $scope.searchTags = (tagText,product) ->
     $scope.tag_match = []
     lowercaseSearchText = angular.lowercase($scope.searchTagText)
