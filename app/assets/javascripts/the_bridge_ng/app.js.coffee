@@ -27,8 +27,8 @@ Array::filter = (func) -> x for x in @ when func(x)
  ])
 
 # Handles to controllers for namespace collisions with the new OpenFn app.
-# As of today AngularJS doesn't handle namespace collisions for services so 
-# if you've got 2 different modules with the service named the same way and 
+# As of today AngularJS doesn't handle namespace collisions for services so
+# if you've got 2 different modules with the service named the same way and
 # you include both modules in your app, only one service will be available.
 @Legacy = {
   controllers: {},
@@ -87,6 +87,12 @@ Array::filter = (func) -> x for x in @ when func(x)
     .when('/product/:id', {
       templateUrl: '../the_bridge_templates/product/show.html',
     })
+    .when('/product/:id/edit', {
+      templateUrl: '../the_bridge_templates/product/edit.html',
+    })
+    .when('/admin/get_drafts', {
+      templateUrl: '../the_bridge_templates/product/admin.html',
+    })
     .when('/release-notes', {
       templateUrl: '../the_bridge_templates/release_notes/index.html'
     })
@@ -98,6 +104,9 @@ Array::filter = (func) -> x for x in @ when func(x)
     })
     .when('/welcome', {
       templateUrl: '../the_bridge_templates/static/welcome2.html'
+    })
+    .when('/tags', {
+      templateUrl: '../the_bridge_templates/tags/index.html'
     })
     .when('/', {
       templateUrl: '../the_bridge_templates/static/welcome.html',
@@ -117,3 +126,4 @@ Array::filter = (func) -> x for x in @ when func(x)
     })
     .otherwise({redirectTo:"/"})
 ]
+

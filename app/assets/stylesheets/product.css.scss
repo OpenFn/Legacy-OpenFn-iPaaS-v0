@@ -4,10 +4,10 @@
   border-width: 1px;
   border-style: solid;
   border-color: #CCC;
-  background-color: #F5F5F5;
+  // background-color: red;
 
   .sub-heading {
-    color: #A3A3A3;
+    // color: red;
   }
 
   .search-box {
@@ -23,21 +23,23 @@
     min-width: 216px;
   }
 
+// fsField -- why is this here?
   .search-field {
     padding-bottom: 0.5em;
   }
+
 }
 
 .product-list {
   $product-padding: 1em;
   $product-margin: 0.8em;
-  
-  
+  position: relative;
+
+
   margin-left: -$product-margin;
   margin-right: -$product-margin;
   margin-top: -$product-margin;
   margin-bottom: -$product-margin;
-
 
   .product-container {
     padding: 0;
@@ -45,19 +47,26 @@
     margin-bottom: 1.6em;
 
     .product:hover {
-      background-color: #5A6C77;
+      background-color: $light;
+      background-image: image-url("noise.png");
     }
 
     .product {
       height: 100%;
-      background-color: #3f5666;
+      color: $light-grey;
+      background-color: $nav;
       background-image: image-url("noise.png");
       text-align: center;
-
       position: relative;
       padding: $product-padding;
       margin: $product-margin;
-  
+
+      #editor {overflow:scroll; max-height:300px}
+
+      &.integrated {
+        background-color: $light;
+      }
+
       .description {
         font-size: 0.8em;
         line-height: 1.2;
@@ -68,6 +77,12 @@
 
       .title {
         margin-top: 10px;
+        color: $dark;
+      }
+
+      .tile-tweet {
+        color: $light-grey;
+        font-size: rem-calc(20px);
       }
 
       .rating {
@@ -75,18 +90,18 @@
       }
 
       .vote-link {
-        color: #384D5C;
+        // color: #384D5C;
         padding: 0.5em;
         position: absolute;
         bottom: 0;
         right: 0;
         cursor: pointer;
-        background-color: $grey-blue;
-        background-image: image-url("noise.png");
+        // background-color: $grey-blue;
+        // background-image: image-url("noise.png");
       }
 
       .vote-count {
-        color: $accent-yellow;
+        // color: $dynamic;
         padding: 0.5em;
         position: absolute;
         bottom: 0;
@@ -94,22 +109,22 @@
         }
 
       .website-link {
-        color: #384D5C;
+        // color: #384D5C;
         padding: 0.5em;
         position: absolute;
         bottom: 0;
         left: 0;
         cursor: pointer;
-        background-color: $grey-blue;
-        background-image: image-url("noise.png");
+        // background-color: $grey-blue;
+        // background-image: image-url("noise.png");
       }
 
-      
+
       // .deatils-link-wrapper {
       //   position: relative;
       //   // float: left;
       //   text-align: center;
-      //   margin: 0 auto; 
+      //   margin: 0 auto;
       // }
 
       .details-link {
@@ -144,12 +159,12 @@
     position: relative;
     display: block;
   }
-   
+
   .product-container.ng-enter.ng-enter-active,
   .product-container.ng-leave {
     opacity: 1;
   }
-   
+
   .product-container.ng-leave.ng-leave-active,
   .product-container.ng-enter {
     opacity: 0;
@@ -158,12 +173,11 @@
 
 .show-product {
 
-//Taylor's edits to the show product page CSS
-
-  background-color: #3f5666;
-  background-image: image-url("noise.png");
-  color: $off-white;
+  background-color: $nav;
+  // background-image: image-url("noise.png");
+  color: $light-grey;
   padding: 30px;
+  overflow:auto;
 
   .actions, .rating, .name {
     display: inline-block;
@@ -182,7 +196,7 @@
   }
 
   .vote-count {
-    color: $accent-yellow;
+    color: $accent;
     // font-size: 1.22em;
     // padding: 0.8em;
     padding-right: 0.8em;
@@ -228,7 +242,7 @@
     cursor: pointer;
     // background-color: $grey-blue;
     // background-image: image-url("noise.png");
-  }   
+  }
 
   .tab-content-text {
     a {
@@ -242,12 +256,13 @@
 
   .title {
     text-align: center;
+    color: $dark;
   }
 
   .rating {
     // float: right;
     text-align: center;
-    padding-right: 29px; 
+    padding-right: 29px;
   }
 
   .actions, .rating {
@@ -263,33 +278,20 @@
   }
 
   .right-pills {
-  color: $off-white;
+  // color: $off-white;
   font-size: rem-calc(12px);
   font-weight: $bold;
   text-transform: uppercase;
   margin-bottom: -30px;
-  background-color: $primary-blue;
-  background-image: image-url("noise.png");
+  // background-color: $nav;
+  // background-image: image-url("noise.png");
 
-  }
-
-  .right-pills > li > a:hover {
-    background-color: $bg-color;
-    background-image: image-url("noise.png");
-    color: $accent-yellow;
-  }
-
-  .right-pills .active a,
-  .red .active a:hover{
-    background-color: $primary-blue;
-    background-image: image-url("noise.png");
-    color: $off-white;
   }
 
   .nav-tabs {
     // margin-bottom: 0;
     border-bottom: 0;
-    color: $off-white;
+    // color: $off-white;
     font-size: rem-calc(20px);
     font-weight: $bold;
     text-transform: uppercase;
@@ -317,31 +319,17 @@
 
   .tab-content-text {
     padding-top: 0.8em;
-    margin: 0 0.8em 0.8em 0.8em;
+    // margin: 0 0.8em 0.8em 0.8em;
     font-size: rem-calc(18px);
+          color: $dark;
   }
 
-  .tag-list {
-    margin-left: 1.2em;
-    margin-right: 1.2em;
-    // margin-bottom: 1em;
-    text-align: center;
 
-    .tag {
-      margin-right: 0.5em;
-      margin-top: 0.5em;
-      background-color: $bg-color;
-      font-size: rem-calc(14px);
-      text-transform: uppercase;
-      display: inline-block;
-
-    }
-  }
 }
 
 .new-product-link {
-  padding: 1em;
-
+  padding-bottom: 1em;
+  // background-color: $light;
 }
 
 .add-modal {
@@ -350,10 +338,31 @@
 }
 
 .fsField {
-  color: black; 
+  color: black;
   width: 508px;
 }
 
 .fsSubmitButton {
   color: black;
+}
+
+.submitStatus{
+  color:red;
+  font-weight: bold;
+}
+
+.rscore {
+  font-size: rem-calc(20px);
+}
+
+
+
+a:hover{
+  color:#000;
+}
+
+.edit {
+  .tab-pane {
+    min-height: 385px;
+  }
 }

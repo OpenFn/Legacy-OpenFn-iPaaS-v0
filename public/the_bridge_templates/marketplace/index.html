@@ -1,6 +1,4 @@
-<div class="ideas">
-
-  <header class="header-image">
+<header class="header-image">
     <div class="headline">
       <h1>
         <i class="fa fa-shopping-cart"></i> open<strong>Marketplace</strong>
@@ -9,31 +7,47 @@
         Find the <strong>tools</strong> you need to grow your impact; vote for new <i class="fa fa-plug"></i> integrations.
       </h3>
     </div>
-  </header>
+</header>
+
+<div class="floater-1 alert alert-warning alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <a data-toggle="modal" data-target="#help_modal">Learn <strong>how to</strong> use the marketplace.</a>
+</div>
+<div class="floater-2 alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <a data-toggle="modal" data-target="#add_modal">Submit a <strong>new product</strong> listing.</a>
+</div>
 
   <div class="featurette dark">
-    <hr class="light">
-    <hr class="dark">
     <div class="container">
       <div ng-controller="MarketplaceController as marketplace" class="row">          
-        <div class="col-md-10 col-md-offset-1">
-          <div class="search-field">
-              <input type:"text" class="form-control" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="input-group">
+                <input type="text" class="form-control" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" ng-model="searchFilters.integrated" btn-checkbox>
+                    <i class="fa fa-plug"></i>  Show connected apps.
+                  </button>
+                </span>
+              </div>
           </div>
         </div>
-        <div class="col-md-10 col-md-offset-1">  
-          <div class="new-product-link">
-            <label style="float: left;" data-toggle="modal" data-target="#add_modal" class="btn btn-open">
-              <i class="fa fa-plus"></i> Add a new technology.
-            </label>
-            <label style="margin-left: 1em;" data-toggle="modal" data-target="#help_modal" class="btn btn-open">
-              <i class="fa fa-question-circle"></i> Help.
-            </label>
-            <label style="float: right;" class="btn btn-open" ng-model="searchFilters.integrated" btn-checkbox>
-                <i class="fa fa-plug"></i>  Show integrated technologies.
-            </label>
+        <br>
+        <div class="row">
+          <div class="col-md-12 btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group" ng-repeat="category in categories">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              {{category.name}}
+               <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li ng-repeat="tag in tags | filter:{tag_category_id: category.id }  | orderBy: '-tag_count'" ng-init="taggings_count(tag)" ng-click="tagFilter(tag)"><a href="#">{{tag.name}} <span class="badge">{{tag.tag_count}}</span></a></li>
+              </ul>
+            </div>
           </div>
         </div>
+        <br>
         <div class="product-list row" ng-if="isLoading">
           <div class="col-xs-12 center">
           <br><br><br><br><br>
@@ -42,21 +56,34 @@
         </div>
         <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
           <br>
-          <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-4 col-md-6 col-sm-6 col-xs-12">
             <a class="tile" href="/#/product/{{product.id}}">
-              <div class="product">
+              <div ng-class="product.integrated ? 'product integrated' : 'product'">
                 <div class='rating'>
                   <span class='live'>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o" ng-show="!product.rating"></i>
+                    <i class="fa fa-star-half-o" ng-show="product.rating>0 && product.rating<=0.5"></i>
+                    <i class="fa fa-star" ng-show="product.rating>0.5"></i>
+
+                    <i class="fa fa-star-o" ng-show="product.rating<=1"></i>
+                    <i class="fa fa-star-half-o" ng-show="product.rating>1 && product.rating<=1.5"></i>
+                    <i class="fa fa-star" ng-show="product.rating>1.5"></i>
+                    
+                    <i class="fa fa-star-o" ng-show="product.rating<=2"></i>
+                    <i class="fa fa-star-half-o" ng-show="product.rating>2 && product.rating<=2.5"></i>
+                    <i class="fa fa-star" ng-show="product.rating>2.5"></i>
+                    
+                    <i class="fa fa-star-o" ng-show="product.rating<=3"></i>
+                    <i class="fa fa-star-half-o" ng-show="product.rating>3 && product.rating<=3.5"></i>
+                    <i class="fa fa-star" ng-show="product.rating>3.5"></i>
+                    
+                    <i class="fa fa-star-o" ng-show="product.rating<=4"></i>
+                    <i class="fa fa-star-half-o" ng-show="product.rating>4 && product.rating<=4.5"></i>
+                    <i class="fa fa-star" ng-show="product.rating>4.5"></i>
                   </span>
-                  &nbsp;(0)
+                  &nbsp;({{product.reviews_count}})
                 </div>
                 <h3 class="title">
-
                   {{product.name}}
                 </h3>
                 <div class='tile-tweet'>
@@ -69,7 +96,7 @@
                   <i class="fa fa-plug"></i>
                 </a>
                 <a ng-hide="product.integrated" class="vote-count">
-                  <span style="color: #F2EFE6"><i class="fa fa-plug"></i>+ </span> {{product.votes_count}}<span style="color: #F2EFE6"></span>
+                  <i class="fa fa-plug"></i>+ <span class="live">{{product.votes_count}}</span>
                 </a>
                 <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">               
                   <i ng-class="{'fa ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>

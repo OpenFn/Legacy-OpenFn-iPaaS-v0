@@ -11,7 +11,7 @@
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
-    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 
     <% if Features.ga_tracking_code? %>
       <script>
@@ -20,32 +20,29 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
       ga('create', '<%= Features.ga_tracking_code %>', 'auto');
-      
+      <%# We do not need to do a send from the angular views because angulartics handles this %>      
       // ga('send', 'pageview');
       </script>
     <% end %>
 
-    <script>
-      $(document).ready(function(){
-        $(window).scroll(function(){
-          var y = $(window).scrollTop();
-          if( y > 0 ){
-          $(".top-shadow").css({'display':'block', 'opacity':y/20});
-        } else {
-          $(".top-shadow").css({'display':'block', 'opacity':y/20});
-          }
-        });
-      })
-    </script>
-
   </head>
   <body>
-    <%= render "shared/header" %>
-    <div ng-view>
+    <div id="wrap">
+      <div id="main">
+        <%= render "shared/header" %>
+        <div class="floater-0 alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <a onClick="ga('send', 'event', 'Revenue', 'Open Donate Modal');" type="button" data-toggle="modal" data-target="#donate_modal">Make a <strong>donation</strong> now.</a>
+        </div>
+        <div ng-view>
+        </div>
+        <div class='growl-wrapper'>
+          <div growl></div>
+        </div>
+      </div>
     </div>
-    <div class='growl-wrapper'>
-      <div growl></div>
-    </div>
-    <%= render "shared/footer" %>
+    <footer class="footer">
+      <%= render "shared/footer" %>
+    </footer>
   </body>
 </html>
