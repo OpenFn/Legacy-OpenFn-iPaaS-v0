@@ -58,9 +58,9 @@ RSpec.describe Mapping::Translation do
         )
 
         it { is_expected.to eql(
-          { "contact" => [ {"name" => "taytay"}, {"name" => "alfred"} ] }
+          { "contact" => [ {"name" => "taytay", "number" => 12345} ] }
         ) }
-        
+
       end
 
     end

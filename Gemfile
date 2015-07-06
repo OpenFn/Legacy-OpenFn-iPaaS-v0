@@ -132,6 +132,8 @@ group :development, :test do
   gem 'database_cleaner', require: false
 end
 
+gem "codeclimate-test-reporter", group: :test, require: nil
+
 group :test do
   gem 'vcr'
   gem 'webmock'

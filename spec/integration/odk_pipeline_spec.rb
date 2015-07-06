@@ -29,7 +29,7 @@ RSpec.describe "ODK Pipeline", :type => :integration do
   let(:product) { Product.create!(name: "ODK", integration_type: "Odk") }
 
   let(:mapping) { Mapping.create!(
-    source_app: source_app
+    source_app: source_app, user_id: 999
   ) }
 
   let(:source_app) { ConnectedApp.create(product: product) }

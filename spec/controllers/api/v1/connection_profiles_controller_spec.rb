@@ -37,7 +37,7 @@ RSpec.describe Api::V1::ConnectionProfilesController, :type => :controller do
 
   describe "#index" do
     before :each do
-      expect(controller).to receive(:current_user).and_return(double(User, id: 123))
+      allow(controller).to receive(:current_user).and_return(double(User, id: 123))
     end
 
     it "returns a HTTP 200" do
@@ -78,7 +78,7 @@ RSpec.describe Api::V1::ConnectionProfilesController, :type => :controller do
       product_id: product.id, type: 'source', credential_id: 123 } } }
 
     before :each do
-      expect(controller).to receive(:current_user).and_return(user)
+      allow(controller).to receive(:current_user).and_return(user)
     end
 
     context "successful request" do

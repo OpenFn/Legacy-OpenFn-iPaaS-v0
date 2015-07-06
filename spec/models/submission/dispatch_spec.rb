@@ -8,26 +8,26 @@ RSpec.describe Submission::Dispatch, :type => :model do
   let(:destination_credentials) { double(Credential) }
 
   before(:each) do
-    @dispatch = Submission::Dispatch.new(submission)
+    @dispatch = Submission::Dispatch.new
   end
 
   describe "responsibilities" do
     before(:each) do
-      allow(Resque).to receive(:enqueue)
+      # allow(Resque).to receive(:enqueue)
     end
 
     it "dispatches the raw destination payload according to the relevant Product Module" do
       allow(submission).to receive(:submitted!)
       expect(Integration::TestProduct).to receive(:submit!).with(submission.raw_destination_payload, destination_credentials)
 
-      @dispatch.work
+      @dispatch.perform(submission)
     end
 
     it "marks the submission record as submitted" do
       allow(Integration::TestProduct).to receive(:submit!)
       expect(submission).to receive(:submitted!)
 
-      @dispatch.work
+      @dispatch.perform(submission)
     end
   end  
 end
