@@ -1,6 +1,8 @@
 class TagsController < ApplicationController
 
   skip_before_filter :require_login
+  #acts_as_taggable
+  #acts_as_taggable_on :taggings
 
   # commented to hide index
   #def index
@@ -61,9 +63,9 @@ class TagsController < ApplicationController
       tagging = Tagging.new(:tag_id => tag["id"],
                             :taggable_id => params[:product_id],
                             :tagger_id => current_user.id)
-       tagging.draft_creation
+      tagging.draft_creation
       end
-     product_tags
+    product_tags
     else
       render json: {tags: tags, redirect_url: "/product/#{params[:product_id]}"}
     end
@@ -76,12 +78,17 @@ class TagsController < ApplicationController
 
   def tags_add
     tags = params["_json"]
+    product = Product.find(params[:product_id])
     if tags.present?
       tags.each do |tag|
-      tagging =  Tagging.new(:tag_id => tag["id"],
-                            :taggable_id => params[:product_id],
-                            :tagger_id => current_user.id)
-      tagging.draft_creation
+      name = tag["name"]
+      #tagging =  Tagging.new(:tag_id => tag["id"],
+      #                      :taggable_id => params[:product_id],
+      #                      :tagger_id => current_user.id)
+      product.tag_list.add(name)
+      #tagging.draft_creation
+      product.save
+      #product.tag_list.draft_creation
       end
     end
     render json: params
@@ -89,10 +96,13 @@ class TagsController < ApplicationController
 
   def tags_delete
     tags = params["_json"]
+    product = Product.find(params[:product_id])
     if tags.present?
       tags.each do |tag|
-        tagging = Tagging.where(:tag_id => tag["id"], :taggable_id => params[:product_id]).first
-        tagging.draft_destroy
+      name = tag["name"]
+      product.tag_list.remove(name)
+      #tagging = Tagging.where(:tag_id => tag["id"], :taggable_id => params[:product_id]).first
+      product.save
       end
     end
     render json: params

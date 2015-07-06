@@ -126,13 +126,6 @@
   productTags = (product) ->
     $http.get("/products/#{product.id}/tags").success((data) ->
       $scope.product.tag_list = data.tags
-      #$scope.tag_list = angular.copy($scope.product.tag_list)
-      #i = 0
-      #while i < $scope.tag_list.length
-      #  $scope.tag_list[i].text = $scope.product.tag_list[i].name
-      #  i++
-      #$scope.tag_list = JSON.stringify($scope.tag_list)
-      console.log($scope.product.tag_list)
     )
     $http.get("/tags/get_all").success((data) ->
       $scope.tags = data.tags
