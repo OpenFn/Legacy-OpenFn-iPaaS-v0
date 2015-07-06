@@ -33,9 +33,6 @@
     lowercaseSearchText = angular.lowercase ($scope.searchText)
     all_info = []
     all_info_string = ""
-
-    # if (lowercaseSearchText == "")
-    #   return true
     
     lowercaseSearchText = lowercaseSearchText.split(' ')
 
@@ -50,10 +47,6 @@
     all_info.push angular.lowercase(product.website)
     all_info.push angular.lowercase(all_info_string)
     all_info = all_info.join(' ')
-    
-    console.log (all_info)
-
-    console.log(lowercaseSearchText)
 
     x = 0
 
@@ -67,7 +60,6 @@
       return true
     else
       return false
-
 
   # tagMatches = (tag_list, text) ->
   #   if tag_list
@@ -90,6 +82,5 @@
     
       .error (data, status, headers, config) ->
         window.location="/login" if status == 401
-        # console.log arguments
 
 ]
