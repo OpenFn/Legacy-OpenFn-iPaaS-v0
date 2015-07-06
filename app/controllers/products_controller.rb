@@ -22,23 +22,6 @@ class ProductsController < ApplicationController
       # merge("hasReviewForUser" => product.has_review_for(current_user))
   end
 
-  def update
-    notification = Salesforce::Notification.new(request.body.read)
-    salesforce_product = Salesforce::Listing::Product.new(notification)
-
-    product = Product.from_salesforce(salesforce_product)
-
-    if product.save
-      respond_to do |format|
-        format.xml  { render 'salesforce/success', layout: false }
-      end
-    else
-      respond_to do |format|
-        format.xml  { render xml: "", status: 422 }
-      end
-    end
-  end
-
   def vote
     product = Product.find(params[:product_id])
     if product.has_vote_for(current_user)

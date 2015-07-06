@@ -15,8 +15,6 @@ OpenFn::Application.routes.draw do
 
   get "submissions_controller/index"
 
-  resources :blog_posts, only: [:index]
-
   resource :payment_notification, only: [] do
     post :completed
     get :success
@@ -25,7 +23,6 @@ OpenFn::Application.routes.draw do
 
   # slightly weird, but we're getting this from Salesforce in xml, and they always post.
   post "/api/v1/:token/update_products", to: "products#update", defaults: { format: 'xml' }
-  post "/api/v1/:token/update_blog_posts", to: "blog_posts#update", defaults: { format: 'xml' }
   post "/api/v1/:token/update_users", to: "users#sync", defaults: { format: 'xml' }
 
   namespace :odk_sf_legacy, shallow_path: nil, path: nil do
