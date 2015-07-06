@@ -29,21 +29,44 @@
       $scope.searchText = $routeParams.search
 
   $scope.filterProducts = (product) ->
-    lowercaseSearchText = angular.lowercase($scope.searchText)
-    if (angular.lowercase(product.name).indexOf(lowercaseSearchText)!= -1 || 
-      (angular.lowercase(product.description) || "").indexOf(lowercaseSearchText)!= -1 || 
-      (angular.lowercase(product.website) || "").indexOf(lowercaseSearchText)!= -1 || 
-      tagMatches(product.tag_list, lowercaseSearchText)) &&
-      filtersMatch(product, $scope.searchFilters)
-        return true
-    return false
+    
+    lowercaseSearchText = angular.lowercase ($scope.searchText)
+    all_info = []
+    all_info_string = ""
+    
+    lowercaseSearchText = lowercaseSearchText.split(' ')
 
-  tagMatches = (tag_list, text) ->
-    if tag_list
-      return tag_list.some (tag) ->
-        angular.lowercase(tag).indexOf(text) != -1
+    y = 0
+
+    while (y < product.tag_list.length)
+      all_info_string += (" " + product.tag_list[y])
+      y++
+
+    all_info.push angular.lowercase(product.name)
+    all_info.push angular.lowercase(product.description)
+    all_info.push angular.lowercase(product.website)
+    all_info.push angular.lowercase(all_info_string)
+    all_info = all_info.join(' ')
+
+    x = 0
+
+    while x < lowercaseSearchText.length
+      if ((all_info.includes(lowercaseSearchText[x])) && filtersMatch(product, $scope.searchFilters))  
+        x++
+      else
+        break
+
+    if x == (lowercaseSearchText.length)
+      return true
     else
-      false
+      return false
+
+  # tagMatches = (tag_list, text) ->
+  #   if tag_list
+  #     return tag_list.some (tag) ->
+  #       angular.lowercase(tag).indexOf(text) != -1
+  #   else
+  #     false
 
   filtersMatch = (product, filters) ->
     
@@ -59,6 +82,5 @@
     
       .error (data, status, headers, config) ->
         window.location="/login" if status == 401
-        # console.log arguments
 
 ]
