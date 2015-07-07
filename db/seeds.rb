@@ -16,3 +16,22 @@ if Plan.count < 1
 	]
   )
 end
+
+# TODO: create dummy products and get them loading properly.
+if Product.count < 1
+  products = Product.create(
+    [{ name: 'Sample SMS Gateway',
+    	description: 'This thing sends and receives SMSs in bulk.',
+    	website: 'http://www.google.com',
+    	enabled: true,
+    	integrated: false,
+    	detail_active: true,
+    	costs: 'It is all very expensive and complicated.',
+    	resources: 'Here is a list of external resources to help you understand or implement this product.',
+    	provider: 'This cool company.',
+    	detailed_description: 'A long long time ago, telephone companies decided to experiment with sending small packets of data over the airwaves, and charging arbitrary fees for each of these little packets.',
+    	tech_specs: 'This is fairly technical.',
+    	twitter: 'taylordowns2000', facebook: 'openfn'},
+	]
+  )
+end
