@@ -5,7 +5,6 @@
   $scope.isLoading = true
   $scope.tags
   $scope.categories = {};
-  $scope.dropdownTags = []
 
   $http.get('/tag_categories.json').success((data) ->
     $scope.categories = data;
@@ -21,11 +20,8 @@
     )
 
   $scope.tagFilter = (tag) ->
-    if ($scope.dropdownTags.indexOf tag.name) == -1
-      $scope.dropdownTags.push tag.name
-    else
-      $scope.dropdownTags.splice $scope.dropdownTags.indexOf(tag.name, 1)
-  
+    $scope.searchText += tag.name + " "
+
   $http.get('/products.json').success (data) ->
     $scope.products = data.products
     $scope.isLoading = false
@@ -55,7 +51,8 @@
     x = 0
 
     while x < lowercaseSearchText.length
-      if ((all_info.includes(lowercaseSearchText[x])) && filtersMatch(product, $scope.searchFilters) && (dropdownTagsMatch($scope.dropdownTags, product.tag_list)))  
+
+      if all_info.indexOf(lowercaseSearchText[x])!= -1 && filtersMatch(product, $scope.searchFilters)
         x++
       else
         break
@@ -79,13 +76,6 @@
     else
       return true
 
-  dropdownTagsMatch = (dropdownTagsasFilters, scopetags) ->
-
-    for i in [0...dropdownTagsasFilters.length]
-      if($.inArray(dropdownTagsasFilters[i], scopetags) == -1) 
-        return false
-    return true
-  
   $scope.changeVoteFor = (product) ->
     $http.get("/products/#{product.id}/vote")
       .success (data) ->
