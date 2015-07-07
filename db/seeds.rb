@@ -16,3 +16,25 @@ if Plan.count < 1
 	]
   )
 end
+
+# TODO: Figure out why products don't show up in view on Firefox when doing "rake db:drop db:create db:migrate db:seed".
+if Product.count < 1
+  products = Product.create(
+    [{ name: 'Sample SMS Gateway',
+    	description: 'This thing sends and receives SMSs in bulk.',
+    	website: 'http://www.google.com',
+    	enabled: 'true',
+    	integrated: 'false',
+    	detail_active: 'true',
+    	costs: 'It is all very expensive and complicated.',
+    	resources: 'Here is a list of external resources to help you understand or implement this product.',
+    	provider: 'This cool company.',
+    	detailed_description: 'A long long time ago, telephone companies decided to experiment with sending small packets of data over the airwaves, and charging arbitrary fees for each of these little packets.',
+    	tech_specs: 'This is fairly technical.',
+    	twitter: 'taylordowns2000',
+    	facebook: 'openfn',
+    	salesforce_id: 'L9999'
+    	}
+	]
+  )
+end

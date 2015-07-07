@@ -1,9 +1,9 @@
 class AddFieldAttributesToSalesforceFields < ActiveRecord::Migration
   def up
-    add_column :salesforce_fields, :properties, :json
+    add_column :odk_sf_legacy_salesforce_fields, :properties, :json
 
-    SalesforceField.transaction do
-      SalesforceField.unscoped.all.each do |field|
+    OdkSfLegacy::SalesforceField.transaction do
+      OdkSfLegacy::SalesforceField.unscoped.all.each do |field|
 
         # Skip records that have been imported after this.
         if field.data_type
@@ -29,6 +29,6 @@ class AddFieldAttributesToSalesforceFields < ActiveRecord::Migration
   end
 
   def down
-    remove_column :salesforce_fields, :properties
+    remove_column :odk_sf_legacy_salesforce_fields, :properties
   end
 end
