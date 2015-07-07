@@ -31,7 +31,7 @@ if Product.count < 1
     	provider: 'This cool company.',
     	detailed_description: 'A long long time ago, telephone companies decided to experiment with sending small packets of data over the airwaves, and charging arbitrary fees for each of these little packets.',
     	tech_specs: 'This is fairly technical.',
-    	twitter: 'taylordowns2000',
+    	twitter: '@taylordowns2000',
     	facebook: 'openfn',
     	salesforce_id: 'L9999'
     	}
