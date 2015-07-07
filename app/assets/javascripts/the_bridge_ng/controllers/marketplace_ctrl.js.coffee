@@ -4,7 +4,7 @@
   $scope.searchFilters = {}
   $scope.isLoading = true
   $scope.tags
-  $scope.categories
+  $scope.categories = {};
 
   $http.get('/tag_categories.json').success((data) ->
     $scope.categories = data;
