@@ -84,15 +84,6 @@ ActiveRecord::Schema.define(version: 20150630130628) do
     t.string  "destination_field"
   end
 
-  create_table "imports", force: true do |t|
-    t.string   "odk_formid"
-    t.string   "last_uuid"
-    t.text     "cursor"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "num_imported", default: 0
-  end
-
   create_table "legacy_odk_field_salesforce_fields", force: true do |t|
     t.integer  "odk_field_id"
     t.integer  "salesforce_field_id"
@@ -127,19 +118,10 @@ ActiveRecord::Schema.define(version: 20150630130628) do
 
   add_index "mappings", ["user_id"], name: "index_mappings_on_user_id", using: :btree
 
-  create_table "odk_fields", force: true do |t|
-    t.string   "field_name"
-    t.string   "field_type"
-    t.integer  "salesforce_field_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "odk_sf_legacy_credentials", force: true do |t|
-    t.integer  "user_id"
+    t.hstore   "details"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.hstore   "details"
   end
 
   create_table "odk_sf_legacy_imports", force: true do |t|
@@ -316,17 +298,6 @@ ActiveRecord::Schema.define(version: 20150630130628) do
   add_index "reviews", ["product_id"], name: "index_reviews_on_product_id", using: :btree
   add_index "reviews", ["user_id"], name: "index_reviews_on_user_id", using: :btree
 
-  create_table "salesforce_fields", force: true do |t|
-    t.integer  "mapping_id"
-    t.string   "object_name"
-    t.string   "field_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "data_type"
-    t.string   "label_name"
-    t.boolean  "perform_lookups", default: false
-  end
-
   create_table "submission_records", force: true do |t|
     t.integer  "mapping_id"
     t.text     "raw_source_payload"
@@ -394,10 +365,10 @@ ActiveRecord::Schema.define(version: 20150630130628) do
     t.string   "stripe_subscription_token"
     t.integer  "plan_id"
     t.datetime "stripe_current_period_end"
+    t.boolean  "unlimited",                       default: false
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
-    t.boolean  "unlimited",                       default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
