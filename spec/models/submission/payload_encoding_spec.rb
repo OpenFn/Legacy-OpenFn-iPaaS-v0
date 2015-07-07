@@ -28,6 +28,7 @@ RSpec.describe Submission::PayloadEncoding, :type => :model do
     end
 
     it "decodes the raw message according to the relevant Product Module" do
+      pending("This is for functionality that is not yet finished. TODO, ask Stu.")
       allow(record).to receive(:source_payload=)
       allow(record).to receive(:save!)
       expect(OpenFn::TestProduct).to receive(:encode).with(record.raw_source_payload)
@@ -36,6 +37,7 @@ RSpec.describe Submission::PayloadEncoding, :type => :model do
     end
 
     it "adds the decoded message to the record record" do
+      pending("This is for functionality that is not yet finished. TODO, ask Stu.")
       expect(OpenFn::TestProduct).to receive(:encode).and_return(decoded_payload = "{raw: {source: 'payload'}}")
       expect(record).to receive(:source_payload=).with(decoded_payload)
       expect(record).to receive(:save!)
