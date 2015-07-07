@@ -1,0 +1,33 @@
+---
+users_001:
+  id: '4'
+  email: td@vera.dev
+  crypted_password: "$2a$10$ct/qh9U3re5o8GuWe.rvm.7YixpgXk469ZIndDhNs8tLewH0Xmbgu"
+  salt: xw73ZgsFG1yJX8zz6BYP
+  created_at: '2014-10-21 09:45:43.405033'
+  updated_at: '2015-06-22 15:16:45.013743'
+  sf_username: td@vera.dev
+  sf_password: Chapin86!
+  odk_url: https://gardensforhealth2012.appspot.com/
+  sf_security_token: cOARfUN4a9EfdbHmSjuZVe7Sq
+  valid_credentials: t
+  sf_app_secret: '117412098672293366'
+  sf_app_key: 3MVG9QDx8IX8nP5Qy8wN2NJIM_l7G0bhjf6US16ioh4W.OffFYGVqZUzwDO3ZULTmdZRHnptq6U5jWDjq4n4C
+  odk_username: bridge
+  odk_password: data2012
+  sf_host: login.salesforce.com
+  role: client_admin
+  credits: '100'
+  first_name: Taylor
+  last_name: Downs
+  organisation: OpenFn
+  organization_id: '2'
+  invitation_token: 
+  stripe_customer_token: cus_5noh9Hf31T8xkR
+  stripe_subscription_token: sub_5oVbEWE9y1dJTQ
+  plan_id: '1'
+  stripe_current_period_end: '2015-07-22 14:12:17'
+  reset_password_token: 
+  reset_password_token_expires_at: 
+  reset_password_email_sent_at: 
+  unlimited: f
