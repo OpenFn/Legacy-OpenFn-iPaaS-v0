@@ -118,12 +118,6 @@ ActiveRecord::Schema.define(version: 20150630130628) do
 
   add_index "mappings", ["user_id"], name: "index_mappings_on_user_id", using: :btree
 
-  create_table "odk_sf_legacy_credentials", force: true do |t|
-    t.hstore   "details"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "odk_sf_legacy_imports", force: true do |t|
     t.string   "odk_formid"
     t.string   "last_uuid"
