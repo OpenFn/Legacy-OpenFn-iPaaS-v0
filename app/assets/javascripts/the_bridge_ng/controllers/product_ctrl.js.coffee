@@ -209,7 +209,8 @@
     )
 
   $scope.checkLogin = (product) ->
-    $http.get("/user/check_login").success((data) ->
+    url = $location.url()
+    $http.get("/user/check_login?redirect=#{url}").success((data) ->
       if data.status == 'login'
         window.location = data.redirect_url
       else
