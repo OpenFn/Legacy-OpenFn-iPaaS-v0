@@ -36,6 +36,8 @@ RSpec.describe "ODK Pipeline", :type => :integration do
 
   it "should translate the ODK payload, and persist it on Submission::Record" do
 
+    pending("This is for functionality that is not yet finished. TODO, ask Stu.")
+
     Submission::Receipt.perform_async(odk_submission,mapping.id)
     record = Submission::Record.first
     expect(record.raw_source_payload).to eql(odk_submission.to_json)
