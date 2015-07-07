@@ -1,4 +1,4 @@
-@controllerModule.controller 'ProductController', ['$scope', '$location', '$http', '$routeParams', '$timeout', ($scope, $location, $http, $routeParams, $timeout) ->
+@controllerModule.controller 'ProductController', ['$scope', '$location', '$modal', '$http', '$routeParams', '$timeout', ($scope, $location, $modal, $http, $routeParams, $timeout) ->
   $scope.product = {}
   $scope.searchText = ""
   $scope.searchTagText = ""
@@ -32,7 +32,7 @@
         angular.extend(product,data)
 
       .error (data, status, headers, config) ->
-        window.location="/login" if status == 401
+        $scope.showModal() if status == 401
         # console.log arguments
 
   $scope.changeReviewFor = (product) ->
@@ -41,7 +41,7 @@
         angular.extend(product,data)
 
       .error (data, status, headers, config) ->
-        window.location="/login" if status == 401
+        $scope.showModal() if status == 401
         # console.log arguments
 
   $scope.searchAgain = () ->
@@ -60,7 +60,7 @@
       i++
     $http.get("/review/#{review.id}/up_vote").success((data) ->
       if data.status == 'login'
-        window.location = data.redirect_url
+        $scope.showModal()
 
       if data.status == 'duplicate'
         review.duplicate_upvote = true
@@ -82,7 +82,7 @@
       i++
     $http.get("/review/#{review.id}/down_vote").success((data) ->
       if data.status == 'login'
-        window.location = data.redirect_url
+        $scope.showModal()
 
       if data.status == 'duplicate'
         review.duplicate_downvote = true
@@ -196,22 +196,29 @@
       'name': $scope.newTag
     $http.post("/products/#{product.id}/tags/add",newTagName).success((data) ->
       if data.status == 'login'
-        window.location = data.redirect_url
+        $scope.showModal()
       productTags(product)
     )
 
   $scope.showEditTagsBox = () ->
     $http.get("/user/check_login").success((data) ->
       if data.status == 'login'
-        window.location = data.redirect_url
+        $scope.showModal()
       else
         $scope.editTags = true
     )
 
+  $scope.showModal = () ->
+    modalInstance = $modal.open
+      templateUrl: 'modalTemplate.html',
+      controller: 'ModalController'
+
+
   $scope.checkLogin = (product) ->
-    $http.get("/user/check_login").success((data) ->
+    url = $location.url()
+    $http.get("/user/check_login?redirect=#{url}").success((data) ->
       if data.status == 'login'
-        window.location = data.redirect_url
+        $scope.showModal()
       else
         window.location = "/product/#{product.id}/edit"
     )
