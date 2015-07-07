@@ -24,8 +24,8 @@
             </li> -->
           </ul>
         </li>
-        <li>
-          <%= link_to "Integrations", odk_sf_legacy_mappings_path, 'ng-click' => "$event.stopPropagation()" %>
+        <li ng-controller="LoginController as loginCtrl">
+          <a ng-click="checkLogin('<%= odk_sf_legacy_mappings_path %>')">Integrations</a>
         </li>
         <li>
           <%= link_to "Content", "/#/release-notes"%>
@@ -71,10 +71,8 @@
         <% end %>
 
         <% unless current_user %>
-          <li>
-            <%= link_to "/login", method: :get do %>
-              Log in
-            <% end %>
+          <li ng-controller="LoginController as loginCtrl" class="row">
+            <a ng-click="checkLogin()" >Login</a>
           </li>
           <li>
             <%= button_to "/signup", :class => "btn btn-default", method: :get do %>
@@ -89,6 +87,8 @@
   <%= render 'shared/invite_modal'%>
   <%= render 'shared/confirm_modal'%>
 <%end%>
+
+
 
 <div class="ideas">
   <div class="modal fade" id="donate_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -158,6 +158,43 @@
     </div>
   </div>
 </div>
+
+
+
+
+<script type="text/ng-template" id="modalTemplate.html">
+  <div class="modal-content">
+    <div class="featurette dark">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+   </div>
+      <div class="modal-body">
+          <div class='row'>
+            <div class="col-sm-12 well text-center">
+              <h2>Log in</h2>
+              <%= render '/user_sessions/form', user: @user %>
+            </div>
+          </div>
+
+          <div class='row'>
+            <div class="col-sm-12 text-center">
+              <h4>Click <%= link_to "/signup", method: :get do %>
+                  <button type="button" class="btn btn-success">Sign up</button>
+                <% end %> to create a new account</h3>
+              </div>
+          </div>
+
+          <div class='row'>
+            <div class="col-sm-12 well dark text-center">
+              <h4>Forgot your password?</h4>
+              <%= render '/user_sessions/forgot_password_form' %>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</script>
+
 
 <%= form_tag charges_path, id: 'chargesForm' do %>
   <input type='hidden' id='token' name='token' />

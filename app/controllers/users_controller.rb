@@ -110,6 +110,7 @@ class UsersController < ApplicationController
 
   def check_login
     if !current_user.present?
+       session[:redirect_to_url] = params[:redirect]
        render json: {status: "login", redirect_url: "/login"}
        return
     else
