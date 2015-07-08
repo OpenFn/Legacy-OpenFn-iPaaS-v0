@@ -106,7 +106,7 @@
               <br><br>
               <div class="col-md-2 my-list tag-pane" ng-repeat="category in categories">
               {{category.name}}
-              <li ng-repeat="tag in tags | filter:{tag_category_id: category.id }  | orderBy: '-tag_count'" ng-init="taggings_count(tag)"> 
+              <li ng-repeat="tag in tags | filter:{tag_category_id: category.id }  | orderBy: '-tag_count' | limitTo:5" ng-init="taggings_count(tag)"> 
               <a class="integrated-btn" ng-click="tagFilter(tag)"ng-class="tag.tag_count == 0 ? 'better-button-disabled' : 'better-button-able'">
               {{tag.name}} <span class="tag-count-badge">{{tag.tag_count}}</span></a></li>
               </div>
