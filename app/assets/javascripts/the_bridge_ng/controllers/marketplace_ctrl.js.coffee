@@ -45,6 +45,13 @@
     if $routeParams.search
       $scope.searchText = $routeParams.search
 
+  $scope.removeTagFilters = ->
+    $scope.dropdownTags = []
+    i = 0
+    while i < $scope.tags.length
+      $scope.tags[i].active = false
+      i++
+
   $scope.filterProducts = (product) ->
     
     lowercaseSearchText = angular.lowercase ($scope.searchText)
