@@ -125,15 +125,15 @@
 
   productTags = (product) ->
     $http.get("/products/#{product.id}/tags").success((data) ->
-      $scope.product.tags_list = data.tags
+      $scope.product.deep_tag_list = data.tags
     )
     $http.get("/tags/get_all").success((data) ->
       $scope.tags = data.tags
      )
 
   $scope.deleteTag = (tag,product) ->
-    index = $scope.product.tags_list.indexOf(tag)
-    $scope.product.tags_list.splice(index, 1);
+    index = $scope.product.deep_tag_list.indexOf(tag)
+    $scope.product.deep_tag_list.splice(index, 1);
     i = 0
     addToArray = true
     while i < $scope.added_tags.length
@@ -147,12 +147,12 @@
   $scope.addTag = (tag,product) ->
     addToArray = true
     i = 0
-    while i < $scope.product.tags_list.length
-      if $scope.product.tags_list[i].name == tag.name
+    while i < $scope.product.deep_tag_list.length
+      if $scope.product.deep_tag_list[i].name == tag.name
         addToArray = false
       i++
     if addToArray
-      $scope.product.tags_list.push tag
+      $scope.product.deep_tag_list.push tag
       $scope.added_tags.push tag
     $scope.tags_added = JSON.stringify($scope.added_tags)
 
