@@ -6,7 +6,6 @@
   $scope.tags
   $scope.categories = {};
   $scope.dropdownTags = []
-  $scope.activeTag = false
 
   $http.get('/tag_categories.json').success((data) ->
     $scope.categories = data;
@@ -14,6 +13,10 @@
 
   $http.get('/tags/get_all_json.json').success((data) ->
     $scope.tags = data;
+    i = 0
+    while i < data.length
+      $scope.tags[i].active = false
+      i++
     )
 
   $scope.go = (url) ->
@@ -26,7 +29,6 @@
     )
 
   $scope.tagFilter = (tag) ->
-    console.log($scope.dropdownTags.indexOf tag.name)
     if ($scope.dropdownTags.indexOf tag.name) == -1
       $scope.dropdownTags.push tag.name
     else
