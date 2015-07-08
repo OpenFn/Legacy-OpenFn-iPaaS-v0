@@ -284,7 +284,7 @@
   <a class="xxx tag label" ng-hide="editTags" ng-click="showEditTagsBox()">Edit Tags <span class="badge">+/-</span></a>
   <div ng-show="editTags"> -->
     <div class="tag-editor">
-      <span ng-repeat="n in product.tag_list track by $index" ng-init="taggings_count(n)" class="on tag label" ng-click="deleteTag(n,product)" title="Remove this tag.">
+      <span ng-repeat="n in product.tags_list track by $index" ng-init="taggings_count(n)" class="on tag label" ng-click="deleteTag(n,product)" title="Remove this tag.">
         {{n.name}} <span class="badge">{{n.tag_count}}</span>
       </span>
         <input type="text" class="search-tags" placeholder="Type here to tag..." ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
