@@ -70,9 +70,13 @@
       else
         break
 
+    updateTags()
+    console.log("just updated")
     if x == (lowercaseSearchText.length)
+      updateTags()
       return true
     else
+      updateTags()
       return false
 
   # tagMatches = (tag_list, text) ->
@@ -88,6 +92,21 @@
       return product.integrated
     else
       return true
+
+  updateTags = ->
+    i = 0
+    while i < $scope.tags.length
+      $scope.tags[i].tag_count = 0
+      j = 0
+      while j < $scope.filteredProducts.length
+        k = 0
+        while k < $scope.filteredProducts[j].tag_list.length
+          if $scope.tags[i].name == $scope.filteredProducts[j].tag_list[k]
+            $scope.tags[i].tag_count += 1
+          k++
+        j++
+      i++
+
 
   dropdownTagsMatch = (dropdownTagsasFilters, scopetags) ->
 

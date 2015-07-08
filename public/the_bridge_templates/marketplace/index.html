@@ -158,7 +158,7 @@
         </div>
         <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
           <br>
-          <div ng-repeat="product in products | filter:filterProducts">
+          <div ng-repeat="product in (filteredProducts = (products | filter:filterProducts))">
             <div class="product-container col-lg-4 col-md-6 col-sm-6 col-xs-12">
               <div ng-class="product.integrated ? 'product integrated' : 'product'" tooltip-trigger="mouseenter" tooltip="Click to learn about {{product.name}}." ng-click="go('/product/' + product.id)" style="cursor: default">
                 <div class='rating'>
