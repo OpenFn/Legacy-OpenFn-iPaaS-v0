@@ -1,3 +1,68 @@
+<style type="text/css">
+  li {
+    list-style-type: none;
+  }
+.my-list li {
+    list-style: none;
+    padding-top: 8px;
+    font-size: 15px;   
+}
+
+.tag-count-badge {
+  display: inline-block;
+  min-width: 24px;
+  padding: 3px 13px 3px 13px;
+  font-size: 15px;
+  color: white;
+  line-height: 1;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-align: center;
+  background-color: #999999;
+  border-radius: 15px;
+}
+
+.tag-pane {
+  display: table-cell;
+  vertical-align: text-top;
+  float: none;
+  font-size: x-large;
+  text-align: center;
+}
+.tag-btn {
+  border-radius: 0px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  margin:0px auto;
+}
+.tag-filter-box {
+  border-radius: 6px;
+  padding-left: 60px;
+  padding-right: 60px;
+  color: inherit;
+  background-color: #eee;
+}
+
+  .better-button-able {
+    color: black;
+    background: none;
+    box-shadow: none;
+    margin-bottom: -3px;
+    margin-top: 3px;
+    border-radius: 24px;
+}
+
+  .better-button-disabled {
+    background: none;
+    box-shadow: none;
+    margin-bottom: -3px;
+    margin-top: 3px;
+    pointer-events: none;
+    border-radius: 24px;
+}
+
+</style>
+
 <header class="header-image">
     <div class="headline">
       <h1>
@@ -25,25 +90,31 @@
 <!--             <label style="margin-left: 1em;" data-toggle="modal" data-target="#help_modal" class="btn btn-open">
               <i class="fa fa-question-circle"></i> Help.
             </label> -->
-            <label style="float: right;" class="btn btn-open" tooltip-trigger="mouseenter" tooltip-placement="bottom" tooltip="Click here to show only connected apps." ng-model="searchFilters.integrated" btn-checkbox>
+            <button style="float: right;" class="btn integrated-btn" ng-click="removeTagFilters()">Clear Filters</button>
+            <label style="float: right;" class="btn btn-open integrated-btn" tooltip-trigger="mouseenter" tooltip-placement="bottom" tooltip="Click here to show only connected apps." ng-model="searchFilters.integrated" btn-checkbox>
                 Integrated
             </label>
           </div>
         </div>
         <br>
-        <div class="row">
-          <div class="col-md-12 btn-group btn-group-justified" role="group" aria-label="...">
-            <div class="btn-group" role="group" ng-repeat="category in categories">
-              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+        <button type="button" class="btn btn-info tag-btn" data-toggle="collapse" data-target="#tag-bar">Filter By Tags
+        </button>
+
+        <div id="tag-bar" class="row collapse tag-filter-box">
+              <br><br>
+              <div class="col-md-2 my-list tag-pane" ng-repeat="category in categories">
               {{category.name}}
-               <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li ng-repeat="tag in tags | filter:{tag_category_id: category.id }  | orderBy: '-tag_count'" ng-init="taggings_count(tag)" ng-click="tagFilter(tag)"><a href="#">{{tag.name}} <span class="badge">{{tag.tag_count}}</span></a></li>
-              </ul>
-            </div>
-          </div>
+              <li ng-repeat="tag in tags | filter:{tag_category_id: category.id }  | orderBy: '-tag_count' | limitTo:5" ng-init="taggings_count(tag)"> 
+              <a class="integrated-btn" ng-click="tagFilter(tag)" ng-class="tag.tag_count == 0 ? 'better-button-disabled' : 'better-button-able'" ng-model="tag.active" btn-checkbox>
+              {{tag.name}} <span class="tag-count-badge">{{tag.tag_count}}</span></a></li>
+              </div>
+              <div class="col-md-1"></div>
+              <br><br>
         </div>
+        
         <br>
         <div class="product-list row" ng-if="isLoading">
           <div class="col-xs-12 center">

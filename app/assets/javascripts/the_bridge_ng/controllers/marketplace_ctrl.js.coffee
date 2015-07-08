@@ -13,6 +13,10 @@
 
   $http.get('/tags/get_all_json.json').success((data) ->
     $scope.tags = data;
+    i = 0
+    while i < data.length
+      $scope.tags[i].active = false
+      i++
     )
 
   $scope.go = (url) ->
@@ -28,13 +32,27 @@
     if ($scope.dropdownTags.indexOf tag.name) == -1
       $scope.dropdownTags.push tag.name
     else
-      $scope.dropdownTags.splice $scope.dropdownTags.indexOf(tag.name, 1)
+      oldDropdownTags = $scope.dropdownTags
+      i = 0
+      index = $scope.dropdownTags.indexOf tag.name
+      $scope.dropdownTags = []
+      while i < oldDropdownTags.length
+        if i != index
+          $scope.dropdownTags.push oldDropdownTags[i]
+        i++
   
   $http.get('/products.json').success (data) ->
     $scope.products = data.products
     $scope.isLoading = false
     if $routeParams.search
       $scope.searchText = $routeParams.search
+
+  $scope.removeTagFilters = ->
+    $scope.dropdownTags = []
+    i = 0
+    while i < $scope.tags.length
+      $scope.tags[i].active = false
+      i++
 
   $scope.filterProducts = (product) ->
     
