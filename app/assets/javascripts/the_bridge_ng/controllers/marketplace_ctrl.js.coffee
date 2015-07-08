@@ -6,6 +6,7 @@
   $scope.tags
   $scope.categories = {};
   $scope.dropdownTags = []
+  $scope.activeTag = false
 
   $http.get('/tag_categories.json').success((data) ->
     $scope.categories = data;
