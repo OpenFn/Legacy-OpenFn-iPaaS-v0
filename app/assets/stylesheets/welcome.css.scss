@@ -1,65 +1,58 @@
 .welcome {
 
-    #particles-js{
-        position: absolute;
-        top: 60px;
-        width: 100%;
-        height: 500px;
-        background-color: $base;
-        // background-image: image-url("noise.png");
-        // background-image: url('');
-        // background-size: cover;
-        // background-position: 50% 50%;
-        // background-repeat: no-repeat;
-        // z-index: 100;
-    }
+  .banner {
+    position: relative;
+    background-color: $base;
+    // background-image: image-url("noise.png");  
+    width: 100%;
+    height: 30em;
+    text-align: center;
+  }
 
-    .header-image {
-        width: 100%;
-        min-height: 500px;
-        text-align: center;
-    }
+  #particles-js{
+      position: absolute;
+      width: 100%;
+      z-index: 8;
+  }
 
-    .headline {
-      background-color: transparent;
-      padding-top: rem-calc(100px);
-      font-size: rem-calc(40px);
-      font-weight: 100;
+  .banner-headline {
+    padding-top: rem-calc(75px);
+    // padding-bottom: rem-calc(50px);
+    // text-shadow: $dark 0.05em 0.05em 0.1em;
+    color: $bg-color;
+    font-size: rem-calc(40px);
+    line-height: 1.3;
+    // font-weight: 100;
+    // text-transform: uppercase;
+  }
+
+  .logo {
+    background-image: image-url("square_white_logo.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    // opacity: .7;
+    height: 80px;
+    width: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6.5em;
+    margin-bottom: 1.5em;
+  }
+
+  .numbers h3 {
+      font-size: rem-calc(35px);
+      margin-top: 3em;
+      // opacity: 0.8;
+      // color: $dark !important;
+  }
+
+  .numbers h4 {
+      font-size: rem-calc(18px);
       text-transform: uppercase;
       color: $bg-color;
-      z-index: 10;
-      background-image: none;
-    }
-
-    .logo {
-      background-image: image-url("square_white_logo.png");
-      background-repeat: no-repeat;
-      background-size: 100%;
-      opacity: 0.8;
-      height: 80px;
-      width: 80px;
-      position: absolute;
-      top: 290px;
-      left: 50%;
-      margin-left: -40px;
-    }
-
-    .numbers {
-      padding-top: 250px;
-      background-color: transparent;
-    }
-
-    .numbers h3 {
-        font-size: rem-calc(35px);
-        opacity: 0.8;
-    }
-
-    .numbers h4 {
-        font-size: rem-calc(18px);
-        text-transform: uppercase;
-        color: $bg-color;
-        opacity: 0.6;
-    }
+      // font-weight: 100;
+      // opacity: 0.6;
+  }
 
     .featurette {
 
