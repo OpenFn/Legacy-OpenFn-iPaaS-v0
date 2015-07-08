@@ -174,8 +174,15 @@
       while x < $scope.tags.length
         value = $scope.tags[x].name.toLowerCase().search(lowercaseSearchText)
         if (value > -1)
-          $scope.tag_match.push $scope.tags[x]
-          $scope.new_tag = false
+          i = 0
+          unique = true
+          while i < $scope.product.deep_tag_list.length
+            if $scope.tags[x].name == $scope.product.deep_tag_list[i].name
+              unique = false
+            i++
+          if unique
+            $scope.tag_match.push $scope.tags[x]
+            $scope.new_tag = false
         x++
         if lowercaseSearchText !=  $scope.tags[x].name.toLowerCase()
           $scope.new_tag = true
