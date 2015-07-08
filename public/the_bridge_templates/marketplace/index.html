@@ -14,18 +14,18 @@
       <div ng-controller="MarketplaceController as marketplace" class="row">          
         <div class="col-md-10 col-md-offset-1">
           <div class="search-field">
-              <input type:"text" class="form-control" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+              <input type:"text" class="form-control" class="form-control" placeholder="Start typing to search..." ng-model="searchText" tooltip-trigger="focus" tooltip="Search for product names, descriptions, tags, or websites.">
           </div>
         </div>
         <div class="col-md-10 col-md-offset-1">  
           <div class="new-product-link">
-            <label style="float: left;" data-toggle="modal" data-target="#add_modal" class="btn btn-open push-down">
+            <label style="float: left;" class="btn btn-open push-down" data-toggle="modal" data-target="#add_modal">
               <i class="fa fa-plus"></i> Add your product
             </label>
 <!--             <label style="margin-left: 1em;" data-toggle="modal" data-target="#help_modal" class="btn btn-open">
               <i class="fa fa-question-circle"></i> Help.
             </label> -->
-            <label style="float: right;" class="btn btn-open" ng-model="searchFilters.integrated" btn-checkbox>
+            <label style="float: right;" class="btn btn-open" tooltip-trigger="mouseenter" tooltip-placement="bottom" tooltip="Click here to show only connected apps." ng-model="searchFilters.integrated" btn-checkbox>
                 Integrated
             </label>
           </div>
@@ -48,14 +48,14 @@
         <div class="product-list row" ng-if="isLoading">
           <div class="col-xs-12 center">
           <br><br><br><br><br>
-            <i class="fa fa-spinner fa-3x fa-pulse"></i>
+            <i class="fa fa-refresh fa-3x fa-spin"></i>
           </div>
         </div>
         <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
           <br>
-          <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-4 col-md-6 col-sm-6 col-xs-12">
-            <a class="tile" href="/#/product/{{product.id}}">
-              <div ng-class="product.integrated ? 'product integrated' : 'product'">
+          <div ng-repeat="product in products | filter:filterProducts">
+            <div class="product-container col-lg-4 col-md-6 col-sm-6 col-xs-12">
+              <div ng-class="product.integrated ? 'product integrated' : 'product'" tooltip-trigger="mouseenter" tooltip="Click to learn about {{product.name}}." ng-click="go('/product/' + product.id)" style="cursor: default">
                 <div class='rating'>
                   <span class='live'>
                     <i class="fa fa-star-o" ng-show="!product.rating"></i>
@@ -86,20 +86,20 @@
                 <div class='tile-tweet'>
                   {{product.description | limitTo:117}}
                 </div>
-                <a ng-href="{{product.website}}" class="website-link" target="_blank">
+                <a ng-href="{{product.website}}" ng-click="$event.stopPropagation()" class="website-link" target="_blank" tooltip-trigger="mouseenter" tooltip="Check out the {{product.name}} website.">
                   <i class="fa fa-external-link"></i>
                 </a>              
                 <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
                   <i class="fa fa-plug"></i>
                 </a>
-                <a ng-hide="product.integrated" class="vote-count">
+                <a style="cursor: auto" ng-hide="product.integrated" class="vote-count">
                   <i class="fa fa-plug"></i>+ <span class="live">{{product.votes_count}}</span>
                 </a>
-                <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">               
+                <a ng-click="changeVoteFor(product); $event.stopPropagation()" class="vote-link" ng-show="!product.integrated" tooltip-trigger="mouseenter" tooltip="Vote up if you want to connect {{product.name}}.">               
                   <i ng-class="{'fa ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>
                 </a>
               </div>
-            </a>
+            </div>
           </div>
         </div>
         <div class="modal fade" id="add_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
