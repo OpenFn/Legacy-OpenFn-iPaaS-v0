@@ -94,6 +94,7 @@
             <label style="float: right;" class="btn btn-open integrated-btn" tooltip-trigger="mouseenter" tooltip-placement="bottom" tooltip="Click here to show only connected apps." ng-model="searchFilters.integrated" btn-checkbox>
                 Integrated
             </label>
+            <button style="float:right;" class="btn btn-integrated-btn">Clear Filters</button>
           </div>
         </div>
         <br>
@@ -108,7 +109,7 @@
               <div class="col-md-2 my-list tag-pane" ng-repeat="category in categories">
               {{category.name}}
               <li ng-repeat="tag in tags | filter:{tag_category_id: category.id }  | orderBy: '-tag_count' | limitTo:5" ng-init="taggings_count(tag)"> 
-              <a class="integrated-btn" ng-click="tagFilter(tag)"ng-class="tag.tag_count == 0 ? 'better-button-disabled' : 'better-button-able'">
+              <a class="integrated-btn" ng-click="tagFilter(tag)" ng-class="tag.tag_count == 0 ? 'better-button-disabled' : 'better-button-able'" ng-model="tag.active" btn-checkbox>
               {{tag.name}} <span class="tag-count-badge">{{tag.tag_count}}</span></a></li>
               </div>
               <div class="col-md-1"></div>
