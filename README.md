@@ -30,7 +30,7 @@ local   all             all                                     trust
 *The `pg_hba.conf` file is located in `/etc/postgresql/9.3/main/pg_hba.conf` on Ubuntu*
 
 **Clone the staging database over**  
-`heroku pg:pull HEROKU_POSTGRESQL_PURPLE_URL thebridge_development --app the-staging-bridge`  
+`heroku pg:pull HEROKU_POSTGRESQL_PURPLE_URL openfn_dev --app staging-openfn`  
 
 Configuration
 -------------
@@ -158,7 +158,16 @@ things.
 Ubuntu 14.10 Clean Slate Setup
 ---------------------------------
 
+sudo apt-get update
+sudo apt-get install libreadline-dev
+sudo apt-get install libpq-dev
 sudo apt-get rbenv
+rbenv install 2.1.5
+rbenv global 2.1.5
+gem install bundler
+gem install pg
+rbenv rehash 
+bundle install
 
 //Install postgres
 
@@ -272,36 +281,9 @@ git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-buil
 echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
 exec $SHELL
 
-rbenv install 2.1.5
-rbenv global 2.1.5
-gem install bundler
-rbenv rehash
-
-sudo apt-get install libpq-dev
-gem install pg
-
-bundle install
-rbenv rehash 
-
 //Install Heroku Toolbelt
 
 wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
 Clone the staging database over
-heroku pg:pull HEROKU_POSTGRESQL_PURPLE_URL thebridge_development --app the-staging-bridge
-
-//try to stop this continual fail with rails server
-
-I’d try do this:
-
-sudo apt-get install libreadline-dev
-
-
-then uninstall your copy of ruby, and reinstall it, so something like:
-
-rbenv uninstall 2.1.5
-rbenv install 2.1.5
-rbenv local 2.1.5
-gem install bundler
-rbenv rehash
-bundle install
+heroku pg:pull HEROKU_POSTGRESQL_PURPLE_URL openfn_dev --app staging-openfn

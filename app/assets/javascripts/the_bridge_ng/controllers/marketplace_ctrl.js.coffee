@@ -55,7 +55,7 @@
     x = 0
 
     while x < lowercaseSearchText.length
-      if ((all_info.includes(lowercaseSearchText[x])) && filtersMatch(product, $scope.searchFilters) && (dropdownTagsMatch($scope.dropdownTags, product.tag_list)))  
+      if ((all_info.indexOf(lowercaseSearchText[x])!= -1) && filtersMatch(product, $scope.searchFilters) && (dropdownTagsMatch($scope.dropdownTags, product.tag_list)))  
         x++
       else
         break

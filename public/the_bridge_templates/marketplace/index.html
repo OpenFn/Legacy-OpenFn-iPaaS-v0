@@ -18,28 +18,25 @@
     </div>
 </header>
 
-<div class="floater-1 alert alert-warning alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <a data-toggle="modal" data-target="#help_modal">Learn <strong>how to</strong> use the marketplace.</a>
-</div>
-<div class="floater-2 alert alert-success alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <a data-toggle="modal" data-target="#add_modal">Submit a <strong>new product</strong> listing.</a>
-</div>
-
   <div class="featurette dark">
     <div class="container">
       <div ng-controller="MarketplaceController as marketplace" class="row">          
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="input-group">
-                <input type="text" class="form-control" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" ng-model="searchFilters.integrated" btn-checkbox>
-                    <i class="fa fa-plug"></i>  Show connected apps.
-                  </button>
-                </span>
-              </div>
+        <div class="col-md-10 col-md-offset-1">
+          <div class="search-field">
+              <input type:"text" class="form-control" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+          </div>
+        </div>
+        <div class="col-md-10 col-md-offset-1">  
+          <div class="new-product-link">
+            <label style="float: left;" data-toggle="modal" data-target="#add_modal" class="btn btn-open push-down">
+              <i class="fa fa-plus"></i> Add your product
+            </label>
+<!--             <label style="margin-left: 1em;" data-toggle="modal" data-target="#help_modal" class="btn btn-open">
+              <i class="fa fa-question-circle"></i> Help.
+            </label> -->
+            <label style="float: right;" class="btn btn-open" ng-model="searchFilters.integrated" btn-checkbox>
+                Integrated
+            </label>
           </div>
         </div>
         <br>
@@ -127,6 +124,16 @@
             </a>
           </div>
         </div>
+        <div class="modal fade" id="add_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="featurette dark">
+                <div class="modal-header center">Coming Soon!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="modal fade" id="help_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -158,4 +165,3 @@
             </div>
           </div>
         </div>
-        
