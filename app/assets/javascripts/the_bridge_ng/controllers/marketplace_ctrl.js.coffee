@@ -21,10 +21,16 @@
     )
 
   $scope.tagFilter = (tag) ->
-    if ($scope.dropdownTags.indexOf tag.name) == -1
-      $scope.dropdownTags.push tag.name
-    else
-      $scope.dropdownTags.splice $scope.dropdownTags.indexOf(tag.name, 1)
+
+      if ($scope.dropdownTags.indexOf tag.name) == -1
+        $scope.dropdownTags.push tag.name
+      else
+        $scope.dropdownTags.splice $scope.dropdownTags.indexOf(tag.name, 1)
+
+      if tag.tag_count == 0
+        return false
+      else
+        return true
   
   $http.get('/products.json').success (data) ->
     $scope.products = data.products
