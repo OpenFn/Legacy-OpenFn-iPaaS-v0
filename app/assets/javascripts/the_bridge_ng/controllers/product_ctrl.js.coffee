@@ -123,9 +123,18 @@
 
   )
 
+  refreshTagCount = (tag) ->
+    $http.get("/tag/tagging_count/#{tag.id}").success((data) ->
+      tag.tag_count = data
+    )
+
   productTags = (product) ->
     $http.get("/products/#{product.id}/tags").success((data) ->
       $scope.product.deep_tag_list = data.tags
+      i = 0
+      while i < $scope.product.deep_tag_list.length
+        refreshTagCount($scope.product.deep_tag_list[i])
+        i++
     )
     $http.get("/tags/get_all").success((data) ->
       $scope.tags = data.tags
