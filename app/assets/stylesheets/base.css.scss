@@ -605,18 +605,18 @@ b, strong {
   border: none;
 }
 
-a:hover {
+.integrated-btn a:hover {
   color: $dark;
   text-decoration: none;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-a:focus {
+.integrated-btn a:focus {
   color: $dark;
   text-decoration: none;
 }
 
-a .active {
+.integrated-btn a .active {
   color: black;
   outline: 0;
   background-image: none;
@@ -625,7 +625,7 @@ a .active {
 
 }
 
-a {
+.integrated-btna {
   color: $light-grey;
 
 }

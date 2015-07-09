@@ -392,6 +392,10 @@ a:hover{
     border-top: 0px white !important;
 }
 
+.whole-accord-button :focus {
+  text-decoration: none;
+}
+
 .whole-accord-button a{
   color: $light-grey;
   width: 100%;
