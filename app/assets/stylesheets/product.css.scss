@@ -391,3 +391,13 @@ a:hover{
 #custom-accord .panel-group .panel-heading+.panel-collapse .panel-body {
     border-top: 0px white !important;
 }
+
+.whole-accord-button a{
+  color: $light-grey;
+  width: 100%;
+  display: inline-block;     
+  // position: relative;    
+  z-index: 1;     
+  padding: 2em 2em 2em 0em;     
+  
+}

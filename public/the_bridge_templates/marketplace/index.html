@@ -28,7 +28,6 @@
             <label style="float: right;" class="btn integrated-btn" tooltip-trigger="mouseenter" tooltip-placement="bottom" tooltip="Click here to show only connected apps." ng-model="searchFilters.integrated" btn-checkbox>
                 Integrated
             </label>
-
           </div>
         </div>
         <br>
@@ -38,7 +37,7 @@
         <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
           <br>
           <div class="col-sm-2 featurette dark" id="custom-accord">
-            <accordion close-others="false"tooltip-trigger="mouseenter" tooltip="Filter the marketplace by tag. Add multiple tags to narrow your search even more.">
+            <accordion close-others="false" class="whole-accord-button" tooltip-trigger="mouseenter" tooltip="Filter the marketplace by tag. Add multiple tags to narrow your search even more.">
               <accordion-group heading="Tags" is-open="true">
                 <div style="cursor: pointer" ng-click="go('/tags/')">Collapse tag categories if you don't need them by clicking on the title. See frequencies in the badge. Click here to browse and search all of the tags in the system. <span class="badge"><i class="fa fa-search"></i></span></div>
               </accordion-group>
