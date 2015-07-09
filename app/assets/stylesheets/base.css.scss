@@ -612,7 +612,8 @@ a:hover {
   box-shadow: none;
 }
 a:focus {
-  color: $base;
+  color: $dark;
+  text-decoration: none;
 }
 a .active {
   color: black;
