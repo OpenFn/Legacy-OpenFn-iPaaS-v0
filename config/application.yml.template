@@ -1,5 +1,8 @@
+REDISCLOUD_URL: 'localhost:6379/0'
 REDIS_URL: 'redis://localhost:6379/0'
-PAYPAL_URI: "https://www.sandbox.paypal.com/cgi-bin/webscr"
-PAYPAL_BUTTON_ID: '3AKRYW4MMUGKL'
 STRIPE_PUBLISHABLE_KEY: 'pk_test_W9FR29OKTtcmeAftxYCHtEM2'
 STRIPE_SECRET_KEY: 'sk_test_d0SgFphav7N2WuFZ2tucKguV'
+GMAIL_USERNAME: 'user@email.com'
+GMAIL_PASSWORD: 'password'
+MAILER_HOST: '0.0.0.0:3000'
+GA_TRACKING_CODE: 'code'

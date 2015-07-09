@@ -1,6 +1,4 @@
-<div class="ideas">
-
-  <header class="header-image">
+<header class="header-image">
     <div class="headline">
       <h1>
         <i class="fa fa-shopping-cart"></i> open<strong>Marketplace</strong>
@@ -9,290 +7,101 @@
         Find the <strong>tools</strong> you need to grow your impact; vote for new <i class="fa fa-plug"></i> integrations.
       </h3>
     </div>
-  </header>
+</header>
+<br>
+<div ng-controller="MarketplaceController as marketplace">
+ <div class="container-fluid">
 
-  <div class="featurette dark">
-    <hr class="light">
-    <hr class="dark">
-    <div class="container">
-      <div ng-controller="MarketplaceController as marketplace" class="row">          
+  <div class="col-sm-12 featurette dark">
+         
         <div class="col-md-10 col-md-offset-1">
           <div class="search-field">
-              <input type:"text" class="form-control" class="form-control" placeholder="Start typing to search..." ng-model="searchText">
+              <input type:"text" class="form-control" ng-class="alex" placeholder="Start typing to search..." ng-model="searchText" tooltip-trigger="mouseenter" tooltip="Search for product names, descriptions, tags, or websites.">
           </div>
         </div>
         <div class="col-md-10 col-md-offset-1">  
           <div class="new-product-link">
-            <label style="float: left;" data-toggle="modal" data-target="#add_modal" class="btn btn-open">
-              <i class="fa fa-plus"></i> Add a new technology.
+            <label style="float: left;" class="btn integrated-btn" disabled="disabled">
+              <i class="fa fa-plus"></i> Add your product
             </label>
-            <label style="margin-left: 1em;" data-toggle="modal" data-target="#help_modal" class="btn btn-open">
-              <i class="fa fa-question-circle"></i> Help.
-            </label>
-            <label style="float: right;" class="btn btn-open" ng-model="searchFilters.integrated" btn-checkbox>
-                <i class="fa fa-plug"></i>  Show integrated technologies.
+            <label style="float: right;" class="btn integrated-btn" ng-click="removeTagFilters()">Clear Filters</label>
+            <label style="float: right;" class="btn integrated-btn" tooltip-trigger="mouseenter" tooltip-placement="bottom" tooltip="Click here to show only connected apps." ng-model="searchFilters.integrated" btn-checkbox>
+                Integrated
             </label>
           </div>
         </div>
-        <div class="product-list row" ng-if="isLoading">
-          <div class="col-xs-12 center">
-          <br><br><br><br><br>
-            <i class="fa fa-spinner fa-3x fa-pulse"></i>
-          </div>
+        <br>
+        <div class="row">
         </div>
+        <br>
         <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
           <br>
-          <div ng-repeat="product in products | filter:filterProducts " class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-            <a class="tile" href="/#/product/{{product.id}}">
-              <div class="product">
+          <div class="col-sm-2 featurette dark" id="custom-accord">
+            <accordion close-others="false" class="whole-accord-button" tooltip-trigger="mouseenter" tooltip="Filter the marketplace by tag. Add multiple tags to narrow your search even more.">
+              <accordion-group is-open="true">
+                <accordion-heading>
+                  Tags <i class="pull-right fa fa-caret-down"></i>
+                </accordion-heading>
+                <div style="cursor: pointer" ng-click="go('/tags/')">Collapse tag categories if you don't need them by clicking on the title. See frequencies in the badge. Click here to browse and search all of the tags in the system. <span class="badge"><i class="fa fa-search"></i></span></div>
+              </accordion-group>
+              <accordion-group is-open="true" ng-repeat="category in categories">
+                <accordion-heading>
+                  {{category.name}} <i class="pull-right fa fa-caret-down"></i>
+                </accordion-heading>
+                <li style="cursor: pointer" class="list-group-item" ng-repeat="tag in tags | filter:{tag_category_id: category.id }  | orderBy: '-tag_count'" ng-init="taggings_count(tag)" ng-click="tagFilter(tag)"  ng-model="tag.active" btn-checkbox>{{tag.name}} <span class="badge">{{tag.tag_count}}</span></li>
+              </accordion-group>
+            </accordion>
+          </div>
+          <div class="col-xs-10 center" ng-if="isLoading">
+          <br><br><br>
+            <i class="fa fa-refresh fa-3x fa-spin"></i>
+          </div>
+          <div class="col-sm-10">
+          <div ng-repeat="product in products | filter:filterProducts">
+            <div class="product-container col-lg-4 col-md-6 col-sm-6 col-xs-12">
+              <div ng-class="product.integrated ? 'product integrated' : 'product'" tooltip-trigger="mouseenter" tooltip="Click to learn about {{product.name}}." ng-click="go('/product/' + product.id)" style="cursor: default">
                 <div class='rating'>
                   <span class='live'>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
-                  <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o" ng-show="!product.rating"></i>
+                    <i class="fa fa-star-half-o" ng-show="product.rating>0 && product.rating<=0.5"></i>
+                    <i class="fa fa-star" ng-show="product.rating>0.5"></i>
+
+                    <i class="fa fa-star-o" ng-show="product.rating<=1"></i>
+                    <i class="fa fa-star-half-o" ng-show="product.rating>1 && product.rating<=1.5"></i>
+                    <i class="fa fa-star" ng-show="product.rating>1.5"></i>
+                    
+                    <i class="fa fa-star-o" ng-show="product.rating<=2"></i>
+                    <i class="fa fa-star-half-o" ng-show="product.rating>2 && product.rating<=2.5"></i>
+                    <i class="fa fa-star" ng-show="product.rating>2.5"></i>
+                    
+                    <i class="fa fa-star-o" ng-show="product.rating<=3"></i>
+                    <i class="fa fa-star-half-o" ng-show="product.rating>3 && product.rating<=3.5"></i>
+                    <i class="fa fa-star" ng-show="product.rating>3.5"></i>
+                    
+                    <i class="fa fa-star-o" ng-show="product.rating<=4"></i>
+                    <i class="fa fa-star-half-o" ng-show="product.rating>4 && product.rating<=4.5"></i>
+                    <i class="fa fa-star" ng-show="product.rating>4.5"></i>
                   </span>
-                  &nbsp;(0)
+                  &nbsp;({{product.reviews_count}})
                 </div>
                 <h3 class="title">
-
                   {{product.name}}
                 </h3>
                 <div class='tile-tweet'>
                   {{product.description | limitTo:117}}
                 </div>
-                <a ng-href="{{product.website}}" class="website-link" target="_blank">
+                <a ng-href="{{product.website}}" ng-click="$event.stopPropagation()" class="website-link" target="_blank" tooltip-trigger="mouseenter" tooltip="Check out the {{product.name}} website.">
                   <i class="fa fa-external-link"></i>
                 </a>              
                 <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
                   <i class="fa fa-plug"></i>
                 </a>
-                <a ng-hide="product.integrated" class="vote-count">
-                  <span style="color: #F2EFE6"><i class="fa fa-plug"></i>+ </span> {{product.votes_count}}<span style="color: #F2EFE6"></span>
+                <a style="cursor: auto" ng-hide="product.integrated" class="vote-count">
+                  <i class="fa fa-plug"></i>+ <span class="live">{{product.votes_count}}</span>
                 </a>
-                <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">               
+                <a ng-click="changeVoteFor(product); $event.stopPropagation()" class="vote-link" ng-show="!product.integrated" tooltip-trigger="mouseenter" tooltip="Vote up if you want to connect {{product.name}}.">               
                   <i ng-class="{'fa ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>
                 </a>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="modal fade" id="help_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="featurette dark">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">How to use the marketplace.</h4>
-                </div>
-                <div class="modal-body">          
-                  <span class="mb-title">Search</span> for technologies by typing anything you want: the job you want to perform, features you know you'll need, the name of the tool or even the device you need to run it on. We'll scan all of the text associated with each technology and return those results that match.
-                  <br>
-                  <br>
-                  <span class="mb-title">Click</span> on a technology to learn about it. Each day we're adding more, including features, tech specs, pricing, reviews, and a list of useful resources including case-studies from open[Fn]content.
-                  <br>
-                  <br>
-                  From the marketplace tile, or a technology's detail page you can:
-                  <br>
-                  <br>
-                  <ul>
-                    <li>Visit an app's <strong>homepage</strong> by clicking the <i class="fa fa-external-link"></i> icon,</li><br>
-                    <li>Setup your <strong>credentials</strong> if the app is already integrated by clicking the <i class="fa fa-plug"></i> icon,</li><br>
-                    <li>See how many votes the app has received <strong>for integration</strong> by checking the <i class="fa fa-plug"></i>+<span class="live"> N</span> indicator,</li><br>
-                    <li>And <strong>vote</strong> for the app if you'd like to see it integrated by clicking the <i class="fa fa-chevron-up"></i> icon.</li>
-                  </ul>
-                  <br>
-                  We'll prioritize the <span class="mb-title">integration</span> of new technologies according to your votes.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal fade" id="add_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="featurette dark">
-                <div class="modal-header">
-                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                   <h4 class="modal-title" id="myModalLabel">Submit a new technology.</h4>
-                </div>
-                <div class="modal-body add-modal">          
-
-<!-- INSERT FORMSTACK FORM HTML -->
-<form method="post" novalidate enctype="multipart/form-data" action="https://www.formstack.com/forms/index.php" class="fsForm fsSingleColumn fsMaxCol1" id="fsForm1874808">
-<input type="hidden" name="form" value="1874808" />
-<input type="hidden" name="viewkey" value="i8hgbPcov5" />
-<input type="hidden" name="hidden_fields" id="hidden_fields1874808" value="" />
-<input type="hidden" name="_submit" value="1" />
-<input type="hidden" name="incomplete" id="incomplete1874808" value="" />
-<input type="hidden" name="style_version" value="3" />
-<div role="alert" id="requiredFieldsError" style="display:none;">Please fill in a valid value for all required fields</div>
-<div role="alert" id="invalidFormatError" style="display:none;">Please ensure all values are in a proper format.</div>
-<div role="alert" id="resumeConfirm" style="display:none;">Are you sure you want to leave this form and resume later?</div>
-<div role="alert" id="fileTypeAlert" style="display:none;">You must upload one of the following file types for the selected field:</div>
-<div role="alert" id="embedError" style="display:none;">There was an error displaying the form. Please copy and paste the embed code again.</div>
-<div role="alert" id="applyDiscountButton" style="display:none;">Apply Discount</div>
-<div role="alert" id="dcmYouSaved" style="display:none;">You saved</div>
-<div role="alert" id="dcmWithCode" style="display:none;">with code</div>
-<div role="alert" id="submitButtonText" style="display:none;">Submit Form</div>
-<div role="alert" id="submittingText" style="display:none;">Submitting</div>
-<div role="alert" id="autocaptureDisabledText" style="display:none;"></div>
-<div class="fsPage" id="fsPage1874808-1">
-<div class="fsSection fs1Col">
-<div id="fsRow1874808-1" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100 hidden" id="fsCell28733099" lang="en">
-<h1>Submit a new technology.</h1>
-</div>
-</div>
-<div id="fsRow1874808-2" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31454143" lang="en">
-<p>We encourage suggestions from all members of the community whether they be product developers, consultants, or end-user organizations. There are a few required fields that cover basic and summary information. Beyond that, we ask that listings focus on the functionality of each technology and what it enables users to do and avoid statements that place more value on one technology over another. Your submission must be reviewed and accepted by one of the core contributors at openfn before it is updated. Again, please refrain from using value words to ensure the listing is accepted promptly.</p>
-</div>
-</div>
-<div id="fsRow1874808-3" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell28733084" lang="en">
-<!-- <span id="label28733084" class="fsLabel fsRequiredLabel">Name<span class="fsRequiredMarker">*</span></span> -->
-<div class="fsSubFieldGroup">
-<div class="fsSubField">
-<label class="fsSupporting fsRequiredLabel" for="field28733084-first">First Name<span class="hidden">*</span></label>
-<input type="text" id="field28733084-first" name="field28733084-first" size="20" value="" required class="fsField fsFieldName fsRequired" aria-required="true" />
-</div>
-<div class="fsSubField">
-<label class="fsSupporting fsRequiredLabel" for="field28733084-last">Last Name<span class="hidden">*</span></label>
-<input type="text" id="field28733084-last" name="field28733084-last" size="20" value="" required class="fsField fsFieldName fsRequired" aria-required="true" />
-</div>
-</div>
-<div class="clear"></div>
-</div>
-</div>
-<br>
-<div id="fsRow1874808-4" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell28733085" lang="en">
-<label id="label28733085" class="fsLabel fsRequiredLabel" for="field28733085">Email<span class="fsRequiredMarker">*</span>                    </label>
-<input type="email" id="field28733085" name="field28733085" size="50" required="required" value="" class="fsField fsFormatEmail fsRequired" aria-required="true" />
-</div>
-</div>
-<div id="fsRow1874808-5" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell28732137" lang="en">
-<label id="label28732137" class="fsLabel fsRequiredLabel" for="field28732137">Technology<span class="fsRequiredMarker">*</span>                    </label>
-<input type="text" id="field28732137" name="field28732137" size="50" required value="" class="fsField fsRequired" aria-required="true" />
-</div>
-</div>
-<div id="fsRow1874808-6" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell28732142" aria-describedby="fsSupporting28732142" lang="en">
-<label id="label28732142" class="fsLabel fsRequiredLabel" for="field28732142">Website<span class="fsRequiredMarker">*</span>                    </label>
-<input type="text" id="field28732142" name="field28732142" size="50" required placeholder="http://" title="http://" value="" class="fsField fsRequired fsAutocomplete" aria-required="true" />
-<input type="hidden" id="field28732142_options" value="|" />
-<div id="fsSupporting28732142" class="fsSupporting">Must begin with http:// or https://</div>
-</div>
-</div>
-<div id="fsRow1874808-7" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell30730118" lang="en">
-<label id="label30730118" class="fsLabel" for="field30730118">Twitter handle                    </label>
-<input type="text" id="field30730118" name="field30730118" size="50" value="" class="fsField" />
-</div>
-</div>
-<div id="fsRow1874808-8" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31319515" lang="en">
-<label id="label31319515" class="fsLabel" for="field31319515">Provider email                    </label>
-<input type="text" id="field31319515" name="field31319515" size="50" value="" class="fsField" />
-</div>
-</div>
-<div id="fsRow1874808-9" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31454252" aria-describedby="fsSupporting31454252" lang="en">
-<label id="label31454252" class="fsLabel" for="field31454252">Do you represent this technology?                    </label>
-<select id="field31454252" name="field31454252" size="1" class="fsField">
-<option value="Yes">Yes</option>
-<option value="No">No</option>
-</select>
-<div id="fsSupporting31454252" class="fsSupporting">Open[Fn] is committed to open source technology and transparent communications. If a listing is added by the product developer or distributor, we want to let our users know. Please indicate here if you are associated with the listed technology.</div>
-</div>
-</div>
-</div>
-<div class="fsSection fs1Col" id="fsSection28906177">
-<div class="fsSectionHeader">
-<h2 class="fsSectionHeading">Summary info</h2>
-</div>
-<div id="fsRow1874808-11" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31454255" lang="en">
-The following information will help social impact organizations find the right technology to fit their needs. The “tile summary” is the main listing on openMarketplace. The filter tags help organizations sort through numerous technologies based on their needs, location, field users, and other factors.
-</div><br>
-</div>
-<div id="fsRow1874808-12" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell28732145" lang="en">
-<label id="label28732145" class="fsLabel fsRequiredLabel" for="field28732145">Tile summary (116 chars)<span class="fsRequiredMarker">*</span>                    </label>
-<span class="hidden">Number of characters remaining: </span>
-<div id="fsCounter28732145" class="fsCounter" style="display:none">116</div>
-<textarea id="field28732145" name="field28732145" rows="10" cols="50" required placeholder="Describe what this technology does as clearly as possible in 116 characters. Omit buzzwords and sensational claims." title="Describe what this technology does as clearly as possible in 116 characters. Omit buzzwords and sensational claims." class="fsField fsRequired fsTextAreaMaxLength" maxlength="116" aria-required="true"></textarea>
-</div>
-</div>
-<div id="fsRow1874808-13" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell28732240" lang="en">
-<label id="label28732240" class="fsLabel" for="field28732240">Proposed Tags                    </label>
-<textarea id="field28732240" name="field28732240" rows="10" cols="50" placeholder="Semi-colon separated, e.g.: Android; iOS; Feature Phone; Mobile Surveys" title="Semi-colon separated, e.g.: Android; iOS; Feature Phone; Mobile Surveys" class="fsField"></textarea>
-</div>
-</div>
-</div>
-<div class="fsSection fs1Col" id="fsSection31319817">
-<div class="fsSectionHeader">
-<h2 class="fsSectionHeading">Detailed info</h2>
-</div>
-<div id="fsRow1874808-15" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31454287" lang="en">
-The information in this section populates each technology’s dedicated page on openMarketplace. Contributors are reminded to focus on product functionality and user actions.
-</div><br>
-</div>
-<div id="fsRow1874808-16" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell28906176" lang="en">
-<label id="label28906176" class="fsLabel" for="field28906176">Description (4000 chars)                    </label>
-<span class="hidden">Number of characters remaining: </span>
-<div id="fsCounter28906176" class="fsCounter" style="display:none">4000</div>
-<textarea id="field28906176" name="field28906176" rows="10" cols="50" placeholder="Describe what the technology allows users to do in non-technical terms. Please include a few summary sentences, a bulleted “How-to Overview” section, and a bulleted “Features” section." title="Describe what the technology allows users to do in non-technical terms. Please include a few summary sentences, a bulleted “How-to Overview” section, and a bulleted “Features” section." class="fsField fsTextAreaMaxLength" maxlength="4000"></textarea>
-</div>
-</div>
-<div id="fsRow1874808-17" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell30730121" lang="en">
-<label id="label30730121" class="fsLabel" for="field30730121">Technical specifications (2500 chars)                    </label>
-<span class="hidden">Number of characters remaining: </span>
-<div id="fsCounter30730121" class="fsCounter" style="display:none">2500</div>
-<textarea id="field30730121" name="field30730121" rows="10" cols="50" placeholder="Include relevant information for technical readers. Please include bulleted lists of “Technical Features” (e.g. operating system compatibility) and “Requirements” (e.g. hosting platform)." title="Include relevant information for technical readers. Please include bulleted lists of “Technical Features” (e.g. operating system compatibility) and “Requirements” (e.g. hosting platform)." class="fsField fsTextAreaMaxLength" maxlength="2500"></textarea>
-</div>
-</div>
-<div id="fsRow1874808-18" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell28906201" lang="en">
-<label id="label28906201" class="fsLabel" for="field28906201">Costs (2500 chars)                    </label>
-<span class="hidden">Number of characters remaining: </span>
-<div id="fsCounter28906201" class="fsCounter" style="display:none">2500</div>
-<textarea id="field28906201" name="field28906201" rows="10" cols="50" placeholder="Include price(s) charged by technology distributor as well as differences in the technology at different pricing tiers. Additionally, include information about other costs likely to be incurred by users of this technology (e.g. virtual server services for hosting web applications)." title="Include price(s) charged by technology distributor as well as differences in the technology at different pricing tiers. Additionally, include information about other costs likely to be incurred by users of this technology (e.g. virtual server services for hosting web applications)." class="fsField fsTextAreaMaxLength" maxlength="2500"></textarea>
-</div>
-</div>
-<div id="fsRow1874808-19" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31454295" lang="en">
-<label id="label31454295" class="fsLabel" for="field31454295">Resources                    </label>
-<textarea id="field31454295" name="field31454295" rows="10" cols="50" placeholder="Include links to helpful external resources." title="Include links to helpful external resources." class="fsField"></textarea>
-</div>
-</div><br>
-<div id="fsRow1874808-20" class="fsRow fsFieldRow fsLastRow">
-<div class="fsRowBody fsCell fsFieldCell fsFirst fsLast fsLabelVertical fsSpan100" id="fsCell31454298" lang="en">
-Terms and Conditions: Open[Fn] reserves editorial decision-making power over listings that are published. We reserve the right to edit posts or request revisions. In the spirit of openness, we also maintain the right to indicate the author of listings on the openMarketplace.
-</div><br>
-</div>
-</div>
-</div>
-<div id="fsSubmit1874808" class="fsSubmit fsPagination">
-<button type="button" id="fsPreviousButton1874808" class="fsPreviousButton" value="Previous Page" style="display:none;"><span class="fsFull">Previous</span><span class="fsSlim">&larr;</span></button>
-<button type="button" id="fsNextButton1874808" class="fsNextButton" value="Next Page" style="display:none;"><span class="fsFull">Next</span><span class="fsSlim">&rarr;</span></button>
-<input id="fsSubmitButton1874808"
-class="fsSubmitButton"
-style="display: block;"
-type="submit"
-value="Submit Form" />
-<div class="clear"></div>
-</div>
-</form>                      
-
-                </div>
               </div>
             </div>
           </div>

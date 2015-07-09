@@ -1,6 +1,5 @@
 class RenameLegacyTables < ActiveRecord::Migration
   def change
-    rename_table :credentials, :odk_sf_legacy_credentials
     rename_table :imports, :odk_sf_legacy_imports
     rename_table :mappings, :odk_sf_legacy_mappings
     rename_table :odk_fields, :odk_sf_legacy_odk_fields

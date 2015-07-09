@@ -1,13 +1,19 @@
 class Product < ActiveRecord::Base
+
+
   acts_as_taggable
 
   has_many :votes
+  has_many :reviews
   has_many :connection_profiles
+  has_many :reviews
 
   validates :name, presence: true
 
   scope :enabled, -> { where(enabled: true) }
   scope :integrated, -> { where(integrated: true) }
+
+  has_drafts
 
   def self.from_salesforce(salesforce_product)
     product = where(salesforce_id: salesforce_product.id).first_or_initialize
@@ -30,7 +36,7 @@ class Product < ActiveRecord::Base
     product.twitter = salesforce_product.twitter
     product.facebook = salesforce_product.facebook
     product.email = salesforce_product.email
-    
+
     return product
   end
 
@@ -42,5 +48,16 @@ class Product < ActiveRecord::Base
     votes.count
   end
 
+  def has_review_for(user)
+    reviews.where(user: user).any?
+  end
+
+  def reviews_count
+    reviews.count
+  end
+
+  def rating
+    reviews.map(&:rating).inject(0, &:+).to_f / reviews_count
+  end
 
 end

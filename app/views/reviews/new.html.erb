@@ -1,0 +1,7 @@
+<h1>Add a new Review</h1>
+
+<%= form_for @review, :url => url_for(:controller => 'reviews', :action => 'create') do |f| %>
+  Review : <%= f.text_area :review %><br />
+  Rating : <%= f.text_field :rating %><br />
+  <%= f.submit %>
+<% end %>

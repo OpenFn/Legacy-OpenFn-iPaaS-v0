@@ -1,62 +1,41 @@
-<div class="welcome">
-  <!-- Full Width Image Header -->
-  <header class="header-image">
-    <div class="header-detail">
-    <div class="headline">
-      <h3>Technology isn't the answer,<br>but it shouldn't be the problem.</h3>
+<div class="welcome">  
+  <header class="banner">
+    <div id="particles-js"></div>
+    <div class="banner-headline">
+      <div class="col-xs-12">
+        Technology isn't the answer,<br>
+        but it shouldn't be the problem.
+      </div>
     </div>
-
-    <div class="row hidden-xs" style="height: 350px"></div>
-
-    <div class="row">
-      <div class="col-xs-6 col-sm-2 col-sm-offset-2">
-        <div class="headline numbers">
-          <h3>{{submissionCount | number }}</h3>
-          <h4>TRANSACTIONS</h4>
-        </div>
+    <div class="center who">
+      <strong>discover</strong> and <strong>integrate</strong> critical technologies
+      <br>to amplify your impact with <strong>open[Fn]</strong>
+    </div>
+    <div class="numbers">
+      <div class="col-xs-2 col-sm-offset-2">
+        <h3 class="live">{{submissionCount | number }}</h3>
+        <h4>Transactions</h4>
       </div>
-
-      <div class="col-xs-6 col-sm-2">
-        <div class="headline numbers">
-          <h3>{{productPublicCount}}</h3>
-          <h4>TECHNOLOGIES</h4>
-        </div>
+      <div class="col-xs-2">
+        <h3 class="live">{{productPublicCount}}</h3>
+        <h4>Technologies</h4>
       </div>
-
-      <div class="col-xs-6 col-sm-2">
-        <div class="headline numbers">
-          <h3>{{productConnectedCount}}</h3>
-          <h4>CONNECTED APPS</h4>
-        </div>
+      <div class="col-xs-2">
+        <h3 class="live">{{productConnectedCount}}</h3>
+        <h4>Connected Apps</h4>
       </div>
-
-      <div class="col-xs-6 col-sm-2">
-        <div class="headline numbers">
-          <h3>{{orgCount}}</h3>
-          <h4>USERS</h4>
-        </div>
+      <div class="col-xs-2">
+        <h3 class="live">{{orgCount}}</h3>
+        <h4>Organizations</h4>
       </div>
     </div>
     </div>
-    
-
   </header>
-
-  <!-- Page Content -->
-
   <div class="featurette" id="marketplace">
-
-    <hr class="dark">
-    <hr class="light">
     <div class="container">
-  
-      <a href="#/marketplace/">
+      <a href="/marketplace">
         <div class="row">
-          <div class="col-md-5 col-md-offset-1 col-md-push-6">
-            <div class="openmarket-featurette-image center-block">
-            </div>
-          </div>
-          <div class="col-md-6 col-md-pull-6">
+          <div class="col-md-8">
             <h2 class="featurette-heading">
               open<strong>Marketplace</strong> helps you find the tools you need.
             </h2>
@@ -66,27 +45,19 @@
               see real usage patterns and reviews. 
               Finding the <em>right</em> Android data capture tool
               (or SMS platform, MIS, visualization aid, etc.) to fit 
-              <em>your</em> organization just got a lot easier.
+              your organization just got a lot easier.
             </p>
           </div>
         </div>
       </a>
-    
     </div>    
   </div>
 
   <div class="featurette dark" id="integrations">
-    <hr class="light">
-    <hr class="dark">
     <div class="container">
-
       <a href="/mappings" ng-click="$event.stopPropagation()">
         <div class="row">
-          <div class="col-md-5">
-            <div class="openintegrations-featurette-image center-block">
-            </div>
-          </div>
-          <div class="col-md-6 col-md-offset-1 text-right">
+          <div class="col-md-8 col-md-push-4 text-right">
             <h2 class="featurette-heading">
               open<strong>Integrations</strong> make<br/> apps more powerful.
             </h2>
@@ -96,33 +67,19 @@
               Want MPESA payments to sync with your clinic management platform? 
               We make data integration delightful. With an efficient, open-source, modular design, the number of endpoints is growing fast.
             </p>
-            <br>
-            <p>
-              <a href="#/marketplace/" style="color: #384D5C;">
-                +<i class="fa fa-cube"></i> Vote to connect new technologies.
-              </a>
-            </p>
           </div>
         </div>
       </a>
-    
     </div>
   </div>
 
   <div class="featurette" id="marketplace">
-    <hr class="dark">
-    <hr class="light">
     <div class="container">
-
-      <a href="#/release-notes">
+      <a href="/release-notes">
         <div class="row">
-          <div class="col-md-5 col-md-offset-1 col-md-push-6">
-            <div class="openideas-featurette-image center-block">
-            </div>
-          </div>
-          <div class="col-md-6 col-md-pull-6">
+          <div class="col-md-8">
             <h2 class="featurette-heading">
-              open<strong>Ideas</strong> promote conversations<br/> about technology's role in behavior change
+              open<strong>Content</strong> makes it easier<br/> to lead successful implementations.
             </h2>
             <p class="lead">
               75% of IT implementations fail. Want to learn from developers 
@@ -136,31 +93,28 @@
           </div>
         </div>
       </a>
-    
     </div>      
   </div>
 
   <div class="featurette dark">
-    <hr class="light">
-    <hr class="dark">
     <div class="container">
-
-      <div class="row text-right">
+      <div class="row">
+      <div class="col-md-8 col-md-push-4 text-right">
         <h2 class="featurette-heading">
           open<strong>Partnerships</strong> make<br/> this all possible
         </h2>
         <p class="lead">
           We grew out of <a href="http://www.verasolutions.org" target="_blank">Vera Solutions</a>,
-          technology partner to over 100 leading <em>impact-first</em> organizations in almost 40 countries,
+          technology partner to over 125 leading <em>impact-first</em> organizations in almost 40 countries,
           and have received generous support from
           <a href="http://www.echoinggreen.org" target="_blank">Echoing Green</a>,
           <a href="http://www.dasra.org" target="_blank">Dasra</a>,
           <a href="http://www.salesforcefoundation.org/" target="_blank">The Salesforce Foundation</a>, and
           <a href="http://www.mulagofoundation.org/" target="_blank">The Mulago Foundation</a>.
         </p>
-      </div>
-    
+      </div>  
     </div>
   </div>
+  </div>
 
-</div>
+<script type="text/javascript">particlesJS("particles-js",{particles:{number:{value:90,density:{enable:!0,value_area:800}},color:{value:"#ffffff"},shape:{type:"circle",stroke:{width:0,color:"#000000"},polygon:{nb_sides:5},image:{src:"img/github.svg",width:100,height:100}},opacity:{value:.5,random:!1,anim:{enable:!1,speed:1,opacity_min:.1,sync:!1}},size:{value:3,random:!0,anim:{enable:!1,speed:40,size_min:.1,sync:!1}},line_linked:{enable:!0,distance:150,color:"#ffffff",opacity:.4,width:1},move:{enable:!0,speed:6,direction:"none",random:!1,straight:!1,out_mode:"out",attract:{enable:!1,rotateX:600,rotateY:1200}}},interactivity:{detect_on:"canvas",events:{onhover:{enable:!0,mode:"grab"},onclick:{enable:!0,mode:"push"},resize:!0},modes:{grab:{distance:130,line_linked:{opacity:1}},push:{particles_nb:4}}},retina_detect:!0,config_demo:{hide_card:!1,background_color:"#b61924",background_image:"",background_position:"50% 50%",background_repeat:"no-repeat",background_size:"cover"}});</script>

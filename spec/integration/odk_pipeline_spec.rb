@@ -29,12 +29,14 @@ RSpec.describe "ODK Pipeline", :type => :integration do
   let(:product) { Product.create!(name: "ODK", integration_type: "Odk") }
 
   let(:mapping) { Mapping.create!(
-    source_app: source_app
+    source_app: source_app, user_id: 999
   ) }
 
   let(:source_app) { ConnectedApp.create(product: product) }
 
   it "should translate the ODK payload, and persist it on Submission::Record" do
+
+    pending("This is for functionality that is not yet finished. TODO, ask Stu.")
 
     Submission::Receipt.perform_async(odk_submission,mapping.id)
     record = Submission::Record.first

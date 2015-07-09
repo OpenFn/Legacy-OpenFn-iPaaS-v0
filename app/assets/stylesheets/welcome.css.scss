@@ -1,114 +1,71 @@
 .welcome {
 
+  .banner {
+    position: relative;
+    background-color: $base;
+    // background-image: image-url("noise.png");  
+    width: 100%;
+    height: 30em;
+    text-align: center;
+  }
 
+  #particles-js{
+      position: absolute;
+      height: 30em;
+      width: 100%;
+      z-index: 8;
+  }
 
-    .header-image {
-        margin-top: -30px;
-        margin-bottom: -30px;
-        width: 100%;
-        min-height: 835px;
-        text-align: center;
-        background-color: $primary-blue;
-        background-image: image-url("wow_bg.jpg");
-        
-        /*background-repeat: no-repeat;*/
-        background-position: top;
-    }
+  .banner-headline {
+    padding-top: rem-calc(75px);
+    // padding-bottom: rem-calc(50px);
+    // text-shadow: $dark 0.05em 0.05em 0.1em;
+    color: $bg-color;
+    font-size: rem-calc(40px);
+    line-height: 1.3;
+    font-weight: 100;
+    text-transform: uppercase;
+    margin-bottom: 2em;
+  }
 
-    .header-detail {
-        background-image: image-url("wow_detail.png");
-        background-repeat: no-repeat;
-        background-position: top;
-    }
+  .logo {
+    background-image: image-url("square_white_logo.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    // opacity: .7;
+    height: 80px;
+    width: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 6.5em;
+    margin-bottom: 1.5em;
+  }
 
-    .headline {
-        padding: rem-calc(80px) 0 rem-calc(25px);
+  .who {
+    position: relative;
+    text-align: center;
+    top: 3em;
+    font-size: rem-calc(18px);
+    color: $bg-color;
+    font-weight: 100;
+  }
 
-
-    }
-
-    .headline h3 {
+  .numbers h3 {
       font-size: rem-calc(35px);
-      font-weight: $bold;
+      margin-top: 3em;
+      // opacity: 0.8;
+      // color: $dark !important;
+  }
+
+  .numbers h4 {
+      font-size: rem-calc(18px);
       text-transform: uppercase;
-      color: $off-white;
-    }
-
-    .numbers h3 {
-        font-size: rem-calc(35px);
-        font-weight: $bold;
-        margin-bottom: 0;
-        font-weight: $bold;
-        text-transform: uppercase;
-        color: $accent-yellow;
-        opacity: 0.8;
-
-    }
-
-    .numbers h4 {
-        font-size: rem-calc(20px);
-        font-weight: $bold;
-        margin-top: 0;
-        text-transform: uppercase;
-        color: $light-grey;
-        opacity: 0.6;
-    }
+      color: $bg-color;
+      // font-weight: 100;
+      // opacity: 0.6;
+  }
 
     .featurette {
-
-      background-color: $cream;
-      background-image: image-url("noise.png");
-
-      .featurette-heading {
-        font-size: rem-calc(35px);
-        color: $primary-blue;
-        margin: 2rem 0;
-      }
-
-      p.lead {
-        color: $primary-blue;
-        font-size: 1.8rem;
-        line-height: 2.8rem;
-
-      }
-      &.dark {
-        background-color: $deeper-blue;
-        background-image: image-url("noise.png");
-
-        .featurette-heading {
-          color: $off-white;
-        }
-
-        p.lead {
-          color: $off-white;
-        }
-      }
-
-      .container {
-        margin-top: rem-calc(65px);
-        margin-bottom: rem-calc(65px);
-      }
-
-      overflow: hidden;
-
-      padding: 0;
-      margin: 0;
-
-      hr {
-        border: none;
-        height: rem-calc(10px);
-        margin: 0;
-        padding: 0;
-
-        &.light {
-          background-color: lighten($primary-blue, 51);
-        }
-        &.dark {
-          background-color: $primary-blue;
-        }
-      }
-
-      
 
       .openmarket-featurette-image {
         background-image: image-url("openmarket-featurette.png");
@@ -132,8 +89,7 @@
         background-size: 100%;
         height: 351px;
         width: 376px;
-
       }
-    } 
+    }
 
 }

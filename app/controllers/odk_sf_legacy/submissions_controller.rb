@@ -6,7 +6,7 @@ module OdkSfLegacy
 
     def index
       @mapping = current_user.mappings.find params[:mapping_id]
-      @submissions = @mapping.import.submissions.order(:created_at)
+      @submissions = @mapping.import.submissions
       @submissions = @submissions.where(state: params[:state]) unless params[:state].blank?
     end
 

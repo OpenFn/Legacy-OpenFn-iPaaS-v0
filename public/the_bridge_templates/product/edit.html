@@ -1,0 +1,339 @@
+<style>
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+</style>
+<div class="edit">
+<div ng-controller="ProductController as productCtrl" class="row">
+  <br>
+  <div class="container">
+    <div class="row flat">
+      <div class="col-sm-12">
+        <div class="show-product">
+          <div class="product">
+            <div class="title show">
+              <span class="little">
+                Editor - <i class="fa fa-edit fa-lg"></i>
+              </span>
+              <br>
+              {{product.name}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <br>
+
+<!-- THIS SHOULD BE IT'S OWN ELEMENT, #FIX AND SHARE ACROSS ALL PRODUCT EDIT PAGES -->
+<!--   <div id="alerts"></div>
+    <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+      <div class="btn-group">
+        
+          <ul class="dropdown-menu">
+          </ul>
+        </div>
+      <div class="btn-group">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+          <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+          <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+          <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+          </ul>
+      </div>
+      <div class="btn-group">
+        <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+        <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+        <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+        <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
+      </div>
+      <div class="btn-group">
+        <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
+        <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
+        <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-indent-left"></i></a>
+        <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent-right"></i></a>
+      </div>
+      <div class="btn-group">
+        <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
+        <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
+        <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
+        <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
+      </div>
+      <div class="btn-group">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="fa fa-link"></i></a>
+        <div class="dropdown-menu input-append">
+          <input class="span2" placeholder="URL" type="text" data-edit="createLink"/>
+          <button class="btn" type="button">Add</button>
+        </div>
+        <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="fa fa-cut"></i></a>
+      </div>
+      <div class="btn-group">
+        <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
+        <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+      </div>
+    </div>
+    <div id="editor">
+      Go ahead
+    </div> -->
+<!-- END OF #FIX FOR ITS OWN PRODUCT -->
+
+    <br>
+    <div class="row flat">
+      <div class="col-sm-12">
+        <div class="show-product">
+          <div class="product">
+            <div class='content'>
+              <tabset justified="true">
+                <tab heading="Tile" class="description">
+                  <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
+                    <div class="form-group">
+                      <label for="InputTechName">Name</label>
+                      <input type="text" class="form-control" id="InputTechName" ng-model="product.name"><br>
+                      <label for="InputTechName">Website</label>
+                      <input type="text" class="form-control" id="InputTechName" ng-model="product.website"><br>
+                      <label for="InputTechName">Twitter handle</label>
+                      <input type="text" class="form-control" id="InputTechName" ng-model="product.twitter"><br>
+                      <label for="InputTechName">Contact email</label>
+                      <input type="email" class="form-control" id="InputTechName" ng-model="product.provider"><br>
+                      <label for="InputTechName">Tile summary (116 chars.)</label>
+                      <textarea class="form-control" id="InputTechName" ng-model="product.description" title="Describe what this technology does as clearly as possible in 116 characters. Omit buzzwords and sensational claims." rows="3"></textarea>
+                    </div>
+                  </div>
+                </tab>
+                <tab heading="Description" class="description">
+                  <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
+                    <div class="form-group">
+                        <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+                         <div class="btn-group">
+                          
+                            <ul class="dropdown-menu">
+                            </ul>
+                          </div>
+                        <div class="btn-group">
+                          <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                            <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+                            <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+                            <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                          <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+                          <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+                          <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+                          <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
+                        </div>
+                        <div class="btn-group">
+                          <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
+                          <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
+                          <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-outdent"></i></a>
+                          <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a>
+                        </div>
+                        <div class="btn-group">
+                          <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
+                          <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+                        </div>
+                      </div>
+                     <div id="editor" name="editor" data-target="content" contenteditable="true" ng-bind-html="product.detailed_description"></div>
+                     <textarea type="text" id="content" title="Describe what the technology allows users to do in non-technical terms. Please include a few summary sentences, a bulleted “How-to Overview” section, and a bulleted “Features” section." ng-model="product.detailed_description" class="hidden" rows="19"></textarea>
+                      <script>
+                      $('#editor').wysiwyg();
+                      </script>
+                    </div>
+                  </div>
+                </tab>
+                <tab heading="Costs">
+                  <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
+                    <div class="form-group">
+                        <div class="btn-toolbar" data-role="editor2-toolbar" data-target=".editor2">
+                         <div class="btn-group">
+                            <ul class="dropdown-menu">
+                            </ul>
+                          </div>
+                          <div class="btn-group">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
+                              <ul class="dropdown-menu">
+                              <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+                              <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+                              <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+                              </ul>
+                          </div>
+                          <div class="btn-group">
+                            <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+                            <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+                            <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+                            <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
+                          </div>
+                          <div class="btn-group">
+                            <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
+                            <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
+                            <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-outdent"></i></a>
+                            <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a>
+                          </div>
+                          <div class="btn-group">
+                            <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
+                            <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+                          </div>
+                        </div>
+                      <div id="editor" class="editor2" data-target="content2" contenteditable="true" ng-bind-html="product.costs"></div>
+                      <textarea class="hidden" id="content2" ng-model="product.costs" title="Include price(s) charged by technology distributor as well as differences in the technology at different pricing tiers. Additionally, include information about other costs likely to be incurred by users of this technology (e.g. virtual server services for hosting web applications)." rows="19"></textarea>
+                      <script>
+                      $('.editor2').wysiwyg({ toolbarSelector: '[data-role=editor2-toolbar]'});
+                      </script>
+                    </div>
+                  </div>
+                </tab>
+                <tab heading="Specs">
+                  <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
+                    <div class="form-group">
+                        <div class="btn-toolbar" data-role="editor3-toolbar" data-target=".editor3">
+                         <div class="btn-group">
+                            <ul class="dropdown-menu">
+                            </ul>
+                          </div>
+                          <div class="btn-group">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
+                              <ul class="dropdown-menu">
+                              <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+                              <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+                              <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+                              </ul>
+                          </div>
+                          <div class="btn-group">
+                            <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+                            <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+                            <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+                            <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
+                          </div>
+                          <div class="btn-group">
+                            <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
+                            <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
+                            <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-outdent"></i></a>
+                            <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a>
+                          </div>
+                          <div class="btn-group">
+                            <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
+                            <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+                          </div>
+                        </div>
+                      <div id="editor" class="editor3" data-target="content3" contenteditable="true" ng-bind-html="product.tech_specs"></div>
+                      <textarea class="hidden" id="content3" ng-model="product.tech_specs" title="Include relevant information for technical readers. Please include bulleted lists of “Technical Features” (e.g. operating system compatibility) and “Requirements” (e.g. hosting platform)." rows="19"></textarea>
+                       <script>
+                      $('.editor3').wysiwyg({ toolbarSelector: '[data-role=editor3-toolbar]'});
+                      </script>
+                    </div>
+                  </div>
+                </tab>
+                <tab heading="Resources">
+                  <div class="tab-content-text" active="tab.active" disabled="tab.disabled">
+                    <div class="form-group">
+                        <div class="btn-toolbar" data-role="editor4-toolbar" data-target=".editor4">
+                         <div class="btn-group">
+                            <ul class="dropdown-menu">
+                            </ul>
+                          </div>
+                          <div class="btn-group">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
+                              <ul class="dropdown-menu">
+                              <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+                              <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+                              <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+                              </ul>
+                          </div>
+                          <div class="btn-group">
+                            <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+                            <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+                            <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+                            <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
+                          </div>
+                          <div class="btn-group">
+                            <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
+                            <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
+                            <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-outdent"></i></a>
+                            <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a>
+                          </div>
+                          <div class="btn-group">
+                            <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
+                            <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+                          </div>
+                        </div>
+                      <div id="editor" class="editor4" data-target="content4" contenteditable="true" ng-bind-html="product.resources"></div>
+                      <textarea class="hidden" id="content4" ng-model="product.resources" title="Include links to helpful external resources." rows="19"></textarea>
+                      <script>
+                      $('.editor4').wysiwyg({ toolbarSelector: '[data-role=editor4-toolbar]'});
+                      </script>
+                    </div>
+                  </div>
+                </tab>
+              </tabset>
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row flat">
+          <div class="col-sm-12">
+            <div class="show-product">
+
+<!-- THIS SHOULD BE IT'S OWN RESOURCE, USED HERE AND ON THE PRODUCT/#/EDIT PAGE -->
+<div class="tags">
+<!--   <div ng-hide="editTags" ng-repeat="tag in product.tag_list track by $index" class="tag label">
+    {{tag.name}} <span class="badge">7</span>
+  </div>
+  <a class="xxx tag label" ng-hide="editTags" ng-click="showEditTagsBox()">Edit Tags <span class="badge">+/-</span></a>
+  <div ng-show="editTags"> -->
+    <div class="tag-editor">
+      <span ng-repeat="n in product.deep_tag_list track by $index" ng-init="taggings_count(n)" class="on tag label" ng-click="deleteTag(n,product)" title="Remove this tag.">
+        {{n.name}} <span class="badge">{{n.tag_count}}</span>
+      </span>
+        <input type="text" class="search-tags" placeholder="Type here to tag..." ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
+    </div>
+    <div class="tag-suggestions">
+      <div ng-repeat="tag in tag_match | orderBy:'name' | orderBy:'-tag_count'" >
+        <a ng-click="addTag(tag,product)" ng-init = "tagging_count(tag)" title="Add this tag" class="off tag label">
+          {{tag.name}} <span class="badge">{{tag.tag_count}}</span>
+        </a>
+      </div>
+      <a class="off tag label" ng-show="new_tag" ng-click="addNewTag(product)">
+        <i class="fa fa-plus"></i> Create new tag... <span class="badge">+</span>
+      </a>
+    </div>
+<!--     <br><br>
+    <div class="text-center">
+      <button ng-click="editProduct(product)" class="btn btn-default" type="submit">Submit</button>
+    </div>
+  </div> -->
+</div>
+<!-- END OF "TAGS.HTML" RESOURCE -->
+
+            </div>
+          </div>
+        </div>
+        <br>
+        <p>The following information will help social impact organizations find the right technology to fit their needs. The “tile summary” is the main listing on openMarketplace. The filter tags help organizations sort through numerous technologies based on their needs, location, field users, and other factors.</p>
+        <p>We encourage suggestions from all members of the community whether they be product developers, consultants, or end-user organizations. There are a few required fields that cover basic and summary information. Beyond that, we ask that listings focus on the functionality of each technology and what it enables users to do and avoid statements that place more value on one technology over another. Your submission must be reviewed and accepted by one of the core contributors at openfn before it is updated. Again, please refrain from using value words to ensure the listing is accepted promptly.</p>
+        <p>Terms and Conditions: Open[Fn] reserves editorial decision-making power over listings that are published. We reserve the right to edit posts or request revisions. In the spirit of openness, we also maintain the right to indicate the author of listings on the openMarketplace.</p>
+        <button ng-click="editProduct(product)" id="submit" class="btn btn-success" type="submit">Submit Edits</button>
+        <script>
+            $(document).ready(function () {
+                $('#submit').click(function () {
+                  var targetName1 = $('#editor').attr('data-target');
+                  $('#'+targetName1).val($('#editor').html());
+                  $('#'+targetName1).trigger("change");
+                  var targetName2 = $('.editor2').attr('data-target');
+                  $('#'+targetName2).val($('.editor2').html());
+                  $('#'+targetName2).trigger("change");
+                  var targetName3 = $('.editor3').attr('data-target');
+                  $('#'+targetName3).val($('.editor3').html());
+                  $('#'+targetName3).trigger("change");                
+                  var targetName3 = $('.editor4').attr('data-target');
+                  $('#'+targetName3).val($('.editor4').html());
+                  $('#'+targetName3).trigger("change");                
+                });
+            });
+        </script>
+
+</div>
+
+</div>

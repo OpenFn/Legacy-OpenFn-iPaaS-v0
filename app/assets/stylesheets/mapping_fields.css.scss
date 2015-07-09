@@ -22,6 +22,12 @@
 .list-group.sf-target {
   margin-bottom: 0px;
   min-height: 40px;
+  background-color: $nav;
+
+  &:hover {
+    background-color: $light;
+  }
+
 }
 
 .odk-field {
