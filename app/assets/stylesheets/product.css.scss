@@ -380,7 +380,8 @@ a:hover{
     border-color: white !important;
     .list-group-item.active {
       background-color: $base;
-      border-color: $light;
+      border-color: #dddddd;
+      // color: $dark;
     }
 }
 #custom-accord .panel-heading {
