@@ -584,3 +584,48 @@ b, strong {
 .push-down {
   margin-bottom: 2em;
 }
+
+.integrated-btn:hover, .btn:focus {
+  color: $dark;
+  text-decoration: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.integrated-btn.active {
+  color: $base;
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.integrated-btn {
+  color: $light-grey;
+  background: none;
+  border: none;
+}
+
+a:hover {
+  color: $dark;
+  text-decoration: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+a:focus {
+  color: $dark;
+  text-decoration: none;
+}
+
+a .active {
+  color: black;
+  outline: 0;
+  background-image: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+
+}
+
+a {
+  color: $light-grey;
+
+}
