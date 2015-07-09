@@ -28,7 +28,14 @@
     if ($scope.dropdownTags.indexOf tag.name) == -1
       $scope.dropdownTags.push tag.name
     else
-      $scope.dropdownTags.splice $scope.dropdownTags.indexOf(tag.name, 1)
+      oldDropdownTags = $scope.dropdownTags
+      i = 0
+      index = $scope.dropdownTags.indexOf tag.name
+      $scope.dropdownTags = []
+      while i < oldDropdownTags.length
+        if i != index
+          $scope.dropdownTags.push oldDropdownTags[i]
+        i++
   
   $http.get('/products.json').success (data) ->
     $scope.products = data.products
