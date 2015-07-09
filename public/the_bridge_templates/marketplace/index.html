@@ -38,12 +38,15 @@
           <br>
           <div class="col-sm-2 featurette dark" id="custom-accord">
             <accordion close-others="false" class="whole-accord-button" tooltip-trigger="mouseenter" tooltip="Filter the marketplace by tag. Add multiple tags to narrow your search even more.">
-              <accordion-group heading="Tags" is-open="true">
+              <accordion-group is-open="true">
+                <accordion-heading>
+                  Tags <i class="pull-right fa fa-caret-down"></i>
+                </accordion-heading>
                 <div style="cursor: pointer" ng-click="go('/tags/')">Collapse tag categories if you don't need them by clicking on the title. See frequencies in the badge. Click here to browse and search all of the tags in the system. <span class="badge"><i class="fa fa-search"></i></span></div>
               </accordion-group>
               <accordion-group is-open="true" ng-repeat="category in categories">
                 <accordion-heading>
-                  {{category.name}}
+                  {{category.name}} <i class="pull-right fa fa-caret-down"></i>
                 </accordion-heading>
                 <li style="cursor: pointer" class="list-group-item" ng-repeat="tag in tags | filter:{tag_category_id: category.id }  | orderBy: '-tag_count'" ng-init="taggings_count(tag)" ng-click="tagFilter(tag)"  ng-model="tag.active" btn-checkbox>{{tag.name}} <span class="badge">{{tag.tag_count}}</span></li>
               </accordion-group>
