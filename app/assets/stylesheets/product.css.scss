@@ -28,6 +28,7 @@
     padding-bottom: 0.5em;
   }
 
+
 }
 
 .product-list {
@@ -377,6 +378,9 @@ a:hover{
 
 #custom-accord .panel-default {
     border-color: white !important;
+    .list-group-item.active {
+      background-color: $base;
+    }
 }
 #custom-accord .panel-heading {
     background-color: $nav !important;
