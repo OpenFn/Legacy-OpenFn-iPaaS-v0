@@ -9,14 +9,14 @@ describe OpenFn::Tr do
       "event=incoming_message&from_number=%2B16505550123&content=Hello+world"
     }
 
-#TODO: the rest of the spec!
-
     subject { OpenFn::Odk.encode(raw_source_payload) }
 
     it "returns a generic data structure for OpenFn" do
-      expect(subject).to eql raw_source_payload["data"]["event_cars_boats"]
+      expect(subject).to eql "{\"event\":[\"incoming_message\"],\"from_number\":[\"+16505550123\"],\"content\":[\"Hello world\"]}"
     end
   end
+
+#TODO: the rest of the spec!
 
   describe ".decode" do
 
