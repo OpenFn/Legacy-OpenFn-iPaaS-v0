@@ -44,7 +44,9 @@
       $scope.searchText = $routeParams.search
 
   $scope.removeTagFilters = ->
+    $scope.searchText = ""
     $scope.dropdownTags = []
+    $scope.searchFilters.integrated = false
     i = 0
     while i < $scope.tags.length
       $scope.tags[i].active = false
