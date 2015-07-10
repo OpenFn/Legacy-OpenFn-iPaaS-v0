@@ -25,6 +25,11 @@
     #  twttr.widgets.load()
     #, 500
 
+  $scope.checkVote = (review) ->
+    console.log(review)
+    $http.get('/review/'+review.id+'/check_vote.json').success (data) ->
+      review.voted = data
+
   $scope.changeVoteFor = (product) ->
     $http.get("/products/#{product.id}/vote")
       .success (data) ->
@@ -50,50 +55,68 @@
     $http.get("/product/#{product.id}/rating").success((data) ->
       $scope.product.rating = data
   )
+  $scope.vote = (review, up_or_down) ->
+    if up_or_down && (review.voted == -1)
+      review.review_score = review.review_score + 2
+      review.voted = 1
+      $http.get('review/update_vote/'+review.id, {params: {vote: review.voted}})
+    else if up_or_down && (review.voted == 0)
+      review.review_score = review.review_score + 1
+      review.voted = 1
+      $http.get('review/create_vote/'+review.id, {params: {vote: review.voted}})
+    else if !up_or_down && (review.voted == 1)
+      review.review_score = review.review_score - 2
+      review.voted = -1
+      $http.get('review/update_vote/'+review.id, {params: {vote: review.voted}})
+    else if !up_or_down && (review.voted == 0)
+      review.review_score = review.review_score - 1
+      review.voted = -1
+      $http.get('review/create_vote/'+review.id, {params: {vote: review.voted}})
 
-  $scope.upVote = (review) ->
-    i = 0
-    while i < $scope.product.reviews.length
-      $scope.product.reviews[i].duplicate_upvote = false
-      $scope.product.reviews[i].duplicate_downvote = false
-      i++
-    $http.get("/review/#{review.id}/up_vote").success((data) ->
-      if data.status == 'login'
-        window.location = data.redirect_url
 
-      if data.status == 'duplicate'
-        review.duplicate_upvote = true
-        review.duplicate_downvote = false
+  # $scope.upVote = (review) ->
+  #   i = 0
+  #   while i < $scope.product.reviews.length
+  #     $scope.product.reviews[i].duplicate_upvote = false
+  #     $scope.product.reviews[i].duplicate_downvote = false
+  #     i++
+  #   $http.get("/review/#{review.id}/up_vote").success((data) ->
+  #     if data.status == 'login'
+  #       window.location = data.redirect_url
 
-      if data.status == 'success'
-        if review.review_score == -1
-          review.review_score = review.review_score + 2
-        else
-          review.review_score = review.review_score + 1
-        review.duplicate_downvote = false
-    )
+  #     if data.status == 'duplicate'
+  #       review.duplicate_upvote = true
+  #       review.duplicate_downvote = false
 
-  $scope.downVote = (review) ->
-    i = 0
-    while i < $scope.product.reviews.length
-      $scope.product.reviews[i].duplicate_upvote = false
-      $scope.product.reviews[i].duplicate_downvote = false
-      i++
-    $http.get("/review/#{review.id}/down_vote").success((data) ->
-      if data.status == 'login'
-        window.location = data.redirect_url
+  #     if data.status == 'success'
+  #       if review.review_score == -1
+  #         review.review_score = review.review_score + 2
+  #       else
+  #         review.review_score = review.review_score + 1
+  #       review.duplicate_downvote = false
+  #   )
 
-      if data.status == 'duplicate'
-        review.duplicate_downvote = true
-        review.duplicate_upvote = false
+  # $scope.downVote = (review) ->
+  #   i = 0
+  #   while i < $scope.product.reviews.length
+  #     $scope.product.reviews[i].duplicate_upvote = false
+  #     $scope.product.reviews[i].duplicate_downvote = false
+  #     i++
+  #   $http.get("/review/#{review.id}/down_vote").success((data) ->
+  #     if data.status == 'login'
+  #       window.location = data.redirect_url
 
-      if data.status == 'success'
-        if review.review_score == 1
-          review.review_score = review.review_score - 2
-        else
-          review.review_score = review.review_score - 1
-        review.duplicate_upvote = false
-    )
+  #     if data.status == 'duplicate'
+  #       review.duplicate_downvote = true
+  #       review.duplicate_upvote = false
+
+  #     if data.status == 'success'
+  #       if review.review_score == 1
+  #         review.review_score = review.review_score - 2
+  #       else
+  #         review.review_score = review.review_score - 1
+  #       review.duplicate_upvote = false
+  #   )
 
 
   $scope.reviewScore = (review,product) ->
