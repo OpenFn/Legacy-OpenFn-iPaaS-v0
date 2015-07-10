@@ -6,8 +6,8 @@ class Submission::PayloadDecoding
 
   def perform(record_id)
     record = Submission::Record.find(record_id)
-    record.raw_destination_payload = integration_klass_for(record).
-      decode(record.destination_payload)
+    record.destination_payload = integration_klass_for(record).
+      decode(record.raw_destination_payload)
     record.save!
     
     # only for PUSH destination integrations. Pulls can be handled by storing destination payloads for collection.
