@@ -4,7 +4,7 @@ class OpenFn::Tr
     # Raw Source Encoding
     # -------------------
     def encode(raw_source_payload)
-      raw_source_payload["data"].first[1]
+      CGI::parse(raw_source_payload).to_json
     end
 
     def decode(destination_payload)

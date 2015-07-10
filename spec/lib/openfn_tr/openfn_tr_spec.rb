@@ -6,13 +6,10 @@ describe OpenFn::Tr do
   describe ".encode" do
 
     let(:raw_source_payload) {
-      POST /incoming_message.php HTTP/1.1
-      Host: yourserver.example.com
-      Content-Type: application/x-www-form-urlencoded
-      ...
-
-      "event=incoming_message&from_number=%2B16505550123&content=Hello+world..."
+      "event=incoming_message&from_number=%2B16505550123&content=Hello+world"
     }
+
+#TODO: the rest of the spec!
 
     subject { OpenFn::Odk.encode(raw_source_payload) }
 
