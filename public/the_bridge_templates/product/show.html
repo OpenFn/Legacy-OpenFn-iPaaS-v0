@@ -133,12 +133,12 @@
         <div class="col-md-6">
         <div class="rn-title center">Reviews</div><br>
           <div ng-show="product.reviews_count == 0">Nobody has review this product yet. Be the first! <a data-toggle="modal" data-target="#review_modal" target="_blank" class="review-link"><strong>Click to rate & review {{product.name}}.</strong></a></div>
-          <div ng-repeat="n in product.reviews | orderBy:'-review_score'">
+          <div ng-repeat="n in product.reviews | orderBy:'-review_score'" ng-init="checkVote(n)">
               <div class="row">
               <div class="col-md-1">
-                <a ng-click="upVote(n)" ng-disabled="checked" data-toggle="tooltip" title="This review shows effort. It is useful and clear."><i class="fa fa-chevron-up fa-2x"></i></a>
+                <a ng-click="vote(n, true)" ng-disabled="checked" data-toggle="tooltip" title="This review shows effort. It is useful and clear."><i class="fa fa-chevron-up fa-2x"></i></a>
                 <span class="rscore" ng-init="reviewScore(n,product)" data-toggle="tooltip" title="The review score is a measure of how many people find this review to be useful and clear."><strong>{{n.review_score > 0 ? '+' : ''}}{{n.review_score}}</strong></span>
-                <a ng-click="downVote(n)" ng-disabled="checked" data-toggle="tooltip" title="This review does not show effort. It is not useful or unclear."><i class="fa fa-chevron-down fa-2x"></i></a>
+                <a ng-click="vote(n, false)" ng-disabled="checked" data-toggle="tooltip" title="This review does not show effort. It is not useful or unclear."><i class="fa fa-chevron-down fa-2x"></i></a>
                 <span ng-show = "n.duplicate_upvote" class="submitStatus">*You have already marked this review as helpful.</span>
                 <span ng-show = "n.duplicate_downvote" class="submitStatus">*You have already marked this review as unhelpful.</span>
               </div>

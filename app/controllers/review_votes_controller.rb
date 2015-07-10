@@ -30,61 +30,77 @@ class ReviewVotesController < ApplicationController
     end
   end
 
-  def upvote
-    if !current_user.present?
-      render json: {status: "login", redirect_url: "/login"}
-      return
-    end
-    reviews_votes = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id])
-    if reviews_votes.present?
-      value = reviews_votes.order("created_at").last.value
-      if value.eql?(1)
-        render json: {review_vote: @review_vote, status: "duplicate"}
-        return
-      end
-    end
-    @review_vote = ReviewVote.new(:user_id => current_user.id,
-                                  :review_id => params[:review_id],
-                                  :value => 1)
-    @review_vote.save
-    render json: {review_vote: @review_vote, status: "success"}
+  def update_vote
+    @review_vote = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id])
+    @review_vote[0].value = params[:vote]
+    @review_vote[0].save
+    render json: 0
   end
 
-  def downvote
-    if !current_user.present?
-      render json: {status: "login", redirect_url: "/login"}
-      return
-    end
-    reviews_votes = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id])
-    if reviews_votes.present?
-      value = reviews_votes.order("created_at").last.value
-      if value.eql?(-1)
-        render json: {review_vote: @review_vote, status: "duplicate"}
-        return
-      end
-    end
+  def create_vote
     @review_vote = ReviewVote.new(:user_id => current_user.id,
                                   :review_id => params[:review_id],
-                                  :value => -1)
+                                  :value => params[:vote])
     @review_vote.save
-    render json: {review_vote: @review_vote, status: "success"}
+    render json: 0
   end
+
+  # def upvote
+  #   if !current_user.present?
+  #     render json: {status: "login", redirect_url: "/login"}
+  #     return
+  #   end
+  #   reviews_votes = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id])
+  #   if reviews_votes.present?
+  #     value = reviews_votes.order("created_at").last.value
+  #     if value.eql?(1)
+  #       render json: {review_vote: @review_vote, status: "duplicate"}
+  #       return
+  #     end
+  #   end
+  #   @review_vote = ReviewVote.new(:user_id => current_user.id,
+  #                                 :review_id => params[:review_id],
+  #                                 :value => 1)
+  #   @review_vote.save
+  #   render json: {review_vote: @review_vote, status: "success"}
+  # end
+
+  # def downvote
+  #   if !current_user.present?
+  #     render json: {status: "login", redirect_url: "/login"}
+  #     return
+  #   end
+  #   reviews_votes = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id])
+  #   if reviews_votes.present?
+  #     value = reviews_votes.order("created_at").last.value
+  #     if value.eql?(-1)
+  #       render json: {review_vote: @review_vote, status: "duplicate"}
+  #       return
+  #     end
+  #   end
+  #   @review_vote = ReviewVote.new(:user_id => current_user.id,
+  #                                 :review_id => params[:review_id],
+  #                                 :value => -1)
+  #   @review_vote.save
+  #   render json: {review_vote: @review_vote, status: "success"}
+  # end
 
   def count_rating
     reviews = ReviewVote.where(:review_id => params[:review_id])
-    if reviews.present?
-      total_rating = reviews.sum('value')
-      if total_rating.eql?(0)
-        total_rating = reviews.order("created_at").last.value
-      end
-      render json: total_rating
-    else
-      render json: 0
+    total_rating = 0
+    reviews.each do |review|
+      total_rating += review.value
     end
+    render json: total_rating
   end
 
-  def check_upvote_downvote
+  def check_vote
     review_vote = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id])
+    if review_vote[0] == nil
+      render json: 0
+    else
+      render json: review_vote[0].value
+    end
   end
 
 
