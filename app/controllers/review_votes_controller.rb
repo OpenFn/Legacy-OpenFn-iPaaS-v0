@@ -30,60 +30,23 @@ class ReviewVotesController < ApplicationController
     end
   end
 
-  def update_vote
-    @review_vote = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id])
-    @review_vote[0].value = params[:vote]
-    @review_vote[0].save
-    render json: 0
+  def vote
+    if(params[:update]=="true")
+      @review_vote = ReviewVote.find_by(:user_id => current_user.id, :review_id => params[:review_id])
+      @review_vote.value = params[:vote]
+      @review_vote.save
+      render json: 0
+    elsif(params[:create]=="true")
+      @review_vote = ReviewVote.new(:user_id => current_user.id,
+                                    :review_id => params[:review_id],
+                                    :value => params[:vote])
+      @review_vote.save
+      render json: 0
+    else
+      render json: 1
+    end
   end
 
-  def create_vote
-    @review_vote = ReviewVote.new(:user_id => current_user.id,
-                                  :review_id => params[:review_id],
-                                  :value => params[:vote])
-    @review_vote.save
-    render json: 0
-  end
-
-  # def upvote
-  #   if !current_user.present?
-  #     render json: {status: "login", redirect_url: "/login"}
-  #     return
-  #   end
-  #   reviews_votes = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id])
-  #   if reviews_votes.present?
-  #     value = reviews_votes.order("created_at").last.value
-  #     if value.eql?(1)
-  #       render json: {review_vote: @review_vote, status: "duplicate"}
-  #       return
-  #     end
-  #   end
-  #   @review_vote = ReviewVote.new(:user_id => current_user.id,
-  #                                 :review_id => params[:review_id],
-  #                                 :value => 1)
-  #   @review_vote.save
-  #   render json: {review_vote: @review_vote, status: "success"}
-  # end
-
-  # def downvote
-  #   if !current_user.present?
-  #     render json: {status: "login", redirect_url: "/login"}
-  #     return
-  #   end
-  #   reviews_votes = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id])
-  #   if reviews_votes.present?
-  #     value = reviews_votes.order("created_at").last.value
-  #     if value.eql?(-1)
-  #       render json: {review_vote: @review_vote, status: "duplicate"}
-  #       return
-  #     end
-  #   end
-  #   @review_vote = ReviewVote.new(:user_id => current_user.id,
-  #                                 :review_id => params[:review_id],
-  #                                 :value => -1)
-  #   @review_vote.save
-  #   render json: {review_vote: @review_vote, status: "success"}
-  # end
 
   def count_rating
     reviews = ReviewVote.where(:review_id => params[:review_id])
@@ -95,11 +58,11 @@ class ReviewVotesController < ApplicationController
   end
 
   def check_vote
-    review_vote = ReviewVote.where(:user_id => current_user.id, :review_id => params[:review_id])
-    if review_vote[0] == nil
+    review_vote = ReviewVote.find_by(:user_id => current_user.id, :review_id => params[:review_id])
+    if review_vote == nil
       render json: 0
     else
-      render json: review_vote[0].value
+      render json: review_vote.value
     end
   end
 
