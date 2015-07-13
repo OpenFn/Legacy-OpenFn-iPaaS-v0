@@ -2,8 +2,11 @@
 
   .banner {
     position: relative;
-    background-color: $base;
-    // background-image: image-url("noise.png");  
+    background-color: $dark;
+    background-image: image-url("wow_bg.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    // background-size: 100%;
     width: 100%;
     height: 30em;
     text-align: center;
@@ -42,12 +45,18 @@
   }
 
   .who {
-    position: relative;
     text-align: center;
-    top: 3em;
-    font-size: rem-calc(18px);
+    // top: 3em;
+    // font-size: rem-calc(18px);
+    // color: red;
+    // background-color: $nav;
     color: $bg-color;
-    font-weight: 100;
+    // background-image: image-url("noise.png");
+    // background-size: 100%;
+    // font-weight: 100;
+    // font-size: rem-calc(35px);
+    // color: $primary-blue;
+    margin: 2rem 0;
   }
 
   .numbers h3 {

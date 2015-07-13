@@ -294,7 +294,7 @@ b, strong {
     text-align: center;
     position: relative;
     // background-color: $cream;
-    // background-image: image-url("noise.png");
+    background-image: image-url("noise.png");
     // color: $light-grey;
 }
 
@@ -302,7 +302,7 @@ b, strong {
     padding: rem-calc(55px) 0 rem-calc(50px);
     padding-bottom: rem-calc(30px);
     background-color: $base;
-    // background-image: image-url("noise.png");
+    background-image: image-url("wow_bg.jpg");
     color: $bg-color;
 }
 
@@ -318,7 +318,7 @@ b, strong {
         // color: $primary-blue;
         margin: 2rem 0;
         // background-color: $cream;
-        //background-image: image-url("noise.png");
+        // background-image: image-url("noise.png");
       }
 
       p.lead {
