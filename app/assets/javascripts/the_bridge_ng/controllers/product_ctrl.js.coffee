@@ -122,19 +122,13 @@
 
   )
 
-  refreshTagCount = (tag) ->
-    $http.get("/tag/tagging_count/#{tag.id}").success((data) ->
-      tag.tag_count = data
-    )
 
   productTags = (product) ->
     $http.get("/products/#{product.id}/tags").success((data) ->
       $scope.product.deep_tag_list = data.tags
-      i = 0
-      while i < $scope.product.deep_tag_list.length
-        refreshTagCount($scope.product.deep_tag_list[i])
-        i++
     )
+
+
     $http.get("/tags/get_all").success((data) ->
       $scope.tags = data.tags
      )
@@ -192,19 +186,6 @@
       $scope.tag_match = []
       $scope.new_tag = false
 
-  $scope.tagging_count = (tag) ->
-    $http.get("/tag/tagging_count/#{tag.id}").success((data) ->
-      i = 0
-      while i < $scope.tags.length
-        if $scope.tags[i].id == tag.id
-          $scope.tags[i].tag_count = data
-        i++
-    )
-
-  $scope.taggings_count = (tag) ->
-    $http.get("/tag/tagging_count/#{tag.id}").success((data) ->
-      tag.tag_count = data
-    )
 
   $scope.addNewTag = (product) ->
     newTagName =
