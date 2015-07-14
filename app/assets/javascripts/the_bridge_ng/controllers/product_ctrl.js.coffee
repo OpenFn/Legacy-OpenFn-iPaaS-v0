@@ -1,4 +1,4 @@
-@controllerModule.controller 'ProductController', ['$scope', '$location', '$http', '$routeParams', '$timeout', ($scope, $location, $http, $routeParams, $timeout) ->
+@controllerModule.controller 'ProductController', ['$scope', '$location', '$modal', '$http', '$routeParams', '$timeout', ($scope, $location, $modal, $http, $routeParams, $timeout) ->
   $scope.product = {}
   $scope.searchText = ""
   $scope.searchTagText = ""
@@ -7,6 +7,7 @@
   $scope.tags_added = []
   $scope.deleted_tags = []
   $scope.tags_deleted = []
+  $scope.loggedIn = false
 
   $http.get('/products/' + $routeParams.id + '.json').success((data) ->
     $scope.product = data
@@ -31,13 +32,18 @@
       review.voted = data
 
   $scope.changeVoteFor = (product) ->
-    $http.get("/products/#{product.id}/vote")
-      .success (data) ->
-        angular.extend(product,data)
-
-      .error (data, status, headers, config) ->
-        window.location="/login" if status == 401
-        # console.log arguments
+    url = $location.url()
+    $http.get("/user/check_login?redirect=#{url}").success((data) ->
+      if data.status == 'login'
+        $scope.showModal()
+      else
+        $http.get("/products/#{product.id}/vote")
+          .success (data) ->
+            angular.extend(product,data)
+        
+          .error (data, status, headers, config) ->
+            window.location="/login" if status == 401
+      )
 
   $scope.changeReviewFor = (product) ->
     $http.get("/products/#{product.id}/review")
@@ -45,7 +51,7 @@
         angular.extend(product,data)
 
       .error (data, status, headers, config) ->
-        window.location="/login" if status == 401
+        $scope.showModal() if status == 401
         # console.log arguments
 
   $scope.searchAgain = () ->
@@ -55,7 +61,22 @@
     $http.get("/product/#{product.id}/rating").success((data) ->
       $scope.product.rating = data
   )
+
+      #The else is used so that the review modal is hidden if the user is not logged in
+      #Todo: need to call the "write a review" modal here, rather than in the view
+  $scope.addReview = (path) ->
+      url = if path? then path else $location.url() 
+
+      $http.get("/user/check_login?redirect=#{url}").success((data) ->
+        if data.status == 'login'
+          $scope.showModal()
+        else
+          $scope.loggedIn = true
+      )
+
+
   $scope.vote = (review, up_or_down) ->
+    $scope.checkLogin()
     update_vote = false
     create_vote = false
     if up_or_down && (review.voted == -1)
@@ -193,27 +214,43 @@
       'name': $scope.newTag
     $http.post("/products/#{product.id}/tags/add",newTagName).success((data) ->
       if data.status == 'login'
-        window.location = data.redirect_url
+        $scope.showModal()
       productTags(product)
     )
 
   $scope.showEditTagsBox = () ->
     $http.get("/user/check_login").success((data) ->
       if data.status == 'login'
-        window.location = data.redirect_url
+        $scope.showModal()
       else
         $scope.editTags = true
     )
 
-  $scope.checkLogin = (product) ->
-    $http.get("/user/check_login").success((data) ->
+# Eventually, we will want to turn showModal and checkLogin into services
+  $scope.showModal = () ->
+    modalInstance = $modal.open
+      templateUrl: 'modalTemplate.html',
+      controller: 'ModalController'
+
+  $scope.checkLogin = (path) ->
+    redirect = if path? then true else false
+    url = if path? then path else $location.url() 
+
+    $http.get("/user/check_login?redirect=#{url}").success((data) ->
       if data.status == 'login'
-        window.location = data.redirect_url
+        $scope.showModal()
       else
-        window.location = "/product/#{product.id}/edit"
-    )
+        if redirect
+          window.location = url
+        else
+          $scope.loggedIn = true
+        )
 
   $scope.editProduct = (product) ->
+    url = "/product/#{product.id}/edit"
+    $scope.checkLogin(url)
+
+  $scope.updateProduct = (product) ->
     console.log(product.website)
     productEdit =
       'id': product.id
