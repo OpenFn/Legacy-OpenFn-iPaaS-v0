@@ -41,11 +41,6 @@ class TagsController < ApplicationController
     render json: product
   end
 
-  def tagging_count
-    tags = Tagging.where(:tag_id => params[:tag_id])
-    render json: tags.count
-  end
-
   def tags_add
     tags = params["_json"]
     product = Product.find(params[:product_id])
