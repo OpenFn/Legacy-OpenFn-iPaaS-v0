@@ -6,6 +6,7 @@
   $scope.tags
   $scope.categories = {};
   $scope.dropdownTags = []
+  $scope.tag_count_hash = {};
 
   $http.get('/tag_categories.json').success((data) ->
     $scope.categories = data;
@@ -13,6 +14,10 @@
 
   $http.get('/tags/get_all_json.json').success((data) ->
     $scope.tags = data;
+    i = 0
+    while i < $scope.tags.length
+      $scope.tag_count_hash[$scope.tags[i].name] = i
+      i++
     )
 
   $scope.go = (url) ->
@@ -50,12 +55,7 @@
     while (i < product_array.length)
       j = 0
       while (j < product_array[i].tag_list.length)
-        k= 0
-        while (k < $scope.tags.length)
-          if($scope.tags[k].name == product_array[i].tag_list[j])
-            $scope.tags[k].tag_count = $scope.tags[k].tag_count + int
-            break
-          k++
+        $scope.tags[$scope.tag_count_hash[product_array[i].tag_list[j]]].taggings_count += int
         j++
       i++
 
