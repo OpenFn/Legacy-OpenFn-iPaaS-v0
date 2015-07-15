@@ -10,8 +10,15 @@
     </h3>
   </div>
 </header>
-<ul ng-repeat="member in team">
-<li>{{member.name}}</li>
-</ul>
+<br>
+<div class="row" ng-repeat="member in team">
+  <div class="col-md-4 col-md-offset-2">
+  Image
+  </div>
+  <div class="col-md-4">
+    <p><b>{{member.name}}</b></p>
+    <br>
+    <p>{{member.bio}}</p>
+</div>
 
 </div>
