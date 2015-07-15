@@ -208,7 +208,7 @@
     )
 
 
-# Eventually, we will want to turn showModal and checkLogin into services
+# TODO: Eventually, we will want to turn showModal and checkLogin into services
   $scope.showModal = () ->
     modalInstance = $modal.open
       templateUrl: 'modalTemplate.html',
