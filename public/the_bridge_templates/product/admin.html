@@ -16,10 +16,52 @@
         {{draft.item_type}} {{draft.event}} by user {{draft.whodunnit}}
       </div>
       <div class="h3">
-        {{draft.updated_at}}
+        {{draft.updated_at | date}}
       </div>
       <div class="h4">
-        {{draft.object}}
+      <b>Name:</b>
+      </div>
+      <div class="h4" ng-bind-html="draft.object.name">
+      </div>
+      <div class="h4">
+      <b>Website:</b>
+      </div>
+      <div class="h4" ng-bind-html="draft.object.website">
+      </div>
+      <div class="h4">
+      <b>Twitter Handle:</b>
+      </div>
+      <div class="h4" ng-bind-html="draft.object.twitter">
+      </div>
+      <div class="h4">
+      <b>Contact Email:</b>
+      </div>
+      <div class="h4" ng-bind-html="draft.object.email">
+      </div>
+      <div class="h4">
+      <b>Tile Summary:</b>
+      </div>
+      <div class="h4" ng-bind-html="draft.object.description">
+      </div>
+      <div class="h4">
+      <b>Detailed Description:</b>
+      </div>
+      <div class="h4" ng-bind-html="draft.object.detailed_description">
+      </div>
+      <div class="h4">
+      <b>Costs:</b>
+      </div>
+      <div class="h4" ng-bind-html="draft.object.costs">
+      </div>
+      <div class="h4">
+      <b>Specs:</b>
+      </div>
+      <div class="h4" ng-bind-html="draft.object.tech_specs">
+      </div>
+      <div class="h4">
+      <b>Resources:</b>
+      </div>
+      <div class="h4" ng-bind-html="draft.object.resources">
       </div>
       <br>
       <a class="btn btn-success" ng-click ="publish(draft)">Publish</a>
