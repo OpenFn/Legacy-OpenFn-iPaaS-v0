@@ -26,12 +26,4 @@
   $scope.searchAgain = () ->
     $location.path('/marketplace/search/' + $scope.searchTagText)
 
-  $scope.tagging_count = (tag) ->
-    $http.get("/tag/tagging_count/#{tag.id}").success((data) ->
-      i = 0
-      while i < $scope.tag_match.length
-        if $scope.tag_match[i].id == tag.id
-          $scope.tag_match[i].tag_count = data
-        i++
-    )
 ]

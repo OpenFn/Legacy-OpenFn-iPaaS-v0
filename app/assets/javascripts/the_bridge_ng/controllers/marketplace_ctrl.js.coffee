@@ -6,6 +6,7 @@
   $scope.tags
   $scope.categories = {};
   $scope.dropdownTags = []
+  $scope.tag_count_hash = {};
 
   $http.get('/tag_categories.json').success((data) ->
     $scope.categories = data;
@@ -13,16 +14,45 @@
 
   $http.get('/tags/get_all_json.json').success((data) ->
     $scope.tags = data;
+    i = 0
+    while i < $scope.tags.length
+      $scope.tag_count_hash[$scope.tags[i].name] = i
+      i++
     )
 
   $scope.go = (url) ->
     $location.path url
     return
 
-  $scope.taggings_count = (tag) ->
-    $http.get("/tag/tagging_count/#{tag.id}").success((data) ->
-      tag.tag_count = data
-    )
+  $scope.$watchCollection 'filteredProducts', ->
+    added = []
+    removed = []
+    if($scope.previousProducts != undefined) && ($scope.filteredProducts != undefined)
+      if($scope.previousProducts.length > $scope.filteredProducts.length)
+        i = 0
+        while (i < $scope.previousProducts.length)
+          if($scope.filteredProducts.indexOf($scope.previousProducts[i]) == -1)
+            removed.push $scope.previousProducts[i]
+          i++
+        updateTags(removed, -1)
+      else if ($scope.filteredProducts.length > $scope.previousProducts.length)
+        i = 0
+        while (i < $scope.filteredProducts.length)
+          if($scope.previousProducts.indexOf($scope.filteredProducts[i]) == -1)
+            added.push $scope.filteredProducts[i]
+          i++
+        updateTags(added, 1)
+    $scope.previousProducts = $scope.filteredProducts
+    return
+
+  updateTags = (product_array, int) ->
+    i = 0
+    while (i < product_array.length)
+      j = 0
+      while (j < product_array[i].tag_list.length)
+        $scope.tags[$scope.tag_count_hash[product_array[i].tag_list[j]]].taggings_count += int
+        j++
+      i++
 
   $scope.tagFilter = (tag) ->
     if ($scope.dropdownTags.indexOf tag.name) == -1
@@ -39,6 +69,7 @@
   
   $http.get('/products.json').success (data) ->
     $scope.products = data.products
+    $scope.previousProducts = $scope.products
     $scope.isLoading = false
     if $routeParams.search
       $scope.searchText = $routeParams.search

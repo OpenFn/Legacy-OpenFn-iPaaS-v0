@@ -284,15 +284,15 @@
   <a class="xxx tag label" ng-hide="editTags" ng-click="showEditTagsBox()">Edit Tags <span class="badge">+/-</span></a>
   <div ng-show="editTags"> -->
     <div class="tag-editor">
-      <span ng-repeat="n in product.deep_tag_list track by $index" ng-init="taggings_count(n)" class="on tag label" ng-click="deleteTag(n,product)" title="Remove this tag.">
-        {{n.name}} <span class="badge">{{n.tag_count}}</span>
+      <span ng-repeat="n in product.deep_tag_list track by $index" class="on tag label" ng-click="deleteTag(n,product)" title="Remove this tag.">
+        {{n.name}} <span class="badge">{{n.taggings_count}}</span>
       </span>
         <input type="text" class="search-tags" placeholder="Type here to tag..." ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
     </div>
     <div class="tag-suggestions">
       <div ng-repeat="tag in tag_match | orderBy:'name' | orderBy:'-tag_count'" >
-        <a ng-click="addTag(tag,product)" ng-init = "tagging_count(tag)" title="Add this tag" class="off tag label">
-          {{tag.name}} <span class="badge">{{tag.tag_count}}</span>
+        <a ng-click="addTag(tag,product)" title="Add this tag" class="off tag label">
+          {{tag.name}} <span class="badge">{{tag.taggings_count}}</span>
         </a>
       </div>
       <a class="off tag label" ng-show="new_tag" ng-click="addNewTag(product)">
