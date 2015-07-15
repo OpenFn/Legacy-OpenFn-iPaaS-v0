@@ -1,27 +1,81 @@
+<head>
+  <style type="text/css">
+  .our-team h1 {
+    font-size: 60px;
+  }
+  
+  .line-separator {
+    height:1px;
+    margin: auto 25px 10px 0; 
+    background:#717171;
+    border-bottom:1px solid #7FB7BE;
+  }
+
+  .team-member-pic {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    margin-top: 26px;
+    border-radius: 10px;
+  }
+
+  .team-member-page {
+    min-height: 250px;
+  }
+
+  .team-member-page p {
+    margin: 0 0 0 10px;
+    line-height: 1.8;
+  }
+  </style>
+
+</head>
+
 <div class="team" ng-controller="TeamController as team">
 
-<header class="header-image">
-  <div class="headline">
-    <h1>
-      Our team
-    </h1>
-    <h3>
-      Super cool
-    </h3>
+  <header class="header-image">
+    <div class="headline our-team">
+      <h1>
+        Our team
+      </h1>
+    </div>
+  </header>
+
+  <div class="row team-member-page" ng-repeat="member in team | orderBy:'order'">
+    <div class="container col-md-8 col-md-offset-2">
+      <div class="container col-md-3">
+
+        <img ng-src="{{member.picture_url}}" class = "team-member-pic" width=190px>
+      </div>
+      <div class="col-md-9">
+        <h2><b>{{member.name}}</b></h2>
+        <p>{{member.bio}}</p>
+        <br>
+        
+      </div>
+      <div class="line-separator"></div>
+      <div class="divider"></div>
+    </div>
   </div>
-</header>
-<br>
-<div class="row" ng-repeat="member in team">
-  <div class="col-md-2 col-md-offset-2">
-  <img ng-src="{{member.picture_url}}">
-  </div>
-  <div class="col-md-6">
-    <p><b>{{member.name}}</b></p>
-    <br>
-    <p>{{member.bio}}</p>
-    <br>
-  </div>
-  <div class="divider"></div>
 </div>
 
+<!-- 
+
+
+  <br>
+  <div class="row" ng-repeat="member in team">
+    <div class="col-md-2 col-md-offset-2">
+    <img ng-src="{{member.picture_url}}" class= "team-member">
+      <div class="line-separator"></div>
+    </div>
+    <div class="col-md-6">
+      <h2><b>{{member.name}}</b></h2>
+      <br>
+      <p>{{member.bio}}</p>
+      <br>
+    </div>
+      <div class="divider"></div>
+  </div>
 </div>
+
+</div> -->
