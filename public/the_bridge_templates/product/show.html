@@ -43,12 +43,12 @@
             <br>
             <ul class="nav nav-pills nav-justified right-pills">
               <li role="presentation">
-                <a class="edit-link" ng-click="checkLogin(product)">
+                <a class="edit-link" ng-click="editProduct(product)">
                   <i class="fa fa-edit fa-lg"></i> Edit this listing
                 </a>
               </li>
               <li role="presentation">
-                   <a data-toggle="modal" data-target="#review_modal" target="_blank" class="review-link">
+                   <a ng-click="checkLogin()" data-toggle="modal" data-target="#review_modal" target="_blank" class="review-link">
                    <i class="fa fa-comment fa-lg"></i> Rate & Review ({{product.reviews_count}})
                   </a>
                 </form>
@@ -59,7 +59,7 @@
                 </a>
               </li>
               <li role="presentation">
-                <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
+                <a ng-click="integratedProduct('/mappings'); $event.stopPropagation()" class="vote-link" ng-show="product.integrated">
                   <i class="fa fa-plug fa-lg"></i> Make a mapping
                 </a>
 
@@ -118,7 +118,7 @@
     </div>
     <br><br>
     <div class="text-center">
-      <button ng-click="editProduct(product)" class="btn btn-default" type="submit">Submit</button>
+      <button ng-click="updateProduct(product)" class="btn btn-default" type="submit">Submit</button>
     </div>
   </div>
 </div>
@@ -132,7 +132,7 @@
         <div class="tab-content-text">
         <div class="col-md-6">
         <div class="rn-title center">Reviews</div><br>
-          <div ng-show="product.reviews_count == 0">Nobody has review this product yet. Be the first! <a data-toggle="modal" data-target="#review_modal" target="_blank" class="review-link"><strong>Click to rate & review {{product.name}}.</strong></a></div>
+          <div ng-show="product.reviews_count == 0">Nobody has review this product yet. Be the first! <a ng-click="checkLogin()" data-toggle="modal" data-target="#review_modal" target="_blank" class="review-link"><strong>Click to rate & review {{product.name}}.</strong></a></div>
           <div ng-repeat="n in product.reviews | orderBy:'-review_score'" ng-init="checkVote(n)">
               <div class="row">
               <div class="col-md-1">
@@ -178,7 +178,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="review_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" ng-show="loggedIn" id="review_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="featurette dark">

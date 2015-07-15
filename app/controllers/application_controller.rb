@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
 
     def not_authenticated
       respond_to do |format|
-        debugger
         format.html { redirect_to login_path, alert: "Please login first" }
         format.json { head :unauthorized }
       end
