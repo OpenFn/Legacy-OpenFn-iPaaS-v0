@@ -3,7 +3,11 @@ class UserSessionsController < ApplicationController
 
   def create
     if login(params[:email], params[:password])
-      redirect_back_or_to('/marketplace', notice: "Welcome Back!")
+      if session[:redirect_to_url]
+        redirect_back_or_to(session[:redirect_to_url], notice: "Welcome Back!")
+      else
+        redirect_back_or_to('/marketplace', notice: "Welcome Back!")
+      end
     else
       flash.now[:alert] = 'Login failed'
       render action: 'new'
