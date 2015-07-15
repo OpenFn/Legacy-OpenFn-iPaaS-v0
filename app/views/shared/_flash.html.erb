@@ -1,7 +1,7 @@
 <% if flash %>
     <% flash.each do |name, msg| %>
       <div class="flash col-md-12 bg-<%= name %>">
-        <%= msg %>
+        <i class="fa fa-exclamation-triangle"></i> <%= msg %>
       </div>
     <% end %>
 <% end %>
