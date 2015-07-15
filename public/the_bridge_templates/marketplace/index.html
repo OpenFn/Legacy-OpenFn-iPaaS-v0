@@ -26,7 +26,7 @@
          
         <div class="col-md-10 col-md-offset-1">
           <div class="search-field">
-              <input type:"text" class="form-control" ng-class="alex" placeholder="Start typing to search..." ng-model="searchText" tooltip-trigger="mouseenter" tooltip="Search for product names, descriptions, tags, or websites.">
+              <input type:"text" class="form-control" ng-class="alex" placeholder="Start typing to search..." ng-model="searchText" tooltip-trigger="mouseenter" tooltip="Search for product names, descriptions, tags, or websites." typeahead="keyword for keyword in keywords | filter:$viewValue | limitTo:8">
           </div>
         </div>
         <div class="col-md-10 col-md-offset-1">  
