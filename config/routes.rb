@@ -109,6 +109,7 @@ OpenFn::Application.routes.draw do
 
   get  "signup", to: "users#new",        as: :signup
   get  "login",  to: "user_sessions#new",     as: :login
+  post "signup", to: "users#create"
   post "login",  to: "user_sessions#create",  as: :create_session
   post  "logout", to: "user_sessions#destroy", as: :logout
   post :send_invite, to: 'users#send_invite'

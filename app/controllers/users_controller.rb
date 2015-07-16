@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   respond_to :html, :json, :xml
   skip_before_filter :require_login, only: [:new, :create, :sync, :set_password, :check_login]
 
-  skip_before_filter :verify_authenticity_token, only: [:sync]
+  skip_before_filter :verify_authenticity_token#, only: [:sync]
   before_filter :validate_api_admin, only: [:sync]
 
   def new
@@ -10,8 +10,26 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    # @user = User.new#(formData)
 
+    
+    # puts(formData)
+
+    
+
+    @user = User.new(:email => params[:email]#,
+                         # :password => params[:password],
+                         # :password_confirmation => params[:password_confirmation],
+                         # :first_name => params[:first_name],
+                         # :last_name => params[:last_name],
+                         # :organisation => params[:organisation],
+                         # :tester => "tester")
+                    )
+
+    puts("the form data is:")
+    puts(@user.email)
+
+    render "users/_form"
     # respond_to do |format|
     #   if @user.save
     #     format.json { render json: @user, status: :created }
@@ -20,14 +38,14 @@ class UsersController < ApplicationController
     #   end
     # end
 
-    if @user.save_with_payment(params)
-      auto_login(@user)
-      set_user_credentials_and_flash
-      redirect_to(:root, notice: "Welcome!")
-    else
-      flash.now[:alert] = "Signup failed..."
-      render :new
-    end
+    # if @user.save_with_payment(params)
+    #   auto_login(@user)
+    #   set_user_credentials_and_flash
+    #   redirect_to(:root, notice: "Welcome!")
+    # else
+    #   flash.now[:alert] = "Signup failed..."
+    #   render :new
+    # end
   end
 
   def index

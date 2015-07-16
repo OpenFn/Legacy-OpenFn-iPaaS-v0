@@ -108,6 +108,7 @@ Array::filter = (func) -> x for x in @ when func(x)
     .when('/tags', {
       templateUrl: '../the_bridge_templates/tags/index.html'
     })
+    
     .when('/', {
       templateUrl: '../the_bridge_templates/static/welcome.html',
       controller: ($scope, $http) ->
