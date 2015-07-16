@@ -2,5 +2,5 @@ class ReviewVote < ActiveRecord::Base
   belongs_to :user
   belongs_to :review
 
-  #validates :user_id, :uniqueness => {:scope => [:review_id, :value]}
+  validates_uniqueness_of :user_id, :scope => :review_id
 end

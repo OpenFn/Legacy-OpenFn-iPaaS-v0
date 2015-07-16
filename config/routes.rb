@@ -126,6 +126,8 @@ OpenFn::Application.routes.draw do
   get '/review/:review_id/up_vote', to: "review_votes#upvote"
   get '/review/:review_id/down_vote', to: "review_votes#downvote"
   get '/review/:review_id/score', to: "review_votes#count_rating"
+  get '/review/:review_id/check_vote', to: "review_votes#check_vote"
+  get 'review/vote/:review_id', to: "review_votes#vote"
   get '/products/:product_id/tags', to: "tags#product_tags"
   post '/products/:product_id/tags/add', to: "tags#product_tags_add"
   get '/tags/get_all_json', to: "tags#get_all_json"
