@@ -39,7 +39,8 @@
       )
     )
   $scope.tagging_publish = (draft) ->
-    $http.get("/tags/publish/#{draft.id}", {params: {selection: "publish"}}).success((data) ->
+    draft.response = "publish"
+    $http.post("/tags/publish/#{draft.id}", draft).success((data) ->
       $http.get("/admin/drafts").success((data) ->
         $scope.tagging_drafts = []
         i = 0
@@ -51,7 +52,8 @@
     )
 
   $scope.tagging_discard = (draft) ->
-    $http.get("/tags/publish/#{draft.id}", {params: {selection: "discard"}}).success((data) ->
+    draft.response = "discard"
+    $http.post("/tags/publish/#{draft.id}", draft).success((data) ->
       $http.get("/admin/drafts").success((data) ->
         $scope.tagging_drafts = []
         i = 0
