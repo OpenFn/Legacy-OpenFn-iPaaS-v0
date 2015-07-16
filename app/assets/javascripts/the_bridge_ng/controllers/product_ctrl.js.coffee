@@ -1,4 +1,4 @@
-@controllerModule.controller 'ProductController', ['$scope', '$location', '$http', '$routeParams', '$timeout', ($scope, $location, $http, $routeParams, $timeout) ->
+@controllerModule.controller 'ProductController', ['$scope', '$location', '$modal', '$http', '$routeParams', '$timeout', ($scope, $location, $modal, $http, $routeParams, $timeout) ->
   $scope.product = {}
   $scope.searchText = ""
   $scope.searchTagText = ""
@@ -7,6 +7,7 @@
   $scope.tags_added = []
   $scope.deleted_tags = []
   $scope.tags_deleted = []
+  $scope.loggedIn = false
 
   $http.get('/products/' + $routeParams.id + '.json').success((data) ->
     $scope.product = data
@@ -20,19 +21,29 @@
       { title:'Resources', content: $scope.product.resources, disabled: true }
     ];
     # console.log arguments
-    #$scope.twitterApi = $scope.product.twitter.substring(1)
-    #$timeout ->
-    #  twttr.widgets.load()
-    #, 500
+    $scope.twitterApi = $scope.product.twitter.substring(1)
+    $timeout ->
+     twttr.widgets.load()
+    , 500
+
+  $scope.checkVote = (review) ->
+    console.log(review)
+    $http.get('/review/'+review.id+'/check_vote.json').success (data) ->
+      review.voted = data
 
   $scope.changeVoteFor = (product) ->
-    $http.get("/products/#{product.id}/vote")
-      .success (data) ->
-        angular.extend(product,data)
-
-      .error (data, status, headers, config) ->
-        window.location="/login" if status == 401
-        # console.log arguments
+    url = $location.url()
+    $http.get("/user/check_login?redirect=#{url}").success((data) ->
+      if data.status == 'login'
+        $scope.showModal()
+      else
+        $http.get("/products/#{product.id}/vote")
+          .success (data) ->
+            angular.extend(product,data)
+        
+          .error (data, status, headers, config) ->
+            window.location="/login" if status == 401
+      )
 
   $scope.changeReviewFor = (product) ->
     $http.get("/products/#{product.id}/review")
@@ -40,7 +51,7 @@
         angular.extend(product,data)
 
       .error (data, status, headers, config) ->
-        window.location="/login" if status == 401
+        $scope.showModal() if status == 401
         # console.log arguments
 
   $scope.searchAgain = () ->
@@ -51,49 +62,41 @@
       $scope.product.rating = data
   )
 
-  $scope.upVote = (review) ->
-    i = 0
-    while i < $scope.product.reviews.length
-      $scope.product.reviews[i].duplicate_upvote = false
-      $scope.product.reviews[i].duplicate_downvote = false
-      i++
-    $http.get("/review/#{review.id}/up_vote").success((data) ->
-      if data.status == 'login'
-        window.location = data.redirect_url
+      #The else is used so that the review modal is hidden if the user is not logged in
+      #Todo: need to call the "write a review" modal here, rather than in the view
+  $scope.addReview = (path) ->
+      url = if path? then path else $location.url() 
 
-      if data.status == 'duplicate'
-        review.duplicate_upvote = true
-        review.duplicate_downvote = false
-
-      if data.status == 'success'
-        if review.review_score == -1
-          review.review_score = review.review_score + 2
+      $http.get("/user/check_login?redirect=#{url}").success((data) ->
+        if data.status == 'login'
+          $scope.showModal()
         else
-          review.review_score = review.review_score + 1
-        review.duplicate_downvote = false
-    )
+          $scope.loggedIn = true
+      )
 
-  $scope.downVote = (review) ->
-    i = 0
-    while i < $scope.product.reviews.length
-      $scope.product.reviews[i].duplicate_upvote = false
-      $scope.product.reviews[i].duplicate_downvote = false
-      i++
-    $http.get("/review/#{review.id}/down_vote").success((data) ->
-      if data.status == 'login'
-        window.location = data.redirect_url
 
-      if data.status == 'duplicate'
-        review.duplicate_downvote = true
-        review.duplicate_upvote = false
-
-      if data.status == 'success'
-        if review.review_score == 1
-          review.review_score = review.review_score - 2
-        else
-          review.review_score = review.review_score - 1
-        review.duplicate_upvote = false
-    )
+  $scope.vote = (review, up_or_down) ->
+    $scope.checkLogin()
+    update_vote = false
+    create_vote = false
+    if up_or_down && (review.voted == -1)
+      review.review_score = review.review_score + 2
+      review.voted = 1
+      update_vote = true
+    else if up_or_down && (review.voted == 0)
+      review.review_score = review.review_score + 1
+      review.voted = 1
+      create_vote = true
+    else if !up_or_down && (review.voted == 1)
+      review.review_score = review.review_score - 2
+      review.voted = -1
+      update_vote = true
+    else if !up_or_down && (review.voted == 0)
+      review.review_score = review.review_score - 1
+      review.voted = -1
+      create_vote = true
+    if update_vote || create_vote
+      $http.get('review/vote/'+review.id, {params: {vote: review.voted, update: update_vote, create: create_vote}})
 
 
   $scope.reviewScore = (review,product) ->
@@ -192,27 +195,44 @@
       'name': $scope.newTag
     $http.post("/products/#{product.id}/tags/add",newTagName).success((data) ->
       if data.status == 'login'
-        window.location = data.redirect_url
+        $scope.showModal()
       productTags(product)
     )
 
   $scope.showEditTagsBox = () ->
     $http.get("/user/check_login").success((data) ->
       if data.status == 'login'
-        window.location = data.redirect_url
+        $scope.showModal()
       else
         $scope.editTags = true
     )
 
-  $scope.checkLogin = (product) ->
-    $http.get("/user/check_login").success((data) ->
+
+# TODO: Eventually, we will want to turn showModal and checkLogin into services
+  $scope.showModal = () ->
+    modalInstance = $modal.open
+      templateUrl: 'modalTemplate.html',
+      controller: 'ModalController'
+
+
+  $scope.checkLogin = (path) ->
+    redirect = if path? then true else false
+    url = if path? then path else $location.url()
+    $http.get("/user/check_login?redirect=#{url}").success((data) ->
       if data.status == 'login'
-        window.location = data.redirect_url
+        $scope.showModal()
       else
-        window.location = "/product/#{product.id}/edit"
-    )
+        if redirect
+          window.location = url
+        else
+          $scope.loggedIn = true
+        )
 
   $scope.editProduct = (product) ->
+    url = "/product/#{product.id}/edit"
+    $scope.checkLogin(url)
+
+  $scope.updateProduct = (product) ->
     console.log(product.website)
     productEdit =
       'id': product.id

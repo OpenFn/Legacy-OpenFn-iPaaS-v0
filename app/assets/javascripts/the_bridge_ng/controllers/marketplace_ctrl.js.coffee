@@ -1,4 +1,4 @@
-@controllerModule.controller 'MarketplaceController', ['$scope', '$location', '$http', '$routeParams', ($scope, $location, $http, $routeParams) ->
+@controllerModule.controller 'MarketplaceController', ['$scope', '$location', '$modal', '$http', '$routeParams', ($scope, $location, $modal, $http, $routeParams) ->
   $scope.products = []
   $scope.searchText = ""
   $scope.searchFilters = {}
@@ -7,6 +7,7 @@
   $scope.categories = {};
   $scope.dropdownTags = []
   $scope.tag_count_hash = {};
+  $scope.keywords = []
 
   $http.get('/tag_categories.json').success((data) ->
     $scope.categories = data;
@@ -17,6 +18,7 @@
     i = 0
     while i < $scope.tags.length
       $scope.tag_count_hash[$scope.tags[i].name] = i
+      $scope.keywords[i] = $scope.tags[i].name
       i++
     )
 
@@ -69,10 +71,16 @@
   
   $http.get('/products.json').success (data) ->
     $scope.products = data.products
+    k = $scope.keywords.length
+    j = 0
+    while j < $scope.products.length
+      $scope.keywords[j + k] = $scope.products[j].name
+      j++
     $scope.previousProducts = $scope.products
     $scope.isLoading = false
     if $routeParams.search
       $scope.searchText = $routeParams.search
+    $scope.keywords.reverse();
 
   $scope.removeTagFilters = ->
     $scope.searchText = ""
@@ -137,12 +145,35 @@
         return false
     return true
   
+
+  $scope.showModal = () ->
+    modalInstance = $modal.open
+      templateUrl: 'modalTemplate.html',
+      controller: 'ModalController'
+
+
   $scope.changeVoteFor = (product) ->
-    $http.get("/products/#{product.id}/vote")
-      .success (data) ->
-        angular.extend(product,data)
-    
-      .error (data, status, headers, config) ->
-        window.location="/login" if status == 401
+    url = $location.url()
+    $http.get("/user/check_login?redirect=#{url}").success((data) ->
+      if data.status == 'login'
+        $scope.showModal()
+      else
+        $http.get("/products/#{product.id}/vote")
+          .success (data) ->
+            angular.extend(product,data)
+        
+          .error (data, status, headers, config) ->
+            window.location="/login" if status == 401
+      )
+
+  $scope.integratedProduct = (url) ->
+    url = "/mappings"
+    $http.get("/user/check_login?redirect=#{url}").success((data) ->
+      if data.status == 'login'
+        $scope.showModal()
+      else
+        window.location = "/mappings"
+    )
+
 
 ]

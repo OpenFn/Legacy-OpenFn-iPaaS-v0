@@ -43,12 +43,12 @@
             <br>
             <ul class="nav nav-pills nav-justified right-pills">
               <li role="presentation">
-                <a class="edit-link" ng-click="checkLogin(product)">
+                <a class="edit-link" ng-click="editProduct(product)">
                   <i class="fa fa-edit fa-lg"></i> Edit this listing
                 </a>
               </li>
               <li role="presentation">
-                   <a data-toggle="modal" data-target="#review_modal" target="_blank" class="review-link">
+                   <a ng-click="checkLogin()" data-toggle="modal" data-target="#review_modal" target="_blank" class="review-link">
                    <i class="fa fa-comment fa-lg"></i> Rate & Review ({{product.reviews_count}})
                   </a>
                 </form>
@@ -59,7 +59,7 @@
                 </a>
               </li>
               <li role="presentation">
-                <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
+                <a ng-click="integratedProduct('/mappings'); $event.stopPropagation()" class="vote-link" ng-show="product.integrated">
                   <i class="fa fa-plug fa-lg"></i> Make a mapping
                 </a>
 
@@ -118,7 +118,7 @@
     </div>
     <br><br>
     <div class="text-center">
-      <button ng-click="editProduct(product)" class="btn btn-default" type="submit">Submit</button>
+      <button ng-click="updateProduct(product)" class="btn btn-default" type="submit">Submit</button>
     </div>
   </div>
 </div>
@@ -132,13 +132,13 @@
         <div class="tab-content-text">
         <div class="col-md-6">
         <div class="rn-title center">Reviews</div><br>
-          <div ng-show="product.reviews_count == 0">Nobody has review this product yet. Be the first! <a data-toggle="modal" data-target="#review_modal" target="_blank" class="review-link"><strong>Click to rate & review {{product.name}}.</strong></a></div>
-          <div ng-repeat="n in product.reviews | orderBy:'-review_score'">
+          <div ng-show="product.reviews_count == 0">Nobody has review this product yet. Be the first! <a ng-click="checkLogin()" data-toggle="modal" data-target="#review_modal" target="_blank" class="review-link"><strong>Click to rate & review {{product.name}}.</strong></a></div>
+          <div ng-repeat="n in product.reviews | orderBy:'-review_score'" ng-init="checkVote(n)">
               <div class="row">
               <div class="col-md-1">
-                <a ng-click="upVote(n)" ng-disabled="checked" data-toggle="tooltip" title="This review shows effort. It is useful and clear."><i class="fa fa-chevron-up fa-2x"></i></a>
+                <a ng-click="vote(n, true)" ng-disabled="checked" data-toggle="tooltip" title="This review shows effort. It is useful and clear."><i class="fa fa-chevron-up fa-2x"></i></a>
                 <span class="rscore" ng-init="reviewScore(n,product)" data-toggle="tooltip" title="The review score is a measure of how many people find this review to be useful and clear."><strong>{{n.review_score > 0 ? '+' : ''}}{{n.review_score}}</strong></span>
-                <a ng-click="downVote(n)" ng-disabled="checked" data-toggle="tooltip" title="This review does not show effort. It is not useful or unclear."><i class="fa fa-chevron-down fa-2x"></i></a>
+                <a ng-click="vote(n, false)" ng-disabled="checked" data-toggle="tooltip" title="This review does not show effort. It is not useful or unclear."><i class="fa fa-chevron-down fa-2x"></i></a>
                 <span ng-show = "n.duplicate_upvote" class="submitStatus">*You have already marked this review as helpful.</span>
                 <span ng-show = "n.duplicate_downvote" class="submitStatus">*You have already marked this review as unhelpful.</span>
               </div>
@@ -172,13 +172,13 @@
               <br><br>
             </div>
           </div>
-          <div class="col-sm-6 center">
+          <div class="col-sm-6 center" ng-hide="!product.twitter">
           <div class="rn-title center">{{product.twitter}}</div><br>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><a class="twitter-timeline" href="https://twitter.com/{{twitterApi}}" data-widget-id="581403911644385280" width="520" height="500" data-screen-name="{{twitterApi}}"><i class="fa fa-spinner fa-pulse fa-lg"></i></a>
   </div>
 </div>
 
-<div class="modal fade" id="review_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" ng-show="loggedIn" id="review_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="featurette dark">

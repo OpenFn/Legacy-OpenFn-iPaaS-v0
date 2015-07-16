@@ -23,60 +23,7 @@
         </div>
       </div>
     </div>
-      <br>
-
-<!-- THIS SHOULD BE IT'S OWN ELEMENT, #FIX AND SHARE ACROSS ALL PRODUCT EDIT PAGES -->
-<!--   <div id="alerts"></div>
-    <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
-      <div class="btn-group">
-        
-          <ul class="dropdown-menu">
-          </ul>
-        </div>
-      <div class="btn-group">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-          <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
-          <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
-          <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
-          </ul>
-      </div>
-      <div class="btn-group">
-        <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
-        <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
-        <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
-        <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
-      </div>
-      <div class="btn-group">
-        <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
-        <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
-        <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-indent-left"></i></a>
-        <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent-right"></i></a>
-      </div>
-      <div class="btn-group">
-        <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
-        <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
-        <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
-        <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
-      </div>
-      <div class="btn-group">
-      <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="fa fa-link"></i></a>
-        <div class="dropdown-menu input-append">
-          <input class="span2" placeholder="URL" type="text" data-edit="createLink"/>
-          <button class="btn" type="button">Add</button>
-        </div>
-        <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="fa fa-cut"></i></a>
-      </div>
-      <div class="btn-group">
-        <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
-        <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
-      </div>
-    </div>
-    <div id="editor">
-      Go ahead
-    </div> -->
-<!-- END OF #FIX FOR ITS OWN PRODUCT -->
-
+    <br>
     <br>
     <div class="row flat">
       <div class="col-sm-12">
@@ -278,32 +225,22 @@
 
 <!-- THIS SHOULD BE IT'S OWN RESOURCE, USED HERE AND ON THE PRODUCT/#/EDIT PAGE -->
 <div class="tags">
-<!--   <div ng-hide="editTags" ng-repeat="tag in product.tag_list track by $index" class="tag label">
-    {{tag.name}} <span class="badge">7</span>
+  <div class="tag-editor">
+    <span ng-repeat="n in product.deep_tag_list track by $index" class="on tag label" ng-click="deleteTag(n,product)" title="Remove this tag.">
+      {{n.name}} <span class="badge">{{n.taggings_count}}</span>
+    </span>
+      <input type="text" class="search-tags" placeholder="Type here to tag..." ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
   </div>
-  <a class="xxx tag label" ng-hide="editTags" ng-click="showEditTagsBox()">Edit Tags <span class="badge">+/-</span></a>
-  <div ng-show="editTags"> -->
-    <div class="tag-editor">
-      <span ng-repeat="n in product.deep_tag_list track by $index" class="on tag label" ng-click="deleteTag(n,product)" title="Remove this tag.">
-        {{n.name}} <span class="badge">{{n.taggings_count}}</span>
-      </span>
-        <input type="text" class="search-tags" placeholder="Type here to tag..." ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
-    </div>
-    <div class="tag-suggestions">
-      <div ng-repeat="tag in tag_match | orderBy:'name' | orderBy:'-tag_count'" >
-        <a ng-click="addTag(tag,product)" title="Add this tag" class="off tag label">
-          {{tag.name}} <span class="badge">{{tag.taggings_count}}</span>
-        </a>
-      </div>
-      <a class="off tag label" ng-show="new_tag" ng-click="addNewTag(product)">
-        <i class="fa fa-plus"></i> Create new tag... <span class="badge">+</span>
+  <div class="tag-suggestions">
+    <div ng-repeat="tag in tag_match | orderBy:'name' | orderBy:'-tag_count'" >
+      <a ng-click="addTag(tag,product)" title="Add this tag" class="off tag label">
+        {{tag.name}} <span class="badge">{{tag.taggings_count}}</span>
       </a>
     </div>
-<!--     <br><br>
-    <div class="text-center">
-      <button ng-click="editProduct(product)" class="btn btn-default" type="submit">Submit</button>
-    </div>
-  </div> -->
+    <a class="off tag label" ng-show="new_tag" ng-click="addNewTag(product)">
+      <i class="fa fa-plus"></i> Create new tag... <span class="badge">+</span>
+    </a>
+  </div>
 </div>
 <!-- END OF "TAGS.HTML" RESOURCE -->
 
@@ -314,7 +251,7 @@
         <p>The following information will help social impact organizations find the right technology to fit their needs. The “tile summary” is the main listing on openMarketplace. The filter tags help organizations sort through numerous technologies based on their needs, location, field users, and other factors.</p>
         <p>We encourage suggestions from all members of the community whether they be product developers, consultants, or end-user organizations. There are a few required fields that cover basic and summary information. Beyond that, we ask that listings focus on the functionality of each technology and what it enables users to do and avoid statements that place more value on one technology over another. Your submission must be reviewed and accepted by one of the core contributors at openfn before it is updated. Again, please refrain from using value words to ensure the listing is accepted promptly.</p>
         <p>Terms and Conditions: Open[Fn] reserves editorial decision-making power over listings that are published. We reserve the right to edit posts or request revisions. In the spirit of openness, we also maintain the right to indicate the author of listings on the openMarketplace.</p>
-        <button ng-click="editProduct(product)" id="submit" class="btn btn-success" type="submit">Submit Edits</button>
+        <button ng-click="updateProduct(product)" id="submit" class="btn btn-success" type="submit">Submit Edits</button>
         <script>
             $(document).ready(function () {
                 $('#submit').click(function () {

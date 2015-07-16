@@ -26,7 +26,7 @@
          
         <div class="col-md-10 col-md-offset-1">
           <div class="search-field">
-              <input type:"text" class="form-control" ng-class="alex" placeholder="Start typing to search..." ng-model="searchText" tooltip-trigger="mouseenter" tooltip="Search for product names, descriptions, tags, or websites.">
+              <input type:"text" class="form-control" ng-class="alex" placeholder="Start typing to search..." ng-model="searchText" tooltip-trigger="mouseenter" tooltip="Search for product names, descriptions, tags, or websites." typeahead="keyword for keyword in keywords | filter:$viewValue | limitTo:8">
           </div>
         </div>
         <div class="col-md-10 col-md-offset-1">  
@@ -103,7 +103,8 @@
                 <a ng-href="{{product.website}}" ng-click="$event.stopPropagation()" class="website-link" target="_blank" tooltip-trigger="mouseenter" tooltip="Check out the {{product.name}} website.">
                   <i class="fa fa-external-link"></i>
                 </a>              
-                <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
+                <a ng-click="integratedProduct('/mappings'); $event.stopPropagation()" 
+                class="vote-link" ng-show="product.integrated">
                   <i class="fa fa-plug"></i>
                 </a>
                 <a style="cursor: auto" ng-hide="product.integrated" class="vote-count">
