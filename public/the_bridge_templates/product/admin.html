@@ -11,61 +11,135 @@
 
 <div ng-controller="AdminController as adminCtrl">
   <div class="container">
-    <h1 ng-hide="product_drafts.length == 0">
-    <b>Product Drafts</b>
-    </h1>
-    <div ng-repeat="draft in product_drafts">
-      <div class="h3">
-        {{draft.event}} by user {{draft.whodunnit}}
-      </div>
-      <div class="h3">
-        {{draft.updated_at | date:'yyyy-MM-dd HH:mm:ss'}}
+    <div class="row">
+      <h1 class="col-md-4 col-md-offset-1" ng-hide="product_drafts.length == 0">
+        <b>Product Drafts</b>
+      </h1>
+      <h1 class="col-md-4 col-md-offset-1" ng-hide="product_drafts.length == 0">
+        <b>Current Product Description</b>
+      </h1>
       </div>
       <h4>
-      <b>Name:</b> {{draft.object.name}}
-      </h4>
-      <h4>
-      <b>Website:</b> {{draft.object.website}}
-      </h4>
-      <h4>
-      <b>Twitter Handle:</b> {{draft.object.twitter}}
-      </h4>
-      <h4>
-      <b>Contact Email:</b> {{email}}
-      </h4>
-      <h4>
-      <b>Tile Summary:</b> {{description}}
-      </h4>
-      <h4>
-      <b>Detailed Description:</b>
-      </h4>
-      <h4 ng-bind-html="draft.object.detailed_description">
-      </h4>
-      <h4>
-      <b>Costs:</b>
-      </h4>
-      <h4 ng-bind-html="draft.object.costs">
-      </h4>
-      <h4>
-      <b>Specs:</b>
-      </h4>
-      <h4 ng-bind-html="draft.object.tech_specs">
-      </h4>
-      <h4>
-      <b>Resources:</b>
-      </h4>
-      <h4 ng-bind-html="draft.object.resources">
-      </h4>
-      <br>
-      <a class="btn btn-success" ng-click ="publish(draft)">Publish</a>
-      <a class="btn btn-danger" ng-click ="discard(draft)">Discard</a>
-      <br>
-      <br>
+      <div class="row" ng-repeat="draft in product_drafts" ng-init="getProductComparison(draft)">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+          {{draft.update.event}} by user {{draft.update.whodunnit}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+          {{draft.update.updated_at | date:'yyyy-MM-dd HH:mm:ss'}}
+        </div>
+      </div>
+        <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+        <b>Name:</b> {{draft.update.object.name}}
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+        <b>Name:</b> {{draft.current.name}}
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+        <b>Website:</b> {{draft.update.object.website}}
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+        <b>Website:</b> {{draft.current.website}}
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+        <b>Twitter Handle:</b> {{draft.update.object.twitter}}
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+        <b>Twitter Handle:</b> {{draft.current.twitter}}
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+        <b>Contact Email:</b> {{draft.update.object.email}}
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+        <b>Contact Email:</b> {{draft.current.email}}
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+        <b>Tile Summary:</b> {{draft.update.object.description}}
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+        <b>Tile Summary:</b> {{draft.current.description}}
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+        <b>Detailed Description:</b> 
+        <div ng-bind-html="draft.update.object.detailed_description">
+        </div>
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+        <b>Detailed Description:</b>
+        <div ng-bind-html="draft.current.detailed_description">
+        </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+        <b>Costs:</b> 
+        <div ng-bind-html="draft.update.object.costs">
+        </div>
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+        <b>Costs:</b>
+        <div ng-bind-html="draft.current.costs">
+        </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+        <b>Specs:</b> 
+        <div ng-bind-html="draft.update.object.tech_specs">
+        </div>
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+        <b>Specs:</b>
+        <div ng-bind-html="draft.current.tech_specs">
+        </div>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+        <b>Resources:</b> 
+        <div ng-bind-html="draft.update.object.resources">
+        </div>
+        </div>
+        <div class="col-md-4 col-md-offset-1">
+        <b>Resources:</b>
+        <div ng-bind-html="draft.current.resources">
+        </div>
+        </div>
+        </div>
+        <br>
+        <div class="col-md-4 col-md-offset-1">
+        <a class="btn btn-success" ng-click ="publish(draft)">Publish</a>
+        <a class="btn btn-danger" ng-click ="discard(draft)">Discard</a>
+        </div>
+        <br>
+        <br>
+        <div class="h6">
+        <br>
+        <br>
+        </div>
+        </div>
+        </h4>
     </div>
-    <h1 ng-hide="tagging_drafts.length == 0">
+    <div class="row">
+    <h1 ng-hide="tagging_drafts.length == 0" class="col-md-6 col-md-offset-1">
     <b>Tagging Drafts</b>
     </h1>
-    <div ng-repeat="draft in tagging_drafts" ng-init="getProduct(draft)">
+    </div>
+    <div ng-repeat="draft in tagging_drafts" ng-init="getProductName(draft)">
+    <div class="col-md-4 col-md-offset-1">
       <div class="h3">
         {{draft.event}} by user {{draft.whodunnit}}
       </div>
@@ -86,6 +160,7 @@
       <a class="btn btn-danger" ng-click ="tagging_discard(draft)">Discard</a>
       <br>
       <br>
+    </div>
     </div>
     <div ng-show="(product_drafts.length == 0)&&(tagging_drafts.length == 0)">
       <div class="h2 center">

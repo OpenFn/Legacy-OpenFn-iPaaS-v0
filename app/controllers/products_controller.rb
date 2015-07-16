@@ -47,9 +47,9 @@ class ProductsController < ApplicationController
       merge("hasReviewForUser" => product.has_review_for(current_user))
   end
 
-  def get_name
+  def get
     product = Product.find(params[:product_id])
-    render json: product.name.to_json
+    render json: product.to_json
   end
 
   def admin_edit
