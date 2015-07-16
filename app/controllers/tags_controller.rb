@@ -47,9 +47,13 @@ class TagsController < ApplicationController
     if tags.present?
       tags.each do |tag|
       name = tag["name"]
-      product.tag_list.add(name)
-      product.save
-      create_admin_taggings
+      @draft = Draftsman::Draft.new
+      @draft.item_type = "Tagging"
+      @draft.item_id = product.id
+      @draft.event = "create"
+      @draft.whodunnit = current_user.id
+      @draft.object = tag.to_json
+      @draft.save
       end
     end
     render json: product
@@ -61,11 +65,34 @@ class TagsController < ApplicationController
     if tags.present?
       tags.each do |tag|
       name = tag["name"]
-      delete_admin_taggings(name,params[:product_id])
+      @draft = Draftsman::Draft.new
+      @draft.item_type = "Tagging"
+      @draft.item_id = product.id
+      @draft.event = "destroy"
+      @draft.whodunnit = current_user.id
+      @draft.object = tag.to_json
+      @draft.save
       end
     end
     render json: product
   end
+
+  def tag_draft_publish
+    draft = Draftsman::Draft.find(params[:draft_id])
+    if params[:selection] == "publish"
+      product = Product.find(draft.item_id)
+      tag_name = draft.object["name"]
+      if draft.event == "create"
+        product.tag_list.add(tag_name)
+      elsif draft.event == "destroy"
+        product.tag_list.remove(tag_name)
+      end
+      product.save
+    end
+    draft.delete
+    render json: 0
+  end
+
 
   private
 
