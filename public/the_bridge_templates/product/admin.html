@@ -11,7 +11,7 @@
 
 <div ng-controller="AdminController as adminCtrl">
   <div class="container">
-    <div ng-repeat="draft in drafts">
+    <div ng-repeat="draft in product_drafts">
       <div class="h2">
         {{draft.item_type}} {{draft.event}} by user {{draft.whodunnit}}
       </div>
@@ -27,7 +27,23 @@
       <br>
       <br>
     </div>
-    <div ng-show="drafts.length == 0">
+    <div ng-repeat="draft in tagging_drafts">
+      <div class="h2">
+        {{draft.item_type}} {{draft.event}} by user {{draft.whodunnit}}
+      </div>
+      <div class="h3">
+        {{draft.updated_at}}
+      </div>
+      <div class="h4">
+        {{draft.object}}
+      </div>
+      <br>
+      <a class="btn btn-success" ng-click ="tagging_publish(draft)">Publish</a>
+      <a class="btn btn-danger" ng-click ="tagging_discard(draft)">Discard</a>
+      <br>
+      <br>
+    </div>
+    <div ng-show="(product_drafts.length == 0)&&(tagging_drafts.length == 0)">
       <div class="h2 center">
         <br>
         There are no drafts pending review.

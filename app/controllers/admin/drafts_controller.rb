@@ -40,33 +40,10 @@ class Admin::DraftsController < Admin::BaseAdminController
       @draft.destroy
       render json: record
     end
-    if @draft.event.eql?("create") and @draft.item_type.eql?("Tagging")
-      schema = @draft.item_type.constantize
-      record = schema.find(@draft.object['id'])
-      record.update(:draft_id => nil, :published_at => Time.now)
-      @draft.destroy
-      render json: record
-    end
-    if @draft.event.eql?("destroy") and @draft.item_type.eql?("Tagging")
-      schema = @draft.item_type.constantize
-      record = schema.find(@draft.object['id'])
-      record.destroy
-      @draft.destroy
-      render json: record
-    end
-
   end
 
   # Post draft ID here to revert it
   def destroy
-    if @draft.event.eql?("destroy") and @draft.item_type.eql?("Tagging")
-      schema = @draft.item_type.constantize
-      record = schema.find(@draft.object['id'])
-      record.update(:draft_id => nil, :trashed_at => nil)
-      @draft.destroy
-      render json: record
-      return
-    end
     @draft.revert!
     render json: @draft
   end
