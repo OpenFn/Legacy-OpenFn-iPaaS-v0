@@ -20,10 +20,10 @@
       { title:'Resources', content: $scope.product.resources, disabled: true }
     ];
     # console.log arguments
-    #$scope.twitterApi = $scope.product.twitter.substring(1)
-    #$timeout ->
-    #  twttr.widgets.load()
-    #, 500
+    $scope.twitterApi = $scope.product.twitter.substring(1)
+    $timeout ->
+     twttr.widgets.load()
+    , 500
 
   $scope.changeVoteFor = (product) ->
     $http.get("/products/#{product.id}/vote")
