@@ -21,10 +21,10 @@
       { title:'Resources', content: $scope.product.resources, disabled: true }
     ];
     # console.log arguments
-    #$scope.twitterApi = $scope.product.twitter.substring(1)
-    #$timeout ->
-    #  twttr.widgets.load()
-    #, 500
+    $scope.twitterApi = $scope.product.twitter.substring(1)
+    $timeout ->
+     twttr.widgets.load()
+    , 500
 
   $scope.checkVote = (review) ->
     console.log(review)

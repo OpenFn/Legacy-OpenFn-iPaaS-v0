@@ -1,0 +1,56 @@
+<div class="team" ng-controller="TeamController as team">
+
+  <header class="header-image">
+    <div class="headline our-team">
+          <h1>
+      <i class="fa fa-credit-card"></i> tiered <strong>Pricing</strong>
+    </h1>
+    <h3>
+      Unlock the <strong>potential</strong> of your current technologies.
+    </h3>
+    </div>
+  </header>
+    <div class="container col-md-8 col-md-offset-2 team-member-page">
+    <br> <br>
+<!--     TODO: Write an about us section -->
+    <p> This is where the about us text will go. PLEASE INSERT TEXT</p>
+    <h1>Our Team</h1>
+  <div class="row team-member-page" ng-repeat="member in team | orderBy:'order'">
+
+      <div class="container col-md-3">
+
+        <img ng-src="{{member.picture_url}}" class = "team-member-pic" width=190px>
+      </div>
+      <div class="col-md-9">
+        <h2><b>{{member.name}}</b><small>&nbsp&nbsp{{member.title}}</small></h2>
+        <h3></h3>
+        <p>{{member.bio}}</p>
+        <br>
+        
+      </div>
+      <div class="line-separator"></div>
+      <div class="divider"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+
+
+  <br>
+  <div class="row" ng-repeat="member in team">
+    <div class="col-md-2 col-md-offset-2">
+    <img ng-src="{{member.picture_url}}" class= "team-member">
+      <div class="line-separator"></div>
+    </div>
+    <div class="col-md-6">
+      <h2><b>{{member.name}}</b></h2>
+      <br>
+      <p>{{member.bio}}</p>
+      <br>
+    </div>
+      <div class="divider"></div>
+  </div>
+</div>
+
+</div> -->
