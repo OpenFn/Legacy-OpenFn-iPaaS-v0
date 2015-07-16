@@ -11,32 +11,76 @@
 
 <div ng-controller="AdminController as adminCtrl">
   <div class="container">
+    <h1 ng-hide="product_drafts.length == 0">
+    <b>Product Drafts</b>
+    </h1>
     <div ng-repeat="draft in product_drafts">
-      <div class="h2">
-        {{draft.item_type}} {{draft.event}} by user {{draft.whodunnit}}
+      <div class="h3">
+        {{draft.event}} by user {{draft.whodunnit}}
       </div>
       <div class="h3">
-        {{draft.updated_at}}
+        {{draft.updated_at | date:'yyyy-MM-dd HH:mm:ss'}}
       </div>
-      <div class="h4">
-        {{draft.object}}
-      </div>
+      <h4>
+      <b>Name:</b> {{draft.object.name}}
+      </h4>
+      <h4>
+      <b>Website:</b> {{draft.object.website}}
+      </h4>
+      <h4>
+      <b>Twitter Handle:</b> {{draft.object.twitter}}
+      </h4>
+      <h4>
+      <b>Contact Email:</b> {{email}}
+      </h4>
+      <h4>
+      <b>Tile Summary:</b> {{description}}
+      </h4>
+      <h4>
+      <b>Detailed Description:</b>
+      </h4>
+      <h4 ng-bind-html="draft.object.detailed_description">
+      </h4>
+      <h4>
+      <b>Costs:</b>
+      </h4>
+      <h4 ng-bind-html="draft.object.costs">
+      </h4>
+      <h4>
+      <b>Specs:</b>
+      </h4>
+      <h4 ng-bind-html="draft.object.tech_specs">
+      </h4>
+      <h4>
+      <b>Resources:</b>
+      </h4>
+      <h4 ng-bind-html="draft.object.resources">
+      </h4>
       <br>
       <a class="btn btn-success" ng-click ="publish(draft)">Publish</a>
       <a class="btn btn-danger" ng-click ="discard(draft)">Discard</a>
       <br>
       <br>
     </div>
-    <div ng-repeat="draft in tagging_drafts">
-      <div class="h2">
-        {{draft.item_type}} {{draft.event}} by user {{draft.whodunnit}}
+    <h1 ng-hide="tagging_drafts.length == 0">
+    <b>Tagging Drafts</b>
+    </h1>
+    <div ng-repeat="draft in tagging_drafts" ng-init="getProduct(draft)">
+      <div class="h3">
+        {{draft.event}} by user {{draft.whodunnit}}
       </div>
       <div class="h3">
-        {{draft.updated_at}}
+        {{draft.updated_at | date:'yyyy-MM-dd HH:mm:ss'}}
       </div>
-      <div class="h4">
-        {{draft.object}}
-      </div>
+      <h4>
+      <b>Tag:</b> {{draft.object.name}}
+      </h4>
+      <h4>
+      <b>Product:</b> {{draft.product_name}}
+      </h4>
+      <h4 ng-show="{{draft.object.taggings_count == undefined}}">
+      <b>New Tag</b>
+      </h4>
       <br>
       <a class="btn btn-success" ng-click ="tagging_publish(draft)">Publish</a>
       <a class="btn btn-danger" ng-click ="tagging_discard(draft)">Discard</a>

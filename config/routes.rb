@@ -125,6 +125,7 @@ OpenFn::Application.routes.draw do
   get 'review/vote/:review_id', to: "review_votes#vote"
   get '/products/:product_id/tags', to: "tags#product_tags"
   get '/team_members/get_all', to: "team_members#get_all"
+  get '/product/get_name/:product_id', to: "products#get_name"
   post '/products/:product_id/tags/add', to: "tags#product_tags_add"
   post '/tags/publish/:draft_id', to: "tags#tag_draft_publish"
   get '/tags/get_all_json', to: "tags#get_all_json"

@@ -8,12 +8,18 @@
       if data.drafts[i].item_type == "Product"
         $scope.product_drafts.push data.drafts[i]
         i++
+        continue
       if data.drafts[i].item_type == "Tagging"
         $scope.tagging_drafts.push data.drafts[i]
         i++
 
     console.log("drafts",$scope.drafts)
   )
+
+  $scope.getProduct = (draft) ->
+    $http.get("/product/get_name/#{draft.item_id}.json").success((data) ->
+      draft.product_name = data
+      )
 
   $scope.publish = (draft) ->
     $http.put("/admin/drafts/#{draft.id}").success((data) ->
