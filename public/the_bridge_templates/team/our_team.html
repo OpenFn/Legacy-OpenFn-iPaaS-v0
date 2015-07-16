@@ -2,6 +2,11 @@
   <style type="text/css">
   .our-team h1 {
     font-size: 60px;
+    text-align: center;
+  }
+
+  .our-team h2 h3 {
+    display: inline-block;
   }
   
   .line-separator {
@@ -17,6 +22,7 @@
     height: auto;
     margin-top: 26px;
     border-radius: 10px;
+    margin-bottom: 10px;
   }
 
   .team-member-page {
@@ -35,20 +41,22 @@
 
   <header class="header-image">
     <div class="headline our-team">
-      <h1><strong>
-        Our team</strong>
-      </h1>
+      <h1><strong>About Us</strong></h1>
     </div>
   </header>
-
+    <div class="container col-md-8 col-md-offset-2 team-member-page">
+    <br> <br>
+    <p> Occupy narwhal Schlitz, lo-fi sed iPhone yr put a bird on it pork belly nostrud. Velit Etsy try-hard, Echo Park non selvage mustache do shabby chic. Fanny pack culpa jean shorts eu butcher. Aesthetic mustache adipisicing, 90's YOLO aliqua pariatur Helvetica Etsy lo-fi photo booth Pinterest irony dolor High Life. Tempor photo booth consectetur butcher, fingerstache accusamus jean shorts culpa cray before they sold out duis anim. Art party tempor synth church-key cred YOLO typewriter, Neutra Banksy deserunt polaroid irony et tousled. Gentrify twee officia, cray tempor nisi small batch retro sartorial cliche voluptate fap sriracha quinoa.</p>
+    <h1>Our Team</h1>
   <div class="row team-member-page" ng-repeat="member in team | orderBy:'order'">
-    <div class="container col-md-8 col-md-offset-2">
+
       <div class="container col-md-3">
 
         <img ng-src="{{member.picture_url}}" class = "team-member-pic" width=190px>
       </div>
       <div class="col-md-9">
-        <h2><b>{{member.name}}</b></h2>
+        <h2><b>{{member.name}}</b> &nbsp&nbsp&nbsp <small>{{member.title}}</small></h2>
+        <h3></h3>
         <p>{{member.bio}}</p>
         <br>
         
