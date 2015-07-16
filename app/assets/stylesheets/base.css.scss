@@ -629,3 +629,33 @@ b, strong {
   color: $light-grey;
 
 }
+
+.our-team h1 {
+  font-size: 60px;
+  text-align: center;
+}
+
+.line-separator {
+  height:1px;
+  margin: auto 25px 10px 0; 
+  background:#717171;
+  border-bottom:1px solid #7FB7BE;
+}
+
+.team-member-pic {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  margin-top: 26px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.team-member-page {
+  min-height: 250px;
+}
+
+.team-member-page p {
+  margin: 0 0 0 10px;
+  line-height: 1.8;
+}
