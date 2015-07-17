@@ -72,10 +72,6 @@ OpenFn::Application.routes.draw do
     end
   end
 
-  namespace :metrics do
-    get "organisation_integration_mappings", to: "organisation_integration_mappings#index", as: :organisation_integration_mappings
-  end
-
   namespace :api do
     resources :integration, param: :api_key do
       resource :message, only: [:create]
@@ -133,7 +129,6 @@ OpenFn::Application.routes.draw do
   post '/tags/publish/:draft_id', to: "tags#tag_draft_publish"
   get '/tags/get_all_json', to: "tags#get_all_json"
 
-  get "metrics", to: "metrics#index", as: :metrics
   get '/user/check_login', to: "users#check_login"
 
   post '/admin/products/:product_id/tags/add', to: "tags#tags_add"

@@ -71,10 +71,6 @@ Array::filter = (func) -> x for x in @ when func(x)
             defer.promise
 
   $routeProvider
-    .when('/metrics/organisation', {
-      templateUrl: '../the_bridge_templates/metrics/organisations/index.html',
-      controller: 'OrganisationsIndexCtrl'
-    })
     .when('/marketplace', {
       templateUrl: '../the_bridge_templates/marketplace/index.html',
     })
