@@ -19,11 +19,10 @@
       { title:'Tech Specs', content: $scope.product.tech_specs, disabled: true },
       { title:'Resources', content: $scope.product.resources, disabled: true }
     ];
-    # console.log arguments
-    #$scope.twitterApi = $scope.product.twitter.substring(1)
-    #$timeout ->
-    #  twttr.widgets.load()
-    #, 500
+    
+
+  $scope.test2 = () ->
+    console.log("testing in a new way...")
 
   $scope.changeVoteFor = (product) ->
     $http.get("/products/#{product.id}/vote")
@@ -246,6 +245,7 @@
       'costs': product.costs
       'resources': product.resources
     console.log(productEdit)
+    console.log("it edits here")
 
     $http.post("/admin/products/#{product.id}/tags/add",$scope.tags_added).success((data) ->
     )
