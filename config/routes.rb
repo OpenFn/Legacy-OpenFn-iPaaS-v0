@@ -22,7 +22,6 @@ OpenFn::Application.routes.draw do
   end
 
   # slightly weird, but we're getting this from Salesforce in xml, and they always post.
-  post "/api/v1/:token/update_products", to: "products#update", defaults: { format: 'xml' }
   post "/api/v1/:token/update_users", to: "users#sync", defaults: { format: 'xml' }
 
   namespace :odk_sf_legacy, shallow_path: nil, path: nil do
