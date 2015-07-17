@@ -50,13 +50,11 @@
     // font-size: rem-calc(18px);
     // color: red;
     // background-color: $nav;
-    color: $bg-color;
-    // background-image: image-url("noise.png");
-    // background-size: 100%;
-    // font-weight: 100;
-    // font-size: rem-calc(35px);
-    // color: $primary-blue;
-    margin: 2rem 0;
+    color: $dark;
+        font-size: rem-calc(35px);
+        // color: $primary-blue;
+        margin: 2rem 0;
+    padding: 2em;
   }
 
   .numbers h3 {
