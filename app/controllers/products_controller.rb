@@ -52,7 +52,7 @@ class ProductsController < ApplicationController
     product.name = params[:name]
     product.website = params[:website]
     product.twitter = params[:twitter]
-    product.provider = params[:provider]
+    product.email = params[:email]
     product.description = params[:description]
     product.detailed_description = params[:detailed_description]
     product.tech_specs = params[:tech_specs]
