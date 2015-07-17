@@ -1,0 +1,58 @@
+<div class="ideas">
+  <header class="header-image">
+    <div class="headline">
+      <h1><i class="fa fa-user"></i> create <strong>Account</strong></h1>
+      <h3>Go ahead and <strong>start connecting</strong> for free. Seriously.</h3>
+    </div>
+  </header>
+</div>
+
+<div ng-controller="UserController as userCtrl">
+  <div class="featurette dark">
+    <hr class="light">
+    <hr class="dark">
+    <br>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        
+      
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  
+                  User and Organization Settings
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+
+              <div class="panel-body">
+
+                  <form ng-submit="submitUserForm()">
+                    <input type="text" class="form-control" name = "email" placeholder="Email" ng-model="formData.email">
+                    <input type="text" class="form-control" name = "password" placeholder="Password" ng-model="formData.password">
+                    <input type="text" class="form-control" name = "password_confirmation" placeholder="Password Confirmation" ng-model="formData.password_confirmation">
+                    <input type="text" class="form-control" name = "first_name" placeholder="First Name" ng-model="formData.first_name">
+                    <input type="text" class="form-control" name = "last_name" placeholder="Last Name" ng-model="formData.last_name">
+                    <input type="text" class="form-control" name = "organisation" placeholder="Organisation" ng-model="formData.organisation">
+
+                    <button type="submit" class="btn btn-success btn-lg btn-block">
+                      Submit!
+                    </button>              
+                </form>
+
+            </div>
+
+
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+</div>
+</div>
+         
+

@@ -33,6 +33,7 @@
     $http.get('/review/'+review.id+'/check_vote.json').success (data) ->
       review.voted = data
 
+
   $scope.changeVoteFor = (product) ->
     url = $location.url()
     $http.get("/user/check_login?redirect=#{url}").success((data) ->
@@ -262,6 +263,8 @@
       'tech_specs': product.tech_specs
       'costs': product.costs
       'resources': product.resources
+
+
 
     $http.post("/admin/products/#{product.id}/tags/add",$scope.tags_added).success((data) ->
     )

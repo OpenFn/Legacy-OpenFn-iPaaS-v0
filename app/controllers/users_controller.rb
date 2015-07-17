@@ -2,50 +2,36 @@ class UsersController < ApplicationController
   respond_to :html, :json, :xml
   skip_before_filter :require_login, only: [:new, :create, :sync, :set_password, :check_login]
 
-  skip_before_filter :verify_authenticity_token#, only: [:sync]
+  skip_before_filter :verify_authenticity_token, only: [:sync]
   before_filter :validate_api_admin, only: [:sync]
 
   def new
     @user = User.new
+    redirect_to "/register"
   end
 
   def create
-    # @user = User.new#(formData)
+    
+    @user = User.new
+    @user.email = params[:email]
+    @user.first_name = params[:first_name]
+    @user.last_name = params[:last_name]
+    @user.password = params[:password]
+    @user.password_confirmation = params[:password_confirmation]
+    @user.organisation = params[:organisation]
+    @user.save
 
     
-    # puts(formData)
 
-    
+    if @user.save_with_payment(params)
+      auto_login(@user)
+      set_user_credentials_and_flash
+      redirect_to(:root, notice: "Welcome!")
+    else
+      flash.now[:alert] = "Signup failed..."
+      render :new#{}"/OpenFn-Site/public/the_bridge_templates/user/user_info"
+    end
 
-    @user = User.new(:email => params[:email]#,
-                         # :password => params[:password],
-                         # :password_confirmation => params[:password_confirmation],
-                         # :first_name => params[:first_name],
-                         # :last_name => params[:last_name],
-                         # :organisation => params[:organisation],
-                         # :tester => "tester")
-                    )
-
-    puts("the form data is:")
-    puts(@user.email)
-
-    render "users/_form"
-    # respond_to do |format|
-    #   if @user.save
-    #     format.json { render json: @user, status: :created }
-    #   else
-    #     format.json { render json: @user.errors, status: :unprocessable_entity }
-    #   end
-    # end
-
-    # if @user.save_with_payment(params)
-    #   auto_login(@user)
-    #   set_user_credentials_and_flash
-    #   redirect_to(:root, notice: "Welcome!")
-    # else
-    #   flash.now[:alert] = "Signup failed..."
-    #   render :new
-    # end
   end
 
   def index
@@ -111,6 +97,14 @@ class UsersController < ApplicationController
 
   def show
     render json: @user
+  end
+
+  def show_current_user
+    if current_user.present?
+      render json: current_user
+    # else
+     end 
+
   end
 
   def edit
