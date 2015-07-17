@@ -248,7 +248,6 @@
     $scope.checkLogin(url)
 
   $scope.updateProduct = (product) ->
-    console.log(product.website)
     productEdit =
       'id': product.id
       'name': product.name
@@ -261,7 +260,6 @@
       'tech_specs': product.tech_specs
       'costs': product.costs
       'resources': product.resources
-    console.log(productEdit)
 
     $http.post("/admin/products/#{product.id}/tags/add",$scope.tags_added).success((data) ->
     )
