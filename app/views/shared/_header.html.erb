@@ -148,37 +148,32 @@
   </div>
 </div>
 
-
-
-
 <script type="text/ng-template" id="modalTemplate.html">
   <div class="modal-content">
-    <div class="featurette dark">
       <div class="modal-header center">
         <h2>
           Log in
           <button type="button" class="close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
         </h2>
       </div>
-      <div class="col-md-8 col-md-offset-2 modal-body center">              
-        <%= render '/user_sessions/form', user: @user %>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 modal-body">              
+          <%= render '/user_sessions/form', user: @user %>
+        </div>
+        <div class="col-md-8 col-md-offset-2 modal-body">
+          <h4>Click <%= link_to "/signup", method: :get do %>
+              <button type="button" class="btn btn-success">Sign up</button>
+            <% end %> to create a new account</h4>
+        </div>
       </div>
-      <div class="col-md-8 col-md-offset-2 modal-body center">
-        <h4>Click <%= link_to "/signup", method: :get do %>
-            <button type="button" class="btn btn-default">Sign up</button>
-          <% end %> to create a new account</h4>
-      </div>
-      <div class='row'>
-        <div class="col-md-8 col-md-offset-2 modal-body center">
+      <div class="row">        
+        <div class="col-md-8 col-md-offset-2 modal-body">
           <h4>Forgot your password?</h4>
           <%= render '/user_sessions/forgot_password_form' %>
         </div>
       </div>
-    </div>
   </div>
-</div>
 </script>
-
 
 <%= form_tag charges_path, id: 'chargesForm' do %>
   <input type='hidden' id='token' name='token' />
