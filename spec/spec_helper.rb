@@ -7,6 +7,8 @@ require 'rspec/rails'
 
 require 'vcr'
 
+ActiveRecord::Migration.maintain_test_schema!
+
 VCR.configure do |c|
   c.cassette_library_dir     = 'spec/cassettes'
   c.hook_into :webmock

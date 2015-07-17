@@ -64,10 +64,14 @@
           </div>
           <div class="col-xs-10 center" ng-if="isLoading">
           <br><br><br>
-            <i class="fa fa-refresh fa-3x fa-spin"></i>
+            <i class="fa fa-refresh fa-2x fa-spin"></i>
+            <h4>
+            <br>
+              Hang tight while we gather data on hundreds of technologies, reviews, tags, and votes.
+            </h4>
           </div>
           <div class="col-sm-10">
-          <div ng-repeat="product in (filteredProducts =( products | filter:filterProducts))">
+          <div ng-repeat="product in (filteredProducts =( products | filter:filterProducts)) | orderBy:['-integrated','-votes_count','name']">
             <div class="product-container col-lg-4 col-md-6 col-sm-6 col-xs-12">
               <div ng-class="product.integrated ? 'product integrated' : 'product'" tooltip-trigger="mouseenter" tooltip="Click to learn about {{product.name}}." ng-click="go('/product/' + product.id)" style="cursor: default">
                 <div class='rating'>
