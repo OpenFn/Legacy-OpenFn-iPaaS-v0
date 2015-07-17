@@ -196,6 +196,14 @@ b, strong {
 
 }
 
+  .add {
+    color: green;
+  }
+
+  .remove {
+    color: $red-accent
+  }
+
 .btn-map-label {
   padding-left: 2px;
 }

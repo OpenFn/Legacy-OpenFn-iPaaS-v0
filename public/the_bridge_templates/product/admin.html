@@ -9,39 +9,146 @@
   </div>
 </header>
 
+<div class="admin">
 <div ng-controller="AdminController as adminCtrl">
   <div class="container">
-    <div ng-repeat="draft in product_drafts">
-      <div class="h2">
-        {{draft.item_type}} {{draft.event}} by user {{draft.whodunnit}}
-      </div>
-      <div class="h3">
-        {{draft.updated_at}}
-      </div>
-      <div class="h4">
-        {{draft.object}}
-      </div>
-      <br>
-      <a class="btn btn-success" ng-click ="publish(draft)">Publish</a>
-      <a class="btn btn-danger" ng-click ="discard(draft)">Discard</a>
-      <br>
-      <br>
+    <div class="row">
+      <h1 class="col-md-6 center" ng-hide="product_drafts.length == 0">Draft:</h1>
+      <h1 class="col-md-6 center" ng-hide="product_drafts.length == 0">Current:</h1>
     </div>
-    <div ng-repeat="draft in tagging_drafts">
-      <div class="h2">
-        {{draft.item_type}} {{draft.event}} by user {{draft.whodunnit}}
+      <h4>
+      <div class="row tag_draft" ng-repeat="draft in product_drafts" ng-init="getProductComparison(draft)">
+          <div class="row">
+            <div class="col-md-12 center">
+              <h3><span class="live">{{draft.update.event | uppercase }}</span> by "<strong>{{draft.update.whodunnit}}</strong>" on {{draft.update.updated_at | date:'dd MMM yyyy'}}</h3><br>
+            </div>
+          </div>
+            <div class="row">
+            <div class="col-md-6">
+            <b>Name:</b> {{draft.update.object.name}}
+            </div>
+            <div class="col-md-6">
+            <b>Name:</b> {{draft.current.name}}
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+            <b>Website:</b> {{draft.update.object.website}}
+            </div>
+            <div class="col-md-6">
+            <b>Website:</b> {{draft.current.website}}
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+            <b>Twitter Handle:</b> {{draft.update.object.twitter}}
+            </div>
+            <div class="col-md-6">
+            <b>Twitter Handle:</b> {{draft.current.twitter}}
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+            <b>Contact Email:</b> {{draft.update.object.email}}
+            </div>
+            <div class="col-md-6">
+            <b>Contact Email:</b> {{draft.current.email}}
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+            <b>Tile Summary:</b> {{draft.update.object.description}}
+            </div>
+            <div class="col-md-6">
+            <b>Tile Summary:</b> {{draft.current.description}}
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+            <h3>Detailed Description:</h3>
+            <div ng-bind-html="draft.update.object.detailed_description">
+            </div>
+            </div>
+            <div class="col-md-6">
+            <h3>Detailed Description:</h3>
+            <div ng-bind-html="draft.current.detailed_description">
+            </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+            <h3>Costs:</h3> 
+            <div ng-bind-html="draft.update.object.costs">
+            </div>
+            </div>
+            <div class="col-md-6">
+            <h3>Costs:</h3>
+            <div ng-bind-html="draft.current.costs">
+            </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+            <h3>Specs:</h3> 
+            <div ng-bind-html="draft.update.object.tech_specs">
+            </div>
+            </div>
+            <div class="col-md-6">
+            <h3>Specs:</h3>
+            <div ng-bind-html="draft.current.tech_specs">
+            </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+            <h3>Resources:</h3> 
+            <div ng-bind-html="draft.update.object.resources">
+            </div>
+            </div>
+            <div class="col-md-6">
+            <h3>Resources:</h3>
+            <div ng-bind-html="draft.current.resources">
+            </div>
+            </div>
+            </div>
+            <br>
+            <div class="col-md-12 center">
+            <a class="btn btn-success" ng-click ="publish(draft)">Publish</a>
+            <a class="btn btn-danger" ng-click ="discard(draft)">Discard</a>
+            </div>
+            <br>
+            <br>
+        </div>
+        </h4>
+    </div>
+    <div class="row">
+    <h1 ng-hide="tagging_drafts.length == 0" class="col-md-12 center">
+      Tagging Activity:
+    </h1>
+    </div>
+    <div ng-repeat="draft in tagging_drafts" ng-init="getProductName(draft)">
+    <div class="col-md-4 center">
+      <div class="tag_draft">
+        <h3>
+          <span ng-if="draft.event=='destroy'" class="remove">{{draft.event | uppercase }}</span>
+          <span ng-if="draft.event=='create'" class="add">{{draft.event | uppercase }}</span>
+          "<b>{{draft.object.name}}</b>"
+          <br>
+          on <b>{{draft.product_name}}</b>
+        </h3>
+        <h4>
+        by "<strong>{{draft.whodunnit}}</strong>" on {{draft.updated_at | date:'dd MMM yyyy'}}
+        </h4>
+        <h4 ng-show="{{draft.object.taggings_count == undefined}}">
+        <b>New Tag</b>
+        </h4>
+        <br>
+        <a class="btn btn-success" ng-click ="tagging_publish(draft)">Publish</a>
+        <a class="btn btn-danger" ng-click ="tagging_discard(draft)">Discard</a>
+        <br>
+        <br>
       </div>
-      <div class="h3">
-        {{draft.updated_at}}
-      </div>
-      <div class="h4">
-        {{draft.object}}
-      </div>
-      <br>
-      <a class="btn btn-success" ng-click ="tagging_publish(draft)">Publish</a>
-      <a class="btn btn-danger" ng-click ="tagging_discard(draft)">Discard</a>
-      <br>
-      <br>
+    </div>
     </div>
     <div ng-show="(product_drafts.length == 0)&&(tagging_drafts.length == 0)">
       <div class="h2 center">
