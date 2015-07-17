@@ -22,7 +22,6 @@ OpenFn::Application.routes.draw do
   end
 
   # slightly weird, but we're getting this from Salesforce in xml, and they always post.
-  post "/api/v1/:token/update_products", to: "products#update", defaults: { format: 'xml' }
   post "/api/v1/:token/update_users", to: "users#sync", defaults: { format: 'xml' }
 
   namespace :odk_sf_legacy, shallow_path: nil, path: nil do
@@ -71,10 +70,6 @@ OpenFn::Application.routes.draw do
       resources :credentials, only: [:index, :create, :edit]
 
     end
-  end
-
-  namespace :metrics do
-    get "organisation_integration_mappings", to: "organisation_integration_mappings#index", as: :organisation_integration_mappings
   end
 
   namespace :api do
@@ -134,7 +129,6 @@ OpenFn::Application.routes.draw do
   post '/tags/publish/:draft_id', to: "tags#tag_draft_publish"
   get '/tags/get_all_json', to: "tags#get_all_json"
 
-  get "metrics", to: "metrics#index", as: :metrics
   get '/user/check_login', to: "users#check_login"
 
   post '/admin/products/:product_id/tags/add', to: "tags#tags_add"

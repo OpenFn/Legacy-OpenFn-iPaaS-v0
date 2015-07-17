@@ -192,20 +192,21 @@
           <br>
           <form method="post">
             <span><strong>Review (1000 chars)</strong></span><br><br>
-            <textarea ng-model = "post.review" rows="40" cols="50" name="review" placeholder="Something thougtful and helpful..." class="fsField fsRequired fsTextAreaMaxLength", maxlength = "1000" required /></textarea>
+            <textarea ng-model = "post.review" rows="25" cols="50" name="review" placeholder="Something thougtful and helpful..." class="fsField fsRequired fsTextAreaMaxLength", maxlength = "1000" required /></textarea>
             <br>
             <br>
-            <span><strong>Rating (0-5)</strong></span><br><br>
-            <input ng-model = "post.rating" type="integer" name="rating" placeholder="0-5" class="fsField fsRequired fsTextAreaMaxLength", maxlength = "2" required />
+            <div ng-controller="RatingDemoCtrl">
+            <span style="font-size: 2em">
+                <rating ng-model="post.rating" type="integer" name="rating" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating></span>
+                <span class="label" ng-show="overStar"></span>
+            </div>
             <br>
             <br>
             <button ng-click = "submitReview(product)" class="btn btn-success" type="submit">Submit</button>
           <br>
           <br>
-          <div ng-show = "duplicate_status" class = "submitStatus">*You have already submitted review for this Product</div>
-          <div ng-show = "success_status" class = "submitStatus">*Your Review is successfully submitted</div>
-          <br>
-          Thanks for your time.
+          <div ng-show = "duplicate_status" class = "submitStatus">*You have already submitted review for this product.</div>
+          <div ng-show = "success_status" class = "submitStatus">*Your review has been successfully submitted.</div>
         </div>
       </div>
     </div>
