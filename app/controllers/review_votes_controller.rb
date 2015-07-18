@@ -58,11 +58,15 @@ class ReviewVotesController < ApplicationController
   end
 
   def check_vote
-    review_vote = ReviewVote.find_by(:user_id => current_user.id, :review_id => params[:review_id])
-    if review_vote == nil
-      render json: 0
+    if current_user
+      review_vote = ReviewVote.find_by(:user_id => current_user.id, :review_id => params[:review_id])
+      if review_vote == nil
+        render json: 0
+      else
+        render json: review_vote.value
+      end
     else
-      render json: review_vote.value
+      render json: 0
     end
   end
 
