@@ -172,9 +172,13 @@
               <br><br>
             </div>
           </div>
+          <div class="col-sm-6 center" ng-show="!product.twitter">
+          <div class="rn-title center"><i class="fa fa-twitter"></i></div>
+          <div class="rn-content center">Update the {{product.name}} twitter handle to see feed here.</div>
+          </div>
           <div class="col-sm-6 center" ng-hide="!product.twitter">
           <div class="rn-title center">{{product.twitter}}</div><br>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><a class="twitter-timeline" href="https://twitter.com/{{twitterApi}}" data-widget-id="581403911644385280" width="520" height="500" data-screen-name="{{twitterApi}}"><i class="fa fa-spinner fa-pulse fa-lg"></i></a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><a class="twitter-timeline" href="https://twitter.com/{{twitterApi}}" data-widget-id="581403911644385280" width="520" height="500" data-screen-name="{{twitterApi}}"><i class="fa fa-refresh fa-spin fa-lg"></i></a>
   </div>
 </div>
 

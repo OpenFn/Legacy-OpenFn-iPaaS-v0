@@ -20,11 +20,13 @@
       { title:'Tech Specs', content: $scope.product.tech_specs, disabled: true },
       { title:'Resources', content: $scope.product.resources, disabled: true }
     ];
-    # console.log arguments
+    
     $scope.twitterApi = $scope.product.twitter.substring(1)
-    $timeout ->
-     twttr.widgets.load()
-    , 500
+    
+    $timeout (->
+      twttr.widgets.load()
+      return
+    ), 1000
 
   $scope.checkVote = (review) ->
     console.log(review)
