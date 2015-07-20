@@ -109,7 +109,7 @@ Array::filter = (func) -> x for x in @ when func(x)
       templateUrl: '../the_bridge_templates/tags/index.html'
     })
     .when('/register', {
-      templateUrl: '../the_bridge_templates/user/signup.html',
+      templateUrl: '../the_bridge_templates/user/user_info.html',
      
     })
     

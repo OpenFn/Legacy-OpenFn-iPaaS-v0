@@ -4,6 +4,7 @@
   $scope.searchTagText = ""
   $scope.formData = {}
   $scope.formData.email = ""
+  $scope.formData.plan = "Free"
   $scope.test1 = () ->
     console.log("does this test work?")
     console.log("in user controller angular")

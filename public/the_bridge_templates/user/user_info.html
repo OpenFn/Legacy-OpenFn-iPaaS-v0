@@ -1,0 +1,87 @@
+<div ng-controller="UserController as userCtrl">
+  <div class="featurette dark">
+    <hr class="light">
+    <hr class="dark">
+    <br>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        
+      
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="panel panel-default">
+            
+            <div class="panel-heading" role="tab" id="headingOne">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <%#= form_for @user, role: 'form', html: {id: 'signup_form'} do |f| %>
+                  User and Organization Settings
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+
+              <div class="panel-body">
+
+                  <form ng-submit="userCtrl.submitUserForm()">
+                    <input type="text" class="form-control" name = "email" placeholder="Email" ng-model="userCtrl.formData.email">
+                    <input type="text" class="form-control" name = "password" placeholder="Password" ng-model="userCtrl.formData.password">
+                    <input type="text" class="form-control" name = "password_confirmation" placeholder="Password Confirmation" ng-model="userCtrl.formData.password_confirmation">
+                    <input type="text" class="form-control" name = "first_name" placeholder="First Name" ng-model="userCtrl.formData.first_name">
+                    <input type="text" class="form-control" name = "last_name" placeholder="Last Name" ng-model="userCtrl.formData.last_name">
+                    <input type="text" class="form-control" name = "organisation" placeholder="organisation" ng-model="userCtrl.formData.organisation">
+                    <div class="btn-group">
+                        
+        
+                      <label class="btn btn-primary" ng-model="formData.plan" btn-radio="'Free'">Free</label>
+                      <label class="btn btn-primary" ng-model="formData.plan" btn-radio="'$100'">$100</label>
+                      <label class="btn btn-primary" ng-model="formData.plan" btn-radio="'$250'">$250</label>
+                      <label class="btn btn-primary" ng-model="formData.plan" btn-radio="'$1000'">$1000</label>
+                      </div
+
+               <div class="form-group">
+                  <%=f.hidden_field :stripe_token %>
+                  <%=f.hidden_field :subscription_plan, value: @user.new_record? ? nil : @user.plan.try(:name)%>
+                </div>
+                <div class="form-group">
+                  <%= f.label 'Plan' %>
+                  <br>
+                  <div class="btn-group plan_btn" data-toggle="buttons">
+                    <label class="btn btn-default free pay">
+                      <input type="radio" name="options" data-name="Free" data-amount="free"> Free
+                    </label>
+                    <label class="btn btn-default pay">
+                      <input type="radio" name="options" data-name="Entry" data-amount="3900"> Entry $39/mo.
+                    </label>
+                    <label class="btn btn-default pay">
+                      <input type="radio" name="options" data-name="Startup" data-amount="7900"> Startup $79/mo.
+                    </label>
+                    <label class="btn btn-default pay">
+                      <input type="radio" name="options" data-name="Growth" data-amount="29900"> Growth $299/mo.
+                    </label>
+                    <label class="btn btn-default pay disabled">
+                      <input type="radio" name="options" data-name="Enterprise" data-amount="99900"> Enterprise
+                    </label>
+                  </div>
+                </div>
+
+
+
+
+
+                    <button type="submit" class="btn btn-success btn-lg btn-block">
+                      Submit!
+                    </button>              
+                </form>
+
+            </div>
+
+
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+</div>
+</div>
+           
+          
