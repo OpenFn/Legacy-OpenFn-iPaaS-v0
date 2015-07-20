@@ -2,38 +2,23 @@ class UsersController < ApplicationController
   respond_to :html, :json, :xml
   skip_before_filter :require_login, only: [:new, :create, :sync, :set_password, :check_login]
 
-  skip_before_filter :verify_authenticity_token#, only: [:sync]
+  skip_before_filter :verify_authenticity_token, only: [:sync]
   before_filter :validate_api_admin, only: [:sync]
 
   def new
     @user = User.new
-    redirect_to "/register"
   end
 
   def create
-    # @user = User.new(user_params)
+    @user = User.new(user_params)
 
-   
-
-   @user = User.new(user_params)
-
-   #i just re-entered the above line, and am re-commenting in the user_params private method
-    @user = User.new(:email => params[:email],
-                         :password => params[:password],
-                         :password_confirmation => params[:password_confirmation],
-                         :first_name => params[:first_name],
-                         :last_name => params[:last_name],
-                         :organisation => params[:organisation]
-                        
-                    )
-
-    respond_to do |format|
-      if @user.save
-      format.json { render json: @user, status: :created }
-      else
-      format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @user.save
+    #     format.json { render json: @user, status: :created }
+    #   else
+    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
+    # end
 
     if @user.save_with_payment(params)
       auto_login(@user)
@@ -178,14 +163,14 @@ class UsersController < ApplicationController
 
   private
 
-  # def user_params
-  #   params.require(:user).permit(
-  #     :email, :password, :password_confirmation, :first_name, :last_name, :organisation, :role, :plan_id,
-  #     # :invitation_token, :organization_id,
-  #     :odk_url, :odk_username, :odk_password, :stripe_token, :subscription_plan, :stripe_coupon,
-  #     :sf_security_token, :sf_username, :sf_password, :sf_app_key, :sf_app_secret, :sf_host
-  #   )
-  # end
+  def user_params
+    params.require(:user).permit(
+      :email, :password, :password_confirmation, :first_name, :last_name, :organisation, :role, :plan_id,
+      # :invitation_token, :organization_id,
+      :odk_url, :odk_username, :odk_password, :stripe_token, :subscription_plan, :stripe_coupon,
+      :sf_security_token, :sf_username, :sf_password, :sf_app_key, :sf_app_secret, :sf_host
+    )
+  end
 
   def set_user_credentials_and_flash
     odk = check_odk_credentials

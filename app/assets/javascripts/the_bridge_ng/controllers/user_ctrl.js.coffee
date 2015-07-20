@@ -21,6 +21,8 @@
       'last_name': $scope.last_name
       'organisation': $scope.organisation
 
+    console.log("in user controller angular")
+
     $http.post('/signup', $scope.formData).success((data) ->
       console.log 'successss'
     )
