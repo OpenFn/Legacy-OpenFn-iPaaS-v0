@@ -7,10 +7,19 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    redirect_to "/register"
   end
 
   def create
-    @user = User.new(user_params)
+    #@user = User.new(user_params)
+    @user = User.new
+    @user.email = params[:email]
+    @user.first_name = params[:first_name]
+    @user.last_name = params[:last_name]
+    @user.password = params[:password]
+    @user.password_confirmation = params[:password_confirmation]
+    @user.organisation = params[:organisation]
+    @user.save
 
     # respond_to do |format|
     #   if @user.save
@@ -20,14 +29,14 @@ class UsersController < ApplicationController
     #   end
     # end
 
-    if @user.save_with_payment(params)
-      auto_login(@user)
-      set_user_credentials_and_flash
-      redirect_to(:root, notice: "Welcome!")
-    else
-      flash.now[:alert] = "Signup failed..."
-      render :new
-    end
+    # if @user.save_with_payment(params)
+    #   auto_login(@user)
+    #   set_user_credentials_and_flash
+    #   redirect_to(:root, notice: "Welcome!")
+    # else
+    #   flash.now[:alert] = "Signup failed..."
+    render :new
+    # end
   end
 
   def index

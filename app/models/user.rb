@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   validates :password, confirmation: true, on: :create
   validates :password_confirmation, presence: true, on: :create
 
-  validates :email, uniqueness: true, presence: true
+  validates :email, presence: true
   validates :first_name, :last_name, presence: true
   validates :role, inclusion: { in: %w(client client_admin admin), message: "%{value} is not a valid role" }
 

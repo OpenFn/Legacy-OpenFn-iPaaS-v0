@@ -2,28 +2,18 @@
   $scope.tag = {}
   $scope.searchText = ""
   $scope.searchTagText = ""
-
   $scope.formData = {}
-
-  console.log("iyasofiudsafhjr")
- 
+  $scope.formData.email = ""
   $scope.test1 = () ->
     console.log("does this test work?")
     console.log("in user controller angular")
 
 
   $scope.submitUserForm = () ->
-    $scope.formData =
-      'email': $scope.email
-      'password': $scope.password
-      'password_confirmation': $scope.password_confirmation
-      'first_name': $scope.first_name
-      'last_name': $scope.last_name
-      'organisation': $scope.organisation
+    console.log("in da method")
+    console.log($scope.formData)
 
-    console.log("in user controller angular")
-
-    $http.post('/signup', $scope.formData).success((data) ->
+    $http.post('/users', $scope.formData).success((data) ->
       console.log 'successss'
     )
 
