@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    redirect_to "/register"
   end
 
   def create
@@ -14,8 +15,9 @@ class UsersController < ApplicationController
 
    
 
-   
+   @user = User.new(user_params)
 
+   #i just re-entered the above line, and am re-commenting in the user_params private method
     @user = User.new(:email => params[:email],
                          :password => params[:password],
                          :password_confirmation => params[:password_confirmation],

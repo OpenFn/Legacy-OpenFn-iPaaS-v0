@@ -5,7 +5,7 @@
 
   $scope.formData = {}
 
-  console.log("in user controller angular")
+  console.log("iyasofiudsafhjr")
  
   $scope.test1 = () ->
     console.log("does this test work?")
@@ -26,6 +26,8 @@
     )
 
     console.log("in user controller angular")
+
+
 
     
 ]

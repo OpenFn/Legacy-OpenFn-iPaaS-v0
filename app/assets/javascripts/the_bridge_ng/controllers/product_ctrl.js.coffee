@@ -247,6 +247,7 @@
     console.log(productEdit)
     console.log("it edits here")
 
+
     $http.post("/admin/products/#{product.id}/tags/add",$scope.tags_added).success((data) ->
     )
 
