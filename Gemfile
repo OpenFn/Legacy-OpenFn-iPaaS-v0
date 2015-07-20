@@ -134,7 +134,7 @@ end
 
 gem "codeclimate-test-reporter", group: :test, require: nil
 
-group :test, :production, :development do
+group :test do
   gem 'vcr'
   gem 'webmock'
 end

@@ -229,6 +229,9 @@
 
   // Close Checkout on page navigation
   $(window).on('popstate', function() {
-    handler.close();
+    if (typeof handler !== "undefined")
+    {
+      handler.close();
+    }
   });
 </script>
