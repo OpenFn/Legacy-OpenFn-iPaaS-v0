@@ -22,21 +22,24 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
+              <li>
+                <%= link_to "Team", "/#/our_team"%>
+              </li> 
               <% unless current_user %>
                 <li>
                   <%= link_to "Pricing", "/#/pricing" %>
                 </li>
               <% end %>
               <li>
-                <%= link_to "Developers", "/#/developers"%>
-              </li>
-              <li>
-                <%= link_to "Our Team", "/#/our_team"%>
-              </li>         
+                <a href="/#/developers">Developers <i class="fa fa-file-code-o"></i></a>
+              </li>        
             </ul>
         </li>        
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a onClick="ga('send', 'event', 'Revenue', 'Open Donate Modal');" type="button" data-toggle="modal" data-target="#donate_modal"><i class="fa fa-life-ring"></i> Donate</a>
+        </li>
         <% if current_user %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
@@ -86,16 +89,13 @@
         <div class="featurette dark">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title center" id="myModalLabel">Make a donation.</h4>
+            <h4 class="modal-title center" id="myModalLabel">Thank you for your support!</h4>
           </div>
           <div class="modal-body">
-            <strong>Thanks so much for your support</strong>.
+            We have submitted our 501(c)3 application and are awaiting approval. When we are granted 501(c)3 status, all donations that were made previously will be recognized as tax deductible. To learn more, click <a href="http://www.irs.gov/Charities-&-Non-Profits/Charitable-Organizations/Contributions-to-Organization-with-IRS-Application-Pending" target="_blank">here.</a>
             <br>
             <br>
-            We believe that we'll receive 501(c)3 approval in this tax year, 2015. When we are granted 501(c)3 status, all donations that were made previously will be recognized as tax deductible. To learn more, click <a href="http://www.irs.gov/Charities-&-Non-Profits/Charitable-Organizations/Contributions-to-Organization-with-IRS-Application-Pending" target="_blank">here.</a>
-            <br>
-            <br>
-            To make a donation, select your desired amount below and enter your credit card details on the following page.
+            <strong>To make a donation, select your desired amount</strong> below and enter your credit card details on the following page.
             <br>
             <br>
             <br>
@@ -229,9 +229,6 @@
 
   // Close Checkout on page navigation
   $(window).on('popstate', function() {
-    if (typeof handler !== "undefined")
-    {
       handler.close();
-    }
   });
 </script>
