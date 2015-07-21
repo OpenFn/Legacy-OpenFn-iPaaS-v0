@@ -5,6 +5,12 @@
   $scope.formData = {}
   $scope.formData.email = ""
   $scope.formData.plan = "Free"
+
+  $http.get('/check_plan').success((data) ->
+    $scope.formData.plan= data
+    console.log(data)
+  )
+
   $scope.test1 = () ->
     console.log("does this test work?")
     console.log("in user controller angular")

@@ -22,13 +22,20 @@
 
               <div class="panel-body">
 
-                  <form ng-submit="userCtrl.submitUserForm()">
-                    <input type="text" class="form-control" name = "email" placeholder="Email" ng-model="userCtrl.formData.email">
-                    <input type="text" class="form-control" name = "password" placeholder="Password" ng-model="userCtrl.formData.password">
-                    <input type="text" class="form-control" name = "password_confirmation" placeholder="Password Confirmation" ng-model="userCtrl.formData.password_confirmation">
-                    <input type="text" class="form-control" name = "first_name" placeholder="First Name" ng-model="userCtrl.formData.first_name">
-                    <input type="text" class="form-control" name = "last_name" placeholder="Last Name" ng-model="userCtrl.formData.last_name">
-                    <input type="text" class="form-control" name = "organisation" placeholder="organisation" ng-model="userCtrl.formData.organisation">
+                  <form ng-submit="submitUserForm()">
+                    <input type="text" class="form-control" name = "email" placeholder="Email" ng-model="formData.email">
+                    <input type="text" class="form-control" name = "password" placeholder="Password" ng-model="formData.password">
+                    <input type="text" class="form-control" name = "password_confirmation" placeholder="Password Confirmation" ng-model="formData.password_confirmation">
+                    <input type="text" class="form-control" name = "first_name" placeholder="First Name" ng-model="formData.first_name">
+                    <input type="text" class="form-control" name = "last_name" placeholder="Last Name" ng-model="formData.last_name">
+                    <input type="text" class="form-control" name = "organisation" placeholder="organisation" ng-model="formData.organisation">
+                    <input type="hidden" name="stripe_token" ng-model="formData.stripe_token">
+                    <input type="hidden" name="subscription_plan" ng-model="formData.subscription_plan">
+                    <input type="hidden" name="subsctiption_plan" value="">
+                    <!-- <div class="form-group">
+                      <%=f.hidden_field :stripe_token %>
+                      <%=f.hidden_field :subscription_plan, value: @user.new_record? ? nil : @user.plan.try(:name)%>
+                    </div>
                     <div class="btn-group">
                         
         
@@ -38,10 +45,7 @@
                       <label class="btn btn-primary" ng-model="formData.plan" btn-radio="'$1000'">$1000</label>
                       </div
 
-               <div class="form-group">
-                  <%=f.hidden_field :stripe_token %>
-                  <%=f.hidden_field :subscription_plan, value: @user.new_record? ? nil : @user.plan.try(:name)%>
-                </div>
+               
                 <div class="form-group">
                   <%= f.label 'Plan' %>
                   <br>
@@ -63,7 +67,7 @@
                     </label>
                   </div>
                 </div>
-
+ -->
 
 
 

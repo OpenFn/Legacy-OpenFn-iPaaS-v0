@@ -62,7 +62,7 @@
                   <%= f.text_field :organisation, class: 'form-control' %>
                 </div>
                 <div class="form-group">
-                  <%=f.hidden_field :stripe_token %>
+                  <%=f.hidden_fieldt :stripe_token %>
                   <%=f.hidden_field :subscription_plan, value: @user.new_record? ? nil : @user.plan.try(:name)%>
                 </div>
                 <div class="form-group">

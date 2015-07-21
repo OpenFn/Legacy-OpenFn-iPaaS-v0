@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   respond_to :html, :json, :xml
-  skip_before_filter :require_login, only: [:new, :create, :sync, :set_password, :check_login]
+  skip_before_filter :require_login, only: [:new, :create, :sync, :set_password, :check_login, :check_plan]
 
   skip_before_filter :verify_authenticity_token, only: [:sync]
   before_filter :validate_api_admin, only: [:sync]
@@ -126,6 +126,16 @@ class UsersController < ApplicationController
       render :nothing => true, :status => 200
     end
   end
+
+  def check_plan
+    @value=nil
+    if current_user.present?
+      @value= current_user.plan.try(:name)
+    end
+
+    render json: @value
+  end
+
 
   # def send_invite
   #   exsiting_user = User.find_by(email: params[:email])
