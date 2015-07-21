@@ -1,0 +1,34 @@
+---
+odk_sf_legacy_salesforce_objects_001:
+  id: '794'
+  name: vera__Test_Event__c
+  data_type: 
+  label: 
+  color: "#7F8C8D"
+  mapping_id: '464'
+  created_at: '2015-07-21 19:04:06.048371'
+  updated_at: '2015-07-21 19:04:06.048371'
+  order: '1'
+  is_repeat: f
+odk_sf_legacy_salesforce_objects_002:
+  id: '795'
+  name: vera__Boat__c
+  data_type: 
+  label: 
+  color: "#BDC3C7"
+  mapping_id: '464'
+  created_at: '2015-07-21 19:04:11.186506'
+  updated_at: '2015-07-21 19:04:50.213135'
+  order: '2'
+  is_repeat: t
+odk_sf_legacy_salesforce_objects_003:
+  id: '796'
+  name: vera__Toy__c
+  data_type: 
+  label: 
+  color: "#16A085"
+  mapping_id: '464'
+  created_at: '2015-07-21 19:04:16.204195'
+  updated_at: '2015-07-21 19:04:52.963547'
+  order: '3'
+  is_repeat: t

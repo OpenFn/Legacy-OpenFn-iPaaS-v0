@@ -56,6 +56,7 @@ module OdkSfLegacy
 
           # => Load the fields for the salesforce_object
           @converter.odk_data(salesforce_object, submission.data).each_with_index do |odk_data, i|
+            @logger.debug odk_data
             # Skip any potential nil records, even if they have an instanceID
             # We work this out on the basis that all the values are nil
             # and the only other value is a hash (meta: {instanceID: '123'})

@@ -1,0 +1,13 @@
+---
+legacy_salesforce_relationships_001:
+  id: '281'
+  salesforce_object_id: '794'
+  salesforce_field_id: '32422'
+  created_at: '2015-07-21 19:04:23.816669'
+  updated_at: '2015-07-21 19:04:23.816669'
+legacy_salesforce_relationships_002:
+  id: '282'
+  salesforce_object_id: '795'
+  salesforce_field_id: '32437'
+  created_at: '2015-07-21 19:04:28.810298'
+  updated_at: '2015-07-21 19:04:28.810298'

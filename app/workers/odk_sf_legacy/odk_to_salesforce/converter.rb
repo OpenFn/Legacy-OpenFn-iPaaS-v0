@@ -5,6 +5,11 @@ module OdkSfLegacy
     #
     # odk_form -> { sf_object: { sf_field: "value" } }
     class Converter
+      
+      def initialize
+        @logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT)) 
+        @logger.push_tags("OdkToSalesforce::Converter")
+      end
 
       def odk_data(salesforce_object, odk_data)
         arr = []
@@ -23,7 +28,13 @@ module OdkSfLegacy
           field_nesting = odk_field.field_name.split("/").reject!(&:empty?)
 
           # => Load the repeat object
-          repeat = field_nesting[0...-1].reduce(odk_data) { |memo,key| memo[key] }
+          begin
+            repeat = field_nesting[0...-1].reduce(odk_data) { |memo,key| memo[key] }
+          rescue => e
+            @logger.debug "Failed sourcing #{field_nesting.join('/')}"
+            @logger.debug(odk_data)
+            raise e
+          end
 
           [repeat].reject(&:nil?).flatten.each do |repeat_hash|
             non_repeat_odk_fields.each do |non_r_field|

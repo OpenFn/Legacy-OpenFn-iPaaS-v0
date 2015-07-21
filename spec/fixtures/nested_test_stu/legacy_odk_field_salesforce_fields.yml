@@ -1,0 +1,22 @@
+---
+legacy_odk_field_salesforce_fields_001:
+  id: '4408'
+  odk_field_id: '11105'
+  salesforce_field_id: '32429'
+  created_at: '2015-07-21 19:04:34.63317'
+  updated_at: '2015-07-21 19:04:34.63317'
+  lookup_field_name: 
+legacy_odk_field_salesforce_fields_002:
+  id: '4409'
+  odk_field_id: '11103'
+  salesforce_field_id: '32414'
+  created_at: '2015-07-21 19:04:40.486809'
+  updated_at: '2015-07-21 19:04:40.486809'
+  lookup_field_name: 
+legacy_odk_field_salesforce_fields_003:
+  id: '4410'
+  odk_field_id: '11100'
+  salesforce_field_id: '32405'
+  created_at: '2015-07-21 19:04:46.539861'
+  updated_at: '2015-07-21 19:04:46.539861'
+  lookup_field_name: 

@@ -1,0 +1,10 @@
+---
+odk_sf_legacy_mappings_001:
+  id: '464'
+  name: nested test STU
+  odk_formid: 
+  created_at: '2015-07-21 19:03:57.581105'
+  updated_at: '2015-07-21 19:03:57.581105'
+  active: f
+  user_id: '4'
+  enabled: t
