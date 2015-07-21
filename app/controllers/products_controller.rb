@@ -8,10 +8,11 @@ class ProductsController < ApplicationController
   skip_before_filter :require_login, except: [:vote, :review]
 
   def index
-    render json: Product.enabled.order(:name).map { |p|
-        p.as_json(methods: [:votes_count, :tag_list, :reviews_count, :rating]).
+    enabled_products = Product.where(:enabled => 'true')
+    render json: enabled_products.enabled.map { |p|
+        p.as_json(only: [:id, :name, :website, :description, :integrated],
+          methods: [:votes_count, :tag_list, :reviews_count, :rating]).
           merge "hasVoteForUser" => p.has_vote_for(current_user)
-          # merge "hasReviewForUser" => p.has_review_for(current_user)
       }
   end
 
@@ -46,12 +47,17 @@ class ProductsController < ApplicationController
       merge("hasReviewForUser" => product.has_review_for(current_user))
   end
 
+  def get
+    product = Product.find(params[:product_id])
+    render json: product.to_json
+  end
+
   def admin_edit
     product = Product.find(params[:id])
     product.name = params[:name]
     product.website = params[:website]
     product.twitter = params[:twitter]
-    product.provider = params[:provider]
+    product.email = params[:email]
     product.description = params[:description]
     product.detailed_description = params[:detailed_description]
     product.tech_specs = params[:tech_specs]

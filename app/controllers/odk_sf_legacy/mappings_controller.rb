@@ -6,8 +6,8 @@ module OdkSfLegacy
     def index
       @mappings = current_user.mappings.page params[:page]
       unless current_user.valid_credentials
-        flash[:danger] = "Please add valid Salesforce and ODK
-                         credentials in your settings."
+        flash[:danger] = "Please add valid Salesforce and/or ODK
+                         credentials in your user settings."
       end
     end
 

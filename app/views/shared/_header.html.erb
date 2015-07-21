@@ -10,44 +10,36 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="navbar-collapse collapse" collapse="isCollapsed">
       <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Marketplace <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li>
-              <%= link_to "Technologies", "/#/marketplace"%>
-            </li>
-            <li>
-              <%= link_to "Tags", "/#/tags"%>
-            </li>
-            <!-- <li>
-              <%= link_to "Drafts", "/admin/get_drafts" %>
-            </li> -->
-          </ul>
+        <li>
+          <%= link_to "Marketplace", "/#/marketplace"%>
+        </li>
+        <li ng-controller="LoginController as loginCtrl">
+          <a ng-click="checkLogin('<%= odk_sf_legacy_mappings_path %>')">Integrations</a>
         </li>
         <li>
-          <%= link_to "Integrations", odk_sf_legacy_mappings_path, 'ng-click' => "$event.stopPropagation()" %>
-        </li>
-        <li>
-          <%= link_to "Content", "/#/release-notes"%>
+          <a href="https://medium.com/@openFn" target="_blank">Content</a>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
+              <li>
+                <%= link_to "Team", "/#/our_team"%>
+              </li> 
               <% unless current_user %>
                 <li>
                   <%= link_to "Pricing", "/#/pricing" %>
                 </li>
               <% end %>
               <li>
-                <%= link_to "Developers", "/#/developers"%>
-              </li>
-              <li>
-                <%= link_to "Our Team (soon)", "#"%>
-              </li>         
+                <a href="/#/developers">Developers <i class="fa fa-file-code-o"></i></a>
+              </li>        
             </ul>
         </li>        
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a onClick="ga('send', 'event', 'Revenue', 'Open Donate Modal');" type="button" data-toggle="modal" data-target="#donate_modal"><i class="fa fa-life-ring"></i> Donate</a>
+        </li>
         <% if current_user %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
@@ -71,10 +63,8 @@
         <% end %>
 
         <% unless current_user %>
-          <li>
-            <%= link_to "/login", method: :get do %>
-              Log in
-            <% end %>
+          <li ng-controller="LoginController as loginCtrl" class="row">
+            <a ng-click="checkLogin()" >Login</a>
           </li>
           <li>
             <%= button_to "/signup", :class => "btn btn-default", method: :get do %>
@@ -90,6 +80,8 @@
   <%= render 'shared/confirm_modal'%>
 <%end%>
 
+
+
 <div class="ideas">
   <div class="modal fade" id="donate_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -97,16 +89,13 @@
         <div class="featurette dark">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title center" id="myModalLabel">Make a donation.</h4>
+            <h4 class="modal-title center" id="myModalLabel">Thank you for your support!</h4>
           </div>
           <div class="modal-body">
-            <strong>Thanks so much for your support</strong>.
+            We have submitted our 501(c)3 application and are awaiting approval. When we are granted 501(c)3 status, all donations that were made previously will be recognized as tax deductible. To learn more, click <a href="http://www.irs.gov/Charities-&-Non-Profits/Charitable-Organizations/Contributions-to-Organization-with-IRS-Application-Pending" target="_blank">here.</a>
             <br>
             <br>
-            We believe that we'll receive 501(c)3 approval in this tax year, 2015. When we are granted 501(c)3 status, all donations that were made previously will be recognized as tax deductible. To learn more, click <a href="http://www.irs.gov/Charities-&-Non-Profits/Charitable-Organizations/Contributions-to-Organization-with-IRS-Application-Pending" target="_blank">here.</a>
-            <br>
-            <br>
-            To make a donation, select your desired amount below and enter your credit card details on the following page.
+            <strong>To make a donation, select your desired amount</strong> below and enter your credit card details on the following page.
             <br>
             <br>
             <br>
@@ -158,6 +147,33 @@
     </div>
   </div>
 </div>
+
+<script type="text/ng-template" id="modalTemplate.html">
+  <div class="modal-content">
+      <div class="modal-header center">
+        <h2>
+          Log in
+          <button type="button" class="close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 modal-body">              
+          <%= render '/user_sessions/form', user: @user %>
+        </div>
+        <div class="col-md-8 col-md-offset-2 modal-body">
+          <h4>Click <%= link_to "/signup", method: :get do %>
+              <button type="button" class="btn btn-success">Sign up</button>
+            <% end %> to create a new account</h4>
+        </div>
+      </div>
+      <div class="row">        
+        <div class="col-md-8 col-md-offset-2 modal-body">
+          <h4>Forgot your password?</h4>
+          <%= render '/user_sessions/forgot_password_form' %>
+        </div>
+      </div>
+  </div>
+</script>
 
 <%= form_tag charges_path, id: 'chargesForm' do %>
   <input type='hidden' id='token' name='token' />
@@ -213,6 +229,6 @@
 
   // Close Checkout on page navigation
   $(window).on('popstate', function() {
-    handler.close();
+      handler.close();
   });
 </script>

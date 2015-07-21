@@ -22,7 +22,6 @@ OpenFn::Application.routes.draw do
   end
 
   # slightly weird, but we're getting this from Salesforce in xml, and they always post.
-  post "/api/v1/:token/update_products", to: "products#update", defaults: { format: 'xml' }
   post "/api/v1/:token/update_users", to: "users#sync", defaults: { format: 'xml' }
 
   namespace :odk_sf_legacy, shallow_path: nil, path: nil do
@@ -73,10 +72,6 @@ OpenFn::Application.routes.draw do
     end
   end
 
-  namespace :metrics do
-    get "organisation_integration_mappings", to: "organisation_integration_mappings#index", as: :organisation_integration_mappings
-  end
-
   namespace :api do
     resources :integration, param: :api_key do
       resource :message, only: [:create]
@@ -110,6 +105,8 @@ OpenFn::Application.routes.draw do
   get  "signup", to: "users#new",        as: :signup
   get  "login",  to: "user_sessions#new",     as: :login
   post "signup", to: "users#create"
+  get "/users/get/current_user", to: "users#show_current_user"
+  # post "signup", to: "users#create"
   post "login",  to: "user_sessions#create",  as: :create_session
   post  "logout", to: "user_sessions#destroy", as: :logout
   post :send_invite, to: 'users#send_invite'
@@ -128,12 +125,15 @@ OpenFn::Application.routes.draw do
   get '/review/:review_id/up_vote', to: "review_votes#upvote"
   get '/review/:review_id/down_vote', to: "review_votes#downvote"
   get '/review/:review_id/score', to: "review_votes#count_rating"
+  get '/review/:review_id/check_vote', to: "review_votes#check_vote"
+  get 'review/vote/:review_id', to: "review_votes#vote"
   get '/products/:product_id/tags', to: "tags#product_tags"
+  get '/team_members/get_all', to: "team_members#get_all"
+  get '/product/get/:product_id', to: "products#get"
   post '/products/:product_id/tags/add', to: "tags#product_tags_add"
-  get '/tag/tagging_count/:tag_id', to: "tags#tagging_count"
+  post '/tags/publish/:draft_id', to: "tags#tag_draft_publish"
   get '/tags/get_all_json', to: "tags#get_all_json"
 
-  get "metrics", to: "metrics#index", as: :metrics
   get '/user/check_login', to: "users#check_login"
 
   post '/admin/products/:product_id/tags/add', to: "tags#tags_add"

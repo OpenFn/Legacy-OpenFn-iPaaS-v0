@@ -2,9 +2,9 @@
 
   .banner {
     position: relative;
-    background-color: $dark;
+    background-color: $base;
     background-image: image-url("wow_bg.jpg");
-    background-repeat: no-repeat;
+    // background-repeat: no-repeat;
     background-position: center;
     // background-size: 100%;
     width: 100%;
@@ -50,13 +50,11 @@
     // font-size: rem-calc(18px);
     // color: red;
     // background-color: $nav;
-    color: $bg-color;
-    // background-image: image-url("noise.png");
-    // background-size: 100%;
-    // font-weight: 100;
-    // font-size: rem-calc(35px);
-    // color: $primary-blue;
-    margin: 2rem 0;
+    color: $dark;
+        font-size: rem-calc(35px);
+        // color: $primary-blue;
+        margin: 2rem 0;
+    padding: 2em;
   }
 
   .numbers h3 {

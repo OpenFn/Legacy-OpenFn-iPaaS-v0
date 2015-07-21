@@ -21,8 +21,8 @@
         <input type="text" class="form-control searchTagsBox" placeholder="Search for specific tags by typing..." ng-model="searchTagText" ng-change="searchTags(searchTagText)">
       </form>
       <br>
-      <div ng-repeat="n in tag_match | orderBy:'name' | orderBy:'-tag_count' " ng-init="tagging_count(n)" class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
-          <a href="/marketplace/search/{{n.name}}" class="tag label" title rel="tag">{{n.name}} <span class="badge">{{n.tag_count}}</span></a>
+      <div ng-repeat="n in tag_match | orderBy:'name' | orderBy:'-taggings_count' " class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+          <a href="/marketplace/search/{{n.name}}" class="tag label" title rel="tag">{{n.name}} <span class="badge">{{n.taggings_count}}</span></a>
       </div>
     </div>
   </div>

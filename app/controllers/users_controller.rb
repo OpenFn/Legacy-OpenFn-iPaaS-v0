@@ -11,7 +11,11 @@ class UsersController < ApplicationController
   end
 
   def create
+<<<<<<< HEAD
     #@user = User.new(user_params)
+=======
+    
+>>>>>>> 26e58f99f7981b534a6b79e63d1ff858b84a1a7b
     @user = User.new
     @user.email = params[:email]
     @user.first_name = params[:first_name]
@@ -21,22 +25,18 @@ class UsersController < ApplicationController
     @user.organisation = params[:organisation]
     @user.save
 
-    # respond_to do |format|
-    #   if @user.save
-    #     format.json { render json: @user, status: :created }
-    #   else
-    #     format.json { render json: @user.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    
 
-    # if @user.save_with_payment(params)
-    #   auto_login(@user)
-    #   set_user_credentials_and_flash
-    #   redirect_to(:root, notice: "Welcome!")
-    # else
-    #   flash.now[:alert] = "Signup failed..."
-    render :new
-    # end
+
+    if @user.save_with_payment(params)
+      auto_login(@user)
+      set_user_credentials_and_flash
+      redirect_to(:root, notice: "Welcome!")
+    else
+      flash.now[:alert] = "Signup failed..."
+      render :new#{}"/OpenFn-Site/public/the_bridge_templates/user/user_info"
+    end
+
   end
 
   def index
@@ -102,6 +102,14 @@ class UsersController < ApplicationController
 
   def show
     render json: @user
+  end
+
+  def show_current_user
+    if current_user.present?
+      render json: current_user
+    # else
+     end 
+
   end
 
   def edit

@@ -1,3 +1,13 @@
+
+<div class="ideas">
+  <header class="header-image">
+    <div class="headline">
+      <h1><i class="fa fa-user"></i> create <strong>Account</strong></h1>
+      <h3>Go ahead and <strong>start connecting</strong> for free. Seriously.</h3>
+    </div>
+  </header>
+</div>
+
 <div ng-controller="UserController as userCtrl">
   <div class="featurette dark">
     <hr class="light">
@@ -27,12 +37,12 @@
                     <input type="text" class="form-control" name = "password_confirmation" placeholder="Password Confirmation" ng-model="formData.password_confirmation">
                     <input type="text" class="form-control" name = "first_name" placeholder="First Name" ng-model="formData.first_name">
                     <input type="text" class="form-control" name = "last_name" placeholder="Last Name" ng-model="formData.last_name">
+                    <input type="text" class="form-control" name = "organisation" placeholder="Organisation" ng-model="formData.organisation">
+
                     <input type="text" class="form-control" name = "organisation" placeholder="organisation" ng-model="formData.organisation">
                     <input type="hidden" name="stripe_token" ng-model="formData.stripe_token">
                     <input type="hidden" name="subscription_plan" ng-model="formData.subscription_plan">
                     <input type="hidden" name="subsctiption_plan" value="">
-
-
 
                     <button type="submit" class="btn btn-success btn-lg btn-block">
                       Submit!
@@ -49,5 +59,3 @@
             </div>
 </div>
 </div>
-           
-          

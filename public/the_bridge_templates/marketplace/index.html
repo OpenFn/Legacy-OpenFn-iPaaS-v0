@@ -1,3 +1,13 @@
+<style>
+
+  .better-button-able {
+}
+
+  .better-button-disabled {
+    background: #D0D0D0;
+    pointer-events: none;
+}
+</style>
 <header class="header-image">
     <div class="headline">
       <h1>
@@ -16,7 +26,7 @@
          
         <div class="col-md-10 col-md-offset-1">
           <div class="search-field">
-              <input type:"text" class="form-control" ng-class="alex" placeholder="Start typing to search..." ng-model="searchText" tooltip-trigger="mouseenter" tooltip="Search for product names, descriptions, tags, or websites.">
+              <input type:"text" class="form-control" ng-class="alex" placeholder="Start typing to search..." ng-model="searchText" tooltip-trigger="mouseenter" tooltip="Search for product names, descriptions, tags, or websites." typeahead="keyword for keyword in keywords | filter:$viewValue | limitTo:8">
           </div>
         </div>
         <div class="col-md-10 col-md-offset-1">  
@@ -48,16 +58,20 @@
                 <accordion-heading>
                   {{category.name}} <i class="pull-right fa fa-caret-down"></i>
                 </accordion-heading>
-                <li style="cursor: pointer" class="list-group-item" ng-repeat="tag in tags | filter:{tag_category_id: category.id }  | orderBy: '-tag_count'" ng-init="taggings_count(tag)" ng-click="tagFilter(tag)"  ng-model="tag.active" btn-checkbox>{{tag.name}} <span class="badge">{{tag.tag_count}}</span></li>
+                <li style="cursor: pointer" class="list-group-item" ng-repeat="tag in tags | filter:{tag_category_id: category.id }  | orderBy: '-taggings_count'"  ng-click="tagFilter(tag)"  ng-model="tag.active" btn-checkbox ng-class="(((tag.taggings_count == 0)&&(!tag.active))||(isLoading)) ? 'better-button-disabled' : 'better-button-able'">{{tag.name}}<span class="badge">{{tag.taggings_count}}</span></li>
               </accordion-group>
             </accordion>
           </div>
           <div class="col-xs-10 center" ng-if="isLoading">
           <br><br><br>
-            <i class="fa fa-refresh fa-3x fa-spin"></i>
+            <i class="fa fa-refresh fa-2x fa-spin"></i>
+            <h4>
+            <br>
+              Hang tight while we gather data on hundreds of technologies, reviews, tags, and votes.
+            </h4>
           </div>
           <div class="col-sm-10">
-          <div ng-repeat="product in products | filter:filterProducts">
+          <div ng-repeat="product in (filteredProducts =( products | filter:filterProducts)) | orderBy:['-integrated','-votes_count','name']">
             <div class="product-container col-lg-4 col-md-6 col-sm-6 col-xs-12">
               <div ng-class="product.integrated ? 'product integrated' : 'product'" tooltip-trigger="mouseenter" tooltip="Click to learn about {{product.name}}." ng-click="go('/product/' + product.id)" style="cursor: default">
                 <div class='rating'>
@@ -93,7 +107,8 @@
                 <a ng-href="{{product.website}}" ng-click="$event.stopPropagation()" class="website-link" target="_blank" tooltip-trigger="mouseenter" tooltip="Check out the {{product.name}} website.">
                   <i class="fa fa-external-link"></i>
                 </a>              
-                <a href="/mappings" class="vote-link" ng-show="product.integrated" ng-click="$event.stopPropagation()">
+                <a ng-click="integratedProduct('/mappings'); $event.stopPropagation()" 
+                class="vote-link" ng-show="product.integrated">
                   <i class="fa fa-plug"></i>
                 </a>
                 <a style="cursor: auto" ng-hide="product.integrated" class="vote-count">
