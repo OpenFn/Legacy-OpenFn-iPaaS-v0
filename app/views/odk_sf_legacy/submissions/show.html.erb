@@ -15,10 +15,10 @@
     <div class="container">
 
 <ol class="breadcrumb">
-  <li><%= link_to "Mappings", odk_sf_legacy_mappings_path %></li>
+  <li><%= link_to "all maps", odk_sf_legacy_mappings_path %></li>
   <li><%= link_to @mapping.name, @mapping %></li>
-  <li><%= link_to "Submissions", [@mapping, :submissions] %></li>
-  <li>Submission <%= @submission.uuid %></li>
+  <li><%= link_to "submissions", [@mapping, :submissions] %></li>
+  <li><i class="fa fa-arrow-circle-right"></i> <em>Submission <%= @submission.uuid %></em></li>
 </ol>
 
 <%= link_to "Reprocess", reprocess_odk_sf_legacy_mapping_submission_path(@mapping, @submission), class: 'btn btn-danger pull-right', method: 'post', confirm: 'Are you sure?' if @submission.error? %>
