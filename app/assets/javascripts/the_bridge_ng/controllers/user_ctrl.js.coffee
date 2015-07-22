@@ -24,13 +24,18 @@
 
   $scope.submitUserForm = () ->
     $http.post('/users', $scope.formData).success((data) ->
-      console.log 'successss'
+
     )
 
   $scope.submitODKForm = () ->
-    $http.put('/users/' + $scope.odkUserId + '/edit', $scope.odkData).success((data) ->
-      console.log 'odk info updated yay'
+    $http.put('/users/' + $scope.odkUserId, $scope.odkData).success((data) ->
+
     )
+
+  # $scope.submitSFForm = () ->
+  #   $http.put('/users/' + $scope.odkUserId, $scope.odkData).success((data) ->
+
+  #   )
 
 
 # edit_user_path(odkUserId)

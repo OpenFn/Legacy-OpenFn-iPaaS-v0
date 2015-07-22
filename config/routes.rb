@@ -115,8 +115,8 @@ OpenFn::Application.routes.draw do
   get "check_plan", to: "users#check_plan"
   get "check_current_user_id", to: "users#check_current_user_id"
 
-  get "update_user", to: "users#update"
-
+  
+  
 
 
   get '/products/:product_id/vote', to: "products#vote"

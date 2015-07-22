@@ -46,21 +46,21 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    redirect_to "/user/update"
+    # redirect_to "/user/update"
     
-    # if @user.update(user_params)
-    #   if @user.update_plan(params)
-    #     set_user_credentials_and_flash
-    #     flash[:success] = "Settings updated." unless flash[:danger]
-    #     redirect_to(:edit_user)
-    #   else
-    #     flash.now[:danger] = "Settings could not be updated successfully."
-    #     render :edit
-    #   end
-    # else
-    #   flash.now[:danger] = "Settings could not be updated successfully."
-    #   render :edit
-    # end
+    if @user.update(user_params)
+      if @user.update_plan(params)
+        set_user_credentials_and_flash
+        flash[:success] = "Settings updated." unless flash[:danger]
+        redirect_to(:edit_user)
+      else
+        flash.now[:danger] = "Settings could not be updated successfully."
+        render :edit
+      end
+    else
+      flash.now[:danger] = "Settings could not be updated successfully."
+      render :edit
+    end
   end
 
   # From SalesForce
@@ -95,7 +95,7 @@ class UsersController < ApplicationController
     @user = current_user
     set_user_credentials_and_flash
 
-    # QUESTION do we want to add a redirect here to avoid the issues with edit path etc?
+ 
   end
 
   # DELETE /organizations/:id.json
