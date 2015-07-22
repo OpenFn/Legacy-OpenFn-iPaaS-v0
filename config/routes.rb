@@ -113,6 +113,7 @@ OpenFn::Application.routes.draw do
   match :set_password, to: 'users#set_password', via: [:get, :post]
   post :receive_stripe_events, to: 'webhooks#receive_stripe_events'
   get "check_plan", to: "users#check_plan"
+  get "publishable_key", to: "users#publishable_key"
 
 
 

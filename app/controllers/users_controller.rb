@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   respond_to :html, :json, :xml
-  skip_before_filter :require_login, only: [:new, :create, :sync, :set_password, :check_login, :check_plan]
+  skip_before_filter :require_login, only: [:new, :create, :sync, :set_password, :check_login, :check_plan, :publishable_key]
 
   skip_before_filter :verify_authenticity_token, only: [:sync]
   before_filter :validate_api_admin, only: [:sync]
@@ -11,11 +11,6 @@ class UsersController < ApplicationController
   end
 
   def create
-<<<<<<< HEAD
-    #@user = User.new(user_params)
-=======
-    
->>>>>>> 26e58f99f7981b534a6b79e63d1ff858b84a1a7b
     @user = User.new
     @user.email = params[:email]
     @user.first_name = params[:first_name]
@@ -142,6 +137,10 @@ class UsersController < ApplicationController
     end
 
     render json: @value
+  end
+
+  def publishable_key
+    render json: Rails.configuration.stripe[:publishable_key].to_json
   end
 
 

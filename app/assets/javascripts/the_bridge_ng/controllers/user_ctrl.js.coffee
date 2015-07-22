@@ -4,21 +4,74 @@
   $scope.searchTagText = ""
   $scope.formData = {}
   $scope.formData.email = ""
-  $scope.formData.plan = "Free"
+  $scope.salesforceData = {}
+  $scope.current_plan = ""
+  $scope.new_plan = ""
+  $scope.coupon = false
+  $scope.buttons = []
+  free = {}
+  $scope.token = ""
+  free.name = "Free"
+  free.active = false
+  free.checked = false
+  $scope.buttons.push free
+  entry = {}
+  entry.name = "Entry"
+  entry.active = false
+  entry.checked = false
+  $scope.buttons.push entry
+  startup = {}
+  startup.name = "Startup"
+  startup.active = false
+  startup.checked = false
+  $scope.buttons.push startup
+  growth = {}
+  growth.name = "Growth"
+  growth.active = false
+  growth.checked = false
+  $scope.buttons.push growth
+  enterprise = {}
+  enterprise.name = "Enterprise"
+  enterprise.active = false
+  enterprise.checked = false
+  $scope.buttons.push enterprise
 
-  $http.get('/check_plan').success((data) ->
-    $scope.formData.plan= data
-    console.log(data)
+  $http.get('/publishable_key').success((data) ->
+    $scope.key = data
   )
 
-  $scope.test1 = () ->
-    console.log("does this test work?")
-    console.log("in user controller angular")
+  $http.get('/check_plan').success((data) ->
+    $scope.current_plan= data
+    i = 0
+    found = false
+    while i < $scope.buttons.length
+      if $scope.buttons[i].name == $scope.current_plan
+        found = true
+        $scope.buttons[i].active = true
+        $scope.buttons[i].checked = true
+        break
+      i++
+    if !found
+      $scope.buttons[0].active = true
+      $scope.buttons[0].checked = true
+  )
 
+  $scope.clickPlan = (plan) ->
+    i = 0
+    while i < $scope.buttons.length
+      if $scope.buttons[i].name == plan
+        $scope.buttons[i].active = true
+        $scope.buttons[i].checked = true
+        $scope.new_plan = plan 
+      else
+        $scope.buttons[i].active = false
+        $scope.buttons[i].checked = false
+      i++
+    if ($scope.current_plan != "Startup") && ($scope.new_plan == "Startup")
+      $scope.coupon = true
+    else
+      $scope.coupon = false
 
-  $scope.submitUserForm = () ->
-    console.log("in da method")
-    console.log($scope.formData)
 
 
   $scope.submitUserForm = () ->
@@ -27,66 +80,45 @@
       console.log 'successss'
     )
 
-  $scope.checkForCurrentUser = () ->
-    $http.get('/users/get/current_user').success((data) ->
-      console.log 'data'
+  $scope.submitODK = () ->
+    $http.post('/users/{{current_user.id}}', $scope.formData).success((data) ->
+      console.log 'successss'
     )
 
-    # console.log("in user controller angular")
 
-  # $scope.submitODK = () ->
-  #   $http.post('/users/{{current_user.id}}', $scope.formData).success((data) ->
-  #     console.log 'successss'
-
-
-  # $scope.SetPlan = (plan) ->
-  #   $('.plan_btn label').removeClass 'active'
-  #   $('.plan_btn input').each ->
-  #     if $(this).data('name') == plan
-  #       $(this).attr 'checked', true
-  #       $(this).parent('label').addClass 'active'
-  #     return
-  #   return
-
-  # $('.pay').click ->
-  #   input = $(this).find('input')
-  #   if plan != 'Startup'
-  #     if input.data('name') == 'Startup' and !input.is(':checked')
-  #       $('.coupon_field').show()
+  #   <%if current_user%>
+  #   plan = '<%=current_user.plan.try(:name) rescue ""%>';
+  #   if (plan != "")
+  #     SetPlan(plan);
+  # <%else%>
+  #   plan = 'Free'
+  #   $('.plan_btn input').first().attr('checked', true)
+  #   $('.plan_btn label').first().addClass('active');
+  # <%end%>
+  # <%if params[:plan].present?%>
+  #   plan = '<%=params[:plan]%>';
+  #   if (plan != "")
+  #     SetPlan(plan);
+  # <%end%>
+  # function SetPlan(plan){
+  #   $('.plan_btn label').removeClass('active');
+  #   $('.plan_btn input').each(function(){
+  #     if ($(this).data('name') == plan){
+  #       $(this).attr('checked', true);
+  #       $(this).parent('label').addClass('active');
+  #     }
+  #   })
+  # }
+  # $(".pay").click(function(){
+  #   input = $(this).find('input');
+  #   if (plan != 'Startup'){
+  #     if(input.data('name') == 'Startup' && !input.is(":checked") )
+  #       $(".coupon_field").show();
   #     else
-  #       $('.coupon_field').hide()
-  #   return
-
-  # handler = StripeCheckout.configure(
-  #   key: '<%= Rails.configuration.stripe[:publishable_key] %>'
-  #   token: (token) ->
-  #     $('#user_stripe_token').val token.id
-  #     plan_name = $('.plan_btn').find('input:checked').data('name')
-  #     $('#user_subscription_plan').val plan_name
-  #     $('form#signup_form').submit()
-  #     return
-  # )
-
-  # $('.submit_btn').click (e) ->
-  #   amount = $('.plan_btn').find('input:checked').data('amount')
-  #   plan_name = $('.plan_btn').find('input:checked').data('name')
-  #   email = $('#user_email').val()
-  #   if amount == 'free'
-  #     $('#user_subscription_plan').val 'Free'
-  #   else if $('#user_subscription_plan').val() != plan_name
-  #     if amount != 'free'
-  #       if $('#user_stripe_token').val() == ''
-  #         handler.open
-  #           name: 'OpenFn'
-  #           amount: amount
-  #           email: email
-  #           panelLabel: 'Signup for ' + plan_name
-  #         return false
-  #   return
-  # # Close Checkout on page navigation
-  # $(window).on 'popstate', ->
-  #   handler.close()
-  #   return
+  #       $(".coupon_field").hide();
+  #   }
+  # });
+  
 
 
 
