@@ -30,15 +30,12 @@
     <div id="wrap">
       <div id="main">
         <%= render "shared/header" %>
-        <div ng-view>
-        </div>
+        <div ng-view></div>
         <div class='growl-wrapper'>
           <div growl></div>
         </div>
       </div>
     </div>
-    <footer class="footer">
-      <%= render "shared/footer" %>
-    </footer>
+    <footer class="footer" ng-include="'/the_bridge_templates/footer.html'"></footer>
   </body>
 </html>
