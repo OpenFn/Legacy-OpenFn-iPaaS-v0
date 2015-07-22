@@ -11,15 +11,14 @@
     <div class="container">
     <ol class="breadcrumb">
       <li><%= link_to "all maps", odk_sf_legacy_mappings_path %></li>
-      <li><i class="fa fa-arrow-circle-right"></i> <em><%= @mapping.name %></em></li>
-      
-<% if @mapping.import %>
-      <li><%= link_to [@mapping, :submissions] do %>
-        submissions
+      <li><i class="fa fa-arrow-circle-right"></i> <em><%= @mapping.name %></em></li>      
+      <% if @mapping.import %>
+        <li><%= link_to [@mapping, :submissions] do %>
+          submissions
+        <% end %>
+        <% else %>
+        no submissions yet
       <% end %>
-      <% else %>
-      no submissions yet
-    <% end %>
     </li>
 
     </ol>
