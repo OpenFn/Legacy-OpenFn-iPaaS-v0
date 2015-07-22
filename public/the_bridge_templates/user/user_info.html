@@ -19,6 +19,8 @@
       
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
           <div class="panel panel-default">
+
+          <!-- the above div is the one that wraps all three sections together -->
             
             <div class="panel-heading" role="tab" id="headingOne">
               <h4 class="panel-title">
@@ -39,7 +41,7 @@
                     <input type="text" class="form-control" name = "last_name" placeholder="Last Name" ng-model="formData.last_name">
                     <input type="text" class="form-control" name = "organisation" placeholder="Organisation" ng-model="formData.organisation">
 
-                    <input type="text" class="form-control" name = "organisation" placeholder="organisation" ng-model="formData.organisation">
+                   
                     <input type="hidden" name="stripe_token" ng-model="formData.stripe_token">
                     <input type="hidden" name="subscription_plan" ng-model="formData.subscription_plan">
                     <input type="hidden" name="subsctiption_plan" value="">

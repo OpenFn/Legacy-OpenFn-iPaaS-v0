@@ -266,12 +266,7 @@
       'tech_specs': product.tech_specs
       'costs': product.costs
       'resources': product.resources
-<<<<<<< HEAD
-    console.log(productEdit)
-    console.log("it edits here")
-=======
 
->>>>>>> 26e58f99f7981b534a6b79e63d1ff858b84a1a7b
 
 
     $http.post("/admin/products/#{product.id}/tags/add",$scope.tags_added).success((data) ->

@@ -105,7 +105,7 @@ OpenFn::Application.routes.draw do
   get  "signup", to: "users#new",        as: :signup
   get  "login",  to: "user_sessions#new",     as: :login
   post "signup", to: "users#create"
-  get "/users/get/current_user", to: "users#show_current_user"
+  # get "/users/get/current_user", to: "users#show_current_user"
   # post "signup", to: "users#create"
   post "login",  to: "user_sessions#create",  as: :create_session
   post  "logout", to: "user_sessions#destroy", as: :logout
@@ -113,6 +113,9 @@ OpenFn::Application.routes.draw do
   match :set_password, to: 'users#set_password', via: [:get, :post]
   post :receive_stripe_events, to: 'webhooks#receive_stripe_events'
   get "check_plan", to: "users#check_plan"
+  get "check_current_user_id", to: "users#check_current_user_id"
+
+  get "update_user", to: "users#update"
 
 
 

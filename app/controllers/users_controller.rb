@@ -11,11 +11,7 @@ class UsersController < ApplicationController
   end
 
   def create
-<<<<<<< HEAD
-    #@user = User.new(user_params)
-=======
-    
->>>>>>> 26e58f99f7981b534a6b79e63d1ff858b84a1a7b
+
     @user = User.new
     @user.email = params[:email]
     @user.first_name = params[:first_name]
@@ -50,32 +46,21 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    # if params[:organization_name] != @user.organization.try(:name)
-    #   @user.organization.update(name: params[:organization_name])
-    # end
-
-    # respond_to do |format|
-    #   if @user.update(user_params)
-    #     format.json { head :no_content }
+    redirect_to "/user/update"
+    
+    # if @user.update(user_params)
+    #   if @user.update_plan(params)
+    #     set_user_credentials_and_flash
+    #     flash[:success] = "Settings updated." unless flash[:danger]
+    #     redirect_to(:edit_user)
     #   else
-    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #     flash.now[:danger] = "Settings could not be updated successfully."
+    #     render :edit
     #   end
+    # else
+    #   flash.now[:danger] = "Settings could not be updated successfully."
+    #   render :edit
     # end
-
-    # Ankur, I'm not sure if this is related.
-    if @user.update(user_params)
-      if @user.update_plan(params)
-        set_user_credentials_and_flash
-        flash[:success] = "Settings updated." unless flash[:danger]
-        redirect_to(:edit_user)
-      else
-        flash.now[:danger] = "Settings could not be updated successfully."
-        render :edit
-      end
-    else
-      flash.now[:danger] = "Settings could not be updated successfully."
-      render :edit
-    end
   end
 
   # From SalesForce
@@ -104,17 +89,13 @@ class UsersController < ApplicationController
     render json: @user
   end
 
-  def show_current_user
-    if current_user.present?
-      render json: current_user
-    # else
-     end 
 
-  end
 
   def edit
     @user = current_user
     set_user_credentials_and_flash
+
+    # QUESTION do we want to add a redirect here to avoid the issues with edit path etc?
   end
 
   # DELETE /organizations/:id.json
@@ -136,12 +117,19 @@ class UsersController < ApplicationController
   end
 
   def check_plan
-    @value=nil
+    @value = nil
     if current_user.present?
-      @value= current_user.plan.try(:name)
+      @value = current_user.plan.try(:name)
     end
+    render json: @value.to_json
+  end
 
-    render json: @value
+  def check_current_user_id
+    @value = nil
+    if current_user.present?
+      @value = current_user.id
+    end
+    render json: @value.to_json
   end
 
 
