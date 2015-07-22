@@ -11,8 +11,9 @@
 
   $http.get('/check_plan').success((data) ->
     $scope.formData.plan = data
-    # $scope.odkData.plan = data
-    console.log(data)
+    $scope.odkData.plan = data
+
+    
   )
 
   $http.get('/check_current_user_id').success((data) ->
@@ -27,7 +28,7 @@
     )
 
   $scope.submitODKForm = () ->
-    $http.put('/users/#{$scope.odkUserId}/edit', $scope.odkData).success((data) ->
+    $http.put('/users/' + $scope.odkUserId + '/edit', $scope.odkData).success((data) ->
       console.log 'odk info updated yay'
     )
 
