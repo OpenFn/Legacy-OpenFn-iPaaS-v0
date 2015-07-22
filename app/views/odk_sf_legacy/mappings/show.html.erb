@@ -10,10 +10,18 @@
     <hr class="dark">
     <div class="container">
     <ol class="breadcrumb">
-      <i class="fa fa-arrow-circle-right"></i>&nbsp;
-      <li><%= link_to "My Maps", odk_sf_legacy_mappings_path %></li>
-      <li><em><%= @mapping.name %></em></li>
-      <li><%= link_to "Submissions", [@mapping, :submissions] %></li>
+      <li><%= link_to "all maps", odk_sf_legacy_mappings_path %></li>
+      <li><i class="fa fa-arrow-circle-right"></i> <em><%= @mapping.name %></em></li>
+      
+<% if @mapping.import %>
+      <li><%= link_to [@mapping, :submissions] do %>
+        submissions
+      <% end %>
+      <% else %>
+      no submissions yet
+    <% end %>
+    </li>
+
     </ol>
       <div class='pull-left'>
         <%= form_tag dispatch_surveys_odk_sf_legacy_mapping_path(@mapping), class: 'form-inline', role: 'form' do %>

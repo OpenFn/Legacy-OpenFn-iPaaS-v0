@@ -10,10 +10,9 @@
 <div class="featurette mappings">   
   <div class="container">
     <ol class="breadcrumb">
-      <i class="fa fa-arrow-circle-right"></i>&nbsp;
-      <li><%= link_to "Mappings", odk_sf_legacy_mappings_path %></li>
+      <li><%= link_to "all maps", odk_sf_legacy_mappings_path %></li>
       <li><%= link_to @mapping.name, @mapping %></li>
-      <li><em>Submissions</em></li>
+      <li><i class="fa fa-arrow-circle-right"></i> <em>submissions</em></li>
     </ol>
     <%= form_tag [@mapping, :submissions], method: 'get', role: 'form', class: 'form-inline' do %>
     <div class="form-group">
