@@ -9,32 +9,15 @@
   $scope.new_plan = ""
   $scope.coupon = false
   $scope.buttons = []
-  free = {}
-  $scope.token = ""
-  free.name = "Free"
-  free.active = false
-  free.checked = false
-  $scope.buttons.push free
-  entry = {}
-  entry.name = "Entry"
-  entry.active = false
-  entry.checked = false
-  $scope.buttons.push entry
-  startup = {}
-  startup.name = "Startup"
-  startup.active = false
-  startup.checked = false
-  $scope.buttons.push startup
-  growth = {}
-  growth.name = "Growth"
-  growth.active = false
-  growth.checked = false
-  $scope.buttons.push growth
-  enterprise = {}
-  enterprise.name = "Enterprise"
-  enterprise.active = false
-  enterprise.checked = false
-  $scope.buttons.push enterprise
+  button_names = ["Free","Entry","Startup","Growth","Enterprise"]
+  i = 0
+  while i < button_names.length
+    button = {}
+    button.name = button_names[i]
+    button.active = false
+    button.checked = false
+    $scope.buttons.push button
+    i++
 
   $http.get('/publishable_key').success((data) ->
     $scope.key = data
