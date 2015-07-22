@@ -114,9 +114,7 @@ OpenFn::Application.routes.draw do
   post :receive_stripe_events, to: 'webhooks#receive_stripe_events'
   get "check_plan", to: "users#check_plan"
   get "check_current_user_id", to: "users#check_current_user_id"
-
-  
-  
+  get "publishable_key", to: "users#publishable_key"
 
 
   get '/products/:product_id/vote', to: "products#vote"
