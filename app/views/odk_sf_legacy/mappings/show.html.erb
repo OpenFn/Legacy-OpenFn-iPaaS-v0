@@ -9,6 +9,12 @@
     <hr class="light">
     <hr class="dark">
     <div class="container">
+    <ol class="breadcrumb">
+      <i class="fa fa-arrow-circle-right"></i>&nbsp;
+      <li><%= link_to "My Maps", odk_sf_legacy_mappings_path %></li>
+      <li><em><%= @mapping.name %></em></li>
+      <li><%= link_to "Submissions", [@mapping, :submissions] %></li>
+    </ol>
       <div class='pull-left'>
         <%= form_tag dispatch_surveys_odk_sf_legacy_mapping_path(@mapping), class: 'form-inline', role: 'form' do %>
           <div class="form-group">
