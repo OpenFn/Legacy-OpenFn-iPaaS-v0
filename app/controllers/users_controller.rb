@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   respond_to :html, :json, :xml
-  skip_before_filter :require_login, only: [:new, :create, :sync, :set_password, :check_login, :check_plan]
+  skip_before_filter :require_login, only: [:new, :create, :sync, :set_password, :check_login, :check_plan, :publishable_key, :check_current_user_id]
 
   skip_before_filter :verify_authenticity_token, only: [:sync]
   before_filter :validate_api_admin, only: [:sync]
@@ -133,6 +133,10 @@ class UsersController < ApplicationController
     else
       render :nothing
     end
+  end
+
+  def publishable_key
+    render json: Rails.configuration.stripe[:publishable_key].to_json
   end
 
 
