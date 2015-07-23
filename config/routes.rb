@@ -117,6 +117,7 @@ OpenFn::Application.routes.draw do
   post '/products/:product_id/review/new', to: "reviews#create"
   get '/product/:product_id/rating', to: "reviews#product_rating"
   post '/products/:product_id/admin_edit', to: "products#admin_edit"
+  post '/products/admin_new', to: "products#admin_new"
 
   get '/review/:review_id/up_vote', to: "review_votes#upvote"
   get '/review/:review_id/down_vote', to: "review_votes#downvote"
