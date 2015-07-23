@@ -20,7 +20,6 @@
     $scope.formData.first_name= data.first_name
     $scope.formData.last_name= data.last_name
     $scope.formData.organisation= data.organization
-    console.log($scope.formData.email)
   )
 
   i = 0
