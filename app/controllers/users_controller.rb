@@ -128,8 +128,11 @@ class UsersController < ApplicationController
     @value = nil
     if current_user.present?
       @value = current_user.id
+      render json: @value.to_json
+    
+    else
+      render :nothing
     end
-    render json: @value.to_json
   end
 
 
