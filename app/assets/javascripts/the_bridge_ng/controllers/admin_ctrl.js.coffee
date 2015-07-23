@@ -21,8 +21,12 @@
   )
 
   $scope.getProductComparison = (draft) ->
+    
     $http.get("/product/get/#{draft.update.item_id}.json").success((data) ->
-      draft.current = data
+      if draft.update.event == "create"
+        draft.current.name = "New Product"
+      else
+        draft.current = data
       )
 
   $scope.getProductName = (draft) ->

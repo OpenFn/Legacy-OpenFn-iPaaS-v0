@@ -40,6 +40,17 @@ class Admin::DraftsController < Admin::BaseAdminController
       @draft.destroy
       render json: record
     end
+    if @draft.event.eql?("create") and @draft.item_type.eql?("Product")
+      schema = @draft.item_type.constantize
+      record = schema.find(@draft.object['id'])
+      record.update(:enabled => true,
+                    :draft_id => nil,
+                    :published_at => Time.now,
+                    :trashed_at => nil)
+      record.save
+      @draft.destroy
+      render json: record
+    end
   end
 
   # Post draft ID here to revert it
