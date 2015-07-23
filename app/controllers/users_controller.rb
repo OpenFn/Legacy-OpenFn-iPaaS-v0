@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     redirect_to "/register"
   end
 
+
   def create
 
     @user = User.new
@@ -21,8 +22,6 @@ class UsersController < ApplicationController
     @user.organisation = params[:organisation]
     @user.save
 
-    
-
 
     if @user.save_with_payment(params)
       auto_login(@user)
@@ -30,7 +29,7 @@ class UsersController < ApplicationController
       redirect_to(:root, notice: "Welcome!")
     else
       flash.now[:alert] = "Signup failed..."
-      render :new#{}"/OpenFn-Site/public/the_bridge_templates/user/user_info"
+      render :new
     end
 
   end
@@ -46,13 +45,13 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    # redirect_to "/user/update"
     
     if @user.update(user_params)
       if @user.update_plan(params)
         set_user_credentials_and_flash
         flash[:success] = "Settings updated." unless flash[:danger]
-        redirect_to(:edit_user)
+        
+        redirect_to(:end_successful_update)
       else
         flash.now[:danger] = "Settings could not be updated successfully."
         render :edit
@@ -92,7 +91,7 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
     set_user_credentials_and_flash
-    redirect_to "/register"
+    # redirect_to "/register"
 
  
   end

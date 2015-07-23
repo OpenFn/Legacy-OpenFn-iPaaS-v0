@@ -10,6 +10,7 @@
   $scope.current_plan = ""
   $scope.new_plan = ""
   $scope.formData.subscription_plan = "Free"
+  $scope.currentUserId = ""
   
   $scope.coupon = false
   $scope.buttons = []
@@ -62,6 +63,7 @@
   $http.get('/check_current_user_id').success((data) ->
     $scope.odkUserId = data
     $scope.sfUserId = data
+    $scope.currentUserId = data
    
   )
 
@@ -82,9 +84,15 @@
       $scope.coupon = false
 
   $scope.submitUserForm = () ->
-    $http.post('/users', $scope.formData).success((data) ->
+    if $scope.currentUserId == ""
+      $http.post('/users', $scope.formData).success((data) ->
 
-    )
+      )
+
+    else
+      $http.put('/users/' + $scope.currentUserId, $scope.formData).success((data) ->
+        window.location = "/"
+      )
 
   $scope.submitODKForm = () ->
     $http.put('/users/' + $scope.odkUserId, $scope.odkData).success((data) ->

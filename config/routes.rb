@@ -115,7 +115,7 @@ OpenFn::Application.routes.draw do
   get "check_plan", to: "users#check_plan"
   get "check_current_user_id", to: "users#check_current_user_id"
   get "publishable_key", to: "users#publishable_key"
-
+  put "end_successful_update", to: "users#check_current_user_id"
 
   get '/products/:product_id/vote', to: "products#vote"
   get '/products/:product_id/review/show', to: "reviews#index"
