@@ -8,25 +8,29 @@
   $scope.deleted_tags = []
   $scope.tags_deleted = []
   $scope.loggedIn = false
+  id = $routeParams.id
 
-  $http.get('/products/' + $routeParams.id + '.json').success((data) ->
-    $scope.product = data
-    productTags($scope.product)
-    $scope.product.reviews_count = $scope.product.reviews.length
-    $scope.productRating($scope.product)
-    $scope.tabs = [
-      { title:'Description', content: $scope.product.detailed_description },
-      { title:'Costs', content: $scope.product.costs, disabled: true },
-      { title:'Tech Specs', content: $scope.product.tech_specs, disabled: true },
-      { title:'Resources', content: $scope.product.resources, disabled: true }
-    ];
-    
-    $scope.twitterApi = $scope.product.twitter.substring(1)
-    
-    $timeout (->
-      twttr.widgets.load()
-      return
-    ), 1000
+  if id != undefined
+    $http.get('/products/' + $routeParams.id + '.json').success((data) ->
+      $scope.product = data
+      productTags($scope.product)
+      $scope.product.reviews_count = $scope.product.reviews.length
+      $scope.productRating($scope.product)
+      $scope.tabs = [
+        { title:'Description', content: $scope.product.detailed_description },
+        { title:'Costs', content: $scope.product.costs, disabled: true },
+        { title:'Tech Specs', content: $scope.product.tech_specs, disabled: true },
+        { title:'Resources', content: $scope.product.resources, disabled: true }
+      ];
+      
+      $scope.twitterApi = $scope.product.twitter.substring(1)
+      
+      $timeout (->
+        twttr.widgets.load()
+        return
+      ), 1000
+    )
+
 
   $scope.checkVote = (review) ->
     console.log(review)
@@ -125,7 +129,7 @@
         window.location = data.redirect_url
     )
 
-  )
+  
 
   $star_rating = $('.star-rating .fa')
 
@@ -271,6 +275,11 @@
 
     $http.post("/products/#{product.id}/admin_edit",productEdit).success((data) ->
       window.location = "/product/#{product.id}"
+    )
+
+  $scope.newProduct = ()->
+    $http.post("/products/admin_new", $scope.product).success((data) ->
+      window.location = "/marketplace"
     )
 
 ]
