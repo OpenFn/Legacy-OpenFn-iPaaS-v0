@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   respond_to :html, :json, :xml
-  skip_before_filter :require_login, only: [:new, :create, :sync, :set_password, :check_login, :check_plan, :publishable_key, :check_current_user_id]
+  skip_before_filter :require_login, only: [:new, :create, :sync, :set_password, :check_login, :check_plan, :publishable_key, :get_user_data, :check_current_user_id]
 
   skip_before_filter :verify_authenticity_token, only: [:sync]
   before_filter :validate_api_admin, only: [:sync]
@@ -89,11 +89,10 @@ class UsersController < ApplicationController
     render json: @user
   end
 
-
-
   def edit
     @user = current_user
     set_user_credentials_and_flash
+    redirect_to "/register"
 
  
   end
@@ -129,7 +128,6 @@ class UsersController < ApplicationController
     if current_user.present?
       @value = current_user.id
       render json: @value.to_json
-    
     else
       render :nothing
     end
@@ -137,6 +135,24 @@ class UsersController < ApplicationController
 
   def publishable_key
     render json: Rails.configuration.stripe[:publishable_key].to_json
+  end
+
+  def get_user_data
+    data = {}
+    if current_user.present?
+      user = User.find(current_user.id)
+      data[:email] = user.email
+      data[:first_name] = user.first_name
+      data[:last_name] = user.last_name
+      data[:organization] = user.organisation
+      render json: data.to_json
+    else
+      data[:email] = ""
+      data[:first_name] = ""
+      data[:last_name] = ""
+      data[:organization] = ""
+      render json: data.to_json
+    end
   end
 
 

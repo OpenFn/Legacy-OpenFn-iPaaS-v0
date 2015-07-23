@@ -3,7 +3,6 @@
   $scope.searchText = ""
   $scope.searchTagText = ""
   $scope.formData = {}
-  $scope.formData.email = ""
   $scope.formData.plan = "Free"
   $scope.odkUserId = ""
   $scope.sfUserId = ""
@@ -11,9 +10,19 @@
   $scope.current_plan = ""
   $scope.new_plan = ""
   $scope.formData.subscription_plan = "Free"
+  
   $scope.coupon = false
   $scope.buttons = []
   button_names = ["Free","Entry","Startup","Growth","Enterprise"]
+
+  $http.get('/user/user_data').success((data) ->
+    $scope.formData.email = data.email
+    $scope.formData.first_name= data.first_name
+    $scope.formData.last_name= data.last_name
+    $scope.formData.organisation= data.organization
+    console.log($scope.formData.email)
+  )
+
   i = 0
   while i < button_names.length
     button = {}

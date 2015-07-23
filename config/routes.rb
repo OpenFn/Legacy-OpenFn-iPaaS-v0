@@ -136,7 +136,8 @@ OpenFn::Application.routes.draw do
   get '/tags/get_all_json', to: "tags#get_all_json"
 
   get '/user/check_login', to: "users#check_login"
-
+  get '/user/user_data', to: "users#get_user_data"
+  
   post '/admin/products/:product_id/tags/add', to: "tags#tags_add"
   post '/admin/products/:product_id/tags/delete', to: "tags#tags_delete"
 
