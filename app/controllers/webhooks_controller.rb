@@ -24,7 +24,7 @@ class WebhooksController < ApplicationController
 	  begin
 	 	customer = Stripe::Customer.retrieve(customer_id)
 		if customer.present?
-	      user = User.find_by_email(customer.email)
+	      user = User.find_by_stripe_customer_token(customer.id)
 		  if user.present?
 		    user.stripe_current_period_end = Time.at(customer.subscriptions.data[0].current_period_end)
 			user.save
@@ -40,7 +40,7 @@ class WebhooksController < ApplicationController
 	  begin
 		customer = Stripe::Customer.retrieve(customer_id)
 		if customer.present?
-		  user = User.find_by(email: customer.email)
+		  user = User.find_by(email: customer.id)
 		  if user.present?
 	        plan = Plan.find_by(name: 'Free')
 	        user.update(plan_id: plan.try(:id))
