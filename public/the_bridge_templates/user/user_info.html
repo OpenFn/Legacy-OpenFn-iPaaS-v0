@@ -23,17 +23,17 @@
 
                   <form ng-submit="submitUserForm()">
                   <h5>Email</h5>
-                    <input type="text" class="form-control" name = "email" placeholder="Email" ng-model="formData.email">
-                    <h5>Password</h5>
-                    <input type="password" class="form-control" name = "password" placeholder="Password" ng-model="formData.password">
-                    <h5>Password Confirmation</h5>
-                    <input type="password" class="form-control" name = "password_confirmation" placeholder="Password Confirmation" ng-model="formData.password_confirmation">
-                    <h5>First Name</h5>
-                    <input type="text" class="form-control" name = "first_name" placeholder="First Name" ng-model="formData.first_name">
-                    <h5>Last Name</h5>
-                    <input type="text" class="form-control" name = "last_name" placeholder="Last Name" ng-model="formData.last_name">
-                    <h5>Organisation</h5>
-                    <input type="text" class="form-control" name = "organisation" placeholder="Organisation" ng-model="formData.organisation">
+                    <input type="text" class="form-control" name = "email" ng-model="formData.email">
+                  <h5>Password</h5>
+                    <input type="password" class="form-control" name = "password" ng-model="formData.password">
+                  <h5>Password Confirmation</h5> 
+                    <input type="password" class="form-control" name = "password_confirmation" ng-model="formData.password_confirmation">
+                  <h5>First Name</h5>
+                    <input type="text" class="form-control" name = "first_name" ng-model="formData.first_name">
+                  <h5>Last Name</h5>
+                    <input type="text" class="form-control" name = "last_name" ng-model="formData.last_name">
+                  <h5>Organisation</h5> 
+                    <input type="text" class="form-control" name = "organisation" ng-model="formData.organisation">
                     <div class="btn-group plan_btn" data-toggle="buttons">
                         <label class="btn btn-default free pay"  ng-click="clickPlan('Free')">
                           <input type="radio" name="options" data-name="Free" data-amount="free"> Free
@@ -55,7 +55,7 @@
                       <input>
                     </div>
                    
-                    <input type="hidden" ng-model="key"
+                    <input type="hidden" ng-model="key">
                     <input type="hidden" name="stripe_token" ng-model="formData.stripe_token">
                     <input type="hidden" id="user_subscription_plan" ng-model="formData.subscription_plan">
                     <input type="hidden" name="subsctiption_plan" value="">
