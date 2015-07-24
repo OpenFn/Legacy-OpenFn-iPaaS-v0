@@ -1,5 +1,5 @@
-@controllerModule.controller 'CaseController', ['$scope', '$location', '$http', '$routeParams', '$timeout', ($scope, $location, $http, $routeParams, $timeout) ->
+@controllerModule.controller 'CasesController', ['$scope', '$location', '$http', '$routeParams', '$timeout', ($scope, $location, $http, $routeParams, $timeout) ->
   $http.get('/case_studies/get_all').success((data) ->
-    $scope.team = data;
+    $scope.cases = data;
   )
 ]
