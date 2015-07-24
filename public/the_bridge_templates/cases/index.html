@@ -1,0 +1,31 @@
+<header class="header-image">
+    <div class="headline">
+      <h1>
+        our <strong>Impact</strong>
+      </h1>
+      <h3>
+        Our impact is the increase in our user's impact.
+        <br>With open[Fn] these organizations are more efficient and effective.
+      </h3>
+    </div>
+</header>
+<br>
+<div class="cases" ng-controller="CaseController as case">
+  <div class="row team-member-page" ng-repeat="member in team | orderBy:'order'">
+
+      <div class="container col-md-3">
+
+        <img ng-src="{{member.picture_url}}" class = "team-member-pic" width=190px>
+      </div>
+      <div class="col-md-9">
+        <h2><b>{{member.name}}</b><small>&nbsp&nbsp{{member.title}}</small></h2>
+        <h3></h3>
+        <p ng-bind-html="member.bio"></p>
+        <br>
+        
+      </div>
+      <!-- <div class="line-separator"></div> -->
+      <div class="divider"></div>
+    </div>
+  </div>
+</div>
