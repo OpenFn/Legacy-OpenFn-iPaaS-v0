@@ -39,7 +39,6 @@
 
   $http.get('/publishable_key').success((data) ->
     $scope.key = data
-    console.log(data)
   )
 
   $http.get('/check_plan').success((data) ->
@@ -90,8 +89,9 @@
   $scope.submitUserForm = () ->
     if $scope.currentUserId == ""
       $http.post('/users', $scope.formData).success((data) ->
+        if data != 0
+          window.location = "/"
       )
-      console.log($scope.key)
     else
       $http.put('/users/' + $scope.currentUserId, $scope.formData).success((data) ->
         if data != 0

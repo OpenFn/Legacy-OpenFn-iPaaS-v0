@@ -29,6 +29,7 @@ class UsersController < ApplicationController
       redirect_to(:root, notice: "Welcome!")
     else
       flash.now[:alert] = "Signup failed..."
+      render json: 0
       render :new
     end
 
