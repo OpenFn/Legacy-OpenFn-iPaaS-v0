@@ -86,7 +86,7 @@
   $scope.submitUserForm = () ->
     if $scope.currentUserId == ""
       $http.post('/users', $scope.formData).success((data) ->
-
+      window.location = "/"
       )
 
     else

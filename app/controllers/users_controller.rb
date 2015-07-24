@@ -49,12 +49,11 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       if @user.update_plan(params)
         set_user_credentials_and_flash
-        flash[:success] = "Settings updated." unless flash[:danger]
+        flash[:success] = "Settings updated."
         
         redirect_to(:end_successful_update)
       else
         flash.now[:danger] = "Settings could not be updated successfully."
-        render :edit
       end
     else
       flash.now[:danger] = "Settings could not be updated successfully."
