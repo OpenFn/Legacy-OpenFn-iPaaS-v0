@@ -2,15 +2,20 @@
   $scope.tag = {}
   $scope.searchText = ""
   $scope.searchTagText = ""
+
   $scope.formData = {}
+  $scope.odkData = {}
+  $scope.sfData = {}
   $scope.formData.plan = "Free"
+  $scope.formData.subscription_plan = "Free"
+
   $scope.odkUserId = ""
   $scope.sfUserId = ""
+  $scope.currentUserId = ""
   $scope.salesforceData = {}
   $scope.current_plan = ""
   $scope.new_plan = ""
-  $scope.formData.subscription_plan = "Free"
-  $scope.currentUserId = ""
+  
   
   $scope.coupon = false
   $scope.buttons = []
@@ -36,8 +41,6 @@
     $scope.key = data
   )
 
-  $scope.odkData = {}
-  $scope.sfData = {}
 
   $http.get('/check_plan').success((data) ->
     $scope.formData.plan = data
@@ -86,25 +89,24 @@
   $scope.submitUserForm = () ->
     if $scope.currentUserId == ""
       $http.post('/users', $scope.formData).success((data) ->
-
+        window.location = "/"
       )
 
     else
       $http.put('/users/' + $scope.currentUserId, $scope.formData).success((data) ->
         window.location = "/"
       )
+    
 
   $scope.submitODKForm = () ->
     $http.put('/users/' + $scope.odkUserId, $scope.odkData).success((data) ->
-
+      window.location = "/"
     )
 
   $scope.submitSFForm = () ->
     $http.put('/users/' + $scope.sfUserId, $scope.sfData).success((data) ->
+      window.location = "/"
 
     )
-
-
-# edit_user_path(odkUserId)
     
 ]
