@@ -54,11 +54,11 @@ class UsersController < ApplicationController
         redirect_to(:end_successful_update)
       else
         flash.now[:danger] = "Settings could not be updated successfully."
-        render :edit
+        render json: 0
       end
     else
       flash.now[:danger] = "Settings could not be updated successfully."
-      render :edit
+      render json: 0
     end
   end
 
@@ -91,9 +91,7 @@ class UsersController < ApplicationController
   def edit
     @user = current_user
     set_user_credentials_and_flash
-    # redirect_to "/register"
-
- 
+    
   end
 
   # DELETE /organizations/:id.json

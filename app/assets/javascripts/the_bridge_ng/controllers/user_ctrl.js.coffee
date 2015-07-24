@@ -39,8 +39,8 @@
 
   $http.get('/publishable_key').success((data) ->
     $scope.key = data
+    console.log(data)
   )
-
 
   $http.get('/check_plan').success((data) ->
     $scope.formData.plan = data
@@ -86,17 +86,17 @@
     else
       $scope.coupon = false
 
+  # TODO: SHOULD DISPLAY ERROR MESSAGES AS PER ISSUE #335
   $scope.submitUserForm = () ->
     if $scope.currentUserId == ""
       $http.post('/users', $scope.formData).success((data) ->
-        window.location = "/"
       )
-
+      console.log($scope.key)
     else
       $http.put('/users/' + $scope.currentUserId, $scope.formData).success((data) ->
-        window.location = "/"
+        if data != 0
+          window.location = "/"
       )
-    
 
   $scope.submitODKForm = () ->
     $http.put('/users/' + $scope.odkUserId, $scope.odkData).success((data) ->
