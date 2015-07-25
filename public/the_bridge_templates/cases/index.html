@@ -1,0 +1,32 @@
+<header class="header-image">
+    <div class="headline">
+      <h1>
+        our <strong>Impact</strong>
+      </h1>
+      <h3>
+        Our impact is the increase in our user's impact.
+      </h3>
+    </div>
+</header>
+<br>
+<div class="container col-md-8 col-md-offset-2 team-member-page">
+  <br><br>
+  <p>
+    With open[Fn] these organizations are more efficient and effective. Longer body text here about how what we do generates impact. Longer body text here about how what we do generates impact. Longer body text here about how what we do generates impact. Longer body text here about how what we do generates impact. Longer body text here about how what we do generates impact. Longer body text here about how what we do generates impact. Longer body text here about how what we do generates impact. Longer body text here about how what we do generates impact. Longer body text here about how what we do generates impact. Longer body text here about how what we do generates impact. 
+  <br><br>
+    Check out some of the amazing work being made more efficient and effective with open[Fn] integrations...
+  </p>
+  <br><br>
+  <div class="cases" ng-controller="CasesController as cases">
+    <div class="row team-member-page" ng-repeat="case in cases | orderBy:'order'">
+      <!-- <div class="container col-md-3"> -->
+        <!-- <img ng-src="{{case.picture_url}}" class="team-member-pic" width=250px> -->
+      <!-- </div> -->
+      <div class="col-md-12">
+        <h2><b>{{case.title}}</b><small>&nbsp&nbsp{{case.org_name}}</small></h2>
+        <h3></h3>
+        <p ng-bind-html="case.body"></p><br>
+      </div>
+    </div>
+  </div>
+</div>
