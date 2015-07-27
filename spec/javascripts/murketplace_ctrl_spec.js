@@ -8,7 +8,7 @@ describe('MarketplaceController', function() {
     location = _$location_;
   }));
 
-  it("sets the location path", function() {
+  it("sits the location path", function() {
     var $scope = {$watchCollection: function(){} };
     var controller = $controller('MarketplaceController', {$scope: $scope, $modal: {}, $routeParams: {}});
     $scope.go("/my/url")
