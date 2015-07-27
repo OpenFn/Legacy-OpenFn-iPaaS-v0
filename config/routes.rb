@@ -3,6 +3,7 @@ require 'admin_constraint'
 
 OpenFn::Application.routes.draw do
 
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   get 'password_resets/create'
 
   get 'password_resets/edit'

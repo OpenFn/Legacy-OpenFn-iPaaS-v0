@@ -122,6 +122,7 @@ gem 'puma'
 
 group :development, :test do
   gem 'byebug'
+  gem 'jasmine-rails'
   gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'shoulda-matchers', require: false
