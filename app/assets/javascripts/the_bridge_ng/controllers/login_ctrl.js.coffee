@@ -1,16 +1,19 @@
-@controllerModule.controller 'LoginController', ['$scope', '$location', '$modal', '$http', '$routeParams', '$timeout', ($scope, $location, $modal, $http, $routeParams, $timeout) ->
-  $scope.showModal = () ->
-    modalInstance = $modal.open
-      templateUrl: 'modalTemplate.html',
-      controller: 'ModalController'
+@controllerModule.controller 'LoginController', ['$scope', 'UserSession', '$location', '$modal', '$http', '$routeParams', '$timeout', ($scope, UserSession, $location, $modal, $http, $routeParams, $timeout) ->
 
-  $scope.checkLogin = (path) ->
-    url = if path? then path else $location.url() 
+  $scope.openModal = UserSession.showLoginModal
 
-    $http.get("/user/check_login?redirect=#{url}").success((data) ->
-      if data.status == 'login'
-        $scope.showModal()
-      else
-        window.location = url
-    )
+  $scope.login = (data) ->
+    console.log 'in login'
+    $http.post('/login',
+      email: data.email
+      password: data.password).success((resp) ->
+      console.log(resp.user)
+      sessionStorage.setItem('currentUser', JSON.stringify(resp.user))
+      window.location = resp.location
+      return
+    ).error (resp) ->
+      $scope.alert = "The username or password are incorrect"
+      return
+
+
 ]

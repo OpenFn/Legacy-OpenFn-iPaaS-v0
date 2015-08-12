@@ -44,11 +44,62 @@ Array::filter = (func) -> x for x in @ when func(x)
 @filterModule     = angular.module 'the_bridge.filters', []
 @configModule     = angular.module 'the_bridge.config', []
 
-@the_bridge.config ['$routeProvider', '$locationProvider', 'growlProvider', ($routeProvider, $locationProvider, growlProvider) ->
+
+@the_bridge.factory 'UserSession', ['$http', '$modal', ($http, $modal) ->
+  clear: ->
+    sessionStorage.removeItem('currentUser')
+
+  store: (user) ->
+    sessionStorage.setItem('currentUser', JSON.stringify(user))
+
+  getUser: ->
+    JSON.parse(sessionStorage.getItem('currentUser'))
+
+  checkSession: ->
+    $http.get("/user/current")
+
+  isLoggedIn: ->
+    sessionStorage.getItem('currentUser') != null
+
+  showLoginModal: ->
+    modalInstance = $modal.open
+      templateUrl: '/templates/modalTemplate.html',
+      controller: 'LoginController'
+  ]
+      
+@the_bridge.factory 'httpInterceptor', ['$location', '$injector', ($location, $injector) ->
+  request: (config) ->
+    UserSession = $injector.get('UserSession')
+    if (!config.url.includes('/user/current') || !config.url.includes('templates')) && !UserSession.isLoggedIn
+      
+      UserSession.checkSession().then (result) ->
+        if result.success
+          UserSession.store(result.user)
+        else
+          UserSession.clear
+          UserSession.showLoginModal
+      return config     
+    else
+      return config
+]
+
+
+  
+
+@the_bridge.config ['$routeProvider', '$locationProvider', 'growlProvider', '$httpProvider', ($routeProvider, $locationProvider, growlProvider, $httpProvider) ->
   growlProvider.globalTimeToLive(3000);
   growlProvider.globalPosition('top-right');
 
   $locationProvider.html5Mode true
+
+  $httpProvider.interceptors.push('httpInterceptor')
+
+  # on every request check if the user is logged in. 
+    # GET users/current_users
+      # if status == 401 -> redirect users_sessions/new
+        # in session storage, set the redirect-to-URL after the user logs in
+        # if the user logs in, redirect him to the stored URL 
+      # if status == 200, do nothing
 
   unless Features.new_mapping_page
     $routeProvider
@@ -131,4 +182,31 @@ Array::filter = (func) -> x for x in @ when func(x)
     })
     .otherwise({redirectTo:"/"})
 ]
+
+
+@the_bridge.controller 'HeaderController', ['$scope', 'UserSession', '$http', ($scope, UserSession, $http) ->
+  $scope.openModal = UserSession.showLoginModal
+  $scope.isLoggedIn = UserSession.isLoggedIn
+  $scope.currentUser = UserSession.getUser
+
+  $scope.logout = (data) ->
+    console.log 'in logout'
+    $http.post('/logout').success((resp) ->
+      console.log(resp)
+      sessionStorage.removeItem('currentUser')
+      window.location = "/"
+      return
+    ).error (resp) ->
+      return
+]
+
+
+@the_bridge.directive 'header', ->
+  {
+    restrict: 'A'
+    replace: true
+    scope: user: '='
+    templateUrl: 'the_bridge_templates/shared/header.html'
+    controller: 'HeaderController'
+  }
 
