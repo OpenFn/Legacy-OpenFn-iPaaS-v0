@@ -1,0 +1,69 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-init="isCollapsed = true">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" ng-click="isCollapsed = !isCollapsed">
+        <span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
+      </button>
+      <a class="navbar-brand" href="/">open[Fn]</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="navbar-collapse collapse" collapse="isCollapsed">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/#/marketplace">Marketplace</a>
+        </li>
+        <li ng-controller="LoginController as loginCtrl">
+          <a ng-click="checkLogin()">Integrations</a>
+        </li>
+        <li>
+          <a href="https://medium.com/@openFn" target="_blank">Content</a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="/#/our_team">Team</a>
+              </li>
+              <li ng-show="user != null">
+                <a href="/#pricing">Pricing</a>
+              </li>
+              <li>
+                <a href="/#/developers">Developers <i class="fa fa-file-code-o"></i></a>
+              </li>        
+            </ul>
+        </li>        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a onClick="ga('send', 'event', 'Revenue', 'Open Donate Modal');" type="button" data-toggle="modal" data-target="#donate_modal"><i class="fa fa-life-ring"></i> Donate</a>
+        </li>
+        
+          <li ng-show="isLoggedIn()" ng-controller="HeaderController" class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> {{currentUser().email}} <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="/users/{{currentUser().id}}/edit" ng-click="$event.stopPropagation()">Settings</a>
+              </li>
+              <li>
+                <a href="#">Connected Apps (soon)</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a ng-click="logout()">Log Out</a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li ng-controller="HeaderController" ng-hide="isLoggedIn()" class="row">
+            <a ng-click="openModal()">Login</a>
+          </li>
+          <li ng-controller="HeaderController" ng-hide="isLoggedIn()"> 
+            <a href="/signup">Sign up</a>
+          </li>
+
+      </ul>
+    </div>
+</nav>
+

@@ -11,10 +11,10 @@
     <div class="navbar-collapse collapse" collapse="isCollapsed">
       <ul class="nav navbar-nav">
         <li>
-          <%= link_to "Marketplace", "/#/marketplace"%>
+          <a href="/#/marketplace">Marketplace</a>
         </li>
         <li ng-controller="LoginController as loginCtrl">
-          <a ng-click="checkLogin('<%= odk_sf_legacy_mappings_path %>')">Integrations</a>
+          <a ng-click="checkLogin('/mappings')">Integrations</a>
         </li>
         <li>
           <a href="https://medium.com/@openFn" target="_blank">Content</a>
@@ -22,16 +22,19 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
+<!--               <li>
+                <a href="/#/impact">Our Impact</a>
+              </li>  -->
               <li>
-                <%= link_to "Team", "/#/our_team"%>
-              </li> 
+                <a href="/#/our_team">Our Team</a>
+              </li>
               <% unless current_user %>
                 <li>
-                  <%= link_to "Pricing", "/#/pricing" %>
+                  <a href="/#/pricing">How we price</a>
                 </li>
               <% end %>
               <li>
-                <a href="/#/developers">Developers <i class="fa fa-file-code-o"></i></a>
+                <a href="/#/developers">For Developers</a>
               </li>        
             </ul>
         </li>        
