@@ -370,9 +370,7 @@ a:hover{
 }
 
 #custom-accord {
-  margin-top: .6em;
-  margin-left: .6em;
-  margin-right: -.6em;
+  margin-bottom: 5px;
   color: $dark;
 }
 
@@ -386,7 +384,7 @@ a:hover{
 }
 #custom-accord .panel-heading {
     background-color: $nav !important;
-    border-color: white !important; 
+    border-color: white !important;
     background-image: none !important;
 
 }
@@ -401,8 +399,8 @@ a:hover{
 .whole-accord-button a{
   color: $light-grey;
   width: 100%;
-  display: inline-block;     
-  // position: relative;    
-  // z-index: 1;     
+  display: inline-block;
+  // position: relative;
+  // z-index: 1;
   // padding-right: 1em;
 }
