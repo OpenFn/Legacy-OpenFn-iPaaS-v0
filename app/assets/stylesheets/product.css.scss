@@ -369,29 +369,6 @@ a:hover{
   }
 }
 
-#custom-accord {
-  margin-bottom: 5px;
-  color: $dark;
-}
-
-#custom-accord .panel-default {
-    border-color: white !important;
-    .list-group-item.active {
-      background-color: $base;
-      border-color: #dddddd;
-      // color: $dark;
-    }
-}
-#custom-accord .panel-heading {
-    background-color: $nav !important;
-    border-color: white !important;
-    background-image: none !important;
-
-}
-#custom-accord .panel-group .panel-heading+.panel-collapse .panel-body {
-    border-top: 0px white !important;
-}
-
 .whole-accord-button :focus {
   text-decoration: none;
 }

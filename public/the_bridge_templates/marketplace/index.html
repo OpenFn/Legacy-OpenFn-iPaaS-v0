@@ -39,7 +39,6 @@
         </label>
       </div>
     </div>
-
   </div>
 
   <!-- refactor style attribute -->
@@ -47,39 +46,30 @@
   <!-- refactor style attribute -->
     <div class="col-sm-12 margin-top">
 
-      <div class="col-md-2" id="custom-accord" ng-repeat="category in categories">
+      <div class="col-md-2 custom-accord" ng-repeat="category in categories">
         <accordion>
           <accordion-group>
             <accordion-heading>
-              {{category.name}} <i class="pull-right fa fa-caret-down"></i>
+              <div class="ng-panel-title" ng-class="categoryTags(category).length > 0 ? 'active' : ''">
+                {{category.name}} <i class="pull-right fa fa-caret-down"></i>
+              </div>
             </accordion-heading>
-            <li style="cursor: pointer"
-              class="list-group-item"
-              ng-repeat="tag in tags | filter:{tag_category_id: category.id }  | orderBy: '-taggings_count'"
+            <li class="list-group-item"
+              ng-repeat="tag in tags | filter:{tag_category_id: category.id } | orderBy: '-taggings_count'"
               ng-click="tagFilter(tag)"
               ng-model="tag.active"
               btn-checkbox
               ng-class="(((tag.taggings_count == 0)&&(!tag.active))||(isLoading)) ? 'better-button-disabled' : 'better-button-able'">{{tag.name}}
-              <span class="badge">
-                {{tag.taggings_count}}
+              <span class="badge" ng-class="tag.active ? 'active' : ''">
+                ({{tag.taggings_count}})
               </span>
             </li>
           </accordion-group>
         </accordion>
       </div>
-
-      <!-- refactor placeholder -->
-      <div class="col-md-2" id="custom-accord">
-        <accordion>
-          <accordion-group>
-            <accordion-heading>
-              Reset filter<i class="pull-right fa fa-times-circle-o"></i>
-            </accordion-heading>
-          </accordion-group>
-        </accordion>
+      <div class="col-md-2 reset-accordions" ng-click="removeTagFilters()">
+        <a>Reset filter<i class="pull-right fa fa-times-circle-o"></i></a>
       </div>
-      <!-- refactor placeholder -->
-
     </div>
   </div>
 
