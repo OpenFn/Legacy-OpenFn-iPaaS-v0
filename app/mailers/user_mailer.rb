@@ -14,6 +14,7 @@ class UserMailer < ActionMailer::Base
   end
   def welcome_email(user)
     @user = user
+    @url = 'https://www.openfn.org/'
     mail(:to => user.email,
          :cc => "admin@openfn.org",
          :subject => "Let's get started!")
