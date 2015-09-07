@@ -12,4 +12,10 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email,
          :subject => "Your openfn.org password has been reset.")
   end
+  def welcome_email(user)
+    @user = user
+    mail(:to => user.email,
+         :cc => "admin@openfn.org",
+         :subject => "Let's get started!")
+  end
 end

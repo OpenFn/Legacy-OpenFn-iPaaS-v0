@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     if @user.save_with_payment(params)
       auto_login(@user)
       set_user_credentials_and_flash
+      UserMailer.welcome_email(@user)
       redirect_to(:root, notice: "Welcome!")
     else
       flash.now[:alert] = "Signup failed..."
