@@ -41,9 +41,9 @@
     </div>
   </div>
 
-  <div class="container-fluid accordion-container">
-    <div class="col-sm-12 margin-large-top margin-bottom">
-      <div class="col-md-2 custom-accord" ng-repeat="category in categories">
+  <div class="container-fluid container-fluid-padding accordion-container">
+    <div class="col-xs-12 margin-large-top margin-bottom">
+      <div class="col-lg-2 col-sm-6 custom-accord" ng-repeat="category in categories">
         <accordion>
           <accordion-group>
             <!-- does not turn blue when accordion open -->
@@ -66,7 +66,7 @@
           </accordion-group>
         </accordion>
       </div>
-      <div class="col-md-2">
+      <div class="col-lg-2 col-sm-6">
         <div class="reset-accordions" ng-click="removeTagFilters()">
           <a>Reset filter<i class="pull-right fa fa-times-circle-o"></i></a>
         </div>
@@ -74,9 +74,7 @@
     </div>
   </div>
 
-  <!-- refactor inline style -->
-  <div class="container-fluid" style="padding: 0 44px;">
-  <!-- end -->
+  <div class="container-fluid container-fluid-padding margin-large-bottom">
     <div class="col-sm-12">
       <div class="product-list row margin-small-top" ontouchstart="this.classList.toggle('hover');">
 

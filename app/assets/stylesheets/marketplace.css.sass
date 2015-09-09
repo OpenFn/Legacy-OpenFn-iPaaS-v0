@@ -1,3 +1,11 @@
+/* Layout
+ ========================================================================== */
+
+.container-fluid-padding
+  padding: 0 60px !important
+  @media screen and (max-width: 992px)
+    padding: 0 !important
+
 /* Header
  ========================================================================== */
 
@@ -59,12 +67,10 @@ $accordion-danger: #e8564c
 
 .accordion-container
   background: $nav
-  padding: 0 44px
 
 // refactor could be DRY-er
 .custom-accord
   margin-top: 2px
-  // margin-bottom: 2px
   .panel
     border-radius: 0
     box-shadow: 2px 2px 0 0 $accordion-dark

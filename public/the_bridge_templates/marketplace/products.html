@@ -1,6 +1,6 @@
 <div ng-repeat="product in (filteredProducts =( products | filter:filterProducts)) | orderBy:['-integrated','-votes_count','name']">
   <div class="product-container col-lg-6 col-md-6 col-sm-6 col-xs-12">
-    <div ng-class="product.integrated ? 'product integrated' : 'product'" ng-click="go('/product/' + product.id)" style="cursor: default">
+    <div ng-class="product.integrated ? 'product integrated' : 'product'" ng-click="go('/product/' + product.id)">
 
       <div class='rating'>
         <span class='live'>
@@ -26,26 +26,35 @@
         </span>
         &nbsp;({{product.reviews_count}})
       </div>
-      
+
       <h3 class="title">
         {{product.name}}
       </h3>
-      <div class='tile-tweet'>
+
+      <div class='description'>
         {{product.description | limitTo:117}}
       </div>
-      <a ng-href="{{product.website}}" ng-click="$event.stopPropagation()" class="website-link" target="_blank" tooltip-trigger="mouseenter" tooltip="Check out the {{product.name}} website.">
-        <i class="fa fa-external-link"></i>
+
+      <a class="website-link" ng-href="{{product.website}}" ng-click="$event.stopPropagation()" target="_blank">
+        <i class="fa fa-link"></i>
       </a>
-      <a ng-click="integratedProduct('/mappings'); $event.stopPropagation()"
-      class="vote-link" ng-show="product.integrated">
+
+      <a class="vote-link" ng-click="integratedProduct('/mappings'); $event.stopPropagation()" ng-show="product.integrated">
         <i class="fa fa-plug"></i>
       </a>
-      <a style="cursor: auto" ng-hide="product.integrated" class="vote-count">
+
+      <a class="vote-count" style="cursor: auto" ng-hide="product.integrated">
         <i class="fa fa-plug"></i>+ <span class="live">{{product.votes_count}}</span>
       </a>
-      <a ng-click="changeVoteFor(product); $event.stopPropagation()" class="vote-link" ng-show="!product.integrated" tooltip-trigger="mouseenter" tooltip="Vote up if you want to connect {{product.name}}.">
+
+      <a class="vote-link" ng-click="changeVoteFor(product); $event.stopPropagation()" ng-show="!product.integrated" tooltip-trigger="mouseenter" tooltip="Vote up if you want to connect {{product.name}}.">
         <i ng-class="{'fa ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>
       </a>
+
+      <a class="details-link" ng-click="go('/product/' + product.id)">
+        Details
+      </a>
+
     </div>
   </div>
 </div>
