@@ -43,105 +43,85 @@
     height: 27.4em;
     margin-bottom: 1.6em;
 
-    .product:hover {
-      cursor: pointer !important;
-      background-color: $light;
-      background-image: image-url("noise.png");
-    }
-
     .product {
       height: 100%;
       color: $light-grey;
       background-color: $nav;
-      // background-image: image-url("noise.png");
       text-align: center;
       position: relative;
       padding: 3em;
       margin: $product-margin;
-
-      #editor {overflow:scroll; max-height:300px}
-
+      transition: all .25s;
+      &:hover {
+        cursor: pointer !important;
+        background-color: $light;
+      }
       &.integrated {
         background-color: $light;
       }
 
-      .description {
-        font-size: 0.8em;
-        line-height: 1.2;
-        height: 6em;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      .rating {
+        align-content: center;
+        font-size: 1.3em;
+        font-weight: lighter;
       }
 
       .title {
-        margin-top: 10px;
+        margin-top: 1em;
+        font-size: 1.6em;
         color: $dark;
       }
 
-      .tile-tweet {
+      .description {
+        margin-top: 1em;
+        font-size: 1em;
+        line-height: 1.7em;
         color: $light-grey;
-        font-size: rem-calc(20px);
       }
 
-      .rating {
-        align-content: center;
+      .website-link, .details-link {
+        position: absolute;
+        bottom: 0;
+        background: $grey;
+        color: white;
+        cursor: pointer;
+        transition: all .25s;
+        &:hover {
+          background: darken($grey, 10%)
+        }
+      }
+
+      .website-link {
+        left: 0;
+        font-size: 1.5em;
+        padding: .5em;
+      }
+
+      .details-link {
+        right: 0;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 1em 1.9em;
       }
 
       .vote-link {
-        // color: #384D5C;
         padding: 0.5em;
         position: absolute;
         bottom: 0;
-        right: 0;
+        right: 8em;
         cursor: pointer;
-        // background-color: $grey-blue;
-        // background-image: image-url("noise.png");
       }
 
       .vote-count {
-        // color: $dynamic;
         padding: 0.5em;
         position: absolute;
         bottom: 0;
-        right: 2.0em;
-        }
-
-      .website-link {
-        // color: #384D5C;
-        padding: 0.5em;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        cursor: pointer;
-        // background-color: $grey-blue;
-        // background-image: image-url("noise.png");
+        right: 9.5em;
       }
 
-
-      // .deatils-link-wrapper {
-      //   position: relative;
-      //   // float: left;
-      //   text-align: center;
-      //   margin: 0 auto;
-      // }
-
-      .details-link {
-        // color: #384D5C;
-        padding: 0.5em;
-        position: absolute;
-        // float: left;
-        // left: 50%;
-        // background-color: #A3AAAB;
-        // text-align:center;
-        // margin: 0px auto 0px auto;
-        top: 0;
-        right: 0;
-        // margin-left: -7px;
-        // margin: 0 auto;
-      }
-
-      .details-link:hover {
-        text-decoration: none;
+      #editor {
+        overflow:scroll;
+        max-height:300px;
       }
     }
   }
