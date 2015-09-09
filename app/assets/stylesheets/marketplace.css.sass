@@ -4,8 +4,7 @@
 .headline-text
   font-weight: 200
 .headline
-  padding: rem-calc(150px)
-  padding-bottom: rem-calc(130px)
+  padding: rem-calc(143px) rem-calc(175px) rem-calc(95px) rem-calc(175px)
   background-color: $base
   background-image: image-url("wow_bg.jpg")
   color: $bg-color
@@ -58,9 +57,14 @@ $accordion-active: #5b6a70
 $accordion-dark:   #354a54
 $accordion-danger: #e8564c
 
-// refactor could be dry-er
+.accordion-container
+  background: $nav
+  padding: 0 44px
+
+// refactor could be DRY-er
 .custom-accord
-  margin-bottom: 5px
+  margin-top: 2px
+  // margin-bottom: 2px
   .panel
     border-radius: 0
     box-shadow: 2px 2px 0 0 $accordion-dark
@@ -78,10 +82,10 @@ $accordion-danger: #e8564c
           &:hover, &:focus
             text-decoration: none
       .ng-panel-title
-        padding: 10px 15px
+        padding: 12px 15px
         transition: all .25s
         &:hover
-          background: darken($accordion-base, 4%)
+          background: darken($accordion-base, 5%)
         &.active
           color: $accent
           background: $accordion-active
@@ -114,7 +118,7 @@ $accordion-danger: #e8564c
 .reset-accordions
   background: $red-accent
   color: white
-  padding: 10px 15px
+  padding: 12px 15px
   text-align: left
   text-transform: uppercase
   font-size: 1em

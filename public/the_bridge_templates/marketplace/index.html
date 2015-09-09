@@ -41,19 +41,18 @@
     </div>
   </div>
 
-  <!-- refactor style attribute -->
-  <div class="container-fluid" style="background-color: #e0e0e0;">
-  <!-- refactor style attribute -->
-    <div class="col-sm-12 margin-top">
-
+  <div class="container-fluid accordion-container">
+    <div class="col-sm-12 margin-large-top margin-bottom">
       <div class="col-md-2 custom-accord" ng-repeat="category in categories">
         <accordion>
           <accordion-group>
+            <!-- does not turn blue when accordion open -->
             <accordion-heading>
               <div class="ng-panel-title" ng-class="categoryTags(category).length > 0 ? 'active' : ''">
                 {{category.name}} <i class="pull-right fa fa-caret-down"></i>
               </div>
             </accordion-heading>
+            <!-- end -->
             <li class="list-group-item"
               ng-repeat="tag in tags | filter:{tag_category_id: category.id } | orderBy: '-taggings_count'"
               ng-click="tagFilter(tag)"
@@ -67,15 +66,19 @@
           </accordion-group>
         </accordion>
       </div>
-      <div class="col-md-2 reset-accordions" ng-click="removeTagFilters()">
-        <a>Reset filter<i class="pull-right fa fa-times-circle-o"></i></a>
+      <div class="col-md-2">
+        <div class="reset-accordions" ng-click="removeTagFilters()">
+          <a>Reset filter<i class="pull-right fa fa-times-circle-o"></i></a>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="container-fluid">
+  <!-- refactor inline style -->
+  <div class="container-fluid" style="padding: 0 44px;">
+  <!-- end -->
     <div class="col-sm-12">
-      <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
+      <div class="product-list row margin-small-top" ontouchstart="this.classList.toggle('hover');">
 
         <div class="col-xs-12 center" ng-if="isLoading">
           <br><br><br>
