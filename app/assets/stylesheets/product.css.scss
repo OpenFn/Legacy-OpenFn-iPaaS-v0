@@ -27,16 +27,12 @@
   .search-field {
     padding-bottom: 0.5em;
   }
-
-
 }
 
 .product-list {
   $product-padding: 1em;
-  $product-margin: 0.6em;
+  $product-margin: 1.1em;
   position: relative;
-
-
   margin-left: -$product-margin;
   margin-right: -$product-margin;
   margin-top: -$product-margin;
@@ -44,10 +40,11 @@
 
   .product-container {
     padding: 0;
-    height: 16em;
+    height: 27.4em;
     margin-bottom: 1.6em;
 
     .product:hover {
+      cursor: pointer !important;
       background-color: $light;
       background-image: image-url("noise.png");
     }
@@ -59,7 +56,7 @@
       // background-image: image-url("noise.png");
       text-align: center;
       position: relative;
-      padding: $product-padding;
+      padding: 3em;
       margin: $product-margin;
 
       #editor {overflow:scroll; max-height:300px}
