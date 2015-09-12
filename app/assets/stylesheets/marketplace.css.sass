@@ -16,6 +16,8 @@
   background-color: $base
   background-image: image-url("wow_bg.jpg")
   color: $bg-color
+  border-bottom: 8px solid $grey
+  position: relative
   @media screen and (max-width: 768px)
     padding: rem-calc(100px) rem-calc(30px)
     padding-bottom: rem-calc(90px)
@@ -57,6 +59,62 @@
     -webkit-box-shadow: none
     box-shadow: none
 
+.accordion-panel-toggle
+  position: absolute
+  width: 48px
+  margin-left: -24px
+  left: 50%
+  padding: 8px 10px 5px 10px
+  bottom: 0
+  background: $grey
+  color: white
+  cursor: pointer
+  transition: all .25s
+  &:hover
+    background: darken($grey, 10%)
+
+=keyframes($name)
+  @-webkit-keyframes #{$name}
+    @content
+  @-moz-keyframes #{$name}
+    @content
+  @-ms-keyframes #{$name}
+    @content
+  @keyframes #{$name}
+    @content
+
+=keyframe-transforms($from, $to)
+  from
+    transform: translateX($from)
+  to
+    transform: translateX($to)
+
+=slider-animation($animation-name)
+  -webkit-animation: $animation-name .25s
+  -moz-animation:    $animation-name .25s
+  -o-animation:      $animation-name .25s
+  animation:         $animation-name .25s
+
++keyframes(slide-start-right)
+  +keyframe-transforms(0, 8px)
++keyframes(slide-right)
+  +keyframe-transforms(8px, 0)
++keyframes(slide-start-left)
+  +keyframe-transforms(0, -8px)
++keyframes(slide-left)
+  +keyframe-transforms(-8px, 0)
+
+.accordion-panel-toggle
+  #slider-top, #slider-bottom
+    +slider-animation(slide-start-right)
+  #slider-middle
+    +slider-animation(slide-start-left)
+  &:hover
+    #slider-top, #slider-bottom
+      +slider-animation(slide-right)
+    #slider-middle
+      +slider-animation(slide-left)
+
 /* Accordion
  ========================================================================== */
 
@@ -67,6 +125,7 @@ $accordion-danger: #e8564c
 
 .accordion-container
   background: $nav
+  display: none
 
 // refactor could be DRY-er
 .custom-accord
@@ -131,6 +190,7 @@ $accordion-danger: #e8564c
   font-weight: bold
   box-shadow: 2px 2px 0 0 $accordion-dark
   cursor: pointer
+  margin-top: 2px
   transition: all .25s
   &:hover, a:hover
     color: white
