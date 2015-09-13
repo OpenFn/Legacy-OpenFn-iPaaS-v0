@@ -26,3 +26,4 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email,
          :subject => "Your account is now activated")
   end
+end
