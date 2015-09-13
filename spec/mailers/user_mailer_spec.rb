@@ -6,7 +6,7 @@ RSpec.describe UserMailer, :type => :mailer do
     let(:user) { double(email: "to@example.org", reset_password_token: "123ABC", first_name: "John") }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Your openfn.org password has been reset.")
+      expect(mail.subject).to eq("Your Open[Fn] password has been reset")
       expect(mail.to).to eq(["to@example.org"])
       expect(mail.from).to eq(["authentication@openfn.org"])
     end
