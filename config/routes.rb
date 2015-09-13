@@ -78,7 +78,11 @@ OpenFn::Application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users do
+    member do
+      get :activate
+    end
+  end
 
   resources :charges
 
