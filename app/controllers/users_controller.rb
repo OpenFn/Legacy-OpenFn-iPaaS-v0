@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   respond_to :html, :json, :xml
-  skip_before_filter :require_login, only: [:new, :create, :sync, :set_password, :check_login]
+  skip_before_filter :require_login, only: [:new, :create, :sync, :set_password, :check_login, :activate]
 
   skip_before_filter :verify_authenticity_token, only: [:sync]
   before_filter :validate_api_admin, only: [:sync]
@@ -69,27 +69,36 @@ class UsersController < ApplicationController
     end
   end
 
-  # From SalesForce
-  def sync
-    notification = Salesforce::Notification.new(request.body.read)
-    salesforce_user = Salesforce::Listing::UserListing.new(notification)
-
-    user = User.find(salesforce_user.id)
-    user.synced = true
-
-    if user.update_attributes(salesforce_user.attributes)
-      limiter = MappingLimiter.new(user)
-      limiter.limit!
-
-      respond_to do |format|
-        format.xml  { render 'salesforce/success', layout: false }
-      end
+  def activate
+    if (@user = User.load_from_activation_token(params[:id]))
+      @user.activate!
+      redirect_to(login_path, :notice => 'User was successfully activated.')
     else
-      respond_to do |format|
-        format.xml  { render xml: "", status: 422 }
-      end
+      not_authenticated
     end
   end
+
+  # # From SalesForce
+  # def sync
+  #   notification = Salesforce::Notification.new(request.body.read)
+  #   salesforce_user = Salesforce::Listing::UserListing.new(notification)
+
+  #   user = User.find(salesforce_user.id)
+  #   user.synced = true
+
+  #   if user.update_attributes(salesforce_user.attributes)
+  #     limiter = MappingLimiter.new(user)
+  #     limiter.limit!
+
+  #     respond_to do |format|
+  #       format.xml  { render 'salesforce/success', layout: false }
+  #     end
+  #   else
+  #     respond_to do |format|
+  #       format.xml  { render xml: "", status: 422 }
+  #     end
+  #   end
+  # end
 
   def show
     render json: @user
