@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
         redirect_back_or_to('/marketplace', notice: "Welcome Back!")
       end
     else
-      flash.now[:alert] = 'Login failed'
+      flash.now[:alert] = 'Please activate your account with the link in your email before logging in.'
       render action: 'new'
     end
   end
