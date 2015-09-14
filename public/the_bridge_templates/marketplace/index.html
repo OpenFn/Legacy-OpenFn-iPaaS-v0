@@ -59,13 +59,11 @@
       <div class="col-lg-2 col-sm-6 custom-accord" ng-repeat="category in categories">
         <accordion>
           <accordion-group>
-            <!-- does not turn blue when accordion open -->
             <accordion-heading>
-              <div class="ng-panel-title" ng-class="categoryTags(category).length > 0 ? 'active' : ''">
+              <div data-accordion-highlight class="ng-panel-title" ng-class="categoryTags(category).length > 0 ? 'active' : ''">
                 {{category.name}} <i class="pull-right fa fa-caret-down"></i>
               </div>
             </accordion-heading>
-            <!-- end -->
             <li class="list-group-item"
               ng-repeat="tag in tags | filter:{tag_category_id: category.id } | orderBy: '-taggings_count'"
               ng-click="tagFilter(tag)"
