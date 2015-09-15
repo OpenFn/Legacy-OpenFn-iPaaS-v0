@@ -108,7 +108,11 @@
                   <i class="fa fa-external-link"></i>
                 </a>              
                 <a ng-click="integratedProduct('/mappings'); $event.stopPropagation()" 
-                class="vote-link" ng-show="product.integrated">
+                class="vote-link" ng-show="product.integrated && !(product.name=='Telerivet')">
+                  <i class="fa fa-plug"></i>
+                </a>
+                <a ng-href="https://github.com/OpenFn/fn-telerivet-salesforce" 
+                class="vote-link" ng-click="$event.stopPropagation()" class="website-link" target="_blank" ng-show="product.integrated && product.name=='Telerivet')">
                   <i class="fa fa-plug"></i>
                 </a>
                 <a style="cursor: auto" ng-hide="product.integrated" class="vote-count">
