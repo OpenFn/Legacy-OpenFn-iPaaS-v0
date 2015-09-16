@@ -39,20 +39,16 @@
         <i class="fa fa-link"></i>
       </a>
 
-      <a class="vote-link" ng-click="integratedProduct('/mappings'); $event.stopPropagation()" ng-show="product.integrated">
+      <a class="details-link" ng-click="integratedProduct('/mappings'); $event.stopPropagation()" ng-show="product.integrated">
         <i class="fa fa-plug"></i>
       </a>
 
       <a class="vote-count" style="cursor: auto" ng-hide="product.integrated">
-        <i class="fa fa-plug"></i>+ <span class="live">{{product.votes_count}}</span>
+        <i class="fa fa-heart"></i> + <span class="live">{{product.votes_count}}</span>
       </a>
 
-      <a class="vote-link" ng-click="changeVoteFor(product); $event.stopPropagation()" ng-show="!product.integrated" tooltip-trigger="mouseenter" tooltip="Vote up if you want to connect {{product.name}}.">
-        <i ng-class="{'fa ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>
-      </a>
-
-      <a class="details-link" ng-click="go('/product/' + product.id)">
-        Details
+      <a class="details-link" ng-click="changeVoteFor(product); $event.stopPropagation()" ng-show="!product.integrated" tooltip-trigger="mouseenter" tooltip="Vote up if you want to connect {{product.name}}.">
+        <i ng-class="{'fa ' : true, 'fa-thumbs-down' : product.hasVoteForUser, 'fa-thumbs-up' : !product.hasVoteForUser}"></i>
       </a>
 
     </div>
