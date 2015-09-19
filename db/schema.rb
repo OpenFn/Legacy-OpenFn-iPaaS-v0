@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912233906) do
+ActiveRecord::Schema.define(version: 20150919134736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 20150912233906) do
     t.boolean  "active",     default: false
     t.integer  "user_id"
     t.boolean  "enabled"
+    t.boolean  "slow"
   end
 
   add_index "odk_sf_legacy_mappings", ["user_id"], name: "index_odk_sf_legacy_mappings_on_user_id", using: :btree
