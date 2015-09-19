@@ -39,7 +39,11 @@
         <i class="fa fa-link"></i>
       </a>
 
-      <a class="details-link" ng-click="integratedProduct('/mappings'); $event.stopPropagation()" ng-show="product.integrated">
+      <a class="details-link" ng-click="integratedProduct('/mappings'); $event.stopPropagation()" ng-show="product.integrated && !(product.name=='Telerivet')">
+        <i class="fa fa-plug"></i>
+      </a>
+
+      <a ng-show="product.name=='Telerivet'" class="details-link" ng-href="https://github.com/OpenFn/fn-telerivet-salesforce" target="_blank">
         <i class="fa fa-plug"></i>
       </a>
 
