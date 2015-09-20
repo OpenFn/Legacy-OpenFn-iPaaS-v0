@@ -28,6 +28,7 @@
 .search-field
   input[type="text"]
     box-sizing: content-box
+    width: calc(100% - 38px)
     box-shadow: none
     border: none
     font-size: 15px
@@ -53,7 +54,9 @@
 
 .integrated-btn
   color: $light
-  transition: color 0.25s
+  transition: all 0.25s
+  @media screen and (max-width: 480px)
+    font-size: .8em
   &:hover
     color: $light-grey
   &.active
