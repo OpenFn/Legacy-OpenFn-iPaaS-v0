@@ -1,132 +1,109 @@
-<style>
+<div class="header-image" ng-controller="MarketplaceController as marketplace">
+  <div class="headline container-fluid">
 
-  .better-button-able {
-}
+    <h2 class="margin-small-bottom">open<strong>Marketplace</strong></h2>
+    <h4 class="headline-text margin-top-remove margin-large-bottom">Find the technology you need to grow your impact.</h4>
 
-  .better-button-disabled {
-    background: #D0D0D0;
-    pointer-events: none;
-}
-</style>
-<header class="header-image">
-    <div class="headline">
-      <h1>
-        <i class="fa fa-shopping-cart"></i> open<strong>Marketplace</strong>
-      </h1>
-      <h3>
-        Find the <strong>tools</strong> you need to grow your impact; vote for new <i class="fa fa-plug"></i> integrations.
-      </h3>
+    <div class="col-md-10 col-md-offset-1">
+      <div class="search-field">
+        <input
+          type="text"
+          class="form-control"
+          ng-class="alex"
+          placeholder="Start typing to search..."
+          ng-model="searchText"
+          tooltip-trigger="mouseenter"
+          tooltip="Search for product names, descriptions, tags, or websites."
+          typeahead="keyword for keyword in keywords | filter:$viewValue | limitTo:8">
+      </div>
     </div>
-</header>
-<br>
-<div ng-controller="MarketplaceController as marketplace">
- <div class="container-fluid">
 
-  <div class="col-sm-12 featurette dark">
-         
-        <div class="col-md-10 col-md-offset-1">
-          <div class="search-field">
-              <input type:"text" class="form-control" ng-class="alex" placeholder="Start typing to search..." ng-model="searchText" tooltip-trigger="mouseenter" tooltip="Search for product names, descriptions, tags, or websites." typeahead="keyword for keyword in keywords | filter:$viewValue | limitTo:8">
-          </div>
-        </div>
-        <div class="col-md-10 col-md-offset-1">  
-          <div class="new-product-link">
-            <label style="float: left;" class="btn integrated-btn" ng-click="go('/product/new')">
-              <i class="fa fa-plus"></i> Add your product
-            </label>
-            <label style="float: right;" class="btn integrated-btn" ng-click="removeTagFilters()">Clear Filters</label>
-            <label style="float: right;" class="btn integrated-btn" tooltip-trigger="mouseenter" tooltip-placement="bottom" tooltip="Click here to show only connected apps." ng-model="searchFilters.integrated" btn-checkbox>
-                Integrated
-            </label>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-        </div>
-        <br>
-        <div class="product-list row" ontouchstart="this.classList.toggle('hover');">
-          <br>
-          <div class="col-sm-2 featurette dark" id="custom-accord">
-            <accordion close-others="false" class="whole-accord-button" tooltip-trigger="mouseenter" tooltip="Filter the marketplace by tag. Add multiple tags to narrow your search even more.">
-              <accordion-group is-open="true">
-                <accordion-heading>
-                  Tags <i class="pull-right fa fa-caret-down"></i>
-                </accordion-heading>
-                <div style="cursor: pointer" ng-click="go('/tags/')">Collapse tag categories if you don't need them by clicking on the title. See frequencies in the badge. Click here to browse and search all of the tags in the system. <span class="badge"><i class="fa fa-search"></i></span></div>
-              </accordion-group>
-              <accordion-group is-open="true" ng-repeat="category in categories">
-                <accordion-heading>
-                  {{category.name}} <i class="pull-right fa fa-caret-down"></i>
-                </accordion-heading>
-                <li style="cursor: pointer" class="list-group-item" ng-repeat="tag in tags | filter:{tag_category_id: category.id }  | orderBy: '-taggings_count'"  ng-click="tagFilter(tag)"  ng-model="tag.active" btn-checkbox ng-class="(((tag.taggings_count == 0)&&(!tag.active))||(isLoading)) ? 'better-button-disabled' : 'better-button-able'">{{tag.name}}<span class="badge">{{tag.taggings_count}}</span></li>
-              </accordion-group>
-            </accordion>
-          </div>
-          <div class="col-xs-10 center" ng-if="isLoading">
-          <br><br><br>
-            <i class="fa fa-refresh fa-2x fa-spin"></i>
-            <h4>
-            <br>
-              Hang tight while we gather data on hundreds of technologies, reviews, tags, and votes.
-            </h4>
-          </div>
-          <div class="col-sm-10">
-          <div ng-repeat="product in (filteredProducts =( products | filter:filterProducts)) | orderBy:['-integrated','-votes_count','name']">
-            <div class="product-container col-lg-4 col-md-6 col-sm-6 col-xs-12">
-              <div ng-class="product.integrated ? 'product integrated' : 'product'" tooltip-trigger="mouseenter" tooltip="Click to learn about {{product.name}}." ng-click="go('/product/' + product.id)" style="cursor: default">
-                <div class='rating'>
-                  <span class='live'>
-                    <i class="fa fa-star-o" ng-show="!product.rating"></i>
-                    <i class="fa fa-star-half-o" ng-show="product.rating>0 && product.rating<=0.5"></i>
-                    <i class="fa fa-star" ng-show="product.rating>0.5"></i>
+    <div class="col-md-10 col-md-offset-1">
+      <div class="new-product-link margin-small-top">
+        <label
+          style="float: left;"
+          class="btn integrated-btn"
+          ng-click="go('/product/new')">
+          <i class="fa fa-plus"></i>Add your product
+        </label>
 
-                    <i class="fa fa-star-o" ng-show="product.rating<=1"></i>
-                    <i class="fa fa-star-half-o" ng-show="product.rating>1 && product.rating<=1.5"></i>
-                    <i class="fa fa-star" ng-show="product.rating>1.5"></i>
-                    
-                    <i class="fa fa-star-o" ng-show="product.rating<=2"></i>
-                    <i class="fa fa-star-half-o" ng-show="product.rating>2 && product.rating<=2.5"></i>
-                    <i class="fa fa-star" ng-show="product.rating>2.5"></i>
-                    
-                    <i class="fa fa-star-o" ng-show="product.rating<=3"></i>
-                    <i class="fa fa-star-half-o" ng-show="product.rating>3 && product.rating<=3.5"></i>
-                    <i class="fa fa-star" ng-show="product.rating>3.5"></i>
-                    
-                    <i class="fa fa-star-o" ng-show="product.rating<=4"></i>
-                    <i class="fa fa-star-half-o" ng-show="product.rating>4 && product.rating<=4.5"></i>
-                    <i class="fa fa-star" ng-show="product.rating>4.5"></i>
-                  </span>
-                  &nbsp;({{product.reviews_count}})
-                </div>
-                <h3 class="title">
-                  {{product.name}}
-                </h3>
-                <div class='tile-tweet'>
-                  {{product.description | limitTo:117}}
-                </div>
-                <a ng-href="{{product.website}}" ng-click="$event.stopPropagation()" class="website-link" target="_blank" tooltip-trigger="mouseenter" tooltip="Check out the {{product.name}} website.">
-                  <i class="fa fa-external-link"></i>
-                </a>              
-                <a ng-click="integratedProduct('/mappings'); $event.stopPropagation()" 
-                class="vote-link" ng-show="product.integrated && !(product.name=='Telerivet')">
-                  <i class="fa fa-plug"></i>
-                </a>
-                <a ng-href="https://github.com/OpenFn/fn-telerivet-salesforce" 
-                class="vote-link" ng-click="$event.stopPropagation()" class="website-link" target="_blank" ng-show="product.integrated && product.name=='Telerivet')">
-                  <i class="fa fa-plug"></i>
-                </a>
-                <a style="cursor: auto" ng-hide="product.integrated" class="vote-count">
-                  <i class="fa fa-plug"></i>+ <span class="live">{{product.votes_count}}</span>
-                </a>
-                <a ng-click="changeVoteFor(product); $event.stopPropagation()" class="vote-link" ng-show="!product.integrated" tooltip-trigger="mouseenter" tooltip="Vote up if you want to connect {{product.name}}.">               
-                  <i ng-class="{'fa ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i>
-                </a>
+        <label
+          style="float: right;"
+          class="btn integrated-btn"
+          tooltip-trigger="mouseenter"
+          tooltip-placement="bottom"
+          tooltip="Click here to show only connected apps."
+          ng-model="searchFilters.integrated"
+          btn-checkbox>
+          Integrated
+        </label>
+      </div>
+    </div>
+
+    <div data-accordions-toggle class='accordion-panel-toggle'>
+      <svg version="1.1" id="sliders" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      	 viewBox="0 0 18 14" style="enable-background:new 0 0 18 14;" xml:space="preserve">
+        <style type="text/css">
+        	.st0{fill:#374A50;}
+        </style>
+        <path id="sliders-bars" class="st0" d="M18,7.5H0v-1h18V7.5z M18,11.5H0v1h18V11.5z M18,1.5H0v1h18V1.5z"/>
+        <rect id="slider-bottom" x="3" y="10" class="st0" width="4" height="4"/>
+        <rect id="slider-middle" x="11" y="5" class="st0" width="4" height="4"/>
+        <rect id="slider-top" x="3" class="st0" width="4" height="4"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="container-fluid container-fluid-padding accordion-container" style="display: block">
+    <div class="col-xs-12 margin-large-top margin-bottom">
+      <div class="col-lg-2 col-sm-6 custom-accord" ng-repeat="category in categories">
+        <accordion>
+          <accordion-group>
+            <accordion-heading>
+              <div data-accordion-highlight class="ng-panel-title" ng-class="categoryTags(category).length > 0 ? 'active' : ''">
+                {{category.name}} <i class="pull-right fa fa-caret-down"></i>
               </div>
-            </div>
-          </div>
+            </accordion-heading>
+            <li class="list-group-item"
+              ng-repeat="tag in tags | filter:{tag_category_id: category.id } | orderBy: '-taggings_count'"
+              ng-click="tagFilter(tag)"
+              ng-model="tag.active"
+              btn-checkbox
+              ng-class="(((tag.taggings_count == 0)&&(!tag.active))||(isLoading)) ? 'better-button-disabled' : 'better-button-able'">{{tag.name}}
+              <span class="badge" ng-class="tag.active ? 'active' : ''">
+                ({{tag.taggings_count}})
+              </span>
+            </li>
+          </accordion-group>
+        </accordion>
+      </div>
+      <div class="col-lg-2 col-sm-6">
+        <div class="reset-accordions" ng-click="removeTagFilters()">
+          <a>Reset filter<i class="pull-right fa fa-times-circle-o"></i></a>
         </div>
       </div>
     </div>
   </div>
 
+  <div class="container-fluid container-fluid-padding container-max-width margin-large-bottom">
+    <div class="col-sm-12">
+      <div class="product-list row margin-small-top" ontouchstart="this.classList.toggle('hover');">
+
+        <div class="col-xs-12 center" ng-if="isLoading">
+          <br><br><br>
+          <i class="fa fa-refresh fa-2x fa-spin"></i>
+          <h4>
+            <br>
+            Hang tight while we gather data on hundreds of technologies, reviews, tags, and votes.
+          </h4>
+        </div>
+
+        <div class="col-sm-12 margin-large-bottom margin-large-top">
+          <div ng-include src="'/the_bridge_templates/marketplace/products.html'"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
 </div>

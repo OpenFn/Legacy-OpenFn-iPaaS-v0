@@ -67,6 +67,49 @@ html, body {
   height: 100%;
 }
 
+/* Margin
+ ========================================================================== */
+
+$margin: 25px;
+$margin-large: 35px;
+$margin-small: 15px;
+
+.margin { margin: $margin; }
+.margin-top { margin-top: $margin !important; }
+.margin-bottom { margin-bottom: $margin !important; }
+.margin-left { margin-left: $margin !important; }
+.margin-right { margin-right: $margin !important; }
+
+/*
+ * Larger margins
+ */
+
+.margin-large { margin: $margin-large; }
+.margin-large-top { margin-top: $margin-large !important; }
+.margin-large-bottom { margin-bottom: $margin-large !important; }
+.margin-large-left { margin-left: $margin-large !important; }
+.margin-large-right { margin-right: $margin-large !important; }
+
+/*
+ * Smaller margins
+ */
+
+.margin-small { margin: $margin-small; }
+.margin-small-top { margin-top: $margin-small !important; }
+.margin-small-bottom { margin-bottom: $margin-small !important; }
+.margin-small-left { margin-left: $margin-small !important; }
+.margin-small-right { margin-right: $margin-small !important; }
+
+/*
+ * Remove margins
+ */
+
+.margin-remove { margin: 0 !important; }
+.margin-top-remove { margin-top: 0 !important; }
+.margin-bottom-remove { margin-bottom: 0 !important; }
+
+/* ======================================================================== */
+
 .btn-base {
   background-color: $base;
   color: $bg-color;
@@ -301,23 +344,11 @@ b, strong {
     width: 100%;
     text-align: center;
     position: relative;
-    // background-color: $cream;
-    background-image: image-url("noise.png");
-    // color: $light-grey;
-}
-
-.headline {
-    padding: rem-calc(55px) 0 rem-calc(50px);
-    padding-bottom: rem-calc(30px);
-    background-color: $base;
-    background-image: image-url("wow_bg.jpg");
-    color: $bg-color;
 }
 
   .controls {
     color: red !important;
   }
-
 
     .featurette {
 
@@ -547,21 +578,16 @@ b, strong {
   max-height: 250px;
   height: 250px;
   background-color: white;
-  border-collapse: separate; 
-  border: 1px solid rgb(204, 204, 204); 
-  padding: 4px; 
-  box-sizing: content-box; 
-  -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset; 
+  border-collapse: separate;
+  border: 1px solid rgb(204, 204, 204);
+  padding: 4px;
+  box-sizing: content-box;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
   box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
   border-top-right-radius: 3px; border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px; border-top-left-radius: 3px;
   overflow: scroll;
   outline: none;
-}
-
-
-.dropdown-menu a {
-  cursor: pointer;
 }
 
 .floater-0 {
@@ -591,49 +617,4 @@ b, strong {
 
 .push-down {
   margin-bottom: 2em;
-}
-
-.integrated-btn:hover, .btn:focus {
-  color: $dark;
-  text-decoration: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.integrated-btn.active {
-  color: $base;
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-
-.integrated-btn {
-  color: $light-grey;
-  background: none;
-  border: none;
-}
-
-.integrated-btn a:hover {
-  color: $dark;
-  text-decoration: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.integrated-btn a:focus {
-  color: $dark;
-  text-decoration: none;
-}
-
-.integrated-btn a .active {
-  color: black;
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-
-}
-
-.integrated-btna {
-  color: $light-grey;
-
 }

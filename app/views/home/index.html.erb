@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="the_bridge">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>OpenFn</title>
     <script type="text/javascript">
       window.featureFlags = {
@@ -20,7 +21,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
       ga('create', '<%= Features.ga_tracking_code %>', 'auto');
-      <%# We do not need to do a send from the angular views because angulartics handles this %>      
+      <%# We do not need to do a send from the angular views because angulartics handles this %>
       // ga('send', 'pageview');
       </script>
     <% end %>
