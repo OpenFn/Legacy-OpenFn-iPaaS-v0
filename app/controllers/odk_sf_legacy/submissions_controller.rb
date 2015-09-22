@@ -6,7 +6,7 @@ module OdkSfLegacy
 
     def index
       @mapping = current_user.mappings.find params[:mapping_id]
-      @submissions = @mapping.import.submissions
+      @submissions = @mapping.import.submissions.limit(1000)
       @submissions = @submissions.where(state: params[:state]) unless params[:state].blank?
     end
 
