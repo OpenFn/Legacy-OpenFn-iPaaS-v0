@@ -40,12 +40,13 @@
 
   .product-container {
     padding: 0;
-    height: 27.4em;
+    height: 20em;
     margin-bottom: 1.6em;
 
     .product {
       height: 100%;
       color: $light-grey;
+      background-image: image-url("noise.png");
       background-color: $nav;
       text-align: center;
       position: relative;
