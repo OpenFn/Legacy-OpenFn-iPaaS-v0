@@ -1,4 +1,4 @@
-@controllerModule.controller 'MarketplaceController', ['$scope', '$location', '$modal', '$http', '$routeParams', ($scope, $location, $modal, $http, $routeParams) ->
+@controllerModule.controller 'MarketplaceController', ['$scope', '$filter', '$location', '$modal', '$http', '$routeParams', ($scope, $filter, $location, $modal, $http, $routeParams) ->
   $scope.products = []
   $scope.searchText = ""
   $scope.searchFilters = {}
@@ -21,6 +21,9 @@
       $scope.keywords[i] = $scope.tags[i].name
       i++
     )
+
+  $scope.categoryTags = (category) ->
+    $filter('filter')($scope.tags, {tag_category_id: category.id, active: true})
 
   $scope.go = (url) ->
     $location.path url
@@ -68,7 +71,7 @@
         if i != index
           $scope.dropdownTags.push oldDropdownTags[i]
         i++
-  
+
   $http.get('/products.json').success (data) ->
     $scope.products = data.products
     k = $scope.keywords.length
@@ -92,11 +95,11 @@
       i++
 
   $scope.filterProducts = (product) ->
-    
+
     lowercaseSearchText = angular.lowercase ($scope.searchText)
     all_info = []
     all_info_string = ""
-    
+
     lowercaseSearchText = lowercaseSearchText.split(' ')
 
     y = 0
@@ -114,7 +117,7 @@
     x = 0
 
     while x < lowercaseSearchText.length
-      if ((all_info.indexOf(lowercaseSearchText[x])!= -1) && filtersMatch(product, $scope.searchFilters) && (dropdownTagsMatch($scope.dropdownTags, product.tag_list)))  
+      if ((all_info.indexOf(lowercaseSearchText[x])!= -1) && filtersMatch(product, $scope.searchFilters) && (dropdownTagsMatch($scope.dropdownTags, product.tag_list)))
         x++
       else
         break
@@ -132,7 +135,7 @@
   #     false
 
   filtersMatch = (product, filters) ->
-    
+
     if filters.integrated
       return product.integrated
     else
@@ -141,10 +144,10 @@
   dropdownTagsMatch = (dropdownTagsasFilters, scopetags) ->
 
     for i in [0...dropdownTagsasFilters.length]
-      if($.inArray(dropdownTagsasFilters[i], scopetags) == -1) 
+      if($.inArray(dropdownTagsasFilters[i], scopetags) == -1)
         return false
     return true
-  
+
 
   $scope.showModal = () ->
     modalInstance = $modal.open
@@ -161,7 +164,7 @@
         $http.get("/products/#{product.id}/vote")
           .success (data) ->
             angular.extend(product,data)
-        
+
           .error (data, status, headers, config) ->
             window.location="/login" if status == 401
       )

@@ -32,16 +32,17 @@
   }
 
   .logo {
-    background-image: image-url("square_white_logo.png");
+    background-image: image-url("new_logo_white.png");
     background-repeat: no-repeat;
     background-size: 100%;
-    // opacity: .7;
-    height: 80px;
-    width: 80px;
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    // margin-top: .5em;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 6.5em;
-    margin-bottom: 1.5em;
+    left: 0;
+    right: 0;
   }
 
   .who {
@@ -59,9 +60,8 @@
 
   .numbers h3 {
       font-size: rem-calc(35px);
-      margin-top: 3em;
-      // opacity: 0.8;
-      // color: $dark !important;
+      margin-top: 5em;
+      color: $accent;
   }
 
   .numbers h4 {
