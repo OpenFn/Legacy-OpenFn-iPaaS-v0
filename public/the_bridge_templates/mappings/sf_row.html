@@ -1,6 +1,7 @@
 <div ng-controller="SalesforceCtrl" class='panel panel-default'>
+  <h4>3. Specify destination tables.</h4>
   <div class='panel-body'>
-    <h4>Destination Tables &amp; Fields <small>Add tables in the order that they must be created.  Specify matching field for relationships. </small></h4>
+    
     <div class='row'>
       <div class='col-md-4'>
         <!-- <label for="salesforce_object_name">SalesForce Object</label> -->
@@ -25,16 +26,15 @@
         </tab-heading>
         <div class='row'>
           <div class='col-md-12'>
-            <input type="checkbox" ng-click="toggleRepeat(sfObject)" ng-checked="sfObject.is_repeat" /> Repeat Block Destination
-            <a href="#" class='btn btn-default pull-right' ng-click="deleteSfObject(sfObject)">
+            <a href='#' ng-click='refreshSfFields(sfObject)'>
+                Refresh Object
+                <span class='fa fa-refresh'></span>
+            </a> / 
+            <a href="#" ng-click="deleteSfObject(sfObject)">
               Remove
               <span class='fa fa-minus-circle'></span>
-            </a>
-
-            <a href='#' class='btn btn-default pull-right' ng-click='refreshSfFields(sfObject)'>
-              Refresh Object
-              <span class='fa fa-refresh'></span>
-            </a>
+            </a> / 
+            Check here <input type="checkbox" ng-click="toggleRepeat(sfObject)" ng-checked="sfObject.is_repeat"/> if a single submission might contain more than one {{sfObject.name}}.
           </div>
         </div>
         <hr />
@@ -46,7 +46,6 @@
               ng-style="{'background-color': sfField.color}">
               <div class="required" ng-hide="sfField.properties.nillable"></div>
               <i title="Unique" class="unique fa fa-key" ng-show="sfField.properties.unique"></i>
-
               {{sfField.properties.label || sfField.field_name}}
             </li>
           </ul>
