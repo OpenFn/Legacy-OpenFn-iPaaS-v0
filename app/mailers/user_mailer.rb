@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @url  = edit_password_reset_url(user.reset_password_token)
     mail(:to => user.email,
-         :subject => "Your OpenFn password has been reset")
+         :subject => "Your OpenFn password has been reset.")
   end
 
   def activation_needed_email(user)
@@ -18,13 +18,13 @@ class UserMailer < ActionMailer::Base
     @url  = "https://www.openfn.org/users/#{user.activation_token}/activate"
     mail(:to => user.email,
          :cc => "taylor@openfn.org",
-         :subject => "Welcome to OpenFn (activation link)")
+         :subject => "Welcome to OpenFn (activation link inside)")
   end
 
   def activation_success_email(user)
     @user = user
     @url  = "https://www.openfn.org/login"
     mail(:to => user.email,
-         :subject => "Your OpenFn account is now activated")
+         :subject => "Your OpenFn account is now active.")
   end
 end
