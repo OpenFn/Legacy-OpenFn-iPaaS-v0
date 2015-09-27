@@ -35,10 +35,10 @@
     background-image: image-url("new_logo_white.png");
     background-repeat: no-repeat;
     background-size: 100%;
-    height: 200px;
-    width: 200px;
+    height: 160px;
+    width: 160px;
     position: absolute;
-    // margin-top: .5em;
+    margin-top: 1.5em;
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -47,20 +47,15 @@
 
   .who {
     text-align: center;
-    // top: 3em;
-    // font-size: rem-calc(18px);
-    // color: red;
-    // background-color: $nav;
     color: $dark;
-        font-size: rem-calc(35px);
-        // color: $primary-blue;
-        margin: 2rem 0;
+    font-size: rem-calc(35px);
+    margin: 2rem 0;
     padding: 2em;
   }
 
   .numbers h3 {
       font-size: rem-calc(35px);
-      margin-top: 5em;
+      margin-top: 2.5em;
       color: $accent;
   }
 
@@ -68,8 +63,6 @@
       font-size: rem-calc(18px);
       text-transform: uppercase;
       color: $bg-color;
-      // font-weight: 100;
-      // opacity: 0.6;
   }
 
     .featurette {
