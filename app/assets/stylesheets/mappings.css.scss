@@ -140,3 +140,8 @@ input.destroy-field {
 .mapping-status-options {
   label { padding-right: 20px; }
 }
+
+.grey {
+  background-image: image-url("noise.png");
+  background-color: $nav;
+}

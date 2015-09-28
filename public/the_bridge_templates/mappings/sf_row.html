@@ -1,10 +1,9 @@
 <div ng-controller="SalesforceCtrl" class='panel panel-default'>
-  <h4>3. Specify destination tables.</h4>
-  <div class='panel-body'>
+  <h4>3. <strong>Specify destination tables.</strong></h4>
+  <div class='panel-body grey'>
     
     <div class='row'>
       <div class='col-md-4'>
-        <!-- <label for="salesforce_object_name">SalesForce Object</label> -->
         <select ng-model="mapping.salesforceObjectName" ng-options="sfObj.name as sfObj.label for sfObj in salesforceObjects" class='form-control'>
           <option value=""></option>
         </select>
@@ -27,13 +26,13 @@
         <div class='row'>
           <div class='col-md-12'>
             <a href='#' ng-click='refreshSfFields(sfObject)'>
-                Refresh Object
+                Refresh {{sfObject.name}} fields from Salesforce
                 <span class='fa fa-refresh'></span>
-            </a> / 
+            </a> &nbsp;&nbsp;/&nbsp;&nbsp; 
             <a href="#" ng-click="deleteSfObject(sfObject)">
-              Remove
+              Remove {{sfObject.name}} object from mapping
               <span class='fa fa-minus-circle'></span>
-            </a> / 
+            </a> &nbsp;&nbsp;/&nbsp;&nbsp; 
             Check here <input type="checkbox" ng-click="toggleRepeat(sfObject)" ng-checked="sfObject.is_repeat"/> if a single submission might contain more than one {{sfObject.name}}.
           </div>
         </div>
