@@ -35,14 +35,14 @@
 }
 
 .external-field-holder {
-  max-height: 75px;
+  max-height: 10em;
   overflow: auto;
 }
 
 .list-group {
   .list-group-item {
     display: inline-block;
-    margin: 0 5px 5px 5px;
+    margin: 1px;
     padding: 5px 10px;
 
     border-radius: 0 !important;
