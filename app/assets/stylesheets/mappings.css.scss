@@ -96,7 +96,7 @@ input.destroy-field {
 }
 
 .sf-row {
-  top: -250px;
+  // top: -250px;
 
   hr {
     margin-top: 5px;
@@ -139,4 +139,9 @@ input.destroy-field {
 
 .mapping-status-options {
   label { padding-right: 20px; }
+}
+
+.grey {
+  background-image: image-url("noise.png");
+  background-color: $nav;
 }

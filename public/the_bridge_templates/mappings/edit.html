@@ -1,6 +1,22 @@
-<input type="text" ng-model="mapping.name" class='form-control' ng-change="saveMapping()" />
-<!-- #fix, why is this here??? -->
-<div class="form-group">
+<!-- #TODO, why is this here??? -->
+<div class="row">
+<br>
+  <div class="container form-group">
+  <h4>2. Your mapping is called: </h4>
+  <div class="col-md-6">
+    <input type="text" ng-model="mapping.name" class='form-control' ng-change="saveMapping()" />
+  </div>
+  <div class="col-md-6">
+  <div class="checkbox mapping-status-options">
+  <label>
+    <input type="checkbox" ng-model='mapping.enabled' ng-checked='mapping.enabled' ng-click='mapping.active = false' ng-change="saveMapping()" ng-disabled="!mapping.can_be_enabled"> Enabled?
+  </label>
+  <label>
+    <input type="checkbox" ng-model='mapping.active' ng-checked='mapping.active' ng-change="saveMapping()" ng-disabled="!mapping.enabled || !mapping.can_be_enabled"> Auto-sync? (10 min)
+  </label>
+</div>
+</div>
+  </div>
 </div>
 <div id="errorExplanation" class='text-danger' ng-show="errors || !mapping.can_be_enabled">
   <ul>
@@ -10,15 +26,6 @@
 </div>
 <div class='saved-notification' ng-show="saved">
   Saved
-</div>
-<div class="checkbox mapping-status-options">
-  <label>
-    <input type="checkbox" ng-model='mapping.enabled' ng-checked='mapping.enabled' ng-click='mapping.active = false' ng-change="saveMapping()" ng-disabled="!mapping.can_be_enabled"> Enabled
-  </label>
-  <label>
-    <input type="checkbox" ng-model='mapping.active' ng-checked='mapping.active' ng-change="saveMapping()" ng-disabled="!mapping.enabled || !mapping.can_be_enabled"> Auto-sync (10 min)
-  </label>
-  <label>Source: <strong>ODK "{{mapping.odk_form.name}}"</strong></label>
 </div>
 <div class="row sf-row" bs-affix data-offset-top="225" data-on-affix="onAffix()" data-on-unaffix="onUnaffix()">
   <div class='col-md-12' ng-include="'/the_bridge_templates/mappings/sf_row.html'">
