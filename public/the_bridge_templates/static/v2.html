@@ -1,0 +1,153 @@
+    <div class="container">
+      <div class="header">
+        <h3 class="text-muted">jd2.0... your 'helper-bot' is waiting for its job description!</h3>
+      </div>
+      <div class="jumbotron">
+        <h1>1. Choose an origin and destination.</h1>
+        <p class="lead">Your bot will watch for new data from a source, process it however you'd like, and load it into a destination all at approximately 299,792,458 m/s. That's fast!</p>
+        <div class="col-md-5">
+          <div class="btn-group">
+            <a class="btn btn-large btn-info dropdown-toggle" data-toggle="dropdown" href="#">    CommCare    <span class="caret"></span>  </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#">ODK</a>
+              </li>
+              <li>
+                <a href="#">SurveyCTO</a>
+              </li>
+              <li>
+                <a href="#">CommCare</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <span class="glyphicon glyphicon-circle-arrow-right btn-lg" aria-hidden="true"></span>
+        </div>
+        <div class="btn-group">
+          <a class="btn btn-large btn-info dropdown-toggle" data-toggle="dropdown" href="#">    Salesforce    <span class="caret"></span>  </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#">ODK</a>
+            </li>
+            <li>
+              <a href="#">SurveyCTO</a>
+            </li>
+            <li>
+              <a href="#">CommCare</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="jumbotron">
+        <h1>2. Select an event.</h1>
+        <p class="lead">Which event should your dude watch for in [origin.name]?</p>
+        <p>//meh, ONLY record create on these tables for now:</p>
+        <div class="btn-group">
+          <a class="btn btn-large btn-info dropdown-toggle" data-toggle="dropdown" href="#">    "Add cards to packet form"    <span class="caret"></span>  </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="#">form1</a>
+            </li>
+            <li>
+              <a href="#">form2</a>
+            </li>
+          </ul>
+        </div><br><br>
+        <div class="well">
+          <h4>Are there any special <strong>conditions</strong> that must be met?</h4>
+          <p>If you don't want all submissions from [form.name] to trigger this job, define your filters below:</p>
+          <textarea class="form-control" placeholder="{ receipt.body['form']['#type'] == 'data' } && { 'whatever else you want to do!' }"></textarea>
+        </div>
+      </div>
+        
+
+      <div class="jumbotron">
+        <h1>3. Define some actions.</h1>
+        <p class="lead">Hey there, you've got some beautiful data! Now what do you want your bot to do? We're looking for <em>verbs</em> and <em>nouns</em>...</p>
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">    create    <span class="caret"></span>  </a><a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">    packets    <span class="caret"></span>  </a><br><br>
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">    update    <span class="caret"></span>  </a><a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">    vouchers    <span class="caret"></span>  </a><br><br>
+        <p class="lead">Anything else?</p>
+        <a class="btn dropdown-toggle" disabled="disabled" data-toggle="dropdown" href="#">    verb    <span class="caret"></span>  </a><a class="btn btn-default dropdown-toggle" disabled="disabled" data-toggle="dropdown" href="#">    noun    <span class="caret"></span>  </a>
+      </div>
+      <div class="jumbotron">
+        <h1>4. Teach your bot.</h1>
+        <p class="lead">You have to do this first one, but 'helper-bot' is a fast learner. Show it how you want to [create] [packets] and [update] [vouchers] in [Salesforce], using your data from [CommCare].</p>
+        <div class="well">
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">    create    <span class="caret"></span>  </a><a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">    packets    <span class="caret"></span>  </a><br><br>
+          <div class="form-group">
+            <label class="control-label" style="color: red;">Name (required)</label>
+            <div class="controls">
+              <input type="text" class="form-control" placeholder="text (255)">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Zone</label>
+            <div class="controls">
+              <input type="text" class="form-control" placeholder="lookup">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Zone Text</label>
+            <div class="controls">
+              <input type="text" class="form-control" placeholder="text (255)">
+            </div>
+          </div>
+        </div>
+        <div class="well">
+          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">    update    <span class="caret"></span>  </a><a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">    vouchers    <span class="caret"></span>  </a><br><br>
+          <div class="form-group">
+            <label class="control-label" style="color: red;">Voucher Code (required)</label>
+            <div class="controls">
+              <input type="text" class="form-control" placeholder="text (255)">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Amount</label>
+            <div class="controls">
+              <input type="text" class="form-control" placeholder="currency">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Agent</label>
+            <div class="controls">
+              <input type="text" class="form-control" placeholder="text (255)">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label" style="color: red;">Vendor (required)</label>
+            <div class="controls">
+              <input type="text" class="form-control" placeholder="lookup">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Currency</label>
+            <div class="controls">
+              <input type="text" class="form-control" placeholder="dropdown">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="jumbotron">
+        <h1>5. Test it out.</h1>
+        <p class="lead">We've fetched some data from [CommCare]. Have a look at the submission, and what your bot will do in [Salesforce]. If it all looks good, click "test" and check out the results.</p>
+        <div class="well">
+          <p><strong>Source data</strong> from [CommCare]: {name: "Taylor", age: 29}</p>
+          <p><strong>Planned action</strong> in [Salesforce]: Create {Packet__c: {name: "super-pack-007", zone: "", zone_manual: "nil"}</p>
+          <a class="btn btn-danger">[Create] this [Packet] in [Salesforce] !</a>
+        </div>
+        <div class="well">
+          <p><strong>Result</strong>: 200 OK!</p>
+        </div>
+      </div>
+      <div class="jumbotron">
+        <h1>6. Set it and forget it.</h1>
+        <p class="lead">You gave this puppy wings, now give it a name and let it fly!</p>
+        <input type="text" class="form-control" placeholder="name of your job">
+        <br>
+        <div class="btn-group">
+  <a class="btn btn-default">off</a>
+  <a class="btn btn-success">on</a>
+</div>
+      </div>
+    </div>
