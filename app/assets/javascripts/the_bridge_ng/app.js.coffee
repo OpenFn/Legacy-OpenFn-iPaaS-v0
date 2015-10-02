@@ -101,6 +101,9 @@ Array::filter = (func) -> x for x in @ when func(x)
     .when('/developers', {
       templateUrl: '../the_bridge_templates/static/developers.html'
     })
+    .when('/v2', {
+      templateUrl: '../the_bridge_templates/static/v2.html'
+    })
     .when('/our_team', {
       templateUrl: '../the_bridge_templates/team/our_team.html'
     })
