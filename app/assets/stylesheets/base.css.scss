@@ -131,6 +131,11 @@ $margin-small: 15px;
   color: $dark;
 }
 
+.btn-green {
+  background-color: $lg-green;
+  color: white;
+}
+
 #wrap {
   min-height: 100%;
 }
@@ -618,4 +623,13 @@ b, strong {
 
 .push-down {
   margin-bottom: 2em;
+}
+
+.bot-pic {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  margin-top: 26px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }

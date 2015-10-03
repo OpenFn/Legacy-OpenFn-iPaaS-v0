@@ -2,7 +2,7 @@
     <div class="container">
 
       <div class="header">
-        <h3 class="text-muted">v2... your "bot" is waiting for its new job description!</h3>
+        <h3 class="text-muted">v2... "bot" is waiting for its new job description!</h3>
       </div>
 
       <div class="jumbotron">
@@ -56,7 +56,7 @@
           </div>
         <div class="well">
           <h4>Are there any special <strong>conditions</strong> that must be met?</h4>
-          <p>If you don't want all submissions from [form.name] to trigger this job, define your filters below:</p>
+          <p>If you don't want all submissions from "Lab Results" to trigger this job, define your filters below:</p>
           <textarea class="form-control" placeholder="{ receipt.body['form']['#type'] == 'data' } && {fancy filters for the inbound JSON, at your fingertips!}"></textarea>
         </div>
       </div>
@@ -125,30 +125,94 @@
       <div class="jumbotron">
         <h1>4. Teach your bot the job.</h1>
         <p class="lead">You do this one by hand, we'll take care of the next million. Show us how you want to create lab results and update patients in DHIS2 using data from CommCare.</p>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>In the future</strong>, bot will review all the object and field names and types in both your source and destination. Based on this information, it will be able to suggest a complete job for you, with levels of certainty for each suggested "field pairing". You simply review and approve bot's predictions.
+        </div>
         <div class="well">
         <p>Create new lab results</p>
           <div class="form-group">
             <label class="control-label" style="color: red;">Date (required)</label>
             <div class="controls">
-              <input type="text" class="form-control" placeholder="text (255)">
+              <div class="input-group">
+                <input type="text" placeholder="datetime" class="form-control" aria-label="...">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">Patient: Name (text)</a></li>
+                    <li><a href="#">Patient: DoB (date)</a></li>
+                    <li><a href="#">Patient: Gender (select1)</a></li>
+                    <li><a href="#">Patient: Phone (text)</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Lab Result: Patient ID (text)</a></li>
+                    <li><a href="#">Lab Result: Test (text)</a></li>
+                    <li><a href="#">Lab Result: Value (text)</a></li>                   
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label">Patient ID</label>
             <div class="controls">
-              <input type="text" class="form-control" placeholder="text (255)">
+              <div class="input-group">
+                <input type="text" placeholder="text (255)" class="form-control" aria-label="...">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">Patient: Name (text)</a></li>
+                    <li><a href="#">Patient: DoB (date)</a></li>
+                    <li><a href="#">Patient: Gender (select1)</a></li>
+                    <li><a href="#">Patient: Phone (text)</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Lab Result: Patient ID (text)</a></li>
+                    <li><a href="#">Lab Result: Test (text)</a></li>
+                    <li><a href="#">Lab Result: Value (text)</a></li>                   
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label">Test</label>
             <div class="controls">
-              <input type="text" class="form-control" placeholder="text (255)">
+              <div class="input-group">
+                <input type="text" placeholder="text (255)" class="form-control" aria-label="...">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">Patient: Name (text)</a></li>
+                    <li><a href="#">Patient: DoB (date)</a></li>
+                    <li><a href="#">Patient: Gender (select1)</a></li>
+                    <li><a href="#">Patient: Phone (text)</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Lab Result: Patient ID (text)</a></li>
+                    <li><a href="#">Lab Result: Test (text)</a></li>
+                    <li><a href="#">Lab Result: Value (text)</a></li>                   
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label">Value</label>
             <div class="controls">
-              <input type="text" class="form-control" placeholder="number (10)">
+              <div class="input-group">
+                <input type="text" placeholder="number (10,2)" class="form-control" aria-label="...">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">Patient: Name (text)</a></li>
+                    <li><a href="#">Patient: DoB (date)</a></li>
+                    <li><a href="#">Patient: Gender (select1)</a></li>
+                    <li><a href="#">Patient: Phone (text)</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Lab Result: Patient ID (text)</a></li>
+                    <li><a href="#">Lab Result: Test (text)</a></li>
+                    <li><a href="#">Lab Result: Value (text)</a></li>                   
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -157,24 +221,69 @@
           <div class="form-group">
             <label class="control-label" style="color: red;">Patient ID (required)</label>
             <div class="controls">
-              <input type="text" class="form-control" placeholder="text (255)">
+              <div class="input-group">
+                <input type="text" placeholder="text (255)" class="form-control" aria-label="...">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">Patient: Name (text)</a></li>
+                    <li><a href="#">Patient: DoB (date)</a></li>
+                    <li><a href="#">Patient: Gender (select1)</a></li>
+                    <li><a href="#">Patient: Phone (text)</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Lab Result: Patient ID (text)</a></li>
+                    <li><a href="#">Lab Result: Test (text)</a></li>
+                    <li><a href="#">Lab Result: Value (text)</a></li>                   
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label">Last Attending Physician</label>
             <div class="controls">
-              <input type="text" class="form-control" placeholder="lookup">
+              <div class="input-group">
+                <input type="text" placeholder="reference (id)" class="form-control" aria-label="...">
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">Patient: Name (text)</a></li>
+                    <li><a href="#">Patient: DoB (date)</a></li>
+                    <li><a href="#">Patient: Gender (select1)</a></li>
+                    <li><a href="#">Patient: Phone (text)</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Lab Result: Patient ID (text)</a></li>
+                    <li><a href="#">Lab Result: Test (text)</a></li>
+                    <li><a href="#">Lab Result: Value (text)</a></li>                   
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label">Current Status</label>
             <div class="controls">
-              <select class="form-control">
-                <option>200 OK!</option>
-                <option>401</option>
-                <option>500</option>
-                <option>(That's a little humor for you.)</option>
-              </select>
+              <div class="input-group">
+                <select class="form-control">
+                  <option>200 OK!</option>
+                  <option>401</option>
+                  <option>500</option>
+                  <option>(That's a little humor for you.)</option>
+                </select>
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                  <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="#">Patient: Name (text)</a></li>
+                    <li><a href="#">Patient: DoB (date)</a></li>
+                    <li><a href="#">Patient: Gender (select1)</a></li>
+                    <li><a href="#">Patient: Phone (text)</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Lab Result: Patient ID (text)</a></li>
+                    <li><a href="#">Lab Result: Test (text)</a></li>
+                    <li><a href="#">Lab Result: Value (text)</a></li>                   
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -182,7 +291,7 @@
 
       <div class="jumbotron">
         <h1>5. Test it out.</h1>
-        <p class="lead">Have a look at this sample data from CommCare and what your bot will do in DHIS2. If it all looks good, click "Test!" and check out the results.</p>
+        <p class="lead">Look at these sample data we found in CommCare. Review what your bot will do in DHIS2. If everything checks out, click "Test!" and see the result.</p>
         <div class="well">
           <p><strong>Source data</strong> from CommCare: {name: "Anna", age: 14}</p>
           <p><strong>Planned action</strong> in DHIS2: insert {lab_result__c: {name: "blah-007", patient: "this_one", value: 79}</p>
