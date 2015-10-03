@@ -1,153 +1,209 @@
+<div class="v2">
     <div class="container">
+
       <div class="header">
-        <h3 class="text-muted">jd2.0... your 'helper-bot' is waiting for its job description!</h3>
+        <h3 class="text-muted">v2... your "bot" is waiting for his new job description!</h3>
       </div>
+
       <div class="jumbotron">
         <h1>1. Choose an origin and destination.</h1>
-        <p class="lead">Your bot will watch for new data from a source, process it however you'd like, and load it into a destination all at approximately 299,792,458 m/s. That's fast!</p>
-        <div class="col-md-5">
-          <div class="btn-group">
-            <a class="btn btn-large btn-info dropdown-toggle" data-toggle="dropdown" href="#">    CommCare    <span class="caret"></span>  </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a href="#">ODK</a>
-              </li>
-              <li>
-                <a href="#">SurveyCTO</a>
-              </li>
-              <li>
-                <a href="#">CommCare</a>
-              </li>
-            </ul>
+        <p class="lead">Your bot will watch for new data from a source, process it however you'd like, and load it into a destination at approximately 3*10^8 m/s. (That's fast.)</p>
+        <div class="col-xs-5 center">
+          <div class="form-group">
+            <label class="control-label">Origin</label>
+            <div class="controls">
+              <select class="form-control">
+                <option>CommCare</option>
+                <option>ODK</option>
+                <option>Salesforce</option>
+                <option>Telerivet</option>
+                <option>SurveyCTO</option>
+              </select>
+            </div>
           </div>
         </div>
-        <div class="col-md-2">
-          <span class="glyphicon glyphicon-circle-arrow-right btn-lg" aria-hidden="true"></span>
+        <div class="col-xs-2 center"><i class="fa fa-arrow-right fa-2x"></i></div>
+        <div class="col-xs-5 center">
+          <div class="form-group">
+            <label class="control-label">Destination</label>
+            <div class="controls">
+              <select class="form-control">
+                <option>DHIS2</option>
+                <option>OpenMRS</option>
+                <option>Salesforce</option>
+                <option>Tableau</option>
+                <option>CartoDB</option>
+              </select>
+            </div>
+          </div>
         </div>
-        <div class="btn-group">
-          <a class="btn btn-large btn-info dropdown-toggle" data-toggle="dropdown" href="#">    Salesforce    <span class="caret"></span>  </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="#">ODK</a>
-            </li>
-            <li>
-              <a href="#">SurveyCTO</a>
-            </li>
-            <li>
-              <a href="#">CommCare</a>
-            </li>
-          </ul>
-        </div>
+        <br><br>
       </div>
+
       <div class="jumbotron">
         <h1>2. Select an event.</h1>
-        <p class="lead">Which event should your dude watch for in [origin.name]?</p>
-        <p>//meh, ONLY record create on these tables for now:</p>
-        <div class="btn-group">
-          <a class="btn btn-large btn-info dropdown-toggle" data-toggle="dropdown" href="#">    "Add cards to packet form"    <span class="caret"></span>  </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="#">form1</a>
-            </li>
-            <li>
-              <a href="#">form2</a>
-            </li>
-          </ul>
-        </div><br><br>
+        <p class="lead">Which event should your bot watch for in CommCare?</p>
+          <div class="form-group">
+            <label class="control-label">Origin Event</label>
+            <div class="controls">
+              <select class="form-control">
+                <option>New Patient Registration</option>
+                <option>Staff Checkin</option>
+                <option>New Visit</option>
+                <option>Lab Result</option>
+              </select>
+            </div>
+          </div>
         <div class="well">
           <h4>Are there any special <strong>conditions</strong> that must be met?</h4>
           <p>If you don't want all submissions from [form.name] to trigger this job, define your filters below:</p>
-          <textarea class="form-control" placeholder="{ receipt.body['form']['#type'] == 'data' } && { 'whatever else you want to do!' }"></textarea>
+          <textarea class="form-control" placeholder="{ receipt.body['form']['#type'] == 'data' } && {fancy filters for the inbound JSON, at your fingertips!}"></textarea>
         </div>
       </div>
-        
 
       <div class="jumbotron">
         <h1>3. Define some actions.</h1>
-        <p class="lead">Hey there, you've got some beautiful data! Now what do you want your bot to do? We're looking for <em>verbs</em> and <em>nouns</em>...</p>
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">    create    <span class="caret"></span>  </a><a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">    packets    <span class="caret"></span>  </a><br><br>
-        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">    update    <span class="caret"></span>  </a><a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">    vouchers    <span class="caret"></span>  </a><br><br>
+        <p class="lead">What do you want your bot to do? We're looking for <em>verbs</em> and <em>nouns</em> here.</p>
+        <div class="row">
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label class="control-label">verb</label>
+            <select class="form-control">
+              <option>create</option>
+              <option>update</option>
+              <option>upsert</option>
+              <option>(probably not delete)</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-xs-6">
+        <div class="form-group">
+        <label class="control-label">noun</label>
+          <select class="form-control">
+            <option>lab results</option>
+            <option>visits</option>
+            <option>patients</option>
+            <option>(every standard or custom table in your schema)</option>
+          </select>
+        </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <select class="form-control">
+              <option>update</option>
+              <option>create</option>
+              <option>upsert</option>
+              <option>(probably not delete)</option>
+            </select>
+          </div>
+          <div class="col-xs-6">
+            <select class="form-control">
+              <option>patients</option>
+              <option>visits</option>
+              <option>lab results</option>
+              <option>(every standard or custom table in your schema)</option>
+            </select>
+          </div>
+        </div>
+        <br>
         <p class="lead">Anything else?</p>
-        <a class="btn dropdown-toggle" disabled="disabled" data-toggle="dropdown" href="#">    verb    <span class="caret"></span>  </a><a class="btn btn-default dropdown-toggle" disabled="disabled" data-toggle="dropdown" href="#">    noun    <span class="caret"></span>  </a>
+                <div class="row">
+          <div class="col-xs-6">
+            <select class="form-control" disabled>
+              <option>verb</option>
+            </select>
+          </div>
+          <div class="col-xs-6">
+            <select class="form-control" disabled>
+              <option>noun</option>
+            </select>
+          </div>
+        </div>
       </div>
+
       <div class="jumbotron">
-        <h1>4. Teach your bot.</h1>
-        <p class="lead">You have to do this first one, but 'helper-bot' is a fast learner. Show it how you want to [create] [packets] and [update] [vouchers] in [Salesforce], using your data from [CommCare].</p>
+        <h1>4. Teach your bot the job.</h1>
+        <p class="lead">You do this one by hand, we'll take care of the next million. Show us how you want to create lab results and update patients in DHIS2 using data from CommCare.</p>
         <div class="well">
-          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">    create    <span class="caret"></span>  </a><a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">    packets    <span class="caret"></span>  </a><br><br>
+        <p>Create new lab results</p>
           <div class="form-group">
-            <label class="control-label" style="color: red;">Name (required)</label>
+            <label class="control-label" style="color: red;">Date (required)</label>
             <div class="controls">
               <input type="text" class="form-control" placeholder="text (255)">
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label">Zone</label>
+            <label class="control-label">Patient ID</label>
             <div class="controls">
-              <input type="text" class="form-control" placeholder="lookup">
+              <input type="text" class="form-control" placeholder="text (255)">
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label">Zone Text</label>
+            <label class="control-label">Test</label>
             <div class="controls">
               <input type="text" class="form-control" placeholder="text (255)">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Value</label>
+            <div class="controls">
+              <input type="text" class="form-control" placeholder="number (10)">
             </div>
           </div>
         </div>
         <div class="well">
-          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">    update    <span class="caret"></span>  </a><a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">    vouchers    <span class="caret"></span>  </a><br><br>
+          <p>Update existing patients</p>
           <div class="form-group">
-            <label class="control-label" style="color: red;">Voucher Code (required)</label>
+            <label class="control-label" style="color: red;">Patient ID (required)</label>
             <div class="controls">
               <input type="text" class="form-control" placeholder="text (255)">
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label">Amount</label>
-            <div class="controls">
-              <input type="text" class="form-control" placeholder="currency">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label">Agent</label>
-            <div class="controls">
-              <input type="text" class="form-control" placeholder="text (255)">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label" style="color: red;">Vendor (required)</label>
+            <label class="control-label">Last Attending Physician</label>
             <div class="controls">
               <input type="text" class="form-control" placeholder="lookup">
             </div>
           </div>
           <div class="form-group">
-            <label class="control-label">Currency</label>
+            <label class="control-label">Current Status</label>
             <div class="controls">
-              <input type="text" class="form-control" placeholder="dropdown">
+              <select class="form-control">
+                <option>200 OK!</option>
+                <option>401</option>
+                <option>500</option>
+                <option>(That's a little humor for you.)</option>
+              </select>
             </div>
           </div>
         </div>
       </div>
+
       <div class="jumbotron">
         <h1>5. Test it out.</h1>
-        <p class="lead">We've fetched some data from [CommCare]. Have a look at the submission, and what your bot will do in [Salesforce]. If it all looks good, click "test" and check out the results.</p>
+        <p class="lead">Have a look at this sample data from CommCare and what your bot will do in DHIS2. If it all looks good, click "Test!" and check out the results.</p>
         <div class="well">
-          <p><strong>Source data</strong> from [CommCare]: {name: "Taylor", age: 29}</p>
-          <p><strong>Planned action</strong> in [Salesforce]: Create {Packet__c: {name: "super-pack-007", zone: "", zone_manual: "nil"}</p>
-          <a class="btn btn-danger">[Create] this [Packet] in [Salesforce] !</a>
+          <p><strong>Source data</strong> from CommCare: {name: "Anna", age: 14}</p>
+          <p><strong>Planned action</strong> in DHIS2: insert {lab_result__c: {name: "blah-007", patient: "this_one", value: 79}</p>
+          <a class="btn btn-danger">Test!</a>
         </div>
         <div class="well">
-          <p><strong>Result</strong>: 200 OK!</p>
+          <p><strong>Result</strong>: Passed</p>
+          <p><strong>Response from DHIS2</strong>: 200 OK!</p>
         </div>
       </div>
+
       <div class="jumbotron">
         <h1>6. Set it and forget it.</h1>
         <p class="lead">You gave this puppy wings, now give it a name and let it fly!</p>
         <input type="text" class="form-control" placeholder="name of your job">
-        <br>
-        <div class="btn-group">
-  <a class="btn btn-default">off</a>
-  <a class="btn btn-success">on</a>
-</div>
+      <br>
+      <div class="btn-group">
+        <a class="btn btn-default">off</a>
+        <a class="btn btn-success" disabled>on</a>
       </div>
     </div>
+
+  </div>
+</div>
