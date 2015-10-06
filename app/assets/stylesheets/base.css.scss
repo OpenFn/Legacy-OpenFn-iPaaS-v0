@@ -159,15 +159,19 @@ b, strong {
   font-weight: $bold;
 }
 
-// .navbar-logo {
-//     background-image: image-url("logo_fn.png");
-//     background-repeat: no-repeat;
-//     background-size: 100%;
-//     height: rem-calc(32px);
-//     width: rem-calc(32px);
-//     position: absolute;
-//     bottom: 20px;
-// }
+.navbar-logo {
+    background-image: image-url("new_logo_white.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: rem-calc(42px);
+    width: rem-calc(42px);
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 16px;
+  }
 
 .navbar {
 
@@ -180,11 +184,12 @@ b, strong {
   margin-bottom: 15px;
   height: 68px;
   // background-image: image-url("noise.png");
-  background-color: $nav;
+  background-color: black;
 
   .nav > li > a {
     line-height: rem-calc(24px);
     z-index: 10;
+    color: white;
   }
 
   .btn {
@@ -196,11 +201,11 @@ b, strong {
     background-color: $accent;
   }
 
-  .navbar-brand {
-    // font-size: rem-calc(24px);
-    // font-weight: $bold;
-    // color: $primary-blue;
-  }
+  // .navbar-brand {
+  //   font-size: rem-calc(24px);
+  //   font-weight: $bold;
+  //   color: $primary-blue;
+  // }
 
   .navbar-nav {
     // font-weight: $semi-bold;
