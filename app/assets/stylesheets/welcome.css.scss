@@ -4,9 +4,7 @@
     position: relative;
     background-color: $base;
     background-image: image-url("wow_bg.jpg");
-    // background-repeat: no-repeat;
     background-position: center;
-    // background-size: 100%;
     width: 100%;
     height: 30em;
     text-align: center;
@@ -14,6 +12,7 @@
 
   #particles-js{
       position: absolute;
+      background-image: image-url("noise.png");
       height: 30em;
       width: 100%;
       z-index: 8;
@@ -32,11 +31,11 @@
   }
 
   .logo {
-    background-image: image-url("new_logo_white.png");
+    background-image: image-url("text_logo_white.png");
     background-repeat: no-repeat;
     background-size: 100%;
-    height: 160px;
-    width: 160px;
+    height: 500px;
+    width: 500px;
     position: absolute;
     margin-top: 1.5em;
     margin-left: auto;

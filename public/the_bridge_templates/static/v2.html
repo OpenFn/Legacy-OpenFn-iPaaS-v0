@@ -1,318 +1,321 @@
 <div class="v2">
     <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="header">
+          <br><br>
+          <p class="lead">Our contributors are hard at work on the new "jobs" engine. Have a look at what we're building... it's a complete upgrade of our automatic data integration service.</p>
+          <p class="lead">Think of <strong>OpenFn</strong> as your own personal robot, constantly fetching data from your connected technologies, processing those data however you like, and loading it into another system without ever making a mistake.</p>
+          <br><br>
+        </div>
 
-      <div class="header">
-        <h3 class="text-muted">v2... "bot" is waiting for its new job description!</h3>
-      </div>
-
-      <div class="jumbotron">
-        <h1>1. Choose an origin and destination.</h1>
-        <p class="lead">Bot will watch for new data from a source, process it however you'd like, and load it into a destination at approximately 3*10^8 m/s. (That's fast.)</p>
-        <div class="col-xs-5 center">
-          <div class="form-group">
-            <label class="control-label">Origin</label>
-            <div class="controls">
-              <select class="form-control">
-                <option>CommCare</option>
-                <option>ODK</option>
-                <option>Salesforce</option>
-                <option>Telerivet</option>
-                <option>SurveyCTO</option>
-              </select>
+        <div class="jumbotron">
+          <h1>1. Choose an origin and destination.</h1>
+          <p class="lead">We'll watch for new activity from an origin, process it accoring to your instructions, and load it into a destination at approximately 3*10^8 m/s. (That's really fast.)</p>
+          <div class="col-xs-5 center">
+            <div class="form-group">
+              <label class="control-label">Origin</label>
+              <div class="controls">
+                <select class="form-control">
+                  <option>CommCare</option>
+                  <option>ODK</option>
+                  <option>Salesforce</option>
+                  <option>Telerivet</option>
+                  <option>SurveyCTO</option>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-xs-2 center"><i class="fa fa-arrow-right fa-2x"></i></div>
-        <div class="col-xs-5 center">
-          <div class="form-group">
-            <label class="control-label">Destination</label>
-            <div class="controls">
-              <select class="form-control">
-                <option>DHIS2</option>
-                <option>OpenMRS</option>
-                <option>Salesforce</option>
-                <option>Tableau</option>
-                <option>CartoDB</option>
-              </select>
+          <div class="col-xs-2 center"><i class="fa fa-arrow-right fa-2x"></i></div>
+          <div class="col-xs-5 center">
+            <div class="form-group">
+              <label class="control-label">Destination</label>
+              <div class="controls">
+                <select class="form-control">
+                  <option>DHIS2</option>
+                  <option>OpenMRS</option>
+                  <option>Salesforce</option>
+                  <option>Tableau</option>
+                  <option>CartoDB</option>
+                </select>
+              </div>
             </div>
           </div>
+          <br><br>
         </div>
-        <br><br>
-      </div>
 
-      <div class="jumbotron">
-        <h1>2. Select an event.</h1>
-        <p class="lead">Which event should bot watch for in CommCare?</p>
-          <div class="form-group">
-            <label class="control-label">Origin Event</label>
-            <div class="controls">
-              <select class="form-control">
-                <option>New Patient Registration</option>
-                <option>Staff Checkin</option>
-                <option>New Visit</option>
-                <option>Lab Result</option>
-              </select>
+        <div class="jumbotron">
+          <h1>2. Select an event.</h1>
+          <p class="lead">Which event should we watch for in CommCare?</p>
+            <div class="form-group">
+              <label class="control-label">Origin Event</label>
+              <div class="controls">
+                <select class="form-control">
+                  <option>New Patient Registration</option>
+                  <option>Staff Checkin</option>
+                  <option>New Visit</option>
+                  <option>Lab Result</option>
+                </select>
+              </div>
             </div>
+          <div class="well">
+            <h4>Are there any special <strong>conditions</strong> that must be met?</h4>
+            <p>If you don't want all submissions from "Lab Results" to trigger this job, define your filters below:</p>
+            <textarea class="form-control" placeholder="{ receipt.body['form']['#type'] == 'data' } && {fancy filters for the inbound JSON, at your fingertips!}"></textarea>
           </div>
-        <div class="well">
-          <h4>Are there any special <strong>conditions</strong> that must be met?</h4>
-          <p>If you don't want all submissions from "Lab Results" to trigger this job, define your filters below:</p>
-          <textarea class="form-control" placeholder="{ receipt.body['form']['#type'] == 'data' } && {fancy filters for the inbound JSON, at your fingertips!}"></textarea>
         </div>
-      </div>
 
-      <div class="jumbotron">
-        <h1>3. Define some actions.</h1>
-        <p class="lead">What do you want bot to do? We're looking for <em>verbs</em> and <em>nouns</em> here.</p>
-        <div class="row">
-        <div class="col-xs-6">
-          <div class="form-group">
-            <label class="control-label">verb</label>
-            <select class="form-control">
-              <option>create</option>
-              <option>update</option>
-              <option>upsert</option>
-              <option>(probably not delete)</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-xs-6">
-        <div class="form-group">
-        <label class="control-label">noun</label>
-          <select class="form-control">
-            <option>lab results</option>
-            <option>visits</option>
-            <option>patients</option>
-            <option>(every standard or custom table in your schema)</option>
-          </select>
-        </div>
-        </div>
-        </div>
-        <div class="row">
+        <div class="jumbotron">
+          <h1>3. Define some actions.</h1>
+          <p class="lead">What do you want your robot to do? We're looking for <em>verbs</em> and <em>nouns</em> here.</p>
+          <div class="row">
           <div class="col-xs-6">
-            <select class="form-control">
-              <option>update</option>
-              <option>create</option>
-              <option>upsert</option>
-              <option>(probably not delete)</option>
-            </select>
+            <div class="form-group">
+              <label class="control-label">verb</label>
+              <select class="form-control">
+                <option>create</option>
+                <option>update</option>
+                <option>upsert</option>
+                <option>(probably not delete)</option>
+              </select>
+            </div>
           </div>
           <div class="col-xs-6">
+          <div class="form-group">
+          <label class="control-label">noun</label>
             <select class="form-control">
-              <option>patients</option>
-              <option>visits</option>
               <option>lab results</option>
+              <option>visits</option>
+              <option>patients</option>
               <option>(every standard or custom table in your schema)</option>
             </select>
           </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <select class="form-control">
+                <option>update</option>
+                <option>create</option>
+                <option>upsert</option>
+                <option>(probably not delete)</option>
+              </select>
+            </div>
+            <div class="col-xs-6">
+              <select class="form-control">
+                <option>patients</option>
+                <option>visits</option>
+                <option>lab results</option>
+                <option>(every standard or custom table in your schema)</option>
+              </select>
+            </div>
+          </div>
+          <br>
+          <p class="lead">Anything else?</p>
+                  <div class="row">
+            <div class="col-xs-6">
+              <select class="form-control" disabled>
+                <option>verb</option>
+              </select>
+            </div>
+            <div class="col-xs-6">
+              <select class="form-control" disabled>
+                <option>noun</option>
+              </select>
+            </div>
+          </div>
         </div>
+
+        <div class="jumbotron">
+          <h1>4. Teach bot the job.</h1>
+          <p class="lead">You do this one by hand, we'll take care of the next million. Show us how you want to create lab results and update patients in DHIS2 using data from CommCare.</p>
+          <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>In the future</strong>, bot will review all the object and field names and types in both your source and destination. Based on this information, it will be able to suggest a complete job for you, with levels of certainty for each suggested "field pairing". You simply review and approve bot's predictions.
+          </div>
+          <div class="well">
+          <p>Create new lab results</p>
+            <div class="form-group">
+              <label class="control-label" style="color: red;">Date (required)</label>
+              <div class="controls">
+                <div class="input-group">
+                  <input type="text" placeholder="datetime" class="form-control" aria-label="...">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li><a href="#">Patient: Name (text)</a></li>
+                      <li><a href="#">Patient: DoB (date)</a></li>
+                      <li><a href="#">Patient: Gender (select1)</a></li>
+                      <li><a href="#">Patient: Phone (text)</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Lab Result: Patient ID (text)</a></li>
+                      <li><a href="#">Lab Result: Test (text)</a></li>
+                      <li><a href="#">Lab Result: Value (text)</a></li>                   
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Patient ID</label>
+              <div class="controls">
+                <div class="input-group">
+                  <input type="text" placeholder="text (255)" class="form-control" aria-label="...">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li><a href="#">Patient: Name (text)</a></li>
+                      <li><a href="#">Patient: DoB (date)</a></li>
+                      <li><a href="#">Patient: Gender (select1)</a></li>
+                      <li><a href="#">Patient: Phone (text)</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Lab Result: Patient ID (text)</a></li>
+                      <li><a href="#">Lab Result: Test (text)</a></li>
+                      <li><a href="#">Lab Result: Value (text)</a></li>                   
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Test</label>
+              <div class="controls">
+                <div class="input-group">
+                  <input type="text" placeholder="text (255)" class="form-control" aria-label="...">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li><a href="#">Patient: Name (text)</a></li>
+                      <li><a href="#">Patient: DoB (date)</a></li>
+                      <li><a href="#">Patient: Gender (select1)</a></li>
+                      <li><a href="#">Patient: Phone (text)</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Lab Result: Patient ID (text)</a></li>
+                      <li><a href="#">Lab Result: Test (text)</a></li>
+                      <li><a href="#">Lab Result: Value (text)</a></li>                   
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Value</label>
+              <div class="controls">
+                <div class="input-group">
+                  <input type="text" placeholder="number (10,2)" class="form-control" aria-label="...">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li><a href="#">Patient: Name (text)</a></li>
+                      <li><a href="#">Patient: DoB (date)</a></li>
+                      <li><a href="#">Patient: Gender (select1)</a></li>
+                      <li><a href="#">Patient: Phone (text)</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Lab Result: Patient ID (text)</a></li>
+                      <li><a href="#">Lab Result: Test (text)</a></li>
+                      <li><a href="#">Lab Result: Value (text)</a></li>                   
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="well">
+            <p>Update existing patients</p>
+            <div class="form-group">
+              <label class="control-label" style="color: red;">Patient ID (required)</label>
+              <div class="controls">
+                <div class="input-group">
+                  <input type="text" placeholder="text (255)" class="form-control" aria-label="...">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li><a href="#">Patient: Name (text)</a></li>
+                      <li><a href="#">Patient: DoB (date)</a></li>
+                      <li><a href="#">Patient: Gender (select1)</a></li>
+                      <li><a href="#">Patient: Phone (text)</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Lab Result: Patient ID (text)</a></li>
+                      <li><a href="#">Lab Result: Test (text)</a></li>
+                      <li><a href="#">Lab Result: Value (text)</a></li>                   
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Last Attending Physician</label>
+              <div class="controls">
+                <div class="input-group">
+                  <input type="text" placeholder="reference (id)" class="form-control" aria-label="...">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li><a href="#">Patient: Name (text)</a></li>
+                      <li><a href="#">Patient: DoB (date)</a></li>
+                      <li><a href="#">Patient: Gender (select1)</a></li>
+                      <li><a href="#">Patient: Phone (text)</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Lab Result: Patient ID (text)</a></li>
+                      <li><a href="#">Lab Result: Test (text)</a></li>
+                      <li><a href="#">Lab Result: Value (text)</a></li>                   
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Current Status</label>
+              <div class="controls">
+                <div class="input-group">
+                  <select class="form-control">
+                    <option>200 OK!</option>
+                    <option>401</option>
+                    <option>500</option>
+                    <option>(That's a little humor for you.)</option>
+                  </select>
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li><a href="#">Patient: Name (text)</a></li>
+                      <li><a href="#">Patient: DoB (date)</a></li>
+                      <li><a href="#">Patient: Gender (select1)</a></li>
+                      <li><a href="#">Patient: Phone (text)</a></li>
+                      <li role="separator" class="divider"></li>
+                      <li><a href="#">Lab Result: Patient ID (text)</a></li>
+                      <li><a href="#">Lab Result: Test (text)</a></li>
+                      <li><a href="#">Lab Result: Value (text)</a></li>                   
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="jumbotron">
+          <h1>5. Test it out.</h1>
+          <p class="lead">Look at these sample data we found in CommCare. Review what bot will do in DHIS2. If everything checks out, click "Test!" and see the result.</p>
+          <div class="well">
+            <p><strong>Source data</strong> from CommCare: {name: "Anna", age: 14}</p>
+            <p><strong>Planned action</strong> in DHIS2: insert {lab_result__c: {name: "blah-007", patient: "this_one", value: 79}</p>
+            <a class="btn btn-danger">Test!</a>
+          </div>
+          <div class="well">
+            <p><strong>Result</strong>: Passed</p>
+            <p><strong>Response from DHIS2</strong>: 200 OK!</p>
+          </div>
+        </div>
+
+        <div class="jumbotron">
+          <h1>6. Set it and forget it.</h1>
+          <p class="lead">You gave this puppy wings, now give it a name and let it fly!</p>
+          <input type="text" class="form-control" placeholder="name of your job">
         <br>
-        <p class="lead">Anything else?</p>
-                <div class="row">
-          <div class="col-xs-6">
-            <select class="form-control" disabled>
-              <option>verb</option>
-            </select>
-          </div>
-          <div class="col-xs-6">
-            <select class="form-control" disabled>
-              <option>noun</option>
-            </select>
-          </div>
+        <div class="btn-group">
+          <a class="btn btn-default">off</a>
+          <a class="btn btn-green" disabled>on</a>
         </div>
-      </div>
-
-      <div class="jumbotron">
-        <h1>4. Teach bot the job.</h1>
-        <p class="lead">You do this one by hand, we'll take care of the next million. Show us how you want to create lab results and update patients in DHIS2 using data from CommCare.</p>
-        <div class="alert alert-danger alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <strong>In the future</strong>, bot will review all the object and field names and types in both your source and destination. Based on this information, it will be able to suggest a complete job for you, with levels of certainty for each suggested "field pairing". You simply review and approve bot's predictions.
-        </div>
-        <div class="well">
-        <p>Create new lab results</p>
-          <div class="form-group">
-            <label class="control-label" style="color: red;">Date (required)</label>
-            <div class="controls">
-              <div class="input-group">
-                <input type="text" placeholder="datetime" class="form-control" aria-label="...">
-                <div class="input-group-btn">
-                  <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#">Patient: Name (text)</a></li>
-                    <li><a href="#">Patient: DoB (date)</a></li>
-                    <li><a href="#">Patient: Gender (select1)</a></li>
-                    <li><a href="#">Patient: Phone (text)</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Lab Result: Patient ID (text)</a></li>
-                    <li><a href="#">Lab Result: Test (text)</a></li>
-                    <li><a href="#">Lab Result: Value (text)</a></li>                   
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label">Patient ID</label>
-            <div class="controls">
-              <div class="input-group">
-                <input type="text" placeholder="text (255)" class="form-control" aria-label="...">
-                <div class="input-group-btn">
-                  <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#">Patient: Name (text)</a></li>
-                    <li><a href="#">Patient: DoB (date)</a></li>
-                    <li><a href="#">Patient: Gender (select1)</a></li>
-                    <li><a href="#">Patient: Phone (text)</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Lab Result: Patient ID (text)</a></li>
-                    <li><a href="#">Lab Result: Test (text)</a></li>
-                    <li><a href="#">Lab Result: Value (text)</a></li>                   
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label">Test</label>
-            <div class="controls">
-              <div class="input-group">
-                <input type="text" placeholder="text (255)" class="form-control" aria-label="...">
-                <div class="input-group-btn">
-                  <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#">Patient: Name (text)</a></li>
-                    <li><a href="#">Patient: DoB (date)</a></li>
-                    <li><a href="#">Patient: Gender (select1)</a></li>
-                    <li><a href="#">Patient: Phone (text)</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Lab Result: Patient ID (text)</a></li>
-                    <li><a href="#">Lab Result: Test (text)</a></li>
-                    <li><a href="#">Lab Result: Value (text)</a></li>                   
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label">Value</label>
-            <div class="controls">
-              <div class="input-group">
-                <input type="text" placeholder="number (10,2)" class="form-control" aria-label="...">
-                <div class="input-group-btn">
-                  <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#">Patient: Name (text)</a></li>
-                    <li><a href="#">Patient: DoB (date)</a></li>
-                    <li><a href="#">Patient: Gender (select1)</a></li>
-                    <li><a href="#">Patient: Phone (text)</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Lab Result: Patient ID (text)</a></li>
-                    <li><a href="#">Lab Result: Test (text)</a></li>
-                    <li><a href="#">Lab Result: Value (text)</a></li>                   
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="well">
-          <p>Update existing patients</p>
-          <div class="form-group">
-            <label class="control-label" style="color: red;">Patient ID (required)</label>
-            <div class="controls">
-              <div class="input-group">
-                <input type="text" placeholder="text (255)" class="form-control" aria-label="...">
-                <div class="input-group-btn">
-                  <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#">Patient: Name (text)</a></li>
-                    <li><a href="#">Patient: DoB (date)</a></li>
-                    <li><a href="#">Patient: Gender (select1)</a></li>
-                    <li><a href="#">Patient: Phone (text)</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Lab Result: Patient ID (text)</a></li>
-                    <li><a href="#">Lab Result: Test (text)</a></li>
-                    <li><a href="#">Lab Result: Value (text)</a></li>                   
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label">Last Attending Physician</label>
-            <div class="controls">
-              <div class="input-group">
-                <input type="text" placeholder="reference (id)" class="form-control" aria-label="...">
-                <div class="input-group-btn">
-                  <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#">Patient: Name (text)</a></li>
-                    <li><a href="#">Patient: DoB (date)</a></li>
-                    <li><a href="#">Patient: Gender (select1)</a></li>
-                    <li><a href="#">Patient: Phone (text)</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Lab Result: Patient ID (text)</a></li>
-                    <li><a href="#">Lab Result: Test (text)</a></li>
-                    <li><a href="#">Lab Result: Value (text)</a></li>                   
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="control-label">Current Status</label>
-            <div class="controls">
-              <div class="input-group">
-                <select class="form-control">
-                  <option>200 OK!</option>
-                  <option>401</option>
-                  <option>500</option>
-                  <option>(That's a little humor for you.)</option>
-                </select>
-                <div class="input-group-btn">
-                  <button type="button" class="btn btn-default btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#">Patient: Name (text)</a></li>
-                    <li><a href="#">Patient: DoB (date)</a></li>
-                    <li><a href="#">Patient: Gender (select1)</a></li>
-                    <li><a href="#">Patient: Phone (text)</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Lab Result: Patient ID (text)</a></li>
-                    <li><a href="#">Lab Result: Test (text)</a></li>
-                    <li><a href="#">Lab Result: Value (text)</a></li>                   
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="jumbotron">
-        <h1>5. Test it out.</h1>
-        <p class="lead">Look at these sample data we found in CommCare. Review what bot will do in DHIS2. If everything checks out, click "Test!" and see the result.</p>
-        <div class="well">
-          <p><strong>Source data</strong> from CommCare: {name: "Anna", age: 14}</p>
-          <p><strong>Planned action</strong> in DHIS2: insert {lab_result__c: {name: "blah-007", patient: "this_one", value: 79}</p>
-          <a class="btn btn-danger">Test!</a>
-        </div>
-        <div class="well">
-          <p><strong>Result</strong>: Passed</p>
-          <p><strong>Response from DHIS2</strong>: 200 OK!</p>
-        </div>
-      </div>
-
-      <div class="jumbotron">
-        <h1>6. Set it and forget it.</h1>
-        <p class="lead">You gave this puppy wings, now give it a name and let it fly!</p>
-        <input type="text" class="form-control" placeholder="name of your job">
-      <br>
-      <div class="btn-group">
-        <a class="btn btn-default">off</a>
-        <a class="btn btn-success" disabled>on</a>
       </div>
     </div>
-
   </div>
 </div>

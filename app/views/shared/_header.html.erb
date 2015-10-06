@@ -14,43 +14,35 @@
           <a href="/#/marketplace">Marketplace</a>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Integrations<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Integrations <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
               <li>
-                <a href="/#/v2">Prototype (v2)</a>
+                <a href="/#/v2">How it works</a>
               </li>
               <li ng-controller="LoginController as loginCtrl">
-                <a ng-click="checkLogin('/mappings')">Integrations</a>
+                <a ng-click="checkLogin('/mappings')">Job manager</a>
               </li>        
             </ul>
         </li>
         <li>
           <a href="https://medium.com/@openFn" target="_blank">Content</a>
         </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <a href="/#/impact">Our Impact</a>
-              </li> 
-              <li>
-                <a href="/#/our_team">Our Team</a>
-              </li>
-              <% unless current_user %>
-                <li>
-                  <a href="/#/pricing">How we price</a>
-                </li>
-              <% end %>
-              <li>
-                <a href="/#/developers">For Developers</a>
-              </li>        
-            </ul>
-        </li>        
+        <li>
+          <a href="/#/impact">Impact</a>
+        </li>       
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <!-- <li>
-          <a onClick="ga('send', 'event', 'Revenue', 'Open Donate Modal');" type="button" data-toggle="modal" data-target="#donate_modal"><i class="fa fa-life-ring"></i> Donate</a>
-        </li> -->
+        <li>
+          <a href="/#/our_team">Team</a>
+        </li>
+        <li>
+          <a href="/#/developers"><i class="fa fa-code"></i> Developers</a>
+        </li>
+        <% unless current_user %>
+          <li>
+            <a href="/#/pricing">Pricing</a>
+          </li>
+        <% end %>
         <% if current_user %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
@@ -75,11 +67,11 @@
 
         <% unless current_user %>
           <li ng-controller="LoginController as loginCtrl" class="row">
-            <a ng-click="checkLogin()" >Login</a>
+            <a ng-click="checkLogin()" >&nbsp;&nbsp;<i class="fa fa-lock"></i>&nbsp;&nbsp;</a>
           </li>
           <li>
-            <%= button_to "/signup", :class => "btn btn-default", method: :get do %>
-              Sign up
+            <%= button_to "/signup", :class => "btn btn-grey", method: :get do %>
+              <strong>Sign up!</strong>
             <% end %>
           </li>
         <% end %>

@@ -136,6 +136,11 @@ $margin-small: 15px;
   color: white;
 }
 
+.btn-grey {
+  background-color: $grey;
+  color: white;
+}
+
 #wrap {
   min-height: 100%;
 }
@@ -150,8 +155,9 @@ $margin-small: 15px;
     margin-top: -68px;
     height: 68px;
     clear: both;
-    background-color: $nav;
-    // background-image: image-url("noise.png");
+    background-color: $grey;
+    background-image: image-url("noise.png");
+    color: white;
     padding-top: 12px;
 }
 
@@ -163,14 +169,14 @@ b, strong {
     background-image: image-url("new_logo_white.png");
     background-repeat: no-repeat;
     background-size: 100%;
-    height: rem-calc(42px);
-    width: rem-calc(42px);
+    height: rem-calc(48px);
+    width: rem-calc(48px);
     position: absolute;
     margin-left: auto;
     margin-right: auto;
     left: 0;
     right: 0;
-    bottom: 16px;
+    bottom: 12px;
   }
 
 .navbar {
@@ -183,13 +189,14 @@ b, strong {
   position: fixed;
   margin-bottom: 15px;
   height: 68px;
-  // background-image: image-url("noise.png");
-  background-color: black;
+  background-image: image-url("noise.png");
+  background-color: $lg-green;
 
   .nav > li > a {
     line-height: rem-calc(24px);
     z-index: 10;
     color: white;
+    // font-size: rem-calc(24px);
   }
 
   .btn {
