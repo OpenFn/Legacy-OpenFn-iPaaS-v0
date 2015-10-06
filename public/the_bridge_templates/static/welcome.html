@@ -2,32 +2,27 @@
   <header class="banner">
     <div id="particles-js"></div>
     <div class="numbers">
-      <div class="col-xs-3 col-sm-offset-2">
-        <h3 class="live">{{productPublicCount}}</h3>
-        <h4>Technologies</h4>
-        <br>
-        <h3 class="live">{{productConnectedCount}}</h3>
-        <h4>Connected Apps</h4>
+      <div class="row">
+        <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2">
+            <img src="/images/text_logo_white.png" class="img-responsive lg2" alt="Responsive image">
+        </div>
+        </a>
       </div>
-      <div class="col-xs-3 col-sm-offset-2">
-        <h3 class="live">{{orgCount}}</h3>
-        <h4>Organizations</h4>
-        <br>
-        <h3 class="live">{{submissionCount | number }}</h3>
-        <h4>Transactions</h4>
-      </div>
-    </div>
-    <div class="banner-headline">
-      <div class="logo">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 center">
+          <h4><span class="digits">{{productPublicCount}}</span> technologies, <span class="digits">{{orgCount}}</span> organizations, <span class="digits">{{productConnectedCount}}</span> connected apps, and <span class="digits">{{submissionCount | number }}</span> transactions.
+          </h4>
+        </div>
       </div>
     </div>
   </header>
+
   <div class="featurette" id="marketplace">
     <div class="container">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-8 col-md-offset-1">
             <h2 class="featurette-heading">
-              Leading NGOs find & connect technologies to amplify their impact with <b>Open[Fn]</b>.
+              Leading NGOs find & connect technologies to amplify their impact with <b>OpenFn</b>.
             </h2>
             <p class="lead">
               Technology isn't the answer, but it shouldn't be the problem. From household survey data in northern India, to attendance recorded at women's groups in Kenya, we are moving the data that makes impact-first organizations more efficient and effective.
@@ -36,11 +31,12 @@
         </div>
     </div>    
   </div>
+
   <div class="featurette" id="marketplace">
     <div class="container">
       <a href="/marketplace">
         <div class="row">
-          <div class="col-md-8 col-md-push-4 text-right">
+          <div class="col-md-8 col-md-offset-3 text-right">
             <h2 class="featurette-heading">
               open<strong>Marketplace</strong> helps you find the tools you need.
             </h2>
@@ -62,7 +58,7 @@
     <div class="container">
       <a href="/mappings" ng-click="$event.stopPropagation()">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-8 col-md-offset-1">
             <h2 class="featurette-heading">
               open<strong>Integrations</strong> make<br/> apps more powerful.
             </h2>
@@ -82,7 +78,7 @@
     <div class="container">
       <a href="https://medium.com/@openFn" target="_blank">
         <div class="row">
-          <div class="col-md-8 col-md-push-4 text-right">
+          <div class="col-md-8 col-md-offset-3 text-right">
             <h2 class="featurette-heading">
               open<strong>Content</strong> makes it easier<br/> to lead successful implementations.
             </h2>
@@ -104,13 +100,13 @@
   <div class="featurette dark">
     <div class="container">
       <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 col-md-offset-1">
         <h2 class="featurette-heading">
           open<strong>Partnerships</strong> make<br/> this all possible
         </h2>
         <p class="lead">
           We grew out of <a href="http://www.verasolutions.org" target="_blank">Vera Solutions</a>,
-          technology partner to over 125 leading <em>impact-first</em> organizations in almost 40 countries,
+          technology partner to over 150 leading <em>impact-first</em> organizations in almost 40 countries,
           and have received generous support from
           <a href="http://www.echoinggreen.org" target="_blank">Echoing Green</a>,
           <a href="http://www.dasra.org" target="_blank">Dasra</a>,
@@ -119,7 +115,6 @@
         </p>
       </div>  
     </div>
-  </div>
   </div>
 
 <script type="text/javascript">particlesJS("particles-js",{particles:{number:{value:100,density:{enable:!0,value_area:800}},color:{value:"#ffffff"},shape:{type:"circle",stroke:{width:0,color:"#000000"},polygon:{nb_sides:5},image:{src:"img/github.svg",width:100,height:100}},opacity:{value:.5,random:!1,anim:{enable:!1,speed:1,opacity_min:.1,sync:!1}},size:{value:3,random:!0,anim:{enable:!1,speed:40,size_min:.1,sync:!1}},line_linked:{enable:!0,distance:150,color:"#ffffff",opacity:.4,width:1},move:{enable:!0,speed:6,direction:"none",random:!1,straight:!1,out_mode:"out",attract:{enable:!1,rotateX:600,rotateY:1200}}},interactivity:{detect_on:"canvas",events:{onhover:{enable:!0,mode:"grab"},onclick:{enable:!0,mode:"push"},resize:!0},modes:{grab:{distance:130,line_linked:{opacity:1}},push:{particles_nb:4}}},retina_detect:!0,config_demo:{hide_card:!1,background_color:"#b61924",background_image:"",background_position:"50% 50%",background_repeat:"no-repeat",background_size:"cover"}});</script>
