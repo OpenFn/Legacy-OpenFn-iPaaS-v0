@@ -1,10 +1,20 @@
 .cases {
 
+  .impact {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
   .line-separator {
     height:1px;
     margin: auto 25px 10px 0; 
     background: $dark;
     border-bottom:1px solid $dark;
+  }
+
+  .description {
+    background-color: $nav;
+    background-image: image-url("noise.png");
   }
 
   .team-member-pic {
@@ -14,15 +24,6 @@
     margin-top: 26px;
     border-radius: 10px;
     margin-bottom: 10px;
-  }
-
-  .team-member-page {
-    min-height: 250px;
-  }
-
-  .team-member-page p {
-    margin: 0 0 0 10px;
-    line-height: 1.8;
   }
 
 }
