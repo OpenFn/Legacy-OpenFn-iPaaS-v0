@@ -179,6 +179,20 @@ b, strong {
     bottom: 12px;
   }
 
+  .navbar-logo-sm {
+    background-image: image-url("new_logo_white.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: rem-calc(48px);
+    width: rem-calc(48px);
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    top: .35em;
+  }
+
 .navbar {
 
   padding-top: rem-calc(5px);
@@ -190,7 +204,7 @@ b, strong {
   margin-bottom: 15px;
   min-height: 68px;
   background-image: image-url("noise.png");
-  background-color: $lg-green;
+  background-color: $lg-green !important;
   color: white;
 
   .nav > li > a {

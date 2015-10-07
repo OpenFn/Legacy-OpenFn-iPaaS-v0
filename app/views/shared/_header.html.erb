@@ -67,12 +67,14 @@
       </ul>
     </div>
 
-    <div class="container visible-sm visible-xs">
-    <a class="navbar-logo" href="/"></a>
+    <div class="container visible-sm visible-xs center">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle navbar-logo-sm" data-toggle="dropdown" role="button" aria-expanded="false"></a>
           <ul class="dropdown-menu" role="menu">
+          <li>
+            <a href="/">Home</a>
+          </li>
             <% if current_user %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
@@ -97,22 +99,26 @@
             <a ng-click="checkLogin()" >Login <i class="fa fa-lock"></i></a>
           </li>
           <li>
-            <%= button_to "/signup", :class => "btn btn-grey", method: :get do %>
+            <%= link_to "/signup", method: :get do %>
               <strong>Sign up!</strong>
             <% end %>
           </li>
         <% end %>
+            <li class="divider">
+            </li>            
             <li>
               <a href="/#/marketplace">Marketplace</a>
             </li>
             <li>
-              <a href="/#/v2">What's Integration?</a>
+              <a href="/#/v2">What's integration?</a>
             </li>
             <li ng-controller="LoginController as loginCtrl">
               <a ng-click="checkLogin('/mappings')">Job manager</a>
             </li>
             <li>
               <a href="https://medium.com/@openFn" target="_blank">Content</a>
+            </li>
+            <li class="divider">
             </li>
             <li>
               <a href="/#/impact">Impact</a>
