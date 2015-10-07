@@ -188,9 +188,10 @@ b, strong {
   border-radius: 0;
   position: fixed;
   margin-bottom: 15px;
-  height: 68px;
+  min-height: 68px;
   background-image: image-url("noise.png");
   background-color: $lg-green;
+  color: white;
 
   .nav > li > a {
     line-height: rem-calc(24px);
