@@ -153,7 +153,7 @@ $margin-small: 15px;
 .footer {
     position: relative;
     margin-top: -68px;
-    height: 68px;
+    min-height: 68px;
     clear: both;
     background-color: $grey;
     background-image: image-url("noise.png");
