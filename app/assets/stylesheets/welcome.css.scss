@@ -4,9 +4,7 @@
     position: relative;
     background-color: $base;
     background-image: image-url("wow_bg.jpg");
-    // background-repeat: no-repeat;
     background-position: center;
-    // background-size: 100%;
     width: 100%;
     height: 30em;
     text-align: center;
@@ -14,6 +12,7 @@
 
   #particles-js{
       position: absolute;
+      background-image: image-url("noise.png");
       height: 30em;
       width: 100%;
       z-index: 8;
@@ -31,19 +30,19 @@
     margin-bottom: 2em;
   }
 
-  .logo {
-    background-image: image-url("new_logo_white.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: 160px;
-    width: 160px;
-    position: absolute;
-    margin-top: 1.5em;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-  }
+  // .logo {
+  //   background-image: image-url("text_logo_white.png");
+  //   background-repeat: no-repeat;
+  //   background-size: 100%;
+  //   height: auto;
+  //   width: auto;
+  //   position: absolute;
+  //   margin-top: 2em;
+  //   margin-left: auto;
+  //   margin-right: auto;
+  //   left: 0;
+  //   right: 0;
+  // }
 
   .who {
     text-align: center;
@@ -53,43 +52,27 @@
     padding: 2em;
   }
 
-  .numbers h3 {
-      font-size: rem-calc(35px);
-      margin-top: 2.5em;
-      color: $accent;
+  .lg2 {
+    height: auto;
+    width: auto;
+    margin-top: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
   }
 
   .numbers h4 {
-      font-size: rem-calc(18px);
-      text-transform: uppercase;
-      color: $bg-color;
-  }
+    margin-top: 3em;
+    color: $bg-color;
+    font-size: 1.8rem;
+    line-height: 2.8rem;
 
-    .featurette {
-
-      .openmarket-featurette-image {
-        background-image: image-url("openmarket-featurette.png");
-        background-repeat: no-repeat;
-        background-size: 100%;
-        height: 421px;
-        width: 492px;
-      }
-
-      .openintegrations-featurette-image {
-        background-image: image-url("openintegrations-featurette2.png");
-        background-repeat: no-repeat;
-        background-size: 100%;
-        height: 373px;
-        width: 460px;
-      }
-
-      .openideas-featurette-image {
-        background-image: image-url("openideas-featurette.png");
-        background-repeat: no-repeat;
-        background-size: 100%;
-        height: 351px;
-        width: 376px;
-      }
+    .digits {
+      color: $accent;
+      font-weight: $bold;
+      font-size: rem-calc(36px);
     }
+  }
 
 }

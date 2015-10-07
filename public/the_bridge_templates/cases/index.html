@@ -22,9 +22,11 @@
       <br><br>
       <div class="col-md-8 col-md-offset-2">
         <h3>
-          <p>open<strong>Marketplace</strong> is an ‘AppStore’ for social-impact technologies. Users are guided right to the technologies they need and will be able to access real usage statistics, reviews, ratings, and in-depth case studies on best practices for implementation.</p>
+          <p class="lead">open<strong>Marketplace</strong> is an ‘AppStore’ for social-impact technologies. Users are guided right to the technologies they need and will be able to access real usage statistics, reviews, ratings, and in-depth case studies on best practices for implementation.</p>
           <br><br>
-          <p>open<strong>Integrations</strong> makes technologies more powerful by connecting them. An SMS can automatically register a patient in a clinic system. A mobile payment can trigger the digital delivery of educational content. A mobile survey submission can be instantly mapped on the web. When integration is this easy, we will start to see an entirely new generation of focused, powerful, and user-friendly ‘apps’ be built to serve the social sector.</p>
+          <p class="lead">open<strong>Integrations</strong> makes technologies more powerful by connecting them. An SMS can automatically register a patient in a clinic system. A mobile payment can trigger the digital delivery of educational content. A mobile survey submission can be instantly mapped on the web. When integration is this easy, we will start to see an entirely new generation of focused, powerful, and user-friendly ‘apps’ be built to serve the social sector.</p>
+          <br><br>
+          <p class="lead">Learn more about the organizations that use OpenFn in our case studies below.</p>
           <br><br>
         </h3>
       </div>
@@ -34,7 +36,6 @@
   <div class="container">
     <br><br>
     <div class="col-md-8 col-md-offset-2" ng-controller="CasesController as cases">
-      <h1>Case Studies</h1>
       <div class="row team-member-page" ng-repeat="case in cases | orderBy:'order'">
         <div class="container col-md-3">
           <img ng-src="{{case.picture_url}}" class="team-member-pic" width=250px>
@@ -42,7 +43,7 @@
         <div class="col-md-12">
           <h2><b>{{case.title}}</b><small>&nbsp&nbsp{{case.org_name}}</small></h2>
           <h3>
-            <p ng-bind-html="case.body"></p><br>
+            <p class="lead" ng-bind-html="case.body"></p><br>
           </h3>
         </div>
       </div>
