@@ -18,7 +18,7 @@
   </div>
 
   <div class="description">
-    <div class="container team-member-page">
+    <div class="container">
       <br><br>
       <div class="col-md-8 col-md-offset-2">
         <h3>
@@ -36,9 +36,9 @@
   <div class="container">
     <br><br>
     <div class="col-md-8 col-md-offset-2" ng-controller="CasesController as cases">
-      <div class="row team-member-page" ng-repeat="case in cases | orderBy:'order'">
+      <div class="row" ng-repeat="case in cases | orderBy:'order'">
         <div class="container col-md-3">
-          <img ng-src="{{case.picture_url}}" class="team-member-pic" width=250px>
+          <img ng-src="{{case.picture_url}}" class="case-pic" width=250px>
         </div>
         <div class="col-md-12">
           <h2><b>{{case.title}}</b><small>&nbsp&nbsp{{case.org_name}}</small></h2>
