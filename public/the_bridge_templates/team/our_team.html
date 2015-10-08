@@ -19,7 +19,7 @@
       </p>
       <br>
       <br>
-      <div class="row" ng-repeat="member in team | orderBy:'order'">
+      <div class="row" ng-repeat="member in team | orderBy:'order'" ng-if="member.order">
         <div class="col-md-3">
           <img ng-src="{{member.picture_url}}" class = "team-member-pic" width=190px>
         </div>
