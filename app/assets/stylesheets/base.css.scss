@@ -209,12 +209,12 @@ b, strong {
   padding-left: 2px;
 }
 
-// .panel {
-//   // background-color: $cream;
-//   // background-image: image-url("noise.png");
-//   // color: $deeper-blue;
-//   border: 0;
-// }
+.panel {
+  // background-color: $cream;
+  // background-image: image-url("noise.png");
+  // color: $deeper-blue;
+  border: 0;
+}
 
 .breadcrumb {
   // background-color: $primary-blue;
@@ -244,10 +244,6 @@ b, strong {
   font-weight: normal;
 }
 
-.flash {
-  // color: $bg-color;
-}
-
 .center {
   text-align: center;
 }
@@ -259,12 +255,6 @@ b, strong {
 .btn-open-donation, .btn-open-donation:hover {
   color: $nav;
   background-color: $red-accent;
-  // background-image: image-url("noise.png");
-  // width: 75px;
-  // height: 50px;
-
-  // font-size: rem-calc(18px);
-  // font-weight: $bold;
   text-transform: uppercase;
 }
 
@@ -272,11 +262,6 @@ b, strong {
   color: $bg-color;
   background-color: $base;
   background-image: image-url("noise.png");
-  // width: 75px;
-  // height: 50px;
-
-  // font-size: rem-calc(18px);
-  // font-weight: $bold;
   text-transform: uppercase;
 }
 
