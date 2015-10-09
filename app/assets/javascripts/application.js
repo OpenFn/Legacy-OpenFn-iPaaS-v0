@@ -13,7 +13,6 @@
 //= require features
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
 
 //= require jquery-ui/core
 //= require jquery-ui/widget
