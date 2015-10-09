@@ -1,220 +1,62 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container hidden-sm hidden-xs">
-    <a class="navbar-logo" href="/"></a>
+<nav class="navbar navbar-dark bg-inverse navbar-fixed-top navbar-nav" ng-controller="LoginController as loginCtrl">
+  <div class="container">
+    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
+      &#9776;
+    </button>
+    <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+      <a class="navbar-logo" href="/"><span class="sr-only">(current)</span></a>
       <ul class="nav navbar-nav">
-        <li>
-          <a href="/#/marketplace">Marketplace</a>
+        <li class="nav-item">
+          <a class="nav-link" href="/#/marketplace">Marketplace</a>
         </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Integrations <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li>
-              <a href="/#/v2">How it works</a>
-            </li>
-            <li ng-controller="LoginController as loginCtrl">
-              <a ng-click="checkLogin('/mappings')">Job manager</a>
-            </li>        
-          </ul>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Integrations</a>
+          <div class="dropdown-menu" aria-labelledby="Preview">
+            <a class="dropdown-item" href="/#/v2">How it works</a>
+            <a class="dropdown-item" ng-click="checkLogin('/mappings')">Job manager</a>
+          </div>
         </li>
-        <li>
-          <a href="https://medium.com/@openFn" target="_blank">Content</a>
+        <li class="nav-item">
+          <a class="nav-link" href="https://medium.com/@openFn" target="_blank">Content</a>
         </li>
-        <li>
-          <a href="/#/impact">Impact</a>
-        </li>       
+        <li class="nav-item">
+          <a class="nav-link" href="/#/impact">Impact</a>
+        </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="/#/our_team">Team</a>
+      <ul class="nav navbar-nav pull-right">
+        <li class="nav-item">
+          <a class="nav-link" href="/#/our_team">Team</a>
         </li>
-        <li>
-          <a href="/#/developers"><i class="fa fa-code"></i> Developers</a>
+        <li class="nav-item">
+          <a class="nav-link" href="/#/developers"><i class="fa fa-code"></i> Developers</a>
         </li>
+        <!-- TODO - fix plan change from pricing page for current users -->
         <% unless current_user %>
-          <li>
-            <a href="/#/pricing">Pricing</a>
-          </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/#/pricing">Pricing</a>
+        </li>
         <% end %>
         <% if current_user %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <%= link_to edit_user_path(current_user), 'ng-click' => "$event.stopPropagation()" do %>
-                  Settings
-                <% end %>
-              </li>
-              <li class="divider">
-              </li>
-              <li>
-                <%= link_to "/logout", method: :post do %>
-                  Log out
-                <% end %>
-              </li>
-            </ul>
-          </li>
-        <% end %>
-        <% unless current_user %>
-          <li ng-controller="LoginController as loginCtrl" class="row">
-            <a ng-click="checkLogin()" >&nbsp;&nbsp;<i class="fa fa-lock"></i>&nbsp;&nbsp;</a>
-          </li>
-          <li>
-            <%= button_to "/signup", :class => "btn btn-grey", method: :get do %>
-              <strong>Sign up!</strong>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-
-    <div class="container visible-sm visible-xs center">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle navbar-logo-sm" data-toggle="dropdown" role="button" aria-expanded="false"></a>
-          <ul class="dropdown-menu" role="menu">
-          <li>
-            <a href="/">Home</a>
-          </li>
-            <% if current_user %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li>
-                <%= link_to edit_user_path(current_user), 'ng-click' => "$event.stopPropagation()" do %>
-                  Settings
-                <% end %>
-              </li>
-              <li class="divider">
-              </li>
-              <li>
-                <%= link_to "/logout", method: :post do %>
-                  Log out
-                <% end %>
-              </li>
-            </ul>
-          </li>
-        <% end %>
-        <% unless current_user %>
-          <li ng-controller="LoginController as loginCtrl">
-            <a ng-click="checkLogin()" >Login <i class="fa fa-lock"></i></a>
-          </li>
-          <li>
-            <%= link_to "/signup", method: :get do %>
-              <strong>Sign up!</strong>
-            <% end %>
-          </li>
-        <% end %>
-            <li class="divider">
-            </li>            
-            <li>
-              <a href="/#/marketplace">Marketplace</a>
-            </li>
-            <li>
-              <a href="/#/v2">What's integration?</a>
-            </li>
-            <li ng-controller="LoginController as loginCtrl">
-              <a ng-click="checkLogin('/mappings')">Job manager</a>
-            </li>
-            <li>
-              <a href="https://medium.com/@openFn" target="_blank">Content</a>
-            </li>
-            <li class="divider">
-            </li>
-            <li>
-              <a href="/#/impact">Impact</a>
-            </li>
-            <li>
-              <a href="/#/our_team">Team</a>
-            </li>
-            <li>
-              <a href="/#/developers"><i class="fa fa-code"></i> Developers</a>
-            </li>
-            <% unless current_user %>
-              <li>
-                <a href="/#/pricing">Pricing</a>
-              </li>
-            <% end %>
-          </ul>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.email %></a>
+          <div class="dropdown-menu" aria-labelledby="Preview">
+            <a class="dropdown-item" href=<%= edit_user_path(current_user) %> ng-click="$event.stopPropagation()">Settings</a>
+            <a class="dropdown-item" data-method="post" href="/logout">Log out</a>
+          </div>
         </li>
+        <% end %>
+        <% unless current_user %>
+        <li class="nav-item">
+          <a class="nav-link" ng-click="checkLogin()" >&nbsp;&nbsp;<i class="fa fa-lock"></i>&nbsp;&nbsp;</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-grey" data-method="get" href="/signup" role="button"><b>Sign up!</b></a>
+        </li>
+        <% end %>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-      </ul>
-    </div>
-  </nav>
-</nav>
-
-<%if current_user && current_user.client_admin?%>
-  <%= render 'shared/invite_modal'%>
-  <%= render 'shared/confirm_modal'%>
-<%end%>
-
-
-
-<div class="ideas">
-  <div class="modal fade" id="donate_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="featurette dark">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title center" id="myModalLabel">Thank you for your support!</h4>
-          </div>
-          <div class="modal-body">
-            We have submitted our 501(c)3 application and are awaiting approval. When we are granted 501(c)3 status, all donations that were made previously will be recognized as tax deductible. To learn more, click <a href="http://www.irs.gov/Charities-&-Non-Profits/Charitable-Organizations/Contributions-to-Organization-with-IRS-Application-Pending" target="_blank">here.</a>
-            <br>
-            <br>
-            <strong>To make a donation, select your desired amount</strong> below and enter your credit card details on the following page.
-            <br>
-            <br>
-            <br>
-            <div class="row center">
-              <div class="col-sm-2 col-sm-offset-3">
-                <button class="btn btn-donate" data-amount='10' onClick="ga('send', 'event', 'Revenue', 'Donate Picker', 'Donate 10', 10);">$10</button>
-              </div>
-              <div class="col-sm-2">
-                <button class="btn btn-donate" data-amount='25' onClick="ga('send', 'event', 'Revenue', 'Donate Picker', 'Donate 25', 25);">$25</button>
-              </div>
-              <div class="col-sm-2">
-                <button class="btn btn-donate" data-amount='50' onClick="ga('send', 'event', 'Revenue', 'Donate Picker', 'Donate 50', 50);">$50</button>
-              </div>
-            </div>
-            <br>
-            <div class="row center">
-              <div class="col-sm-2 col-sm-offset-3">
-                <button class="btn btn-donate" data-amount='100' onClick="ga('send', 'event', 'Revenue', 'Donate Picker', 'Donate 100', 100);">$100</button>
-              </div>
-              <div class="col-sm-2">
-                <button class="btn btn-donate" data-amount='200' onClick="ga('send', 'event', 'Revenue', 'Donate Picker', 'Donate 200', 200);">$200</button>
-              </div>
-              <div class="col-sm-2">
-                <button class="btn btn-donate" data-amount='300' onClick="ga('send', 'event', 'Revenue', 'Donate Picker', 'Donate 300', 300);">$300</button>
-              </div>
-            </div>
-            <br>
-            <div class="row center">
-              <div class="col-sm-2 col-sm-offset-3">
-                <div class="input-group">
-                  <button type="submit" class="btn btn-donate" data-amount='1000' id="customButton" onClick="ga('send', 'event', 'Revenue', 'Donate 1k', 1000);">$1000</button>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="input-group">
-                  <span class="input-group-addon">$</span>
-                  <input type="text" class="form-control" id='customDonation' style="height: 50px;" aria-label="Amount (to the nearest dollar)" placeholder="Custom">
-                  <span class="input-group-btn">
-                    <button class="btn btn-donate-go" type="button" onClick="ga('send', 'event', 'Revenue', 'Donate Picker', 'Donate Custom');">Go</button>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <br>
-            <br>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
-</div>
+</nav>
 
 <script type="text/ng-template" id="modalTemplate.html">
   <div class="modal-content">
