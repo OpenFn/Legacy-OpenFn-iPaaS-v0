@@ -23,7 +23,12 @@ gem 'ngannotate-rails'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
-gem 'bootstrap-sass', '~> 3.1.1'
+gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
+end
+
 gem "font-awesome-rails"
 
 gem 'sidekiq'

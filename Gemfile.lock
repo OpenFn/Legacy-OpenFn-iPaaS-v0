@@ -28,8 +28,17 @@ GIT
       mime-types (>= 1.25, < 3.0)
       rest-client (~> 1.4)
 
+GIT
+  remote: https://github.com/twbs/bootstrap-rubygem
+  revision: 6e58d5c2a6be817a663f023c66d9b05b1d901f09
+  specs:
+    bootstrap (4.0.0.dev)
+      autoprefixer-rails (>= 5.2.1.3)
+      sass (>= 3.4.18)
+
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actionmailer (4.1.9)
       actionpack (= 4.1.9)
@@ -66,9 +75,10 @@ GEM
     angular_ui_tree_rails (0.1.5)
     angularjs-rails (1.3.14)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (6.0.3)
+      execjs
+      json
     bcrypt (3.1.9)
-    bootstrap-sass (3.1.1.1)
-      sass (~> 3.2)
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -168,8 +178,8 @@ GEM
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.2)
-    minitest (5.5.1)
-    multi_json (1.10.1)
+    minitest (5.8.1)
+    multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
     nenv (0.2.0)
@@ -205,7 +215,7 @@ GEM
       pry (>= 0.9.10)
     puma (2.11.0)
       rack (>= 1.1, < 2.0)
-    rack (1.5.2)
+    rack (1.5.5)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -221,6 +231,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.9)
       sprockets-rails (~> 2.0)
+    rails-assets-tether (1.1.0)
     rails-observers (0.1.2)
       activemodel (~> 4.0)
     rails_12factor (0.0.3)
@@ -268,12 +279,11 @@ GEM
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
     safe_yaml (1.0.4)
-    sass (3.2.19)
-    sass-rails (4.0.5)
+    sass (3.4.18)
+    sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
-      sass (~> 3.2.2)
-      sprockets (~> 2.8, < 3.0)
-      sprockets-rails (~> 2.0)
+      sass (>= 3.1.10)
+      sprockets-rails (~> 2.0.0)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -303,18 +313,18 @@ GEM
     spring (1.2.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
-    sprockets (2.12.3)
+    sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.2.4)
+    sprockets-rails (2.0.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
-      sprockets (>= 2.8, < 4.0)
+      sprockets (~> 2.8)
     state_machine (1.2.0)
     thor (0.19.1)
-    thread_safe (0.3.4)
+    thread_safe (0.3.5)
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
@@ -339,7 +349,7 @@ DEPENDENCIES
   angular-ui-bootstrap-rails
   angular_ui_tree_rails
   angularjs-rails (~> 1.3.14)
-  bootstrap-sass (~> 3.1.1)
+  bootstrap!
   byebug
   codeclimate-test-reporter
   coffee-rails (~> 4.0.0)
@@ -372,6 +382,7 @@ DEPENDENCIES
   puma
   rack-zippy
   rails (~> 4.1.0)
+  rails-assets-tether (>= 1.1.0)!
   rails-observers (~> 0.1.2)
   rails_12factor
   restforce!
