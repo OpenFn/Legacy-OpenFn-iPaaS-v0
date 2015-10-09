@@ -313,7 +313,7 @@ GEM
     spring (1.2.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
-    sprockets (2.12.4)
+    sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -395,6 +395,7 @@ DEPENDENCIES
   sorcery
   spring
   spring-commands-rspec
+  sprockets (= 2.11.0)
   state_machine
   stripe!
   typhoeus
