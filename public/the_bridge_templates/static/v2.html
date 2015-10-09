@@ -58,7 +58,7 @@
                 </select>
               </div>
             </div>
-          <div class="well">
+          <div class="card">
             <h4>Are there any special <strong>conditions</strong> that must be met?</h4>
             <p>If you don't want all submissions from "Lab Results" to trigger this job, define your filters below:</p>
             <textarea class="form-control" placeholder="{ receipt.body['form']['#type'] == 'data' } && {fancy filters for the inbound JSON, at your fingertips!}"></textarea>
@@ -133,7 +133,7 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <strong>In the future</strong>, your robot will review all the object and field names and types in both your source and destination. Based on this information, it will be able to suggest a complete job for you, with levels of certainty for each suggested "field pairing". You simply review and approve our predictions.
           </div>
-          <div class="well">
+          <div class="card">
           <p>Create new lab results</p>
             <div class="form-group">
               <label class="control-label" style="color: red;">Date (required)</label>
@@ -220,7 +220,7 @@
               </div>
             </div>
           </div>
-          <div class="well">
+          <div class="card">
             <p>Update existing patients</p>
             <div class="form-group">
               <label class="control-label" style="color: red;">Patient ID (required)</label>
@@ -296,12 +296,12 @@
         <div class="jumbotron">
           <h1>5. Test it out.</h1>
           <p class="lead">Look at these sample data we found in CommCare. Review what we'll do in DHIS2. If everything checks out, click "Test!" and see the result.</p>
-          <div class="well">
+          <div class="card">
             <p><strong>Source data</strong> from CommCare: {name: "Anna", age: 14}</p>
             <p><strong>Planned action</strong> in DHIS2: insert {lab_result__c: {name: "blah-007", patient: "this_one", value: 79}</p>
             <a class="btn btn-danger">Test!</a>
           </div>
-          <div class="well">
+          <div class="card">
             <p><strong>Result</strong>: Passed</p>
             <p><strong>Response from DHIS2</strong>: 200 OK!</p>
           </div>

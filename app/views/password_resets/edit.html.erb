@@ -1,7 +1,7 @@
 <div class='container'>
 
 <div class='row'>
-  <div class="col-sm-offset-3 col-sm-6 well text-center">
+  <div class="col-sm-offset-3 col-sm-6 card text-center">
     <h2>Choose a new password</h2>
 
     <%= form_for @user, :url => password_reset_path(@token), :html => {:method => :put} do |f| %>

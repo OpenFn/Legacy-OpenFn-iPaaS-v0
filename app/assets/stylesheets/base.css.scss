@@ -171,7 +171,6 @@ b, strong {
   z-index: 9;
   border: none;
   border-radius: 0;
-  // position: fixed;
   margin-bottom: 15px;
   min-height: 68px;
   background-image: image-url("noise.png");
@@ -183,18 +182,13 @@ b, strong {
   background-image: image-url("new_logo_white.png");
   background-repeat: no-repeat;
   background-size: 100%;
-  height: rem-calc(34px);
-  width: rem-calc(34px);
+  height: 3em;
+  width: 3em;
   position: absolute;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
-  bottom: rem-calc(6px);
-}
-
-.well {
-  margin-top: 20px;
 }
 
 .add {
@@ -207,13 +201,6 @@ b, strong {
 
 .btn-map-label {
   padding-left: 2px;
-}
-
-.panel {
-  // background-color: $cream;
-  // background-image: image-url("noise.png");
-  // color: $deeper-blue;
-  border: 0;
 }
 
 .breadcrumb {
