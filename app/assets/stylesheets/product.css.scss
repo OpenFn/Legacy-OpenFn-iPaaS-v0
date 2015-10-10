@@ -1,3 +1,15 @@
+.product {
+
+.card {
+  margin: 2em;
+}
+
+.app-logo {
+  width: 10em;
+}
+
+}
+
 .search-container {
   margin: 0;
   border-radius: 4px;
@@ -32,124 +44,6 @@
 .integrated {
         background-color: $light;
       }
-
-.product-list {
-  $product-padding: 1em;
-  $product-margin: 1.1em;
-  position: relative;
-  margin-left: -$product-margin;
-  margin-right: -$product-margin;
-  margin-top: -$product-margin;
-  margin-bottom: -$product-margin;
-
-  .product-container {
-    padding: 0;
-    height: 20em;
-    margin-bottom: 1.6em;
-
-    .product {
-      height: 100%;
-      color: $light-grey;
-      background-image: image-url("noise.png");
-      background-color: $nav;
-      text-align: center;
-      position: relative;
-      padding: 3em;
-      margin: $product-margin;
-      transition: all .25s;
-      &:hover {
-        cursor: pointer !important;
-        background-color: $light;
-      }
-
-      .rating {
-        align-content: center;
-        font-size: 1.3em;
-        font-weight: lighter;
-      }
-
-      .title {
-        margin-top: 1em;
-        font-size: 1.6em;
-        color: $dark;
-      }
-
-      .description {
-        margin-top: 1em;
-        font-size: 1em;
-        line-height: 1.7em;
-        color: $light-grey;
-      }
-
-      .website-link, .details-link {
-        position: absolute;
-        bottom: 0;
-        background: $grey;
-        color: white;
-        cursor: pointer;
-        transition: all .25s;
-        &:hover {
-          background: darken($grey, 10%);
-        }
-      }
-
-      .website-link {
-        left: 0;
-        font-size: 1.5em;
-        padding: .5em;
-      }
-
-      .details-link {
-        right: 0;
-        font-weight: bold;
-        text-transform: uppercase;
-        padding: 1em;
-      }
-
-      .vote-link {
-        padding: 0.5em;
-        position: absolute;
-        bottom: 0;
-        right: 8em;
-        cursor: pointer;
-      }
-
-      .vote-count {
-        padding: 0.5em;
-        position: absolute;
-        bottom: 0.5em;
-        right: 3em;
-      }
-
-      #editor {
-        overflow:scroll;
-        max-height:300px;
-      }
-    }
-  }
-
-  .product-container.ng-enter,
-  .product-container.ng-leave
-  {
-    -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    position: relative;
-    display: block;
-  }
-
-  .product-container.ng-enter.ng-enter-active,
-  .product-container.ng-leave {
-    opacity: 1;
-  }
-
-  .product-container.ng-leave.ng-leave-active,
-  .product-container.ng-enter {
-    opacity: 0;
-  }
-}
 
 .show-product {
 
