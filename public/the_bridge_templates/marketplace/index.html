@@ -43,7 +43,7 @@
   </div>
   <div id="sticky-anchor"></div>
     <nav id="sticky" class="navbar navbar-dark bg-inverse">
-      <div class="col-lg-2 col-sm-6 custom-accord" ng-repeat="category in categories">
+      <div class="col-lg-2 col-md-4 col-sm-6 custom-accord" ng-repeat="category in categories">
         <accordion>
           <accordion-group>
             <accordion-heading>
@@ -64,9 +64,9 @@
           </accordion-group>
         </accordion>
       </div>
-      <div class="col-lg-2 col-sm-6">
+      <div class="col-lg-2 col-md-4 col-sm-6">
         <div class="reset-accordions" ng-click="removeTagFilters()">
-          <a>Reset filter<i class="pull-right fa fa-times-circle-o"></i></a>
+          <a>Reset<i class="pull-right fa fa-times-circle-o"></i></a>
         </div>
       </div>
     </nav>
@@ -106,7 +106,7 @@
 function sticky_relocate() {
     var window_top = $(window).scrollTop();
     var div_top = $('#sticky-anchor').offset().top;
-    if (window_top > div_top) {
+    if (window_top + 78 > div_top) {
         $('#sticky').addClass('stick');
     } else {
         $('#sticky').removeClass('stick');
