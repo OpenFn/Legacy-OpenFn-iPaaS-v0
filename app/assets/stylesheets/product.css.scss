@@ -7,11 +7,16 @@
 }
 
 .app-logo {
-  width: 10em;
+  max-height: 5em;
+  max-width: 12em;
 }
 
 .live {
   font-size: rem-calc(8px);
+}
+
+.red {
+  color: $red-accent;
 }
 
 }
