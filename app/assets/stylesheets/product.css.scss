@@ -29,6 +29,10 @@
   }
 }
 
+.integrated {
+        background-color: $light;
+      }
+
 .product-list {
   $product-padding: 1em;
   $product-margin: 1.1em;
@@ -55,9 +59,6 @@
       transition: all .25s;
       &:hover {
         cursor: pointer !important;
-        background-color: $light;
-      }
-      &.integrated {
         background-color: $light;
       }
 
