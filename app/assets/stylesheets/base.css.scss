@@ -543,3 +543,11 @@ b, strong {
 .push-down {
   margin-bottom: 2em;
 }
+
+#grid[data-columns]::before {
+  content: '3 .column.size-1of3';
+}
+
+/* These are the classes that are going to be applied: */
+.column { float: left; }
+.size-1of3 { width: 33.333%; }

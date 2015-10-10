@@ -81,9 +81,10 @@
       j++
     $scope.previousProducts = $scope.products
     $scope.isLoading = false
+    $.getScript("https://cdnjs.cloudflare.com/ajax/libs/salvattore/1.0.7/salvattore.min.js");
     if $routeParams.search
       $scope.searchText = $routeParams.search
-    $scope.keywords.reverse();
+    $scope.keywords.reverse()
 
   $scope.removeTagFilters = ->
     $scope.searchText = ""
