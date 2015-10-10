@@ -209,7 +209,7 @@ b, strong {
 
 .breadcrumb {
   // background-color: $primary-blue;
-  background-image: image-url("noise.png")
+  background-image: image-url("noise.png");
 }
 
 .progress {
@@ -551,13 +551,13 @@ b, strong {
 #sticky {
   width: 100%;
   border-radius: 0;
-  background-color: $grey;
+  // background-color: $dark;
   background-image: image-url("noise.png");
   top: -1em;
 }
 #sticky.stick {
     position: fixed;
     top: 68px;
-    z-index: 10000;
+    z-index: 10;
     border-radius: 0;
 }

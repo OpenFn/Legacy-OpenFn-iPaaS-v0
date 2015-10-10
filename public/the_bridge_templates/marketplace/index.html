@@ -40,10 +40,27 @@
         </label>
       </div>
     </div>
+
+    <div id="sticky-anchor2"></div>
+    <div id="sticky2" data-accordions-toggle class='accordion-panel-toggle'>
+      <svg version="1.1" id="sliders" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+         viewBox="0 0 18 14" style="enable-background:new 0 0 18 14;" xml:space="preserve">
+        <style type="text/css">
+          .st0{fill:#374A50;}
+        </style>
+        <path id="sliders-bars" class="st0" d="M18,7.5H0v-1h18V7.5z M18,11.5H0v1h18V11.5z M18,1.5H0v1h18V1.5z"/>
+        <rect id="slider-bottom" x="3" y="10" class="st0" width="4" height="4"/>
+        <rect id="slider-middle" x="11" y="5" class="st0" width="4" height="4"/>
+        <rect id="slider-top" x="3" class="st0" width="4" height="4"/>
+      </svg>
+    </div>
+
   </div>
   <div id="sticky-anchor"></div>
-    <nav id="sticky" class="navbar navbar-dark bg-inverse">
-      <div class="col-lg-2 col-md-4 col-sm-6 custom-accord" ng-repeat="category in categories">
+
+  <div id="sticky" class="container-fluid accordion-container" style="display: block">
+    <div class="col-xs-12 margin-large-top margin-bottom">
+      <div class="col-lg-2 col-sm-6 custom-accord" ng-repeat="category in categories">
         <accordion>
           <accordion-group>
             <accordion-heading>
@@ -64,25 +81,27 @@
           </accordion-group>
         </accordion>
       </div>
-      <div class="col-lg-2 col-md-4 col-sm-6">
+      <div class="col-lg-2 col-sm-6">
         <div class="reset-accordions" ng-click="removeTagFilters()">
           <a>Reset<i class="pull-right fa fa-times-circle-o"></i></a>
         </div>
       </div>
-    </nav>
     </div>
+  </div>
+
+  </div>
 
 <div id="container" class="product">
 
 <div ng-repeat="product in (filteredProducts =( products | filter:filterProducts)) | orderBy:['-integrated','-votes_count','name']">
-  <div ng-class="product.integrated ? 'product integrated' : 'product'" ng-click="go('/product/' + product.id)">
+  <div ng-class="product.integrated ? 'product integrated' : 'product'">
     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 item">
       <div class="card">
         <div class="card-block">
-          <img class="card-img-top app-logo" src="{{product.logo_url}}" alt="logo coming soon...">
+          <img class="card-img-top app-logo" src="{{product.logo_url}}" alt="logo coming soon..." style="cursor: pointer;" ng-click="go('/product/' + product.id)">
           <br><br>
           <div class="card-block">
-            <h4 class="card-title">{{product.name}}</h4>
+            <h4 class="card-title" ng-click="go('/product/' + product.id)" style="cursor: pointer;">{{product.name}}</h4>
             <p class="card-text"> {{product.description}}</p>
           </div>
         </div>
