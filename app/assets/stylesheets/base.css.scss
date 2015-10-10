@@ -165,7 +165,7 @@ b, strong {
   font-weight: $bold;
 }
 
-.navbar {
+.navbar-main {
   padding-top: rem-calc(5px);
   padding-bottom: rem-calc(5px);
   z-index: 9;
@@ -189,6 +189,10 @@ b, strong {
   margin-right: auto;
   left: 0;
   right: 0;
+}
+
+.navbar-market {
+  top: 68px;
 }
 
 .add {
@@ -542,4 +546,18 @@ b, strong {
 
 .push-down {
   margin-bottom: 2em;
+}
+
+#sticky {
+  width: 100%;
+  border-radius: 0;
+  background-color: $grey;
+  background-image: image-url("noise.png");
+  top: -1em;
+}
+#sticky.stick {
+    position: fixed;
+    top: 68px;
+    z-index: 10000;
+    border-radius: 0;
 }
