@@ -9,6 +9,10 @@
   $scope.tag_count_hash = {};
   $scope.keywords = []
 
+# TODO - These are fetching tag data for the filters bar.
+# Note that the filters bar auto-recalculates the remaining "tag matches"
+# based on which tags have already been selected.
+
   $http.get('/tag_categories.json').success((data) ->
     $scope.categories = data;
     )
@@ -25,9 +29,18 @@
   $scope.categoryTags = (category) ->
     $filter('filter')($scope.tags, {tag_category_id: category.id, active: true})
 
+# TODO - This appears to just be here so that you can follow a link in Angular?
+# Unclear... is it necessary?
+
   $scope.go = (url) ->
     $location.path url
     return
+
+# TODO - This is the first gnarly watch.
+# It runs after filters are added and removed, but I've noticed a little
+# glitchi-ness interacting with packery. http://packery.metafizzy.co/
+# When products are filtered, then filters are reset, packery stacks
+# products on top of one another!
 
   $scope.$watchCollection 'filteredProducts', ->
     added = []
@@ -72,6 +85,16 @@
           $scope.dropdownTags.push oldDropdownTags[i]
         i++
 
+# TODO - This is where "isLoading" gets set to false.
+# Right after isLoading is set false, we want this javascript to run.
+# If i run it in chrome inspector it 
+    # var $container = $('#container');
+    # // init
+    # $container.packery({
+    #   itemSelector: '.item',
+    #   gutter: 0
+    # });
+
   $http.get('/products.json').success (data) ->
     $scope.products = data.products
     k = $scope.keywords.length
@@ -85,6 +108,11 @@
       $scope.searchText = $routeParams.search
     $scope.keywords.reverse()
 
+# TODO - This is probably how we should replace "isLoading", if it's more efficient.
+  # angular.element(document).ready ->
+  #   console.log 'Hello World'
+  #   $container = $('#container')
+
   $scope.removeTagFilters = ->
     $scope.searchText = ""
     $scope.dropdownTags = []
@@ -93,6 +121,8 @@
     while i < $scope.tags.length
       $scope.tags[i].active = false
       i++
+
+# TODO, This is to allow the search bar to search all of the info from products.
 
   $scope.filterProducts = (product) ->
 
@@ -126,13 +156,6 @@
       return true
     else
       return false
-
-  # tagMatches = (tag_list, text) ->
-  #   if tag_list
-  #     return tag_list.some (tag) ->
-  #       angular.lowercase(tag).indexOf(text) != -1
-  #   else
-  #     false
 
   filtersMatch = (product, filters) ->
 
