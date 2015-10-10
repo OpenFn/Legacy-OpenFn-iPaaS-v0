@@ -104,6 +104,9 @@
       j++
     $scope.previousProducts = $scope.products
     $scope.isLoading = false
+    container = $("#container")                                                                      
+    console.log container                                                                            
+    container.packery
     if $routeParams.search
       $scope.searchText = $routeParams.search
     $scope.keywords.reverse()

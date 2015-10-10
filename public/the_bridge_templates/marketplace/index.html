@@ -97,35 +97,16 @@
       <div class="card">
         <div class="card-block">
           <img class="card-img-top app-logo" src="/images/logos/dhis2.png" alt="Card image cap">
+          <br><br>
           <div class="card-block">
-            <h4 class="card-title">{{product.name}}</h4><span class='live'>
-                    <i class="fa fa-star-o" ng-show="!product.rating"></i>
-                    <i class="fa fa-star-half-o" ng-show="product.rating>0 && product.rating<=0.5"></i>
-                    <i class="fa fa-star" ng-show="product.rating>0.5"></i>
-
-                    <i class="fa fa-star-o" ng-show="product.rating<=1"></i>
-                    <i class="fa fa-star-half-o" ng-show="product.rating>1 && product.rating<=1.5"></i>
-                    <i class="fa fa-star" ng-show="product.rating>1.5"></i>
-
-                    <i class="fa fa-star-o" ng-show="product.rating<=2"></i>
-                    <i class="fa fa-star-half-o" ng-show="product.rating>2 && product.rating<=2.5"></i>
-                    <i class="fa fa-star" ng-show="product.rating>2.5"></i>
-
-                    <i class="fa fa-star-o" ng-show="product.rating<=3"></i>
-                    <i class="fa fa-star-half-o" ng-show="product.rating>3 && product.rating<=3.5"></i>
-                    <i class="fa fa-star" ng-show="product.rating>3.5"></i>
-
-                    <i class="fa fa-star-o" ng-show="product.rating<=4"></i>
-                    <i class="fa fa-star-half-o" ng-show="product.rating>4 && product.rating<=4.5"></i>
-                    <i class="fa fa-star" ng-show="product.rating>4.5"></i>
-                  </span>
-                  &nbsp;({{product.reviews_count}})
-            <p class="card-text"> {{product.description | limitTo:117}}</p>
+            <h4 class="card-title">{{product.name}}</h4><span class="live"><i class="fa fa-star-o" ng-show="!product.rating"></i><i class="fa fa-star-half-o" ng-show="product.rating>0 && product.rating<=0.5"></i><i class="fa fa-star" ng-show="product.rating>0.5"></i><i class="fa fa-star-o" ng-show="product.rating<=1"></i><i class="fa fa-star-half-o" ng-show="product.rating>1 && product.rating<=1.5"></i><i class="fa fa-star" ng-show="product.rating>1.5"></i><i class="fa fa-star-o" ng-show="product.rating<=2"></i><i class="fa fa-star-half-o" ng-show="product.rating>2 && product.rating<=2.5"></i><i class="fa fa-star" ng-show="product.rating>2.5"></i><i class="fa fa-star-o" ng-show="product.rating<=3"></i><i class="fa fa-star-half-o" ng-show="product.rating>3 && product.rating<=3.5"></i><i class="fa fa-star" ng-show="product.rating>3.5"></i><i class="fa fa-star-o" ng-show="product.rating<=4"></i><i class="fa fa-star-half-o" ng-show="product.rating>4 && product.rating<=4.5"></i><i class="fa fa-star" ng-show="product.rating>4.5"></i></span> ({{product.reviews_count}})
+            <p class="card-text"> {{product.description}}</p>
             <a class="card-link" ng-href="{{product.website}}" ng-click="$event.stopPropagation()" target="_blank">Link</a>
               <a class="card-link" ng-show="product.integrated && !(product.name=='Telerivet')" ng-click="integratedProduct('/mappings'); $event.stopPropagation()">Connect</a>
               <a class="card-link" ng-show="product.name=='Telerivet'" ng-href="https://github.com/OpenFn/fn-telerivet-salesforce" target="_blank">Connect</a>
               <a class="card-link" ng-hide="product.integrated"><i class="fa fa-heart"></i> + <span class="live">{{product.votes_count}}</span></a>
               <a class="card-link" ng-show="!product.integrated" ng-click="changeVoteFor(product); $event.stopPropagation()" tooltip-trigger="mouseenter" tooltip="Vote up if you want to connect {{product.name}}."><i ng-class="{'fa ' : true, 'fa-thumbs-down' : product.hasVoteForUser, 'fa-thumbs-up' : !product.hasVoteForUser}"></i></a>
+              <br><br>
               <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
           </div>

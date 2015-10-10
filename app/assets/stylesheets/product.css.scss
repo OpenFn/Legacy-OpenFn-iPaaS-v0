@@ -2,10 +2,16 @@
 
 .card {
   margin: 1em;
+  // background-color: $nav;
+  background-image: image-url("noise.png");
 }
 
 .app-logo {
   width: 10em;
+}
+
+.live {
+  font-size: rem-calc(8px);
 }
 
 }
