@@ -12,8 +12,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Integrations</a>
           <div class="dropdown-menu" aria-labelledby="Preview">
-            <a class="dropdown-item" href="/#/v2">How it works</a>
-            <a class="dropdown-item" ng-click="checkLogin('/mappings')">Job manager</a>
+            <a class="dropdown-item" href="/#/v2">How it works &nbsp;&nbsp;<i class="fa fa-flask"></i></a>
+            <a class="dropdown-item" ng-click="checkLogin('/mappings')"><i class="fa fa-tasks"></i>  &nbsp;&nbsp;Job manager</a>
           </div>
         </li>
         <li class="nav-item">
@@ -59,20 +59,19 @@
 </nav>
 
 <script type="text/ng-template" id="modalTemplate.html">
-  <div class="card-block">
-    <h4 class="card-title">Sign in</h4><button type="button" class="close" ng-click="cancel()"><span aria-hidden="true">&times;</span></button>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+  <div class="card-block noisy">
+    <h4 class="card-title">Sign in <button class="btn btn-default btn-small pull-right" type="button" ng-click="cancel()">Close</button> </h4>
     <div class="card-block">
       <%= render '/user_sessions/form', user: @user %>
     </div>
     <div class="card-block">
       <p class="card-text">Click <a class="btn btn-primary" data-method="get" href="/signup" role="button">Sign up!</a> to create a new account</p>
-      <div class="card-block">
-      <div class="card-block">
-        <p class="card-text"><small class="text-muted">Forgot your password?</small></p>
-        <%= render '/user_sessions/forgot_password_form' %>
-      </div>
     </div>
+    <div class="card-block">
+      <p class="card-text"><small class="text-muted">Forgot your password?</small></p>
+      <%= render '/user_sessions/forgot_password_form' %>
+    </div>
+    <br>
   </div>
 </script>
 

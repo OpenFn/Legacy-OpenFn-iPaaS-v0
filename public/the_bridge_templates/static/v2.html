@@ -1,10 +1,12 @@
 <div class="v2">
     <div class="container">
-      <div class="col-md-8 col-md-offset-2">
         <div class="header">
           <br><br>
-          <p class="lead">Our contributors are hard at work on the new "jobs" engine. Have a look at what we're building... it's a complete upgrade of our automatic data integration platform.</p>
-          <p class="lead">Think of <strong>OpenFn</strong> as your own personal robot, constantly fetching data from your connected technologies, processing those data however you like, and loading them into other systems without ever making a mistake.</p>
+          <p class="lead">Our contributors are hard at work on the new <b>"jobs"</b> engine. Have a look at what we're building... it's a complete upgrade of our automatic data integration platform.</p>
+          <p class="lead">Think of <strong>OpenFn</strong> as your own personal robot whose job it is to:</p>
+          <p class="lead">&nbsp;&nbsp; (1) constantly fetch data from your connected technologies,</p>
+          <p class="lead">&nbsp;&nbsp; (2) instantly process those data however you like,</p>
+          <p class="lead">&nbsp;&nbsp; (3) and send them to people or other systems <em>without ever making a mistake</em>.</p>
           <p class="lead">When crucial information flows quickly in your organization, you can make better decisions, faster. After you check out the new jobs engine below, click here to look at out how we generate change: <strong><a href="/impact">our impact model</a></strong>.</p>
           <br><br>
         </div>
@@ -58,11 +60,10 @@
                 </select>
               </div>
             </div>
-          <div class="card">
-            <h4>Are there any special <strong>conditions</strong> that must be met?</h4>
-            <p>If you don't want all submissions from "Lab Results" to trigger this job, define your filters below:</p>
-            <textarea class="form-control" placeholder="{ receipt.body['form']['#type'] == 'data' } && {fancy filters for the inbound JSON, at your fingertips!}"></textarea>
-          </div>
+            <br>
+          <p class="lead">Are there any special <strong>conditions</strong> that must be met?</p>
+          <p>If you don't want all submissions from "Lab Results" to trigger this job, define your filters below:</p>
+          <textarea class="form-control" placeholder="{ 'formtype' : 'data' } && { 'fancy filters for the inbound JSON' : 'at your fingertips!'' }"></textarea>
         </div>
 
         <div class="jumbotron">
@@ -133,7 +134,7 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <strong>In the future</strong>, your robot will review all the object and field names and types in both your source and destination. Based on this information, it will be able to suggest a complete job for you, with levels of certainty for each suggested "field pairing". You simply review and approve our predictions.
           </div>
-          <div class="card">
+          <div class="card card-block create">
           <p>Create new lab results</p>
             <div class="form-group">
               <label class="control-label" style="color: red;">Date (required)</label>
@@ -141,7 +142,7 @@
                 <div class="input-group">
                   <input type="text" placeholder="datetime" class="form-control" aria-label="...">
                   <div class="input-group-btn">
-                    <button type="button" class="btn btn-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <li><a href="#">Patient: Name (text)</a></li>
                       <li><a href="#">Patient: DoB (date)</a></li>
@@ -162,7 +163,7 @@
                 <div class="input-group">
                   <input type="text" placeholder="text (255)" class="form-control" aria-label="...">
                   <div class="input-group-btn">
-                    <button type="button" class="btn btn-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <li><a href="#">Patient: Name (text)</a></li>
                       <li><a href="#">Patient: DoB (date)</a></li>
@@ -183,7 +184,7 @@
                 <div class="input-group">
                   <input type="text" placeholder="text (255)" class="form-control" aria-label="...">
                   <div class="input-group-btn">
-                    <button type="button" class="btn btn-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <li><a href="#">Patient: Name (text)</a></li>
                       <li><a href="#">Patient: DoB (date)</a></li>
@@ -204,7 +205,7 @@
                 <div class="input-group">
                   <input type="text" placeholder="number (10,2)" class="form-control" aria-label="...">
                   <div class="input-group-btn">
-                    <button type="button" class="btn btn-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <li><a href="#">Patient: Name (text)</a></li>
                       <li><a href="#">Patient: DoB (date)</a></li>
@@ -220,7 +221,7 @@
               </div>
             </div>
           </div>
-          <div class="card">
+          <div class="card card-block update">
             <p>Update existing patients</p>
             <div class="form-group">
               <label class="control-label" style="color: red;">Patient ID (required)</label>
@@ -228,7 +229,7 @@
                 <div class="input-group">
                   <input type="text" placeholder="text (255)" class="form-control" aria-label="...">
                   <div class="input-group-btn">
-                    <button type="button" class="btn btn-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <li><a href="#">Patient: Name (text)</a></li>
                       <li><a href="#">Patient: DoB (date)</a></li>
@@ -249,7 +250,7 @@
                 <div class="input-group">
                   <input type="text" placeholder="reference (id)" class="form-control" aria-label="...">
                   <div class="input-group-btn">
-                    <button type="button" class="btn btn-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <li><a href="#">Patient: Name (text)</a></li>
                       <li><a href="#">Patient: DoB (date)</a></li>
@@ -275,7 +276,7 @@
                     <option>(That's a little humor for you.)</option>
                   </select>
                   <div class="input-group-btn">
-                    <button type="button" class="btn btn-green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-plus-circle"></i> data from CommCare <span class="caret"></span></button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <li><a href="#">Patient: Name (text)</a></li>
                       <li><a href="#">Patient: DoB (date)</a></li>
@@ -296,12 +297,12 @@
         <div class="jumbotron">
           <h1>5. Test it out.</h1>
           <p class="lead">Look at these sample data we found in CommCare. Review what we'll do in DHIS2. If everything checks out, click "Test!" and see the result.</p>
-          <div class="card">
+          <div class="card card-block create">
             <p><strong>Source data</strong> from CommCare: {name: "Anna", age: 14}</p>
             <p><strong>Planned action</strong> in DHIS2: insert {lab_result__c: {name: "blah-007", patient: "this_one", value: 79}</p>
             <a class="btn btn-danger">Test!</a>
           </div>
-          <div class="card">
+          <div class="card card-block create">
             <p><strong>Result</strong>: Passed</p>
             <p><strong>Response from DHIS2</strong>: 200 OK!</p>
           </div>
@@ -314,7 +315,7 @@
         <br>
         <div class="btn-group">
           <a class="btn btn-default">off</a>
-          <a class="btn btn-green" disabled>on</a>
+          <a class="btn btn-primary" disabled>on</a>
         </div>
       </div>
       <p class="lead">Thanks for your time, please let us know what you think of the new design here: <strong><a href="https://docs.google.com/forms/d/1Y0o2uzBT-Kj47l_90wT8C63PAoPbyvSMwMw0taUP2J4/viewform?usp=send_form">a <em>very</em> short form</a></strong>.</p>

@@ -1,37 +1,100 @@
 <!-- #TODO, why is this here??? -->
-<div class="row">
-<br>
-  <div class="container form-group">
-  <h4>2. Your mapping is called: </h4>
+<!-- <div class="form-group"> -->
+  <p class="lead">2. Your job is called:</p>
   <div class="col-md-6">
     <input type="text" ng-model="mapping.name" class='form-control' ng-change="saveMapping()" />
   </div>
-  <div class="col-md-6">
-  <div class="checkbox mapping-status-options">
-  <label>
-    <input type="checkbox" ng-model='mapping.enabled' ng-checked='mapping.enabled' ng-click='mapping.active = false' ng-change="saveMapping()" ng-disabled="!mapping.can_be_enabled"> Enabled?
-  </label>
-  <label>
-    <input type="checkbox" ng-model='mapping.active' ng-checked='mapping.active' ng-change="saveMapping()" ng-disabled="!mapping.enabled || !mapping.can_be_enabled"> Auto-sync? (10 min)
-  </label>
-</div>
-</div>
+  <div class="col-md-6 text-right">
+      <label><input type="checkbox" ng-model='mapping.enabled' ng-checked='mapping.enabled' ng-click='mapping.active = false' ng-change="saveMapping()" ng-disabled="!mapping.can_be_enabled"> Enabled?</label>
+      <label><input type="checkbox" ng-model='mapping.active' ng-checked='mapping.active' ng-change="saveMapping()" ng-disabled="!mapping.enabled || !mapping.can_be_enabled"> Auto-sync? (10 min)</label>
   </div>
-</div>
+<!-- </div> -->
+
 <div id="errorExplanation" class='text-danger' ng-show="errors || !mapping.can_be_enabled">
   <ul>
     <li ng-repeat="error in errors">{{error}}</li>
     <li ng-show="!mapping.can_be_enabled">You need to upgrade your plan or disable other mappings to enable this mapping.</li>
   </ul>
 </div>
+
 <div class='saved-notification' ng-show="saved">
   Saved
 </div>
-<div class="row sf-row" bs-affix data-offset-top="225" data-on-affix="onAffix()" data-on-unaffix="onUnaffix()">
-  <div class='col-md-12' ng-include="'/the_bridge_templates/mappings/sf_row.html'">
+
+<div ng-controller="SalesforceCtrl">
+  <div class="clear">
+  <p class="lead">3. Specify destination tables.</p>
+  
+  <div id="msticky-anchor"></div>
+  <div id="msticky" class='card card-block'>  
+    <div class='row'>
+      <div class='col-md-6'>
+        <select ng-model="mapping.salesforceObjectName" ng-options="sfObj.name as sfObj.label for sfObj in salesforceObjects" class='form-control'>
+          <option value="">Add a destination object</option>
+        </select>
+      </div>
+      <div class='col-md-6'>
+        <div class="form-group">
+          <input ng-model="sfFilter.field_name" type='text' placeholder="Filter destination fields" class='form-control' />
+        </div>
+      </div>
+    </div>
+
+    <tabset ul class="nav nav-pills">
+      <tab sortable-tab="tabMoved" ng-repeat="sfObject in mapping.salesforceObjects" ng-click="setViewingSfObject(sfObject)" class='nav-item white'>
+        <tab-heading class="nav-link" ng-style="{'background-color': sfObject.color}">
+          {{sfObject.name}}<sup> {{sfObject.order}}<span ng-show="sfObject.is_repeat">r</span></sup>
+        </tab-heading>
+        <div class='row options'>
+          <div class='col-md-12'>
+            <small>
+            <a href='#' ng-click='refreshSfFields(sfObject)'>Refresh {{sfObject.name}} fields from Salesforce <i class='fa fa-refresh'></i></a>
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <a href="#" ng-click="deleteSfObject(sfObject)">Remove {{sfObject.name}} object from mapping <i class='fa fa-minus-circle'></i></a>
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            Check here <input type="checkbox" ng-click="toggleRepeat(sfObject)" ng-checked="sfObject.is_repeat"/> to create many {{sfObject.name}} records from a repeat block.
+            </small>
+          </div>
+        </div>
+        <hr />
+        <div class='external-field-holder'>
+          <ul class='list-group sf-connected-sortable sortable-location' ui-sortable="sfSortableOptions" ng-model="sfObject.salesforceFields">
+            <li class='list-group-item sf-field' 
+              title="{{sfField.field_name}} ({{sfField.properties.type}}){{sfField.properties.nillable ? '' : ' (required)'}}{{sfField.properties.unique ? ' (unique)' : ''}}" 
+              ng-repeat="sfField in sfObject.salesforceFields" 
+              ng-style="{'background-color': sfField.color}">
+              <div class="required" ng-hide="sfField.properties.nillable"></div>
+              <i title="Unique" class="unique fa fa-key" ng-show="sfField.properties.unique"></i>
+              {{sfField.properties.label || sfField.field_name}}
+            </li>
+          </ul>
+        </div>
+      </tab>
+    </tabset>
+    <div class="card-block nobottom">
+      <input ng-model="odkFilter.field_name" type='text' placeholder="Filter source fields" class='form-control'/>  
+    </div>
   </div>
 </div>
+
 <div class='row odk-row'>
   <div class='col-md-12' ng-include="'/the_bridge_templates/mappings/odk_column.html'">
   </div>
 </div>
+
+<script>
+function sticky_relocate() {
+    var window_top = $(window).scrollTop();
+    var div_top = $('#msticky-anchor').offset().top;
+    if (window_top + 78 > div_top) {
+        $('#msticky').addClass('mstick');
+    } else {
+        $('#msticky').removeClass('mstick');
+    }
+}
+
+$(function () {
+    $(window).scroll(sticky_relocate);
+    sticky_relocate();
+});
+</script>

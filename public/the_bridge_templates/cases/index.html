@@ -12,30 +12,25 @@
   <br>
 
   <div class="container impact">
-    <div class="col-md-8 col-md-offset-2">
-      <img src="/images/impact_transparent.png" class="img-responsive" alt="Responsive image">
-    </div>
+    <img src="/images/impact_transparent.png" class="img-responsive" alt="Responsive image">
   </div>
 
-  <div class="description">
+  <div class="featurette description">
     <div class="container">
       <br><br>
-      <div class="col-md-8 col-md-offset-2">
-        <h3>
           <p class="lead">open<strong>Marketplace</strong> is an ‘AppStore’ for social-impact technologies. Users are guided right to the technologies they need and will be able to access real usage statistics, reviews, ratings, and in-depth case studies on best practices for implementation.</p>
           <br><br>
           <p class="lead">open<strong>Integrations</strong> makes technologies more powerful by connecting them. An SMS can automatically register a patient in a clinic system. A mobile payment can trigger the digital delivery of educational content. A mobile survey submission can be instantly mapped on the web. When integration is this easy, we will start to see an entirely new generation of focused, powerful, and user-friendly ‘apps’ be built to serve the social sector.</p>
           <br><br>
           <p class="lead">Learn more about the organizations that use OpenFn in our case studies below.</p>
           <br><br>
-        </h3>
       </div>
     </div>
   </div>
 
   <div class="container">
     <br><br>
-    <div class="col-md-8 col-md-offset-2" ng-controller="CasesController as cases">
+    <div ng-controller="CasesController as cases">
       <div class="row" ng-repeat="case in cases | orderBy:'order'">
         <div class="container col-md-3">
           <img ng-src="{{case.picture_url}}" class="case-pic" width=250px>

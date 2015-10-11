@@ -7,30 +7,23 @@
     </div>
   </header>
   <div class="container">
-    <div class="col-md-8 col-md-offset-2">
-      <br>
-      <br>
-      <p class="lead">
-        In 2014, Vera Solutions was awarded a research and development grant to leverage our years of experience in the technology for international development space through application development, rather than consulting. Having completed hundreds of projects with leading international development groups, and having first-hand experience with dozens of technologies, we found that the single most common challenge—across organizations and projects—was data integration. In August 2014 Vera's CEO and co-founder, Taylor, stepped away to focus full time on OpenFn.
-      <br><br>
-        This fully open-source data integration platform aims to connect the "technology for development" sector.
-      <br><br>
-        Karti Subramanian and Zak Kaufman, Vera's other co-founders, sit on the board of OpenFn with Steven Downs—Chief Technology and Information Officer at Robert Wood Johnson Foundation—Colin Powers, and Noah Elkrief. Our team is largely remote, and we rely on tremendous support from the global open-source community.
-      </p>
-      <br>
-      <br>
-      <div class="row" ng-repeat="member in team | orderBy:'order'" ng-if="member.order">
-        <div class="col-md-3">
-          <img ng-src="{{member.picture_url}}" class = "team-member-pic" width=190px>
-        </div>
-        <div class="col-md-9">
-          <h2><b>{{member.name}}</b><small>&nbsp&nbsp{{member.title}}</small></h2>
-          <h3></h3>
-          <p class="lead" ng-bind-html="member.bio"></p>
-          <br>
-        </div>
-        <div class="divider"></div>
+    <br>
+    <br>
+    <div class="featurette">
+    <p class="lead">In August 2014, Vera Solutions started a grant-funded research and development unit, in the hopes of leveraging our years of experience in the technology for international development sector. Having completed hundreds of projects with leading international development groups, and having first-hand experience with dozens of technologies, we found that the single most common challenge—across organizations and projects—was data integration. In August 2014 Vera's CEO and co-founder, Taylor, stepped away from Vera to focus full time on OpenFn.</p>
+    <br>
+    <br>
+    <div class="row" ng-repeat="member in team | orderBy:'order'" ng-if="member.order">
+      <div class="col-md-3">
+        <img ng-src="{{member.picture_url}}" class = "team-member-pic" width=190px>
       </div>
+      <div class="col-md-9">
+        <h2><b>{{member.name}}</b><small>&nbsp&nbsp{{member.title}}</small></h2>
+        <h3></h3>
+        <p class="lead" ng-bind-html="member.bio"></p>
+        <br>
+      </div>
+      <div class="divider"></div>
     </div>
   </div>
 </div>

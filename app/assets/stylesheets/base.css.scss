@@ -152,7 +152,7 @@ $margin-small: 15px;
 
 .footer {
     position: relative;
-    margin-top: -68px;
+    // margin-top: -68px;
     min-height: 68px;
     clear: both;
     background-color: $grey;
@@ -170,7 +170,7 @@ b, strong {
   padding-bottom: rem-calc(5px);
   z-index: 9;
   border: none;
-  border-radius: 0;
+  // border-radius: 0;
   margin-bottom: 15px;
   min-height: 68px;
   background-image: image-url("noise.png");
@@ -520,4 +520,40 @@ b, strong {
     top: 68px;
     z-index: 10;
     border-radius: 0;
+}
+
+#msticky {
+  width: 100%;
+  // margin-top: 2em;
+  // border-radius: 0;
+  background-color: $nav;
+  background-image: image-url("noise.png");
+  // top: -1em;
+}
+#msticky.mstick {
+    position: fixed;
+    left: 0;
+    top: 68px;
+    z-index: 10;
+    border-radius: 0;
+    padding: 1em;
+}
+
+.noisy {
+  background-image: image-url("noise.png");
+  background-color: $nav;
+}
+
+.create {
+  // border-color: $lg-green;
+  border-width: .1em;
+}
+
+.update {
+  // border-color: $accent;
+  border-width: .1em; 
+}
+
+.clear {
+  margin-top: 4em;
 }
