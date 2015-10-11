@@ -1,120 +1,121 @@
-<div class="welcome">  
+
+<div class="welcome">
+<div id="particles-js"></div>
+  
   <header class="banner">
-    <div id="particles-js"></div>
+    <div class="row">
+      <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2">
+          <img src="/images/text_logo_white.png" class="img-responsive lg2" alt="Responsive image">
+      </div>
+    </div>
     <div class="numbers">
-      <div class="row">
-        <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2">
-            <img src="/images/text_logo_white.png" class="img-responsive lg2" alt="Responsive image">
-        </div>
-        </a>
-      </div>
-      <div class="row">
-        <div class="col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2 center">
-          <h4><span class="digits">{{productPublicCount}}</span> technologies, <span class="digits">{{orgCount}}</span> organizations, <span class="digits">{{productConnectedCount}}</span> connected apps, and <span class="digits">{{submissionCount | number }}</span> transactions.
-          </h4>
-        </div>
-      </div>
+        <h4><span class="digits">{{productPublicCount}}</span> technologies, <span class="digits">{{orgCount}}</span> organizations, <span class="digits">{{productConnectedCount}}</span> connected apps, and <span class="digits">{{submissionCount | number }}</span> transactions.
+        </h4>
     </div>
   </header>
 
-  <div class="featurette" id="marketplace">
-    <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-1">
-            <h2 class="featurette-heading">
-              Leading NGOs find & connect technologies to amplify their impact with <b>OpenFn</b>.
-            </h2>
-            <p class="lead">
-              Technology isn't the answer, but it shouldn't be the problem. From household survey data in northern India, to attendance recorded at women's groups in Kenya, we are moving the data that makes impact-first organizations more efficient and effective.
-            </p>
-          </div>
-        </div>
-    </div>    
-  </div>
-
-  <div class="featurette" id="marketplace">
-    <div class="container">
-      <a href="/marketplace">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-3 text-right">
-            <h2 class="featurette-heading">
-              open<strong>Marketplace</strong> helps you find the tools you need.
-            </h2>
-            <p class="lead">
-              It's an app store for impact-first organizations.
-              Search, filter, compare features and prices, 
-              see real usage patterns and reviews. 
-              Finding the <em>right</em> Android data capture tool
-              (or SMS platform, MIS, visualization aid, etc.) to fit 
-              your organization just got a lot easier.
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>    
-  </div>
-
-  <div class="featurette dark" id="integrations">
-    <div class="container">
-      <a href="/mappings" ng-click="$event.stopPropagation()">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-1">
-            <h2 class="featurette-heading">
-              open<strong>Integrations</strong> make<br/> apps more powerful.
-            </h2>
-            <p class="lead">
-              All of your technologies working together seamlessly; made possible with clicks, not code!
-              Need surveys captured with ODK to show up in your Salesforce system? 
-              Want MPESA payments to sync with your clinic management platform? 
-              We make data integration delightful. With an efficient, open-source, modular design, the number of endpoints is growing fast.
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <div class="featurette" id="marketplace">
-    <div class="container">
-      <a href="https://medium.com/@openFn" target="_blank">
-        <div class="row">
-          <div class="col-md-8 col-md-offset-3 text-right">
-            <h2 class="featurette-heading">
-              open<strong>Content</strong> makes it easier<br/> to lead successful implementations.
-            </h2>
-            <p class="lead">
-              75% of IT implementations fail. Want to learn from developers 
-              who abhor custom-coded solutions? 
-              Or CIOs who understand that culture is what makes or 
-              breaks a technology project? Want to learn how and why real 
-              organizations are both succeeding and failing to implement 
-              technologies geared at growing their social impact? 
-              Read our case studies. Join the conversation.
-            </p>
-          </div>
-        </div>
-      </a>
-    </div>      
-  </div>
-
-  <div class="featurette dark">
-    <div class="container">
+  <div class="container">
+    <div class="col-md-9">
+    <div class="featurette" id="marketplace">
       <div class="row">
-      <div class="col-md-8 col-md-offset-1">
         <h2 class="featurette-heading">
-          open<strong>Partnerships</strong> make<br/> this all possible
+          Leading NGOs find & connect technologies to amplify their impact with <b>OpenFn</b>.
         </h2>
         <p class="lead">
-          We grew out of <a href="http://www.verasolutions.org" target="_blank">Vera Solutions</a>,
-          technology partner to over 150 leading <em>impact-first</em> organizations in almost 40 countries,
-          and have received generous support from
-          <a href="http://www.echoinggreen.org" target="_blank">Echoing Green</a>,
-          <a href="http://www.dasra.org" target="_blank">Dasra</a>,
-          <a href="http://www.salesforcefoundation.org/" target="_blank">The Salesforce Foundation</a>, and
-          <a href="http://www.mulagofoundation.org/" target="_blank">The Mulago Foundation</a>.
+          Technology isn't the answer, but it shouldn't be the problem. From household survey data in northern India, to attendance recorded at women's groups in Kenya, we are moving the data that makes impact-first organizations more efficient and effective.
         </p>
-      </div>  
+      </div>
     </div>
-  </div>
 
-<script type="text/javascript">particlesJS("particles-js",{particles:{number:{value:100,density:{enable:!0,value_area:800}},color:{value:"#ffffff"},shape:{type:"circle",stroke:{width:0,color:"#000000"},polygon:{nb_sides:5},image:{src:"img/github.svg",width:100,height:100}},opacity:{value:.5,random:!1,anim:{enable:!1,speed:1,opacity_min:.1,sync:!1}},size:{value:3,random:!0,anim:{enable:!1,speed:40,size_min:.1,sync:!1}},line_linked:{enable:!0,distance:150,color:"#ffffff",opacity:.4,width:1},move:{enable:!0,speed:6,direction:"none",random:!1,straight:!1,out_mode:"out",attract:{enable:!1,rotateX:600,rotateY:1200}}},interactivity:{detect_on:"canvas",events:{onhover:{enable:!0,mode:"grab"},onclick:{enable:!0,mode:"push"},resize:!0},modes:{grab:{distance:130,line_linked:{opacity:1}},push:{particles_nb:4}}},retina_detect:!0,config_demo:{hide_card:!1,background_color:"#b61924",background_image:"",background_position:"50% 50%",background_repeat:"no-repeat",background_size:"cover"}});</script>
+    <div class="featurette" id="marketplace">
+      <a href="/marketplace">
+        <div class="row">
+          <h2 class="featurette-heading">
+            open<strong>Marketplace</strong> helps you find the tools you need.
+          </h2>
+          <p class="lead">
+            It's an app store for impact-first organizations.
+            Search, filter, compare features and prices, 
+            see real usage patterns and reviews. 
+            Finding the <em>right</em> Android data capture tool
+            (or SMS platform, MIS, visualization aid, etc.) to fit 
+            your organization just got a lot easier.
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <div class="featurette" id="integrations">
+      <a href="/v2" ng-click="$event.stopPropagation()">
+        <div class="row">
+          <h2 class="featurette-heading">
+            open<strong>Integrations</strong> make apps more powerful.
+          </h2>
+          <p class="lead">
+            All of your technologies working together seamlessly; made possible with clicks, not code!
+            Need surveys captured with ODK to show up in your Salesforce system? 
+            Want MPESA payments to sync with your clinic management platform? 
+            We make data integration delightful. With an efficient, open-source, modular design, the number of endpoints is growing fast.
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <div class="featurette" id="marketplace">
+      <a href="https://medium.com/@openFn" target="_blank">
+        <div class="row">
+          <h2 class="featurette-heading">
+            open<strong>Content</strong> makes it easier to lead successful implementations.
+          </h2>
+          <p class="lead">
+            75% of IT implementations fail. Want to learn from developers 
+            who abhor custom-coded solutions? 
+            Or CIOs who understand that culture is what makes or 
+            breaks a technology project? Want to learn how and why real 
+            organizations are both succeeding and failing to implement 
+            technologies geared at growing their social impact? 
+            Read our case studies. Join the conversation.
+          </p>
+        </div>
+      </a>
+    </div>
+    </div>      
+
+    <div class="featurette dark">
+        <div class="col-md-2 col-md-offset-1">
+
+          <div class="card">
+            <div class="card-block center">
+              <h6 class="card-subtitle text-muted"><small>Supported by</small></h6>
+              <img class="p-logo" src="https://s3.amazonaws.com/videos.poptech.org/icons/site_assets/MEATBALL_95x95.png" alt="PopTech">
+              <img class="p-logo" src="http://mulagofoundation.org/assets/mulago-signature300.png" alt="Mulago">
+              <img class="p-logo" src="https://scontent-lga3-1.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/10703586_10152747982747013_7644035584923586954_n.png?oh=40a7950d040e7050b43961c0969103d4&oe=56956F1E" alt="Salesforce Foundation">
+              <img class="p-logo" src="http://www.thepositiveapproach.global/wp-content/uploads/2013/10/Echoing-Green-Logo.jpg" alt="Echoing Green">
+              <img class="p-logo" src="http://photos.state.gov/libraries/mumbai/498320/fernandesma/dasra.jpg" alt="Dasra">
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-block center">
+              <h6 class="card-subtitle text-muted"><small>OpenFn integration is being used by</small></h6>
+              <img class="p-logo" src="http://www.popcouncil.org/assets/img/logo-color.png" alt="Population Council">
+              <img class="p-logo" src="http://www.myagro.org/wp-content/uploads/2012/08/myagrogreen_2.png" alt="MyAgro">
+              <img class="p-logo" src="http://static1.squarespace.com/static/5171eee1e4b08db7106e5bbb/t/53b2365be4b05f22cb115eab/1442278976826/?format=400w" alt="Drinkwell">
+              <img class="p-logo" src="http://www.buildingtomorrow.org/zeta/wp-content/themes/building_tomorrow/images/header/logo.png" alt="Building Tomorrow">
+              <img class="p-logo" src="http://livelyhoods.org/wp-content/themes/solid-wp/_layout/images/logo.png" alt="LivelyHoods">
+              <img class="p-logo" src="http://abalobi.info/wp-content/uploads/2015/09/logoexample.jpg" alt="Abalobi">
+              <h6 class="card-subtitle text-muted"><small>and more.</small></h6>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-block center">
+              <h6 class="card-subtitle text-muted"><small>OpenFn grew out of an R&D project at</small></h6>
+              <img class="p-logo" src="http://www.verasolutions.org/wp-content/uploads/2013/06/logo.jpg" alt="Vera Solutions">
+              <h6 class="card-subtitle text-muted"><small>and continues to work closely with Vera—technology partner to over 150 leading social-impact organizations.</small></h6>
+            </div>
+          </div>
+        </div>
+    </div>
+
+<script type="text/javascript">particlesJS("particles-js",{particles:{number:{value:100,density:{enable:!0,value_area:800}},color:{value:"#ffffff"},shape:{type:"circle",stroke:{width:0,color:"#000000"},polygon:{nb_sides:5},image:{src:"img/github.svg",width:100,height:100}},opacity:{value:.5,random:!1,anim:{enable:!1,speed:1,opacity_min:.1,sync:!1}},size:{value:3,random:!0,anim:{enable:!1,speed:40,size_min:.1,sync:!1}},line_linked:{enable:!0,distance:150,color:"#ffffff",opacity:.5,width:1},move:{enable:!0,speed:6,direction:"none",random:!1,straight:!1,out_mode:"out",attract:{enable:!1,rotateX:600,rotateY:1200}}},interactivity:{detect_on:"canvas",events:{onhover:{enable:!0,mode:"grab"},onclick:{enable:!0,mode:"push"},resize:!0},modes:{grab:{distance:130,line_linked:{opacity:1}},push:{particles_nb:4}}},retina_detect:!0,config_demo:{hide_card:!1,background_color:"#b61924",background_image:"",background_position:"50% 50%",background_repeat:"no-repeat",background_size:"cover"}});</script>
