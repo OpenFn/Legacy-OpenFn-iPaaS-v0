@@ -30,6 +30,11 @@ $primary-blue: #428BCA;   // bootstrap primary blue
 $grey: #969795;
 $dynamic: #F0AD4E;  //used for live stats and accents
 
+
+a {
+  color: inherit;
+}
+
 a:hover {
   text-decoration: none;
   color: inherit;
@@ -39,11 +44,6 @@ a:hover {
   color: inherit;
   }
 
-}
-
-a {
-  color: inherit;
-  // cursor: pointer;
 }
 
 html {
@@ -114,6 +114,41 @@ $margin-small: 15px;
 .btn-base {
   background-color: $base;
   color: $bg-color;
+
+/* unvisited link */
+a:link {
+    text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+    text-decoration: none;
+}
+
+/* selected link */
+a:active {
+    text-decoration: none;
+}
+
+  &.active {
+    text-decoration: none;
+    background-color: $grey;  
+    color: white;
+    font-weight: $bold;
+  }
+
+  &.focus {
+    text-decoration: none;
+    background-color: $grey;  
+    color: white;
+    font-weight: $bold;
+  }
+
 }
 
 .btn-light {

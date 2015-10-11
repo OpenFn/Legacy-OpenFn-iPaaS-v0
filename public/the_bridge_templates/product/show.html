@@ -1,218 +1,129 @@
-<div ng-controller="ProductController as productCtrl" class="row">
-  <br>
+<div ng-controller="ProductController as productCtrl" class="product">
   <div class="container">
-    <div class="search-field">
+    <div class="card">
       <form ng-submit="searchAgain()">
-        <input type:"text" class="form-control" placeholder="Type a search term and press enter to search again..." ng-model="searchText">
+        <input type:"text" class="form-control research" placeholder="Type a search term and press enter to search again..." ng-model="searchText">
       </form>
     </div>
-    <br>
-    <div class="row flat">
-      <div class="col-sm-12">
-        <div class="show-product">
-          <div class="product">
-            <div class="title show">
-              <span class='live little'>
-                <i class="fa fa-star-o" ng-show="!product.rating"></i>
-                <i class="fa fa-star-half-o" ng-show="product.rating>0 && product.rating<=0.5"></i>
-                <i class="fa fa-star" ng-show="product.rating>0.5"></i>
+    
+    <div class="card pcard">
+      <div class="card-block">
+        <span tooltip-trigger="mouseenter" class="pull-right"><b>{{product.rating | number: 1 }}</b></span>
+        <img class="card-img-top show-logo" src="{{product.logo_url}}" alt="">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="btn btn-default" style="cursor: default;">{{product.name}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-default" ng-click="editProduct(product)">Edit</a>
+          </li>
+          <li class="nav-item">
+            <a ng-click="checkLogin()" data-toggle="modal" data-target="#review_modal" target="_blank" class="btn btn-default">Rate & Review ({{product.reviews_count}})</a>
+          </li>
+          <li class="nav-item">
+            <a ng-href="{{product.website}}" class="btn btn-default" target="_blank">Link</a>
+          </li>
+          <li class="nav-item">
+            <a ng-click="integratedProduct('/mappings'); $event.stopPropagation()" class="btn btn-default" ng-show="product.integrated">Jobs</a>
+            <a ng-click="changeVoteFor(product)" ng-show="!product.integrated" class="btn btn-default">
+              <i ng-class="{'fa fa-lg ' : true, 'fa-thumbs-down' : product.hasVoteForUser, 'fa-thumbs-up' : !product.hasVoteForUser}"></i> Vote <sup>(+{{product.votes_count}})</sup></a>
+          </li>
+        </ul>
+        <br><br><br><br>
+        <p class="col-md-10 lead" ng-repeat="tab in tabs" ng-show="tab.active" ng-hide="tab.disabled" ng-bind-html="tab.content"></p>
+        <p class="col-md-2 lead">
+          <tabset class="tabs-right center">
+            <tab class="btn btn-base m1em" ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled">
+            </tab>
+          </tabset>
+        </p>
+        <div class="row">
+        <div class="card-block">
+        <!-- THIS SHOULD BE IT'S OWN RESOURCE, USED HERE AND ON THE PRODUCT/#/EDIT PAGE -->
+        <div class="col-md-10">
+        <div class="tags">
+          <div ng-hide="editTags" ng-repeat="tag in product.deep_tag_list track by $index" class="tag label">
+            {{tag.name}} <span class="badge">{{tag.taggings_count}}</span>
+          </div>
+          <a class="xxx tag label" ng-hide="editTags" ng-click="showEditTagsBox()">Edit Tags <span class="badge">+/-</span></a>
 
-                <i class="fa fa-star-o" ng-show="product.rating<=1"></i>
-                <i class="fa fa-star-half-o" ng-show="product.rating>1 && product.rating<=1.5"></i>
-                <i class="fa fa-star" ng-show="product.rating>1.5"></i>
-
-                <i class="fa fa-star-o" ng-show="product.rating<=2"></i>
-                <i class="fa fa-star-half-o" ng-show="product.rating>2 && product.rating<=2.5"></i>
-                <i class="fa fa-star" ng-show="product.rating>2.5"></i>
-
-                <i class="fa fa-star-o" ng-show="product.rating<=3"></i>
-                <i class="fa fa-star-half-o" ng-show="product.rating>3 && product.rating<=3.5"></i>
-                <i class="fa fa-star" ng-show="product.rating>3.5"></i>
-
-                <i class="fa fa-star-o" ng-show="product.rating<=4"></i>
-                <i class="fa fa-star-half-o" ng-show="product.rating>4 && product.rating<=4.5"></i>
-                <i class="fa fa-star" ng-show="product.rating>4.5"></i>
-                </span>
-              <span class="little">
-                ({{product.reviews_count}})
+          <div ng-show="editTags">
+            <div class="tag-editor">
+              <span ng-repeat="n in product.deep_tag_list track by $index" class="on tag label" ng-click="deleteTag(n,product)" title="Remove this tag.">
+                {{n.name}} <span class="badge">{{n.taggings_count}}</span>
               </span>
-              <br>
-              {{product.name}}
+                <input type="text" class="search-tags" placeholder="Type here to tag..." ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
             </div>
-            <br>
-            <br>
-            <ul class="nav nav-pills nav-justified right-pills">
-              <li role="presentation">
-                <a class="edit-link" ng-click="editProduct(product)">
-                  <i class="fa fa-edit fa-lg"></i> Edit this listing
+            <div class="tag-suggestions">
+              <div ng-repeat="tag in tag_match | orderBy:'name' | orderBy:'-tag_count'" >
+                <a ng-click="addTag(tag,product)" title="Add this tag" class="off tag label">
+                  {{tag.name}} <span class="badge">{{tag.taggings_count}}</span>
                 </a>
-              </li>
-              <li role="presentation">
-                   <a ng-click="checkLogin()" data-toggle="modal" data-target="#review_modal" target="_blank" class="review-link">
-                   <i class="fa fa-comment fa-lg"></i> Rate & Review ({{product.reviews_count}})
-                  </a>
-                </form>
-              </li>
-              <li role="presentation">
-                <a ng-href="{{product.website}}" class="website-link" target="_blank">
-                  <i class="fa fa-external-link fa-lg"></i> Visit product site
-                </a>
-              </li>
-              <li role="presentation">
-                <a ng-click="integratedProduct('/mappings'); $event.stopPropagation()" class="vote-link" ng-show="product.integrated">
-                  <i class="fa fa-plug fa-lg"></i> Make a mapping
-                </a>
-
-                <a ng-click="changeVoteFor(product)" class="vote-link" ng-show="!product.integrated">
-                  <i class="fa fa-plug"></i>+<span class="vote-count">{{product.votes_count}}</span><span style="color: #F2EFE6"></span> <i ng-class="{'fa fa-lg ' : true, 'fa-chevron-down' : product.hasVoteForUser, 'fa-chevron-up' : !product.hasVoteForUser}"></i> Vote
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br>
-    <div class="row flat">
-      <div class="col-sm-12">
-        <div class="show-product">
-          <div class="product">
-            <div class='content'>
-              <div class="col-md-10 tab-content-text" ng-repeat="tab in tabs" ng-show="tab.active" ng-hide="tab.disabled" ng-bind-html="tab.content"></div>
-              <div class="col-md-2">
-                <tabset class="tabs-right">
-                  <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disable="tab.disabled"></tab>
-                </tabset>
               </div>
+              <a class="off tag label" ng-show="new_tag" ng-click="addNewTag(product)">
+                <i class="fa fa-plus"></i> Create new tag... <span class="badge">+</span>
+              </a>
+            </div>
+            <br><br>
+            <div class="text-center">
+              <button ng-click="updateProduct(product)" class="btn btn-default" type="submit">Submit</button>
             </div>
           </div>
         </div>
-        <br>
-        <div class="row flat">
-          <div class="col-sm-12">
-            <div class="show-product">
-
-<!-- THIS SHOULD BE IT'S OWN RESOURCE, USED HERE AND ON THE PRODUCT/#/EDIT PAGE -->
-<div class="tags">
-  <div ng-hide="editTags" ng-repeat="tag in product.deep_tag_list track by $index" class="tag label">
-    {{tag.name}} <span class="badge">{{tag.taggings_count}}</span>
-  </div>
-  <a class="xxx tag label" ng-hide="editTags" ng-click="showEditTagsBox()">Edit Tags <span class="badge">+/-</span></a>
-
-  <div ng-show="editTags">
-    <div class="tag-editor">
-      <span ng-repeat="n in product.deep_tag_list track by $index" class="on tag label" ng-click="deleteTag(n,product)" title="Remove this tag.">
-        {{n.name}} <span class="badge">{{n.taggings_count}}</span>
-      </span>
-        <input type="text" class="search-tags" placeholder="Type here to tag..." ng-model="searchTagText" ng-change="searchTags(searchTagText,product)">
-    </div>
-    <div class="tag-suggestions">
-      <div ng-repeat="tag in tag_match | orderBy:'name' | orderBy:'-tag_count'" >
-        <a ng-click="addTag(tag,product)" title="Add this tag" class="off tag label">
-          {{tag.name}} <span class="badge">{{tag.taggings_count}}</span>
-        </a>
+        <!-- END OF "TAGS.HTML" RESOURCE -->
       </div>
-      <a class="off tag label" ng-show="new_tag" ng-click="addNewTag(product)">
-        <i class="fa fa-plus"></i> Create new tag... <span class="badge">+</span>
-      </a>
     </div>
-    <br><br>
-    <div class="text-center">
-      <button ng-click="updateProduct(product)" class="btn btn-default" type="submit">Submit</button>
     </div>
-  </div>
-</div>
-<!-- END OF "TAGS.HTML" RESOURCE -->
-
-            </div>
-          </div>
-        </div>
-        <br>
-        <div class="row flat">
-        <div class="tab-content-text">
-        <div class="col-md-6">
-        <div class="rn-title center">Reviews</div><br>
+    </div>
+    </div>
+    <div class="card">
+      <div class="card-block">
+        <h4 class="card-title">Reviews</h4>
           <div ng-show="product.reviews_count == 0">Nobody has review this product yet. Be the first! <a ng-click="checkLogin()" data-toggle="modal" data-target="#review_modal" target="_blank" class="review-link"><strong>Click to rate & review {{product.name}}.</strong></a></div>
           <div ng-repeat="n in product.reviews | orderBy:'-review_score'" ng-init="checkVote(n)">
-              <div class="row">
-              <div class="col-md-1">
-                <a ng-click="vote(n, true)" ng-disabled="checked" data-toggle="tooltip" title="This review shows effort. It is useful and clear."><i class="fa fa-chevron-up fa-2x"></i></a>
+            <div class="row">
+              <div class="col-md-1 center">
+                <a ng-click="vote(n, true)" ng-disabled="checked" data-toggle="tooltip" title="This review shows effort. It is useful and clear."><i class="fa fa-thumbs-up fa-2x"></i></a>
                 <span class="rscore" ng-init="reviewScore(n,product)" data-toggle="tooltip" title="The review score is a measure of how many people find this review to be useful and clear."><strong>{{n.review_score > 0 ? '+' : ''}}{{n.review_score}}</strong></span>
-                <a ng-click="vote(n, false)" ng-disabled="checked" data-toggle="tooltip" title="This review does not show effort. It is not useful or unclear."><i class="fa fa-chevron-down fa-2x"></i></a>
+                <a ng-click="vote(n, false)" ng-disabled="checked" data-toggle="tooltip" title="This review does not show effort. It is not useful or unclear."><i class="fa fa-thumbs-down fa-2x"></i></a>
                 <span ng-show = "n.duplicate_upvote" class="submitStatus">*You have already marked this review as helpful.</span>
                 <span ng-show = "n.duplicate_downvote" class="submitStatus">*You have already marked this review as unhelpful.</span>
               </div>
-              <div class="col-md-11">
-                <span class='live little'>
-                  <i class="fa fa-star-o" ng-show="!product.rating"></i>
-                  <i class="fa fa-star-half-o" ng-show="n.rating>0 && n.rating<=0.5"></i>
-                  <i class="fa fa-star" ng-show="n.rating>0.5"></i>
-
-                  <i class="fa fa-star-o" ng-show="n.rating<=1"></i>
-                  <i class="fa fa-star-half-o" ng-show="n.rating>1 && n.rating<=1.5"></i>
-                  <i class="fa fa-star" ng-show="n.rating>1.5"></i>
-
-                  <i class="fa fa-star-o" ng-show="n.rating<=2"></i>
-                  <i class="fa fa-star-half-o" ng-show="n.rating>2 && n.rating<=2.5"></i>
-                  <i class="fa fa-star" ng-show="n.rating>2.5"></i>
-
-                  <i class="fa fa-star-o" ng-show="n.rating<=3"></i>
-                  <i class="fa fa-star-half-o" ng-show="n.rating>3 && n.rating<=3.5"></i>
-                  <i class="fa fa-star" ng-show="n.rating>3.5"></i>
-
-                  <i class="fa fa-star-o" ng-show="n.rating<=4"></i>
-                  <i class="fa fa-star-half-o" ng-show="n.rating>4 && n.rating<=4.5"></i>
-                  <i class="fa fa-star" ng-show="n.rating>4.5"></i>
-                </span>
-                by "{{n.user_id}}" user on {{n.date | date}}
-                <br><br>
-                {{n.review}}
-              </div>
-              </div>
+            <div class="col-md-11">
+              <span class='live little'>
+                <i class="fa fa-star-o" ng-show="!product.rating"></i><i class="fa fa-star-half-o" ng-show="n.rating>0 && n.rating<=0.5"></i><i class="fa fa-star" ng-show="n.rating>0.5"></i><i class="fa fa-star-o" ng-show="n.rating<=1"></i><i class="fa fa-star-half-o" ng-show="n.rating>1 && n.rating<=1.5"></i><i class="fa fa-star" ng-show="n.rating>1.5"></i><i class="fa fa-star-o" ng-show="n.rating<=2"></i>
+                <i class="fa fa-star-half-o" ng-show="n.rating>2 && n.rating<=2.5"></i><i class="fa fa-star" ng-show="n.rating>2.5"></i><i class="fa fa-star-o" ng-show="n.rating<=3"></i><i class="fa fa-star-half-o" ng-show="n.rating>3 && n.rating<=3.5"></i><i class="fa fa-star" ng-show="n.rating>3.5"></i><i class="fa fa-star-o" ng-show="n.rating<=4"></i><i class="fa fa-star-half-o" ng-show="n.rating>4 && n.rating<=4.5"></i><i class="fa fa-star" ng-show="n.rating>4.5"></i>
+              </span>
+              by "{{n.user_id}}" user on {{n.date | date}}
               <br><br>
+              {{n.review}}
             </div>
           </div>
-          <div class="col-sm-6 center" ng-show="!product.twitter">
-          <div class="rn-title center"><i class="fa fa-twitter"></i></div>
-          <div class="rn-content center">Update the {{product.name}} twitter handle to see feed here.</div>
-          </div>
-          <div class="col-sm-6 center" ng-hide="!product.twitter">
-          <div class="rn-title center">{{product.twitter}}</div><br>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script><a class="twitter-timeline" href="https://twitter.com/{{twitterApi}}" data-widget-id="581403911644385280" width="520" height="500" data-screen-name="{{twitterApi}}"><i class="fa fa-refresh fa-spin fa-lg"></i></a>
-  </div>
-</div>
-
-<div class="modal fade" ng-show="loggedIn" id="review_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="featurette dark">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Submit a review for {{product.name}}.</h4>
-        </div>
-        <div class="modal-body center">
-          Your reviews are what drive the community forward. Thanks for taking the time to open-source your knowledge of {{product.name}}. Your fellow users will vote your review up or down based on its usefulness.
-          <br>
-          <br>
-          <form method="post">
-            <span><strong>Review (1000 chars)</strong></span><br><br>
-            <textarea class="form-control" ng-model="post.review" rows="25" cols="50" name="review" placeholder="Write your review here..."></textarea>
-            <br>
-            <br>
-            <div ng-controller="RatingDemoCtrl">
-            <span style="font-size: 2em">
-                <rating ng-model="post.rating" type="integer" name="rating" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating></span>
-                <span class="label" ng-show="overStar"></span>
-            </div>
-            <br>
-            <br>
-            <button ng-click = "submitReview(product)" class="btn btn-success" type="submit">Submit</button>
-          <br>
-          <br>
-          <div ng-show = "duplicate_status" class = "submitStatus">*You have already submitted review for this product.</div>
-          <div ng-show = "success_status" class = "submitStatus">*Your review has been successfully submitted.</div>
+          <br><br>
         </div>
       </div>
+    </div>
+
+<div class="modal fade" ng-show="loggedIn" id="review_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="card">
+    <div class="card-block">
+      <h4 class="modal-title" id="myModalLabel">Submit a review for {{product.name}}.</h4>
+      <p class="lead">Your reviews are what drive the community forward. Thanks for taking the time to open-source your knowledge of {{product.name}}. Your fellow users will vote your review up or down based on its usefulness.</p>
+      <form method="post">
+        <span><strong>Review (1000 chars)</strong></span><br><br>
+        <textarea class="form-control" ng-model="post.review" rows="25" cols="50" name="review" placeholder="Write your review here..."></textarea>
+        <br>
+        <br>
+        <div ng-controller="RatingDemoCtrl">
+          <span style="font-size: 2em">
+            <rating ng-model="post.rating" type="integer" name="rating" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+          </span>
+          <span class="label" ng-show="overStar"></span>
+        </div>
+        <button ng-click = "submitReview(product)" class="btn btn-success" type="submit">Submit</button>
+        <div ng-show = "duplicate_status" class = "submitStatus">*You have already submitted review for this product.</div>
+        <div ng-show = "success_status" class = "submitStatus">*Your review has been successfully submitted.</div>
+      </form>
     </div>
   </div>
 </div>

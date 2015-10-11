@@ -11,6 +11,12 @@
   max-width: 12em;
 }
 
+.show-logo {
+  max-height: 10em;
+  max-width: 40em;
+  margin-bottom: 2em;
+}
+
 .live {
   font-size: rem-calc(8px);
 }
@@ -46,175 +52,14 @@
     min-width: 216px;
   }
 
-// fsField -- why is this here?
-  .search-field {
-    padding-bottom: 0.5em;
-  }
 }
 
 .integrated {
         background-color: $light;
       }
 
-.show-product {
-
-  background-color: $nav;
-  // background-image: image-url("noise.png");
-  color: $light-grey;
-  padding: 30px;
-  overflow:auto;
-
-  .actions, .rating, .name {
-    display: inline-block;
-  }
-
-  .vote-link {
-    // color: $bg-color;
-    // padding: 0.8em;
-    padding-right: 2em;
-    // position: absolute;
-    // bottom: 0.0em;
-    // right: 1em;
-    cursor: pointer;
-    // background-color: $grey-blue;
-    // background-image: image-url("noise.png");
-  }
-
-  .vote-count {
-    color: $accent;
-    // font-size: 1.22em;
-    // padding: 0.8em;
-    padding-right: 0.8em;
-    // position: absolute;
-    // bottom: 0.0em;
-    // right: 4em;
-    // cursor: pointer;
-    // background-color: $grey-blue;
-    // background-image: image-url("noise.png");
-    }
-
-  .website-link {
-    // color: $bg-color;
-    // padding: 0.8em;
-    padding-right: 2em;
-    // position: absolute;
-    // bottom: 0.0em;
-    // left: 1em;
-    cursor: pointer;
-    // background-color: $grey-blue;
-    // background-image: image-url("noise.png");
-  }
-
-  .edit-link {
-    // color: $bg-color;
-    // padding: 0.8em;
-    padding-right: 2em;
-    // position: absolute;
-    // top: 0.0em;
-    // left: 1em;
-    cursor: pointer;
-    // background-color: $grey-blue;
-    // background-image: image-url("noise.png");
-  }
-
-    .review-link {
-    // color: $bg-color;
-    // padding: 0.8em;
-    padding-right: 2em;
-    // position: absolute;
-    // top: 0.0em;
-    // right: 1em;
-    cursor: pointer;
-    // background-color: $grey-blue;
-    // background-image: image-url("noise.png");
-  }
-
-  .tab-content-text {
-    a {
-      text-decoration: underline;
-    }
-  }
-
-  .name {
-    margin-right: 0.8em;
-  }
-
-  .title {
-    text-align: center;
-    color: $dark;
-  }
-
-  .rating {
-    // float: right;
-    text-align: center;
-    padding-right: 29px;
-  }
-
-  .actions, .rating {
-    // padding-left: 10px;
-    vertical-align: text-top;
-  }
-
-  .actions {
-    padding-top: 0.05em;
-    a {
-      padding-left: 0.5em;
-    }
-  }
-
-  .right-pills {
-  // color: $off-white;
-  font-size: rem-calc(12px);
-  font-weight: $bold;
-  text-transform: uppercase;
-  margin-bottom: -30px;
-  // background-color: $nav;
-  // background-image: image-url("noise.png");
-
-  }
-
-  .nav-tabs {
-    // margin-bottom: 0;
-    border-bottom: 0;
-    // color: $off-white;
-    font-size: rem-calc(20px);
-    font-weight: $bold;
-    text-transform: uppercase;
-    text-align: center;
-
-    li {
-      cursor: pointer;
-
-      .active { cursor: default; }
-    }
-  }
-
-  .tab-pane {
-    border-radius: 4px;
-    border-width: 1px;
-    // border-style: solid;
-    // border-color: #dddddd;
-    min-height: 220px;
-  }
-
-  .tab-pane:nth-child(1) {
-    border-radius: 0px 4px 4px 4px;
-  }
-
-
-  .tab-content-text {
-    padding-top: 0.8em;
-    // margin: 0 0.8em 0.8em 0.8em;
-    font-size: rem-calc(18px);
-          color: $dark;
-  }
-
-
-}
-
 .new-product-link {
   padding-bottom: 1em;
-  // background-color: $light;
   margin-bottom: 1em;
 }
 
@@ -238,10 +83,8 @@
 }
 
 .rscore {
-  font-size: rem-calc(20px);
+  font-size: rem-calc(12px);
 }
-
-
 
 a:hover{
   color:#000;
@@ -261,7 +104,16 @@ a:hover{
   color: $light-grey;
   width: 100%;
   display: inline-block;
-  // position: relative;
-  // z-index: 1;
-  // padding-right: 1em;
+}
+
+.pcard {
+  min-height: 600px;
+}
+
+.m1em {
+  margin-bottom: 1em;
+}
+
+.research {
+  border: none;
 }
