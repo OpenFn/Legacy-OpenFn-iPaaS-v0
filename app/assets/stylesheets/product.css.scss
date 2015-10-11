@@ -14,7 +14,8 @@
 .show-logo {
   max-height: 10em;
   max-width: 40em;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
+  margin-top: 0em;
 }
 
 .live {
@@ -116,4 +117,8 @@ a:hover{
 
 .research {
   border: none;
+}
+
+.final {
+  margin-bottom: 2em;
 }

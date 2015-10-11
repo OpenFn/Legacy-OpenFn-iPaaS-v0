@@ -8,7 +8,7 @@
     
     <div class="card pcard">
       <div class="card-block">
-        <span tooltip-trigger="mouseenter" class="pull-right"><b>{{product.rating | number: 1 }}</b></span>
+        <span tooltip-trigger="mouseenter" class="pull-right title"><b>{{product.rating | number: 1 }} &nbsp;</b></span>
         <img class="card-img-top show-logo" src="{{product.logo_url}}" alt="">
         <ul class="nav nav-pills">
           <li class="nav-item">
@@ -84,7 +84,7 @@
             <div class="row">
               <div class="col-xs-1 center">
                 <a ng-click="vote(n, true)" ng-disabled="checked" data-toggle="tooltip" title="This review shows effort. It is useful and clear."><i class="fa fa-thumbs-up fa-lg"></i></a>
-                <span class="rscore" ng-init="reviewScore(n,product)" data-toggle="tooltip" title="The review score is a measure of how many people find this review to be useful and clear."><strong>{{n.review_score > 0 ? '+' : ''}}{{n.review_score}}</strong></span>
+                <span class="rscore" ng-init="reviewScore(n,product)" data-toggle="tooltip" title="The review score is a measure of how many people find this review to be useful and clear."><strong>{{n.review_score}}</strong></span>
                 <a ng-click="vote(n, false)" ng-disabled="checked" data-toggle="tooltip" title="This review does not show effort. It is not useful or unclear."><i class="fa fa-thumbs-down fa-lg"></i></a>
                 <span ng-show = "n.duplicate_upvote" class="submitStatus">*You have already marked this review as helpful.</span>
                 <span ng-show = "n.duplicate_downvote" class="submitStatus">*You have already marked this review as unhelpful.</span>

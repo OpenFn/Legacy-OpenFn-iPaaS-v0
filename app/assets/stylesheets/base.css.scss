@@ -33,6 +33,7 @@ $dynamic: #F0AD4E;  //used for live stats and accents
 
 a {
   color: inherit;
+  cursor: pointer;
 }
 
 a:hover {
@@ -576,7 +577,7 @@ b, strong {
 
 .noisy {
   background-image: image-url("noise.png");
-  background-color: $nav;
+  // background-color: $nav;
 }
 
 .create {

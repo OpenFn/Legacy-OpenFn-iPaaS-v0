@@ -21,7 +21,6 @@
 //= require jquery-ui/sortable
 //= require particles.js
 //= require jquery.hotkeys.js
-//= require bootstrap-wysiwyg.js
 
 //= require angular
 //= require angular-resource
