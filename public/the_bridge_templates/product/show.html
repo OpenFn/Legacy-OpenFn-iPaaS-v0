@@ -82,19 +82,19 @@
           <div ng-show="product.reviews_count == 0">Nobody has review this product yet. Be the first! <a ng-click="checkLogin()" data-toggle="modal" data-target="#review_modal" target="_blank" class="review-link"><strong>Click to rate & review {{product.name}}.</strong></a></div>
           <div ng-repeat="n in product.reviews | orderBy:'-review_score'" ng-init="checkVote(n)">
             <div class="row">
-              <div class="col-md-1 center">
-                <a ng-click="vote(n, true)" ng-disabled="checked" data-toggle="tooltip" title="This review shows effort. It is useful and clear."><i class="fa fa-thumbs-up fa-2x"></i></a>
+              <div class="col-xs-1 center">
+                <a ng-click="vote(n, true)" ng-disabled="checked" data-toggle="tooltip" title="This review shows effort. It is useful and clear."><i class="fa fa-thumbs-up fa-lg"></i></a>
                 <span class="rscore" ng-init="reviewScore(n,product)" data-toggle="tooltip" title="The review score is a measure of how many people find this review to be useful and clear."><strong>{{n.review_score > 0 ? '+' : ''}}{{n.review_score}}</strong></span>
-                <a ng-click="vote(n, false)" ng-disabled="checked" data-toggle="tooltip" title="This review does not show effort. It is not useful or unclear."><i class="fa fa-thumbs-down fa-2x"></i></a>
+                <a ng-click="vote(n, false)" ng-disabled="checked" data-toggle="tooltip" title="This review does not show effort. It is not useful or unclear."><i class="fa fa-thumbs-down fa-lg"></i></a>
                 <span ng-show = "n.duplicate_upvote" class="submitStatus">*You have already marked this review as helpful.</span>
                 <span ng-show = "n.duplicate_downvote" class="submitStatus">*You have already marked this review as unhelpful.</span>
               </div>
-            <div class="col-md-11">
+            <div class="col-xs-11">
               <span class='live little'>
                 <i class="fa fa-star-o" ng-show="!product.rating"></i><i class="fa fa-star-half-o" ng-show="n.rating>0 && n.rating<=0.5"></i><i class="fa fa-star" ng-show="n.rating>0.5"></i><i class="fa fa-star-o" ng-show="n.rating<=1"></i><i class="fa fa-star-half-o" ng-show="n.rating>1 && n.rating<=1.5"></i><i class="fa fa-star" ng-show="n.rating>1.5"></i><i class="fa fa-star-o" ng-show="n.rating<=2"></i>
                 <i class="fa fa-star-half-o" ng-show="n.rating>2 && n.rating<=2.5"></i><i class="fa fa-star" ng-show="n.rating>2.5"></i><i class="fa fa-star-o" ng-show="n.rating<=3"></i><i class="fa fa-star-half-o" ng-show="n.rating>3 && n.rating<=3.5"></i><i class="fa fa-star" ng-show="n.rating>3.5"></i><i class="fa fa-star-o" ng-show="n.rating<=4"></i><i class="fa fa-star-half-o" ng-show="n.rating>4 && n.rating<=4.5"></i><i class="fa fa-star" ng-show="n.rating>4.5"></i>
               </span>
-              by "{{n.user_id}}" user on {{n.date | date}}
+              by user "{{n.user_id}}" on {{n.date | date}}
               <br><br>
               {{n.review}}
             </div>
