@@ -11,98 +11,119 @@
   </div>
 </header>
 
-<div class="featurette dark">
+<div class="featurette">
   <div class="container">
     <br>
     <div class="row flat">
       &nbsp;&nbsp;*metadata layer
       <br>
       <br>
-      <div class="col-xs-12 col-md-2 col-md-offset-5">
-        <ul class="plan plan1 featured">
-          <li class="plan-name">
-              Describe
-          </li>
-          <li class="plan-price">
-            <a href="https://github.com/OpenFn/" target="_blank"><i class="fa fa-github"></i> ++</a>
-          </li>
-          <li>
-            A call to your server, asking for a description of a particular user's forms, objects, tables, etc.
-          </li>
-        </ul>
+      <div class="col-lg-6 col-md-8">
+        
+      <div class="card text-center">
+        <div class="card-header">
+          Describe
+        </div>
+        <div class="card-block">
+          <h4><a href="https://www.github.com/openfn" target="_blank"><i class="fa fa-github fa-2x"></i></a></h4>
+          <h4 class="card-title">Learn schema</h4>
+        </div>
+        <div class="card-footer text-muted small">
+          We make a call to your server, asking for a description of a particular user's forms, objects, or tables. We'll expect data to be <b><a href="http://json-schema.org/">JSON Schema</a></b> compliant.
+        </div>
       </div>
+    
     </div>
+  </div>
+  </div>
+
+<div class="featurette">
+  <div class="container-fluid"
     <br>
     <br>
     <div class="row flat">
-      &nbsp;&nbsp;*data layer
-      <br>
-      <br>
-      <div class="col-xs-12 col-md-2 col-md-offset-1">
-        <ul class="plan plan1">
-          <li class="plan-name">
-              Listen API
-          </li>
-          <li class="plan-price">
-            <i class="fa fa-check fa-lg" style="color: #5cb85c;"></i>
-          </li>
-          <li>
-            If you can't do push notifications, let's set up a pull. We've got background workers scheduled to call out to your DB and fetch new records.
-          </li>
-        </ul>
+      <div class="col-md-10 col-md-offset-1">
+      *data layer
       </div>
-      <div class="col-xs-12 col-md-2">
-        <ul class="plan plan2 featured">
-          <li class="plan-name devs">
-              Serialize to JSON
-          </li>
-          <li class="plan-price">
-            <a href="https://github.com/OpenFn/" target="_blank"><i class="fa fa-github"></i> ++</a>
-          </li>
-          <li>
+      <br>
+      <br>
+      <div class="col-lg-2 col-md-5 col-md-offset-1">
+        <div class="card text-center">
+          <div class="card-header">
+            Listen <i class="fa fa-arrow-circle-right"></i>
+          </div>
+          <div class="card-block">
+            <h4><i class="fa fa-check fa-2x" style="color: #5cb85c;"></i></h4>
+            <h4 class="card-title">"Inbox" receives data</h4>
+          </div>
+          <div class="card-footer text-muted small">
+            If you can't do push notifications, we can set up a periodic pull. We've got background workers scheduled to call out to your DB and fetch new records.
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-5">
+        <div class="card text-center">
+          <div class="card-header">
+            Translate <i class="fa fa-arrow-circle-right"></i>
+          </div>
+          <div class="card-block">
+            <h4><a href="https://www.github.com/openfn" target="_blank"><i class="fa fa-github fa-2x"></i></a></h4>
+            <h4 class="card-title">To JSON</h4>
+          </div>
+          <div class="card-footer text-muted small">
             Once data from your app reaches us, it must be translated to our universal syntax.
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
-      <div class="col-xs-12 col-md-2">
-        <ul class="plan plan3">
-          <li class="plan-name">
-              Map
-          </li>
-          <li class="plan-price">
-            <i class="fa fa-check fa-lg" style="color: #5cb85c;"></i>
-          </li>
-          <li>
-            Your data is passed through a mapping, linking particular data points to tables and fields on someone else's app to create a payload.
-          </li>
-        </ul>
+      <div class="col-lg-2 col-md-5">
+        <div class="card text-center">
+          <div class="card-header">
+            Transform <i class="fa fa-arrow-circle-right"></i>
+          </div>
+          <div class="card-block">
+            <h4><i class="fa fa-check fa-2x" style="color: #5cb85c;"></i></h4>
+            <h4 class="card-title">Field mapping</h4>
+          </div>
+          <div class="card-footer text-muted small">
+            Users define the transformation, using both "origin" and "destination" schemas.
+          </div>
+        </div>
       </div>
-      <div class="col-xs-12 col-md-2">
-          <ul class="plan plan4 featured">
-              <li class="plan-name">
-                  Deserialize from JSON
-              </li>
-              <li class="plan-price">
-                <a href="https://github.com/OpenFn/" target="_blank"><i class="fa fa-github"></i> ++</a>
-              </li>
-              <li>
-                You take our payload, in the universal JSON, and convert it back to whatever someone else's app wants to read.
-              </li>
-          </ul>
+      <div class="col-lg-2 col-md-5">
+        <div class="card text-center">
+          <div class="card-header">
+            Prepare <i class="fa fa-arrow-circle-right"></i>
+          </div>
+          <div class="card-block">
+            <h4><a href="https://www.github.com/openfn" target="_blank"><i class="fa fa-github fa-2x"></i></a></h4>
+            <h4 class="card-title">From JSON</h4>
+          </div>
+          <div class="card-footer text-muted small">
+            You take our payload, in the universal JSON, and convert it back to whatever format your app prefers. In some cases, a single JSON document will be prepared into several distinct operations—create, update, upsert.
+          </div>
+        </div>
       </div>
-      <div class="col-xs-12 col-md-2">
-        <ul class="plan plan4">
-            <li class="plan-name">
-                Send
-            </li>
-            <li class="plan-price">
-              <i class="fa fa-check fa-lg" style="color: #5cb85c;"></i>
-            </li>
-            <li>
-              This part is fairly self explanatory<br>;-)
-            </li>
-        </ul>
+      <div class="col-lg-2 col-md-6">
+        <div class="card text-center">
+          <div class="card-header">
+            Push <i class="fa fa-arrow-circle-right"></i>
+          </div>
+          <div class="card-block">
+            <h4><i class="fa fa-check fa-2x" style="color: #5cb85c;"></i></h4>
+            <h4 class="card-title">Bon voyage</h4>
+          </div>
+          <div class="card-footer text-muted small">
+            We fire the prepared message (along with secure client credentials) to your server.
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+</div>
+
+
+<div class="featurette">
+  <div class="container">
+    <p class="lead">A new "adapter" is typically a gem that responds to "describe", "translate" and "prepare" calls. Don't hesitate to get in touch with us if you're interested in developing an adapter for your product, or need help using any of these components in your own projects.</p>
   </div>
 </div>
