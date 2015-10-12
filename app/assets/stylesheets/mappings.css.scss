@@ -105,21 +105,6 @@ input.destroy-field {
 
 }
 
-.sf-row.affix {
-  margin-top: 0px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  -webkit-transition: all 1s ease-in;
-  transition: all 0.5s ease-in;
-}
-
-.sf-affixed {
-  margin-top: 225px;
-}
-
 .sf-field {
   color: white !important;
   // font-weight: bolder;
@@ -144,4 +129,13 @@ input.destroy-field {
 .grey {
   background-image: image-url("noise.png");
   background-color: $nav;
+}
+
+.options {
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+
+.nobottom {
+  margin-bottom: -1em;
 }

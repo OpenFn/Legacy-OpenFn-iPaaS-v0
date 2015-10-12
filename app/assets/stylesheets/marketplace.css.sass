@@ -15,7 +15,7 @@
 .headline-text
   font-weight: 200
 .headline
-  padding: rem-calc(143px) rem-calc(175px) rem-calc(95px) rem-calc(175px)
+  padding: 5em 7em 4em 7em
   background-color: $base
   background-image: image-url("wow_bg.jpg")
   color: $bg-color
@@ -46,11 +46,14 @@
   margin: 0
   padding: 0
   width: calc(100% - 30px)
+  line-height: 2em
+  color: black  
   li a
     cursor: pointer
     padding: 10px 20px
+
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus
-  background-color: $base
+  font-weight: bold
 
 .integrated-btn
   color: $light
@@ -132,14 +135,14 @@ $accordion-danger: #e8564c
 
 .accordion-container
   background: $nav
+  background-image: image-url("noise.png")
   display: none
 
 // refactor could be DRY-er
 .custom-accord
-  margin-top: 2px
   .panel
     border-radius: 0
-    box-shadow: 2px 2px 0 0 $accordion-dark
+
     .panel-heading
       background: $accordion-base
       border-radius: 0
@@ -149,7 +152,7 @@ $accordion-danger: #e8564c
       .panel-title
         font-size: 1em
         font-weight: bold
-        box-shadow: 2px 2px 0 0 $accordion-dark
+
         a
           &:hover, &:focus
             text-decoration: none
@@ -195,9 +198,8 @@ $accordion-danger: #e8564c
   text-transform: uppercase
   font-size: 1em
   font-weight: bold
-  box-shadow: 2px 2px 0 0 $accordion-dark
+
   cursor: pointer
-  margin-top: 2px
   transition: all .25s
   &:hover, a:hover
     color: white

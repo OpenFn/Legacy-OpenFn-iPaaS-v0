@@ -11,7 +11,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-2 text-center">
-          <%= link_to "Create new map", "/mappings/new", class: 'btn btn-default' %>
+          <%= link_to "Create new map", "/mappings/new", class: 'btn btn-base' %>
           <br>
           <br>
           <div class="btn-group">
@@ -40,7 +40,7 @@
         </div>        
         <div class="col-md-4 text-center">
           <div class="content">
-            Maps
+            Jobs
           </div>
           <h4 class="title">
             <%= @mappings.where(enabled: true).count %>/<%= current_user.plan.map_limit %>
@@ -67,8 +67,8 @@
         <thead>
           <tr>
             <th>Label</th>
-            <th>Source <i class="fa fa-plug"></i></th>
-            <th>Destination <i class="fa fa-plug"></i></th>
+            <th>Source</th>
+            <th>Destination</th>
             <th style="text-align:center">Enabled?</th>
             <th style="text-align:center">Auto sync</th>
             <th style="text-align:center">History</th>

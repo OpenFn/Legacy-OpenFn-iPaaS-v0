@@ -20,8 +20,6 @@
 
   .banner-headline {
     padding-top: rem-calc(75px);
-    // padding-bottom: rem-calc(50px);
-    // text-shadow: $dark 0.05em 0.05em 0.1em;
     color: $bg-color;
     font-size: rem-calc(40px);
     line-height: 1.3;
@@ -29,20 +27,6 @@
     text-transform: uppercase;
     margin-bottom: 2em;
   }
-
-  // .logo {
-  //   background-image: image-url("text_logo_white.png");
-  //   background-repeat: no-repeat;
-  //   background-size: 100%;
-  //   height: auto;
-  //   width: auto;
-  //   position: absolute;
-  //   margin-top: 2em;
-  //   margin-left: auto;
-  //   margin-right: auto;
-  //   left: 0;
-  //   right: 0;
-  // }
 
   .who {
     text-align: center;
@@ -63,16 +47,26 @@
   }
 
   .numbers h4 {
-    margin-top: 3em;
+    position: absolute;
+    bottom: 3em;
+    left: 0;
+    right: 0;
     color: $bg-color;
-    font-size: 1.8rem;
-    line-height: 2.8rem;
+    font-size: 1rem;
+    line-height: 1.6rem;
 
     .digits {
       color: $accent;
       font-weight: $bold;
       font-size: rem-calc(36px);
     }
+  }
+
+  .p-logo {
+    max-height: 5em;
+    max-width: 5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
   }
 
 }

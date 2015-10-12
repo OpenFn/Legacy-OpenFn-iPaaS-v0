@@ -9,11 +9,11 @@
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
+// When adding packery back, make sure to include `packery.pkgd.js` and `angular-packery.js`
 //
 //= require features
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
 
 //= require jquery-ui/core
 //= require jquery-ui/widget
@@ -22,7 +22,6 @@
 //= require jquery-ui/sortable
 //= require particles.js
 //= require jquery.hotkeys.js
-//= require bootstrap-wysiwyg.js
 
 //= require angular
 //= require angular-resource

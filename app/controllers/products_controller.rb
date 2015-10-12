@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   def index
     enabled_products = Product.where(:enabled => 'true')
     render json: enabled_products.enabled.map { |p|
-        p.as_json(only: [:id, :name, :website, :description, :integrated],
+        p.as_json(only: [:id, :name, :logo_url, :website, :description, :integrated],
           methods: [:votes_count, :tag_list, :reviews_count, :rating]).
           merge "hasVoteForUser" => p.has_vote_for(current_user)
       }
