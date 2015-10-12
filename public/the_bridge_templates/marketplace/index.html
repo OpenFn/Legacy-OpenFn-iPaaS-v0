@@ -97,9 +97,9 @@
             Hang tight while we gather data on hundreds of technologies, reviews, tags, and votes.
           </h4>
         </div>
-<div id="container" class="product">
+<div packery id="container" class="product">
 
-<div ng-repeat="product in (filteredProducts =( products | filter:filterProducts)) | orderBy:['-integrated','-votes_count','name']">
+<div class="packery-brick" ng-repeat="product in (filteredProducts =( products | filter:filterProducts)) | orderBy:['-integrated','-votes_count','name']">
   <div ng-class="product.integrated ? 'product integrated' : 'product'">
     <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-xs-12 item">
       <div class="card">
