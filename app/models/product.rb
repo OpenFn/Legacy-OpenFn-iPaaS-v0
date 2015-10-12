@@ -34,4 +34,24 @@ class Product < ActiveRecord::Base
     reviews.map(&:rating).inject(0, &:+).to_f / reviews_count
   end
 
+  def export_to_hash(user)
+    output = {
+      id: id,
+      name: name,
+      logo_url: logo_url,
+      website: website,
+      description: description,
+      integrated: integrated,
+      votes_count: votes_count,
+      tag_list: tag_list,
+      reviews_count: reviews_count,
+      rating: rating
+    }
+
+    if user
+      output.merge!({hasVoteForUser: has_vote_for(user)})
+    end
+
+    output
+  end
 end
