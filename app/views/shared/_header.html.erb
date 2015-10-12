@@ -28,7 +28,7 @@
           <a class="nav-link" href="/#/our_team">Team</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/#/developers"><i class="fa fa-code"></i> Developers</a>
+          <a class="nav-link" href="/#/developers"><i class="fa fa-code"></i> Code</a>
         </li>
         <!-- TODO - fix plan change from pricing page for current users -->
         <% unless current_user %>
@@ -47,10 +47,10 @@
         <% end %>
         <% unless current_user %>
         <li class="nav-item">
-          <a class="nav-link" ng-click="checkLogin()" >&nbsp;&nbsp;<i class="fa fa-lock"></i>&nbsp;&nbsp;</a>
+          <a class="nav-link" ng-click="checkLogin()" ><i class="fa fa-lock"></i></a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-grey" data-method="get" href="/signup" role="button"><b>Sign up!</b></a>
+          <a class="nav-link" data-method="get" href="/signup">Sign up!</a>
         </li>
         <% end %>
       </ul>

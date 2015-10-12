@@ -206,12 +206,20 @@ b, strong {
   padding-bottom: rem-calc(5px);
   z-index: 9;
   border: none;
-  // border-radius: 0;
   margin-bottom: 15px;
   min-height: 68px;
   background-image: image-url("noise.png");
   background-color: $lg-green;
   line-height: rem-calc(24px);
+
+  a {
+    color: $bg-color !important;
+  }
+
+  .dropdown-item {
+    color: $base !important;
+  }
+
 }
 
 .navbar-logo {
@@ -320,12 +328,12 @@ b, strong {
   margin-top: 2em;
 
   .featurette-heading {
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     margin: 2rem 0;
   }
 
   p.lead {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     line-height: 2.4rem;
   }
 
