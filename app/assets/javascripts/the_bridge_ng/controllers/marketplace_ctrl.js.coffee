@@ -104,11 +104,13 @@
       j++
     $scope.previousProducts = $scope.products
     $scope.isLoading = false
+    
     # TODO - why doesn't this do the trick?
     # $container = $('#container')
     # $container.packery
     #   itemSelector: '.item'
     #   gutter: 0
+
     if $routeParams.search
       $scope.searchText = $routeParams.search
     $scope.keywords.reverse()

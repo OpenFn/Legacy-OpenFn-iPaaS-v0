@@ -9,6 +9,7 @@
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
+// When adding packery back, make sure to include `packery.pkgd.js` and `angular-packery.js`
 //
 //= require features
 //= require jquery
