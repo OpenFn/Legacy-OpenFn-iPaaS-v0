@@ -1,0 +1,19 @@
+<div class='container'>
+<div class="col-md-6 col-md-offset-3">
+<br>
+  <div class="card-block noisy">
+    <h4 class="card-title">Sign in</h4>
+    <div class="card-block">
+      <%= render '/user_sessions/form', user: @user %>
+    </div>
+    <div class="card-block">
+      <p class="card-text">Click <a class="btn btn-primary" data-method="get" href="/signup" role="button">Sign up!</a> to create a new account</p>
+    </div>
+    <div class="card-block">
+      <p class="card-text"><small class="text-muted">Forgot your password?</small></p>
+      <%= render '/user_sessions/forgot_password_form' %>
+    </div>
+    <br>
+  </div>
+</div>
+</div>
