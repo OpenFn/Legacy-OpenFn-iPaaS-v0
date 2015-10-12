@@ -23,12 +23,6 @@
         { title:'Resources', content: $scope.product.resources, disabled: true }
       ];
       
-      $scope.twitterApi = $scope.product.twitter.substring(1)
-      
-      $timeout (->
-        twttr.widgets.load()
-        return
-      ), 1000
     )
 
 
