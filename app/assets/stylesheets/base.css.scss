@@ -30,6 +30,12 @@ $primary-blue: #428BCA;   // bootstrap primary blue
 $grey: #969795;
 $dynamic: #F0AD4E;  //used for live stats and accents
 
+
+a {
+  color: inherit;
+  cursor: pointer;
+}
+
 a:hover {
   text-decoration: none;
   color: inherit;
@@ -39,11 +45,6 @@ a:hover {
   color: inherit;
   }
 
-}
-
-a {
-  color: inherit;
-  cursor: pointer;
 }
 
 html {
@@ -114,6 +115,41 @@ $margin-small: 15px;
 .btn-base {
   background-color: $base;
   color: $bg-color;
+
+/* unvisited link */
+a:link {
+    text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+    text-decoration: none;
+}
+
+/* selected link */
+a:active {
+    text-decoration: none;
+}
+
+  &.active {
+    text-decoration: none;
+    background-color: $grey;  
+    color: white;
+    font-weight: $bold;
+  }
+
+  &.focus {
+    text-decoration: none;
+    background-color: $grey;  
+    color: white;
+    font-weight: $bold;
+  }
+
 }
 
 .btn-light {
@@ -152,7 +188,7 @@ $margin-small: 15px;
 
 .footer {
     position: relative;
-    margin-top: -68px;
+    // margin-top: -68px;
     min-height: 68px;
     clear: both;
     background-color: $grey;
@@ -165,140 +201,59 @@ b, strong {
   font-weight: $bold;
 }
 
-.navbar-logo {
-    background-image: image-url("new_logo_white.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: rem-calc(48px);
-    width: rem-calc(48px);
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    bottom: 12px;
-  }
-
-  .navbar-logo-sm {
-    background-image: image-url("new_logo_white.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: rem-calc(48px);
-    width: rem-calc(48px);
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    top: .35em;
-  }
-
-.navbar {
-
+.navbar-main {
   padding-top: rem-calc(5px);
   padding-bottom: rem-calc(5px);
   z-index: 9;
   border: none;
-  border-radius: 0;
-  position: fixed;
   margin-bottom: 15px;
   min-height: 68px;
   background-image: image-url("noise.png");
-  background-color: $lg-green !important;
-  color: white;
+  background-color: $lg-green;
+  line-height: rem-calc(24px);
 
-  .nav > li > a {
-    line-height: rem-calc(24px);
-    z-index: 10;
-    color: white;
-    // font-size: rem-calc(24px);
+  a {
+    color: $bg-color !important;
   }
 
-  .btn {
-    margin-top: 10px;
-    margin-left: 10px;
-  }
-
-  .btn-accent {
-    background-color: $accent;
-  }
-
-  // .navbar-brand {
-  //   font-size: rem-calc(24px);
-  //   font-weight: $bold;
-  //   color: $primary-blue;
-  // }
-
-  .navbar-nav {
-    // font-weight: $semi-bold;
-    // line-height: rem-calc(24px);
-    // font-size: rem-calc(15px);
-    // color: $primary-blue;
-
-    .dropdown.open .dropdown-toggle {
-      // background-color: $off-white;
-      // background-image: image-url("noise.png");
-      // color: $primary-blue;
-    }
-
+  .dropdown-item {
+    color: $base !important;
   }
 
 }
 
-.navbar-collapse {
-  border-top: 0;
+.navbar-logo {
+  background-image: image-url("new_logo_white.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 3em;
+  width: 3em;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 }
 
-// .table-striped {
-  // background-color: $bg-color;
-  // background-image: image-url("noise.png")
-// }
-
-// .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
-   // background-color: $deeper-blue;
-   // background-image: image-url("noise.png")
-// }
-
-.well {
-  // color: $deeper-blue;
-  margin-top: 20px;
-
-  // &.dark {
-    // background-color: $bg-color;
-    //background-image: image-url("noise.png");
-    // border-color: $deeper-blue;
-    // color: $off-white;
-  // }
-
+.navbar-market {
+  top: 68px;
 }
 
-  .add {
-    color: green;
-  }
+.add {
+  color: green;
+}
 
-  .remove {
-    color: $red-accent
-  }
+.remove {
+  color: $red-accent
+}
 
 .btn-map-label {
   padding-left: 2px;
 }
 
-// .table tbody tr > td.success {
-  // background-color: inherit;
-  // color: #5CB85C !important;
-// }
-
-.panel {
-  // background-color: $cream;
-  // background-image: image-url("noise.png");
-  // color: $deeper-blue;
-  border: 0;
-}
-
 .breadcrumb {
   // background-color: $primary-blue;
-  background-image: image-url("noise.png")
+  background-image: image-url("noise.png");
 }
 
 .progress {
@@ -324,10 +279,6 @@ b, strong {
   font-weight: normal;
 }
 
-.flash {
-  // color: $bg-color;
-}
-
 .center {
   text-align: center;
 }
@@ -339,12 +290,6 @@ b, strong {
 .btn-open-donation, .btn-open-donation:hover {
   color: $nav;
   background-color: $red-accent;
-  // background-image: image-url("noise.png");
-  // width: 75px;
-  // height: 50px;
-
-  // font-size: rem-calc(18px);
-  // font-weight: $bold;
   text-transform: uppercase;
 }
 
@@ -352,11 +297,6 @@ b, strong {
   color: $bg-color;
   background-color: $base;
   background-image: image-url("noise.png");
-  // width: 75px;
-  // height: 50px;
-
-  // font-size: rem-calc(18px);
-  // font-weight: $bold;
   text-transform: uppercase;
 }
 
@@ -379,78 +319,38 @@ b, strong {
     position: relative;
 }
 
-  .controls {
-    color: red !important;
+.controls {
+  color: red !important;
+}
+
+.featurette {
+  padding: 0;
+  margin-top: 2em;
+
+  .featurette-heading {
+    font-size: 2.3rem;
+    margin: 2rem 0;
   }
 
-    .featurette {
+  p.lead {
+    font-size: 1.5rem;
+    line-height: 2.4rem;
+  }
 
-      .featurette-heading {
-        font-size: rem-calc(35px);
-        // color: $primary-blue;
-        margin: 2rem 0;
-        // background-color: $cream;
-        // background-image: image-url("noise.png");
-      }
+  .container {
+    margin-top: rem-calc(30px);
+    margin-bottom: rem-calc(30px);
+  }
 
-      p.lead {
-        // color: $primary-blue;
-        font-size: 1.8rem;
-        line-height: 2.8rem;
-      }
-      &.dark {
-        // background-color: $base;
-        // color: $light;
-        //background-image: image-url("noise.png");
-
-        .featurette-heading {
-          // color: $off-white;
-        }
-
-        p.lead {
-          // color: $off-white;
-        }
-      }
-
-      &.mappings {
-
-        .featurette-heading {
-          // color: $off-white;
-        }
-
-        p.lead {
-          // color: $off-white;
-        }
-      }
-
-      .container {
-        margin-top: rem-calc(30px);
-        margin-bottom: rem-calc(30px);
-      }
-
-      // overflow: hidden;
-
-      padding: 0;
-      margin: 0;
-
-      hr {
-        border: none;
-        height: rem-calc(10px);
-        margin: 0;
-        padding: 0;
-
-        &.light {
-          // background-color: lighten($primary-blue, 51);
-        }
-        &.dark {
-          // background-color: $primary-blue;
-        }
-      }
-
-    }
+  hr {
+    border: none;
+    height: rem-calc(10px);
+    margin: 0;
+    padding: 0;
+  }
+}
 
  .title {
-    // color: $off-white;
     font-size: rem-calc(28px);
     font-weight: $bold;
     text-transform: uppercase;
@@ -651,3 +551,58 @@ b, strong {
 .push-down {
   margin-bottom: 2em;
 }
+
+#sticky {
+  width: 100%;
+  border-radius: 0;
+  // background-color: $dark;
+  background-image: image-url("noise.png");
+  top: -1em;
+}
+#sticky.stick {
+    position: fixed;
+    top: 68px;
+    z-index: 10;
+    border-radius: 0;
+}
+
+#msticky {
+  width: 100%;
+  // margin-top: 2em;
+  // border-radius: 0;
+  background-color: $nav;
+  background-image: image-url("noise.png");
+  // top: -1em;
+}
+#msticky.mstick {
+    position: fixed;
+    left: 0;
+    top: 68px;
+    z-index: 10;
+    border-radius: 0;
+    padding: 1em;
+}
+
+.noisy {
+  background-image: image-url("noise.png");
+  // background-color: $nav;
+}
+
+.create {
+  // border-color: $lg-green;
+  border-width: .1em;
+}
+
+.update {
+  // border-color: $accent;
+  border-width: .1em; 
+}
+
+.clear {
+  margin-top: 4em;
+}
+
+// this is to control the packery object
+// .packery-sizer, .packery-object {
+//   width: 500px;
+// }

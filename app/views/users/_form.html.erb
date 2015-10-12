@@ -1,9 +1,10 @@
+<div class="container">
   <div class="featurette dark">
     <hr class="light">
     <hr class="dark">
     <br>
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
+      <div class="col-md-12">
         <% if current_user %>
           <div class="row">
             <div class="col-md-3">
@@ -24,19 +25,19 @@
           </div>
           </br>
         <% end %>
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-          <div class="panel panel-default">
+        <div class="card" id="accordion" role="tablist" aria-multiselectable="true">
+          <div class="card-block">
             
-            <div class="panel-heading" role="tab" id="headingOne">
-              <h4 class="panel-title">
+            <div class="card-heading" role="tab" id="headingOne">
+              <h4 class="card-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                   <%= form_for @user, role: 'form', html: {id: 'signup_form'} do |f| %>
-                  User and Organization Settings
+                  User and Organization Settings <span class="pull-right"><i class="fa fa-bars"></i></span>
                 </a>
               </h4>
             </div>
             <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-              <div class="panel-body">
+              <div class="card-text">
                 <div class="form-group">
                   <%= f.label :email %>
                   <%= f.text_field :email, class: 'form-control' %>
@@ -69,19 +70,19 @@
                   <%= f.label 'Plan' %>
                   <br>
                   <div class="btn-group plan_btn" data-toggle="buttons">
-                    <label class="btn btn-default free pay">
+                    <label class="btn btn-primary free pay">
                       <input type="radio" name="options" data-name="Free" data-amount="free"> Free
                     </label>
-                    <label class="btn btn-default pay">
+                    <label class="btn btn-primary pay">
                       <input type="radio" name="options" data-name="Entry" data-amount="3900"> Entry $39/mo.
                     </label>
-                    <label class="btn btn-default pay">
+                    <label class="btn btn-primary pay">
                       <input type="radio" name="options" data-name="Startup" data-amount="7900"> Startup $79/mo.
                     </label>
-                    <label class="btn btn-default pay">
+                    <label class="btn btn-primary pay">
                       <input type="radio" name="options" data-name="Growth" data-amount="29900"> Growth $299/mo.
                     </label>
-                    <label class="btn btn-default pay disabled">
+                    <label class="btn btn-primary pay disabled">
                       <input type="radio" name="options" data-name="Enterprise" data-amount="99900"> Enterprise
                     </label>
                   </div>
@@ -92,20 +93,23 @@
                 </div>
 
                   <% if current_user %>
-                    <%= f.submit "Update", class: 'btn btn-primary submit_btn' %>
+                    <%= f.submit "Update", class: 'btn btn-base submit_btn' %>
                   <% else %>
-                    <%= f.submit "Sign up", class: 'btn btn-success submit_btn' %>
+                    <%= f.submit "Sign up", class: 'btn btn-green submit_btn' %>
                   <% end %>
                   <script src="https://checkout.stripe.com/checkout.js"></script>
                   <% end %>
               </div>
             </div>
-
+</div>
+</div>
+<div class="card">
+<div class="card-block">
             <div class="panel-heading" role="tab" id="headingTwo">
               <h4 class="panel-title">
                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                   <%= form_for @user, role: 'form' do |f| %>
-                  ODK / SurveyCTO
+                  ODK / SurveyCTO <span class="pull-right"><i class="fa fa-bars"></i></span>
                 </a>
               </h4>
             </div>
@@ -134,12 +138,15 @@
                 <% end %>
                 </div>
             </div>
-
+</div>
+</div>
+<div class="card">
+<div class="card-block">
             <div class="panel-heading" role="tab" id="headingThree">
-              <h4 class="panel-title">
+              <h4 class="card-title">
                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                     <%= form_for @user, role: 'form' do |f| %>
-                    Salesforce.com
+                    Salesforce.com <span class="pull-right"><i class="fa fa-bars"></i></span>
                 </a>
               </h4>
             </div>
