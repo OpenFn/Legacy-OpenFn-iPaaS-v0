@@ -4,8 +4,8 @@
   margin: 1em;
   // background-color: $nav;
   background-image: image-url("noise.png");
-  .card-block {
-    height: 18.5rem;
+  &.tile {
+    .card-block {height: 18.5rem;}
   }
 }
 
@@ -113,7 +113,9 @@ a:hover{
 }
 
 .pcard {
-  min-height: 600px;
+  display: inline-block;
+  clear: both;
+  // padding-bottom: 1.5em;
 }
 
 .m1em {
