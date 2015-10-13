@@ -1,11 +1,15 @@
 <nav class="navbar navbar-main navbar-dark bg-inverse navbar-fixed-top navbar-nav" ng-controller="LoginController as loginCtrl">
   <div class="container">
-    <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
-      &#9776;
-    </button>
+    <button class="navbar-toggler navbar-logo-2 hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2"></button>
     <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-      <a class="navbar-logo" href="/"><span class="sr-only">(current)</span></a>
+      <a class="navbar-logo hidden-sm-down" href="/"><span class="sr-only">(current)</span></a>
       <ul class="nav navbar-nav">
+        <li class="nav-item hidden-md-up hidden-xs-down">
+          <a class="nav-link navbar-logo-2" href="/"></a>
+        </li>
+        <li class="nav-item hidden-sm-up">
+          <a class="nav-link" href="/">Home</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="/#/marketplace">Marketplace</a>
         </li>
@@ -19,11 +23,11 @@
         <li class="nav-item">
           <a class="nav-link" href="https://medium.com/@openFn" target="_blank">Content</a>
         </li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
         <li class="nav-item">
           <a class="nav-link" href="/#/impact">Impact</a>
         </li>
-      </ul>
-      <ul class="nav navbar-nav pull-right">
         <li class="nav-item">
           <a class="nav-link" href="/#/our_team">Team</a>
         </li>
