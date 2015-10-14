@@ -59,6 +59,7 @@ class ProductsController < ApplicationController
     product.tech_specs = params[:tech_specs]
     product.costs = params[:costs]
     product.resources = params[:resources]
+    product.logo_url = params[:logo_url]
     product.draft_update
     render json: product
   end
@@ -66,6 +67,7 @@ class ProductsController < ApplicationController
   def admin_new
     product = Product.new
     product.name = params[:name]
+    product.logo_url = params[:logo_url]
     product.website = params[:website]
     product.twitter = params[:twitter]
     product.email = params[:email]
