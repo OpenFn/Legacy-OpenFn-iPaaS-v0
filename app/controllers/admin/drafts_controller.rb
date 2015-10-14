@@ -17,6 +17,7 @@ class Admin::DraftsController < Admin::BaseAdminController
       record = schema.find(@draft.object['id'])
       record.update(:id => @draft.object['id'],
                     :name => @draft.object['name'],
+                    :logo_url => @draft.object['logo_url'],
                     :description => @draft.object['description'],
                     :salesforce_id => @draft.object['salesforce_id'],
                     :website => @draft.object['website'],

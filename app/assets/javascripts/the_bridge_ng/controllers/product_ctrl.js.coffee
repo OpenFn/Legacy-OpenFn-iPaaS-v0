@@ -260,6 +260,7 @@
       'tech_specs': product.tech_specs
       'costs': product.costs
       'resources': product.resources
+      'logo_url': product.logo_url
 
     $http.post("/admin/products/#{product.id}/tags/add",$scope.tags_added).success((data) ->
     )
