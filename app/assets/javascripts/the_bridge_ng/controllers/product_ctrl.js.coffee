@@ -14,6 +14,8 @@
     $http.get('/products/' + $routeParams.id + '.json').success((data) ->
       $scope.product = data
       productTags($scope.product)
+      # TODO - figure out the weirdness behind product.reviews.
+      # The column is empty in all DBs, but this line breaks without it.
       $scope.product.reviews_count = $scope.product.reviews.length
       $scope.productRating($scope.product)
       $scope.tabs = [
@@ -254,7 +256,6 @@
       'email': product.email
       'website': product.website
       'twitter': product.twitter
-      'provider': product.provider
       'description': product.description
       'detailed_description': product.detailed_description
       'tech_specs': product.tech_specs
