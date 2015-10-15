@@ -254,7 +254,6 @@
       'email': product.email
       'website': product.website
       'twitter': product.twitter
-      'provider': product.provider
       'description': product.description
       'detailed_description': product.detailed_description
       'tech_specs': product.tech_specs

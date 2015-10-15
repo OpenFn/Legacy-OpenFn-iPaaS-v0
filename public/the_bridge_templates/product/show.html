@@ -24,6 +24,7 @@
                         <a ng-href="{{product.website}}" class="btn btn-default" target="_blank">Link</a>
                     </li>
                     <li class="nav-item">
+                        <!-- TODO, fix integration link. -->
                         <a ng-click="integratedProduct('/mappings'); $event.stopPropagation()" class="btn btn-default" ng-show="product.integrated">Jobs</a>
                         <a ng-click="changeVoteFor(product)" ng-show="!product.integrated" class="btn btn-default">
                         <i ng-class="{'fa fa-lg ' : true, 'fa-thumbs-down' : product.hasVoteForUser, 'fa-thumbs-up' : !product.hasVoteForUser}"></i> Vote <sup>(+{{product.votes_count}})</sup></a>
