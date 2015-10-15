@@ -110,12 +110,13 @@
                     <p class="lead">Your reviews are what drive the community forward. Thanks for taking the time to open-source your knowledge of {{product.name}}. Your fellow users will vote your review up or down based on its usefulness.</p>
                     <form method="post">
                         <span><strong>Review (1000 chars)</strong></span><br><br>
-                        <textarea class="form-control" ng-model="post.review" rows="25" cols="50" name="review" placeholder="Write your review here..."></textarea>
+                        <textarea class="form-control" ng-model="post.review" rows="10" name="review" placeholder="Write your review here..."></textarea>
                         <br>
                         <br>
                         <span><strong>Rating (0-5)</strong></span><br><br>
                         <input type="number" class="form-control" ng-model="post.rating" name="rating" placeholder="2.5"></textarea>
                         <br><br>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <button ng-click = "submitReview(product)" class="btn btn-success" type="submit">Submit</button>
                         <div ng-show = "duplicate_status" class = "submitStatus">*You have already submitted review for this product.</div>
                         <div ng-show = "success_status" class = "submitStatus">*Your review has been successfully submitted.</div>
