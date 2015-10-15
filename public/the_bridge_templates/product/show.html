@@ -104,7 +104,7 @@
             </div>
         </div>
         <div class="modal fade" ng-show="loggedIn" id="review_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="card">
+            <div class="card rev">
                 <div class="card-block">
                     <h4 class="modal-title" id="myModalLabel">Submit a review for {{product.name}}.</h4>
                     <p class="lead">Your reviews are what drive the community forward. Thanks for taking the time to open-source your knowledge of {{product.name}}. Your fellow users will vote your review up or down based on its usefulness.</p>
@@ -113,12 +113,9 @@
                         <textarea class="form-control" ng-model="post.review" rows="25" cols="50" name="review" placeholder="Write your review here..."></textarea>
                         <br>
                         <br>
-                        <div ng-controller="RatingDemoCtrl">
-                            <span style="font-size: 2em">
-                            <rating ng-model="post.rating" type="integer" name="rating" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
-                            </span>
-                            <span class="label" ng-show="overStar"></span>
-                        </div>
+                        <span><strong>Rating (0-5)</strong></span><br><br>
+                        <input type="number" class="form-control" ng-model="post.rating" name="rating" placeholder="2.5"></textarea>
+                        <br><br>
                         <button ng-click = "submitReview(product)" class="btn btn-success" type="submit">Submit</button>
                         <div ng-show = "duplicate_status" class = "submitStatus">*You have already submitted review for this product.</div>
                         <div ng-show = "success_status" class = "submitStatus">*Your review has been successfully submitted.</div>
