@@ -104,8 +104,9 @@
                 </div>
                 <div class="card-footer text-muted small">
                     <a class="card-link" ng-href="{{product.website}}" ng-click="$event.stopPropagation()" target="_blank">Link</a>
-                    <a class="card-link pull-right" ng-show="product.integrated && !(product.name=='Telerivet')" style="cursor: pointer;" ng-click="integratedProduct('/mappings'); $event.stopPropagation()">Automate <i class="fa fa-flash"></i></a>
-                    <a class="card-link pull-right" ng-show="product.name=='Telerivet'" ng-href="https://github.com/OpenFn/fn-telerivet-salesforce" target="_blank">Automate <i class="fa fa-flash"></i></a>
+                    <a class="card-link pull-right" ng-show="product.integrated && !(product.integration_type)" style="cursor: pointer;" ng-click="integratedProduct('/mappings'); $event.stopPropagation()">Automate <i class="fa fa-flash"></i></a>
+                    <a class="card-link pull-right" ng-show="product.integration_type=='tr'" ng-href="https://github.com/OpenFn/fn-telerivet-salesforce" target="_blank">Automate <i class="fa fa-flash"></i></a>
+                    <a class="card-link pull-right" ng-show="product.integration_type=='cc'" ng-href="https://medium.com/@openFn/an-exciting-week-833b08c8699b" target="_blank">Automate <i class="fa fa-flash"></i></a>
                     <a class="card-link" ng-show="!product.integrated" ng-click="changeVoteFor(product); $event.stopPropagation()" tooltip-trigger="mouseenter" tooltip="Upvote for {{product.name}} to support a new adapter."><i ng-class="{'fa ' : true, 'fa-thumbs-down' : product.hasVoteForUser, 'fa-thumbs-up' : !product.hasVoteForUser}"></i></a>
                     <a class="card-link" ng-hide="product.integrated"><i class="fa fa-heart"></i> + <span class="live">{{product.votes_count}}</span></a>
                     <span class="pull-right"><small><ng-pluralize count="product.reviews_count" when="{'0': '','one': '1 review','other': '{} reviews'}"></ng-pluralize></small></span>

@@ -45,6 +45,7 @@ class Product < ActiveRecord::Base
       votes_count: votes_count,
       tag_list: tag_list,
       reviews_count: reviews_count,
+      integration_type: integration_type,
       rating: rating
     }
 
