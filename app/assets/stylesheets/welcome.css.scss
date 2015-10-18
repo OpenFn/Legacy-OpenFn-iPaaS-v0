@@ -46,19 +46,27 @@
     right: 0;
   }
 
+
   .numbers h4 {
     position: absolute;
     bottom: 3em;
     left: 0;
     right: 0;
     color: $bg-color;
-    font-size: 1rem;
+    /* font-size: 1rem; */
     line-height: 1.6rem;
 
     .digits {
       color: $accent;
       font-weight: $bold;
       font-size: rem-calc(36px);
+    }
+
+    @media (max-width: 33.9em) {
+      font-size: 0.8rem;
+      .digits {
+        font-size: rem-calc(24px);
+      }
     }
   }
 
