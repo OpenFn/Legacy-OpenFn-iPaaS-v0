@@ -14,16 +14,24 @@
 
 .headline-text
   font-weight: 200
+
 .headline
   padding: 5em 7em 4em 7em
+
+
   background-color: $base
   background-image: image-url("wow_bg.jpg")
   color: $bg-color
   border-bottom: 8px solid $grey
   position: relative
+
   @media screen and (max-width: 768px)
     padding: rem-calc(100px) rem-calc(30px)
     padding-bottom: rem-calc(90px)
+
+  @media (max-width: 33.9em)
+    padding: rem-calc(50px) rem-calc(18px)
+    padding-bottom: rem-calc(40px)
 
 .search-field
   input[type="text"]
@@ -59,7 +67,8 @@
   color: $light
   transition: all 0.25s
   @media screen and (max-width: 480px)
-    font-size: .8em
+    font-size: .7em
+
   &:hover
     color: $light-grey
   &.active
