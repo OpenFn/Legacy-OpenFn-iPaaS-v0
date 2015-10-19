@@ -23,7 +23,7 @@ module OdkSfLegacy
       # [ id, id, id ... ]
       def fetch_submissions
         params = {formId: @form[:id], numEntries: @import.num_imported? ? @limit + @import.num_imported : @limit}
-        params.merge!(cursor: transform_cursor(@import.cursor)) if @import.cursor
+        params.merge!(cursor: @import.cursor) if @import.cursor
         @request = @connection.submissions_where(params)
 
         import.update(cursor: @request.opaque_data)
@@ -50,6 +50,9 @@ module OdkSfLegacy
       end
 
 
+      # DEPRECATED: pending issue with new submissions not being picked up
+      # without an unrelaised numEntries/limit (i.e. 100+)
+      # We are using the cursor as returned by ODK.
       def transform_cursor(cursor)
         # <cursor xmlns=\"http://www.opendatakit.org/cursor\">
         #   <attributeName>_LAST_UPDATE_DATE</attributeName>
