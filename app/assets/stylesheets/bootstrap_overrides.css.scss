@@ -10,3 +10,8 @@
   padding-top: 4px;
   line-height: 1;
 }
+
+.form-control {
+  // bootstrap.css#1868
+  border: .1rem solid #ccc;
+}
