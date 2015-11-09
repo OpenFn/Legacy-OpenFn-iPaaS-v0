@@ -1,3 +1,20 @@
+# ODK Inspector
+# =============
+#
+# Used for debugging the ODK dispatcher.
+#
+# Usage:
+# ```rb
+# mapping = OdkSfLegacy::Mapping.find(n)
+#
+# inspector = OdkInspector.new(mapping.user)
+# inspector.form_name = mapping.import.odk_formid
+# inspector.cursor = mapping.import.cursor
+# ```
+#
+# Then calling `inspector.fetch_submissions(limit)` you can query ODK without
+# affecting the client's import and submissions.
+#
 class OdkInspector
   attr_reader :submissions, :request
   attr_accessor :import, :form_name, :cursor
