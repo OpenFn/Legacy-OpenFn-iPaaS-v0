@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015113143) do
+ActiveRecord::Schema.define(version: 20151109073113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,8 +147,8 @@ ActiveRecord::Schema.define(version: 20151015113143) do
     t.datetime "updated_at"
     t.boolean  "active",     default: false
     t.integer  "user_id"
-    t.boolean  "enabled"
-    t.boolean  "slow"
+    t.boolean  "enabled",    default: false
+    t.boolean  "slow",       default: false
   end
 
   add_index "odk_sf_legacy_mappings", ["user_id"], name: "index_odk_sf_legacy_mappings_on_user_id", using: :btree
@@ -373,10 +373,10 @@ ActiveRecord::Schema.define(version: 20151015113143) do
     t.string   "stripe_subscription_token"
     t.integer  "plan_id"
     t.datetime "stripe_current_period_end"
-    t.boolean  "unlimited",                       default: false
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.boolean  "unlimited",                       default: false
     t.string   "activation_state"
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
