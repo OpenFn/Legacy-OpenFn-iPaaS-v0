@@ -14,7 +14,7 @@ module OdkSfLegacy
           NewRelic::Agent.add_custom_parameters(mapping_id: mapping_id, limit: limit)
 
           mapping = Mapping.find mapping_id
-          logger.push_tags("OdkToSalesforce::Dispatcher", "Mapping##{@mapping.id}")
+          logger.push_tags("OdkToSalesforce::Dispatcher", "Mapping##{mapping.id}")
 
           user = mapping.user
           # Create a new import if there isn't one yet.
@@ -34,7 +34,7 @@ module OdkSfLegacy
             submission = import.submissions.create(uuid: uuid, data: submission_data["data"].values.first,
                                                  media_data: submission_data["mediaFile"])
 
-            logger.tagged("Submission##{submission.id}") "Enqueueing"
+            logger.tagged("Submission##{submission.id}") { logger.info "Enqueueing" }
             Sidekiq::Client.enqueue(OdkToSalesforce::SubmissionProcessor, mapping.id, submission.id)
 
           end

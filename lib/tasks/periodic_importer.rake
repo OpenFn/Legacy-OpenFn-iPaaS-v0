@@ -6,10 +6,10 @@ namespace :importer do
 
     OdkSfLegacy::Mapping.where(active: true, enabled: true, slow: false).each do |mapping|
       if mapping.user.plan.job_limit > mapping.user.legacy_count || mapping.user.unlimited
-        logger.tagged("Mapping##{@mapping.id}") { logger.info "Enqueuing Dispatcher" }
+        logger.tagged("Mapping##{mapping.id}") { logger.info "Enqueuing Dispatcher" }
         Sidekiq::Client.enqueue OdkSfLegacy::OdkToSalesforce::Dispatcher, mapping.id, 50
       else
-        logger.tagged("Mapping##{@mapping.id}") { logger.info "Skipping Dispatcher" }
+        logger.tagged("Mapping##{mapping.id}") { logger.info "Skipping Dispatcher" }
       end
     end
   end
