@@ -25,7 +25,8 @@
                     </li>
                     <li class="nav-item">
                         <!-- TODO, fix integration link. -->
-                        <a ng-click="integratedProduct('/mappings'); $event.stopPropagation()" class="btn btn-default" ng-show="product.integrated">Jobs</a>
+                        <a ng-click="integratedProduct('/mappings'); $event.stopPropagation()" class="btn btn-default" ng-show="product.integrated && !(product.integration_type)">Jobs</a>
+                        <a class="btn btn-default" ng-show="product.integration_type=='beta'" data-toggle="modal" data-target="#beta_modal">Automate <i class="fa fa-flash"></i></a>
                         <a ng-click="changeVoteFor(product)" ng-show="!product.integrated" class="btn btn-default">
                         <i ng-class="{'fa fa-lg ' : true, 'fa-thumbs-down' : product.hasVoteForUser, 'fa-thumbs-up' : !product.hasVoteForUser}"></i> Vote <sup>(+{{product.votes_count}})</sup></a>
                     </li>
@@ -123,4 +124,23 @@
                     </form>
                 </div>
             </div>
+        </div>
+        <div class="modal fade" id="beta_modal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h2>OpenFn 2.0</h2>
+              </div>
+              <div class="modal-body">
+                <p>This product is connected through our new platform. We have a handful of high-volume users and the connections are stable, but we are still asking that new clients connect by contacting us first as we polish up the user interface.
+                  If you want to connect, email OpenFn at:</p>
+                <p class="center"><a href="mailto:beta@openfn.org" target="_blank"><i class="fa fa-envelope"></i> beta@openfn.org</a></p>
+                <p>We look forward to hearing from you.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
         </div>
