@@ -16,7 +16,6 @@ class UserMailer < ActionMailer::Base
   def activation_needed_email(user)
     @user = user
     @url  = "https://www.openfn.org/users/#{user.activation_token}/activate"
-    @phoenix = "http://www.phoenixframework.org/"
     mail(:to => user.email,
          :cc => "taylor@openfn.org",
          :subject => "Welcome to OpenFn (activation link inside)")
