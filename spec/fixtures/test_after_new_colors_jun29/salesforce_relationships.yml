@@ -1,0 +1,13 @@
+---
+salesforce_relationships_001:
+  id: '117'
+  salesforce_object_id: '375'
+  salesforce_field_id: '11343'
+  created_at: '2015-06-29 07:39:06.855579'
+  updated_at: '2015-06-29 07:39:06.855579'
+salesforce_relationships_002:
+  id: '118'
+  salesforce_object_id: '375'
+  salesforce_field_id: '11357'
+  created_at: '2015-06-29 07:39:21.574111'
+  updated_at: '2015-06-29 07:39:21.574111'

@@ -1,0 +1,658 @@
+---
+salesforce_fields_001:
+  id: '11315'
+  field_name: Id
+  created_at: '2015-06-29 07:37:19.163566'
+  updated_at: '2015-06-29 07:37:19.448043'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":true,"inlineHelpText":null,"label":"Record
+    ID","length":18,"name":"Id","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"id","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_002:
+  id: '11316'
+  field_name: OwnerId
+  created_at: '2015-06-29 07:37:19.478169'
+  updated_at: '2015-06-29 07:37:19.481938'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":true,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Owner
+    ID","length":18,"name":"OwnerId","nameField":false,"namePointing":true,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":["Group","User"],"relationshipName":"Owner","relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"reference","unique":false,"updateable":true,"writeRequiresMasterRead":false}'
+salesforce_fields_003:
+  id: '11317'
+  field_name: IsDeleted
+  created_at: '2015-06-29 07:37:19.493063'
+  updated_at: '2015-06-29 07:37:19.496505'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":0,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Deleted","length":0,"name":"IsDeleted","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:boolean","sortable":true,"type":"boolean","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_004:
+  id: '11318'
+  field_name: Name
+  created_at: '2015-06-29 07:37:19.507496'
+  updated_at: '2015-06-29 07:37:19.510868'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":true,"byteLength":240,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":false,"htmlFormatted":false,"idLookup":true,"inlineHelpText":null,"label":"Test
+    Event Name","length":80,"name":"Name","nameField":true,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:string","sortable":true,"type":"string","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_005:
+  id: '11319'
+  field_name: CreatedDate
+  created_at: '2015-06-29 07:37:19.521692'
+  updated_at: '2015-06-29 07:37:19.525011'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":0,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":false,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Created
+    Date","length":0,"name":"CreatedDate","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:dateTime","sortable":true,"type":"datetime","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_006:
+  id: '11320'
+  field_name: CreatedById
+  created_at: '2015-06-29 07:37:19.544344'
+  updated_at: '2015-06-29 07:37:19.547641'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Created
+    By ID","length":18,"name":"CreatedById","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":["User"],"relationshipName":"CreatedBy","relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"reference","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_007:
+  id: '11321'
+  field_name: LastModifiedDate
+  created_at: '2015-06-29 07:37:19.558211'
+  updated_at: '2015-06-29 07:37:19.561313'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":0,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":false,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Last
+    Modified Date","length":0,"name":"LastModifiedDate","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:dateTime","sortable":true,"type":"datetime","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_008:
+  id: '11322'
+  field_name: LastModifiedById
+  created_at: '2015-06-29 07:37:19.574957'
+  updated_at: '2015-06-29 07:37:19.578093'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Last
+    Modified By ID","length":18,"name":"LastModifiedById","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":["User"],"relationshipName":"LastModifiedBy","relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"reference","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_009:
+  id: '11323'
+  field_name: SystemModstamp
+  created_at: '2015-06-29 07:37:19.621404'
+  updated_at: '2015-06-29 07:37:19.62483'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":0,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":false,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"System
+    Modstamp","length":0,"name":"SystemModstamp","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:dateTime","sortable":true,"type":"datetime","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_010:
+  id: '11324'
+  field_name: ConnectionReceivedId
+  created_at: '2015-06-29 07:37:19.635498'
+  updated_at: '2015-06-29 07:37:19.638841'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Received
+    Connection ID","length":18,"name":"ConnectionReceivedId","nameField":false,"namePointing":false,"nillable":true,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":["PartnerNetworkConnection"],"relationshipName":"ConnectionReceived","relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"reference","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_011:
+  id: '11325'
+  field_name: ConnectionSentId
+  created_at: '2015-06-29 07:37:19.649404'
+  updated_at: '2015-06-29 07:37:19.65263'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Sent
+    Connection ID","length":18,"name":"ConnectionSentId","nameField":false,"namePointing":false,"nillable":true,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":["PartnerNetworkConnection"],"relationshipName":"ConnectionSent","relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"reference","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_012:
+  id: '11326'
+  field_name: vera__Test_Event_Name_Unique__c
+  created_at: '2015-06-29 07:37:19.663088'
+  updated_at: '2015-06-29 07:37:19.666337'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":765,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":true,"custom":true,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Test
+    Event Name Unique","length":255,"name":"vera__Test_Event_Name_Unique__c","nameField":false,"namePointing":false,"nillable":true,"permissionable":true,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:string","sortable":true,"type":"string","unique":false,"updateable":true,"writeRequiresMasterRead":false}'
+salesforce_fields_013:
+  id: '11327'
+  field_name: vera__Start_Date__c
+  created_at: '2015-06-29 07:37:19.676923'
+  updated_at: '2015-06-29 07:37:19.680068'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":0,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":true,"custom":true,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Start
+    Date","length":0,"name":"vera__Start_Date__c","nameField":false,"namePointing":false,"nillable":true,"permissionable":true,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:date","sortable":true,"type":"date","unique":false,"updateable":true,"writeRequiresMasterRead":false}'
+salesforce_fields_014:
+  id: '11328'
+  field_name: vera__End_Date__c
+  created_at: '2015-06-29 07:37:19.690776'
+  updated_at: '2015-06-29 07:37:19.694'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":0,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":true,"custom":true,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"End
+    Date","length":0,"name":"vera__End_Date__c","nameField":false,"namePointing":false,"nillable":true,"permissionable":true,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:date","sortable":true,"type":"date","unique":false,"updateable":true,"writeRequiresMasterRead":false}'
+salesforce_fields_015:
+  id: '11329'
+  field_name: vera__ODK_Key__c
+  created_at: '2015-06-29 07:37:19.704453'
+  updated_at: '2015-06-29 07:37:19.707537'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":765,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":true,"custom":true,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"ODK
+    Key","length":255,"name":"vera__ODK_Key__c","nameField":false,"namePointing":false,"nillable":true,"permissionable":true,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:string","sortable":true,"type":"string","unique":true,"updateable":true,"writeRequiresMasterRead":false}'
+salesforce_fields_016:
+  id: '11330'
+  field_name: vera__food_name__c
+  created_at: '2015-06-29 07:37:19.717944'
+  updated_at: '2015-06-29 07:37:19.721192'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":765,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":true,"custom":true,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"food
+    name","length":255,"name":"vera__food_name__c","nameField":false,"namePointing":false,"nillable":true,"permissionable":true,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:string","sortable":true,"type":"string","unique":false,"updateable":true,"writeRequiresMasterRead":false}'
+salesforce_fields_017:
+  id: '11331'
+  field_name: vera__food_color__c
+  created_at: '2015-06-29 07:37:19.732326'
+  updated_at: '2015-06-29 07:37:19.735448'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":765,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":true,"custom":true,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"food
+    color","length":255,"name":"vera__food_color__c","nameField":false,"namePointing":false,"nillable":true,"permissionable":true,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:string","sortable":true,"type":"string","unique":false,"updateable":true,"writeRequiresMasterRead":false}'
+salesforce_fields_018:
+  id: '11332'
+  field_name: vera__sound_volume__c
+  created_at: '2015-06-29 07:37:19.745969'
+  updated_at: '2015-06-29 07:37:19.749135'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '375'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":765,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":true,"custom":true,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"sound
+    volume","length":255,"name":"vera__sound_volume__c","nameField":false,"namePointing":false,"nillable":true,"permissionable":true,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:string","sortable":true,"type":"string","unique":false,"updateable":true,"writeRequiresMasterRead":false}'
+salesforce_fields_019:
+  id: '11333'
+  field_name: Id
+  created_at: '2015-06-29 07:38:54.762215'
+  updated_at: '2015-06-29 07:38:54.769055'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '376'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":true,"inlineHelpText":null,"label":"Record
+    ID","length":18,"name":"Id","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"id","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_020:
+  id: '11334'
+  field_name: IsDeleted
+  created_at: '2015-06-29 07:38:54.780452'
+  updated_at: '2015-06-29 07:38:54.783868'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '376'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":0,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Deleted","length":0,"name":"IsDeleted","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:boolean","sortable":true,"type":"boolean","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_021:
+  id: '11335'
+  field_name: Name
+  created_at: '2015-06-29 07:38:54.794593'
+  updated_at: '2015-06-29 07:38:54.797829'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '376'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":240,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":true,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":true,"inlineHelpText":null,"label":"Boat
+    Name","length":80,"name":"Name","nameField":true,"namePointing":false,"nillable":true,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:string","sortable":true,"type":"string","unique":false,"updateable":true,"writeRequiresMasterRead":false}'
+salesforce_fields_022:
+  id: '11336'
+  field_name: CreatedDate
+  created_at: '2015-06-29 07:38:54.808244'
+  updated_at: '2015-06-29 07:38:54.811572'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '376'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":0,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":false,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Created
+    Date","length":0,"name":"CreatedDate","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:dateTime","sortable":true,"type":"datetime","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_023:
+  id: '11337'
+  field_name: CreatedById
+  created_at: '2015-06-29 07:38:54.823477'
+  updated_at: '2015-06-29 07:38:54.826768'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '376'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Created
+    By ID","length":18,"name":"CreatedById","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":["User"],"relationshipName":"CreatedBy","relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"reference","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_024:
+  id: '11338'
+  field_name: LastModifiedDate
+  created_at: '2015-06-29 07:38:54.838071'
+  updated_at: '2015-06-29 07:38:54.841364'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '376'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":0,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":false,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Last
+    Modified Date","length":0,"name":"LastModifiedDate","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:dateTime","sortable":true,"type":"datetime","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_025:
+  id: '11339'
+  field_name: LastModifiedById
+  created_at: '2015-06-29 07:38:54.852227'
+  updated_at: '2015-06-29 07:38:54.855489'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '376'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Last
+    Modified By ID","length":18,"name":"LastModifiedById","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":["User"],"relationshipName":"LastModifiedBy","relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"reference","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_026:
+  id: '11340'
+  field_name: SystemModstamp
+  created_at: '2015-06-29 07:38:54.867141'
+  updated_at: '2015-06-29 07:38:54.870521'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '376'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":0,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":false,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"System
+    Modstamp","length":0,"name":"SystemModstamp","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:dateTime","sortable":true,"type":"datetime","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_027:
+  id: '11341'
+  field_name: ConnectionReceivedId
+  created_at: '2015-06-29 07:38:54.88143'
+  updated_at: '2015-06-29 07:38:54.884942'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '376'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Received
+    Connection ID","length":18,"name":"ConnectionReceivedId","nameField":false,"namePointing":false,"nillable":true,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":["PartnerNetworkConnection"],"relationshipName":"ConnectionReceived","relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"reference","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_028:
+  id: '11342'
+  field_name: ConnectionSentId
+  created_at: '2015-06-29 07:38:54.8983'
+  updated_at: '2015-06-29 07:38:54.901448'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '376'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Sent
+    Connection ID","length":18,"name":"ConnectionSentId","nameField":false,"namePointing":false,"nillable":true,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":["PartnerNetworkConnection"],"relationshipName":"ConnectionSent","relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"reference","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_029:
+  id: '11343'
+  field_name: vera__Test_Event__c
+  created_at: '2015-06-29 07:38:54.916094'
+  updated_at: '2015-06-29 07:38:54.919304'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '376'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":true,"caseSensitive":false,"controllerName":null,"createable":true,"custom":true,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Test
+    Event","length":18,"name":"vera__Test_Event__c","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":["vera__Test_Event__c"],"relationshipName":"vera__Test_Event__r","relationshipOrder":0,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"reference","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_030:
+  id: '11344'
+  field_name: vera__odk_key__c
+  created_at: '2015-06-29 07:38:54.930231'
+  updated_at: '2015-06-29 07:38:54.933569'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '376'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":765,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":true,"custom":true,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"odk
+    key","length":255,"name":"vera__odk_key__c","nameField":false,"namePointing":false,"nillable":true,"permissionable":true,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:string","sortable":true,"type":"string","unique":true,"updateable":true,"writeRequiresMasterRead":false}'
+salesforce_fields_031:
+  id: '11345'
+  field_name: vera__LongerURL__c
+  created_at: '2015-06-29 07:38:54.944424'
+  updated_at: '2015-06-29 07:38:54.947615'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '376'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":765,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":true,"custom":true,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Longer
+    URL","length":255,"name":"vera__LongerURL__c","nameField":false,"namePointing":false,"nillable":true,"permissionable":true,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:string","sortable":true,"type":"url","unique":false,"updateable":true,"writeRequiresMasterRead":false}'
+salesforce_fields_032:
+  id: '11346'
+  field_name: vera__Boat_Maker__c
+  created_at: '2015-06-29 07:38:54.95837'
+  updated_at: '2015-06-29 07:38:54.961635'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '376'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":30000,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":true,"custom":true,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":false,"groupable":false,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Boat
+    Maker","length":10000,"name":"vera__Boat_Maker__c","nameField":false,"namePointing":false,"nillable":true,"permissionable":true,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:string","sortable":false,"type":"textarea","unique":false,"updateable":true,"writeRequiresMasterRead":false}'
+salesforce_fields_033:
+  id: '11347'
+  field_name: Id
+  created_at: '2015-06-29 07:39:12.002916'
+  updated_at: '2015-06-29 07:39:12.010634'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '377'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":true,"inlineHelpText":null,"label":"Record
+    ID","length":18,"name":"Id","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"id","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_034:
+  id: '11348'
+  field_name: IsDeleted
+  created_at: '2015-06-29 07:39:12.020178'
+  updated_at: '2015-06-29 07:39:12.023548'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '377'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":0,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Deleted","length":0,"name":"IsDeleted","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:boolean","sortable":true,"type":"boolean","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_035:
+  id: '11349'
+  field_name: Name
+  created_at: '2015-06-29 07:39:12.032771'
+  updated_at: '2015-06-29 07:39:12.036078'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '377'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":240,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":true,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":true,"inlineHelpText":null,"label":"Car
+    Name","length":80,"name":"Name","nameField":true,"namePointing":false,"nillable":true,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:string","sortable":true,"type":"string","unique":false,"updateable":true,"writeRequiresMasterRead":false}'
+salesforce_fields_036:
+  id: '11350'
+  field_name: CreatedDate
+  created_at: '2015-06-29 07:39:12.049209'
+  updated_at: '2015-06-29 07:39:12.052878'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '377'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":0,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":false,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Created
+    Date","length":0,"name":"CreatedDate","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:dateTime","sortable":true,"type":"datetime","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_037:
+  id: '11351'
+  field_name: CreatedById
+  created_at: '2015-06-29 07:39:12.063204'
+  updated_at: '2015-06-29 07:39:12.066708'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '377'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Created
+    By ID","length":18,"name":"CreatedById","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":["User"],"relationshipName":"CreatedBy","relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"reference","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_038:
+  id: '11352'
+  field_name: LastModifiedDate
+  created_at: '2015-06-29 07:39:12.075816'
+  updated_at: '2015-06-29 07:39:12.079198'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '377'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":0,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":false,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Last
+    Modified Date","length":0,"name":"LastModifiedDate","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:dateTime","sortable":true,"type":"datetime","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_039:
+  id: '11353'
+  field_name: LastModifiedById
+  created_at: '2015-06-29 07:39:12.093355'
+  updated_at: '2015-06-29 07:39:12.097834'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '377'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Last
+    Modified By ID","length":18,"name":"LastModifiedById","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":["User"],"relationshipName":"LastModifiedBy","relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"reference","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_040:
+  id: '11354'
+  field_name: SystemModstamp
+  created_at: '2015-06-29 07:39:12.108267'
+  updated_at: '2015-06-29 07:39:12.111615'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '377'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":0,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":true,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":false,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"System
+    Modstamp","length":0,"name":"SystemModstamp","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:dateTime","sortable":true,"type":"datetime","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_041:
+  id: '11355'
+  field_name: ConnectionReceivedId
+  created_at: '2015-06-29 07:39:12.120552'
+  updated_at: '2015-06-29 07:39:12.123902'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '377'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Received
+    Connection ID","length":18,"name":"ConnectionReceivedId","nameField":false,"namePointing":false,"nillable":true,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":["PartnerNetworkConnection"],"relationshipName":"ConnectionReceived","relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"reference","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_042:
+  id: '11356'
+  field_name: ConnectionSentId
+  created_at: '2015-06-29 07:39:12.133315'
+  updated_at: '2015-06-29 07:39:12.136705'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '377'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":false,"custom":false,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Sent
+    Connection ID","length":18,"name":"ConnectionSentId","nameField":false,"namePointing":false,"nillable":true,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":["PartnerNetworkConnection"],"relationshipName":"ConnectionSent","relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"reference","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_043:
+  id: '11357'
+  field_name: vera__Test_Event__c
+  created_at: '2015-06-29 07:39:12.148222'
+  updated_at: '2015-06-29 07:39:12.151741'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '377'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":18,"calculated":false,"calculatedFormula":null,"cascadeDelete":true,"caseSensitive":false,"controllerName":null,"createable":true,"custom":true,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"Test
+    Event","length":18,"name":"vera__Test_Event__c","nameField":false,"namePointing":false,"nillable":false,"permissionable":false,"picklistValues":[],"precision":0,"referenceTo":["vera__Test_Event__c"],"relationshipName":"vera__Test_Event__r","relationshipOrder":0,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"tns:ID","sortable":true,"type":"reference","unique":false,"updateable":false,"writeRequiresMasterRead":false}'
+salesforce_fields_044:
+  id: '11358'
+  field_name: vera__odk_key__c
+  created_at: '2015-06-29 07:39:12.164864'
+  updated_at: '2015-06-29 07:39:12.168606'
+  data_type: 
+  label_name: 
+  color: 
+  is_lookup: f
+  salesforce_object_id: '377'
+  reference_to: 
+  nillable: 
+  unique: 
+  properties: '{"autoNumber":false,"byteLength":765,"calculated":false,"calculatedFormula":null,"cascadeDelete":false,"caseSensitive":false,"controllerName":null,"createable":true,"custom":true,"defaultValue":null,"defaultValueFormula":null,"defaultedOnCreate":false,"dependentPicklist":false,"deprecatedAndHidden":false,"digits":0,"displayLocationInDecimal":false,"externalId":false,"filterable":true,"groupable":true,"htmlFormatted":false,"idLookup":false,"inlineHelpText":null,"label":"odk
+    key","length":255,"name":"vera__odk_key__c","nameField":false,"namePointing":false,"nillable":true,"permissionable":true,"picklistValues":[],"precision":0,"referenceTo":[],"relationshipName":null,"relationshipOrder":null,"restrictedDelete":false,"restrictedPicklist":false,"scale":0,"soapType":"xsd:string","sortable":true,"type":"string","unique":true,"updateable":true,"writeRequiresMasterRead":false}'

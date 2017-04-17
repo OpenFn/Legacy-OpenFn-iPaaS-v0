@@ -31,7 +31,6 @@ module Api::V1
       end
     end
 
-
     # Fetching a Mapping
     # --------------------
     # `GET /api/v1/mappings/id`

@@ -28,31 +28,31 @@ namespace :db do
 
     OBJECTS = {
       users:  ->(id) {
-        User.joins(:mappings).where(mappings: {id: id}).to_sql
+        User.joins(:mappings).where(odk_sf_legacy_mappings: {id: id}).to_sql
       },
       mappings: ->(id) {
-        Mapping.where(id: id).to_sql
+        OdkSfLegacy::Mapping.where(id: id).to_sql
       },
       salesforce_objects: ->(id) {
-        SalesforceObject.where(mapping_id: id).to_sql
+        OdkSfLegacy::SalesforceObject.where(mapping_id: id).to_sql
       },
       odk_field_salesforce_fields: ->(id) {
-        OdkFieldSalesforceField.joins(salesforce_field: :salesforce_object).where(salesforce_objects: {mapping_id: id}).to_sql
+        OdkSfLegacy::OdkFieldSalesforceField.joins(salesforce_field: :salesforce_object).where(odk_sf_legacy_salesforce_objects: {mapping_id: id}).to_sql
       },
       salesforce_fields: ->(id) {
-        SalesforceField.unscoped.joins(:salesforce_object).where(salesforce_objects: {mapping_id: id}).to_sql
+        OdkSfLegacy::SalesforceField.unscoped.joins(:salesforce_object).where(odk_sf_legacy_salesforce_objects: {mapping_id: id}).to_sql
       },
       odk_fields: ->(id) {
-        OdkField.joins(:odk_form).where(odk_forms: {mapping_id: id}).to_sql
+        OdkSfLegacy::OdkField.joins(:odk_form).where(odk_sf_legacy_odk_forms: {mapping_id: id}).to_sql
       },
       salesforce_relationships: ->(id) {
-        SalesforceRelationship.joins(:salesforce_object).where(salesforce_objects: {mapping_id: id}).to_sql 
+        OdkSfLegacy::SalesforceRelationship.joins(:salesforce_object).where(odk_sf_legacy_salesforce_objects: {mapping_id: id}).to_sql 
       },
       imports: ->(id) {
-        Import.where(mapping_id: id).to_sql
+        OdkSfLegacy::Import.where(mapping_id: id).to_sql
       },
       submissions: ->(id) {
-        Submission.joins(:import).where(imports: {mapping_id: id}).to_sql
+        OdkSfLegacy::Submission.joins(:import).where(odk_sf_legacy_imports: {mapping_id: id}).to_sql
       }
     }
 
@@ -62,7 +62,7 @@ namespace :db do
         exit 1
       end
 
-      mapping = Mapping.find(args[:mapping_id])
+      mapping = OdkSfLegacy::Mapping.find(args[:mapping_id])
       ActiveRecord::Base.establish_connection(:development) 
 
       OBJECTS.each { |table_name,query|
